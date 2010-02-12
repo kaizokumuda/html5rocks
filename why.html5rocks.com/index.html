@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @-webkit-keyframes fader {
+        0%   { opacity: 0; }
+        50%  { opacity: 0; }
+        100% { opacity: 1.0; }
+      }
+      h1 {
+        font: 40px Arial;
+        -webkit-animation: fader 2s ease-in-out;
+        text-align: center;
+      }
+      
+      body, html {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        display: -webkit-box;
+        display: -moz-box;
+        display: box;
+        -webkit-box-pack: center;
+        -moz-box-pack: center;
+        box-pack: center;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        box-orient: vertical;
+        -webkit-box-align: stretch;
+        -moz-box-align: stretch;
+        box-align: stretch;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>because it does</h1>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+application: why-html5rocks
+version: 2
+runtime: python
+api_version: 1
+
+handlers:
+- url: .*
+  static_files: index.html 
+  upload: index.html
