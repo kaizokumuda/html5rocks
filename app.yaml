@@ -1,5 +1,5 @@
 application: html5rocks
-version: 1
+version: 2
 runtime: python
 api_version: 1
 
@@ -7,13 +7,9 @@ handlers:
 - url: /samples.*(\.html|/)
   script: main.py
 
-#- url: /samples/(.*\.(gif|png|jpg|swf|mp3|css|js))
-#  static_files: content/\1
-#  upload: content/(.*\.(gif|png|jpg|swf|mp3|css|js))
-
-- url: /samples/(.*\.(?!html)[^.]*)
+- url: /samples/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogg|ogm|fla))
   static_files: content/\1
-  upload: content/(.*\.(?!html)[^.]*)
+  upload: content/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogg|ogm|fla))
 
 - url: /static
   static_dir: static

@@ -25,7 +25,7 @@ from google.appengine.ext.webapp import util
 from google.appengine.ext.webapp import template
 
 class ContentHandler(webapp.RequestHandler):
-  def render(self, data={}, template_path={}, status=None, message=None):
+  def render(self, data={}, template_path=None, status=None, message=None):
     if status is not None and status != 200:
       logging.error(message)
       self.response.set_status(status, message)
@@ -45,7 +45,7 @@ class ContentHandler(webapp.RequestHandler):
       path = os.path.join(basedir, "content", relpath)
       
     logging.info(path)
-    if os.path.exists(path):
+    if os.path.isfile(path):
       self.render(template_path=path)
     else:
       self.render(status=404, message="Sample not found")
