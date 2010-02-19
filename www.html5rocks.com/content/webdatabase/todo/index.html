@@ -17,8 +17,9 @@
  * Author: Paul Kinlan
  -->
   <head>
-    <link rel="stylesheet" href="/static/css/base.css"></link>
     <title>Simple Sample using HTML5 Web database.</title>
+    <link rel="stylesheet" href="/static/css/base.css" />
+    
     <script>
     
     var html5rocks = {};
@@ -293,8 +294,7 @@
     <pre>
       <code>
         ....
-        function init()
-        {
+        function init() {
           html5rocks.webdb.open();
           html5rocks.webdb.createTable();
           html5rocks.webdb.getAllTodoItems(loadTodoItems);
@@ -310,8 +310,7 @@
     </p>
     <pre>
       <code>
-        function addTodo()
-        {
+        function addTodo() {
           var todo = document.getElementById("todo");
           
           html5rocks.webdb.addTodo(todo.value);
