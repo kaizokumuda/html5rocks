@@ -137,7 +137,8 @@
     <h2><a name="transactions">Asynchronous and Transactional</a></h2>
     <p>
       In the majority of cases where you are using Web Database 
-      support you will be using the Asynchronous API.  The Asynchronous API
+      support you will be using the <a
+        href="http://dev.w3.org/html5/webdatabase/#asynchronous-database-api">Asynchronous API</a>.  The Asynchronous API
       is a non-blocking system and as such will not get data
       through return values, but rather will get data delivered to a defined
       callback function.
@@ -145,8 +146,9 @@
     <p>
       The Web Database support through HTML is transactional.  It is not
        possible to execute SQL statements outside of a transaction.
-      There are two types of transactions: read/write transactions and read
-      only transactions. Please note, read/write will lock the entire database.
+      There are two types of transactions: read/write transactions
+      (<em>transaction()</em>) and read
+      only transactions (<em>readTransaction()</em>). Please note, read/write will lock the entire database.
     </p>
     <h2>Step 1. Opening the database</h2>
     <p>The database needs to be opened before it can be accessed.  
