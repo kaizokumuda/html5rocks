@@ -9,8 +9,7 @@ pre {
   border: 1px solid #ccc; 
   padding: 10px; 
   font-size: 120%; 
-  text-overflow: ellipsis; 
-  overflow: hidden; 
+  overflow: auto; 
 }
 pre.diagram { 
   background-color: #FAFAD2; 
