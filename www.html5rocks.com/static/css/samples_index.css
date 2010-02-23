@@ -43,3 +43,8 @@ img.logo {
   padding: 5px;
   text-align: center;
 }
+
+h2 a {
+  color: #000;
+  text-decoration: none;
+}
