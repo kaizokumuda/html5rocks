@@ -22,6 +22,7 @@
 <head>
   <title>html5rocks - {% block headtitle %}{% endblock %}</title>
   <link rel="stylesheet" href="/static/css/base.css" />
+  <meta name="description" content="{% block meta_description %}" />
   {% block head %}{% endblock %}
 </head>
 <body onload="{% block onload %}{% endblock %}">
