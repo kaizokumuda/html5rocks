@@ -1,37 +1,119 @@
 body { 
   color: #222; 
-  font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif; 
-  margin: 0 auto; 
-  width: 750px; 
+  font: 14px Arial;
+  margin: 0;
+  padding: 0 0 30px 0;
 }
-pre { 
-  background-color: #eee; 
-  border: 1px solid #ccc; 
-  padding: 10px; 
-  font-size: 120%; 
-  overflow: auto; 
+#header {
+  background: #eee;
+  margin: 0;
+  padding: 5px;
+  border-bottom: 3px solid #ccc;
 }
-pre.diagram { 
-  background-color: #FAFAD2; 
+#header img {
+  display: block;
 }
-h2 { 
-  font-size: 120%; 
-  font-family: Georgia; margin-top: 30px; 
-  border-bottom: 1px solid #ccc; 
+#wrap {
+  margin: 0;
+  padding: 0;
+}
+#content {
+  width: 80%;
+  max-width: 750px;
+  margin: 0 auto;
+}
+#controls {
+  padding: 5px;
+  border-top: 1px solid #000;
+}
+#notcompatible {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  background: #d00;
+  padding: 5px;
+  color: #fff;
+}
+a.buttonlink {
+  text-decoration: none;
+}
+a.buttonlink img {
+  vertical-align: -30%;
+}
+a.buttonlink span {
+  text-decoration: underline;
+}
+a.buttonlink:hover {
+  -webkit-box-shadow: 1px 1px 6px #999;
+  -moz-box-shadow: 1px 1px 6px #999;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  padding: 5px;
+  position: relative;
+  background: #fffeee;
+  left: 1px;
+  top: 1px;
+}
+a img {
+  border: 0;
+}
+
+h1, h2, h3 {
+  font-family: Helvetica, Trebuchet MS, Arial; 
+  margin: 30px 0 0 0;
+  padding: 0;
 }
 h1 { 
-  font-size: 140%; 
-  font-family: Georgia; margin-top: 30px; 
+  font-size: 200%; 
+}
+h2 { 
+  font-size: 150%; 
+}
+h3 {
+  font-size: 100%;
+}
+p {
+  padding: 0;
+  margin: 10px 0;
+}
+pre { 
+  background: #fff; 
+  border-left: 10px solid #fffaaa;
+  padding: 0 10px; 
+  margin: 10px;
+}
+code {
+  font: 14px Monaco, monospace; 
+  color: #060;
+}
+pre code {
+  display: block;
+  overflow: auto; 
+  margin: 0;
+  padding: 0;
 }
 em { 
   font-weight: bold; 
   color: #000; 
   font-style: normal; 
 }
+a {
+  color: #00d;
+}
+
 .date { 
-  font-size: 80%; 
+  font-size: 75%; 
   color: #bbb; 
   font-style: italic; 
+  padding: 4px;
+}
+.tag {
+  font-size: 75%;
+  /* color: #ff5a5a; */
+  color: #696;
+  padding: 4px;
+}
+.hidden {
+  display: none;
 }
 .sample_title, .last_p { 
   margin-top: 30px; 
@@ -44,9 +126,10 @@ em {
 .footer a { 
   color: #bbb; 
 }
-.old { 
-  color: gray; 
+code .old { 
+  color: #696;
 }
-.new { 
-  color: black; font-weight: bold; 
+code .new { 
+  font-weight: bold; 
+  color: #060;
 }

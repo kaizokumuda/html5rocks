@@ -1,8 +1,76 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>html5rocks</title>
-  </head>
-  <body>
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% block headtitle %}Samples Index{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/samples_index.css" />
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script>
+    google.load("jquery", "1.4.2");
+
+    function clearFilter() {
+      $(".sample.hidden").removeClass('hidden');
+      $("#filter").addClass('hidden');
+    };
+    
+    function filterTag() {
+      var tag = $(this).text();
+      $(".sample span.tag:not(:contains('" + tag + "'))").closest('.sample').addClass('hidden');
+      $(".sample span.tag:contains('" + tag + "')").closest('.sample').removeClass('hidden');
+      $('#filter_tag').text(tag);
+      $('#filter').removeClass('hidden');
+    };
+  </script>
+{% endblock %}
+
+{% block body %}
+<div id="wrap">
+  <div id="content">
+    <div id="logowrap_outer">
+      <div id="logowrap_inner">
+        <img class="logo" src="/static/images/html5rocks_logo_75px.png"/>
+      </div>
+    </div>
+    <div id="filter" class="hidden">
+      Currently filtering by tag <span id="filter_tag"></span>.
+      <a href="javascript:clearFilter();">Click here to clear</a>.
+    </div>
+    <div id="tags">
+      <h3>Tags</h3>
+      <div class="tag">webdatabase</div>
+      <div class="tag">audio</div>
+      <div class="tag">flash</div>
+    </div>
+    <div id="index">
+      <div class="sample">
+        <h2>A Simple TODO list using HTML5 WebDatabases</h2>
+        <div>
+          <span class="date">February 17th, 2010</span>
+          <span class="tag">webdatabase</span>
+        </div>
+        <div>
+          Create a TODO list which persists data using a client side database.
+          <a class="buttonlink" href="/samples/webdatabase/todo/"><span>View sample</span> <img src="/static/images/forwardarrow.png" /></a>
+        </div>
+      </div>
+    
+      <div class="sample">
+        <h2>Quick Guide to Implement the HTML5 Audio Tag</h2>
+        <div>
+          <span class="date">February 5th, 2010</span>
+          <span class="tag">audio</span>
+          <span class="tag">flash</span>
+        </div>
+        <div>
+          Learn how to use the HTML5 audio tag and fall back to Flash on 
+          platforms which do not support it.
+          <a class="buttonlink" href="/samples/audio/quick/"><span>View sample</span> <img src="/static/images/forwardarrow.png" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $('.tag').click(filterTag);
+</script>
+{% endblock %}

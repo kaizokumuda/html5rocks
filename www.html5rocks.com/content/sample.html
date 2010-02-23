@@ -1,0 +1,33 @@
+{% extends "../../base.html" %}
+
+{% block body %}
+<script>
+  function isCompatible() {
+    {% block iscompatible %}
+    return true;
+    {% endblock %}
+  };
+</script>
+<div id="header">
+  <img src="/static/images/html5rocks_logo_30px.png" />
+</div>
+<div id="controls">
+  <a class="buttonlink" href="/samples/"><img src="/static/images/backarrow.png" /> <span>Back to index</span></a>
+</div>
+<div id="wrap">
+  <div id="content">
+    <div id="notcompatible" class="hidden">
+      Based on a JavaScript test, your browser does not appear to support
+      the functionality used in this sample.
+    </div>
+    <h1>{% block pagetitle %}{% endblock %}</h1>
+    <div><span class="date">{% block date %}{% endblock %}</span></div>
+    {% block content %}{% endblock %}
+  </div>
+</div>
+<script>
+  if (isCompatible() == false) {
+    document.getElementById('notcompatible').className = "";
+  }
+</script>
+{% endblock %}
