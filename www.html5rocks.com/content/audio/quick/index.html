@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block content %}
-  <h2>Step 1: Wrap your Flash object with the audio tag</h2>
+  <h2 id="toc-step1">Step 1: Wrap your Flash object with the audio tag</h2>
   <p>Those browsers that don't recognize the audio tag will load the Flash content instead.</p>
   <pre><code>
 <span class="new">&lt;audio>
@@ -43,7 +43,7 @@
 &lt;/audio></span>
   </code></pre>
   
-  <h2>Step 2: Add the source reference</h2>
+  <h2 id="toc-step2">Step 2: Add the source reference</h2>
   <p>We can add as many "source" lines and formats as we want. If the browser doesn't support one specific format it will fallback to the next one and so forth.</p>
   <pre><code>
 <span class="old">&lt;audio></span>
@@ -64,7 +64,7 @@
 &lt;/audio></span>
   </code></pre>
 
-  <h2>Step 3: Add fallback to Flash</h2>
+  <h2 id="toc-step3">Step 3: Add fallback to Flash</h2>
   <p>To be safe, we need to add the fallback to a Flash audio player, in case the browser doesn't support any of the formats we specified. For instance, Firefox 3.5 only supports the audio tag with <em>Ogg</em> format, but we might only have the <em>mp3</em> file available.</p>
   <pre><code>
 <span class="old">&lt;audio>
@@ -106,7 +106,7 @@
 &lt;script>google.load("swfobject", "2.2");&lt;/script></span>
   </code></pre>
   
-  <h2>Step 4: Add the default controls to show the player</h2>
+  <h2 id="toc-step4">Step 4: Add the default controls to show the player</h2>
   <p>These controls are not customizable (see examples at the end). Since these default controls will show up regardless of the supported format we will need to handle its visibility with the conditional we previously created.</p>
   <pre><code>
 <span class="old">&lt;audio </span><span class="new">id="audio_with_controls" controls</span><span class="old">></span>
@@ -172,9 +172,9 @@
 &lt;/script></span>
   </code></pre>
   
-  <h2>Examples</h2>
+  <h2 id="toc-examples">Examples</h2>
   <p>The following two examples will fallback to the Flash player in those browsers that don't support the audio tag nor can play mp3 in it.</p>
-  <h3>Player with default controls</h3>
+  <h3 id="toc-player-default">Player with default controls</h3>
   <audio id="audio_with_controls" controls>
     <source src="test.mp3" type="audio/mp3" />
 
@@ -183,7 +183,7 @@
   </audio>
   <div id="default_player_fallback"></div>
   
-  <h3>Player with customized controls</h3>
+  <h3 id="toc-player-custom">Player with customized controls</h3>
   <audio id="audio">
     <source src="test.mp3" type="audio/mp3" />
 

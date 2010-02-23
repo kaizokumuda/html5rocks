@@ -1,0 +1,9 @@
+{% if toc %}
+  <ul>
+  {% for entry in toc %}
+    <li>
+      <a href="#{{ entry.id }}">{{ entry.text }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+{% endif %}

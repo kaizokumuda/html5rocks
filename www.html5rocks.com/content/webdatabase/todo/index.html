@@ -79,7 +79,7 @@
     }
     
     function renderTodo(row) {
-      return "<li>" + row.todo  + " [<a href='#'  onclick='html5rocks.webdb.deleteTodo(" + row.ID +");'>Delete</a>]</li>";
+      return "<li>" + row.todo  + " [<a href='javascript:void(0);'  onclick='html5rocks.webdb.deleteTodo(" + row.ID +");'>Delete</a>]</li>";
     }
   
     function init() {
@@ -99,6 +99,7 @@
 {% block onload %}init();{% endblock %}
 
 {% block content %}
+  <h2 id="toc-intro">Introduction</h2>
   <p>
     <a href="http://dev.w3.org/html5/webdatabase">Web Databases</a> are new
     in HTML5. Web Databases are hosted and persisted inside a user's browser.
@@ -111,7 +112,7 @@
     todo list manager.  It is a very high level tour of some of the features
     available in HTML5.
   </p>
-  <h2>Pre-requisites</h2>
+  <h2 id="toc-prereqs">Pre-requisites</h2>
   <p>
     This sample uses a namespace to encapsulate the database logic.
   </p>
@@ -119,7 +120,7 @@
 var html5rocks = {};
 html5rocks.webdb = {};
   </code></pre>
-  <h2 id="transactions">Asynchronous and Transactional</h2>
+  <h2 id="toc-transactions">Asynchronous and Transactional</h2>
   <p>
     In the majority of cases where you are using Web Database 
     support you will be using the <a
@@ -135,7 +136,7 @@ html5rocks.webdb = {};
     (<em>transaction()</em>) and read
     only transactions (<em>readTransaction()</em>). Please note, read/write will lock the entire database.
   </p>
-  <h2>Step 1. Opening the database</h2>
+  <h2 id="toc-step1">Step 1. Opening the database</h2>
   <p>The database needs to be opened before it can be accessed.  
     You need to define the name, version, description and the size of the database.
   </p>
@@ -158,10 +159,10 @@ html5rocks.webdb.onSuccess = function(tx, r) {
 }
   </code></pre>
 
-  <h2>Step 2. Creating a table</h2>
+  <h2 id="toc-step2">Step 2. Creating a table</h2>
   <p>
     You can only create a table by executing a CREATE TABLE SQL statement
-     inside a <a href="#transactions">transaction</a>.
+     inside a <a href="#toc-transactions">transaction</a>.
   </p>
   <p>
     We have defined a function that will create a table in the body onload
@@ -180,7 +181,7 @@ html5rocks.webdb.createTable = function() {
   });
 }
   </code></pre> 
-  <h2>Step 3. Adding data to a table</h2>
+  <h2 id="toc-step3">Step 3. Adding data to a table</h2>
   <p>
     We are building a todo list manager so it is pretty important that
     we are able to add todo items in to the database.
@@ -204,7 +205,7 @@ html5rocks.webdb.addTodo = function(todoText) {
 }
   </code></pre>
 
-  <h2>Step 4. Selecting data from a table</h2>
+  <h2 id="toc-step4">Step 4. Selecting data from a table</h2>
   <p>
     Now that the data is in the database, you need a function that gets 
     the data back out.  In Chrome, Webdatabase's use standard SQLite SELECT
@@ -252,7 +253,7 @@ function renderTodo(row) {
     The effect of this method call is that the todo list is rendered into
     a DOM Element called "todoItems".
   </p>
-  <h2>Step 5. Deleting data from a table</h2>
+  <h2 id="toc-step5">Step 5. Deleting data from a table</h2>
   <pre><code>
 html5rocks.webdb.deleteTodo = function(id) {
   html5rocks.webdb.db.transaction(function(tx) {
@@ -261,7 +262,7 @@ html5rocks.webdb.deleteTodo = function(id) {
   });
 }
   </code></pre>
-  <h2>Step 6. Hooking it all up</h2>
+  <h2 id="toc-step6">Step 6. Hooking it all up</h2>
   <p>
     When the page loads, open the database and create the table (if
      needed) and render any todo items that might already be in the database.
@@ -289,7 +290,7 @@ function addTodo() {
   todo.value = "";
 }
   </code></pre>
-  <h2>The final product</h2>
+  <h2 id="toc-final">The final product</h2>
   <ul id="todoItems">
   
   </ul>
