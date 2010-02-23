@@ -4,6 +4,11 @@ runtime: python
 api_version: 1
 
 handlers:
+  
+- url: /google75906d613a2a09ba.html
+  static_files: static/google75906d613a2a09ba.html
+  upload: static/google75906d613a2a09ba.html
+
 - url: /samples.*(\.html|/)
   script: main.py
 
