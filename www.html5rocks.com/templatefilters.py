@@ -7,13 +7,8 @@ import django.template
 
 register = webapp.template.create_template_register()
 
-def render_toc(toc):
-  logging.warning("TOC: %s" % toc)
-  return {'toc' : toc}
-
 class TOCNode(django.template.Node):
   def render(self, context):
-    logging.warning(context)
     if not context.has_key('toc'):
       return ""
     toc = context['toc']
@@ -35,7 +30,4 @@ class TOCNode(django.template.Node):
 def do_toc(parser, token):
   return TOCNode()
 
-basedir = os.path.dirname(__file__)
-toc_template_path = os.path.join(basedir, "content", "toc.html")
-register.inclusion_tag(toc_template_path)(render_toc)
 register.tag('toc', do_toc)
