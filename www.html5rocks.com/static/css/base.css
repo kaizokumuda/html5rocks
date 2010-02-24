@@ -6,9 +6,13 @@ body {
 }
 #header {
   background: #eee;
-  margin: 0;
+  margin: 0 5px 5px 5px;
   padding: 5px;
-  border-bottom: 3px solid #ccc;
+  
+  border: 1px solid #ccc;
+  border-top: 0;
+  -webkit-border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
 }
 #header img {
   display: block;
@@ -24,7 +28,6 @@ body {
 }
 #controls {
   padding: 5px;
-  border-top: 1px solid #000;
 }
 #notcompatible {
   -webkit-border-radius: 5px;
@@ -42,17 +45,7 @@ a.buttonlink img {
 a.buttonlink span {
   text-decoration: underline;
 }
-a.buttonlink:hover {
-  -webkit-box-shadow: 1px 1px 6px #999;
-  -moz-box-shadow: 1px 1px 6px #999;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  padding: 5px;
-  position: relative;
-  background: #fffeee;
-  left: 1px;
-  top: 1px;
-}
+
 a img {
   border: 0;
 }

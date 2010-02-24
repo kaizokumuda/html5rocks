@@ -2,21 +2,15 @@ img.logo {
   display: block; 
   margin: 10px auto;
 }
-
-#logowrap_inner {
+#logowrap_outer {
+  border: 3px solid #eee;
   border-bottom: 3px solid #ccc; 
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  padding: 10px;
-}
-#logowrap_outer {
-  border: 1px solid #000; 
-  -webkit-border-radius: 10px; 
-  -moz-border-radius: 10px; 
-  background: #eee; 
+  padding: 0px 10px;
+  background: #eee;
   margin-top: 30px;
 }
-
 #index {
   width: 75%;
 }
