@@ -32,7 +32,7 @@ class TOCNode(django.template.Node):
       if entry['level'] > level:
         output += "<ul>"
       elif entry['level'] < level:
-        output += "</ul></li>"
+        output += "</ul></li>" * (level - entry['level'])
       else:
         output += "</li>"
       level = entry['level']
