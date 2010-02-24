@@ -9,7 +9,7 @@ body {
   margin: 0 5px 5px 5px;
   padding: 5px;
   
-  border: 1px solid #ccc;
+  border: 0px solid #000;
   border-top: 0;
   -webkit-border-radius: 0 0 10px 10px;
   -moz-border-radius: 0 0 10px 10px;
