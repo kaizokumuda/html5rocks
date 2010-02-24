@@ -1,45 +1,30 @@
-<!DOCTYPE html>
-<html>
-<!-- copyright (c) 2010 Google inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Author: Ernest Delgado
- * 
--->
-<head>
-<title>How to use Notifications API</title>
-<link rel="stylesheet" href="/static/css/base.css" />
-</head>
-<body>
-  <h1>How to use Notifications API</h1>
-  <p class="date">February 22nd, 2010<p>
+{% extends "../../sample.html" %}
+{% block author %}Ernest Delgado{% endblock %}
+
+{% block headtitle %}How to use Notifications API{% endblock %}
+{% block pagetitle %}How to use Notifications API{% endblock %}
+{% block date %}February 24th, 2010{% endblock %}
+
+{% block iscompatible %}
+  return !!(window.webkitNotifications);
+{% endblock %}
+
+{% block content %}
   <p>The <a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">Notifications API</a> allows you to display notifications to the user for given events, both passively (new emails, tweets or calendar events) and on user interactions regardless of which tab has focus. At the time of this writing the API is supported on Chrome 4.0 in Windows and Linux and it will be soon supported on Mac. There is <a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">draft spec</a>  but it is not currently in any standard</p>
   <p>You can follow these simple steps to implement the notifications in few minutes:</p>
 
   <h2>Step 1: Check for Notifications API support</h2>
-  <p>There are two type of notifications, in this case we are checking the support of both.</p>
+  <p>We check if webkitNotifications is supported. Note that the name of webkitNotifications is because it's part of a draft spec. The final spec will have a notifications() function
+  instead.</p>
   <pre>
     <code>
       // check for notifications support
       // you can omit the 'window' keyword
-      if (window.webkitNotifications &&
-          window.webkitNotifications.<span class="new">createNotification</span> &&
-          window.webkitNotifications.<span class="new">createHTMLNotification</span>) {
-        console.log("Notifications is supported!");
+      if (window.webkitNotifications) {
+        console.log("Notifications are supported!");
       } 
       else {
-        console.log("Notifications is not supported for this Browser/OS version yet.");
+        console.log("Notifications are not supported for this Browser/OS version yet.");
       }
     </code>
   </pre>
@@ -75,7 +60,8 @@
   
   <p>If the web application doesn't have permissions to show notifications then the requestPermission method will show an infobar:</p>
   <img src="/samples/notifications/quick/notifications_infobar.png" style="border: 1px solid black;" />
-  <p>However, it's <em>very important</em> to remember that the <em>requestPermission</em> method only works on user gestures, like clicking on a button or link, in order to avoid unsolicited infobars. In this case, the user action is the click on the button with id "show_button".</p>
+  <p>However, it's <em>very important</em> to remember that the <em>requestPermission</em> method only works in event handlers triggered by a user
+  action, like mouse or keyboard events, in order to avoid unsolicited infobars. In this case, the user action is the click on the button with id "show_button".</p>
   <p>The snippet above will never work if the user hasn't explicitly clicked on a button or link that triggers the <em>requestPermission</em> at some point.</p>
   
   <h2>Step 4: Attach listeners and other actions</h2>
@@ -97,39 +83,28 @@
   <p>At this point, you might want to encapsulate all these events and actions creating your own Notification class to keep the code cleaner, although this is beyond the scope of this tutorial.</p>
   
   <h2>Examples</h2>
-  <p id="main_log" style="color: #cc3300"></p>
-  <h3>Show Simple notification on background events (new tweets)</h3>
+  <h3>Example 1: Show Simple notification on background events (new tweets)</h3>
   <p>Enter your user name to show your last three tweets in the notifications. There will be a check for new tweets every minute.</p>
   <input type="text" id="username" value="username" />
   <button id="show_tweets">Show tweets</button>
-  <h3>Show HTML notification on user action</h3>
+  <h3>Example 2: Show HTML notification on user action</h3>
   <button id="show_html_notification">Show HTML Notification</button>
   
   <button id="request_permission" href="#" style="display:block;margin-top: 30px;">Set notification permissions for this page</button>
   <span>Note: Use this button if you also want to <em>reset</em> the permissions</span>
-  
+  <p>Two things you can test in the examples that will help you understand notifications even better are:</p>
+  <ul>
+    <li>Only 5 notifications can be displayed at a time. All notifications after that will be queued waiting for the current ones to be closed.</li>
+    <li>If you try to display the notifications in the example 1 and you don't have permissions then we cannot show the infobar to ask for those permissions. Remember that in Step 3 we said that requestPermission (the function that shows the infobar) can only be called right on a user action. In this case, the notifications are created on a callback function after the tweets are fetched which happens slightly after the button clicked. Hence we have to show a text message instead. This workaround is not necessary in example 2, so you can test the different behavior between them.</li>
+  </ul>
   <script>
   /*
    * Common code
    */
-  // check for notifications support
-  if (window.webkitNotifications &&
-      window.webkitNotifications.createNotification &&
-      window.webkitNotifications.createHTMLNotification) {
-    log("Notifications is supported in your browser!");
-  } 
-  else {
-    log("Notifications is not supported for this Browser/OS version yet.");
-  }
-
   document.getElementById('request_permission').addEventListener('click', function() {
     window.webkitNotifications.requestPermission();
   });
-  
-  function log(message) {
-    document.getElementById('main_log').innerHTML += message + '<br />';
-  }
-  
+
   /*
    * Example 1
    */
@@ -167,6 +142,7 @@
           window.webkitNotifications.createNotification(tweet.user.profile_image_url, tweet.user.name, tweet.text).show(); // note the show()
           displayed_tweets[tweet.id] = tweet.text;
         } else {
+          // Note that we can't call requestPermission from here as we are in the callback function and not triggered just on user action 
           alert('You have to click on "Set notification permissions for this page" first to be able to receive notifications.');
           return;          
         }
@@ -190,7 +166,4 @@
   </script>
 
   
-  <div class="footer">
-  </div>
-</body>
-</html>
+{% endblock %}
