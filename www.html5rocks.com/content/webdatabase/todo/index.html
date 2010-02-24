@@ -6,7 +6,7 @@
 {% block date %}February 17th, 2010{% endblock %}
 
 {% block iscompatible %}
-  return (typeof openDatabase == 'function');
+  return typeof window.openDatabase == "function" ? true : false;
 {% endblock %}
 
 {% block head %}

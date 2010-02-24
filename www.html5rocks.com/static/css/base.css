@@ -29,11 +29,18 @@ body {
 #controls {
   padding: 5px;
 }
-#notcompatible {
+#notcompatible,
+#compatible {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  background: #d00;
   padding: 5px;
+}
+#notcompatible {
+  background: #d00;
+  color: #fff;
+}
+#compatible {
+  background: #696;
   color: #fff;
 }
 a.buttonlink {
