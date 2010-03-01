@@ -33,31 +33,38 @@
   </script>
   {% block head %}{% endblock %}
 </head>
+
 <body onload="{% block onload %}{% endblock %}">
-  <div id="header">
-    <a href="/samples/">
-      <img src="/static/images/html5rocks_logo_30px.png" />
+  <p style="border-bottom: 1px solid #ccc">
+    <a href="#">
+      <img src="/static/images/logo_small.png" />
     </a>
-  </div>
-  <div id="controls">
-    <a class="buttonlink" href="/samples/"><img src="/static/images/backarrow.png" /> <span>Back to index</span></a>
-  </div>
+  </p>
   <div id="wrap">
     <div id="content">
-      <div id="notcompatible" class="hidden">
-        {% block notcompatible_text %}
-        Based on a JavaScript test, your browser does not appear to support
-        the functionality used in this sample.
-        {% endblock %}
-      </div>
-      <div id="compatible" class="hidden">
-        {% block compatible_text %}
-        Based on a JavaScript test, your browser supports
-        the functionality used in this sample.
-        {% endblock %}
-      </div>
+      <p class="breadcrumb">
+        <a class="buttonlink" href="#">
+          Home 
+        </a>&gt; {% block pagebreadcrumb %}{% endblock %}
+      </p>
+
       <h1>{% block pagetitle %}{% endblock %}</h1>
       <div><span class="date">{% block date %}{% endblock %}</span></div>
+
+      <div class="compatible-block"> 
+        <p id="notcompatible" class="hidden">
+          {% block notcompatible_text %}
+          Based on a JavaScript test, your browser does not appear to support
+          the functionality used in this sample.
+          {% endblock %}
+        </p>
+        <p id="compatible" class="hidden">
+          {% block compatible_text %}
+          Based on a JavaScript test, your browser supports
+          the functionality used in this sample.
+          {% endblock %}
+        </p>
+      </div>
       {% toc %}
       {% block content %}{% endblock %}
     </div>

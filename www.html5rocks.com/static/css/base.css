@@ -5,17 +5,23 @@ body {
   padding: 0 0 30px 0;
 }
 #header {
-  background: #eee;
-  margin: 0 5px 5px 5px;
+/*  background: #eee;*/
+/*  margin: 0 5px 5px 5px;*/
   padding: 5px;
   
-  border: 0px solid #000;
-  border-top: 0;
-  -webkit-border-radius: 0 0 10px 10px;
-  -moz-border-radius: 0 0 10px 10px;
+/*  border: 0px solid #000;*/
+/*  border-top: 0;*/
+/*  -webkit-border-radius: 0 0 10px 10px;*/
+/*  -moz-border-radius: 0 0 10px 10px;*/
 }
 #header img {
   display: block;
+}
+.breadcrumb {
+  font-size: 90%;
+}
+.compatible-block {
+  padding: 10px 0;
 }
 #wrap {
   margin: 0;
@@ -36,7 +42,7 @@ body {
   padding: 5px;
 }
 #notcompatible {
-  background: #d00;
+  background: #de8b8b;
   color: #fff;
 }
 #compatible {
@@ -59,7 +65,7 @@ a img {
 
 h1, h2, h3 {
   font-family: Helvetica, Trebuchet MS, Arial; 
-  margin: 30px 0 0 0;
+  margin: 30px 0 10px 0;
   padding: 0;
 }
 h1 { 
@@ -82,7 +88,7 @@ pre {
   margin: 10px;
 }
 code {
-  font: 14px Monaco, monospace; 
+  font: 13px Monaco, monospace; 
   color: #060;
 }
 pre code {
@@ -101,10 +107,9 @@ a {
 }
 
 .date { 
-  font-size: 75%; 
+  font-size: 85%; 
   color: #bbb; 
-  font-style: italic; 
-  padding: 4px;
+  font-style: italic;
 }
 .tag {
   font-size: 75%;
