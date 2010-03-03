@@ -11,10 +11,18 @@
 {% endblock %}
 
 {% block content %}
-  <p>The <a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">Notifications API</a> allows you to display notifications to the user for given events, both passively (new emails, tweets or calendar events) and on user interactions regardless of which tab has focus. At the time of this writing the API is supported on Chrome 4.0 in Windows and Linux and it will be soon supported on Mac. There is <a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">draft spec</a>  but it is not currently in any standard</p>
+  <p>The <a
+    href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">Notifications
+    API</a> allows you to display notifications to the user for given events,
+  both passively (new emails, tweets or calendar events) and on user
+  interactions regardless of which tab has focus. At the time of this writing
+  the API is supported on Chrome 4.0 in Windows and Linux and it will be soon
+  supported on Mac. There is <a
+    href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">draft
+    spec</a>  but it is not currently in any standard.</p>
   <p>You can follow these simple steps to implement the notifications in few minutes:</p>
 
-  <h2>Step 1: Check for Notifications API support</h2>
+  <h2 id="toc-step1">Step 1: Check for Notifications API support</h2>
   <p>We check if webkitNotifications is supported. Note that the name of webkitNotifications is because it's part of a draft spec. The final spec will have a notifications() function
   instead.</p>
   <pre><code>
@@ -22,13 +30,13 @@
 // you can omit the 'window' keyword
 if (window.webkitNotifications) {
   console.log("Notifications are supported!");
-} 
+}
 else {
   console.log("Notifications are not supported for this Browser/OS version yet.");
 }
   </code></pre>
 
-  <h2>Step 2: Create the notifications.</h2>
+  <h2 id="toc-step2">Step 2: Create the notifications.</h2>
   <p>There are two types of notifications depending on their content: plain text and HTML. If your application is using both types of notifications you might as well create a function that decides which one to use based on an options parameter.</p>
   <pre><code>
 function createNotificationInstance(options) {
@@ -39,8 +47,8 @@ function createNotificationInstance(options) {
   }
 }
   </code></pre>
-    
-  <h2>Step 3: Let the user grant permissions to a website to show notifications.</h2>
+
+  <h2 id="toc-step3">Step 3: Let the user grant permissions to a website to show notifications.</h2>
   <p>Any of the constructors we mentioned will throw a security error if the user hasn't manually granted permissions to the website to show notifications.</p>
   <p>To handle the exception you can use a try-catch statement but you can also use the <em>checkPermission</em> method for the same purpose.</p>
   <pre><code>
@@ -51,15 +59,15 @@ document.getElementById('show_button').onclick = function() {
     window.webkitNotifications.requestPermission();
   }
 }
-  </code></pre>  
-  
+  </code></pre>
+
   <p>If the web application doesn't have permissions to show notifications then the requestPermission method will show an infobar:</p>
   <img src="/samples/notifications/quick/notifications_infobar.png" style="border: 1px solid black;" />
   <p>However, it's <em>very important</em> to remember that the <em>requestPermission</em> method only works in event handlers triggered by a user
   action, like mouse or keyboard events, in order to avoid unsolicited infobars. In this case, the user action is the click on the button with id "show_button".</p>
   <p>The snippet above will never work if the user hasn't explicitly clicked on a button or link that triggers the <em>requestPermission</em> at some point.</p>
-  
-  <h2>Step 4: Attach listeners and other actions</h2>
+
+  <h2 id="toc-step4">Step 4: Attach listeners and other actions</h2>
   <pre><code>
 <span class="old">document.getElementById('show_button').onclick = function() {
   if (window.webkitNotifications.checkPermission() == 0) { // 0 is PERMISSION_ALLOWED
@@ -71,21 +79,23 @@ document.getElementById('show_button').onclick = function() {
     window.webkitNotifications.requestPermission();
   }
 }</span>
-  </code></pre>  
+  </code></pre>
 
   <p>At this point, you might want to encapsulate all these events and actions creating your own Notification class to keep the code cleaner, although this is beyond the scope of this tutorial.</p>
-  
-  <h2>Examples</h2>
+
+  <h2 id="toc-examples">Examples</h2>
   <p>  
     <button id="request_permission" href="#">Set notification permissions for this page</button>
   </p>
   <span>Note: Use this button if you also want to <em>reset</em> the permissions</span>
     
-  <h3>Example 1: Show HTML notification on user action</h3>
+  <h3 id="toc-html-example">Example 1: Show HTML notification on user action</h3>
   <button id="show_html_notification">Show HTML Notification</button>
   
-  <h3>Example 2: Show Simple notification on background events (new tweets)</h3>
-  <p>Enter your user name to show your last three tweets in the notifications. There will be a check for new tweets every minute.</p>
+  <h3 id="toc-twitter-example">Example 2: Show Simple notification on background events (new tweets)</h3>
+  <p>Enter your user name to show your last three tweets in the notifications
+  (except if there's a retweet not returned by the twitter API).
+  There will be a check for new tweets every minute.</p>
   <input type="text" id="username" value="username" />
   <button id="show_tweets">Show tweets</button>
   <p>
@@ -124,40 +134,41 @@ function fetchTweets(data) {
   /*
    * Common code
    */
-  document.getElementById('request_permission').addEventListener('click', function() {
+  document.getElementById('request_permission').onclick = function() {
     window.webkitNotifications.requestPermission();
-  });
+  };
   
   /*
    * Example 1
    */
   // see the HTML section to see the button
-  document.getElementById('show_html_notification').addEventListener('click', function() {
+  document.getElementById('show_html_notification').onclick =  function() {
     if (window.webkitNotifications.checkPermission() == 0) {
       // you can pass any url as a parameter
       window.webkitNotifications.createHTMLNotification('http://chart.apis.google.com/chart?cht=bvg&chs=150x90&chd=s:Monkeys&chxt=x,y&chxs=0,ff0000,12,0,lt|1,0000ff,10,1,lt').show(); // note the show()
     } else {
       window.webkitNotifications.requestPermission();
     }
-  });
+  };
 
   /*
    * Example 2
    */
   var displayed_tweets = {};
   var interval = null;
-  document.getElementById('show_tweets').addEventListener('click', function() {
+  document.getElementById('show_tweets').onclick = function() {
     document.getElementById('show_tweets').innerHTML = "checking...";
     readTweets();
     if (interval) {
       clearInterval(interval);
     }
     interval = setInterval(readTweets, 60000); // check for new tweets every minute
-  });
+  };
 
   function readTweets() {
     var username = document.getElementById('username').value;
     if (username == 'username') {
+      document.getElementById('show_tweets').innerHTML = "Show tweets";
       alert('Enter a username first');
       return;
     }
@@ -179,6 +190,7 @@ function fetchTweets(data) {
           displayed_tweets[tweet.id] = tweet.text;
         } else {
           // Note that we can't call requestPermission from here as we are in the callback function and not triggered just on user action 
+          document.getElementById('show_tweets').innerHTML = "Show tweets";
           alert('You have to click on "Set notification permissions for this page" first to be able to receive notifications.');
           return;          
         }
