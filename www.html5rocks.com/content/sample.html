@@ -22,6 +22,7 @@
 <head>
   <title>html5rocks - {% block headtitle %}{% endblock %}</title>
   <link rel="stylesheet" href="/static/css/base.css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Vollkorn|Droid+Serif">
   <meta name="description" content="{% block meta_description %}{% endblock %}" />
   <script src="/static/js/modernizr-1.1.min.js"></script>
   <script>
@@ -35,16 +36,12 @@
 </head>
 
 <body onload="{% block onload %}{% endblock %}">
-  <p style="border-bottom: 1px solid #ccc">
-    <a href="/">
-      <img src="/static/images/logo_small.png" />
-    </a>
-  </p>
+  <h1 id="title"><span class="normal">HTML</span><span class="normal">5</span> <span class="rotated">Tutorials</span></h1>
   <div id="wrap">
     <div id="content">
       <p class="breadcrumb">
         <a class="buttonlink" href="/">
-          Home 
+          <span>Home</span> 
         </a>&gt; {% block pagebreadcrumb %}{% endblock %}
       </p>
 
