@@ -132,7 +132,8 @@ code .new {
   font-weight: bold; 
   color: #060;
 }
-h1#title { 
+h1#title {
+  cursor: pointer;
   font-size: 28px;
   background-color: #FBFCFE;
   border-bottom: 1px solid #427BD6;

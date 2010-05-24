@@ -36,9 +36,9 @@
 </head>
 
 <body onload="{% block onload %}{% endblock %}">
-  <h1 id="title"><span class="normal">HTML</span><span class="normal">5</span> <span class="rotated">Tutorials</span></h1>
   <div id="wrap">
     <div id="content">
+      <h1 id="title"><span class="normal">HTML</span><span class="normal">5</span> <span class="rotated">Tutorials</span></h1>
       <p class="breadcrumb">
         <a class="buttonlink" href="/">
           <span>Home</span> 
@@ -72,6 +72,9 @@
     } else if (isCompatible() === true) {
       document.getElementById('compatible').className = "";
     }
+    document.querySelector('#title').addEventListener('click', function() {
+      window.location = '/';
+    });
   </script>
   <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." :
