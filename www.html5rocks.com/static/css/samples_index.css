@@ -50,6 +50,7 @@ img.logo {
 #index h2 { 
   margin: 0;
   padding: 0;
+  font-size: 18px;
 }
 
 h2 {
@@ -63,6 +64,10 @@ h2 a {
 h2 a:hover {
   color: #2E4987;
   text-decoration: underline;
+}
+
+.sample p {
+  color: #333;
 }
 
 a.buttonlink {
