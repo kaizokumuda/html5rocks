@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Author: {% block author %}{% endblock %}
+ * Author: {% block headauthor %}{% endblock %}
  * 
  * {% block credits %}{% endblock %}
  *
@@ -22,9 +22,11 @@
 <head>
   <title>html5rocks - {% block headtitle %}{% endblock %}</title>
   <link rel="stylesheet" href="/static/css/base.css" />
+  <link rel="stylesheet" href="/static/css/prettify.css" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Vollkorn|Droid+Serif">
   <meta name="description" content="{% block meta_description %}{% endblock %}" />
   <script src="/static/js/modernizr-1.1.min.js"></script>
+  <script src="/static/js/prettify.js"></script>
   <script>
     function isCompatible() {
       {% block iscompatible %}
@@ -38,35 +40,61 @@
 <body onload="{% block onload %}{% endblock %}">
   <div id="wrap">
     <div id="content">
-      <h1 id="title"><span class="normal">HTML</span><span class="normal">5</span> <span class="rotated">Tutorials</span></h1>
-      <p class="breadcrumb">
-        <a class="buttonlink" href="/">
-          <span>Home</span> 
-        </a>&gt; {% block pagebreadcrumb %}{% endblock %}
-      </p>
-
-      <h1>{% block pagetitle %}{% endblock %}</h1>
-      <div><span class="date">{% block date %}{% endblock %}</span></div>
-
-      <div class="compatible-block"> 
-        <p id="notcompatible" class="hidden">
-          {% block notcompatible_text %}
-          Based on a JavaScript test, your browser does not appear to support
-          the functionality used in this sample.
-          {% endblock %}
+      <header>
+        <h1 id="title"><span class="normal">HTML</span><span class="normal">5</span> <span class="rotated">Tutorials</span></h1>
+      </header>
+      <nav>
+        <p class="breadcrumb">
+          <a class="buttonlink" href="/">
+            <span>Home</span>
+          </a >&gt; 
+          <a class="buttonlink" href="/samples">
+            <span>Tutorials</span>
+          </a> &gt; {% block pagebreadcrumb %}{% endblock %}
         </p>
-        <p id="compatible" class="hidden">
-          {% block compatible_text %}
-          Based on a JavaScript test, your browser supports
-          the functionality used in this sample.
-          {% endblock %}
-        </p>
-      </div>
-      {% toc %}
-      {% block content %}{% endblock %}
+      </nav>
+      <article>
+        <header>
+          <h1>{% block pagetitle %}{% endblock %}</h1>
+          <div>
+            <span class="date">
+              {% block pageauthor %}{% endblock %}, <time pubdate>{% block date %}{% endblock %}</time>
+            </span>
+            <span class="browser_support">
+              <span>Supported browsers:</span>
+              <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
+            </span>
+          </div>
+        </header>
+        <section>
+          <div class="compatible-block"> 
+            <p id="notcompatible" class="hidden">
+              {% block notcompatible_text %}
+              Your browser may not support all of
+              the functionality used in this sample.
+              {% endblock %}
+            </p>
+            <p id="compatible" class="hidden">
+              {% block compatible_text %}
+              Your browser appears to support
+              all of the functionality used in this sample.
+              {% endblock %}
+            </p>
+          </div>
+        </section>
+        <nav>
+          {% toc %}
+        </nav>
+        <section>
+        {% block content %}{% endblock %}
+        </section>
+      </article>
+      <footer></footer>
     </div>
   </div>
   <script>
+    prettyPrint();
+
     if (isCompatible() === false) {
       document.getElementById('notcompatible').className = "";
     } else if (isCompatible() === true) {
@@ -74,15 +102,13 @@
     }
     document.querySelector('#title').addEventListener('click', function() {
       window.location = '/';
-    });
-  </script>
-  <script type="text/javascript">
+    }, false);
+
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." :
     "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost +
     "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-  </script>
-  <script type="text/javascript">
+
     try {
       var pageTracker = _gat._getTracker("UA-15028909-1");
       pageTracker._trackPageview();

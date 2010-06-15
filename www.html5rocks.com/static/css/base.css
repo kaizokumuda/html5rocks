@@ -15,6 +15,7 @@ body {
 }
 .compatible-block {
   padding: 10px 0;
+  text-align: center;
 }
 #wrap {
   margin: 0;
@@ -44,6 +45,7 @@ body {
 }
 a.buttonlink {
   text-decoration: none;
+  margin-top: 10px;
 }
 a.buttonlink img {
   vertical-align: -30%;
@@ -74,11 +76,11 @@ p {
   padding: 0;
   margin: 10px 0;
 }
-pre { 
-  background: #fff; 
-  border-left: 10px solid #eee;
-  padding: 0 10px; 
-  margin: 10px;
+pre {
+  padding: 10px 20px;
+  background: rgba(255, 0, 0, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 0, 0, 0.2);
 }
 code {
   font: 13px Monaco, monospace; 
@@ -117,10 +119,10 @@ a {
 .sample_title, .last_p { 
   margin-top: 30px; 
 }
-code .old { 
+.old { 
   color: #696;
 }
-code .new { 
+.new { 
   font-weight: bold; 
   color: #060;
 }
@@ -152,7 +154,40 @@ h1#title {
   background-color: #9caad8;
   text-shadow:rgba(0,0,0,0.5) -1px 0, rgba(0,0,0,0.3) 0 -1px, rgba(255,255,255,0.5) 0 1px, rgba(0,0,0,0.3) -1px -1px;
 }
-
+.browser_support {
+  float: right;
+  font-size: 85%;
+  color: #bbb;
+}
+.browser_support > span:first-child {
+  float: left;
+  margin-right: 5px;
+}
+.browser_logos span {
+  float: right;
+  height: 17px;
+  width: 17px;
+  background: transparent url('/static/images/browser_logos.png') no-repeat left top;
+  opacity: 0.25;
+}
+.browser_logos .chrome {
+  background-position: left top;
+}
+.browser_logos .ff {
+  background-position: -17px top;
+}
+.browser_logos .safari {
+  background-position: -35px top;
+}
+.browser_logos .ie {
+  background-position: -52px top;
+}
+.browser_logos .opera {
+  background-position: -69px top;
+}
+.browser_logos .supported {
+  opacity: 1;
+}
 .footer { 
   font-size: 80%; 
   color: #bbb; 
@@ -161,7 +196,6 @@ h1#title {
 .footer a { 
   color: #bbb; 
 }
-
 footer { 
   clear: both; 
   text-align: left; 
@@ -169,11 +203,9 @@ footer {
   font-size: 12px; 
   border-top: 1px dotted #ddd;
 }
-
 footer a {
   color: #3d5c9d;
 }
-
 .madeby {
   float: right; width: 30%; margin: 0; text-align: right;
 }

@@ -1,10 +1,18 @@
 {% extends "../../sample.html" %}
-{% block author %}Paul Kinlan{% endblock %}
-
+{% block headauthor %}Paul Kinlan{% endblock %}
+{% block pageauthor %}Paul Kinlan{% endblock %}
 {% block headtitle %}A Simple TODO list using HTML5 WebDatabases{% endblock %}
 {% block pagetitle %}A Simple TODO list using HTML5 WebDatabases{% endblock %}
 {% block pagebreadcrumb %}A Simple TODO list using HTML5 WebDatabases{% endblock %}
 {% block date %}February 17th, 2010{% endblock %}
+
+{% block browsersupport %}
+<span class="opera supported"></span>
+<span class="ie"></span>
+<span class="safari supported"></span>
+<span class="ff"></span>
+<span class="chrome supported"></span>
+{% endblock %}
 
 {% block iscompatible %}
   return typeof window.openDatabase == "function" ? true : false;
@@ -117,10 +125,8 @@
   <p>
     This sample uses a namespace to encapsulate the database logic.
   </p>
-  <pre><code>
-var html5rocks = {};
-html5rocks.webdb = {};
-  </code></pre>
+  <pre class="prettyprint">var html5rocks = {};
+html5rocks.webdb = {};</pre>
   <h2 id="toc-transactions">Asynchronous and Transactional</h2>
   <p>
     In the majority of cases where you are using Web Database 
@@ -141,13 +147,11 @@ html5rocks.webdb = {};
   <p>The database needs to be opened before it can be accessed.  
     You need to define the name, version, description and the size of the database.
   </p>
-  <pre><code>
-html5rocks.webdb.db = null;
+  <pre class="prettyprint">html5rocks.webdb.db = null;
 
 html5rocks.webdb.open = function() {
   var dbSize = 5 * 1024 * 1024; // 5MB
-  html5rocks.webdb.db = openDatabase("Todo", "1.0", "todo manager", 
-                                dbSize);
+  html5rocks.webdb.db = openDatabase('Todo', '1.0', 'todo manager', dbSize);
 }
 
 html5rocks.webdb.onError = function(tx, e) {
@@ -157,8 +161,7 @@ html5rocks.webdb.onError = function(tx, e) {
 html5rocks.webdb.onSuccess = function(tx, r) {
   // re-render all the data
   html5rocks.webdb.getAllTodoItems(tx, r);
-}
-  </code></pre>
+}</pre>
 
   <h2 id="toc-step2">Step 2. Creating a table</h2>
   <p>
@@ -175,13 +178,14 @@ html5rocks.webdb.onSuccess = function(tx, r) {
       <li>added_on - the time that the todo item was created</li>
     </ul>
   </p>
-  <pre><code>
+  <pre class="prettyprint">
 html5rocks.webdb.createTable = function() {
   html5rocks.webdb.db.transaction(function(tx) {
-    tx.executeSql("CREATE TABLE IF NOT EXISTS todo(ID INTEGER PRIMARY KEY ASC, todo TEXT, added_on DATETIME", []);
+    tx.executeSql('CREATE TABLE IF NOT EXISTS ' + 
+                  'todo(ID INTEGER PRIMARY KEY ASC, todo TEXT, added_on DATETIME)', []);
   });
-}
-  </code></pre> 
+}</pre>
+
   <h2 id="toc-step3">Step 3. Adding data to a table</h2>
   <p>
     We are building a todo list manager so it is pretty important that
@@ -195,16 +199,14 @@ html5rocks.webdb.createTable = function() {
     executeSql takes several parameters, the SQL to execute and the parameters
     values to bind the query.
   </p>
-  <pre><code>
-html5rocks.webdb.addTodo = function(todoText) {
+  <pre class="prettyprint">html5rocks.webdb.addTodo = function(todoText) {
   html5rocks.webdb.db.transaction(function(tx){
-    tx.executeSql("INSERT INTO todo(todo, added_on) VALUES (?,?)", 
+    tx.executeSql('INSERT INTO todo(todo, added_on) VALUES (?,?)', 
         [todoText, addedOn],
         html5rocks.webdb.onSuccess,
         html5rocks.webdb.onError);
     });
-}
-  </code></pre>
+}</pre>
 
   <h2 id="toc-step4">Step 4. Selecting data from a table</h2>
   <p>
@@ -212,14 +214,13 @@ html5rocks.webdb.addTodo = function(todoText) {
     the data back out.  In Chrome, Webdatabase's use standard SQLite SELECT
      queries.
   </p>
-  <pre><code>
+  <pre class="prettyprint">
 html5rocks.webdb.getAllTodoItems = function(renderFunc) {
   html5rocks.webdb.db.transaction(function(tx) {
-    tx.executeSql("SELECT * FROM todo", [], renderFunc, 
+    tx.executeSql('SELECT * FROM todo', [], renderFunc, 
         html5rocks.webdb.onError);
   });
-}
-  </code></pre>
+}</pre>
   <p>
     Note that all of these commands used in this sample
     are asynchronous and as such the data is not returned from the transaction
@@ -236,40 +237,38 @@ html5rocks.webdb.getAllTodoItems = function(renderFunc) {
     transaction of the query and the second being the result set.  It is 
     fairly simple to iterate across the data:
   </p>
-  <pre><code>
+  <pre class="prettyprint">
 function loadTodoItems(tx, rs) {
   var rowOutput = "";
   for (var i=0; i < rs.rows.length; i++) {
     rowOutput += renderTodo(rs.rows.item(i));
   }
-  var todoItems = document.getElementById("todoItems");
+  var todoItems = document.getElementById('todoItems');
   todoItems.innerHTML = rowOutput;
 }
 
 function renderTodo(row) {
-  return "&lt;li&gt;" + row.ID  + "[&lt;a onclick="html5rocks.webdb.deleteTodo(" + row.ID +");">X&lt;/a>]&lt;/li&gt;"
-}
-  </code></pre>
+  return '&lt;li&gt;' + row.ID  +
+         '[&lt;a onclick="html5rocks.webdb.deleteTodo(' + row.ID + ');"'>X&lt;/a>]&lt;/li&gt;';
+}</pre>
   <p>
     The effect of this method call is that the todo list is rendered into
     a DOM Element called "todoItems".
   </p>
   <h2 id="toc-step5">Step 5. Deleting data from a table</h2>
-  <pre><code>
+  <pre class="prettyprint">
 html5rocks.webdb.deleteTodo = function(id) {
   html5rocks.webdb.db.transaction(function(tx) {
-    tx.executeSql("DELETE FROM todo WHERE ID=?", [id],      
+    tx.executeSql('DELETE FROM todo WHERE ID=?', [id],
         loadTodoItems, html5rocks.webdb.onError);
   });
-}
-  </code></pre>
+}</pre>
   <h2 id="toc-step6">Step 6. Hooking it all up</h2>
   <p>
     When the page loads, open the database and create the table (if
      needed) and render any todo items that might already be in the database.
   </p>
-  <pre><code>
-....
+  <pre class="prettyprint">....
 function init() {
   html5rocks.webdb.open();
   html5rocks.webdb.createTable();
@@ -277,20 +276,18 @@ function init() {
 }
 &lt;/script&gt;
 
-&lt;body onload="init();"&gt;
-  </code></pre>
+&lt;body onload="init();"&gt;</pre>
   <p>
     A function that takes the data out of the DOM is needed so,
     call the html5rocks.webdb.addTodo method
   </p>
-  <pre><code>
+  <pre class="prettyprint">
 function addTodo() {
-  var todo = document.getElementById("todo");
+  var todo = document.getElementById('todo');
 
   html5rocks.webdb.addTodo(todo.value);
-  todo.value = "";
-}
-  </code></pre>
+  todo.value = '';
+}</pre>
   <h2 id="toc-final">The final product</h2>
   <ul id="todoItems">
   
