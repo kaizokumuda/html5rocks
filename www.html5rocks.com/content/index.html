@@ -1,112 +1,12 @@
-<!DOCTYPE html> 
-<html> 
-<!-- copyright (c) 2010 Google inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
---> 
-<head> 
-  <title>html5rocks - Samples Index</title> 
+{% extends "base.html" %}
 
-  <meta name="description" content="" /> 
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold">
+{% block headtitle %}Home{% endblock %}
+
+{% block head %}
   <style type="text/css" media="screen">
-    body { 
-      color: #222;
-      background-color: #ddd;
-      font: 14px Arial;
-      margin: 0;
-      padding: 0;
-    }
-
-    body a {
-      color: #3D5C9D;
-      text-decoration: none;
-    }
-    
-    body a:hover {
-      text-decoration: underline;
-    }
-    
-    #wrap {
-      margin: 0;
-      padding: 0;
-    }
-    
-    #content {
-      background-color: white;
-      width: 73.074em;
-      max-width: 750px;
-      margin: 0 auto;
-      padding: 0 40px;
-      -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px;
-    }
-    
     header {
-      border-bottom: 2px solid #222;
       margin-bottom: 20px;
-      overflow: hidden;
     }
-    
-    h1#title {
-      cursor: pointer;
-      font-size: 55px;
-      margin: 0;
-      padding: 20px 0 20px 8px;
-      float: left;
-      width: 50%;
-    }
-    
-    #title { 
-      font-style: normal; 
-      font-weight: bold; 
-    }
-    
-    #title .normal {
-      font-family: 'Droid Sans', Arial;
-      font-style: normal;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: -0.09em;
-      padding-right: 4px;
-    }
-    
-    #title .five { 
-      color: #fff;
-      font-family: 'Droid Sans', Arial;
-      text-shadow: 1px 0px 1px #000, -1px 0px 1px #000;
-    }
-
-    #title .rotated { 
-      font-family: 'Droid Sans', Arial;
-      color: #3D5C9D;
-      font-style: normal;
-      text-transform: uppercase;
-      letter-spacing: -0.09em;
-      margin-left: -3px;
-    }
-
-    nav ul {
-      padding-left: 0;
-      list-style: none;
-      float: right;
-      padding-top: 30px;
-    }
-
-    nav ul li {
-      float: left;
-      padding: 0 10px;
-    }
-
     #index {
       width: 100%;
       overflow: hidden;
@@ -225,100 +125,62 @@
       margin: 0;
       text-align: right;
     }
-
-    pre {
-      background: #f6f6f6;
-      color: #666;
-      border: 1px solid #ddd;
-      border-bottom-left-radius: 8px 8px;
-      border-bottom-right-radius: 8px 8px;
-      border-top-left-radius: 8px 8px;
-      border-top-right-radius: 8px 8px;
-      font-family: Monaco, Courier;
-      font-size: 14px;
-      padding: 10px 20px;
-      margin-left: 0;
-      text-align: left;
-    }    
   </style>
+{% endblock %}
 
-</head>
-<body> 
-  <div id="wrap"> 
-    <div id="content"> 
-      <header>
-        <h1 id="title"><span class="normal">HTML</span><span class="five">5</span><span class="rotated">Rocks</span></h1>
-        <nav>
-          <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Presentation</a></li>
-            <li><a href="">Playground</a></li>
-            <li><a href="/tutorials/">Tutorials</a></li>
-          </ul>
-        </nav>
-      </header>
-      <section id="index"> 
-        <div class="app">
-          <img src="http://ernestdelgado.com/trash/f3.png">
-          <div class="appcontent">
-            <h2><a href=""><span>Interactive</span> Presentation</a></h2>
-            <p class="desc">See a great summary of the HTML5 features and spread the word.</p>          
-          </div>
-        </div>
-        <div class="app">
-          <img src="http://ernestdelgado.com/trash/f2.png">
-          <div class="appcontent">
-            <h2><a href=""><span>Code</span> Playground</a></h2>
-            <p class="desc">The fastest way to jump head first into HTML5 code.</p>
-          </div>
-        </div>
-        <div class="app">
-          <img src="http://ernestdelgado.com/trash/f1.png">
-          <div class="appcontent">
-            <h2><a href="/tutorials/"><span>Step by Step</span> Tutorials</a></h2>
-            <p class="desc">The best way to start and learn the basics, step by step.</p>
-          </div>
-        </div>
-      </section>
-      <section class="clear float-left feed-section">
-        <h2>Latest Additions</h2>
-        <ul>
-          <li>May 24 <a href="/tutorials/geolocation/trip_meter/">A Simple Trip Meter using the Geolocation API</a></li>
-          <li>February 24 <a href="/tutorials/notifications/quick/">How to use Notifications API</a></li>
-          <li>February 17 <a href="/tutorials/webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a></li>
-          <li>February 5 <a href="/tutorials/audio/quick/">Quick Guide to Implement the HTML5 Audio Tag</a></li>
-        </ul>
-      </section>
-      <section class="float-right feed-section">
-        <h2>Additional Resources</h2>
-        <ul>
-          <li><a href="">Top Cat!</a> - The most effectual Top Cat!</li>
-          <li><a href="">Who's intellectual close</a> - friends get to call him T.C., providing it's with dignity.</li>
-          <li><a href="">Top Cat!</a> - The indisputable leader of the gang.</li>
-          <li><a href="">He's the boss</a> - he's a pip, he's the championship.</li>
-          <li><a href="">He's the most tip top</a> - Top Cat.</li>
-        </ul>
-      </section>
-      <section class="clear info-section">
-        <h2>Contribute</h2>
-        <p>Both the <a href="#">playground</a> and the <a href="#">slides</a> are open source projects. You can tweak the code or contribute new guides.</p>
-      </section>
-      <section class="chrome-section">
-        <p>Ready to develop in HTML5 but worried about your IE users? Just put <a href="">Chrome Frame</a> in your websites. It's this easy:</p>
-        <pre>&lt;meta http-equiv="X-UA-Compatible" content="chrome=1"&gt;</pre>
-        <p><a href="#">Learn more about Chrome Frame and putting it to use</a></p>
-      </section>
+{% block body %}
+{% include "header.html" %}
+  <section id="index"> 
+    <div class="app">
+      <img src="http://ernestdelgado.com/trash/f3.png">
+      <div class="appcontent">
+        <h2><a href=""><span>Interactive</span> Presentation</a></h2>
+        <p class="desc">See a great summary of the HTML5 features and spread the word.</p>
+      </div>
+    </div>
+    <div class="app">
+      <img src="http://ernestdelgado.com/trash/f2.png">
+      <div class="appcontent">
+        <h2><a href=""><span>Code</span> Playground</a></h2>
+        <p class="desc">The fastest way to jump head first into HTML5 code.</p>
+      </div>
+    </div>
+    <div class="app">
+      <img src="http://ernestdelgado.com/trash/f1.png">
+      <div class="appcontent">
+        <h2><a href="/tutorials/"><span>Step by Step</span> Tutorials</a></h2>
+        <p class="desc">The best way to start and learn the basics, step by step.</p>
+      </div>
+    </div>
+  </section>
+  <section class="clear float-left feed-section">
+    <h2>Latest Additions</h2>
+    <ul>
+      <li>May 24 <a href="/tutorials/geolocation/trip_meter/">A Simple Trip Meter using the Geolocation API</a></li>
+      <li>February 24 <a href="/tutorials/notifications/quick/">How to use Notifications API</a></li>
+      <li>February 17 <a href="/tutorials/webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a></li>
+      <li>February 5 <a href="/tutorials/audio/quick/">Quick Guide to Implement the HTML5 Audio Tag</a></li>
+    </ul>
+  </section>
+  <section class="float-right feed-section">
+    <h2>Additional Resources</h2>
+    <ul>
+      <li><a href="">Top Cat!</a> - The most effectual Top Cat!</li>
+      <li><a href="">Who's intellectual close</a> - friends get to call him T.C., providing it's with dignity.</li>
+      <li><a href="">Top Cat!</a> - The indisputable leader of the gang.</li>
+      <li><a href="">He's the boss</a> - he's a pip, he's the championship.</li>
+      <li><a href="">He's the most tip top</a> - Top Cat.</li>
+    </ul>
+  </section>
+  <section class="clear info-section">
+    <h2>Contribute</h2>
+    <p>Both the <a href="#">playground</a> and the <a href="#">slides</a> are open source projects. You can tweak the code or contribute new guides.</p>
+  </section>
+  <section class="chrome-section">
+    <p>Ready to develop in HTML5 but worried about your IE users? Just put <a href="">Chrome Frame</a> in your websites. It's this easy:</p>
+    <pre class="prettyprint">&lt;meta http-equiv="X-UA-Compatible" content="chrome=1"&gt;</pre>
+    <p><a href="#">Learn more about Chrome Frame and putting it to use</a></p>
+  </section>
 
-      <footer>
-        <p class="madeby">Made by Google | <img style="margin-bottom: -6px;" src="http://ernestdelgado.com/trash/logo_small.png"></p>
-        <a href="/">Home</a> - <a href="http://localhost:8083/main_prev.html#">Site Terms of Service</a> -
-        <a href="#">Privacy Policy</a> -
-        <a href="/tutorials/">Tutorials</a> -
-        <a href="http://slides.html5rocks.com/">Slides</a> -
-        <a href="http://code.google.com/p/html5playground/issues/list" target="_blank">Report Bug</a>
-      </footer>    
-    </div> 
-  </div>
-
-</body> 
-</html>
+  {% include "footer.html" %}
+{% endblock %}

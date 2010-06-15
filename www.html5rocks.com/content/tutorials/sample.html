@@ -1,118 +1,52 @@
-<!DOCTYPE html>
-<html>
-<!-- copyright (c) 2010 Google inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Author: {% block headauthor %}{% endblock %}
- * 
- * {% block credits %}{% endblock %}
- *
--->
-<head>
-  <title>html5rocks - {% block headtitle %}{% endblock %}</title>
-  <link rel="stylesheet" href="/static/css/base.css" />
-  <link rel="stylesheet" href="/static/css/prettify.css" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Vollkorn|Droid+Serif">
-  <meta name="description" content="{% block meta_description %}{% endblock %}" />
-  <script src="/static/js/modernizr-1.1.min.js"></script>
-  <script src="/static/js/prettify.js"></script>
-  <script>
-    function isCompatible() {
-      {% block iscompatible %}
-      return null;
-      {% endblock %}
-    };
-  </script>
-  {% block head %}{% endblock %}
-</head>
+{% extends "../../../base.html" %}
 
-<body onload="{% block onload %}{% endblock %}">
-  <div id="wrap">
-    <div id="content">
-      <header>
-        <h1 id="title"><span class="normal">HTML</span><span class="normal">5</span> <span class="rotated">Tutorials</span></h1>
-      </header>
-      <nav>
-        <p class="breadcrumb">
-          <a class="buttonlink" href="/">
-            <span>Home</span>
-          </a >&gt; 
-          <a class="buttonlink" href="/tutorials/">
-            <span>Tutorials</span>
-          </a> &gt; {% block pagebreadcrumb %}{% endblock %}
+{% block body %}
+  {% include "../../../header.html" %}
+  <nav>
+    <p class="breadcrumb">
+      <a class="buttonlink" href="/">
+        <span>Home</span>
+      </a >&gt; 
+      <a class="buttonlink" href="/tutorials/">
+        <span>Tutorials</span>
+      </a> &gt; {% block pagebreadcrumb %}{% endblock %}
+    </p>
+  </nav>
+  <article>
+    <header>
+      <h1>{% block pagetitle %}{% endblock %}</h1>
+      <div>
+        <span class="date">
+          {% block pageauthor %}{% endblock %}, <time pubdate>{% block date %}{% endblock %}</time>
+        </span>
+        <span class="browser_support">
+          <span>Supported browsers:</span>
+          <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
+        </span>
+      </div>
+    </header>
+    <section>
+      <div class="compatible-block"> 
+        <p id="notcompatible" class="hidden">
+          {% block notcompatible_text %}
+          Your browser may not support all of
+          the functionality used in this sample.
+          {% endblock %}
         </p>
-      </nav>
-      <article>
-        <header>
-          <h1>{% block pagetitle %}{% endblock %}</h1>
-          <div>
-            <span class="date">
-              {% block pageauthor %}{% endblock %}, <time pubdate>{% block date %}{% endblock %}</time>
-            </span>
-            <span class="browser_support">
-              <span>Supported browsers:</span>
-              <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
-            </span>
-          </div>
-        </header>
-        <section>
-          <div class="compatible-block"> 
-            <p id="notcompatible" class="hidden">
-              {% block notcompatible_text %}
-              Your browser may not support all of
-              the functionality used in this sample.
-              {% endblock %}
-            </p>
-            <p id="compatible" class="hidden">
-              {% block compatible_text %}
-              Your browser appears to support
-              all of the functionality used in this sample.
-              {% endblock %}
-            </p>
-          </div>
-        </section>
-        <nav>
-          {% toc %}
-        </nav>
-        <section>
-        {% block content %}{% endblock %}
-        </section>
-      </article>
-      <footer></footer>
-    </div>
-  </div>
-  <script>
-    prettyPrint();
-
-    if (isCompatible() === false) {
-      document.getElementById('notcompatible').className = "";
-    } else if (isCompatible() === true) {
-      document.getElementById('compatible').className = "";
-    }
-    document.querySelector('#title').addEventListener('click', function() {
-      window.location = '/';
-    }, false);
-
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." :
-    "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost +
-    "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-
-    try {
-      var pageTracker = _gat._getTracker("UA-15028909-1");
-      pageTracker._trackPageview();
-      } catch(err) {}
-  </script>
-</body>
-</html>
+        <p id="compatible" class="hidden">
+          {% block compatible_text %}
+          Your browser appears to support
+          all of the functionality used in this sample.
+          {% endblock %}
+        </p>
+      </div>
+    </section>
+    <nav>
+      {% toc %}
+    </nav>
+    <section>
+    {% block content %}{% endblock %}
+    </section>
+  </article>
+  {% include "../../../footer.html" %}
+{% endblock %}

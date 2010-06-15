@@ -1,4 +1,34 @@
 body { 
+  color: #222;
+  background-color: #ddd;
+  font: 14px Arial;
+  margin: 0;
+  padding: 0;
+}
+
+body a {
+  color: #3D5C9D;
+  text-decoration: none;
+}
+
+body a:hover {
+  text-decoration: underline;
+}
+
+#wrap {
+  margin: 0;
+  padding: 0;
+}
+
+#content {
+  background-color: white;
+  width: 73.074em;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0 40px;
+  -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px;
+}
+/*body { 
   color: #222; 
   font: 14px Arial;
   margin: 0;
@@ -9,6 +39,62 @@ body {
 }
 #header img {
   display: block;
+}*/
+header {
+  border-bottom: 2px solid #222;
+  overflow: hidden;
+}
+article header {
+  border: none;
+}
+h1#title {
+  cursor: pointer;
+  font-size: 55px;
+  margin: 0;
+  padding: 20px 0 20px 8px;
+  float: left;
+  width: 50%;
+}
+
+#title { 
+  font-style: normal; 
+  font-weight: bold; 
+}
+
+#title .normal {
+  font-family: 'Droid Sans', Arial;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.09em;
+  padding-right: 4px;
+}
+
+#title .five { 
+  color: #fff;
+  font-family: 'Droid Sans', Arial;
+  text-shadow: 1px 0px 1px #000, -1px 0px 1px #000;
+}
+
+#title .rotated { 
+  font-family: 'Droid Sans', Arial;
+  color: #3D5C9D;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: -0.09em;
+  margin-left: -3px;
+}
+
+header nav ul {
+  padding-left: 0;
+  list-style: none;
+  float: right;
+  padding-top: 30px;
+}
+
+header nav ul li {
+  float: left;
+  padding: 0 10px;
 }
 .breadcrumb {
   font-size: 90%;
@@ -17,7 +103,7 @@ body {
   padding: 10px 0;
   text-align: center;
 }
-#wrap {
+/*#wrap {
   margin: 0;
   padding: 0;
 }
@@ -25,7 +111,7 @@ body {
   width: 80%;
   max-width: 750px;
   margin: 0 auto;
-}
+}*/
 #controls {
   padding: 5px;
 }
@@ -58,7 +144,7 @@ a img {
   border: 0;
 }
 
-h1, h2, h3 {
+atricle section h1, article section h2, article section h3 {
   font-family: Helvetica, Trebuchet MS, Arial; 
   margin: 30px 0 10px 0;
   padding: 0;
@@ -106,7 +192,8 @@ a {
   color: #bbb; 
   font-style: italic;
 }
-.tag {
+article.sample .tag,
+aside > .tag {
   font-size: 75%;
   /* color: #ff5a5a; */
   color: #696;
@@ -126,7 +213,7 @@ a {
   font-weight: bold; 
   color: #060;
 }
-h1#title {
+/*h1#title {
   cursor: pointer;
   font-size: 28px;
   background-color: #f6f6fb;
@@ -145,7 +232,7 @@ h1#title {
   font-family: 'VollKorn', Georgia;
 }
 #title .rotated { 
-/*  font-family: 'Droid Serif', Georgia; */
+/* font-family: 'Droid Serif', Georgia;
   font-family: Georgia;
   -webkit-transform: rotate(-3deg);
   display: inline-block; 
@@ -153,7 +240,7 @@ h1#title {
   color: #f6f6fb;
   background-color: #9caad8;
   text-shadow:rgba(0,0,0,0.5) -1px 0, rgba(0,0,0,0.3) 0 -1px, rgba(255,255,255,0.5) 0 1px, rgba(0,0,0,0.3) -1px -1px;
-}
+}*/
 .browser_support {
   float: right;
   font-size: 85%;
