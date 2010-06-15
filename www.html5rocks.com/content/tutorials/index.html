@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block headtitle %}Samples Index{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/samples_index.css" />
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script>
+    google.load("jquery", "1.4.2");
+
+    function clearFilter() {
+      $(".sample.hidden").removeClass('hidden');
+      $("#filter").addClass('hidden');
+    };
+
+    function filterTag() {
+      var tag = $(this).text();
+      $(".sample span.tag:not(:contains('" + tag + "'))").closest('.sample').addClass('hidden');
+      $(".sample span.tag:contains('" + tag + "')").closest('.sample').removeClass('hidden');
+      $('#filter_tag').text(tag);
+      $('#filter').removeClass('hidden');
+    };
+  </script>
+{% endblock %}
+
+{% block body %}
+<div id="wrap">
+  <div id="content">
+    <header>
+      <h1 id="title"><span class="normal">HTML</span><span class="normal">5</span> <span class="rotated">Tutorials</span></h1>
+    </header>
+    <section>
+      <div id="filter" class="hidden">
+        Currently filtering by tag <span id="filter_tag"></span>.
+        <a href="javascript:clearFilter();">Click here to clear</a>.
+      </div>
+    </section>
+    <aside id="tags">
+      <h3>Tags</h3>
+      <div class="tag">appcache</div>
+      <div class="tag">audio</div>
+      <div class="tag">file</div>
+      <div class="tag">flash</div>
+      <div class="tag">geolocation</div>
+      <div class="tag">notifications</div>
+      <div class="tag">offline</div>
+      <div class="tag">webdatabase</div>
+    </aside>
+    <div id="index">
+      <article class="sample">
+        <h2><a href="/samples/appcache/beginner/">Beginner's guide to Application Cache</a></h2>
+        <div>
+          <span class="date">June 18th, 2010</span>
+          <span class="tag">appcache</span>
+          <span class="tag">offline</span>
+        </div>
+        <div class="summary">
+          A beginner's guide to taking your web app offline using the application cache APIs.
+        </div>
+        <div class="footer_links">
+           <span class="buttonlink"><a href="/samples/appcache/beginner/">View tutorial</a>  &rArr;</span>
+           <span class="browser_logos">
+             <span class="opera"></span>
+             <span class="ie"></span>
+             <span class="safari supported"></span>
+             <span class="ff supported"></span>
+             <span class="chrome supported"></span>
+           </span>
+        </div>
+      </article>
+
+      <article class="sample">
+        <h2><a href="/samples/file/dndfiles/">Reading local files in JavaScript</a></h2>
+        <div>
+          <span class="date">June 18th, 2010</span>
+          <span class="tag">file</span>
+        </div>
+        <div class="summary">
+          Starter guide for implementing file drag and drop from the desktop to the browser
+          using the File and FileReader APIs.
+        </div>
+        <div class="footer_links">
+           <span class="buttonlink"><a href="/samples/file/dndfiles/">View tutorial</a>  &rArr;</span>
+           <span class="browser_logos">
+             <span class="opera"></span>
+             <span class="ie"></span>
+             <span class="safari"></span>
+             <span class="ff supported"></span>
+             <span class="chrome supported"></span>
+           </span>
+        </div>
+      </article>
+
+      <article class="sample">
+        <h2><a href="/samples/geolocation/trip_meter/">A Simple Trip Meter using the Geolocation API</a></h2>
+        <div>
+          <span class="date">May 24th, 2010</span>
+          <span class="tag">geolocation</span>
+        </div>
+        <div class="summary">
+          Learn how to implement geolocation very quickly including a distance calculator
+        </div>
+        <div class="footer_links">
+           <span class="buttonlink"><a href="/samples/geolocation/trip_meter/">View tutorial</a>  &rArr;</span>
+           <span class="browser_logos">
+             <span class="opera"></span>
+             <span class="ie"></span>
+             <span class="safari"></span>
+             <span class="ff supported"></span>
+             <span class="chrome supported"></span>
+           </span>
+        </div>
+      </article>
+
+      <article class="sample">
+        <h2><a href="/samples/notifications/quick/">How to use Notifications API</a></h2>
+        <div>
+          <span class="date">February 24th, 2010</span>
+          <span class="tag">notifications</span>
+        </div>
+        <div class="summary">
+          Learn the notification basics creating a twitter notification
+        </div>
+        <div class="footer_links">
+           <span class="buttonlink"><a href="/samples/notifications/quick/">View tutorial</a>  &rArr;</span>
+           <span class="browser_logos">
+             <span class="opera"></span>
+             <span class="ie"></span>
+             <span class="safari"></span>
+             <span class="ff"></span>
+             <span class="chrome supported"></span>
+           </span>
+        </div>
+      </article>
+
+      <article class="sample">
+        <h2><a href="/samples/webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a></h2>
+        <div>
+          <span class="date">February 17th, 2010</span>
+          <span class="tag">webdatabase</span>
+          <span class="tag">offline</span>
+        </div>
+        <div class="summary">
+          Create a TODO list which persists data using a client side database.
+        </div>
+        <div class="footer_links">
+           <span class="buttonlink"><a href="/samples/webdatabase/todo/">View tutorial</a>  &rArr;</span>
+           <span class="browser_logos">
+             <span class="opera supported"></span>
+             <span class="ie"></span>
+             <span class="safari supported"></span>
+             <span class="ff"></span>
+             <span class="chrome supported"></span>
+           </span>
+        </div>
+      </article>
+
+      <article class="sample">
+        <h2><a href="/samples/audio/quick/">Quick Guide to Implement the HTML5 Audio Tag</a></h2>
+        <div>
+          <span class="date">February 5th, 2010</span>
+          <span class="tag">audio</span>
+          <span class="tag">flash</span>
+        </div>
+        <div class="summary">
+          Learn how to use the HTML5 audio tag and fall back to Flash on 
+          platforms which do not support it.
+        </div>
+        <div class="footer_links">
+           <span class="buttonlink"><a href="/samples/audio/quick/">View tutorial</a>  &rArr;</span>
+           <span class="browser_logos">
+             <span class="opera supported"></span>
+             <span class="ie"></span>
+             <span class="safari supported"></span>
+             <span class="ff supported"></span>
+             <span class="chrome supported"></span>
+           </span>
+        </div>
+      </article>
+
+      
+    </div>
+    <footer>
+      <p class="madeby">Made by Google | <img style="margin-bottom: -6px;" src="http://ernestdelgado.com/trash/logo_small.png"></p>
+      <a href="http://www.html5rocks.com/">Home</a> - <a href="#">Site Terms of Service</a> -
+      <a href="#">Privacy Policy</a> -
+      <a href="http://tutorials.html5rocks.com">Tutorials</a> -
+      <a href="http://slides.html5rocks.com">Slides</a> -
+      <a href="http://code.google.com/p/html5playground/issues/list" target="_blank">Report Bug</a>
+    </footer>
+  </div>
+</div>
+<script>
+  $('.tag').click(filterTag);
+</script>
+{% endblock %}
