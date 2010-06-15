@@ -67,7 +67,7 @@ class ContentHandler(webapp.RequestHandler):
       return 
 
     template_data = {
-      'toc' : self.get_toc(template_path),
+      'toc' : self.get_toc(template_path)
     }
     template_data.update(data)
     self.response.headers.add_header('Content-Type', 'text/html;charset=UTF-8')
@@ -80,28 +80,24 @@ class ContentHandler(webapp.RequestHandler):
       self.request.cache = True
     
     basedir = os.path.dirname(__file__)
+
     logging.info(relpath)
 
     if relpath == "" or relpath[-1:] == '/':
-      path = os.path.join(basedir, "content", relpath, 'index.html')
+      path = os.path.join(basedir, 'content', relpath, 'index.html')  # Landing page.
     else:
-      path = os.path.join(basedir, "content", relpath)
-      
+      path = os.path.join(basedir, 'content', relpath)
+
     logging.info(path)
     if os.path.isfile(path):
       self.render(template_path=path)
     else:
-      self.render(status=404, message="Sample not found")
-
-class MainHandler(webapp.RequestHandler):
-  def get(self):
-    self.redirect('/samples/', False)   # Not permanent redirect
+      self.render(status=404, message='Sample not found')
 
 
 def main():
   application = webapp.WSGIApplication([
-    ('/samples/(.*)', ContentHandler),
-    ('/.*', MainHandler),
+    ('/(.*)', ContentHandler)
   ], debug=True)
   util.run_wsgi_app(application)
 

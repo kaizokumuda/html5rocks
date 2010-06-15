@@ -70,7 +70,7 @@ document.querySelector('#show_button').addEventListener('click', function() {
 }, false);</pre>
 
   <p>If the web application doesn't have permissions to show notifications then the requestPermission method will show an infobar:</p>
-  <img src="/samples/notifications/quick/notifications_infobar.png" style="border: 1px solid black;" />
+  <img src="notifications_infobar.png" style="border: 1px solid black;" />
   <p>However, it's <em>very important</em> to remember that the <em>requestPermission</em> method only works in event handlers triggered by a user
   action, like mouse or keyboard events, in order to avoid unsolicited infobars. In this case, the user action is the click on the button with id "show_button".</p>
   <p>The snippet above will never work if the user hasn't explicitly clicked on a button or link that triggers the <em>requestPermission</em> at some point.</p>
