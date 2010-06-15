@@ -11,6 +11,11 @@ handlers:
 
 - url: /tutorials.*(\.html|/)
   script: main.py
+  
+- url: /tutorials/(.*cache\.manifest)
+  static_files: content/tutorials/\1
+  mime_type: text/cache-manifest
+  upload: content/tutorials/(.*cache\.manifest)
 
 - url: /tutorials/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogg|ogm|fla))
   static_files: content/tutorials/\1
