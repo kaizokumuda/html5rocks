@@ -50,8 +50,12 @@ img.logo {
   text-align: center;
 }
 .sample {
-  padding: 10px 0;
-  border-bottom: 1px solid #E9EEFA;
+  padding: 10px 5px;
+  border-bottom: 1px solid #E9EEFA; 
+       -moz-transition: background-color 0.2s ease-out;  
+         -o-transition: background-color 0.2s ease-out;  
+    -webkit-transition: background-color 0.2s ease-out;  
+   
 }
 .sample:last-child {
   border: none;

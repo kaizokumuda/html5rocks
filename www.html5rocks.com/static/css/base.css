@@ -26,7 +26,7 @@ body a:hover {
   max-width: 750px;
   margin: 0 auto;
   padding: 0 40px;
-  -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px;
+  -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #AAA 0px 38px 36px -24px;
 }
 /*body { 
   color: #222; 
