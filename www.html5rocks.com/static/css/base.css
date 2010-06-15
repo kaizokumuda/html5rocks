@@ -117,14 +117,6 @@ a {
 .sample_title, .last_p { 
   margin-top: 30px; 
 }
-.footer { 
-  font-size: 80%; 
-  color: #bbb; 
-  padding: 15px 0; 
-}
-.footer a { 
-  color: #bbb; 
-}
 code .old { 
   color: #696;
 }
@@ -135,8 +127,10 @@ code .new {
 h1#title {
   cursor: pointer;
   font-size: 28px;
-  background-color: #FBFCFE;
-  border-bottom: 1px solid #427BD6;
+  background-color: #f6f6fb;
+  border-bottom: 1px solid #e1e2e6;
+  text-shadow: white 1px 1px 1px;
+  -webkit-box-shadow: 0px 2px 3px #e1e2e6;
   margin: 0;
   padding: 20px 10px;
 }
@@ -149,10 +143,37 @@ h1#title {
   font-family: 'VollKorn', Georgia;
 }
 #title .rotated { 
-  font-family: 'Droid Serif', Georgia; 
-  -webkit-transform: rotate(-1deg);
+/*  font-family: 'Droid Serif', Georgia; */
+  font-family: Georgia;
+  -webkit-transform: rotate(-3deg);
   display: inline-block; 
   border-radius: 2px; 
-  color: #fff;
-  background-color: #8797BC; 
+  color: #f6f6fb;
+  background-color: #9caad8;
+  text-shadow:rgba(0,0,0,0.5) -1px 0, rgba(0,0,0,0.3) 0 -1px, rgba(255,255,255,0.5) 0 1px, rgba(0,0,0,0.3) -1px -1px;
+}
+
+.footer { 
+  font-size: 80%; 
+  color: #bbb; 
+  padding: 15px 0; 
+}
+.footer a { 
+  color: #bbb; 
+}
+
+footer { 
+  clear: both; 
+  text-align: left; 
+  padding: 20px 0;
+  font-size: 12px; 
+  border-top: 1px dotted #ddd;
+}
+
+footer a {
+  color: #3d5c9d;
+}
+
+.madeby {
+  float: right; width: 30%; margin: 0; text-align: right;
 }
