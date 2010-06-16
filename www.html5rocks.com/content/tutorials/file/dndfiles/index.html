@@ -260,10 +260,12 @@ reader.readAsBinaryString(blob);</pre>
 &lt;/style&gt;
 
 &lt;input type="file" id="file" name="file" /&gt; Read bytes: 
-&lt;button onclick="readBlob(0, 4)"&gt;1-5&lt;/button&gt;
-&lt;button onclick="readBlob(5, 14)"&gt;6-15&lt;/button&gt;
-&lt;button onclick="readBlob(6, 7)"&gt;7-8&lt;/button&gt;
-&lt;button onclick="readBlob()"&gt;entire file&lt;/button&gt;
+&lt;span class="readBytesButtons"&gt;
+  &lt;button data-startbyte="0" data-endbyte="4"&gt;1-5&lt;/button&gt;
+  &lt;button data-startbyte="5" data-endbyte="14"&gt;6-15&lt;/button&gt;
+  &lt;button data-startbyte="6" data-endbyte="7"&gt;7-8&lt;/button&gt;
+  &lt;button&gt;entire file&lt;/button&gt;
+&lt;/span&gt;
 &lt;div id="byte_range"&gt;&lt;/div&gt;
 &lt;div id="byte_content"&gt;&lt;/div&gt;
 
@@ -294,15 +296,26 @@ reader.readAsBinaryString(blob);</pre>
     var length =  (stop - start) + 1;
     var blob = file.slice(start, length);
     reader.readAsBinaryString(blob);
-  }&lt;/script&gt;</pre>
+  }
+  
+  document.querySelector('.readBytesButtons').addEventListener('click', function(e) {
+    if (e.target.tagName.toLowerCase() == 'button') {
+      var startByte = e.target.getAttribute('data-startbyte');
+      var endByte = e.target.getAttribute('data-endbyte');
+      readBlob(startByte, endByte);
+    }
+  }, false);
+&lt;/script&gt;</pre>
 
   <p>Try this example!</p>
 
   <input type="file" id="file4" name="file4" /> Read bytes: 
-  <button onclick="example4.readBlob(0, 4)">1-5</button>
-  <button onclick="example4.readBlob(5, 14)">6-15</button>
-  <button onclick="example4.readBlob(6, 7)">7-8</button>
-  <button onclick="example4.readBlob()">entire file</button>
+  <span class="readBytesButtons">
+    <button data-startbyte="0" data-endbyte="4">1-5</button>
+    <button data-startbyte="5" data-endbyte="14">6-15</button>
+    <button data-startbyte="6" data-endbyte="7">7-8</button>
+    <button>entire file</button>
+  </span>
   <div id="byte_range"></div>
   <div id="byte_content"></div>
 
@@ -344,6 +357,9 @@ reader.readAsBinaryString(blob);</pre>
 &lt;div id="progress_bar"&gt;&lt;div class="percent"&gt;0%&lt;/div&gt;&lt;/div&gt;
 
 &lt;script&gt;
+  var reader;
+  var progress = document.querySelector('.percent');
+
   function abortRead() {
     reader.abort();
   }
@@ -400,8 +416,6 @@ reader.readAsBinaryString(blob);</pre>
     reader.readAsBinaryString(evt.target.files[0]);
   }
 
-  var reader;
-  var progress = document.querySelector('.percent');
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 &lt;/script&gt;</pre>
 
@@ -514,6 +528,13 @@ example4.readBlob = function(opt_startByte, opt_stopByte) {
   var blob = file.slice(start, (stop - start) + 1);
   reader.readAsBinaryString(blob);
 };
+document.querySelector('.readBytesButtons').addEventListener('click', function(e) {
+  if (e.target.tagName.toLowerCase() == 'button') {
+    var startByte = e.target.getAttribute('data-startbyte');
+    var stopByte = e.target.getAttribute('data-endbyte');
+    example4.readBlob(startByte, stopByte);
+  }
+}, false);
 
 function Example5(id) {
   var reader_;
