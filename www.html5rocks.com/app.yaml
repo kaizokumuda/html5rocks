@@ -4,14 +4,14 @@ runtime: python
 api_version: 1
 
 handlers:
-  
+
 - url: /google75906d613a2a09ba.html
   static_files: static/google75906d613a2a09ba.html
   upload: static/google75906d613a2a09ba.html
 
 - url: /tutorials.*(\.html|/)
   script: main.py
-  
+
 - url: /tutorials/(.*\.manifest)
   static_files: content/tutorials/\1
   mime_type: text/cache-manifest
