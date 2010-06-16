@@ -42,6 +42,18 @@
       {% block body %}{% endblock %}
     </div>
   </div>
+  <script>      
+    if (/tutorials/.test(document.location.href)) {
+      var lis = document.querySelectorAll('header nav li');
+      var i = lis.length;
+      while (i--) {
+        var a = lis[i].querySelector('a');
+        if (/tutorials/.test(a.getAttribute("data-section"))) {
+          a.className = 'current';
+        }
+      }
+    }
+  </script>
   <script>
     prettyPrint();
 
