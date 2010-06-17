@@ -4,14 +4,16 @@
 
 {% block head %}
   <style type="text/css" media="screen">
-    header {
-      margin-bottom: 20px;
-    }
     #index {
       width: 100%;
       overflow: hidden;
       margin-bottom: 0;
+      padding: 20px 0;
       border-bottom: 1px solid #ddd;
+    }
+
+    #index a {
+      text-decoration: none;
     }
 
     #index img {
@@ -22,9 +24,21 @@
     
     #index div.app {
       font-family: Helvetica, sans-serif;
-      float: left; 
-      width: 27%;
-      padding: 30px 3%;
+      float: left;
+      height: 110px;
+      padding: 30px 15px;
+      margin: 0 5px;
+      background: -webkit-gradient(linear, left top, left bottom, from(#eee), color-stop(0.5, #fff), to(#eee));
+      border: 3px solid #eee;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 15px;
+      -webkit-transition: border-color 0.25s;
+      cursor: pointer;
+    }
+
+    #index div.app:hover {
+      border-color: #3D5C9D;
     }
 
     .app h2 {
@@ -33,16 +47,18 @@
       margin: 0;
       font-weight: bold;
       line-height: 0.8em;
+      font-size: 17px;
     }
     
-    .app h2 a {
+    .app h2 span {
       font-size: 17px;
-      display:block;
+      display: block;
+      margin-bottom: 5px;
     }
 
     .appcontent {
       float: right;
-      width: 124px;
+      width: 126px;
     }
 
     .appcontent span {
@@ -52,7 +68,7 @@
     
     .desc { 
       font-size: 13px; 
-      color: #333; 
+      color: #222;
     }
     
     .float-left {
@@ -69,6 +85,11 @@
     
     .feed-section {
       width: 48%;
+    }
+    
+    .feed-section ul :last-child {
+      /*text-align: right;*/
+      margin-top: 10px;
     }
     
     .feed-section ul {
@@ -103,7 +124,7 @@
       padding: 10px 20px;
       font-size: 13px;
       margin: 20px 0;
-      border-radius: 5px;
+      border-radius: 15px;
     }
     
     footer {
@@ -132,45 +153,54 @@
 {% block body %}
 {% include "header.html" %}
   <section id="index"> 
-    <div class="app">
-      <img src="http://ernestdelgado.com/trash/f3.png">
-      <div class="appcontent">
-        <h2><a href="http://slides.html5rocks.com"><span>Interactive</span> Presentation</a></h2>
-        <p class="desc">See a great summary of the HTML5 features and spread the word.</p>
+    <a href="http://slides.html5rocks.com">
+      <div class="app">
+        <img src="http://ernestdelgado.com/trash/f3.png">
+        <div class="appcontent">
+          <h2><span>Interactive</span> Presentation</h2>
+          <p class="desc">See a great summary of the HTML5 features and spread the word.</p>
+        </div>
       </div>
-    </div>
-    <div class="app">
-      <img src="http://ernestdelgado.com/trash/f1.png">
-      <div class="appcontent">
-        <h2><a href="http://playground.html5rocks.com"><span>Code</span> Playground</a></h2>
-        <p class="desc">The fastest way to jump head first into HTML5 code.</p>
+    </a>
+    <a href="http://playground.html5rocks.com">
+      <div class="app">
+        <img src="http://ernestdelgado.com/trash/f1.png">
+        <div class="appcontent">
+          <h2><span>Code</span> Playground</h2>
+          <p class="desc">The fastest way to jump head first into HTML5 code.</p>
+        </div>
       </div>
-    </div>
-    <div class="app">
-      <img src="http://ernestdelgado.com/trash/f2.png">
-      <div class="appcontent">
-        <h2><a href="/tutorials/"><span>Step by Step</span> Tutorials</a></h2>
-        <p class="desc">The best way to start and learn the basics, step by step.</p>
+    </a>
+    <a href="/tutorials/">
+      <div class="app">
+        <img src="http://ernestdelgado.com/trash/f2.png">
+        <div class="appcontent">
+          <h2><span>Step by Step</span> Tutorials</h2>
+          <p class="desc">The best way to start and learn the basics, step by step.</p>
+        </div>
       </div>
-    </div>
+    </a>
   </section>
   <section class="clear float-left feed-section">
     <h2>Latest Additions</h2>
     <ul>
-      <li>May 24 <a href="/tutorials/geolocation/trip_meter/">A Simple Trip Meter using the Geolocation API</a></li>
-      <li>February 24 <a href="/tutorials/notifications/quick/">How to use Notifications API</a></li>
-      <li>February 17 <a href="/tutorials/webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a></li>
-      <li>February 5 <a href="/tutorials/audio/quick/">Quick Guide to Implement the HTML5 Audio Tag</a></li>
+      <li>6/18 <a href="/tutorials/appcache/beginner/">Beginner's guide to Application Cache</a></li>
+      <li>6/18 <a href="/tutorials/offline/takingappoffline/">Taking your Application offline</a></li>
+      <li>6/18 <a href="/tutorials/file/dndfiles/">Reading local files in JavaScript</a></li>
+      <li>5/24 <a href="/tutorials/geolocation/trip_meter/">A Simple Trip Meter using the Geolocation API</a></li>
+      <li>2/24 <a href="/tutorials/notifications/quick/">How to use Notifications API</a></li>
+      <li>2/17 <a href="/tutorials/webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a></li>
+      <li><a href="resources.html">See more &rArr;</a></li>
     </ul>
   </section>
   <section class="float-right feed-section">
     <h2>Additional Resources</h2>
     <ul>
-      <li><a href="">Top Cat!</a> - The most effectual Top Cat!</li>
-      <li><a href="">Who's intellectual close</a> - friends get to call him T.C., providing it's with dignity.</li>
-      <li><a href="">Top Cat!</a> - The indisputable leader of the gang.</li>
-      <li><a href="">He's the boss</a> - he's a pip, he's the championship.</li>
-      <li><a href="">He's the most tip top</a> - Top Cat.</li>
+      <li><a href="http://dev.chromium.org/developers/web-platform-status">Chrome Implementation Status </a> - follow the Chrome team's HTML5 efforts.</li>
+      <li><a href="http://diveintohtml5.org/">Dive into HTML5</a> - learn HTML5 and have fun reading a book at the same time.</li>
+      <li><a href="https://groups.google.com/a/chromium.org/group/chromium-html5/topics">HTML5 Discussion Group</a> - a dedicated forum for web developers.</li>
+      <li><a href="http://html5doctor.com/">HTML5 Doctor</a> - helping you implement HTML5 today.</li>
+      <li><a href="resources.html">See more &rArr;</a></li>
     </ul>
   </section>
   <section class="clear info-section">
