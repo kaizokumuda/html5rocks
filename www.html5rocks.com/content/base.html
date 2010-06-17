@@ -48,8 +48,6 @@
     while (i--) {
       var a = lis[i].querySelector('a');
       var section = a.getAttribute("data-section");
-      console.log(document.location.href)
-      console.log(section)
       if (new RegExp(section).test(document.location.href)) {
         a.className = 'current';
       }
