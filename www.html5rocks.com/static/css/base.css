@@ -75,6 +75,7 @@ h1#title {
 
 #section-header #title {
   font-size: 39px;
+  width: 40%;
 }
 
 #section-header #title .rocks {
@@ -271,4 +272,7 @@ footer a {
 }
 .madeby {
   float: right; width: 30%; margin: 0; text-align: right;
+}
+.madeby img {
+  margin-bottom: -7px;
 }
