@@ -18,6 +18,7 @@
       margin-right: 10px;
     }
     .resource-list img {
+      cursor: pointer;
       display: block;
       width: 200px;
       height: 89px;
@@ -26,11 +27,13 @@
       margin-bottom: 10px;
     }
     .resource-category {
+      font-size: 20px;
+      font-weight: bold;
+      font-family: 'Droid Sans';
       clear: both;
       color: black;
       display: block;
-      font-size: 15px;
-      font-weight: normal;
+      border-bottom: 1px solid #ddd;
       padding: 34px 0px 17px 0;
       text-transform: uppercase;
     }
@@ -44,67 +47,67 @@
     <h2 class="resource-category">Reference</h2>
     <ul class="resource-list">
       <li>
-        <img src="static/images/screenshots/html5readiness.png" />
+        <img data-resource="http://html5readiness.com" src="static/images/screenshots/html5readiness.png" />
         <span class="buttonlink"><a href="http://html5readiness.com">HTML5 Readiness</a></span>
         : Visual timeline of HTML5 feature support.
       </li>
       <li>
-        <img src="static/images/screenshots/whencaniuse.png" />
+        <img data-resource="http://caniuse.com" src="static/images/screenshots/whencaniuse.png" />
         <span class="buttonlink"><a href="http://caniuse.com">When Can I Use...</a></span>
         : Really up to date HTML5 feature reference.
       </li>
       <li>
-        <img src="static/images/screenshots/html5tests.png" />
+        <img data-resource="http://html5test.com" src="static/images/screenshots/html5tests.png" />
         <span class="buttonlink"><a href="http://html5test.com">HTML5 Test</a></span>
         : Series of browser tests to evaluate feature support. (300 points max.)
       </li>
       <li>
-        <img src="static/images/screenshots/findmebyip.png" />
+        <img data-resource="http://www.findmebyip.com/litmus/#target-selector" src="static/images/screenshots/findmebyip.png" />
         <span class="buttonlink"><a href="http://www.findmebyip.com/litmus/#target-selector">Web Designer's Checklist</a></span>
         : Detailed browser feature support reference.
       </li>
       <li>
-        <img src="static/images/screenshots/html5visual.png" />
+        <img data-resource="http://www.focus.com/images/view/11905/" src="static/images/screenshots/html5visual.png" />
         <span class="buttonlink"><a href="http://www.focus.com/images/view/11905/">HTML5 Visual Reference</a></span>
         : HTML5 features for those infographic lovers.
       </li>
       <li>
-        <img src="static/images/screenshots/w3devview.png" />
+        <img data-resource="http://dev.w3.org/html5/spec-author-view/" src="static/images/screenshots/w3devview.png" />
         <span class="buttonlink"><a href="http://dev.w3.org/html5/spec-author-view/">W3C HTML5 Web Author View</a></span>
         : Lightweight version of the w3c spec.
       </li>
       <li>
-        <img src="static/images/screenshots/status.png" />
+        <img data-resource="http://dev.chromium.org/developers/web-platform-status" src="static/images/screenshots/status.png" />
         <span class="buttonlink"><a href="http://dev.chromium.org/developers/web-platform-status">Chrome Implementation Status</a></span>
         : Follow the engineering effort for cutting edge support from the Chrome team.
       </li>
       <li>
-        <img src="static/images/screenshots/diveinto.png" />
+        <img data-resource="http://diveintohtml5.org/" src="static/images/screenshots/diveinto.png" />
         <span class="buttonlink"><a href="http://diveintohtml5.org/">Dive into HTML5 by Mark Pilgrim</a></span>
         : Learn HTML5 and have fun reading a book at the same time.
       </li>
       <li>
-        <img src="static/images/screenshots/wikipedia.png" />
+        <img data-resource="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(HTML5)" src="static/images/screenshots/wikipedia.png" />
         <span class="buttonlink"><a href="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(HTML5)">HTML5 Comparison Layout Engines</a></span>
         : If the Wikipedia says it then it must be true.
       </li>
       <li>
-        <img src="static/images/screenshots/safaridocs.png" />
+        <img data-resource="http://developer.apple.com/safari/" src="static/images/screenshots/safaridocs.png" />
         <span class="buttonlink"><a href="http://developer.apple.com/safari/">Safari HTML5 Guides</a></span>
         : Great developer resources from the Safari guys.
       </li>
       <li>
-        <img src="static/images/screenshots/mdc.png" />
+        <img data-resource="https://developer.mozilla.org/en/HTML/HTML5" src="static/images/screenshots/mdc.png" />
         <span class="buttonlink"><a href="https://developer.mozilla.org/en/HTML/HTML5">Mozilla Development Center HTML5 Reference</a></span>
         : Excellent documentation coming from Mozilla.
       </li>
       <li>
-        <img src="static/images/screenshots/wgfullspec.png" />
+        <img data-resource="http://www.whatwg.org/specs/web-apps/current-work/multipage/" src="static/images/screenshots/wgfullspec.png" />
         <span class="buttonlink"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">WhatWG Web Apps Spec (HTML5 plus the kitchen sink)</a></span>
         : Raw HTML5 spec. Working draft that is.
       </li>
       <li>
-        <img src="static/images/screenshots/security.png" />
+        <img data-resource="http://heideri.ch/jso/" src="static/images/screenshots/security.png" />
         <span class="buttonlink"><a href="http://heideri.ch/jso/">HTML5 Security Cheatsheet</a></span>
         : List of potential security issues ordered by feature
       </li>
@@ -114,47 +117,47 @@
     <h2 class="resource-category">Tools</h2>
     <ul class="resource-list">
       <li>
-        <img src="static/images/screenshots/modernizr.png" />
+        <img data-resource="http://www.modernizr.com/" src="static/images/screenshots/modernizr.png" />
         <span class="buttonlink"><a href="http://www.modernizr.com/">Modernizr</a></span>
         : Javascript library for feature detection and control fallback cases of HTML5.
       </li>
       <li>
-        <img src="static/images/screenshots/html5shiv.png" />
+        <img data-resource="http://code.google.com/p/html5shiv/" src="static/images/screenshots/html5shiv.png" />
         <span class="buttonlink"><a href="http://code.google.com/p/html5shiv/">html5shiv</a></span>
         : Javascript patch to make IE support, and print, the new tag elements.
       </li>
       <li>
-        <img src="static/images/screenshots/buttongen.png" />
+        <img data-resource="http://css-tricks.com/examples/ButtonMaker/" src="static/images/screenshots/buttongen.png" />
         <span class="buttonlink"><a href="http://css-tricks.com/examples/ButtonMaker/">CSS Button Maker</a></span>
         : Preview CSS buttons with a fancy interface to play with the parameters.
       </li>
       <li>
-        <img src="static/images/screenshots/cssgen.png" />
+        <img data-resource="http://css3generator.com/" src="static/images/screenshots/cssgen.png" />
         <span class="buttonlink"><a href="http://css3generator.com/">CSS3 Generator</a></span>
         : Preview CSS buttons with a fancy interface to play with the parameters.
       </li>      
       <li>
-        <img src="static/images/screenshots/sandbox.png" />
+        <img data-resource="http://www.westciv.com/tools/gradients/index.html" src="static/images/screenshots/sandbox.png" />
         <span class="buttonlink"><a href="http://www.westciv.com/tools/gradients/index.html">CSS3 Sandbox</a></span>
         : Test and get the code of the fanciest CSS features.
       </li>
       <li>
-        <img src="static/images/screenshots/gradientgen.png" />
+        <img data-resource="http://gradients.glrzad.com/" src="static/images/screenshots/gradientgen.png" />
         <span class="buttonlink"><a href="http://gradients.glrzad.com/">CSS3 Gradient Generator</a></span>
         : Generate CSS code for gradients on the fly.
       </li>
       <li>
-        <img src="static/images/screenshots/css3please.png" />
+        <img data-resource="http://css3please.com/" src="static/images/screenshots/css3please.png" />
         <span class="buttonlink"><a href="http://css3please.com/">CSS3 Please</a></span>
         : Use CSS3 without having to worry about xbrowser differences.
       </li>
       <li>
-        <img src="static/images/screenshots/font_dragr.png" />
+        <img data-resource="http://labs.thecssninja.com/font_dragr/" src="static/images/screenshots/font_dragr.png" />
         <span class="buttonlink"><a href="http://labs.thecssninja.com/font_dragr/">Font Dragr</a></span>
         : Test your fonts using drag and drop.
       </li>
       <li>
-        <img src="static/images/screenshots/squirrel.png" />
+        <img data-resource="http://www.fontsquirrel.com/fontface/generator" src="static/images/screenshots/squirrel.png" />
         <span class="buttonlink"><a href="http://www.fontsquirrel.com/fontface/generator">Font Squirrel Generator</a></span>
         : Most complete tool to generate code for you font-face support.
       </li>
@@ -165,37 +168,43 @@
     <h2 class="resource-category">Community</h2>
     <ul class="resource-list">
       <li>
-        <img src="static/images/screenshots/html5watch.png" />
+        <img data-resource="http://html5watch.tumblr.com/" src="static/images/screenshots/html5watch.png" />
         <span class="buttonlink"><a href="http://html5watch.tumblr.com/">HTML5 Watch</a></span>
       </li>
       <li>
-        <img src="static/images/screenshots/css3watch.png" />
+        <img data-resource="http://css3watch.com/" src="static/images/screenshots/css3watch.png" />
         <span class="buttonlink"><a href="http://css3watch.com/">CSS3 Watch</a></span>
       </li>
       <li>
-        <img src="static/images/screenshots/doctor.png" />
+        <img data-resource="http://html5doctor.com/" src="static/images/screenshots/doctor.png" />
         <span class="buttonlink"><a href="http://html5doctor.com/">HTML5 Doctor</a></span>
       </li>
       <li>
-        <img src="static/images/screenshots/whatwgblog.png" />
+        <img data-resource="http://blog.whatwg.org" src="static/images/screenshots/whatwgblog.png" />
         <span class="buttonlink"><a href="http://blog.whatwg.org">WhatWG Blog</a></span>
       </li>
       <li>
-        <img src="static/images/screenshots/chromium.png" />
+        <img data-resource="https://groups.google.com/a/chromium.org/group/chromium-html5/topics" src="static/images/screenshots/chromium.png" />
         <span class="buttonlink"><a href="https://groups.google.com/a/chromium.org/group/chromium-html5/topics">Chromium HTML5 Discussion Group</a></span>
       </li>
       <li>
-        <img src="static/images/screenshots/hackmozilla.png" />
+        <img data-resource="http://hacks.mozilla.org/" src="static/images/screenshots/hackmozilla.png" />
         <span class="buttonlink"><a href="http://hacks.mozilla.org/">Hack Mozilla</a></span>
       </li>
       <li>
-        <img src="static/images/screenshots/safaridemos.png" />
+        <img data-resource="http://gradients.glrzad.com/" src="static/images/screenshots/safaridemos.png" />
         <span class="buttonlink"><a href="http://gradients.glrzad.com/">Safari HTML5 Demos</a></span>
       </li>
     </ul>
   </section>
   
 </div>
-
+<script type="text/javascript" charset="utf-8">
+  document.body.addEventListener('click', function(e) {
+    if (e.target.getAttribute('data-resource') !== null) {
+      window.open(e.target.getAttribute('data-resource'),"_new")
+    }
+  }, false);
+</script>
   {% include "footer.html" %}
 {% endblock %}
