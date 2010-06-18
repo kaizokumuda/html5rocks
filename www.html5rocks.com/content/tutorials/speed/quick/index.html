@@ -1,0 +1,228 @@
+{% extends "../../sample.html" %}
+{% block headauthor %}Paul Irish{% endblock %}
+{% block pageauthor %}Paul Irish{% endblock %}
+{% block credits %}
+ * Credits:
+ * - 
+{% endblock %}
+
+{% block headtitle %}Best Practices to A Faster Web App with HTML5{% endblock %}
+{% block pagetitle %}Best Practices to A Faster Web App with HTML5{% endblock %}
+{% block pagebreadcrumb %}Best Practices to A Faster Web App with HTML5{% endblock %}
+{% block date %}June 16th, 2010{% endblock %}
+
+{% block browsersupport %}
+<!-- ><span class="opera supported"></span>
+<span class="ie supported"></span>
+<span class="safari supported"></span>
+<span class="ff supported"></span>
+<span class="chrome supported"></span> --> 
+varies
+
+{% endblock %}
+
+{% block head %}
+   
+{% endblock %}
+
+{% block content %}
+
+
+<h2 id="toc-intro">Introduction</h2>
+<p>Much of HTML5 aims to deliver native browser support for components and techniques that we have achieved through JavaScript libraries thus far. Using these features, when present, can end up delivering a much faster experience for your users. In this tutorial, I won't recap the excellent performance research that you've seen at Yahoo's <a href="http://developer.yahoo.com/performance/rules.html">Exceptional Performance site</a> or Google's <a href="http://code.google.com/speed/page-speed/docs/rules_intro.html">Page Speed docs</a> and <a href="http://code.google.com/speed/index.html">Let's make the web faster</a> site. Instead I'll focus on how putting HTML5 and CSS3 to use today can make your web apps more responsive.</p>
+    
+    
+    
+    
+    
+    
+    <!--
+    <h2>Use cache manifest for live sites, not just offline apps</h2>
+    
+    <p>Two years back, Wordpress used Google Gears to add a feature called <a href="http://en.blog.wordpress.com/2008/07/02/gears/">Wordpress Turbo</a>. It essentially cached many of the resources used in the admin panel locally, speeding up file access to them. We can replicate that behavior with HTML5's applicationCache and the cache.manifest.</p>
+    <p>The app cache has a slight advantage over setting Expires headers in that browsers could be more aggressive about the static resources you are declaring as cachable. They could  precache them for yo
+    ... or not.
+    
+    templates in cache.manifest
+    
+       a la native apps.
+    
+    appcache for local cachability, not only offline cache use cases
+    
+       http://softwareas.com/offline-apps-with-application-cache-quickstart-tips-and-deep-dive
+       http://diveintohtml5.org/offline.html
+       http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#manifests
+     -->
+     
+    
+    <h2 id="toc-webstorage">Use web storage in place of cookies</h2>
+    
+    <p>While cookies have been used to track unique user data for years, they have serious disadvantages. The largest flaw is that all of your cookie data is added to every HTTP request header. This can end up having a <a href="http://yuiblog.com/blog/2007/03/01/performance-research-part-3/">measurable impact on response time</a>, especially during <abbr title="XMLHTTPRequests">XHRs</abbr>. So a best practice is to <a href="http://developer.yahoo.com/performance/rules.html#cookie_size">reduce cookie size</a>. In HTML5 we can do better than that: use <code>sessionStorage</code> and <code>localStorage</code> in place of cookies. </p>
+    
+    <p>These two web storage objects can be used to persist user data on the clientside for the length of the session or indefinitely. Their data is not transferred to the server via every HTTP request, either.  They have an API that will make you happy to be rid of cookies. Here are both APIs, using cookies as a fallback.</p>
+<pre class="prettyprint">
+// if localStorage is present, use that
+if (('localStorage' in window) && window.localStorage !== null){
+    
+    // easy object property API
+    sessionStorage.wishlist = '["Unicorn","Narwhal","Deathbear"]';
+    
+
+} else {
+    // without sessionStorage we'll have to use a far-future cookie
+    // yuck:
+    var date = new Date();
+    date.setTime(date.getTime()+(365*24*60*60*1000));
+    var expires = date.toGMTString();
+    document.cookie = 'wishlist=["Unicorn","Narwhal","Deathbear"]; expires='+
+                      expires+"; path=/";
+}
+</pre>
+    
+     
+     
+    <h2 id="toc-transitions">Use CSS Transitions instead of JavaScript animation</h2>
+    
+    <p>CSS Transitions give you an attractive visual transition between two states. Most style properties can be transitioned, like manipulating the text-shadow, position, background or color.  You can use transitions into pseudo-selector states like <code>:hover</code> or from HTML5 forms, <code>:invalid</code> and <code>:valid</code>. But they're much more powerful and can be triggered when you add any class to an element.</p>
+    <pre class="prettyprint">
+div.box { 
+  left: 40px;  
+     -moz-transition: all 0.3s ease-out;  
+       -o-transition: all 0.3s ease-out;  
+  -webkit-transition: all 0.3s ease-out;
+}
+div.box.totheleft { left: 0px; }
+div.box.totheright { left: 80px; }
+    </pre>
+<p>By adding the toggling the classes of <code>totheleft</code> and <code>totheright</code> you can move the box around. Compare this amount of code with that of a JavaScript animation library. Clearly, the number of bytes sent to the browser is much less when using CSS-based animation. Additionally, with GPU level acceleration, these visual transitions will be as smooth as possible.</p>
+       
+    
+    
+    
+    <h2 id="toc-databases">Use client-side databases instead of server roundtrips</h2>
+    
+    <p>Web SQL Database and IndexedDB introduce databases to the clientside. Instead of the common pattern of posting data to the server via XMLHttpRequest or form submission, you can leverage these clientside databases. Decreasing HTTP requests is a primary target of all performance engineers, so using these a datastore can save many trips via XHR or form posts back to the server. <code>localStorage</code> could be used in some cases, as well, and has seen to be noticeably faster than the client-side database APIs.</p>
+    <p>For example, if you have a datagrid or message inbox with many messages, storing the data locally in a database will save you HTTP roundtrips when the user wishes to search, filter, or sort. Certainly view the <A href="/tutorials/webdatabase/todo/">Web SQL Database tutorial</a> for a comprehensive guide at putting this to work.</p>
+    
+    
+  
+    
+    
+    <h2 id="toc-arrayxtras">JavaScript Array extras have a considerable performance benefit</h2>
+    
+    Many <a href="https://developer.mozilla.org/En/Core_JavaScript_1.5_Reference/Objects/Array#Methods">additional methods were added to the Array protoype</a> in JavaScript 1.6. These are available in most browsers now, except for IE. For example:
+    <pre class="prettyprint">
+// give me a new array of all values multiplied by 10
+[5,6,7,8,900].map(function(value){ return value*10; }); // [50,60,70,80,9000]
+
+
+// create links to specs and drop them into #links
+['html5','css3','webgl'].forEach(function(value){
+    var linksList = document.querySelector('#links'),
+        newLink   = value.link('http://google.com/search?btnI=1&q='+value+' spec');
+    linksList.innerHTML +=  newLink;
+});
+
+
+// Return a new array of all mathematical constants under 2
+[3.14, 2.718, 1.618].filter(function(number){
+    return number < 2;
+});
+// [1.618]
+
+
+// You can also use these extras on other collections like nodeLists
+[].forEach.call(document.querySelectorAll('section[data-bucket]'), function(elem,i){
+    localStorage['bucket'+i] = elem.getAttribute('data-bucket');
+})     
+    </pre>
+    <p>In most cases, using these native methods yield significantly faster speeds than your typical <code>for (var i = 0, len = arr.length; i &lt; len; i++) </code>. Native <code>String.trim</code> is another good example of being not only faster than the longhand JS equivalents, but also potentially more correct. None of these JavaScript additions are technically HTML5, but they fall within the umbrella of technologies that are coming available recently.</p>
+    
+  
+    
+    <h2 id="toc-hwaccel">Enable hardware acceleration to enhance visual experience</h2>
+    
+    <p>In leading browsers, many visual operations can leverage GPU-level acceleration, which can make highly dynamic visual operations much smoother. Hardware acceleration has been announced for <A href="http://www.basschouten.com/blog1.php/2010/03/02/presenting-direct2d-hardware-acceleratio">Firefox Minefield</a> and <a href="http://blogs.msdn.com/b/ie/archive/2010/03/16/html5-hardware-accelerated-first-ie9-platform-preview-available-for-developers.aspx">IE9</a> and Safari added hardware-level acceleration in version 5. (It arrived in Mobile Safari much earlier.) Chromium has <a href="http://groups.google.com/group/chromium-dev/browse_thread/thread/291aa79568684c70">just added</a> 3D transforms and hardware acceleration for Windows, with the other two platforms coming soon.</p>
+    
+    <p>GPU acceleration kicks in only under a fairly restricted set of conditions, but 3D transforms and animated opacity are the most common ways to trip the switch. A somewhat hacky but unobtrusive way to turn it on is:</p>
+<pre class="prettyprint">
+   .hwaccel {  -webkit-transform: translateZ(0); }
+</pre>
+   <p>No guarantees, though. :)</p>
+    
+    
+    
+    
+    
+    
+    <h2>For CPU-heavy operations, Web Workers deliver</h2>
+    <p>Web Workers have two significant benefits: 1) They are fast. 2) While they chug on your tasks, the browser remains responsive. Grab a look at the <a href="http://slides.html5rocks.com/#slide10">HTML5 Slide Deck</a> for Workers in action.</p>
+    <p>Some possible situations where you could use Web Workers:</p>
+    <ul>
+        <li>Text formatting of a long document</li>
+        <li>Syntax highlighting</li>
+        <li>Image processing</li>
+        <li>Image synthesis</li>
+        <li>Processing large arrays</li>
+    </ul>
+    
+        
+       
+       
+
+       <h2>Use CSS3 effects instead of requesting heavy image sprites</h2>
+       <p>CSS3 delivers many new styling possibilities that we've had to use images for. Replacing a 2k image with 100 bytes of CSS is a huge win, not to mention you've reduced yet another HTTP request. A few of the properties that supplant images in our front-end development are:</p>
+       <ul>
+           <li>Linear and radial gradients</li>
+           <li>Border-radius for rounded corners</li>
+           <li>Box-shadow for drop shadows and glow</li>
+           <li>RGBA for alpha opacity</li>
+           <li>Transforms for rotation</li>
+           <li>CSS masks</li>
+       </ul>
+       <p>For example you, can create very <a href="http://cubiq.org/dropbox/cssgrad.html">polished buttons via gradients</a> and  <a href="http://www.phpied.com/css-performance-ui-with-fewer-images/">replicate many other effects</a> sans-images. Browser support for most of these is very solid, and you can use a library like <a href="http://www.modernizr.com/">Modernizr</a> to catch browsers that don't support the features in order to use images in a fallback case.</p>
+
+       
+       <!--
+       
+       prefetch
+       
+       data attr
+
+
+       html5 forms vs UI libraries
+       drag and drop  vs draggable()
+       undomanager
+       history
+
+
+       geolocation instead of network request?
+
+
+      border-radius, border-image, background-size, gradients instead of  using large sprites
+
+
+       server sent events http://dev.w3.org/html5/eventsource/
+
+
+
+
+       device element, datagrid
+
+       spdy
+    
+    -->
+
+
+
+
+
+
+  <div class="footer">
+    <p>
+    </p>
+  </div>
+  
+  
+  
+{% endblock %}
