@@ -19,6 +19,19 @@
         <span class="date">
           {% block pageauthor %}{% endblock %}, <time pubdate>{% block date %}{% endblock %}</time>
         </span>
+        <span id="share_buttons">
+          <ul>
+            <li><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a></li>
+            <li><iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fexample.com%2Fpage%2Fto%2Flike&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
+            <li>
+              <script type="text/javascript">
+                tweetmeme_style = 'compact';
+                tweetmeme_source = 'ChromiumDev';
+              </script>
+              <script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
+            </li>
+          </ul>
+        </span>
         <span class="browser_support">
           <span>Supported browsers:</span>
           <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
@@ -48,5 +61,7 @@
     {% block content %}{% endblock %}
     </section>
   </article>
+  <p class="cc">Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>.</p>
   {% include "../../../footer.html" %}
+  <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>
 {% endblock %}

@@ -31,11 +31,6 @@ img.logo {
 .tag {
   cursor: pointer;
 }
-.date {
-  font-size: 85%; 
-  color: #bbb; 
-  font-style: italic; 
-}
 #filter_tag {
   font-weight: bold;
 }

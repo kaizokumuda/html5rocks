@@ -154,7 +154,7 @@ a img {
   border: 0;
 }
 
-atricle section h1, article section h2, article section h3 {
+article section h1, article section h2, article section h3 {
   font-family: Helvetica, Trebuchet MS, Arial; 
   margin: 30px 0 10px 0;
   padding: 0;
@@ -203,6 +203,7 @@ a {
   font-size: 85%; 
   color: #bbb; 
   font-style: italic;
+  float: left;
 }
 article.sample .tag,
 aside > .tag {
@@ -211,6 +212,10 @@ aside > .tag {
   color: #696;
   padding: 4px;
   text-decoration: underline;
+}
+article.sample .date {
+  padding: 4px 0;
+  margin-right: 5px;
 }
 .hidden {
   display: none;
@@ -240,6 +245,7 @@ aside > .tag {
   width: 17px;
   background: transparent url('/static/images/browser_logos.png') no-repeat left top;
   opacity: 0.25;
+  margin-top: -2px;
 }
 .browser_logos .chrome {
   background-position: left top;
@@ -259,6 +265,23 @@ aside > .tag {
 .browser_logos .supported {
   opacity: 1;
 }
+#share_buttons {
+  float: left;
+}
+#share_buttons ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: 1em;
+  margin-top: -4px;
+}
+#share_buttons ul :last-child iframe {
+  margin-top: 1px;
+}
+#share_buttons li {
+  float: left;
+  margin-left: 5px;
+}
 .footer { 
   font-size: 80%; 
   color: #bbb; 
@@ -277,9 +300,19 @@ footer {
 footer a {
   color: #3d5c9d;
 }
+footer .note {
+  color: #bbb;
+  display: block;
+  margin-top: 10px;
+}
 .madeby {
   float: right; width: 30%; margin: 0; text-align: right;
 }
 .madeby img {
   margin-bottom: -7px;
+}
+.cc {
+  font-size: 80%;
+  text-align: center;
+  margin-top: 20px;
 }

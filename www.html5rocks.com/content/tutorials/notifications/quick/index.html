@@ -1,9 +1,9 @@
 {% extends "../../sample.html" %}
 {% block headauthor %}Ernest Delgado{% endblock %}
 {% block pageauthor %}Ernest Delgado{% endblock %}
-{% block headtitle %}How to use Notifications API{% endblock %}
-{% block pagetitle %}How to use Notifications API{% endblock %}
-{% block pagebreadcrumb %}How to use Notifications API{% endblock %}
+{% block headtitle %}How to use the Notifications API{% endblock %}
+{% block pagetitle %}How to use the Notifications API{% endblock %}
+{% block pagebreadcrumb %}How to use the Notifications API{% endblock %}
 {% block date %}February 24th, 2010{% endblock %}
 
 
@@ -25,12 +25,10 @@
     href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">Notifications
     API</a> allows you to display notifications to the user for given events,
   both passively (new emails, tweets or calendar events) and on user
-  interactions regardless of which tab has focus. At the time of this writing
-  the API is supported on Chrome 4.0 in Windows and Linux and it will be soon
-  supported on Mac. There is <a
+  interactions regardless of which tab has focus. There is <a
     href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">draft
     spec</a>  but it is not currently in any standard.</p>
-  <p>You can follow these simple steps to implement the notifications in few minutes:</p>
+  <p>You can follow these simple steps to implement notifications in just a few minutes:</p>
 
   <h2 id="toc-step1">Step 1: Check for Notifications API support</h2>
   <p>We check if webkitNotifications is supported. Note that the name of webkitNotifications is because it's part of a draft spec. The final spec will have a notifications() function
