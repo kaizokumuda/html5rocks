@@ -21,7 +21,7 @@
       width: 70px;
       padding-right: 8px;
     }
-    
+
     #index div.app {
       font-family: Helvetica, sans-serif;
       float: left;
@@ -32,13 +32,18 @@
       border: 3px solid #eee;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
+      -moz-border-radius: 3px solid #eee;
       border-radius: 15px;
-      -webkit-transition: border-color 0.25s;
+      -webkit-transition: -webkit-box-shadow 0.10s ease-in-out;
+      -moz-transition: all 0.10s ease-in-out;
       cursor: pointer;
     }
 
     #index div.app:hover {
-      border-color: #3D5C9D;
+      border-color: #e1e1e1;
+      -webkit-box-shadow: #666666 0px 0px 6px;
+      -moz-box-shadow: #666666 0px 0px 6px;
+      background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
     }
 
     .app h2 {
@@ -119,6 +124,8 @@
       padding: 10px 20px;
       font-size: 13px;
       margin: 20px 0;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
       border-radius: 15px;
     }
     

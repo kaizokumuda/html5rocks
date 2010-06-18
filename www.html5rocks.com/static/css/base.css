@@ -1,3 +1,7 @@
+/* For browsers that do not yet support these elements */
+section, article, header, footer {
+  display: block;
+}
 body { 
   color: #222;
   background-color: #ddd;
@@ -26,7 +30,7 @@ body a:hover {
   max-width: 750px;
   margin: 0 auto;
   padding: 0 40px;
-  -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #AAA 0px 38px 36px -24px;
+  -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
 }
 header {
   border-bottom: 2px solid #222;
@@ -124,6 +128,7 @@ header nav ul li a.current {
 #compatible {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  border-radius: 5px;
   padding: 5px;
 }
 #notcompatible {
@@ -170,6 +175,8 @@ p {
 pre {
   padding: 10px 20px;
   background: rgba(255, 0, 0, 0.05);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
   border-radius: 8px;
   border: 1px solid rgba(255, 0, 0, 0.2);
 }
