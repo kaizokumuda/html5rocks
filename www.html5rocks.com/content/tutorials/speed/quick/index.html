@@ -94,7 +94,7 @@ div.box.totheright { left: 80px; }
     <h2 id="toc-databases">Use client-side databases instead of server roundtrips</h2>
     
     <p>Web SQL Database and IndexedDB introduce databases to the clientside. Instead of the common pattern of posting data to the server via XMLHttpRequest or form submission, you can leverage these clientside databases. Decreasing HTTP requests is a primary target of all performance engineers, so using these a datastore can save many trips via XHR or form posts back to the server. <code>localStorage</code> could be used in some cases, as well, and has seen to be noticeably faster than the client-side database APIs.</p>
-    <p>For example, if you have a datagrid or message inbox with many messages, storing the data locally in a database will save you HTTP roundtrips when the user wishes to search, filter, or sort. Certainly view the <A href="/tutorials/webdatabase/todo/">Web SQL Database tutorial</a> for a comprehensive guide at putting this to work.</p>
+    <p>For example, if you have a data grid component or an inbox with hundreds of messages, storing the data locally in a database will save you HTTP roundtrips when the user wishes to search, filter, or sort. Certainly view the <A href="/tutorials/webdatabase/todo/">Web SQL Database tutorial</a> for a comprehensive guide at putting this to work.</p>
     
     
   
@@ -128,7 +128,7 @@ div.box.totheright { left: 80px; }
     localStorage['bucket'+i] = elem.getAttribute('data-bucket');
 })     
     </pre>
-    <p>In most cases, using these native methods yield significantly faster speeds than your typical <code>for (var i = 0, len = arr.length; i &lt; len; i++) </code>. Native <code>String.trim</code> is another good example of being not only faster than the longhand JS equivalents, but also potentially more correct. None of these JavaScript additions are technically HTML5, but they fall within the umbrella of technologies that are coming available recently.</p>
+    <p>In most cases, using these native methods yield significantly faster speeds than your typical <code>for (var i = 0, len = arr.length; i &lt; len; i++)</code>. Native <code>String.trim</code> is another good example of being not only faster than the longhand JS equivalents, but also potentially more correct. None of these JavaScript additions are technically HTML5, but they fall within the umbrella of technologies that are coming available recently.</p>
     
   
   
@@ -171,12 +171,12 @@ div.box.totheright { left: 80px; }
        <h2 id="toc-forms">HTML5 Form attributes and input types</h2>
        <p>HTML5 introduces a new set of input types, upgrading our set of <code>text</code>, <code>password</code>, and <code>file</code> to include <code>search</code>, <code>tel</code>, <code>url</code>, <code>email</code>, <code>datetime</code>, <code>date</code>, <code>month</code>, <code>week</code>, <code>time</code>, <code>datetime-local</code>, <code>number</code>, <code>range</code> and <code>color</code>. Browser support for these vary, with Opera implementing most at the moment. With feature detection you can determine if the browser has native support (and will offer a UI like a datepicker or color picker) and if not, you can continue to use the JS widgets to accomplish these common tasks.</p>
        <p>In addition to the types, a few useful features have been added to our normal input fields. The input <code>placeholder</code> offers default text that clears when you click into them and <code>autofocus</code> focuses the caret on page load so you can interact immediately with that field. Again, you can use feature detection to serve a fallback solution if there isn't native support present.</p>
-       <p>Using the native widgets here means you don't need to send the heavy javascript required to pull off these widgets, speeding up page load and likely improving widget responsiveness. To try out some of these input enhancements check out the <a href="http://slides.html5rocks.com/#slide21">HTML5 Slide deck</a>.
+       <p>Using the native widgets here means you don't need to send the heavy javascript and css required to pull off these widgets, speeding up page load and likely improving widget responsiveness. To try out some of these input enhancements check out the <a href="http://slides.html5rocks.com/#slide21">HTML5 Slide deck</a>.
        
 
 
        <h2 id="toc-css3">Use CSS3 effects instead of requesting heavy image sprites</h2>
-       <p>CSS3 delivers many new styling possibilities that we've had to use images for. Replacing a 2k image with 100 bytes of CSS is a huge win, not to mention you've reduced yet another HTTP request. A few of the properties that supplant images in our front-end development are:</p>
+       <p>CSS3 delivers many new styling possibilities that supplant our use of images to represent the visual design accurately. Replacing a 2k image with 100 bytes of CSS is a huge win, not to mention you've removed yet another HTTP request. A few of the properties to familiarize yourself with are:</p>
        <ul>
            <li>Linear and radial gradients</li>
            <li>Border-radius for rounded corners</li>
@@ -200,17 +200,9 @@ div.box.totheright { left: 80px; }
        undomanager
        history
 
-
        geolocation instead of network request?
 
-
-      border-radius, border-image, background-size, gradients instead of  using large sprites
-
-
        server sent events http://dev.w3.org/html5/eventsource/
-
-
-
 
        device element, datagrid
 
