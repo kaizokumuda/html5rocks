@@ -36,22 +36,13 @@ varies
     
     
     
-    <!--
-    <h2>Use cache manifest for live sites, not just offline apps</h2>
-    
-    <p>Two years back, Wordpress used Google Gears to add a feature called <a href="http://en.blog.wordpress.com/2008/07/02/gears/">Wordpress Turbo</a>. It essentially cached many of the resources used in the admin panel locally, speeding up file access to them. We can replicate that behavior with HTML5's applicationCache and the cache.manifest.</p>
-    <p>The app cache has a slight advantage over setting Expires headers in that browsers could be more aggressive about the static resources you are declaring as cachable. They could  precache them for yo
-    ... or not.
-    
-    templates in cache.manifest
-    
-       a la native apps.
+   <!--
     
     appcache for local cachability, not only offline cache use cases
     
        http://softwareas.com/offline-apps-with-application-cache-quickstart-tips-and-deep-dive
        http://diveintohtml5.org/offline.html
-       http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#manifests
+       
      -->
      
     
@@ -70,12 +61,13 @@ if (('localStorage' in window) && window.localStorage !== null){
 
 } else {
     // without sessionStorage we'll have to use a far-future cookie
-    // yuck:
+    //   with an awkward API :(
     var date = new Date();
     date.setTime(date.getTime()+(365*24*60*60*1000));
     var expires = date.toGMTString();
-    document.cookie = 'wishlist=["Unicorn","Narwhal","Deathbear"]; expires='+
-                      expires+"; path=/";
+    var cookiestr = 'wishlist=["Unicorn","Narwhal","Deathbear"];'+
+                    ' expires='+expires+'; path=/';
+    document.cookie = cookiestr;
 }
 </pre>
     
@@ -139,6 +131,15 @@ div.box.totheright { left: 80px; }
     <p>In most cases, using these native methods yield significantly faster speeds than your typical <code>for (var i = 0, len = arr.length; i &lt; len; i++) </code>. Native <code>String.trim</code> is another good example of being not only faster than the longhand JS equivalents, but also potentially more correct. None of these JavaScript additions are technically HTML5, but they fall within the umbrella of technologies that are coming available recently.</p>
     
   
+  
+    <h2 id="toc-appcache">Use cache manifest for live sites, not just offline apps</h2>
+
+    <p>Two years back, Wordpress used Google Gears to add a feature called <a href="http://en.blog.wordpress.com/2008/07/02/gears/">Wordpress Turbo</a>. It essentially cached many of the resources used in the admin panel locally, speeding up file access to them. We can replicate that behavior with HTML5's applicationCache and the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#manifests">cache.manifest</a>.</p>
+    <p>The app cache has a slight advantage over setting Expires headers; because you make a declarative file indicating the static resources that can be cacheable, browsers can optimize that heavily, perhaps even precaching them ahead of your use.</p>
+    <p>Consider your site's basic structure as a template. You have data that may change but the HTML around it typically remains pretty consistent. With the app cache you could treat your HTML as a series of pure templates,  cache the markup via the cache.manifest, and then deliver JSON over the wire to update the content. This model is very similar to what an iPhone or Android native news app does.</p>
+
+
+
     
     <h2 id="toc-hwaccel">Enable hardware acceleration to enhance visual experience</h2>
     
@@ -155,7 +156,7 @@ div.box.totheright { left: 80px; }
     
     
     
-    <h2>For CPU-heavy operations, Web Workers deliver</h2>
+    <h2 id="toc-workers">For CPU-heavy operations, Web Workers deliver</h2>
     <p>Web Workers have two significant benefits: 1) They are fast. 2) While they chug on your tasks, the browser remains responsive. Grab a look at the <a href="http://slides.html5rocks.com/#slide10">HTML5 Slide Deck</a> for Workers in action.</p>
     <p>Some possible situations where you could use Web Workers:</p>
     <ul>
@@ -167,10 +168,14 @@ div.box.totheright { left: 80px; }
     </ul>
     
         
-       
+       <h2 id="toc-forms">HTML5 Form attributes and input types</h2>
+       <p>HTML5 introduces a new set of input types, upgrading our set of <code>text</code>, <code>password</code>, and <code>file</code> to include <code>search</code>, <code>tel</code>, <code>url</code>, <code>email</code>, <code>datetime</code>, <code>date</code>, <code>month</code>, <code>week</code>, <code>time</code>, <code>datetime-local</code>, <code>number</code>, <code>range</code> and <code>color</code>. Browser support for these vary, with Opera implementing most at the moment. With feature detection you can determine if the browser has native support (and will offer a UI like a datepicker or color picker) and if not, you can continue to use the JS widgets to accomplish these common tasks.</p>
+       <p>In addition to the types, a few useful features have been added to our normal input fields. The input <code>placeholder</code> offers default text that clears when you click into them and <code>autofocus</code> focuses the caret on page load so you can interact immediately with that field. Again, you can use feature detection to serve a fallback solution if there isn't native support present.</p>
+       <p>Using the native widgets here means you don't need to send the heavy javascript required to pull off these widgets, speeding up page load and likely improving widget responsiveness. To try out some of these input enhancements check out the <a href="http://slides.html5rocks.com/#slide21">HTML5 Slide deck</a>.
        
 
-       <h2>Use CSS3 effects instead of requesting heavy image sprites</h2>
+
+       <h2 id="toc-css3">Use CSS3 effects instead of requesting heavy image sprites</h2>
        <p>CSS3 delivers many new styling possibilities that we've had to use images for. Replacing a 2k image with 100 bytes of CSS is a huge win, not to mention you've reduced yet another HTTP request. A few of the properties that supplant images in our front-end development are:</p>
        <ul>
            <li>Linear and radial gradients</li>
