@@ -55,10 +55,18 @@
 &lt;/html&gt;</pre>
 
   <p>A .manifest file must be served with the mime-type <code>text/cache-manifest</code>.
-  You may need to add a custom file type to your webserver or specify the mime-type
-  in a <code>.htaccess</code> configuration. For example:</p>
+  You may need to add a custom file type to your web server or <code>.htaccess</code> configuration.</p>
 
+  <p>For example, to server this mime-type in Apache, add this line to your config file:
   <pre class="prettyprint">AddType text/cache-manifest manifest</pre>
+
+  <p>Or, in your app.yaml file in Google App Engine:</p>
+<pre class="prettyprint">
+- url: /mystaticdir/(.*\.manifest)
+  static_files: mystaticdir/\1
+  mime_type: text/cache-manifest
+  upload: mystaticdir/(.*\.manifest)
+</pre>
 
   <h3 id="toc-manifest-file-structure">Structure of a manifest file</h3>
 
@@ -201,14 +209,20 @@ switch (appCache.status) {
 };
 </pre>
 
-  <p>To programmatically update the cache, fist call <code>applicationCache.update()</code>.
+  <p>To programmatically update the cache, first call <code>applicationCache.update()</code>.
   This will attempt to update the user's cache (which requires the manifest file to have changed).
   Finally, when the <code>applicationCache.status</code> is in its <code>UPDATEREADY</code> state,
   calling <code>applicationCache.swapCache()</code> will swap the old cache for the new one.</p>
 
 <pre class="prettyprint">
+var appCache = window.applicationCache;
+
+appCache.update(); // Attempt to update the user's cache.
+
+...
+
 if (appCache.status == window.applicationCache.UPDATEREADY) {
-  appCache.swapCache();
+  appCache.swapCache();  // The fetch was successful, swap in the new cache.
 }
 </pre>
 
