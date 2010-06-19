@@ -111,7 +111,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     // files is a FileList of File objects. List some properties.
     var output = [];
     for (var i = 0, f; f = files[i]; i++) {
-      output.push('&lt;li&gt;&lt;b&gt;', f.name, '&lt;/b&gt; (', f.type || 'n/a', ') - ',
+      output.push('&lt;li&gt;&lt;strong&gt;', f.name, '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
                   f.size, ' bytes&lt;/li&gt;');
     }
     document.getElementById('list').innerHTML = '&lt;ul&gt;' + output.join('') + '&lt;/ul&gt;';
@@ -141,7 +141,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     // files is a FileList of File objects. List some properties.
     var output = [];
     for (var i = 0, f; f = files[i]; i++) {
-      output.push('&lt;li&gt;&lt;b&gt;', f.name, '&lt;/b&gt; (', f.type || 'n/a', ') - ',
+      output.push('&lt;li&gt;&lt;strong&gt;', f.name, '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
                   f.size, ' bytes&lt;/li&gt;');
     }
     document.getElementById('list').innerHTML = '&lt;ul&gt;' + output.join('') + '&lt;/ul&gt;';
@@ -163,7 +163,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   <output id="file_list2"></output>
 
   <p>Note: Some browsers treat <code>&lt;input type="file"&gt;</code> elements as native drop targets.
-  Try dragging files onto the input box in the previous example.</p>
+  Try dragging files onto the input field in the previous example.</p>
 
   <h2 id="toc-reading-files">Reading files</h2>
   <p>Now comes the fun part!</p>
@@ -183,7 +183,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   <code>onprogress</code>, <code>onload</code>, <code>onabort</code>, <code>onerror</code>, and <code>onloadend</code>
   can be used to track its progress.</p>
   
-  <p>The example below filters out images from the user's selection, calls <code>reader.readAsDataUR()</code>
+  <p>The example below filters out images from the user's selection, calls <code>reader.readAsDataURL()</code>
   on the file, and renders a thumbnail by setting the 'src' attribute to a data URL.</p>
   <pre class="prettyprint">&lt;style&gt;
   .thumb {
@@ -284,7 +284,7 @@ reader.readAsBinaryString(blob);</pre>
 
     var reader = new FileReader();
 
-    // If we use onloadend, we need to check the readState.
+    // If we use onloadend, we need to check the readyState.
     reader.onloadend = function(evt) {
       if (evt.target.readyState == FileReader.DONE) { // DONE == 2
         document.getElementById('byte_content').textContent = evt.target.result;
@@ -298,10 +298,10 @@ reader.readAsBinaryString(blob);</pre>
     reader.readAsBinaryString(blob);
   }
   
-  document.querySelector('.readBytesButtons').addEventListener('click', function(e) {
-    if (e.target.tagName.toLowerCase() == 'button') {
-      var startByte = e.target.getAttribute('data-startbyte');
-      var endByte = e.target.getAttribute('data-endbyte');
+  document.querySelector('.readBytesButtons').addEventListener('click', function(evt) {
+    if (evt.target.tagName.toLowerCase() == 'button') {
+      var startByte = evt.target.getAttribute('data-startbyte');
+      var endByte = evt.target.getAttribute('data-endbyte');
       readBlob(startByte, endByte);
     }
   }, false);
@@ -443,7 +443,7 @@ example1.handleFileSelect = function(evt) {
   var files = evt.target.files;
   var output = [];
   for (var i = 0, f; f = files[i]; i++) {
-    output.push('<li><b>', f.name, '</b> (', f.type || 'n/a', ') - ', f.size, ' bytes</li>');
+    output.push('<li><strong>', f.name, '</strong> (', f.type || 'n/a', ') - ', f.size, ' bytes</li>');
   }
   $('file_list').innerHTML = '<ul>' + output.join('') + '</ul>';
 }
@@ -462,7 +462,7 @@ example2.onDragFileDrop = function(evt) {
   var files = evt.dataTransfer.files;
   var output = [];
   for (var i = 0, f; f = files[i]; i++) {
-    output.push('<li><b>', f.name, '</b> (', f.type || 'n/a', ') - ',
+    output.push('<li><strong>', f.name, '</strong> (', f.type || 'n/a', ') - ',
                 f.size, ' bytes</li>');
   }
   $('file_list2').innerHTML = '<ul>' + output.join('') + '</ul>';
@@ -528,10 +528,10 @@ example4.readBlob = function(opt_startByte, opt_stopByte) {
   var blob = file.slice(start, (stop - start) + 1);
   reader.readAsBinaryString(blob);
 };
-document.querySelector('.readBytesButtons').addEventListener('click', function(e) {
-  if (e.target.tagName.toLowerCase() == 'button') {
-    var startByte = e.target.getAttribute('data-startbyte');
-    var stopByte = e.target.getAttribute('data-endbyte');
+document.querySelector('.readBytesButtons').addEventListener('click', function(evt) {
+  if (evt.target.tagName.toLowerCase() == 'button') {
+    var startByte = evt.target.getAttribute('data-startbyte');
+    var stopByte = evt.target.getAttribute('data-endbyte');
     example4.readBlob(startByte, stopByte);
   }
 }, false);
