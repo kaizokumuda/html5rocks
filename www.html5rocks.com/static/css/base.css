@@ -205,6 +205,9 @@ a {
   font-style: italic;
   float: left;
 }
+article header.article_header {
+  clear: both;
+}
 article.sample .tag,
 aside > .tag {
   font-size: 75%;
@@ -231,9 +234,10 @@ article.sample .date {
   color: #060;
 }
 .browser_support {
-  float: right;
+  float: left;
   font-size: 85%;
   color: #bbb;
+  clear:both;
 }
 .browser_support > span:first-child {
   float: left;
@@ -266,7 +270,7 @@ article.sample .date {
   opacity: 1;
 }
 #share_buttons {
-  float: left;
+  float: right;
 }
 #share_buttons ul {
   margin: 0;

@@ -7,11 +7,15 @@
 {% block date %}June 18, 2010{% endblock %}
 
 {% block browsersupport %}
+<span class="opera"></span>
+<span class="ie"></span>
+<span class="safari"></span>
+<span class="ff"></span>
 <span class="chrome supported"></span>
 {% endblock %}
 
 {% block iscompatible %}
-  return typeof window.applicationCache == "object" ? true : false;
+
 {% endblock %}
 
 {% block head %}

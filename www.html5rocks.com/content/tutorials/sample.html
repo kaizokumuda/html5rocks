@@ -3,14 +3,14 @@
 {% block body %}
   {% include "../../../section_header.html" %}
   <nav>
-    <p class="breadcrumb">
-      <a class="buttonlink" href="/">
-        <span>Home</span>
-      </a >&gt; 
-      <a class="buttonlink" href="/tutorials/">
-        <span>Tutorials</span>
-      </a> &gt; {% block pagebreadcrumb %}{% endblock %}
-    </p>
+      <p class="breadcrumb">
+        <a class="buttonlink" href="/">
+          <span>Home</span>
+        </a >&gt; 
+        <a class="buttonlink" href="/tutorials/">
+          <span>Tutorials</span>
+        </a> &gt; {% block pagebreadcrumb %}{% endblock %}
+     </p>
   </nav>
   <article>
     <header>
@@ -32,11 +32,11 @@
             </li>
           </ul>
         </span>
-        <span class="browser_support">
-          <span>Supported browsers:</span>
-          <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
-        </span>
       </div>
+      <span class="browser_support">
+        <span>Supported browsers:</span>
+        <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
+      </span>
     </header>
     <section>
       <div class="compatible-block"> 
