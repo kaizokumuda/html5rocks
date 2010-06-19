@@ -200,7 +200,7 @@
   
 </div>
 <script type="text/javascript" charset="utf-8">
-  document.body.addEventListener('click', function(e) {
+  window.addEventListener && document.body.addEventListener('click', function(e) {
     if (e.target.getAttribute('data-resource') !== null) {
       window.open(e.target.getAttribute('data-resource'),"_new")
     }

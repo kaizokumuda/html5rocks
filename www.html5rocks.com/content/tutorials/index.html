@@ -20,6 +20,10 @@
       $('#filter_tag').text(tag);
       $('#filter').removeClass('hidden');
     };
+    
+    google.setOnLoadCallback(function() {
+        $('.tag').live('click',filterTag);
+    });
   </script>
 {% endblock %}
 
@@ -28,7 +32,7 @@
   <section>
     <div id="filter" class="hidden">
       Currently filtering by tag <span id="filter_tag"></span>.
-      <a href="javascript:clearFilter();">Click here to clear</a>.
+      <a href="javascript:clearFilter();">[Clear filter]</a>
     </div>
   </section>
   <aside id="tags">
@@ -249,7 +253,4 @@
 
   {% include "../footer.html" %}
 
-<script>
-  $('.tag').click(filterTag);
-</script>
 {% endblock %}

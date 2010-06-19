@@ -67,6 +67,9 @@ h1#title {
   font-family: 'Droid Sans', Arial;
   text-shadow: 1px 0px 1px #000, -1px 0px 1px #000;
 }
+.no-textshadow #title .five { 
+  color: #bbb;
+}
 
 #title .rocks { 
   font-family: 'Droid Sans', Arial;
