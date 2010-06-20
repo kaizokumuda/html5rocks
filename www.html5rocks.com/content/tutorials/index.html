@@ -20,9 +20,9 @@
       $('#filter_tag').text(tag);
       $('#filter').removeClass('hidden');
     };
-    
+
     google.setOnLoadCallback(function() {
-        $('.tag').live('click',filterTag);
+      $('.tag').live('click', filterTag);
     });
   </script>
 {% endblock %}
