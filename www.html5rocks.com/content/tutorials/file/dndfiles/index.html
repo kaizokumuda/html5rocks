@@ -6,6 +6,10 @@
 {% block pagetitle %}Reading local files in JavaScript{% endblock %}
 {% block head %}
 <style>
+.example {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
 #drop_zone {
   border: 2px dashed #bbb;
   -moz-border-radius: 5px;
@@ -121,9 +125,11 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 &lt;/script&gt;
 </pre>
 
-  <p>Try this example!</p>
-  <input type="file" id="files1" name="files1[]" multiple />
-  <output id="file_list"></output>
+  <p><strong>Example</strong>: Using form input for selecting. Try it!</p>
+  <div class="example">
+    <input type="file" id="files1" name="files1[]" multiple />
+    <output id="file_list"></output>
+  </div>
 
   <h3 id="toc-selecting-files-dnd">Using drag and drop for selecting</h3>
   <p>Another technique for loading files is native drag and drop from the desktop
@@ -158,9 +164,11 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   dropZone.addEventListener('drop', handleFileSelect, false);
 &lt;/script&gt;</pre>
 
-  <p>Try this example!</p>
-  <div id="drop_zone">Drop files here</div>
-  <output id="file_list2"></output>
+  <p><strong>Example</strong>: Using drag and drop for selecting. Try it!</p>
+  <div class="example">
+    <div id="drop_zone">Drop files here</div>
+    <output id="file_list2"></output>
+  </div>
 
   <p>Note: Some browsers treat <code>&lt;input type="file"&gt;</code> elements as native drop targets.
   Try dragging files onto the input field in the previous example.</p>
@@ -229,9 +237,12 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 &lt;/script&gt;</pre>
 
-  <p>Try this example with a directory of images!</p>
-  <input type="file" id="files3" name="files3[]" multiple /><br>
-  <output id="thumbnails"></output>
+  <p><strong>Example</strong>: Reading files. Try it!</p>
+  <div class="example">
+    <p>Try this example with a directory of images!</p>
+    <input type="file" id="files3" name="files3[]" multiple /><br>
+    <output id="thumbnails"></output>
+  </div>
 
   <h3 id="toc-slicing-files">Slicing a file</h3>
 
@@ -307,17 +318,18 @@ reader.readAsBinaryString(blob);</pre>
   }, false);
 &lt;/script&gt;</pre>
 
-  <p>Try this example!</p>
-
-  <input type="file" id="file4" name="file4" /> Read bytes: 
-  <span class="readBytesButtons">
-    <button data-startbyte="0" data-endbyte="4">1-5</button>
-    <button data-startbyte="5" data-endbyte="14">6-15</button>
-    <button data-startbyte="6" data-endbyte="7">7-8</button>
-    <button>entire file</button>
-  </span>
-  <div id="byte_range"></div>
-  <div id="byte_content"></div>
+  <p><strong>Example</strong>: Slicing a file. Try it!</p>
+  <div class="example">
+    <input type="file" id="file4" name="file4" /> Read bytes: 
+    <span class="readBytesButtons">
+      <button data-startbyte="0" data-endbyte="4">1-5</button>
+      <button data-startbyte="5" data-endbyte="14">6-15</button>
+      <button data-startbyte="6" data-endbyte="7">7-8</button>
+      <button>entire file</button>
+    </span>
+    <div id="byte_range"></div>
+    <div id="byte_content"></div>
+  </div>
 
   <h3 id="toc-monitoring-progress">Monitoring the progress of a read</h3>
 
@@ -419,12 +431,13 @@ reader.readAsBinaryString(blob);</pre>
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 &lt;/script&gt;</pre>
 
-  <p>Try this example!</p>
-  <input type="file" id="file5" name="file5" />
-  <button onclick="example5.abortRead();">Cancel read</button>
-  <div id="progress_bar"><div class="percent">0%</div></div>
-
-  <p><strong>Tip</strong>: To really see this progress indicator in action, try a large file or a resource on a remote drive.</p>
+  <p><strong>Example</strong>: Monitoring the progress of a read. Try it!</p>
+  <div class="example">
+    <input type="file" id="file5" name="file5" />
+    <button onclick="example5.abortRead();">Cancel read</button>
+    <div id="progress_bar"><div class="percent">0%</div></div>
+    <p><strong>Tip</strong>: To really see this progress indicator in action, try a large file or a resource on a remote drive.</p>
+  </div>
 
   <h2 id="toc-references">References</h2>
   <ul>
