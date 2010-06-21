@@ -67,7 +67,8 @@ class ContentHandler(webapp.RequestHandler):
       return 
 
     template_data = {
-      'toc' : self.get_toc(template_path)
+      'toc' : self.get_toc(template_path),
+      'self_url': self.request.url
     }
     template_data.update(data)
     self.response.headers.add_header('Content-Type', 'text/html;charset=UTF-8')
