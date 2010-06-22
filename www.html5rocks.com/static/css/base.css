@@ -286,7 +286,7 @@ article.sample .date {
   margin-top: -4px;
 }
 #share_buttons ul :last-child iframe {
-  margin-top: 1px;
+  margin-top: -1px;
 }
 #share_buttons li {
   float: left;
