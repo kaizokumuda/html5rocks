@@ -22,7 +22,6 @@
         <span id="share_buttons">
           <ul>
             <li><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a></li>
-            <li><iframe src="http://www.facebook.com/plugins/like.php?href={{self_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe></li>
             <li>
               <iframe src="http://pro.tweetmeme.com/button.js?url={{self_url}}&style=compact&source=ChromiumDev&service=bit.ly" height="20" width="90" frameborder="0"></iframe>
             </li>
@@ -57,7 +56,11 @@
     {% block content %}{% endblock %}
     </section>
   </article>
-  <p class="cc">Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>.</p>
+  <p class="cc">
+    Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this
+    page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>,
+    and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+  </p>
   {% include "../../../footer.html" %}
   <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>
 {% endblock %}
