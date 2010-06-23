@@ -76,7 +76,7 @@ if (('localStorage' in window) && window.localStorage !== null){
      
     <h2 id="toc-transitions">Tip 2: Use CSS Transitions instead of JavaScript animation</h2>
     
-    <p>CSS Transitions give you an attractive visual transition between two states. Most style properties can be transitioned, like manipulating the text-shadow, position, background or color.  You can use transitions into pseudo-selector states like <code>:hover</code> or from HTML5 forms, <code>:invalid</code> and <code>:valid</code>. But they're much more powerful and can be triggered when you add any class to an element.</p>
+    <p>CSS Transitions give you an attractive visual transition between two states. Most style properties can be transitioned, like manipulating the text-shadow, position, background or color.  You can use transitions into pseudo-selector states like <code>:hover</code> or from HTML5 forms, <code>:invalid</code> and <code>:valid</code> (<a href="http://bradshawenterprises.com/tests/formdemo.php">example with form validation states</a>). But they're much more powerful and can be triggered when you add any class to an element.</p>
     <pre class="prettyprint">
 div.box { 
   left: 40px;  
@@ -154,6 +154,7 @@ div.box.totheright { left: 80px; }
    .hwaccel {  -webkit-transform: translateZ(0); }
 </pre>
    <p>No guarantees, though. :)</p>
+   <p>With hardware acceleration supported and enabled, animated translation, rotation, scaling and opacity will definitely be smoother with GPU compositing. They will have the benefit of being handled directly on the GPU and don't require redrawing of the layer contents. However, any property that affects the layout of the page will still be <i>relatively</i> slow.</p>
     
     
     
@@ -193,28 +194,38 @@ div.box.totheright { left: 80px; }
 
  
  
+        <!--
+
+        prefetch
+
+        data attr
+
+        drag and drop  vs draggable()
+        undomanager
+        history
+
+
+
+
+        == websockets
+
+        http://bloga.jp/ws/jq/wakachi/mecab/wakachi.html
+
+        request process in server to split Japanese sentence in words.
+
+        Ping Lacency (client<->server) | via websocket | via XHR    |   XHR / websocket
+        18 msec (in Tok)               | 191 msec      | 4696 msec  | x 25
+        170 msec (in Syd)              | 899 msec      | 31697 msec | x 35
+          x 9.4                        | x 4.7         |  x 6.7
+
+
+     -->
+     <h2 id="toc-websockets">Tip 10: WebSockets for faster delivery with less bandwidth than XHR</h2>
+     <p><a href="http://dev.w3.org/html5/websockets/">WebSockets</a> was designed in response to the growing popularity of <a href="http://en.wikipedia.org/wiki/Comet_(programming)">Comet</a>. There are indeed advantages to using WebSockets now, instead of the Comet over XHR model. </p>
+     <p>WebSockets has very light framing, and so the bandwidth it consumes is often lighter than that of XHR. <a href="http://axod.blogspot.com/2009/12/websocket-some-numbers.html">Some reports</a> indicate a 35% reduction in bytes sent across the wire. Additionally, in higher volume the performance difference when it comes to message delivery is more apparent; XHR has been recorded <a href="http://bloga.jp/ws/jq/wakachi/mecab/wakachi.html">in this test</a> with having an aggregate time of 3500% longer than WebSockets. Lastly, <a href="http://www.youtube.com/watch?v=Z897fkPn7Rw">Ericcson Labs considered the performance of WebSockets</a> and found the ping times over HTTP were 3-5 times larger than over WebSockets due to more substantial processing requirements. They concluded that the WebSocket protocol was clearly more suitable for realtime applications.
+ 
  <h2 id="toc-addtnl">Additional Resources</h2>
  <p>For measurement and performance recommendations, you should certainly be using the Firefox extensions <a href="http://code.google.com/speed/page-speed/">Page Speed</a> and <a href="http://developer.yahoo.com/yslow/">YSlow</a>. Additionally, <a href="http://code.google.com/webtoolkit/speedtracer/">Speed Tracer for Chrome</a> and <a href="http://ajax.dynatrace.com/pages/">DynaTrace Ajax for IE</a> provide a more detailed level of logging of analysis.</p>     
  <p>The <a href="/tutorials/developertools/part1/">guide to Chrome's Developer Tools</a> should help orient you with the resources tab and will soon cover the <a href="http://webkit.org/blog/1091/more-web-inspector-updates/#audits_panel">new Audits panel</a>.
-       <!--
-       
-       prefetch
-       
-       data attr
-
-
-       html5 forms vs UI libraries
-       drag and drop  vs draggable()
-       undomanager
-       history
-
-       geolocation instead of network request?
-
-       server sent events http://dev.w3.org/html5/eventsource/
-
-       device element, datagrid
-
-       spdy
-    
-    -->
+      
 {% endblock %}
