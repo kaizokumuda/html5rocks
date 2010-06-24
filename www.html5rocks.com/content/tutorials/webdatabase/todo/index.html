@@ -201,6 +201,7 @@ html5rocks.webdb.createTable = function() {
   </p>
   <pre class="prettyprint">html5rocks.webdb.addTodo = function(todoText) {
   html5rocks.webdb.db.transaction(function(tx){
+    var addedOn = new Date();
     tx.executeSql('INSERT INTO todo(todo, added_on) VALUES (?,?)', 
         [todoText, addedOn],
         html5rocks.webdb.onSuccess,
