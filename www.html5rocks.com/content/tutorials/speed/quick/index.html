@@ -83,6 +83,7 @@ div.box {
   -webkit-transition: all 0.3s ease-out;
      -moz-transition: all 0.3s ease-out;  
        -o-transition: all 0.3s ease-out;  
+          transition: all 0.3s ease-out;
 }
 div.box.totheleft { left: 0px; }
 div.box.totheright { left: 80px; }
@@ -175,7 +176,7 @@ div.box.totheright { left: 80px; }
         
        <h2 id="toc-forms">Tip 8: HTML5 Form attributes and input types</h2>
        <p>HTML5 introduces a new set of input types, upgrading our set of <code>text</code>, <code>password</code>, and <code>file</code> to include <code>search</code>, <code>tel</code>, <code>url</code>, <code>email</code>, <code>datetime</code>, <code>date</code>, <code>month</code>, <code>week</code>, <code>time</code>, <code>datetime-local</code>, <code>number</code>, <code>range</code> and <code>color</code>. Browser support for these vary, with Opera implementing most at the moment. With feature detection you can determine if the browser has native support (and will offer a UI like a datepicker or color picker) and if not, you can continue to use the JS widgets to accomplish these common tasks.</p>
-       <p>In addition to the types, a few useful features have been added to our normal input fields. The input <code>placeholder</code> offers default text that clears when you click into them and <code>autofocus</code> focuses the caret on page load so you can interact immediately with that field. Input validation is another thing making its way in with HTML5. Adding the <code>required</code> attribute means the browser wont let the form submit until taht field is filled in. Also the <code>pattern</code> attribute lets you specify a custom regular expression for the input to be tested against; with invalid values blocking form submission. This declarative syntax is a big upgrade not only in source readability but also a significant reduction of JavaScript necessary. Again, you can use feature detection to serve a fallback solution if there isn't native support for these present.</p>
+       <p>In addition to the types, a few useful features have been added to our normal input fields. The input <code>placeholder</code> offers default text that clears when you click into them and <code>autofocus</code> focuses the caret on page load so you can interact immediately with that field. Input validation is another thing making its way in with HTML5. Adding the <code>required</code> attribute means the browser won’t let the form submit until that field is filled in. Also the <code>pattern</code> attribute lets you specify a custom regular expression for the input to be tested against; with invalid values blocking form submission. This declarative syntax is a big upgrade not only in source readability but also a significant reduction of JavaScript necessary. Again, you can use feature detection to serve a fallback solution if there isn't native support for these present.</p>
        <p>Using the native widgets here means you don't need to send the heavy javascript and css required to pull off these widgets, speeding up page load and likely improving widget responsiveness. To try out some of these input enhancements check out the <a href="http://slides.html5rocks.com/#slide21">HTML5 Slide deck</a>.
        
 
