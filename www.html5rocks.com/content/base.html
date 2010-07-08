@@ -20,12 +20,14 @@
  *
 -->
 <head>
+  <!--[if lt IE 9]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+  <![endif]-->
+  <meta name="description" content="{% block meta_description %}{% endblock %}" />
   <title>HTML5Rocks - {% block headtitle %}{% endblock %}</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
   <link rel="stylesheet" href="/static/css/base.css" />
   <link rel="stylesheet" href="/static/css/prettify.css" />
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold">
-  <meta name="description" content="{% block meta_description %}{% endblock %}" />
   <script src="/static/js/modernizr-1.1.min.js"></script>
   <script src="/static/js/prettify.js"></script>
   <script>
