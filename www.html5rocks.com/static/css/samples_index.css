@@ -6,6 +6,9 @@ img.logo {
   margin-top: 40px;
   width: 75%;
 }
+#index a :first-child {
+  float: right;
+}
 #tags {
   float: right;
   width: 20%;
