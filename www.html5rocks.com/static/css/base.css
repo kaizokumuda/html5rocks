@@ -48,7 +48,7 @@ h1#title {
   margin: 0;
   padding: 20px 0 20px 8px;
   float: left;
-  width: 50%;
+  width: auto;
 }
 
 #title { 
@@ -85,7 +85,7 @@ h1#title {
 
 #section-header #title {
   font-size: 39px;
-  width: 40%;
+  width: auto;
 }
 
 #section-header #title .rocks {
@@ -105,7 +105,7 @@ header nav ul {
 
 header nav ul li {
   float: left;
-  padding: 0 10px;
+  padding: 0 8px;
 }
 header nav ul li a.current {
   color: #222;
@@ -118,15 +118,6 @@ header nav ul li a.current {
   padding: 10px 0;
   text-align: center;
 }
-/*#wrap {
-  margin: 0;
-  padding: 0;
-}
-#content {
-  width: 80%;
-  max-width: 750px;
-  margin: 0 auto;
-}*/
 #controls {
   padding: 5px;
 }
@@ -176,7 +167,7 @@ h3 {
 }
 p {
   padding: 0;
-  margin: 10px 0;
+  margin: 0px 0;
 }
 pre {
   padding: 10px 20px;

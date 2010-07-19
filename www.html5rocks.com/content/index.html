@@ -5,28 +5,26 @@
 {% block head %}
   <style media="screen">
     #index {
-      width: 100%;
       overflow: hidden;
       margin-bottom: 0;
-      padding: 20px 0;
+      padding: 20px 3px;
       border-bottom: 1px solid #ddd;
     }
-
-    #index a {
+    #index  a {
       text-decoration: none;
-    }
-
-    #index img {
       float: left;
-      width: 70px;
-      padding-right: 8px;
+      outline: 0;
     }
-
+    #index img {
+      width: 70px;
+      padding-top: 10px;
+    }
     #index div.app {
       font-family: Helvetica, sans-serif;
-      float: left;
-      height: 110px;
-      padding: 30px 15px;
+      height: 160px;
+      width: 150px;
+      text-align: center;
+      padding: 13px 10px;
       margin: 0 5px;
       background: -webkit-gradient(linear, left top, left bottom, from(#eee), color-stop(0.5, #fff), to(#eee));
       border: 3px solid #e1e1e1;
@@ -38,15 +36,13 @@
       -o-transition: all 0.10s ease-in-out;
       cursor: pointer;
     }
-
     #index div.app:hover {
       border-color: #e1e1e1;
-      -webkit-box-shadow: #666666 0px 0px 6px;
-      -moz-box-shadow: #666666 0px 0px 6px;
-      box-shadow: #666666 0px 0px 6px;
+      -webkit-box-shadow: #666 0px 0px 6px;
+      -moz-box-shadow: #666 0px 0px 6px;
+      box-shadow: #666 0px 0px 6px;
       background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
     }
-
     .app h2 {
       text-transform: uppercase;
       padding: 0;
@@ -55,57 +51,36 @@
       line-height: 0.8em;
       font-size: 17px;
     }
-    
     .app h2 span {
       font-size: 17px;
       display: block;
       margin-bottom: 5px;
     }
-
-    .appcontent {
-      float: right;
-      width: 126px;
-    }
-
+    .appcontent { clear: both; }
     .appcontent span {
       color: #222;
       font-weight: normal;
     }
-    
     .desc { 
-      font-size: 13px; 
+      font-size: 13px;
       color: #666;
     }
-    
-    .float-left {
-      float: left;
-    }
-    
-    .float-right {
-      float: right;
-    }
-    
-    .clear {
-      clear: both;
-    }
-    
-    .feed-section {
-      width: 50%;
-    }
-
+    .fl { float: left; }
+    .fr { float: right; }
+    .clear { clear: both; }
+    .feed-section { width: 50%; }
     .feed-section > *,
     .info-section > *  {
       padding-left: 5px;
     }
-
     .feed-section ul {
       list-style: none;
       margin-left: 0;
       color: #666;
       line-height: 1.5em;
     }
-    
-    .feed-section h2, .info-section h2 {
+    .feed-section h2,
+    .info-section h2 {
       padding: 24px 0 7px 5px;
       color: #000;
       font-size: 15px;
@@ -113,17 +88,12 @@
       font-weight: normal;
       display: block;
     }
-
-    .feed-section h2 img {
-      vertical-align: top;
-     }
-
+    .feed-section h2 img { vertical-align: top; }
     .info-section p {
       margin-left: 0;
       color: #666;
       line-height: 1.5em;
     }
-
     .chrome-section {
       clear: both;
       background-color: #eee;
@@ -134,13 +104,11 @@
       -moz-border-radius: 15px;
       border-radius: 15px;
     }
-
     #latest_articles_feed li {
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space:nowrap;
+      white-space: nowrap;
     }
-
     .madeby {
       float: right;
       width: 30%;
@@ -152,41 +120,50 @@
 
 {% block body %}
 {% include "header.html" %}
-  <section id="index"> 
+  <section id="index">
     <a href="http://slides.html5rocks.com">
       <div class="app">
-        <img src="/static/images/html5rocks-presentation.png">
         <div class="appcontent">
           <h2><span>Interactive</span> Presentation</h2>
+          <img src="/static/images/html5rocks-presentation.png">
           <p class="desc">Watch the slideshow that lets you play with HTML5 features.</p>
         </div>
       </div>
     </a>
     <a href="http://playground.html5rocks.com">
       <div class="app">
-        <img src="/static/images/html5rocks-playground.png">
         <div class="appcontent">
           <h2><span>Code</span> Playground</h2>
+          <img src="/static/images/html5rocks-playground.png">
           <p class="desc">Jump headfirst into HTML5 by experimenting with each API.</p>
         </div>
       </div>
     </a>
     <a href="/tutorials/">
       <div class="app">
-        <img src="/static/images/html5rocks-tutorials.png">
         <div class="appcontent">
           <h2><span>Step by Step</span> Tutorials</h2>
+          <img src="/static/images/html5rocks-tutorials.png">
           <p class="desc">Take a guided tour through code that uses HTML5 features.</p>
         </div>
       </div>
     </a>
+    <a href="http://studio.html5rocks.com">
+      <div class="app">
+        <div class="appcontent">
+          <h2><span>Samples</span> Studio</h2>
+          <img src="/static/images/html5rocks-tutorials.png">
+          <p class="desc">A showroom of content that you can reuse in your own site.</p>
+        </div>
+      </div>
+    </a>
   </section>
-  <section class="clear float-left feed-section">
+  <section class="clear fl feed-section">
     <h2>Latest Tutorials <a href="/tutorials/index.xml"><img src="/static/images/feed_icon16x16.png"/></a></h2>
     <ul id="latest_articles_feed"><li><i>loading feed...</i></li></ul>
     <p><a href="/tutorials/">See more &rArr;</a></p>
   </section>
-  <section class="float-right feed-section">
+  <section class="fr feed-section">
     <h2>Additional Resources</h2>
     <ul>
       <li><a href="http://html5readiness.com/">HTML5 Readiness</a> - visual timeline of HTML5 feature support.</li>
