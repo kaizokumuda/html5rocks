@@ -3,7 +3,7 @@
 {% block headtitle %}Home{% endblock %}
 
 {% block head %}
-  <style media="screen">
+  <style>
     #index {
       overflow: hidden;
       margin-bottom: 0;
@@ -194,7 +194,7 @@
       var container = document.getElementById('latest_articles_feed');
 
       if (!result.responseData) {
-        container.innerHTML = '<li>' + result.responseDetails + '</li>';
+        container.innerHTML = '<li>' + result.responseDetails + '<\/li>';
         return;
       }
 
@@ -204,11 +204,11 @@
         var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
 
         html.push('<li>', formattedDateStr, ' <a href="', entry.link, '">',
-                  entry.title, '</a></li>')
+                  entry.title, '<\/a><\/li>')
       }
       container.innerHTML = html.join('');
     }
   </script>
-  <script src="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=6&q={{host}}/tutorials/index.xml&callback=processFeedResponse"></script>
+  <script src="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&amp;num=6&amp;q={{host}}/tutorials/index.xml&amp;callback=processFeedResponse"></script>
 
 {% endblock %}

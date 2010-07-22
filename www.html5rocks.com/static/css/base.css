@@ -46,7 +46,7 @@ h1#title {
   cursor: pointer;
   font-size: 55px;
   margin: 0;
-  padding: 20px 0 20px 8px;
+  padding: 20px 0 20px 1px;
   float: left;
   width: auto;
 }
@@ -105,7 +105,7 @@ header nav ul {
 
 header nav ul li {
   float: left;
-  padding: 0 8px;
+  padding: 0 3px 0 8px;
 }
 header nav ul li a.current {
   color: #222;
