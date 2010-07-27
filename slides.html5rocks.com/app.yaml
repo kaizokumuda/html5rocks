@@ -1,0 +1,22 @@
+application: html5slides
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /src
+  static_dir: src
+- url: /disclaimer.html
+  static_files: disclaimer.html
+  upload: disclaimer.html
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
+- url: /cache.manifest
+  static_files: cache.manifest
+  mime_type: text/cache-manifest
+  upload: cache.manifest
+- url: /
+  static_files: html5.html
+  upload: html5.html
+
