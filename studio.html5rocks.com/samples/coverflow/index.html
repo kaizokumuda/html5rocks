@@ -1,0 +1,337 @@
+<!DOCTYPE html> 
+<html> 
+ <head> 
+  <meta charset="UTF-8"/> 
+  <title>CSS3 Coverflow Experiment</title> 
+  <script type="text/javascript" src="../../static/js/jquery-1.4.2.min.js"></script> 
+  
+  <script type="text/javascript"> 
+  
+    var coverflow = function() {
+      var radius = 20;
+      var side = 250;
+      var long_side = 500;
+      var offset_x = 0;
+      var offset_y = 0;
+      var pop_x = 0;
+      var pop_y = 0;
+      var offset = 6;
+      var display_offset = 6;
+      var queue = [];
+      function createCanvasElement(img) {
+        var canvas = document.createElement('canvas');
+        canvas.setAttribute('width',  side);
+        canvas.setAttribute('height', side);
+        var _height = img.naturalHeight;
+        var _width  = img.naturalWidth;
+        var w = false; // width is shorter?
+        if (_height > _width) w = true;
+        var sx, sy, sw, sh;
+        if (w) {
+          var _side = _width;
+          sx = 0;
+          sy = _height / 2 - _side / 2;
+        } else {
+          var _side = _height;
+          sx = _width / 2 - _side / 2;
+          sy = 0;
+        }
+        sw = _side;
+        sh = _side;
+ 
+        var cx = canvas.getContext('2d');
+        cx.beginPath();
+        cx.moveTo(radius, 0);
+        cx.lineTo(canvas.width - radius, 0);
+        cx.quadraticCurveTo(canvas.width, 0, canvas.width, radius);
+        cx.lineTo(canvas.width, canvas.height - radius);
+        cx.quadraticCurveTo(canvas.width, canvas.height, canvas.width - radius, canvas.height);
+        cx.lineTo(radius, canvas.height);
+        cx.quadraticCurveTo(0, canvas.height, 0, canvas.height - radius);
+        cx.lineTo(0, radius);
+        cx.quadraticCurveTo(0, 0, radius, 0);
+        cx.clip();
+        cx.drawImage(img, sx, sy, sw, sh, 0, 0, side, side);
+        $(canvas).click(coverflow.popup(img));
+        return canvas;
+      }
+      function flip() {
+        var flow = queue.shift();
+        if (!flow) return;
+        var _offset = display_offset + flow.vector;
+        var speed = 0.05;
+        if (queue.length < 4) speed = 0.1;
+        if (queue.length < 2) speed = 0.2;
+        $('li.img').css('webkitTransition', 'all '+speed+'s ease-in-out');
+        var canvas = $('#coverflow li');
+        $('#coverflow li').each(function(index) {
+          var order = index + _offset;
+          if (order <= 0) {
+            $(this).attr('class', 'img coverflow0');
+          } else if (order > 11) {
+            $(this).attr('class', 'img coverflow12');
+          } else {
+            $(this).attr('class', 'img coverflow'+(order));
+          }
+        })
+        display_offset = _offset;
+        if (queue.length > 0) setTimeout(flip, speed * 1000 + 30);
+      }
+      return {
+        init: function() {
+          $('#dummy img').each(function(index) {
+            var canvas = createCanvasElement(this);
+            var li = $('<li class="img"/>');
+            var order = index + 6;
+            if (order <= 11) {
+              li.addClass('coverflow'+order);
+            } else {
+              li.addClass('coverflow12');
+            }
+            $('#coverflow').append(li.append(canvas));
+          });
+          $('#left').click(function() {
+            var trigger = queue.length == 0 ? true : false;
+            var _offset = offset + 1;
+            if (_offset > 6 || _offset < (($('#coverflow li').length - 7) * -1)) return false;
+            coverflow.move(-1);
+            offset = _offset;
+            $('#range').val(_offset * -1);
+            if (trigger) flip();
+          });
+          $('#right').click(function() {
+            var trigger = queue.length == 0 ? true : false;
+            var _offset = offset - 1;
+            if (_offset > 6 || _offset < (($('#coverflow li').length - 7) * -1)) return false;
+            coverflow.move(+1);
+            offset = _offset;
+            $('#range').val(_offset * -1);
+            if (trigger) flip();
+          });
+          $('#range').change(function() {
+            var range = $(this).val();
+            var trigger = queue.length == 0 ? true : false;
+            coverflow.move(Number(range) + offset);
+            offset = range * -1;
+            if (trigger) flip();
+          })
+            .attr('max', $('#dummy img').length - display_offset - 1 );
+            
+          $('document').keydown(function(e) {
+            if (e.keyCode == 27) coverflow.popdown();
+          });
+       
+        },
+        trackPosition: function(e) {
+          $('#stat').text('x:'+e.clientX+' y:'+e.clientY);
+        },
+        popdown: function() {
+          $('#zoom').remove();
+        },
+        popup: function(img) {
+          return function() {
+            var _height = img.naturalHeight;
+            var _width  = img.naturalWidth;
+            var w = false; // width is shorter?
+            if (_height > _width) w = true;
+            var sx, sy, sw, sh;
+            if (w) {
+              sh = long_side;
+              sw = long_side / _height * _width;
+            } else {
+              sh = long_side / _width * _height;
+              sw = long_side;
+            }
+ 
+            coverflow.popdown();
+            var _img = $('<img/>');
+            _img.attr('src', img.src);
+            _img.attr('width', sw);
+            _img.attr('height', sh);
+            _img.attr('id', 'zoom');
+            _img.css('left', pop_x+'px');
+            _img.css('top',  pop_y+'px');
+            $('body').append(_img);
+          }
+        },
+        move: function(diff) {
+          coverflow.popdown();
+          var abs = diff < 0 ? diff * -1 : diff;
+          var vector = 1;
+          if (diff > 0) vector = -1;
+          for (var i = 0; i < abs; i++) {
+            var flow = {'vector': vector, 'speed': 0.03}
+            queue.push(flow);
+          }
+          return true;
+        }
+      }
+    }();
+    
+    $(window).load(coverflow.init);
+
+  </script> 
+  <style> 
+    body {
+      background-color:#000;
+      background-repeat:no-repeat;
+      overflow-x:hidden;
+    }
+    input#text {width:500px;}
+    input#range {}
+    textarea#text {width:500px; height:300px;}
+    img#zoom {
+      position:absolute;
+      border:10px solid #eee;
+    }
+    div#dummy img {display:none;}
+    div#container {
+      height: 250px;
+      width:1000px;
+      margin:200px auto;
+      -webkit-perspective: 700;
+    }
+    div#buttons {
+      width:385px;
+      padding:7px 20px 0 20px;
+      position:relative;
+      top:-150px;
+      margin:15px auto;
+      text-align:center;
+      background-color:#aaa;
+      border:1px solid #aaa;
+      -webkit-border-radius: 20px;
+      -webkit-transform: scale(1.4);
+    }
+    input#range {
+      width:300px;
+    }
+    input[type="button"]{ font-size: 24px;}
+    ul {
+      width:100%;
+      list-style:none;
+      margin:0px auto;
+      -webkit-transform-style: preserve-3d;
+    }
+    li {
+      -webkit-opacity: 1.0;
+      height:500px;
+    }
+    li.img {
+      position:absolute;
+      -webkit-transition: all 0.3s ease-in-out;
+      -webkit-transform-origin: 50% 5%;
+      cursor:pointer;
+    }
+    li.img canvas {
+      -webkit-box-reflect: below 10px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(white));;
+    }
+    .coverflow0 {
+      -webkit-opacity: 0.0;
+      left:-5%;
+    }
+    .coverflow1 {
+      -webkit-transform: rotateY(65deg);
+      -webkit-opacity: 0.1;
+      left:0%;
+      z-index:0;
+    }
+    .coverflow2 {
+      -webkit-transform: rotateY(65deg);
+      -webkit-opacity: 0.3;
+      left:5%;
+      z-index:1;
+    }
+    .coverflow3 {
+      -webkit-transform: rotateY(65deg);
+      -webkit-opacity: 0.7;
+      left:10%;
+      z-index:2;
+    }
+    .coverflow4 {
+      -webkit-transform: rotateY(65deg);
+      left:15%;
+      z-index:3;
+    }
+    .coverflow5 {
+      -webkit-transform: rotateY(65deg);
+      left:20%;
+      z-index:4;
+    }
+    .coverflow6 {
+      -webkit-transform: rotateY(0deg) scale(1.15);
+      left:36.1%;
+      z-index:10;
+    }
+    .coverflow7 {
+      -webkit-transform: rotateY(-65deg);
+      left:52.5%;
+      z-index:4;
+    }
+    .coverflow8 {
+      -webkit-transform: rotateY(-65deg);
+      left:57.5%;
+      z-index:3;
+    }
+    .coverflow9 {
+      -webkit-transform: rotateY(-65deg);
+      -webkit-opacity: 0.7;
+      left:62.5%;
+      z-index:2;
+    }
+    .coverflow10 {
+      -webkit-transform: rotateY(-65deg);
+      -webkit-opacity: 0.3;
+      left:67.5%;
+      z-index:1;
+    }
+    .coverflow11 {
+      -webkit-transform: rotateY(-65deg);
+      -webkit-opacity: 0.1;
+      left:72.5%;
+      z-index:0;
+    }
+    .coverflow12 {
+      -webkit-opacity: 0.0;
+      left:77.5%;
+    }
+  </style> 
+ </head> 
+ <body> 
+  <div id="dummy"> 
+   <img src="./iphone_wallpaper_ardcor_0006_Layer52.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0002_Layer56.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0023_Layer35.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0016_Layer42.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0012_Layer46.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0009_Layer49.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0005_Layer53.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0001_Layer57.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0022_Layer36.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0019_Layer39.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0015_Layer43.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0011_Layer47.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0008_Layer50.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0004_Layer54.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0025_Layer33.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0000_Layer58.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0021_Layer37.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0018_Layer40.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0014_Layer44.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0010_Layer48.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0007_Layer51.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0003_Layer55.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0020_Layer38.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0017_Layer41.jpg"/> 
+   <img src="./iphone_wallpaper_ardcor_0013_Layer45.jpg"/> 
+  </div> 
+  <div id="container"> 
+   <ul id="coverflow"></ul> 
+  </div> 
+  <div id="buttons"> 
+   <input id="left" type="button" value="&larr;" /> 
+   <input id="range" type="range" min="-6" max="18" value="-6" /> 
+   <input id="right" type="button" value="&rarr;" /> 
+  </div> 
+ </body> 
+</html>

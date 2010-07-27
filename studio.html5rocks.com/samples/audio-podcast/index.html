@@ -1,0 +1,43 @@
+<html>
+  <head>
+
+    <script src="jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script> 
+    <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAiES7eSQ0fgEdOg5320FTVhSNRBr4S-Rzs6qgmf-M44ml8HjtkBQEPyc8Fq2_hAp9QtcsvQ8z8LlveA"></script>
+    <script type="text/javascript" src="podcast.js"></script>
+
+    <style>
+      body   { margin: 1em; font-size: 14pt; font-family: sans-serif; text-align: center }
+      #main { margin: 100px auto; }
+      #status { font-style: serif; font-size: 10pt; margin-top: 10px; }
+      select { font-size: 16pt; display: block; margin: 30px 0 10px; background: #d60; }
+      ul { list-style-type: none; padding: 0; float: left; margin: 0; }
+      ul a { text-decoration: none; padding: 0.2em 0; color: inherit; }
+      li { text-align: left; margin-top: 5px; padding: 5px; background-image: -webkit-gradient(linear, left top, left 100%, from(#333), to(#555)); color: white; cursor: pointer; }
+      li.playing { background: #F5EE94; color: black; }
+      li:first-child { margin-top: 0; }
+      li.played { background: #bbb; color: #777; }
+      #main, audio, select, ul, ul a { width: 400px; }
+      audio { display: block; background: #f00; }
+    </style>
+
+  </head>
+  <body>
+
+    <div id="main">
+
+      <audio controls="controls"></audio>
+
+      <div id="status">Loading Audio ... </div>
+
+      <select id="feed">
+        <option value="http://feeds.feedburner.com/intoyourhead">Into Your Head</option>
+        <option value="http://www.mevio.com/feeds/dailysourcecode.xml">The Daily Source Code</option>
+        <option value="http://feeds.conversationsnetwork.org/channel/itc">IT Conversations</option>
+      </select>
+
+      <ul id="episodes"></ul>
+
+    </div>
+
+  </body>
+</html>

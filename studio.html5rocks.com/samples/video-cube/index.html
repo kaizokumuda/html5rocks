@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<head>
+<title>video2ascii in a cube!</title>
+
+<!-- 
+  Tab Atkins created this demo for the HTML5 Meetup of the 
+  Silicon Valley Google Technology User Group on July 7th, 2010.
+
+  It was originally hosted at http://www.xanthir.com/video/demo3.html
+  I chucked it on here so we could throw some traffic at it.
+  
+  All credit goes to Tab Atkins. He did everything below with the 
+  exception of the resolution slider that I added. 
+  
+  Tab has released this code released into the public domain.
+  
+  ~paul
+  
+  update: 2010.07.08: this is my port to not use jquery.. original
+     is here: http://paulirish.com/work/video2ascii/
+-->
+
+
+<style> 
+
+
+html, body, div {
+  margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 9px;
+}
+
+div {
+  position:absolute;
+	font-family: monospace;
+	line-height: 1em;
+	white-space: pre;
+	left: 400px;
+	top: 200px;
+}
+
+
+ 
+#letter {
+	position: absolute;
+	left: -9001px;
+	font-family: monospace;
+	line-height: 1em;
+	
+}
+
+h1 { 
+  font-size: 17px;
+}
+
+p {
+  font-size: 13px;
+}
+label, ul {
+  font-size: 14px;
+}
+
+canvas { 
+  	position: absolute;
+  	left: -9001px;
+  
+}
+
+
+.fadey #top {  -webkit-mask-image: -webkit-gradient(linear, 0% 100%, 0% 0%, from(transparent), color-stop(0.2, transparent), to(white)); }
+ 
+.fadey #right { -webkit-mask-image:  -webkit-gradient(linear, 100% 100%, 0% 100%, from(white), color-stop(0.8, transparent), to(transparent)); }
+ 
+.fadey #bottom {  -webkit-mask-image:  -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.2, transparent), to(white)); }
+ 
+.fadey #left {  -webkit-mask-image:  -webkit-gradient(linear, 0% 100%, 100% 100%, from(white), color-stop(0.8, transparent), to(transparent)); }
+
+#cube {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 400px;
+  left: 400px;
+  -webkit-user-select: none;
+}
+.face {
+  position: absolute;
+  overflow:hidden;
+  /* background-color: fuchsia; */
+}
+
+.face:not(#back){
+  pointer-events: none;
+}
+
+#back {
+  background-color: mediumvioletred;
+}
+</style> 
+
+</head> 
+<body class=""> 
+ 
+ <h1>Cube 'o ASCII</h1>
+ <ul>
+   <li>First we start with standards shepherd <a href="http://twitter.com/tabatkins">Tab Atkin</a>'s excellent <a href="http://paulirish.com/work/video2ascii/">video 2 ascii canvas demo</a>
+   <li>Then we use the insane matrix mathematics from <a href="http://twitter.com/brendankenny">Brendan Kenny</a>'s brain and <a href="http://extremelysatisfactorytotalitarianism.com/projects/etc/cube_position.html">cube position 3D via 2D matrix tool</a>.
+   <li>Then I mixed 'em up and added some sweet form controls for the funtimes.
+  </ul>
+</label>
+ 
+ 
+ <br>
+ <br>
+
+  <label for=range>Adjust resolution:</label>
+  <input type=range min=2 max=14 id=range value=8>
+
+  <br>
+  <label for=fadey>Fadey Mask</label>
+  <input type=checkbox id=fadey>
+
+  
+
+
+<div id='cube'> 
+  <div class='face' id='left'></div> 
+  <div class='face' id='top'></div> 
+  <div class='face' id='right'></div> 
+  <div class='face' id='bottom'></div> 
+  
+ 
+  <video controls loop class='face' id='back'>
+    <source src=video.webm type=video/vp8> 
+    <source src=video.mp4 type=video/mp4> 
+    <source src=video.ogv type=video/ogg>  
+  </video>
+  
+    
+</div> 
+
+
+<canvas id='canvs'></canvas>  <!-- offscreen canvas used to interpret brightness values -->
+<span id="letter">o</span>    <!-- relative size of font determined by size of this offscreen o -->
+
+ 
+<script> 
+
+ /**
+  * this script handles creating the cube and its manipulation
+  * it's all by brendan kenny
+  */
+  
+function makeCubeGo() {
+  var identityMat = new WebKitCSSMatrix(),
+      leftMat,
+      topMat,
+      rightMat,
+      bottomMat,
+      backMat,
+ 
+      cubeMat = identityMat,
+ 
+      leftDiv = document.getElementById('left'),
+      topDiv = document.getElementById('top'),
+      rightDiv = document.getElementById('right'),
+      bottomDiv = document.getElementById('bottom'),
+      backDiv = document.getElementById('back');
+ 
+  // center faces on origin of parent
+  function setFaceSize(faceDiv, w, h) {
+    faceDiv.style.width = w + 'px';
+    faceDiv.style.left = -w/2 + 'px';
+    faceDiv.style.height = h + 'px';
+    faceDiv.style.top = -h/2 + 'px';
+  }
+  
+  // scientific notation hurts us
+  function fixThem(num, i, a) {
+    a[i] = num.toFixed(10);
+  }
+  
+  // take 3d matrix and set 2d version on a face
+  function transformFace(faceDiv, matrix, isBackFace) {
+    var a = [matrix.m11, matrix.m12, matrix.m21,matrix.m22, matrix.m41, matrix.m42];
+    a.forEach(fixThem);
+    
+    var faceStyle = faceDiv.style;
+    faceStyle.webkitTransform = 'matrix(' + a.join(',') + ')';
+    
+    // z-index based on depth of middle of face for proper stacking
+    faceStyle.zIndex = ~~(matrix.m43 * -10 + 4000);
+    
+    // change colors of sides based on if outside or inside
+    if (false && !isBackFace) {
+      faceStyle.backgroundColor = matrix.m33 < 0 ? 'mediumorchid' : 'fuchsia';
+    }
+  }
+  
+  // write current transform state to elements
+  function writeTransforms() {
+    var mat = cubeMat.multiply(leftMat);
+    transformFace(leftDiv, mat);
+    
+    mat = cubeMat.multiply(backMat);
+    transformFace(backDiv, mat, true);
+    
+    mat = cubeMat.multiply(rightMat);
+    transformFace(rightDiv, mat);
+    
+    mat = cubeMat.multiply(topMat);
+    transformFace(topDiv, mat);
+    
+    mat = cubeMat.multiply(bottomMat);
+    transformFace(bottomDiv, mat);
+  }
+  
+  var dragging, lastX, lastY,
+      angleX = 0,
+      angleY = 0;
+      
+  function dragStart(event) {
+    dragging = true;
+    lastX = event.clientX;
+    lastY = event.clientY;
+  }
+ 
+  function dragMove(event) {
+    if (dragging) {
+      var x = event.clientX,
+          y = event.clientY,
+          deltaX = lastX - x,
+          deltaY = y - lastY;
+      
+      // made up hacky scale factors
+      angleX += deltaX / 5;
+      angleY += deltaY / 5;
+      cubeMat = identityMat.rotateAxisAngle(0, 1, 0, angleX);
+      cubeMat = cubeMat.rotateAxisAngle(1, 0, 0, angleY);
+      
+      writeTransforms();
+      
+      lastX = x;
+      lastY = y;
+    }
+  }
+ 
+  function dragEnd(event) {
+    dragging = false;
+  }
+  
+  // set cube's size at any time (exposed on window below)
+  function setCubeSize(width, height, depth) {
+    setFaceSize(leftDiv, depth, height);
+    setFaceSize(backDiv, width, height);
+    setFaceSize(rightDiv, depth, height);
+    setFaceSize(topDiv, width, depth);
+    setFaceSize(bottomDiv, width, depth);
+    
+    leftMat = identityMat.translate(-width/2, 0, 0);
+    leftMat = leftMat.rotateAxisAngle(0, 1, 0, 90);
+    
+    backMat = identityMat.translate(0, 0, depth/2);
+    
+    rightMat = identityMat.translate(width/2, 0, 0);
+    rightMat = rightMat.rotateAxisAngle(0, 1, 0, -90);
+    
+    topMat = identityMat.translate(0, -height/2, 0);
+    topMat = topMat.rotateAxisAngle(1, 0, 0, -90);
+    
+    bottomMat = identityMat.translate(0, height/2, 0);
+    bottomMat = bottomMat.rotateAxisAngle(1, 0, 0, 90);
+    
+    writeTransforms();
+  }
+  
+  // set width, height, depth of cube
+  setCubeSize(480, 360, 400);
+  window.setCubeSize = setCubeSize;
+  
+  document.addEventListener('mousedown', dragStart, false);
+  document.addEventListener('mousemove', dragMove, false);
+  document.addEventListener('mouseup', dragEnd, false);
+}
+ 
+document.addEventListener('DOMContentLoaded', makeCubeGo, false);
+ 
+</script> 
+ 
+
+
+
+<script>
+
+  /**
+   * this script handles creating an ascii version of the video and outputting it.
+   * it's written by tab atkins then hacked up by paul irish
+   */
+   
+  var l, v,
+      lw, lh, cw, ch, back, backcontext, out;
+
+      l  = document.querySelector('#letter'),
+      v  = document.querySelector('#back');
+
+
+
+  function domReady(){
+
+    lw = l.offsetWidth;
+    lh = l.offsetHeight;
+    cw = Math.floor(v.offsetWidth /lw);
+    ch = Math.floor(v.offsetHeight/lh);
+    back = document.querySelector("#canvs");
+    backcontext = back.getContext('2d');
+    
+    // output to the cube faces
+    out0 = document.querySelector("#left");
+    out1 = document.querySelector("#top");
+    out2 = document.querySelector("#right");
+    out3 = document.querySelector("#bottom");
+
+
+  }
+
+
+  function draw(v,out,bc,w,h) {
+  	if(v.paused || v.ended)	return false;
+  	// First, draw the into the backing canvas
+  	bc.drawImage(v,0,0,w,h);
+  	// Grab the pixel data from the backing canvas
+  	var data = bc.getImageData(0,0,w,h).data;
+  	// Initialize a char array
+  	var chars = []
+  	// Loop through the pixels
+  	for(var ih = 0; ih < h; ih++) {
+  		for(var iw = 0; iw < w; iw++) {
+  			// Convert a width/height into an imagedata offset
+  			var i = (ih*w + iw) * 4;
+  			// Convert the color into an appropriate character
+  			chars.push(colorToChar(data[i],data[i+1],data[i+2]));
+  		}
+  		chars.push("<br>");
+  	}
+  	// Write the char data into the output div
+  	out0.innerHTML = out1.innerHTML = out2.innerHTML = out3.innerHTML = chars.join('');
+  	// Start over!
+  	setTimeout(function(){ draw(v,out,bc,w,h); }, 0);
+  }
+
+  function colorToChar(r,g,b) {
+  	// Color -> brightness
+  	var brightness = (3*r+4*g+b)>>>3;
+  	var chars = "  .,:;iltfLG@";
+  	return chars[Math.floor((1 - (brightness / 255)) * chars.length)];
+  }
+
+  addEventListener('DOMContentLoaded',domReady,false);
+
+
+  v.addEventListener("play", function(e){  
+  	cw = Math.floor(v.offsetWidth/lw);
+  	ch = Math.floor(v.offsetHeight/lh);
+  	back.width = cw;
+  	back.height = ch;
+  	draw(this,out,backcontext,cw,ch);
+  },false);
+
+
+  document.querySelector('input[type="range"]').addEventListener('change',function(e){  
+    v.pause();
+    document.body.style.fontSize = e.target.value + 'px';
+    domReady();
+    // pause added to let the DOM catch up.
+    setTimeout(function(){
+        v.play();
+    },10);
+  },false);
+
+  document.querySelector('input[type="checkbox"]').addEventListener('change',function(e){  
+    console.log(e.target.checked)
+    document.body.className = '' + (e.target.checked ? 'fadey' : '');
+  },false);
+  
+</script>
+
+
+
+</body> 
+</html>

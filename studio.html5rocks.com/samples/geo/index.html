@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- SF Zoo http://www.wildlifenearyou.com/us/san-francisco-zoo/ -->
+<html>
+  <head>
+    <title>Giraffe</title>
+    <style>
+      body { text-align: center; font-family: sans-serif; font-size: 12pt; }
+      h1 { margin: 0; }
+      #attribution { position: absolute; top: -75px; right: -5px; text-align: right; font-size: 8pt; padding: 100px 10px 5px; -webkit-transform: rotate(10deg); background: #993; border-radius: 5px; }
+      #mapContainer { opacity: 0.001; width: 460px; height: 300px; }
+      #tagline { margin: 0 0 20px; font-size: 10pt; }
+      #content { width: 800px; margin: 0 auto; min-height: 500px; }
+      #main { float: left; width: 480px; height: 300px; }
+      #closest { background: #dd5; padding: 0 4px; cursor: pointer; }
+      #directions { float: right; width: 300px; border: 1px solid black; font-family: serif; display: none; }
+      .clearance { height: 20px; clear: both; }
+      a, a:visited { color: #00b; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+
+      <h1>&iquest;Giraffe?</h1>
+
+      <div id="tagline">For those times when you absolutely, positively, need a giraffe right this minute.</div>
+      <div id="attribution">Data via <a href="http://wildlifenearyou.com">Wildlife Near You</a></div>
+
+      <div id="content">
+        <div id="main">
+          <p>The closest giraffe is at <span id="closest"></span></p>
+          <p>But wait! There are more giraffes out there: <select></select>
+          <div id="mapContainer"></div>
+        </div>
+        <div id="directions"></div>
+      </div>
+
+      <div class="clearance"></div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAiES7eSQ0fgEdOg5320FTVhRJZdUbhRZcdMcu35YkyB8SFQQ4dxS1hGR_-0nPe2tyL4MzuIravqgMdw" type="text/javascript"></script>
+    <script>
+
+      var map, directions, here, closestZoo, currentZoo, zooIcon, zoos = [
+        {name: "Australia: Canberra", place: new GLatLng(-25.274398, 133.775136)},
+        {name: "Australia: Melbourne Zoo", place: new GLatLng(-37.784762, 144.952095)},
+        {name: "Belgium: Antwerpen", place: new GLatLng(51.2163062892, 4.42343473434)},
+        {name: "Canada: Metro Toronto Zoo", place: new GLatLng(43.8202850088, -79.182844162)},
+        {name: "China: Ho Chi Minh Cities Zoo", place: new GLatLng(10.7881172277, 106.706514359)},
+        {name: "Colorado: Denver", place: new GLatLng(39.7509514627, -104.952778816)},
+        {name: "France: Branfere", place: new GLatLng(47.7836346353, -3.2958984375)},
+        {name: "Germany: Augsburg Zoo", place: new GLatLng(48.347778, 10.914444)},
+        {name: "Germany: Wilhelma Zoo", place: new GLatLng(48.805278, 9.203056)},
+        {name: "Indonesia: Bandung", place: new GLatLng(-6.91074899897, 107.608337402)},
+        {name: "Ireland: Dublin", place: new GLatLng(53.3551621148, -6.30640983582)},
+        {name: "Kenya: Nakuru National Park", place: new GLatLng(-0.219726023921, 35.947265625)},
+        {name: "UK: Kessingland", place: new GLatLng(52.4132966333, 1.69961929321)},
+        {name: "UK: Marwell ", place: new GLatLng(50.9921770437, -1.27707481384)},
+        {name: "UK: Paignton Zoo", place: new GLatLng(50.428889, -3.584444)},
+        {name: "USA: Busch Gardens (FL)", place: new GLatLng(28.0371752077, -82.421708107)},
+        {name: "USA: Henry Doorly Zoo (NE)", place: new GLatLng(41.2248276481, -95.9288835526)},
+        {name: "USA: Houston Zoo (TX)", place: new GLatLng(29.7136249836, -95.3917980194)},
+        {name: "USA: Oregon Zoo (OR)", place: new GLatLng(45.5100612104, -122.715139389)},
+        {name: "USA: Phoenix (AZ)", place: new GLatLng(33.449919812, -111.947937012)},
+        {name: "USA: San Francisco (CA)", place: new GLatLng(37.7332752397, -122.505331635)},
+        {name: "USA: Smithsonian Zoo (DC)", place: new GLatLng(38.929869647, -77.0548868179)},
+        {name: "Zimbabwe: Hwange", place: new GLatLng(-19.2333633812, 26.7077636719)}
+      ];
+
+      window.onload = function() {
+
+        if (!GBrowserIsCompatible() || !navigator.geolocation) {
+          handleError("can't do this!");
+          return;
+        }
+
+        var selector = document.querySelector("select");
+        var closest = document.querySelector("#closest");
+
+        for (var i=0; i<zoos.length; i++) {
+          selector.innerHTML+="<option value='"+zoos[i].name+"'>"+zoos[i].name+"</option>";
+        }
+        selector.onchange = function() {
+          switchZoo(zoos[this.selectedIndex]);
+        }
+        closest.onclick = function() {
+          selector.value = closestZoo.name;
+          switchZoo(closestZoo);
+        }
+
+        map = new GMap2(document.getElementById("mapContainer"));
+        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+        map.setUIToDefault();
+
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            here = new GLatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(here);
+            $("#mapContainer").animate({opacity: 1});
+
+            closestZoo=findClosestZoo(here);
+            closest.innerHTML = closestZoo.name;
+            selector.value = closestZoo.name;
+            directions = new GDirections(map, document.getElementById("directions"));
+            GEvent.addListener(directions, "load", function() { 
+              $("#directions").show();
+            });
+            GEvent.addListener(directions, "error", function() { 
+              $("#directions").hide();
+              console.log(currentZoo);
+              map.addOverlay(new GMarker(currentZoo.place, {icon: getZooIcon()}));
+            });
+            switchZoo(closestZoo);
+
+          },
+          handleError
+        );
+
+      };
+
+      function switchZoo(zoo) {
+        // Create our "tiny" marker icon
+// G_END_ICON.image = "giraffe.png";
+        currentZoo = zoo;
+
+        map.clearOverlays();
+        console.log("loading zoo", zoo);
+        console.log("from: Your Location@"+here.lat()+","+here.lng()+" to: "+zoo.name+"@"+zoo.place.lat()+","+zoo.place.lng());
+        map.setCenter(zoo.place);
+        directions.load("from: Your Location@"+here.lat()+","+here.lng()+" to: "+zoo.name+"@"+zoo.place.lat()+","+zoo.place.lng());
+      }
+
+      function findClosestZoo(queryPoint) {
+        var closest = { distance: Number.MAX_VALUE, zoo: "unknown" };
+        for (var i=0; i<zoos.length; i++) {
+          var zoo = zoos[i];
+          var distance = zoo.place.distanceFrom(queryPoint);
+          if (distance < closest.distance) closest={ distance: distance, zoo: zoo };
+        }
+        return closest.zoo;
+      }
+
+      function handleError(message) {
+        alert(message||"can't do this!");
+      }
+
+      function getZooIcon() {
+        if (zooIcon) return zooIcon;
+        zooIcon = new GIcon(G_DEFAULT_ICON);
+        zooIcon.image = "giraffe.png";
+        zooIcon.iconSize = new GSize(70,70);
+        zooIcon.shadowSize = new GSize(22, 20);
+        zooIcon.iconAnchor = new GPoint(35, 70);
+        return zooIcon;
+      }
+
+    </script>
+  </body>
+</html>

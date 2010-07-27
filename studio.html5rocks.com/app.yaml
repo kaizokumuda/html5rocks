@@ -1,0 +1,15 @@
+application: html5playbook
+version: 2
+runtime: python
+api_version: 1
+
+handlers:
+- url: /img
+  static_dir: img
+- url: /samples
+  static_dir: samples
+- url: /
+  static_files: studio.html
+  upload: studio.html
+- url: /static
+  static_dir: static
