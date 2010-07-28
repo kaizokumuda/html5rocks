@@ -800,27 +800,31 @@ CACHE:
               display: inline;
               background-color: red;
               color: white;
+              padding: 5px;
+              border-radius: 5px;
             }
           </style>
           <header><span class="js">JS APIs</span> <h1>Web Workers</h1></header>
           <section>
 <pre>main.js:
-  var worker = new <b>Worker</b>(‘extra_work.js');
+  var worker = new <b>Worker</b>('extra_work.js');
   worker.<b>onmessage</b> = function(event) { alert(event.data); };
 
 extra_work.js:
-  // do some work; when done post message.
-  <b>postMessage</b>(some_data);
+  self.<b>onmessage</b> = function(event) {
+    // Do some work.
+    self.<b>postMessage</b>(some_data);
+  }
 </pre>
         <script src="src/webworkers/points.js"></script>
         <script src="src/webworkers/annealing.js"></script>
-                
+
         <div id="w-wrapper">
           <div id="wmap" class="gmap"></div>
           <button id="find-route-y">Find Route with Workers</button>
           <button id="find-route-n">Find Route without Workers</button>
           <p id="w-loading">Loading Route...</p>
-          <p>Try to drag the map while calculating the complex route (you will only be allowed to do that if you use workers)</p>
+          <p>Try dragging the map while the complex route is being calculated (you will only be able to do that with Workers!)</p>
         </div>
         <script>
         var markersArray = [];
@@ -828,14 +832,14 @@ extra_work.js:
         var useThreads = false;
         window.addEventListener('load', function() {
           var myOptions = {
-            zoom: 4,
+            zoom: 3,
             center: new google.maps.LatLng(13, 13),
             mapTypeId: google.maps.MapTypeId.ROADMAP
           }
           workermap = new google.maps.Map(document.getElementById("wmap"), myOptions);
           workermap.setCenter(new google.maps.LatLng(13, 13));
           drawPoints();
-        
+
           document.querySelector('#w-wrapper').addEventListener('click', function(event) {
             if (event.target.id == 'find-route-y') {
               useThreads = true;
@@ -850,39 +854,43 @@ extra_work.js:
             }
           }, false);
         }, false);
-        
+
         function drawPath(path) {
           var firstPoint = true;
           var l = p1.length;
           var scaleFactor = 5;
           for (var i = 0; i < l - 1; i++) {
             var points = [
-              new google.maps.LatLng(p1[i].x/scaleFactor, p1[i].y/scaleFactor),
-              new google.maps.LatLng(p1[i+1].x/scaleFactor, p1[i+1].y/scaleFactor)
+              new google.maps.LatLng(p1[i].x / scaleFactor,
+                                     p1[i].y / scaleFactor),
+              new google.maps.LatLng(p1[i + 1].x / scaleFactor,
+                                     p1[i + 1].y / scaleFactor)
             ];
-            var polyline = new google.maps.Polyline({ path: points, strokeColor: '#ff0000', strokeWeight: 1 });
+            var polyline = new google.maps.Polyline(
+                {path: points, strokeColor: '#ff0000', strokeWeight: 1 });
             markersArray.push(polyline);
             polyline.setMap(workermap);
           }
         }
-        
+
         function drawPoints() {
           var blueIcon = new google.maps.MarkerImage('src/webworkers/point.png',
                 // size
                 new google.maps.Size(3, 3),
                 // origin
-                new google.maps.Point(0,0),
+                new google.maps.Point(0, 0),
                 // anchor
                 new google.maps.Point(0, 0));
           for (var i = 0; i < p1.length; i++) {
             // Render in Gmap instead of canvas
-            var point = new google.maps.LatLng(p1[i].x/5, p1[i].y/5);
-            var marker = new google.maps.Marker({ position: point, icon: blueIcon });
+            var point = new google.maps.LatLng(p1[i].x / 5, p1[i].y / 5);
+            var marker = new google.maps.Marker({position: point,
+                                                 icon: blueIcon});
             markersArray.push(marker);
             marker.setMap(workermap);
           }
         }
-        
+
         function deleteOverlays() {
           if (markersArray) {
             for (i in markersArray) {
@@ -891,7 +899,7 @@ extra_work.js:
             markersArray.length = 0;
           }
         }
-        
+
         function test() {
           var name = "Test 1";
           var self = this;
@@ -917,13 +925,13 @@ extra_work.js:
               if (useThreads) {
                 var worker = new Worker('src/webworkers/Worker.js')
                 worker.onmessage = function(event) {
-                    var returnedData = JSON.parse(event.data);
-                    var msg = returnedData[0];
-                    var p = returnedData[1];
-                    callback[msg](p);
+                  var returnedData = JSON.parse(event.data);
+                  var msg = returnedData[0];
+                  var p = returnedData[1];
+                  callback[msg](p);
                 };
                 worker.onerror = function(event) {
-                    console.log(event);
+                  console.log(event);
                 };
                 worker.postMessage(JSON.stringify({
                         opts: opts,
@@ -943,7 +951,7 @@ extra_work.js:
                     }
                   };
                   annealing.init(opts, opts.width,
-                                opts.height, callback2)
+                                 opts.height, callback2)
                   annealing.go();
               }
                 // a = new Annealing();
