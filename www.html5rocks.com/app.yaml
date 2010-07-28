@@ -32,5 +32,9 @@ handlers:
   static_files: static/robots.txt
   upload: static/robots.txt
 
+- url: /admin/.*
+  script: $PYTHON_LIB/google/appengine/ext/admin
+  login: admin
+
 - url: .*
   script: main.py
