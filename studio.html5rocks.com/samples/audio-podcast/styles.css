@@ -18,6 +18,8 @@ ul#episodes {
   overflow: hidden;
   cursor: pointer;
   width: auto;
+  z-index: 5;
+  position: relative;
 }
 ul#episodes:hover {
   overflow: visible;
