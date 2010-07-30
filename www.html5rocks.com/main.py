@@ -121,6 +121,7 @@ class ContentHandler(webapp.RequestHandler):
 
     template_data.update(data)
     self.response.headers.add_header('Content-Type', 'text/html;charset=UTF-8')
+    # self.response.headers.add_header("X-UA-Compatible","IE=Edge,chrome=1")
     self.response.out.write(
         webapp.template.render(template_path, template_data))
 
