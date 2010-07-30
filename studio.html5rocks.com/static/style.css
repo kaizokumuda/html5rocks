@@ -217,7 +217,7 @@ body { background: #eee; font-family: Constantia, 'Hoefler Text',  "Adobe Caslon
 
 
 
-#container { width: 990px; margin: 0 auto; height: 665px;
+#container { width: 990px; margin: 0 auto; height: 605px;
     position:relative; background: white; border: 1px solid #aaa; border-top: 0; 
     
     -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
@@ -256,7 +256,7 @@ aside h1 { font-size: 30px;}
 div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1px solid #aaa; position: absolute; 
     
     /* location when we collapse to stack at bottom */
-    top: 515px; left: 1px;
+    top: 495px; left: 1px;
     
     -moz-transition: all 0.3s cubic-bezier(0.0, 0.35, .6, 1.5);   /* bounce timing for moz & opera. webkit doesnt support */
       -o-transition: all 0.3s cubic-bezier(0.0, 0.35, .6, 1.5);  
@@ -264,7 +264,7 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
          transition: all 0.3s cubic-bezier(0.0, 0.35, .5, 1);
  }
 
-.toc div.box {  top: 240px; left: 250px;  opacity: .5;}
+.toc div.box {  top: 215px; left: 250px;  opacity: .5;}
 
 .box a { color: #333; text-decoration:none;}
 
@@ -274,18 +274,18 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
 
 
 /* 3 x 3 arrangement */
-.go div.box:nth-child(1) { top: 50px; left: 50px; -webkit-transition-delay: 100ms; -o-transition-delay: 100ms; -moz-transition-delay: 100ms; transition-delay: 100ms;  }
-.go div.box:nth-child(2) { top: 50px; left: 250px; -webkit-transition-delay: 180ms; -o-transition-delay: 180ms; -moz-transition-delay: 180ms; transition-delay: 180ms;  }
-.go div.box:nth-child(3) { top: 50px; left: 450px; -webkit-transition-delay: 260ms; -o-transition-delay: 260ms; -moz-transition-delay: 260ms; transition-delay: 260ms;  }
-.go div.box:nth-child(4) { top: 240px; left: 50px; -webkit-transition-delay: 300ms; -o-transition-delay: 300ms; -moz-transition-delay: 300ms; transition-delay: 300ms;  }
+.go div.box:nth-child(1) { top: 25px; left: 50px; -webkit-transition-delay: 100ms; -o-transition-delay: 100ms; -moz-transition-delay: 100ms; transition-delay: 100ms;  }
+.go div.box:nth-child(2) { top: 25px; left: 250px; -webkit-transition-delay: 180ms; -o-transition-delay: 180ms; -moz-transition-delay: 180ms; transition-delay: 180ms;  }
+.go div.box:nth-child(3) { top: 25px; left: 450px; -webkit-transition-delay: 260ms; -o-transition-delay: 260ms; -moz-transition-delay: 260ms; transition-delay: 260ms;  }
+.go div.box:nth-child(4) { top: 215px; left: 50px; -webkit-transition-delay: 300ms; -o-transition-delay: 300ms; -moz-transition-delay: 300ms; transition-delay: 300ms;  }
 
-.go div.box:nth-child(6) { top: 240px; left: 450px; -webkit-transition-delay: 370ms; -o-transition-delay: 370ms; -moz-transition-delay: 370ms; transition-delay: 370ms;  }
-.go div.box:nth-child(7) { top: 440px; left: 50px; -webkit-transition-delay: 385ms; -o-transition-delay: 385ms; -moz-transition-delay: 385ms; transition-delay: 385ms;  }
-.go div.box:nth-child(8) { top: 440px; left: 250px; -webkit-transition-delay: 395ms; -o-transition-delay: 395ms; -moz-transition-delay: 395ms; transition-delay: 395ms;  }
-.go div.box:nth-child(9) { top: 440px; left: 450px; -webkit-transition-delay: 400ms; -o-transition-delay: 400ms; -moz-transition-delay: 400ms; transition-delay: 400ms;  }
+.go div.box:nth-child(6) { top: 215px; left: 450px; -webkit-transition-delay: 370ms; -o-transition-delay: 370ms; -moz-transition-delay: 370ms; transition-delay: 370ms;  }
+.go div.box:nth-child(7) { top: 415px; left: 50px; -webkit-transition-delay: 385ms; -o-transition-delay: 385ms; -moz-transition-delay: 385ms; transition-delay: 385ms;  }
+.go div.box:nth-child(8) { top: 415px; left: 250px; -webkit-transition-delay: 395ms; -o-transition-delay: 395ms; -moz-transition-delay: 395ms; transition-delay: 395ms;  }
+.go div.box:nth-child(9) { top: 415px; left: 450px; -webkit-transition-delay: 400ms; -o-transition-delay: 400ms; -moz-transition-delay: 400ms; transition-delay: 400ms;  }
 
 /* middle box should come in last! */
-.toc div.box:nth-child(5) { top: 240px; left: 250px; 
+.toc div.box:nth-child(5) { top: 215px; left: 250px; 
                         -webkit-transition-delay: 550ms; -o-transition-delay: 550ms; -moz-transition-delay: 550ms; transition-delay: 550ms;
                          -moz-transform: scale(.1);  
                            -o-transform: scale(.1);  
@@ -323,7 +323,7 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
     border: 0!important;
 }
 
-.controlbar {  top: 500px; height: 163px; border:0; border-radius: 15px 15px 0 0; width: 988px;  }
+.controlbar {  top: 471px; height: 163px; border:0; border-radius: 15px 15px 0 0; width: 988px;  }
 
 .show .controlbar, .show .itembar { display:block; position:absolute; border: 1px solid rgba(180,180,180,.5); 
     background-color: #222;  /* #777781 */ 
@@ -439,7 +439,7 @@ a.button, a.button:visited {
 /* the stage and iframe */
 #stage { diplay:none;}
 .show #stage {display:block;}
-#stage iframe { width: 100%; height: 640px; display:none;}
+#stage iframe { width: 100%; height: 580px; display:none;}
 
 
 
@@ -448,10 +448,10 @@ a.button, a.button:visited {
 .box span { margin-top: 5px; display:block; text-align:center;}
 
 .open .controlbar { 
-    -webkit-transform: translate(0px, 124px);
-    -moz-transform: translate(0px, 124px);
-    -o-transform: translate(0px, 124px);
-    transform: translate(0px, 124px);
+    -webkit-transform: translate(0px, 90px);
+    -moz-transform: translate(0px, 90px);
+    -o-transform: translate(0px, 90px);
+    transform: translate(0px, 90px);
    
     
     -moz-transition: -moz-transform 0.5s ease-in;    
@@ -465,18 +465,18 @@ a.button, a.button:visited {
 }
 
 .open .controlbar:hover { 
-    -webkit-transform: translate(0px, 20px);
-    -moz-transform: translate(0px,20px);
-    -o-transform: translate(0px, 20px);
-    transform: translate(0px, 20px);
+    -webkit-transform: translate(0px, 0px);
+    -moz-transform: translate(0px, 0px);
+    -o-transform: translate(0px,  0px);
+    transform: translate(0px, 0px);
    
     
          
 }
 
 
-footer {   width: 792px; margin: 0 auto; font-family: sans-serif;
-           position:absolute; top: 686px; left: 50%; margin-left: -396px;}
+footer {   width: 880px; margin: 0 auto; font-family: sans-serif;
+           position:absolute; top: 636px; left: 50%; margin-left: -440px;}
 
 .madeby { float: right; margin: 0;}
 .madeby img { vertical-align: text-bottom; }
