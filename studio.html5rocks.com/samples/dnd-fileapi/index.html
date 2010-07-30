@@ -58,9 +58,16 @@ html, body {
   float: left;
   text-align: center;
   -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+       -o-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
 }
 .thumbnail:hover {
   -webkit-transform: rotateZ(360deg) scale(1.5);
+  -moz-transform: rotateZ(360deg) scale(1.5);
+  -o-transform: rotateZ(360deg) scale(1.5);
+  transform: rotateZ(360deg) scale(1.5);
+  
 }
 .thumbnail .image {
   border: 1px solid #ccc;
@@ -102,6 +109,9 @@ html, body {
 }
 #drop_it_like_its_hot.rounded {
   -webkit-box-shadow: inset 0px 0px 50px #777;
+  -moz-box-shadow: inset 0px 0px 50px #777;
+  box-shadow: inset 0px 0px 50px #777;
+
 }
 </style>
 </head>
@@ -109,7 +119,7 @@ html, body {
   <div id="container">
     <div id="drop_it_like_its_hot" class="center linear">
       <h2>Drop image files here from your desktop</h2>
-      <span>( try a directory )</span>
+      <span>( try multiple files )</span>
     </div>
     <div id="totalFileSize"></div>
     <div id="thumbnails"></div>

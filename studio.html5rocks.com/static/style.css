@@ -352,7 +352,7 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
 
 .show  div.box {              
               /* new arrangement */
-              float:left; position:static;
+              float:left; position:relative; left: 0; top: 0;
               margin-left: -152px;
               
                -webkit-transform: scale(0.6) translate(0,-40px);
@@ -374,10 +374,11 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
 
 /* hover effects */
 .show.open div.box:hover {
-      -moz-transform: scale(1)  translate(0,-27px);  
-         -o-transform: scale(1)  translate(0,-27px);  
-    -webkit-transform: scale(1) translate(0,-27px); 
-            transform: scale(1) translate(0,-27px);
+      -moz-transform: scale(1.1)  translate(0,-32px);  
+         -o-transform: scale(1.1)  translate(0,-32px);  
+    -webkit-transform: scale(1.1) translate(0,-32px); 
+            transform: scale(1.1) translate(0,-32px);
+            z-index: 10;
 }
 
 
