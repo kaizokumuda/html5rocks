@@ -256,7 +256,7 @@ aside h1 { font-size: 30px;}
 div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1px solid #aaa; position: absolute; 
     
     /* location when we collapse to stack at bottom */
-    top: 495px; left: 1px;
+    top: 465px; left: 1px;
     
     -moz-transition: all 0.3s cubic-bezier(0.0, 0.35, .6, 1.5);   /* bounce timing for moz & opera. webkit doesnt support */
       -o-transition: all 0.3s cubic-bezier(0.0, 0.35, .6, 1.5);  
@@ -443,7 +443,7 @@ a.button, a.button:visited {
 
 
 
-.box img {  display:block; width: 100%; height: 85.7%; }
+.box img {  display:block; width: 100%; height: 85.7%; cursor: pointer;}
 
 .box span { margin-top: 5px; display:block; text-align:center;}
 
