@@ -9,7 +9,7 @@
         background: black;
         overflow-y: hidden;
       }
-      body> * {
+      body > * {
         margin: 0px;
         padding: 0px;
         
@@ -26,13 +26,13 @@
        -webkit-transition-property: opacity,margin-top;
        -webkit-transition-duration: 0.2s,0.2s;
        -webkit-transition-timing-function: linear,linear; 
-        z-index:1;
+        z-index: 1;
         border-top-left-radius: 12px;
         border-bottom-right-radius: 12px;
         
-        -webkit-user-select:none;
-        -moz-user-select:none;
-        user-select:none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
       }
       
     
@@ -101,53 +101,69 @@
       }
       
      
-      #player { margin-left: -195px;  position:absolute; left: 50%; top: 80px;}
+      #player { 
+        margin-left: -195px;  
+        position: absolute; 
+        left: 50%; 
+        top: 80px;}
       
       #video-wrap {
-        position:relative;
+        position: relative;
       }
  
       
       canvas.ambilight-left,
       canvas.ambilight-right {
-        position:absolute;
-        width:300px;
-        height:200%;
-        top:-50%;
+        position: absolute;
+        width: 300px;
+        height: 200%;
+        top: -50%;
         z-index: -1;
       }
 
       canvas.ambilight-left {
-        left:-270px;
-        top:-53%;
-        background-image:url(mask3-left.png);
+        left: -270px;
+        top: -53%;
+        background-image: url(mask3-left.png);
       }
 
       canvas.ambilight-right {
-        right:-270px;
-        top:-51%;
-        background-image:url(mask3-right.png);
+        right: -270px;
+        top: -51%;
+        background-image: url(mask3-right.png);
       }
-      #video-wrap , #player{ width: 390px; height: 240px;  }
+      #video-wrap , #player{ 
+        width: 390px; 
+        height: 240px;  
+      }
       
       #video-bg, video { 
-        width: 390px; height: 220px
+        width: 390px; 
+        height: 220px
       }
-      #video-bg { background: #222;}
+      #video-bg { 
+        background: #222;
+      }
       
-      video { ; /* background: #ccc; */ position:absolute; top:0; left:0;
+      video {  
+        position: absolute; 
+        top: 0; 
+        left: 0;
              -moz-transition: all 0.3s ease-out;  
                -o-transition: all 0.3s ease-out;  
           -webkit-transition: all 0.3s ease-out;
                   transition: all 0.3s ease-out;
         }
       
-      .view1 #clip2 ,
-      .view2 #clip1 { width: 70px; height: 41px; left: 313px; top: 170px; z-index: 10;
-          cursor:pointer;
-          border: 1px solid rgba(50,50,50,.6); 
+      .view1 #clip2 , .view2 #clip1 { 
+        width: 70px; 
+        height: 41px; 
+        left: 313px; 
+        top: 170px; 
+        z-index: 10;
+        cursor: pointer;
+        border: 1px solid rgba(50,50,50,.6); 
         }
-        
     </style>
   </head>
   <body>
@@ -221,7 +237,7 @@
     
     function ToggleMute() {
       
-      player = document.querySelector('.view1 #clip1 ,  .view2 #clip2');
+      player = document.querySelector('.view1 #clip1, .view2 #clip2');
       
       if (Math.round(player.volume * 100) == 5){ 
         muted = false;
@@ -240,7 +256,7 @@
     }
     
     
-    document.querySelector('#video-wrap').addEventListener('click',function(e){
+    document.querySelector('#video-wrap').addEventListener('click', function(e){
       // if clicked on minimized
       if (e.target == document.querySelector('.view1 #clip2 ,  .view2 #clip1')){ 
         toggle();
@@ -271,14 +287,14 @@
           clearInterval(tId);
           elem.volume = 1;
         }
-      },interval);
+      }, interval);
       
       ToggleMute();
     };
     
     function toggle(){
-      var minimized = document.querySelector('.view1 #clip2 ,  .view2 #clip1');
-      var full = document.querySelector('.view2 #clip2 ,  .view1 #clip1');
+      var minimized = document.querySelector('.view1 #clip2, .view2 #clip1');
+      var full = document.querySelector('.view2 #clip2, .view1 #clip1');
 
       var wrap = document.getElementById('video-wrap');
       wrap.className = wrap.className.replace('view1','save1')
@@ -297,8 +313,8 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="ambilight.js"></script> 
   <script> 
-      ambiLight.create(document.getElementById('clip2'))
-      ambiLight.create(document.getElementById('clip1'))
+      ambiLight.create(document.getElementById('clip2'));
+      ambiLight.create(document.getElementById('clip1'));
   </script>
   <!-- -->
   
