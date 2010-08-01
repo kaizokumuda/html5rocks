@@ -46,7 +46,7 @@ var tempJSON = [
         "boilerplateLoc": "samples/boilerplateHTML/html5/html_css_js.html",
         "files": ["samples/js/html5/web_database.js"],
         "editor": "js",
-        "sampleName": "Basic",
+        "sampleName": "Async Transactions",
         "tags": "",
         "spec": "http://dev.w3.org/html5/webdatabase/",
         "tutorial": "http://tutorials.html5rocks.com/tutorials/webdatabase/todo/"
@@ -101,6 +101,19 @@ var tempJSON = [
         "sampleName": "postMessage",
         "tags": "",
         "spec": "http://dev.w3.org/html5/spec/comms.html#crossDocumentMessages"
+      }
+    ]
+  },
+  {
+    "category":"JavaScript APIs-File API",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/html_css_js.html",
+        "files": ["samples/js/html5/file_api.js"],
+        "editor": "js",
+        "sampleName": "Drag from Desktop",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/FileAPI/"
       }
     ]
   },
