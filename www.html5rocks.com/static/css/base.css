@@ -312,6 +312,8 @@ footer .note {
 }
 .madeby img {
   margin-bottom: -7px;
+  width: 50px;
+  height: 20px;
 }
 .cc {
   font-size: 80%;
