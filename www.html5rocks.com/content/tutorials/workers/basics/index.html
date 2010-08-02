@@ -90,7 +90,8 @@ worker.postMessage(); // Start the worker.
   <h3 id="toc-gettingstarted-workercomm">Communicating with a Worker via Message Passing</h3>
 
   <p>Communication between a work and its parent page is done using an event model and the <code>postMessage()</code>
-  method. Depending on your browser/version, <code>postMessage()</code> can accept either a string or JSON object as its single argument.</p>
+  method. Depending on your browser/version, <code>postMessage()</code> can accept either a string or JSON object as its single argument.
+  The latest versions of the modern browsers support passing a JSON object.</p>
 
   <p>Below is a example of using a string to pass 'Hello World' to a worker in doWork.js. The worker simply returns
   the message that is passed to it.</p>
