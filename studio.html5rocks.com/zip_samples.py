@@ -18,7 +18,6 @@
 __author__ = 'ericbidelman@chromium.org (Eric Bidelman)'
 
 import os
-import datetime
 import zipfile
 
 SAMPLES_DIR = 'samples'
