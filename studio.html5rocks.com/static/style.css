@@ -264,7 +264,7 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
          transition: all 0.3s cubic-bezier(0.0, 0.35, .5, 1);
  }
 
-.toc div.box {  top: 215px; left: 250px;  opacity: .5;}
+.toc div.box {  top: 215px; left: 250px;  opacity: .7;}
 
 .box a { color: #333; text-decoration:none;}
 
@@ -286,7 +286,7 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
 
 /* middle box should come in last! */
 .toc div.box:nth-child(5) { top: 215px; left: 250px;
-                        -webkit-transition-delay: 550ms; -o-transition-delay: 550ms; -moz-transition-delay: 550ms; transition-delay: 550ms;
+                        -webkit-transition-delay: 450ms; -o-transition-delay: 450ms; -moz-transition-delay: 450ms; transition-delay: 450ms;
                          -moz-transform: scale(.1);
                            -o-transform: scale(.1); 
                       -webkit-transform: scale(.1); 
