@@ -79,13 +79,14 @@ var transitionEnd = function (e) {
 
 
 $('#view_source').click(function () {
-  window.open('view-source:' + $('iframe').attr('src'));
+  window.open('view-source:' + $('iframe')[0].contentDocument.location.href);
 });
 
 
-// download.. for now.. just open in new tab
+// download.. 
 $('#download').click(function () {
-  window.open($('iframe').attr('src'));
+  var path = $('iframe')[0].contentDocument.location.href.split('/');
+  window.open( path.slice(0,-1).join('/') + '/' + path.slice(-2,-1)[0] + '.zip' );
 });
 
 $("#info").hoverIntent({
