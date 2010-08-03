@@ -94,7 +94,9 @@ $("#info").hoverIntent({
     var h3 = $('<h3>').text($(lastDemo).find('a').text());
     var info = $(lastDemo).find('p,ul').clone();
 
-    $('.tooltip').find('h3,p,ul').remove().end().append(h3).append(info).appendTo(this).addClass('popped');
+    $('.tooltip').find('h3,p,ul').remove().end()
+      .append(h3).append(info)
+      .appendTo(this).addClass('popped');
   },
   timeout: 500,
   out: function (e) {

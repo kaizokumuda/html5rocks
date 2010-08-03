@@ -116,7 +116,7 @@
             });
             GEvent.addListener(directions, "error", function() { 
               $("#directions").hide();
-              console.log(currentZoo);
+              window.console && console.log(currentZoo);
               map.addOverlay(new GMarker(currentZoo.place, {icon: getZooIcon()}));
             });
             switchZoo(closestZoo);
@@ -133,8 +133,8 @@
         currentZoo = zoo;
 
         map.clearOverlays();
-        console.log("loading zoo", zoo);
-        console.log("from: Your Location@"+here.lat()+","+here.lng()+" to: "+zoo.name+"@"+zoo.place.lat()+","+zoo.place.lng());
+        window.console && console.log("loading zoo", zoo);
+        window.console && console.log("from: Your Location@"+here.lat()+","+here.lng()+" to: "+zoo.name+"@"+zoo.place.lat()+","+zoo.place.lng());
         map.setCenter(zoo.place);
         directions.load("from: Your Location@"+here.lat()+","+here.lng()+" to: "+zoo.name+"@"+zoo.place.lat()+","+zoo.place.lng());
       }
