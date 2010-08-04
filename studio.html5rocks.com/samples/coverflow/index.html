@@ -1,16 +1,15 @@
-<!DOCTYPE html> 
-<html> 
- <head> 
-  <meta charset="UTF-8"/> 
-  <title>CSS3 Coverflow Experiment</title> 
-  <script type="text/javascript" src="../../static/js/jquery-1.4.2.min.js"></script> 
-  
-  <script type="text/javascript"> 
-  
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8"/>
+  <title>CSS3 Coverflow Experiment</title>
+  <script type="text/javascript" src="../../static/js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript">
+  <!--
     var coverflow = function() {
       var radius = 20;
       var side = 250;
-      var long_side = 500;
+      var long_side = 700;
       var offset_x = 0;
       var offset_y = 0;
       var pop_x = 0;
@@ -18,6 +17,10 @@
       var offset = 6;
       var display_offset = 6;
       var queue = [];
+      var flipping = false;
+      /*
+       * creates canvas elements to shape images of regular square 
+       */
       function createCanvasElement(img) {
         var canvas = document.createElement('canvas');
         canvas.setAttribute('width',  side);
@@ -38,7 +41,7 @@
         }
         sw = _side;
         sh = _side;
- 
+
         var cx = canvas.getContext('2d');
         cx.beginPath();
         cx.moveTo(radius, 0);
@@ -55,9 +58,16 @@
         $(canvas).click(coverflow.popup(img));
         return canvas;
       }
+      /*
+       * pop flow object from queue and excute flip motion.
+       */
       function flip() {
         var flow = queue.shift();
-        if (!flow) return;
+        if (!flow) {
+          flipping = false;
+          return;
+        }
+        flipping = true;
         var _offset = display_offset + flow.vector;
         var speed = 0.05;
         if (queue.length < 4) speed = 0.1;
@@ -75,9 +85,25 @@
           }
         })
         display_offset = _offset;
-        if (queue.length > 0) setTimeout(flip, speed * 1000 + 30);
+        setTimeout(flip, speed * 1000 + 30);
+      }
+      /*
+       * create flow object and push into queue
+       */
+      function slide(diff) {
+        return function() {
+          var _offset = offset + diff;
+          if (_offset > 6 || _offset < (($('#coverflow li').length - 7) * -1)) return false;
+          coverflow.move(diff * -1);
+          offset = _offset;
+          $('#range').val(_offset * -1);
+          if (!flipping) flip();
+        }
       }
       return {
+        /*
+         * initialization
+         */
         init: function() {
           $('#dummy img').each(function(index) {
             var canvas = createCanvasElement(this);
@@ -90,44 +116,24 @@
             }
             $('#coverflow').append(li.append(canvas));
           });
-          $('#left').click(function() {
-            var trigger = queue.length == 0 ? true : false;
-            var _offset = offset + 1;
-            if (_offset > 6 || _offset < (($('#coverflow li').length - 7) * -1)) return false;
-            coverflow.move(-1);
-            offset = _offset;
-            $('#range').val(_offset * -1);
-            if (trigger) flip();
-          });
-          $('#right').click(function() {
-            var trigger = queue.length == 0 ? true : false;
-            var _offset = offset - 1;
-            if (_offset > 6 || _offset < (($('#coverflow li').length - 7) * -1)) return false;
-            coverflow.move(+1);
-            offset = _offset;
-            $('#range').val(_offset * -1);
-            if (trigger) flip();
-          });
+          $('#left').click(slide(1));
+          $('#right').click(slide(-1));
           $('#range').change(function() {
             var range = $(this).val();
-            var trigger = queue.length == 0 ? true : false;
-            coverflow.move(Number(range) + offset);
+            coverflow.move(parseInt(range) + offset);
             offset = range * -1;
-            if (trigger) flip();
-          })
-            .attr('max', $('#dummy img').length - display_offset - 1 );
-            
-          $('document').keydown(function(e) {
-            if (e.keyCode == 27) coverflow.popdown();
+            if (!flipping) flip();
           });
-       
+          $(window).keydown(function(e) {
+            if (e.keyCode === 27) coverflow.popdown();
+            if (e.keyCode === 39) slide(-1)();
+            if (e.keyCode === 37) slide(1)();
+          });
+          $('#zoom_container').css('left', $('#container').css('margin-left'));
         },
-        trackPosition: function(e) {
-          $('#stat').text('x:'+e.clientX+' y:'+e.clientY);
-        },
-        popdown: function() {
-          $('#zoom').remove();
-        },
+        /*
+         * show popup image
+         */
         popup: function(img) {
           return function() {
             var _height = img.naturalHeight;
@@ -142,18 +148,34 @@
               sh = long_side / _width * _height;
               sw = long_side;
             }
- 
-            coverflow.popdown();
+
             var _img = $('<img/>');
             _img.attr('src', img.src);
             _img.attr('width', sw);
             _img.attr('height', sh);
             _img.attr('id', 'zoom');
-            _img.css('left', pop_x+'px');
-            _img.css('top',  pop_y+'px');
-            $('body').append(_img);
+            _img.css('margin', (((long_side/2)-sh)/2)+'px '+((985-sw)/2)+'px');
+            _img.css('-webkit-opacity', 0);
+            _img.click(function() {
+              coverflow.popdown();
+            });
+            $('#zoom_container').show().append(_img);
+            setTimeout(function() {_img.css('-webkit-opacity', 1);}, 10);
           }
         },
+        /*
+         * hide popup image
+         */
+        popdown: function() {
+          $('#zoom').css('-webkit-opacity', 0);
+          setTimeout(function() {
+            $('#zoom').remove();
+            $('#zoom_container').hide();
+          }, 500);
+        },
+        /*
+         * creates multiple flow objects by range movement and push into queue
+         */
         move: function(diff) {
           coverflow.popdown();
           var abs = diff < 0 ? diff * -1 : diff;
@@ -167,11 +189,9 @@
         }
       }
     }();
-    
-    $(window).load(coverflow.init);
-
-  </script> 
-  <style> 
+  -->
+  </script>
+  <style>
     body {
       background-color:#000;
       background-repeat:no-repeat;
@@ -181,8 +201,20 @@
     input#range {}
     textarea#text {width:500px; height:300px;}
     img#zoom {
-      position:absolute;
       border:10px solid #eee;
+      cursor:pointer;
+      -webkit-opacity:1.0;
+      -webkit-transition: all 0.2s ease-in-out;
+      -webkit-box-shadow: #333 0px 10px 10px;
+    }
+    div#zoom_container {
+      position:absolute;
+      top:200px;
+      height: 250px;
+      width:1000px;
+      margin:0 auto;
+      z-index:1000;
+      display:none;
     }
     div#dummy img {display:none;}
     div#container {
@@ -200,13 +232,20 @@
       text-align:center;
       background-color:#aaa;
       border:1px solid #aaa;
+      z-index:0;
       -webkit-border-radius: 20px;
       -webkit-transform: scale(1.4);
     }
+    header {
+      font-family: Sans-Serif;
+      font-size:12px;
+      text-align:right;
+      color: #fff;
+    }
+    input[type="button"]{ font-size: 24px;}
     input#range {
       width:300px;
     }
-    input[type="button"]{ font-size: 24px;}
     ul {
       width:100%;
       list-style:none;
@@ -295,43 +334,29 @@
       -webkit-opacity: 0.0;
       left:77.5%;
     }
-  </style> 
- </head> 
- <body> 
-  <div id="dummy"> 
-   <img src="./iphone_wallpaper_ardcor_0006_Layer52.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0002_Layer56.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0023_Layer35.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0016_Layer42.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0012_Layer46.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0009_Layer49.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0005_Layer53.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0001_Layer57.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0022_Layer36.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0019_Layer39.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0015_Layer43.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0011_Layer47.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0008_Layer50.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0004_Layer54.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0025_Layer33.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0000_Layer58.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0021_Layer37.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0018_Layer40.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0014_Layer44.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0010_Layer48.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0007_Layer51.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0003_Layer55.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0020_Layer38.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0017_Layer41.jpg"/> 
-   <img src="./iphone_wallpaper_ardcor_0013_Layer45.jpg"/> 
-  </div> 
-  <div id="container"> 
-   <ul id="coverflow"></ul> 
-  </div> 
-  <div id="buttons"> 
-   <input id="left" type="button" value="&larr;" /> 
-   <input id="range" type="range" min="-6" max="18" value="-6" /> 
-   <input id="right" type="button" value="&rarr;" /> 
-  </div> 
- </body> 
+  </style>
+ </head>
+ <body onload="coverflow.init()">
+  <header>Best viewed on Safari. Photo by <a href="http://www.flickr.com/photos/zb" target="_blank">Gregor Hochmuth</a></header>
+  <div id="dummy">
+   <img src="./121404791_e6a2afda06_b.jpg"/>
+   <img src="./3672537740_7a1a3e63fd_b.jpg"/>
+   <img src="./4316514826_81562d1207_b.jpg"/>
+   <img src="./4453502862_e9999a219e_b.jpg"/>
+   <img src="./4729190553_7208f25979_b.jpg"/>
+   <img src="./4729192051_4a3965b0cb_b.jpg"/>
+   <img src="./4808037800_7f722419c0_b.jpg"/>
+   <img src="./4811167035_16bf8d9393_b.jpg"/>
+   <img src="./4811172071_d5e3fac7a2_b.jpg"/>
+  </div>
+  <div id="container">
+   <ul id="coverflow"></ul>
+  </div>
+  <div id="buttons">
+   <!--input id="left" type="button" value="&larr;" /-->
+   <input id="range" type="range" min="-6" max="2" value="-6" />
+   <!--input id="right" type="button" value="&rarr;" /-->
+  </div>
+  <div id="zoom_container"></div>
+ </body>
 </html>
