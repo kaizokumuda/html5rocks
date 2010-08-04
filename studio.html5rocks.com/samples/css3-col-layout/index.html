@@ -33,37 +33,43 @@
 }
 body {
   font: 12px "Times New Roman", Times, serif;
-  padding: 30px;
-}
-body.web20  {
-  font: 12px 'OFL Sorts Mill Goudy TT', Molengo, Cambria, "Hoefler Text", "Times New Roman", Times, serif;
+  padding: 0 30px;
   line-height: 1.5;
 }
-.web20 header.title h1 {
-  text-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
-  font: 40pt 'English Towne';
+body.web20  {
+  font: 12px 'OFL Sorts Mill Goudy TT', Molengo, "Times New Roman", Times, serif;
+}
+header.title h1 {
   word-spacing: -12px;
   margin-bottom: 10px;
   padding: 10px 0;
   border-bottom: 1px solid #999;
+}
+.web20 header.title h1 {
+  text-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
+  font: 40pt 'English Towne';
 }
 nav li {
   list-style: none;
   float: left;
   margin-right: 15px;
 }
-.web20 nav li a {
+nav li a {
   text-decoration: none;
   font-size: 125%;
   padding: 5px 8px;
   border: 1px solid transparent;
-  border-radius: 8px;
   color: #004276;
 }
-.web20 nav li a:hover {
+.web20 nav li a {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+nav li a:hover {
   border: 1px solid #004276;
 }
-.web20 nav li a:active {
+nav li a:active {
   background-color: #ddd;
 }
 footer {
@@ -104,22 +110,30 @@ article footer {
   padding: 0;
 }
 
-.web20 article footer.posted:before {
+article footer.posted:before {
   content: 'Posted: ';
 }
 .web20 .text1 {
-  -webkit-column-width: 250px;
+/*  -webkit-column-width: 250px;
   -moz-column-width: 250px;
   column-width: 250px;
+*/
   -webkit-column-gap: 20px;
   -moz-column-gap: 20px;
   column-gap: 20px;
 }
-.web20 .text1 header {
+.text1 header {
   margin-bottom: 20px;
 }
 .web20 .text2 p:first-of-type::first-letter {
   font-size: 14pt;
+}
+.text2 { 
+  padding: 1em;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #eee;
 }
 .web20 .text2 {
   -webkit-column-count: 2;
@@ -131,11 +145,9 @@ article footer {
   -webkit-column-rule: 1px solid #999;
   -moz-column-rule: 1px solid #999;
   column-rule: 1px solid #999;
-  padding: 1em;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #eee;
+
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
   border-radius: 10px;
 }
 .web20 .text3 {
@@ -157,15 +169,32 @@ article footer {
 .web20 input[type='range'] {
   vertical-align: middle;
 }
-.web20 #configCols {
+#configCols {
   text-align: center;
+  clear: both;
+  padding-top: 10px;
+}
+.web10 article > div {
+  -moz-column-count: 0 !important;
+  -webkit-column-count: 0 !important;
+  column-count: 0 !important;
+  -webkit-column-gap: 0 !important;
+  -moz-column-gap: 0 !important;
+  column-gap: 0 !important;
+  -webkit-column-rule: 0 !important;
+  -moz-column-rule: 0 !important;
+  column-rule: 0 !important;
 }
 </style>
 </head>
 <body class="web20">
   <div id="wrapper">
-    HTML5?: <input type="checkbox" id="web20" checked="checked">
+   
+      
+    
     <header class="title"><h1>The Daily Times</h1></header>
+    
+    
     <nav>
       <ul>
         <li><a href="#">Home</a></li>
@@ -174,6 +203,38 @@ article footer {
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
+    
+    
+    
+    
+   <div id="configCols">
+      <label>
+        column-count:
+        <input type="range" min="1" max="5" step="1" value="2" name="column-count" onchange="changeProp(this)"/>
+      </label>
+
+      <label>
+        column-gap:
+        <input type="range" min="0" max="100" step="10" value="20" name="column-gap" onchange="changeProp(this)"/>
+      </label>
+
+      <label>
+        column-rule:
+        <input type="range" min="0" max="10" step="1" value="1" name="column-rule-width" onchange="changeProp(this)"/>
+      </label>
+
+      <label>
+        justify text: 
+        <input type="checkbox" checked name="text-align" onchange="changeProp(this)"/>
+      </label>
+
+      <label>
+        enable CSS3 styles: 
+        <input type="checkbox" id="web20" checked="checked">
+      </label>
+    </div>
+    
+      
     <section>
       <article>
         <div class="text1">
@@ -191,12 +252,12 @@ article footer {
             ridiculus mus. Sed nec porta lectus. Cum sociis natoque penatibus et magnis dis parturient 
             montes, nascetur ridiculus mus. Nullam eu nunc ligula, vel pretium erat. Nunc eu est tellus, 
             vitae sollicitudin tellus. In hac habitasse platea dictumst.</p>
-          <p>Aliquam erat volutpat. Donec libero arcu,tempor non consectetur nec, placerat ut sapien. 
+          <!-- <p>Aliquam erat volutpat. Donec libero arcu,tempor non consectetur nec, placerat ut sapien. 
             Ut adipiscing scelerisque interdum. Aliquam dolor metus, consequat eu facilisis in, 
             gravida ut eros. Fusce convallis <a href="http://www.example.com">external link</a> semper aliquam. Class aptent taciti sociosqu ad litora 
             torquent per conubia nostra, per inceptos himenaeos. Donec ac leo eget lorem fermentum sodales 
             id nec neque. Nam euismod justo ac augue sodales ac consectetur nisl volutpat. Nulla vel erat 
-            felis, at molestie risus. Nunc ut nibh magna.</p>
+            felis, at molestie risus. Nunc ut nibh magna.</p> -->
         </div>
         <div class="text2" id="customCols">
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus auctor, nisi at ornare fermentum, libero 
@@ -213,18 +274,7 @@ article footer {
             id nec neque. Nam euismod justo ac augue sodales ac consectetur nisl volutpat. Nulla vel erat 
             felis, at molestie risus. Nunc ut nibh magna.</p>
         </div>
-        <div id="configCols">
-          column-count:
-          <input type="range" min="1" max="5" step="1" value="2" onchange="document.getElementById('customCols').style['-webkit-column-count']=this.value;"/>
-          
-          column-gap:
-          <input type="range" min="0" max="100" step="10" value="20" onchange="document.getElementById('customCols').style['-webkit-column-gap']=this.value + 'px';"/>
-          
-          column-rule:
-          <input type="range" min="0" max="10" step="1" value="1" onchange="document.getElementById('customCols').style['-webkit-column-rule-width']=this.value + 'px';"/>
-          
-          justify: <input type="checkbox" checked onchange="document.getElementById('customCols').style['text-align']=this.checked ? 'justify' : 'inherit';"/>
-        </div>
+       
        <div class="text3">
            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus auctor, nisi at ornare fermentum, libero 
             mi feugiat arcu, <a href="http://www.example.com">external link</a> rutrum congue eros diam a felis. Fusce ac neque sapien. Nulla facilisi. Quisque 
@@ -249,17 +299,45 @@ article footer {
       <p>Copyright 2010 <a href="http://example.com">The Daily Times Company</a></p>
     </footer>
   </div>
+  
 <script>
-document.getElementById('web20').addEventListener('click', function() {
-  var el = document.body;
-  if (this.checked) {
-    el.className = 'web20';
-    document.getElementById('configCols').style.display = 'block';
-  } else {
-    el.className = '';
-    document.getElementById('configCols').style.display = 'none';
+
+  function changeProp(input){
+    
+    var prop = input.name;
+    var value;
+    
+    if (input.name == 'text-align'){
+      value = input.checked ? 'justify' : 'inherit';
+    } else {
+      value = input.value + (input.name == 'column-count' ? '' : 'px');
+    }
+    
+    [].forEach.call( document.querySelectorAll('article > div'), function(elem, k) {
+      
+      // an extra column for the middle guy.
+      if (k == 1 && prop == 'column-count'){
+        value++;
+      }
+      
+      elem.style['-webkit-'+prop] = value;
+      elem.style['-moz-'+prop] = value;
+      elem.style[prop] = value;
+      console.log('-webkit-'+prop,value)
+    });
   }
-});
+  
+  
+  document.getElementById('web20').addEventListener('click', function() {
+    var el = document.body;
+    if (this.checked) {
+      el.className = 'web20';
+    
+    } else {
+      el.className = 'web10';
+    }
+  });
+  
 </script>
 </body>
 </html>
