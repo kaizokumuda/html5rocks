@@ -13,7 +13,7 @@
 }
 </style>
 {% endblock %}
-{% block date %}July 28, 2010{% endblock %}
+{% block date %}August 3rd, 2010{% endblock %}
 
 {% block browsersupport %}
 <span class="opera supported"></span>
@@ -122,7 +122,7 @@
     Another issue with the mp4 format is that the type attribute needs to be more specific than other formats depending on the profile used to encode the video. Although the most common is "avc1.42E01E, mp4a.40.2", you should double check this <a href="http://wiki.whatwg.org/wiki/Video_type_parameters#MPEG-4">profile list</a> to be sure.
   </p>
   <p>
-    Here you can quickly see which ones of the three formats are supported by your browser:</p>
+    Here you can quickly see which ones of the three formats are supported by your browser:
   </p>
   <style>
     video, canvas { width: 200px; height: 112px; border: 1px solid black; }
@@ -183,9 +183,9 @@
     .format span+span+span {
       margin: 0 -15px;
       display: inline-block;
-      -moz-transform: rotate(270deg);  
-      -o-transform: rotate(270deg);  
-      -webkit-transform: rotate(270deg);  
+      -moz-transform: rotate(270deg);
+      -o-transform: rotate(270deg);
+      -webkit-transform: rotate(270deg);
       color: red;
       text-align: right;
     }
@@ -193,7 +193,7 @@
   <!-- <div class="format"><span class="stream">H.264</span><span class="stream">AAC</span><span>.mp4</span></div>
   <div class="format"><span class="stream">Theora</span><span class="stream">Vorbis</span><span>.ogg/.ogv</span></div>
   <div class="format"><span class="stream">VP8</span><span class="stream">Vorbis</span><span>.webm</span></div> -->
-  
+
   <h2 id="toc-fun">5. The Fun Part</h2>
   <p>
     As we said in the introduction the main advantage of the video tag being one more of the HTML family is the integration with the other layers of web development stack. In the following examples we'll give you an overview of what's possible to do with it.
@@ -203,10 +203,10 @@
     All the common HTML attributes you already know can now be used in the video player. For instance, in the following snippet we are using the <em>tabindex</em> to make the player keyboard accessible. There are new attributes that can be used in the video tag which are also common to the audio tag such as <em>loop</em> and <em>autoplay</em>, which are self explanatory. The attribute <em>poster</em> indicates what image will be shown while the video is initially loading and finally, <em>controls</em> is used to indicate that instead of building our custom controls we want the browser to render ones automatically for us. There's also a <em>preload</em> attribute we can use in case we want the content to be downloaded in the background as soon as the page loads even if the video hasn't started playing.
   </p>
   <pre class="prettyprint">
-    &lt;video <em>poster="star.png" autoplay loop controls tabindex="0"</em>>
-      &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
-      &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' />
-    &lt;/video>
+    &lt;video <em>poster="star.png" autoplay loop controls tabindex="0"</em>&gt;
+      &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' /&gt;
+      &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' /&gt;
+    &lt;/video&gt;
   </pre>  
   <p>
     The full level of integration of the video tag as a native browser element deprecates some issues you might have had in the past with third party embedded players such as drop down menus and iframes overlaying on the player or weird layout behavior when the <em>other HTML elements</em> surrounding the video were dynamically resized.
@@ -768,64 +768,4 @@
   <p>
     It's almost inevitable that comparisons arise between the video element and other technologies which have been around much longer and provide capabilities like fullscreen view, access to microphone and camera, or support for streaming. All these capabilities are currently being addressed both in the specification and browser support. If the video capabilities evolve as fast as they have done so far it won't be rare that, in less than a year from now, we have all these features ready for production and supported across the modern browsers.
   </p>
-  
-
-    
-    </section> 
-  </article> 
-  <p class="cc"> 
-    Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this
-    page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, <br> 
-    and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
-  </p> 
-  <footer> 
-  <p class="madeby">Made by Google | <img src="/static/images/google_logo_small.png"></p> 
-  <a href="/">Home</a> - <a href="/tos.html">Terms</a> -
-  <a href="/privacy.html">Privacy</a> -
-  <a href="https://spreadsheets0.google.com/a/html5rocks.com/viewform?hl=en&formkey=dHB0ekdHa0NyTjhjQWFnUXAtM1VuY0E6MQ#gid=0" target="_blank">Feedback</a> -
-  <a href="http://code.google.com/p/html5rocks/issues/entry">Report Bug</a> - 
-  <a href="http://twitter.com/ChromiumDev">Follow us on Twitter</a> 
-  <span class="note">This site contains information on APIs that are not part of the current W3C HTML5 specification.</span> 
-</footer> 
-  <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script> 
- 
-    </div> 
-  </div> 
-  <script> 
-    var lis = document.querySelectorAll('header nav li');
-    var i = lis.length;
-    while (i--) {
-      var a = lis[i].querySelector('a');
-      var section = a.getAttribute("data-section");
-      if (new RegExp(section).test(document.location.href)) {
-        a.className = 'current';
-      }
-    }
-  </script> 
-  <script> 
-    prettyPrint();
- 
-    if (isCompatible() === false) {
-      document.getElementById('notcompatible').className = "";
-    } else if (isCompatible() === true) {
-      document.getElementById('compatible').className = "";
-    }
- 
-    window.addEventListener && document.querySelector('#title').addEventListener('click', function() {
-      window.location = '/';
-    }, false);
- 
- 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-15028909-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-     var ga = document.createElement('script');
-     ga.type = 'text/javascript';
-     ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-     var s = document.getElementsByTagName('script')[0];
-     s.parentNode.insertBefore(ga, s);
-    })();
-  </script> 
 {% endblock %}
