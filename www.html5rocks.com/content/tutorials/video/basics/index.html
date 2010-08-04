@@ -220,9 +220,8 @@
   
   
   <h3 id="toc-fun-js">5.2. Video + JS</h3>
-  canPlayType videoWidth muted volume
   <p>
-    The video tag comes with an API which allows to control things from JS.
+    The video tag comes with a set of attributes and methods which let you have a fine control of your video from your JS code. You can see them in real time in the <a href="http://www.w3.org/2010/05/video/mediaevents.html">following sample</a>.
   </p>
   <p>
     As any other HTML element you can attach common events to the video tag such as drag events, mouse events, focus events, etc. But the video element comes with a bunch of new events to detect (and control) when the video is playing, paused or finished. Since loading a video resource can have many caveats there are many events to have a fine control of the loading process both at network level (loadstart, progress, suspend, abort, error, emptied, stalled) and at buffering level (loadedmetadata, loadeddata, waiting, playing, canplay, canplaythrough).
