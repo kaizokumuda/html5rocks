@@ -32,6 +32,7 @@ $('.show.open div.box').live('click', function () {
     sessionStorage[key] = true;
   }
   tip.over();
+  setTimeout(tip.out,10*1000);
 });
 
 

@@ -100,7 +100,7 @@ canvas {
 }
 
 #back {
-  background-color: mediumvioletred;
+  /* background-color: mediumvioletred; */
 }
 </style> 
 
@@ -136,10 +136,12 @@ canvas {
   <div class='face' id='bottom'></div> 
   
  
-  <video controls loop class='face' id='back'>
-    <source src=video.webm type=video/vp8> 
-    <source src=video.mp4 type=video/mp4> 
-    <source src=video.ogv type=video/ogg>  
+  <video controls="true" loop="true" class='face' id='back'>
+    
+    <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' /> 
+    <source src="Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+    <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' /> 
+    
   </video>
   
     
@@ -198,6 +200,7 @@ function makeCubeGo() {
     faceStyle.zIndex = ~~(matrix.m43 * -10 + 4000);
     
     // change colors of sides based on if outside or inside
+    // disabled.
     if (false && !isBackFace) {
       faceStyle.backgroundColor = matrix.m33 < 0 ? 'mediumorchid' : 'fuchsia';
     }
