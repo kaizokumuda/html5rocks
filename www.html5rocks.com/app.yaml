@@ -17,9 +17,24 @@ handlers:
   mime_type: text/cache-manifest
   upload: content/tutorials/(.*\.manifest)
 
-- url: /tutorials/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogg|ogm|fla))
+- url: /tutorials/(.*\.mp4)
   static_files: content/tutorials/\1
-  upload: content/tutorials/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogg|ogm|fla))
+  mime_type: video/mp4
+  upload: content/tutorials/(.*\.mp4)
+
+- url: /tutorials/(.*\.webm)
+  static_files: content/tutorials/\1
+  mime_type: video/webm
+  upload: content/tutorials/(.*\.webm)
+
+- url: /tutorials/(.*\.ogv)
+  static_files: content/tutorials/\1
+  mime_type: video/ogg
+  upload: content/tutorials/(.*\.ogv)
+
+- url: /tutorials/(.*\.(gif|swf|mp3|mp4|css|js|png|jpeg|jpg|svg|ogg|ogm|ogv|fla|webm))
+  static_files: content/tutorials/\1
+  upload: content/tutorials/(.*\.(gif|swf|mp3|mp4|css|js|png|jpeg|jpg|svg|ogg|ogm|ogv|fla|webm))
 
 - url: /static
   static_dir: static
