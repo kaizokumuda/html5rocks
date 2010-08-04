@@ -1,0 +1,831 @@
+{% extends "../../sample.html" %}
+
+{% block headauthor %}Ernest Delgado <ernestd@chromium.org>{% endblock %}
+{% block pageauthor %}Ernest Delgado{% endblock %}
+{% block headtitle %}HTML5 Video{% endblock %}
+{% block pagetitle %}HTML5 Video{% endblock %}
+{% block pagebreadcrumb %}HTML5 Video{% endblock %}
+{% block head %}
+<style>
+.example {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+</style>
+{% endblock %}
+{% block date %}July 28, 2010{% endblock %}
+
+{% block browsersupport %}
+<span class="opera supported"></span>
+<span class="ie"></span>
+<span class="safari supported"></span>
+<span class="ff supported"></span>
+<span class="chrome supported"></span>
+{% endblock %}
+
+{% block iscompatible %}
+  return Modernizr.webworkers;
+{% endblock %}
+
+{% block content %}
+  <h2 id="toc-intro">Introduction</h2> 
+  <p>
+    The video tag is probably the HTML5 feature that has been discussed the most in blogs, forums and news. Often presented as a replacement for flash the video tag goes beyond that. At the same time that it's recently joined the family of the ubiquitous HTML tags its capabilities and support across browsers have increased at an amazing speed. As you will see in this tutorial its main advantage is the natural integration with the other layers of the web development stack such as CSS and Javascript as well as the other HTML tags.
+  </p>
+  <p>
+    In this tutorial you will get the code and necessary understanding to start using the video tag right away, as well as to see some of the integration examples I mentioned before.
+  </p>
+  <h2 id="toc-code">1. The code</h2>
+  <p>
+    To make the HTML video work in your site the following lines should be sufficient.
+  </p>
+<pre class="prettyprint">
+  &lt;video>
+    &lt;source src="movie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
+  &lt;/video></pre>
+  <p>
+    This snippet uses the <em>source tag</em> which let's you have multiple formats as fallback in case the user's browser doesn't support one of them. More about this in the next section.
+  </p>
+  <p>
+    You can also use one single video format which makes the syntax very similar to the image tag. This syntax will be the most used one in the near future when all browsers support one common video format.
+  </p>
+<pre class="prettyprint">
+  &lt;video src="movie.webm">&lt;/video></pre>
+  <p>
+    For now, we'll focus on the former case which is currently more common. <em>The most important thing to remember</em> is to make sure the server is serving the correct MIME type in the Content-Type HTTP header. Otherwise, we'll have to setup our server to do it right or else the videos might not work even if they were working on a local copy of your site. In an Apache httpd.conf it's enough by adding these lines:
+  </p>
+  <pre class="prettyprint">
+    AddType video/ogg .ogv
+    AddType video/mp4 .mp4
+    AddType video/webm .webm
+  </pre>
+  <p>
+    If your app is being served in a Google App Engine app then you would need to add these lines to the app.yaml (one for each format):
+  </p>
+  <pre class="prettyprint">
+    - url: /(.*\.ogv)
+      static_files: videos_folder/\1
+      mime_type: video/ogg
+      upload: videos_folder/(.*\.ogv)
+  </pre>
+  <p>
+    In order to improve the client side performance it's important to not forget to specify the <em>type</em> attributes the <em>source</em> tags when dealing with multiple formats. This way, the browser can decide which format can download and play. In other words, it won't download the ones it can't play in order to increase the performance of the site.
+  </p>
+  
+  <h2 id="toc-formats">2. Video Formats</h2>
+  <p>
+    The speed of evolution of the video tag is really encouraging. Just a year ago the only browser that supported the video tag in its stable version was Safari. Right now all modern browsers already support the video tag and IE has included its support in their dev version, IE9. As for the codecs, Firefox, Chrome and Opera have agreed to include the support for .webm as the common video format. Internet Explorer will support it too <em>if</em> the codec is installed on the computer (we hope they don't make this a requirement in the future).
+  </p>
+  <p>
+    Are we missing any browser vendor? Yes. Ironically, Safari which was the first browser to support the video tag is now left behind in the agreement for the support of a common format.
+  </p>
+  <p>
+    At the time of this writing (July 2010) the safest combination of formats is the following:
+  </p>
+<pre class="prettyprint">
+  &lt;video>
+    &lt;source src="movie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
+    &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' />
+    Video tag not supported. Download the video &lt;a href="movie.webm">here&lt;/a>.
+  &lt;video></pre>
+
+<style type="text/css" media="screen">
+  .video_stream { color: blue; }
+  .audio_stream { color: red; }
+  .file_format { color: green; }
+</style>
+  <p>
+    As a quick note and for better understanding, think of a <span class="file_format">video format</span> as a zip file which contains the encoded <span class="video_stream">video stream</span> and <span class="audio_stream">audio stream</span>. The three formats you should care for the web are:
+  </p>
+  <ul>
+    <li><span class="file_format">.mp4</span> = <span class="video_stream">H.264</span> + <span class="audio_stream">AAC</span></li>
+    <li><span class="file_format">.ogg/.ogv</span> = <span class="video_stream">Theora</span> + <span class="audio_stream">Vorbis</span></li>
+    <li><span class="file_format">.webm</span> = <span class="video_stream">VP8</span> + <span class="audio_stream">Vorbis</span></li>
+  </ul>
+
+  <p>
+    As I mentioned before, almost all browser vendors agreed to support a common video format. So a less than year from now this is the code which will be most likely used everywhere:
+  </p>
+<pre class="prettyprint">
+  &lt;video>
+    &lt;source src="movie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
+    Video tag not supported. Download the video &lt;a href="movie.webm">here&lt;/a>.
+  &lt;video></pre>
+  
+  <p>
+    One of the main concerns about using the mp4 format is that its video codec (h.264) is not an open codec and the licenses that a company would have to pay for using it are very complex to understand. There's more information about this format in <a href="http://diveintohtml5.org/video.html#licensing">this video chapter</a>.
+  </p>
+  <p>
+    Another issue with the mp4 format is that the type attribute needs to be more specific than other formats depending on the profile used to encode the video. Although the most common is "avc1.42E01E, mp4a.40.2", you should double check this <a href="http://wiki.whatwg.org/wiki/Video_type_parameters#MPEG-4">profile list</a> to be sure.
+  </p>
+  <p>
+    Here you can quickly see which ones of the three formats are supported by your browser:</p>
+  </p>
+  <style>
+    video, canvas { width: 200px; height: 112px; border: 1px solid black; }
+    .capt { margin: -22px 0px 0px 77px; position: absolute; }
+  </style>
+  <div style="padding-top: 20px;">
+    <span class="capt">.mp4</span>
+    <video poster="star.png" controls>
+      <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    </video>
+
+    <span class="capt">.webm</span>
+    <video poster="star.png" controls>
+      <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+    </video>
+
+    <span class="capt">.ogv</span>
+    <video poster="star.png" controls>
+      <source src="Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+    </video>
+  </div>
+  <p>
+    Even though Microsoft announced the support of the video tag, as well as other HTML5 elements, in the upcoming IE version (i.e. IE9), its migration rate for new versions is way lower than the other 4 major browsers. Hence the following section:
+  </p>
+  
+  <h2 id="toc-fallback">3. What happens with current IE versions that don't support the video tag?</h2>
+  <p>
+    There are two plugins that can be used as possible solutions:
+  </p>
+  <h3 id="toc-fallback-cf">Chrome Frame</h3>
+  <p>The advantage of using the <a href="http://code.google.com/chrome/chromeframe/">Chrome Frame plugin</a> is that, once it's installed, Internet Explorer will have the support for the last HTML, JavaScript and CSS standard features that old versions of IE don't. This plugin has a side effect goal for web developers, as it will allow them to code applications with modern web features without leaving the IE users behind. Just think the amount of time that a web developer saves without having to code hacks and workarounds for IE.</p>
+  <h3 id="toc-fallback-flash">Flash fallback</h3>
+  <p>You can also use flash as a fallback case. Depending on the format of your video you might need to encode it again to a compatible format for the flash player. The good news is that Adobe has committed to support the <em>webm</em> format in their flash player although it's still not clear the timeline for it. The biggest drawback of this solution compared to the Chrome Frame plugin is that you will get the flash player as the degraded version of what ever custom UI or enhanced features you have built for your video tag. The details of this technique can be seen in <a href="http://tutorials.html5rocks.com/tutorials/audio/quick/#toc-step3">this tutorial</a> which was meant for the audio element.</p>
+  
+  <h2 id="toc-encode">4. Encode Your Videos</h2>
+  <p>
+    If you need to encode your existing videos to the formats we mentioned in the previous section you can use <a href="http://www.mirovideoconverter.com/">Miro Converter</a> both for Windows and Mac to easily get the format you need. The program doesn't allow to tweak many settings but comes with the most common outputs for the web, including the three formats we use in this tutorial. Under the hood, this software is actually a wrapper of <a href="http://ffmpeg.org/">ffmpeg</a> and <a href="http://v2v.cc/~j/ffmpeg2theora/">ffmpeg2theora</a> which you can use in both windows, mac and linux from the command line and specify more parameters. You can read more info in this <a href="http://diveintohtml5.org/video.html#webm-cli">other tutorial</a>.
+  </p>
+  <style>
+    .format, .format span {
+         -moz-border-radius: 12px; /* FF1+ */
+      -webkit-border-radius: 12px; /* Saf3+, Chrome */
+              border-radius: 12px; /* Opera 10.5, IE 9 */
+    }
+    .format {
+      border: 2px solid black;
+      overflow: hidden;
+      padding: 10px;
+      width: 220px;
+    }
+    .stream {
+      display: inline-block;
+      border: 2px solid black;
+      padding: 16px;
+      margin-right: 10px;
+      color: green;
+    }
+    .format span+span+span {
+      margin: 0 -15px;
+      display: inline-block;
+      -moz-transform: rotate(270deg);  
+      -o-transform: rotate(270deg);  
+      -webkit-transform: rotate(270deg);  
+      color: red;
+      text-align: right;
+    }
+  </style>
+  <!-- <div class="format"><span class="stream">H.264</span><span class="stream">AAC</span><span>.mp4</span></div>
+  <div class="format"><span class="stream">Theora</span><span class="stream">Vorbis</span><span>.ogg/.ogv</span></div>
+  <div class="format"><span class="stream">VP8</span><span class="stream">Vorbis</span><span>.webm</span></div> -->
+  
+  <h2 id="toc-fun">5. The Fun Part</h2>
+  <p>
+    As we said in the introduction the main advantage of the video tag being one more of the HTML family is the integration with the other layers of web development stack. In the following examples we'll give you an overview of what's possible to do with it.
+  </p>
+  <h3 id="toc-fun-html">5.1. Video + other HTML</h3>
+  <p>
+    All the common HTML attributes you already know can now be used in the video player. For instance, in the following snippet we are using the <em>tabindex</em> to make the player keyboard accessible. There are new attributes that can be used in the video tag which are also common to the audio tag such as <em>loop</em> and <em>autoplay</em>, which are self explanatory. The attribute <em>poster</em> indicates what image will be shown while the video is initially loading and finally, <em>controls</em> is used to indicate that instead of building our custom controls we want the browser to render ones automatically for us. There's also a <em>preload</em> attribute we can use in case we want the content to be downloaded in the background as soon as the page loads even if the video hasn't started playing.
+  </p>
+  <pre class="prettyprint">
+    &lt;video <em>poster="star.png" autoplay loop controls tabindex="0"</em>>
+      &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
+      &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' />
+    &lt;/video>
+  </pre>  
+  <p>
+    The full level of integration of the video tag as a native browser element deprecates some issues you might have had in the past with third party embedded players such as drop down menus and iframes overlaying on the player or weird layout behavior when the <em>other HTML elements</em> surrounding the video were dynamically resized.
+  </p>
+  <p>
+    Since the video is not treated as an embedded foreign object, there are some other benefits that affect the user experience. For instance, even if the focus is on the player itself actions like page scrolling or keyboard key strokes will be completely functional.
+  </p>
+
+  <!-- [xhtml attr] -->
+  
+  
+  
+  <h3 id="toc-fun-js">5.2. Video + JS</h3>
+  canPlayType videoWidth muted volume
+  <p>
+    The video tag comes with an API which allows to control things from JS.
+  </p>
+  <p>
+    As any other HTML element you can attach common events to the video tag such as drag events, mouse events, focus events, etc. But the video element comes with a bunch of new events to detect (and control) when the video is playing, paused or finished. Since loading a video resource can have many caveats there are many events to have a fine control of the loading process both at network level (loadstart, progress, suspend, abort, error, emptied, stalled) and at buffering level (loadedmetadata, loadeddata, waiting, playing, canplay, canplaythrough).
+    <!-- [timeupdate] -->
+  </p>
+  <p>
+    At its simplest level you can attach the canplay event to start doing stuff with the video.
+  </p>
+  <pre class="prettyprint">
+    video.addEventListener('canplay', function() {
+      this.volume = 0.4;
+      this.currentTime = 10;
+      this.play();
+    }, false);
+  </pre>
+  <p>
+    There are several custom player controls available on the internet right now. In the following sample we are using some elements to control two videos simultaneously and also emulate the fast forward effect with the <em>playbackRate</em> attribute.
+  </p>
+  <div id="control-icons">
+    <img src="control-skip-180.png" id="rw" />
+    <img src="control.png" id="play" />
+    <img src="control-double.png" id="ff" />    
+  </div>
+  <input type="range" min="0" max="100" value="25" id="volume-mix" />
+    
+  <video poster="star.png" id="video-js" tabindex="0">
+    <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+    <source src="Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+  </video>
+  <style type="text/css" media="screen">
+    #control-icons { position: absolute; background-color: white; margin-left: 177px; border: 1px solid #ccc; }
+    #volume-mix { position: absolute; margin-left: 140px; margin-top: 130px; }
+  </style>
+  <video poster="star.png" id="video-js2" tabindex="0">
+    <source src="chromeicon.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    <source src="chromeicon.webm" type='video/webm; codecs="vp8, vorbis"' />
+    <source src="chromeicon.ogv" type='video/ogg; codecs="theora, vorbis"' />
+  </video>
+
+  <script>
+    var v1 = document.querySelector('#video-js')
+    var v2 = document.querySelector('#video-js2')
+    var rw = document.querySelector('#rw')
+    var play = document.querySelector('#play')
+    var ff = document.querySelector('#ff')
+    var volume = document.querySelector('#volume-mix')
+    var volume_value = 0;
+    rw.addEventListener('click', function() {
+      v1.pause();
+      v2.pause();
+      v1.currentTime = 0;
+      v2.currentTime = 0;
+    }, false);
+    ff.addEventListener('click', function() {
+      v1.play();
+      v2.play();
+      v1.playbackRate = 3;
+      v2.playbackRate = 3;
+    }, false);
+    play.addEventListener('click', function() {
+      if (v1.paused && v2.paused) {
+        v1.play();
+        v2.play();        
+      } else {
+        v1.pause();
+        v2.pause();
+      }
+    }, false);
+    v1.addEventListener('play', function() {
+      setVolume();
+    }, false);
+    volume.addEventListener('change', function() {
+      setVolume();
+    }, false);
+    function setVolume() {
+      volume_value = volume.value - 50;
+      if (volume_value < 0) {
+        v2.volume = 0;
+        v1.volume = (volume_value * (-1) * 2) / 100;
+      } else {
+        v1.volume = 0;
+        v2.volume = (volume_value * 2) / 100;
+      }
+    }
+    
+  </script>
+  <!-- <p>currentTime: <span id="currentTime">0</span></p>
+  <p>playbackRate: <span id="playbackRate">0</span></p>
+           
+  <p>currentSrc: <span id="currentSrc">video</span></p>
+  <p>focus: <span id="focus">false</span></p>
+  <p>seeking: <span id="seeking">false</span></p>
+  <p>muted: <span id="muted">false</span></p>
+  <p>startTime: <span id="startTime">0</span></p>
+  <p>duration: <span id="duration">0</span></p>
+  <p>paused: <span id="paused">false</span></p>
+  <p>networkState: <span id="networkState">0</span></p>
+  <p>readyState: <span id="readyState">0</span></p>
+  <p>bufferedStart: <span id="bufferedStart">0</span></p>
+  <p>bufferedEnd: <span id="bufferedEnd">0</span></p>
+  <p>playedStart: <span id="playedStart">0</span></p>
+  <p>playedEnd: <span id="playedEnd">0</span></p>
+  <p>seekableStart: <span id="seekableStart">0</span></p>
+  <p>seekableEnd: <span id="seekableEnd">0</span></p>
+  <p>errorCode: <span id="errorCode">0</span></p>
+
+  <script type="text/javascript" charset="utf-8">
+    var video_js = document.querySelector('#video-js');
+    video_js.addEventListener('canplay', function() {
+      this.defaultPlaybackRate = 3;
+      this.playbackRate = -3;
+      renderVideoProp('#playbackRate', this.playbackRate);
+      renderVideoProp('#currentSrc', this.currentSrc);
+      renderVideoProp('#duration', this.duration);
+      renderVideoProp('#bufferedStart', this.buffered && this.buffered.length && this.buffered.start());
+      renderVideoProp('#bufferedEnd', this.buffered && this.buffered.length && this.buffered.end());
+    }, false);
+
+    video_js.addEventListener('focus', function() {
+      renderVideoProp('#focus', this.focus);
+    }, false);
+
+    video_js.addEventListener('timeupdate', function() {
+      renderVideoProp('#currentTime', this.currentTime);
+      renderVideoProp('#startTime', this.startTime);
+      renderVideoProp('#bufferedStart', this.buffered && this.buffered.length && this.buffered.start());
+      renderVideoProp('#bufferedEnd', this.buffered && this.buffered.length && this.buffered.end());
+      renderVideoProp('#playedStart', this.played && this.played.length && this.played.start());
+      renderVideoProp('#playedEnd', this.played && this.played.length && this.played.end());
+      renderVideoProp('#seekableStart', this.seekable && this.seekable.length && this.seekable.start());
+      renderVideoProp('#seekableEnd', this.seekable && this.seekable.length && this.seekable.end());
+    }, false);
+
+    video_js.addEventListener('seeking', function() {
+      renderVideoProp('#seeking', this.seeking);
+    }, false);
+
+    video_js.addEventListener('seeked', function() {
+      renderVideoProp('#seeking', this.seeking);
+    }, false);
+
+    video_js.addEventListener('volumechange', function() {
+      renderVideoProp('#muted', this.muted);
+    }, false);
+
+    video_js.addEventListener('pause', function() {
+      renderVideoProp('#paused', this.paused);
+    }, false);
+
+    video_js.addEventListener('waiting', function() {
+      renderVideoProp('#paused', this.paused);
+    }, false);
+
+    video_js.addEventListener('canplaythrough', function() {
+      renderVideoProp('#readyState', this.readyState);
+    }, false);
+
+    video_js.addEventListener('error', function() {
+      renderVideoProp('#error', this.error.code);
+    }, false);
+    
+    function renderVideoProp(elQuery, value) {
+      document.querySelector(elQuery).innerText = value;
+      document.querySelector(elQuery).style.backgroundColor = 'yellow';
+    }
+  </script>
+  -->
+  <!-- [click on videos] -->
+  <h3 id="toc-fun-css">5.3. Video + CSS</h3>
+  <p>
+    As you could have imagined at this point you can style the video tag with the traditional CSS like border, opacity, and such. But the cool thing is that you can also style it with the latest CSS3 properties like reflections, masks, gradients, transforms, transitions and animations.
+  </p>
+  <p>
+    Hover over the next video to see some of them in action. Can you guess how the circle is done?
+  </p>
+  <video poster="star.png" id="video-css">
+    <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+    <source src="Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+  </video>
+  
+  <pre class="prettyprint">
+    #video-css.pimped {
+      border: 1px solid white;
+      -moz-box-shadow: 0px 0px 4px #ffffff; /* FF3.5+ */
+      -webkit-box-shadow: 5px 44px 28px #333; /* Saf3.0+, Chrome */
+      box-shadow: 0px 0px 4px #ffffff; /* Opera 10.5, IE 9.0 */
+
+      -moz-transform: translate(0, 10px);  /* FF3.5+ */
+      -o-transform: translate(0, 10px);  /* Opera 10.5 */
+      -webkit-transform: translate(0, 10px);  /* Saf3.1+, Chrome */
+    }
+  </pre>
+  <script>
+    var video_css = document.querySelector('#video-css');
+    video_css.addEventListener('mouseover', function() {
+      this.className = 'pimped';
+      this.currentTime = 8;
+      this.play();
+      tryRoundedCorners();
+    }, false);
+    video_css.addEventListener('mouseout', function() {
+      this.pause();
+      this.currentTime = 0;
+      this.className = '';
+    }, false);
+    
+    function tryRoundedCorners() {
+      setTimeout(function() {
+        video_css.style.borderRadius = '60px';
+      }, 3000);
+      setTimeout(function() {
+        video_css.style.borderRadius = '0';
+      }, 6000);      
+    }
+  </script>
+  <style type="text/css" media="screen">
+    #video-css {
+      -moz-transition: all 0.3s ease-out;  /* FF3.7+ */
+      -o-transition: all 0.3s ease-out;  /* Opera 10.5 */
+      -webkit-transition: all 0.3s ease-out;  /* Saf3.2+, Chrome */ 
+    }
+    #video-css.pimped {
+/*      width: 112px;*/
+/*      border: 1px solid white;*/
+      -moz-box-shadow: 0px 0px 4px #ffffff; /* FF3.5+ */
+      -webkit-box-shadow: 5px 44px 28px #333; /* Saf3.0+, Chrome */
+      box-shadow: 0px 0px 4px #ffffff; /* Opera 10.5, IE 9.0 */
+
+      -moz-transform: translate(0, 10px);  /* FF3.5+ */
+      -o-transform: translate(0, 10px);  /* Opera 10.5 */
+      -webkit-transform: translate(0, 10px);  /* Saf3.1+, Chrome */
+      
+/*      -webkit-box-reflect: right -5px -webkit-gradient(linear, left top, right top, from(transparent), to(rgba(255, 255, 255, 0.3))),*/
+
+    	-webkit-animation-name: crawl;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: ease-in-out;
+    }
+    
+    @-webkit-keyframes crawl {
+    	0% { -webkit-transform: translate(0, 10px);  }
+    	25% { -webkit-transform: translate(2px, 5px); }
+    	50% { -webkit-transform: translate(0, 0); }
+    	75% { -webkit-transform: translate(-2px, 5px); }
+    	1000% { -webkit-transform: translate(0, 10px);  }
+    }
+    
+  </style>
+  <h3 id="toc-fun-canvas">5.4. Video + canvas</h3>
+  <p>
+    Canvas is in fact another HTML element. But given its extraordinary capabilities we wanted to give it its own section. We have seen many developer samples which use these two technologies in a very smart way and we are sure that this is only the beginning.
+  </p>
+  <p>
+    In the following sample we are taking advantage of two features of the canvas element to import and export images. The first one is the <em>drawImage</em> method which let's you import images from three different sources: an image element, another canvas element and a <em>video element</em>! This means that every time we run this method the current frame in the video will be imported and rendered into the canvas.
+  </p>
+  <p>
+    The second feature of the canvas tag we are using is the <em>toDataURL</em> method which let's you export the content of the canvas to an image. Click play in the following video to see how an image is created from the video every 1.5 seconds. The canvas we use to import/export is actually <em>hidden</em>.
+  </p>
+  <video poster="star.png" id="video-canvas1" controls>
+    <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+    <source src="Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+  </video>
+  <canvas style="display: none" id="canvas-draw1"></canvas>
+  <div id="screenshots"></div>
+  <script>
+    (function() {
+      var video_dom = document.querySelector('#video-canvas1');
+      var canvas_draw = document.querySelector('#canvas-draw1');
+      var screenshots = document.querySelector('#screenshots');
+      var inter = null;
+      
+      video_dom.addEventListener('play', function() {
+        video_dom.width = canvas_draw.width = video_dom.offsetWidth;
+        video_dom.height = canvas_draw.height = video_dom.offsetHeight;
+        var ctx_draw = canvas_draw.getContext('2d');
+        inter = setInterval(function() {
+          ctx_draw.drawImage(video_dom, 0, 0, video_dom.width, video_dom.height);
+          var img = new Image();
+          img.src = canvas_draw.toDataURL('image/png');
+          img.width = 40;
+          screenshots.appendChild(img);
+        }, 1500)
+      }, false);
+      video_dom.addEventListener('pause', function() {
+        clearInterval(inter);
+      }, false);
+      video_dom.addEventListener('ended', function() {
+        clearInterval(inter);
+      }, false);
+      
+      
+    })();
+  </script>
+  <p>
+    You can see in the following code how we are simply creating an interval which runs every 1.5 seconds with the drawImage method which takes the video element as the source.
+  </p>
+<pre class="prettyprint">
+  video_dom.addEventListener('play', function() {
+    video_dom.width = canvas_draw.width = video_dom.offsetWidth;
+    video_dom.height = canvas_draw.height = video_dom.offsetHeight;
+    var ctx_draw = canvas_draw.getContext('2d');
+    inter = setInterval(function() {
+      // import the image from the video
+      ctx_draw.drawImage(video_dom, 0, 0, video_dom.width, video_dom.height);
+      // export the image from the canvas
+      var img = new Image();
+      img.src = canvas_draw.toDataURL('image/png');
+      img.width = 40;
+      screenshots.appendChild(img);
+    }, 1500)
+  }, false);
+</pre>
+  <p>
+    In the following sample we are going another step further. If you increase the frequency at which you import and render the image from the video you can really emulate the same video frame rate in the canvas. This let's you do all sorts of fancy transforms in the canvas as if you were doing it in the video.
+  </p>
+  <p>
+    On the left side you can see the original video playing. In the middle there's a canvas we are using to import the images every 33 milliseconds. On the right side there's a second canvas which will "suffer" all the transforms at the same time it imports the images from the first canvas. The only reason we are using two canvases is because the performance is much better than using a single one which imports the images and transforms at the same time.
+  </p>
+  <video poster="star.png" id="video-canvas" controls>
+    <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+    <source src="Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+  </video>
+  <canvas id="canvas-copy"></canvas>
+  <canvas id="canvas-draw"></canvas>
+  <script>
+    (function() {
+      var video_dom = document.querySelector('#video-canvas');
+      var canvas_copy = document.querySelector('#canvas-copy');
+      var canvas_draw = document.querySelector('#canvas-draw');
+      var inter = null;
+      var ctx_copy = null;
+      var ctx_draw = null;
+      
+      var OFFSETS = [];
+      var INERTIA = [];
+      var SLICES = 4;
+      var OUT_PADDING = 100;
+      var INTERVAL = null;
+
+      var inertia = -2.0;
+      
+      video_dom.addEventListener('canplay', function() {
+        canvas_copy.width = canvas_draw.width = video_dom.videoWidth;
+        canvas_copy.height = video_dom.videoHeight;
+        canvas_draw.height = video_dom.height + OUT_PADDING;
+        ctx_copy = canvas_copy.getContext('2d');
+        ctx_draw = canvas_draw.getContext('2d');
+      }, false);
+      
+      
+      for (var i = 0; i < SLICES; i++) {
+        OFFSETS[i] = 0;
+        INERTIA[i] = inertia;
+        inertia += 0.4;
+      }
+      
+      video_dom.addEventListener('play', function() {
+        processEffectFrame();
+        if (INTERVAL == null) {
+          INTERVAL = window.setInterval(function() { processEffectFrame() }, 33);
+        }        
+      }, false);
+      
+      function processEffectFrame() {
+        var slice_width = video_dom.videoWidth / SLICES;
+        ctx_copy.drawImage(video_dom, 0 ,0);
+        ctx_draw.clearRect(0, 0,  canvas_draw.width, canvas_draw.height);
+        for (var i = 0; i < SLICES; i++) {
+          var sx = i * slice_width;
+          var sy = 0;
+          var sw = slice_width;
+          var sh = video_dom.videoHeight;
+          var dx = sx;
+          var dy = OFFSETS[i] + sy + OUT_PADDING;
+          var dw = sw;
+          var dh = sh;
+          ctx_draw.drawImage(canvas_copy, sx, sy, sw, sh, dx, dy, dw, dh);
+          if (Math.abs(OFFSETS[i] + INERTIA[i]) < OUT_PADDING) {
+            OFFSETS[i] += INERTIA[i];
+          } else {
+            INERTIA[i] = -INERTIA[i];
+          }
+        }
+        // if (!this.DOM_VIDEO.ended) {
+        // 
+        // }
+      };
+      
+      video_dom.addEventListener('pause', function() {
+        window.clearInterval(INTERVAL);
+        INTERVAL = null;
+        // var src = this.DOM_VIDEO.src;
+        // this.DOM_VIDEO.src = src;
+      }, false);
+      video_dom.addEventListener('ended', function() {
+        clearInterval(inter);
+      }, false);
+      
+      
+    })();
+  </script>
+  <p>
+    The same technique of importing images you have seen so far can be also applied to WebGL. With WebGL you would be able, for instance, to import the frames of a video and render them on a spinning 3D cube. There are more details about such implementation on the <a href="https://developer.mozilla.org/en/WebGL/Animating_textures_in_WebGL">MDC website</a>.
+  </p>
+  <h3 id="toc-fun-svg">5.5. Video + SVG</h3>
+  <p>
+    SVG provides a programatic way to render and manipulate vector graphics but it also comes with more features such as <a href="http://en.wikipedia.org/wiki/SVG_filter_effects">SVG filter effects</a>. With these filters you can target a specific DOM element and apply some out of the box effects such as blur, composite, tiles, etc. At the time of this writing (July 2010), Firefox 4 and IE9 support inline SVG which allows to target the video element with HTML and CSS (for this sample we are using JavaScript and canvas to make it also work for browsers which don't support inline SVG yet):
+  </p>
+  <pre class="prettyprint">
+    &lt;svg id='image' version="1.1" xmlns="http://www.w3.org/2000/svg"> 
+      &lt;defs>
+        &lt;filter id="myblur"> 
+          &lt;feGaussianBlur stdDeviation="1" /> 
+        &lt;/filter>
+      &lt;/defs>
+    &lt;/svg>
+    &lt;style>
+      video { filter:url(#myblur); border: 2px solid red; }
+    &lt;/style>
+  </pre>
+  <video poster="star.png" id="video-svg">
+    <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+    <source src="Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+  </video>
+  <style type="text/css" media="screen">
+    .offscreen { position: absolute; left: -2000px; }
+  </style>
+
+  <div id="svg">
+    
+  </div>
+  <canvas id="canvas-svg-draw" style="display: none"></canvas>
+  
+  <!-- <video poster="star.png" id="video-svg2">
+    <source src="Chrome_ImF.ogv" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
+    <source src="Chrome_ImF.mp4" type='video/ogg; codecs="theora, vorbis"' />
+  </video>
+  <div id="svg2">
+    
+  </div>
+  <canvas id="canvas-svg-draw2"></canvas> -->
+  
+<script type="text/javascript" charset="utf-8">
+  // insert SVG using script until SVG in HTML5 is more widely supported
+  // (currently supported in IE 9 and Firefox 4 only)
+  (function() {
+    window.addEventListener('DOMContentLoaded', function() {
+      var container = document.getElementById('svg');
+      var svgns = 'http://www.w3.org/2000/svg';
+      var xlinkns = 'http://www.w3.org/1999/xlink';
+      var svg = document.createElementNS(svgns, 'svg');
+      svg.setAttribute('width', 300);
+      svg.setAttribute('height', 300);
+      svg.setAttribute('class', 'offscreen');
+      
+      // our linearGradient
+      var defs = document.createElementNS(svgns, 'defs');
+      var filter = document.createElementNS(svgns, 'filter');
+      filter.setAttribute('id', 'myblur');
+      var feGaussianBlur = document.createElementNS(svgns, 'feGaussianBlur');
+      feGaussianBlur.setAttribute('stdDeviation', '2');
+      filter.appendChild(feGaussianBlur);
+      defs.appendChild(filter);
+      svg.appendChild(defs);
+
+      var imageEl = document.createElementNS(svgns, 'image');
+      imageEl.setAttributeNS(xlinkns, "href", "star.png");
+      imageEl.setAttribute('id', 'image-data-el');
+      imageEl.setAttribute('width', 200);
+      imageEl.setAttribute('height', 200);
+      var g = document.createElementNS(svgns, "g");
+      g.appendChild(imageEl);
+      svg.appendChild(g);
+
+      container.appendChild(svg);
+
+      var video_dom = document.querySelector('#video-svg');
+      var canvas_draw = document.querySelector('#canvas-svg-draw');
+      var inter = null;
+      var ctx_draw = null;
+      var image_data = null;
+      var image_data_el = document.querySelector('#image-data-el');
+      
+      video_dom.addEventListener('canplay', function() {
+        video_dom.width = canvas_draw.width = video_dom.offsetWidth;
+        video_dom.height = canvas_draw.height = video_dom.offsetHeight;
+        ctx_draw = canvas_draw.getContext('2d');
+      }, false);
+
+      video_dom.addEventListener('click', function() {
+        this.play();
+        this.style.display = 'none';
+        svg.setAttribute('class', '');
+        image_data_el.style.filter = 'url(#myblur)';
+      }, false);
+
+      svg.addEventListener('click', function() {
+        video_dom.pause();
+        video_dom.style.display = 'block';
+        svg.setAttribute('class', 'offscreen');
+      }, false);
+
+      video_dom.addEventListener('play', function() {
+        inter = setInterval(function() {
+          ctx_draw.drawImage(video_dom, 0, 0, video_dom.width, video_dom.height);
+          image_data = canvas_draw.toDataURL('image/png');
+          image_data_el.setAttributeNS(xlinkns, "href", image_data);
+        }, 33);
+      }, false);
+      video_dom.addEventListener('pause', function() {
+        clearInterval(inter);
+      }, false);
+      video_dom.addEventListener('ended', function() {
+        clearInterval(inter);
+      }, false);
+
+
+    }, false);
+  })();
+  
+  // video_dom.addEventListener('mouseover', function() {
+  //   video_dom.width = canvas_copy.width = canvas_draw.width = video_dom.offsetWidth;
+  //   video_dom.height = canvas_copy.height = canvas_draw.height = video_dom.offsetHeight;
+  //   var ctx_copy = canvas_copy.getContext('2d');
+  //   var ctx_draw = canvas_draw.getContext('2d');
+  //   ctx_copy.drawImage(video_dom, 0, 0, video_dom.width, video_dom.height);
+  //   ctx_draw.drawImage(canvas_copy, 0, 0, video_dom.width, video_dom.height);
+  // }, false);
+  
+</script>
+  
+  <h2 id="toc-conclusion">Missing Features and Differences with Flash</h2>
+  <p>
+    There's no doubt that having the video tag as a native element gives the best environment to integrate video with the rest of your web application. <a href="">More</a> and <a href="">more samples</a>, <a href="">video controls</a> and <a href="">related UI components</a> are being created everyday.
+  </p>
+  <p>
+    It's almost inevitable that comparisons arise between the video element and other technologies which have been around much longer and provide capabilities like fullscreen view, access to microphone and camera, or support for streaming. All these capabilities are currently being addressed both in the specification and browser support. If the video capabilities evolve as fast as they have done so far it won't be rare that, in less than a year from now, we have all these features ready for production and supported across the modern browsers.
+  </p>
+  
+
+    
+    </section> 
+  </article> 
+  <p class="cc"> 
+    Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this
+    page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, <br> 
+    and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+  </p> 
+  <footer> 
+  <p class="madeby">Made by Google | <img src="/static/images/google_logo_small.png"></p> 
+  <a href="/">Home</a> - <a href="/tos.html">Terms</a> -
+  <a href="/privacy.html">Privacy</a> -
+  <a href="https://spreadsheets0.google.com/a/html5rocks.com/viewform?hl=en&formkey=dHB0ekdHa0NyTjhjQWFnUXAtM1VuY0E6MQ#gid=0" target="_blank">Feedback</a> -
+  <a href="http://code.google.com/p/html5rocks/issues/entry">Report Bug</a> - 
+  <a href="http://twitter.com/ChromiumDev">Follow us on Twitter</a> 
+  <span class="note">This site contains information on APIs that are not part of the current W3C HTML5 specification.</span> 
+</footer> 
+  <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script> 
+ 
+    </div> 
+  </div> 
+  <script> 
+    var lis = document.querySelectorAll('header nav li');
+    var i = lis.length;
+    while (i--) {
+      var a = lis[i].querySelector('a');
+      var section = a.getAttribute("data-section");
+      if (new RegExp(section).test(document.location.href)) {
+        a.className = 'current';
+      }
+    }
+  </script> 
+  <script> 
+    prettyPrint();
+ 
+    if (isCompatible() === false) {
+      document.getElementById('notcompatible').className = "";
+    } else if (isCompatible() === true) {
+      document.getElementById('compatible').className = "";
+    }
+ 
+    window.addEventListener && document.querySelector('#title').addEventListener('click', function() {
+      window.location = '/';
+    }, false);
+ 
+ 
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-15028909-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+     var ga = document.createElement('script');
+     ga.type = 'text/javascript';
+     ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0];
+     s.parentNode.insertBefore(ga, s);
+    })();
+  </script> 
+{% endblock %}
