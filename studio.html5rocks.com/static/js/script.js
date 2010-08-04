@@ -17,8 +17,21 @@ $(window).load(function () {
 
 // load iframe
 $('.show.open div.box').live('click', function () {
+  tip.out();
+  
+  lastDemo = this;
+   
   $(this).addClass('selected').siblings().removeClass('selected');
-  $('#stage iframe').attr('src', $(this).find('a').attr('href')).show();
+  var link = $(this).find('a:first');
+  $('#stage iframe').attr('src', link.attr('href')).show();
+  
+  // don't show the tooltip twice
+  if (Modernizr.sessionstorage){
+    var key = link.text().replace(/\s+/g,'').toLowerCase();
+    if (sessionStorage[key]) return;
+    sessionStorage[key] = true;
+  }
+  tip.over();
 });
 
 
@@ -90,19 +103,31 @@ $('#download').click(function () {
 });
 
 
-$("#info").hoverIntent({
-  over: function () {
-    var h3 = $('<h3>').text($(lastDemo).find('a').text());
+// tooltip 
+var tip = {
+  over: function (e) {
+    
+    // hover over the invisible tooltip?
+    if (e && e.srcElement && $(e.srcElement).closest('.tooltip').length){
+      return;
+    }
+    
+    var h3 = $('<h3>').text($(lastDemo).find('a:first span').text());
     var info = $(lastDemo).find('p,ul').clone();
 
     $('.tooltip').find('h3,p,ul').remove().end()
-      .append(h3).append(info)
-      .appendTo(this).addClass('popped');
-  },
-  timeout: 500,
-  out: function (e) {
-    $('.tooltip').removeClass('popped');
-  }
+     .append(h3).append(info)
+     .appendTo("#info").addClass('popped');
+   },
+   out: function (e) {
+     $('.tooltip').removeClass('popped');
+   }
+}
+
+$("#info").hoverIntent({
+  over: tip.over,
+  out: tip.out,
+  timeout: 500
 });
 
 
