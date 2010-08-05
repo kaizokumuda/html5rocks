@@ -72,7 +72,7 @@ li.playing {
   text-shadow: white 0px 1px 1px;
 }
 #main {
-  margin: 100px auto;
+  margin: 56px auto 0;
 }
 #status {
   font-size: 10pt;

@@ -212,7 +212,7 @@ a:link { -webkit-tap-highlight-color: #FF5E99; }
 
 
 html, body, #container, .body { height: 100%; }
-body { background: #eee; font-family: Constantia, 'Hoefler Text',  "Adobe Caslon Pro", Baskerville; color: #444;}
+body { background: #eee; font: normal normal normal 14px/normal Arial; color: #444;}
 
 
 
@@ -224,7 +224,7 @@ body { background: #eee; font-family: Constantia, 'Hoefler Text',  "Adobe Caslon
     -moz-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
     box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
      
-    overflow-y: hidden;
+    overflow: hidden;
     }
 
 aside { 
@@ -232,11 +232,69 @@ aside {
     text-shadow: 2px 2px 2px rgba(200, 200, 200, 0.5); 
     font-size: 18px;
     position: absolute;
-    right: 20px; width: 330px; top: 40px;
+    right: 25px; width: 330px; top: 32px;
 }
 aside p { margin-top: 25px;}
 .toc aside { display: block;}
-aside h1 { font-size: 30px;}
+aside h1 { font-size: 45px;}
+
+
+#title .normal {
+  font-family: 'Droid Sans', Arial;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.09em;
+  padding-right: 4px;
+}
+
+#title .five { 
+  color: #fff;
+  font-family: 'Droid Sans', Arial;
+  text-shadow: 1px 0px 1px #000, -1px 0px 1px #000;
+}
+.no-textshadow #title .five { 
+  color: #bbb;
+}
+
+#title .rocks { 
+  font-family: 'Droid Sans', Arial;
+  color: #3D5C9D;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: -0.09em;
+  margin-left: -3px;
+}
+
+
+
+
+div.app {
+  font-family: Helvetica, sans-serif;
+  height: 160px;
+  width: 150px;
+  text-align: center;
+  padding: 13px 10px;
+  margin: 0 5px;
+  background-color: #fefefe;
+  background: -moz-linear-gradient(90deg, #eee, #fff, #eee);
+  background: -webkit-gradient(linear, left top, left bottom, from(#eee), color-stop(0.5, #fff), to(#eee));
+  border: 3px solid #e1e1e1;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 15px;
+  -webkit-transition: -webkit-box-shadow 0.10s ease-in-out;
+  -moz-transition: all 0.10s ease-in-out;
+  -o-transition: all 0.10s ease-in-out;
+  cursor: pointer;
+}
+div.app:hover {
+  border-color: #e1e1e1;
+  -webkit-box-shadow: #666 0px 0px 6px;
+  -moz-box-shadow: #666 0px 0px 6px;
+  box-shadow: #666 0px 0px 6px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+}
 
 
     /*
@@ -253,10 +311,10 @@ aside h1 { font-size: 30px;}
 
 
 
-div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1px solid #aaa; position: absolute; 
+div.box { width: 140px; height: 140px; position: absolute; 
     
     /* location when we collapse to stack at bottom */
-    top: 465px; left: 1px;
+    top: 462px; left: -24px;
     
     -moz-transition: all 0.3s cubic-bezier(0.0, 0.35, .6, 1.5);   /* bounce timing for moz & opera. webkit doesnt support */
       -o-transition: all 0.3s cubic-bezier(0.0, 0.35, .6, 1.5);  
@@ -264,7 +322,7 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
          transition: all 0.3s cubic-bezier(0.0, 0.35, .5, 1);
  }
 
-.toc div.box {  top: 215px; left: 250px;  opacity: .7;}
+.toc div.box {  top: 215px; left: 220px;  opacity: .7;}
 
 .box a { color: #333; text-decoration:none;}
 
@@ -274,18 +332,18 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
 
 
 /* 3 x 3 arrangement */
-.go div.box:nth-child(1) { top: 25px; left: 50px; -webkit-transition-delay: 100ms; -o-transition-delay: 100ms; -moz-transition-delay: 100ms; transition-delay: 100ms;  }
-.go div.box:nth-child(2) { top: 25px; left: 250px; -webkit-transition-delay: 180ms; -o-transition-delay: 180ms; -moz-transition-delay: 180ms; transition-delay: 180ms;  }
-.go div.box:nth-child(3) { top: 25px; left: 450px; -webkit-transition-delay: 260ms; -o-transition-delay: 260ms; -moz-transition-delay: 260ms; transition-delay: 260ms;  }
-.go div.box:nth-child(4) { top: 215px; left: 50px; -webkit-transition-delay: 300ms; -o-transition-delay: 300ms; -moz-transition-delay: 300ms; transition-delay: 300ms;  }
+.go div.box:nth-child(1) { top: 25px; left: 30px; -webkit-transition-delay: 100ms; -o-transition-delay: 100ms; -moz-transition-delay: 100ms; transition-delay: 100ms;  }
+.go div.box:nth-child(2) { top: 25px; left: 220px; -webkit-transition-delay: 180ms; -o-transition-delay: 180ms; -moz-transition-delay: 180ms; transition-delay: 180ms;  }
+.go div.box:nth-child(3) { top: 25px; left: 405px; -webkit-transition-delay: 260ms; -o-transition-delay: 260ms; -moz-transition-delay: 260ms; transition-delay: 260ms;  }
+.go div.box:nth-child(4) { top: 215px; left: 30px; -webkit-transition-delay: 300ms; -o-transition-delay: 300ms; -moz-transition-delay: 300ms; transition-delay: 300ms;  }
 
-.go div.box:nth-child(6) { top: 215px; left: 450px; -webkit-transition-delay: 370ms; -o-transition-delay: 370ms; -moz-transition-delay: 370ms; transition-delay: 370ms;  }
-.go div.box:nth-child(7) { top: 415px; left: 50px; -webkit-transition-delay: 385ms; -o-transition-delay: 385ms; -moz-transition-delay: 385ms; transition-delay: 385ms;  }
-.go div.box:nth-child(8) { top: 415px; left: 250px; -webkit-transition-delay: 395ms; -o-transition-delay: 395ms; -moz-transition-delay: 395ms; transition-delay: 395ms;  }
-.go div.box:nth-child(9) { top: 415px; left: 450px; -webkit-transition-delay: 400ms; -o-transition-delay: 400ms; -moz-transition-delay: 400ms; transition-delay: 400ms;  }
+.go div.box:nth-child(6) { top: 215px; left: 405px; -webkit-transition-delay: 370ms; -o-transition-delay: 370ms; -moz-transition-delay: 370ms; transition-delay: 370ms;  }
+.go div.box:nth-child(7) { top: 405px; left: 30px; -webkit-transition-delay: 385ms; -o-transition-delay: 385ms; -moz-transition-delay: 385ms; transition-delay: 385ms;  }
+.go div.box:nth-child(8) { top: 405px; left: 220px; -webkit-transition-delay: 395ms; -o-transition-delay: 395ms; -moz-transition-delay: 395ms; transition-delay: 395ms;  }
+.go div.box:nth-child(9) { top: 405px; left: 405px; -webkit-transition-delay: 400ms; -o-transition-delay: 400ms; -moz-transition-delay: 400ms; transition-delay: 400ms;  }
 
 /* middle box should come in last! */
-.toc div.box:nth-child(5) { top: 215px; left: 250px;
+.toc div.box:nth-child(5) { top: 215px; left: 220px;
                         -webkit-transition-delay: 450ms; -o-transition-delay: 450ms; -moz-transition-delay: 450ms; transition-delay: 450ms;
                          -moz-transform: scale(.1);
                            -o-transform: scale(.1); 
@@ -335,7 +393,8 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
     
 }
 
-.controlbar {  top: 471px; height: 163px; border:0; border-radius: 15px 15px 0 0; width: 988px;  }
+.controlbar {  top: 491px; /* this value must match in script.js */
+  height: 163px; border:0; border-radius: 15px 15px 0 0; width: 988px;  }
 
 .show .controlbar, .show .itembar { display:block; position:absolute; border: 1px solid rgba(180,180,180,.5); 
     background-color: #222;  /* #777781 */ 
@@ -367,7 +426,7 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
               float:left; position:relative; left: 0; top: 0;
               margin-left: -152px;
               
-               -webkit-transform: scale(0.6) translate(0,-40px);
+               -webkit-transform: scale(0.6) translate(0,-33px);
                
               /* need to turn on this stuff */
                -webkit-transition-delay: 0ms; -o-transition-delay: 0ms; -moz-transition-delay: 0ms; transition-delay: 0ms; 
@@ -375,23 +434,49 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
 
 
 /* first one doesnt need negative margin */
-.show  div.box:nth-child(1) {   margin-left: 0 !important; }
+.show  div.box:nth-child(1) {   margin-left: -20px !important; }
+.show  div.box:last-of-type {   margin-right: -100px !important; }
 
+
+
+
+.show #boxes { height: 120px; width: 968px; }
 
 
 .show.open div.box { 
-    -webkit-transform: scale(0.6) translate(0,-40px);
-    margin-left: -48px;  
+-webkit-transform: scale(0.6) translate(0,-50px);
+   -moz-transform: scale(0.6) translate(0,-50px);
+     -o-transform: scale(0.6) translate(0,-50px);
+        transform: scale(0.6) translate(0,-50px);
+    margin-left: -63px;  
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 /* hover effects */
 .show.open div.box:hover {
-      -moz-transform: scale(1.1)  translate(0,-32px);  
-         -o-transform: scale(1.1)  translate(0,-32px);  
-    -webkit-transform: scale(1.1) translate(0,-32px); 
-            transform: scale(1.1) translate(0,-32px);
+       -moz-transform: scale(1.1) translate(0,-61px);  
+         -o-transform: scale(1.1) translate(0,-61px);  
+    -webkit-transform: scale(1.1) translate(0,-61px); 
+            transform: scale(1.1) translate(0,-61px);
             z-index: 10;
 }
+
+
+.show.open  div.box:first-child:hover {  
+     -moz-transform: scale(1.1) translate(32px,-61px);  
+       -o-transform: scale(1.1) translate(32px,-61px);  
+  -webkit-transform: scale(1.1) translate(32px,-61px); 
+          transform: scale(1.1) translate(32px,-61px);  
+}
+.show.open  div.box:last-of-type:hover {
+     -moz-transform: scale(1.1) translate(-32px,-61px);  
+       -o-transform: scale(1.1) translate(-32px,-61px);  
+  -webkit-transform: scale(1.1) translate(-32px,-61px); 
+          transform: scale(1.1) translate(-32px,-61px);
+}
+
 
 
 .show:not(.open) div.box  {  
@@ -468,15 +553,15 @@ a.button, a.button:visited {
 
 
 
-.box img {  display:block; width: 100%; height: 85.7%; cursor: pointer;}
+.box img {  display:block;  cursor: pointer; -moz-border:radius: 4px; border-radius: 4px; border: 1px solid rgba(150,150,150,0.3); position: absolute; bottom: 8px; height: 120px; }
 
-.box span { margin-top: 5px; display:block; text-align:center;}
+.box span {  display:block; text-align:center; text-shadow: 1px 1px 1px rgba(61,92,157,0.5);  }
 
 .open .controlbar { 
-    -webkit-transform: translate(0px, 90px);
-    -moz-transform: translate(0px, 90px);
-    -o-transform: translate(0px, 90px);
-    transform: translate(0px, 90px);
+    -webkit-transform: translate(0px, 70px);
+    -moz-transform: translate(0px, 70px);
+    -o-transform: translate(0px, 70px);
+    transform: translate(0px, 70px);
    
     
     -moz-transition: -moz-transform 0.5s ease-in;    

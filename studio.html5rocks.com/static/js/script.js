@@ -11,7 +11,7 @@
 $(window).load(function () {
   setTimeout(function () {
     $(document.body).addClass('go');
-  }, 500);
+  }, 200);
 })
 
 
@@ -174,7 +174,7 @@ function storeInitialTops(tops) {
   $.each(tops, function (sel, prop) {
     var elem = $(sel); //log( elem.css(prop))
     var value = elem.css(prop);
-    value = (value === 'auto' || !value) ? 471 : value; // fix for controlbar position
+    value = (value === 'auto' || !value) ? 491 : value; // fix for controlbar position
     $.data(elem[0], 'initial', value);
   });
 

@@ -7,6 +7,7 @@
     <title>HTML5 Studio</title>
     
    
+     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
      <link rel="stylesheet" href="/static/style.css">
      
      
@@ -51,7 +52,7 @@
       </div>
       
       <aside>
-        <h1>HTML5 Studio</h1>
+        <h1 id="title"><span class="normal">HTML</span><span class="five">5</span><span class="rocks">Studio</span></h1> 
         <p>Hey chief.</p>
           
         <p>So the idea here is:</p>
@@ -67,14 +68,14 @@
       </aside>
       
       <section class="controlbar">
-        <div id="toolbar">
+        <!--<div id="toolbar">
           <a id="return" class="button" style="float:left;">&larr; return to grid</a>
           <a id="view_source" class="button">View Source</a> 
           <a id="download" class="button">Download Sample</a>
           
-        </div>
+        </div> -->
         <div id="boxes">
-          <div class="box"><a href="samples/video-player/index.html"><img src="static/img/video.jpg"><span>Video PiP</span></a>
+          <div class="box app"><a href="samples/video-player/index.html"><img src="static/img/video.jpg"><span>Video PiP</span></a>
             <p>Use Picture-in-picture to swap between two video sources while enjoying a color glow effect. Custom pause, mute and progress bar.</p>
             <ul>
               <li>HTML5 video
@@ -83,7 +84,7 @@
           </div>
           
           
-          <div class="box"><a href="samples/geo/index.html"><img src="static/img/geo.jpg"><span>Geolocation</span></a>
+          <div class="box app"><a href="samples/geo/index.html"><img src="static/img/geo.jpg"><span>Geolocation</span></a>
             <p>Peruse local job listings and envision your commute.</p>
             <ul>
               <li>Geolocation
@@ -91,15 +92,15 @@
               <li>Google Maps API 
           </div>
           
-          <div class="box"><a href="samples/css3-col-layout/index.html"><img src="static/img/multicolumns.png"><span>Newspaper Columns</span></a>
+          <div class="box app"><a href="samples/css3-col-layout/index.html"><img src="static/img/multicolumns.png"><span>Newspaper Columns</span></a>
             <p>A newspaper-like layout provided by CSS3. Adjust the sliders to understand the styles.</p>
             <ul>
               <li>CSS3 Columns
               <li>input type=range
           </div>
           
-          <div class="box"><a href="samples/audio-podcast/index.html"><img src="static/img/player.jpg"><span>Podcast Player</span></a>
-            <p>Load in podcast feeds dynamically, then listen to episodes in a custom player UI.</p>
+          <div class="box app"><a href="samples/audio-podcast/index.html"><img src="static/img/player.jpg"><span>Podcast Player</span></a>
+            <p>Load in podcast feeds dynamically, then listen to episodes in a custom player UI. The player UI is a semi-opaque skin on top of the background color.</p>
             <ul>
               <li>HTML5 audio
               <li>Google Feed API
@@ -107,7 +108,7 @@
           
           
          
-          <div class="box"><a href="samples/coverflow/index.html"><img src="static/img/coverflow.jpg"><span>Coverflow</span></a>
+          <div class="box app"><a href="samples/coverflow/index.html"><img src="static/img/coverflow.jpg"><span>Coverflow</span></a>
             <p>Image gallery in a coverflow UI</p>
             <ul>
               <li>CSS 2D Transforms
@@ -116,7 +117,7 @@
           </div>
           
           
-          <div class="box"><a href="samples/slides/index.html"><img src="static/img/slides.jpg"><span>Slideshow</span></a>
+          <div class="box app"><a href="samples/slides/index.html"><img src="static/img/slides.jpg"><span>Slideshow</span></a>
             <p>A minimal version of the <a href="http://slides.html5rocks.com" target="_blank">HTML5 Slide Deck</a>, ready for you to adapt to your uses.</p>
             <ul>
               <li>CSS3 Transitions
@@ -125,7 +126,7 @@
           </div>
           
           
-          <div class="box"><a href="samples/page-flip/index.html"><img src="static/img/pageflip.jpg"><span>Page Flip</span></a>
+          <div class="box app"><a href="samples/page-flip/index.html"><img src="static/img/pageflip.jpg"><span>Page Flip</span></a>
             <p>An animated page flip of real HTML content.</p>
             <ul>
               <li>CSS3 2D transforms
@@ -133,7 +134,7 @@
           </div>
           
           
-          <div class="box"><a href="samples/dnd-fileapi/index.html"><img src="static/img/drag.jpg"><span>Drag n Drop Photos</span></a>
+          <div class="box app"><a href="samples/dnd-fileapi/index.html"><img src="static/img/drag.jpg"><span>Drag n Drop Photos</span></a>
             <p>Drag files in from your machine, get an instant preview</p>
             <ul>
               <li>HTML5 Drag 'n Drop
@@ -142,7 +143,7 @@
           
           
           
-          <div class="box"><a href="samples/video-cube/index.html"><img src="static/img/cube.jpg"><span>Video Cube</span></a>
+          <div class="box app"><a href="samples/video-cube/index.html"><img src="static/img/cube.jpg"><span>Video Cube</span></a>
             <p>Build a cube of ASCII reflecting a video in realtime and reposition the view.</p>
             <ul>
               <li>HTML5 video
