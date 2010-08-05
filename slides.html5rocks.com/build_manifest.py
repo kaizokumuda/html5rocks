@@ -24,12 +24,15 @@ manifest = 'cache.manifest'
 
 def produce_manifest_entries(dir):
   files = os.walk(dir)
-  list = []
+  l = []
   for root, currdir, fileList in files:
     # Filter out .svn directories.
     if not '.svn' in root:
-      list.extend('/%s/%s\n' % (root, file)  for file in fileList)
-  return list
+      # Need to exclude large files because of AppCache 5MB limit.
+      exclude_list = ['.mp3', '.mp4', '.ogv', '.ogg', '.webm']
+      l.extend('/%s/%s\n' % (root, f)  for f in fileList
+               if f[f.rfind('.'):] not in exclude_list)
+  return l
 
 if __name__ == '__main__':
   f = open(manifest, 'w')
