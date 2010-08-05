@@ -16,7 +16,8 @@ $(window).load(function () {
 
 
 // load iframe
-$('.show.open div.box').live('click', function () {
+$('.show.open div.box').live('click', function f() {
+
   tip.out();
   
   lastDemo = this;
@@ -32,7 +33,8 @@ $('.show.open div.box').live('click', function () {
     sessionStorage[key] = true;
   }
   tip.over();
-  setTimeout(tip.out,10*1000);
+  clearTimeout(f); // clear any stale timeouts
+  f = setTimeout(tip.out,10*1000);
 });
 
 
