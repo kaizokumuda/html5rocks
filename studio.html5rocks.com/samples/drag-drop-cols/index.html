@@ -86,10 +86,10 @@ body {
 Enable column hover: <input type="checkbox" id="ghostCol" name="ghostCol"/>
 
 <div id="columns">
-  <div class="column"><div class="header">A</div><div class="count" data-col-moves="0"></div></div>
-  <div class="column"><div class="header">B</div><div class="count" data-col-moves="0"></div></div>
-  <div class="column"><div class="header">C</div><div class="count" data-col-moves="0"></div></div>
-  <div class="column"><div class="header">D</div><div class="count" data-col-moves="0"></div></div>
+  <div class="column" id="one"><div class="header">A</div><div class="count" data-col-moves="0"></div></div>
+  <div class="column" id="two"><div class="header">B</div><div class="count" data-col-moves="0"></div></div>
+  <div class="column" id="three"><div class="header">C</div><div class="count" data-col-moves="0"></div></div>
+  <div class="column" id="four"><div class="header">D</div><div class="count" data-col-moves="0"></div></div>
 </div>
 
 <script type="text/javascript">
@@ -133,6 +133,13 @@ function handleDragStart(e) {
   e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/html', this.innerHTML);
   dragSrc = this;
+  
+  window.console && console.log(e, e.dataTransfer);
+  window.foo = e;
+  
+  var thereturn = e.dataTransfer.setData('DownloadURL',  "image/png:vivianbestmanagerever.png:http://example.com/example-download-data");
+  
+  console.log( thereturn );
 
   if (ENABLE_GHOST_COL) {
     draggingColumn = dragSrc.cloneNode(true);
@@ -221,5 +228,44 @@ var cols = document.querySelectorAll('.column');
   attachColumnListener(col);
 });
 </script>
+<script>
+
+document.querySelector('#one').addEventListener('mousedown',function(e){ console.log('mousedown',e); })
+document.querySelector('#one').addEventListener('mousemove',function(e){ console.log('mousemove',e); })
+
+function simulateClick() {
+  var evt = document.createEvent("MouseEvents");
+  evt.initMouseEvent("mousedown", true, true, window,
+    0, 75, 335, 75, 219, false, false, false, false, 0, null);
+  var cb = document.querySelector('#one'); 
+  var canceled = !cb.dispatchEvent(evt);
+  
+  var evt2 = document.createEvent("MouseEvents");
+  evt2.initMouseEvent("mousemove", true, true, window,
+    0, 87, 345, 87, 229, false, false, false, false, 0, null);
+  var cb2 = document.querySelector('#one'); 
+  var canceled2 = !cb2.dispatchEvent(evt2);
+  
+  console.log(cb,cb2, canceled, canceled2)
+  
+  // needs to exceed the hysteresis :
+  // http://trac.webkit.org/changeset/6746#file20
+  
+}
+</script>
+
+
+
+<!-- 
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="http://v3.javascriptmvc.com/funcunit/dist/scripts/syn.js"></script>
+<script>
+Syn
+  .click({},'one')
+  .drag({'to':'#two'});
+</script>
+
+-->
+
 </body>
 </html>

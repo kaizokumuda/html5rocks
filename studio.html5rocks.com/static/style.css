@@ -297,14 +297,21 @@ div.box { width: 140px; height: 140px; padding: 5px; background: #ddd; border: 1
 
 /* this will be animated via the previous transition */
 .go .toc  div.box { 
-         -moz-transform: scale(1);  
-            -o-transform: scale(1);  
-       -webkit-transform: scale(1); 
-               transform: scale(1);
+      -moz-transform: scale(1);  
+        -o-transform: scale(1);  
+   -webkit-transform: scale(1); 
+           transform: scale(1);
+}
+
+.go .nofan div.box   {            
+      -webkit-transition-delay: 0ms; 
+      -o-transition-delay: 0ms; 
+      -moz-transition-delay: 0ms; 
+      transition-delay: 0ms;
 }
   
 .go .toc  div.box:hover { 
-    -webkit-transition-delay: 0ms; -o-transition-delay: 0ms; -moz-transition-delay: 0ms; transition-delay: 0ms;
+   
        -moz-transform: scale(1.1);  
           -o-transform: scale(1.1);  
      -webkit-transform: scale(1.1); 

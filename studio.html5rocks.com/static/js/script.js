@@ -44,6 +44,8 @@ $('#return').click(function (e) {
 
 });
 
+
+
 var lastDemo;
 
 // when we click from TOC view, kick off the transition to showcase view
@@ -51,7 +53,7 @@ $('#boxes').delegate('.toc .box', 'click', function (e) {
 
   lastDemo = this;
 
-  $(document).bind('webkitTransitionEnd transitionend oTransitionEnd', transitionEnd);
+  
 
   $(document.body).removeClass('go');
   $('#body').removeClass('toc');
@@ -73,8 +75,9 @@ var fnQueue = [
 ];
 
 var transitionEnd = function (e) {
-
+  
   if ($('#body').hasClass('toc') || $('#body').hasClass('open')) {
+    $('#body').addClass('nofan'); // kill the fanned transition delay
     return;
   }
 
@@ -90,6 +93,8 @@ var transitionEnd = function (e) {
     fn && setTimeout(fn, 500);
   }
 };
+
+$(document).bind('webkitTransitionEnd transitionend oTransitionEnd', transitionEnd);
 
 
 $('#view_source').click(function () {
