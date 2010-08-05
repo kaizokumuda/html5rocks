@@ -12,6 +12,7 @@ handlers:
 - url: /tutorials.*(\.html|/)
   script: main.py
 
+# Server appropriate mimetype for certain static content.
 - url: /tutorials/(.*\.manifest)
   static_files: content/tutorials/\1
   mime_type: text/cache-manifest
@@ -32,10 +33,17 @@ handlers:
   mime_type: video/ogg
   upload: content/tutorials/(.*\.ogv)
 
-- url: /tutorials/(.*\.(gif|swf|mp3|mp4|css|js|png|jpeg|jpg|svg|ogg|ogm|ogv|fla|webm))
+- url: /tutorials/(.*\.(ogg|oga))
   static_files: content/tutorials/\1
-  upload: content/tutorials/(.*\.(gif|swf|mp3|mp4|css|js|png|jpeg|jpg|svg|ogg|ogm|ogv|fla|webm))
+  mime_type: audio/ogg
+  upload: content/tutorials/(.*\.(ogg|oga))
 
+# Catch other static content.
+- url: /tutorials/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
+  static_files: content/tutorials/\1
+  upload: content/tutorials/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
+
+# Anything under /static will automatically be considered static.
 - url: /static
   static_dir: static
 
