@@ -72,7 +72,7 @@
         var speed = 0.05;
         if (queue.length < 4) speed = 0.1;
         if (queue.length < 2) speed = 0.2;
-        $('li.img').css('webkitTransition', 'all '+speed+'s ease-in-out');
+        //$('li.img').css('webkitTransition', 'all '+speed+'s ease-out');
         var canvas = $('#coverflow li');
         $('#coverflow li').each(function(index) {
           var order = index + _offset;
@@ -204,7 +204,7 @@
       border:10px solid #eee;
       cursor:pointer;
       -webkit-opacity:1.0;
-      -webkit-transition: all 0.2s ease-in-out;
+      -webkit-transition: all 0.2s ease-out;
       -webkit-box-shadow: #333 0px 10px 10px;
     }
     div#zoom_container {
@@ -229,11 +229,11 @@
       position:relative;
       margin:15px auto;
       text-align:center;
-      background-color: rgba(200,200,200,0.7);
+      background-color: rgba(200,200,200,0.3);
       border:1px solid #aaa;
       z-index:0;
       -webkit-border-radius: 20px;
-      -webkit-transform: scale(1.4);
+      /* -webkit-transform: scale(1.4); */
     }
     header {
       font-family: Sans-Serif;
@@ -257,74 +257,74 @@
     }
     li.img {
       position:absolute;
-      -webkit-transition: all 0.3s ease-in-out;
+      -webkit-transition: all 0.3s ease-out;
       -webkit-transform-origin: 50% 5%;
       cursor:pointer;
     }
     li.img canvas {
-      -webkit-box-reflect: below 10px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(white));;
+      -webkit-box-reflect: below 10px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.8, transparent), to(rgba(255,255,255,0.8)));;
     }
     .coverflow0 {
       -webkit-opacity: 0.0;
       left:-5%;
     }
     .coverflow1 {
-      -webkit-transform: rotateY(65deg);
+      -webkit-transform: rotateY(65deg)  translate(0px, 100px);
       -webkit-opacity: 0.1;
       left:0%;
       z-index:0;
     }
     .coverflow2 {
-      -webkit-transform: rotateY(65deg);
+      -webkit-transform: rotateY(65deg)  translate(0px, 80px);
       -webkit-opacity: 0.3;
       left:5%;
       z-index:1;
     }
     .coverflow3 {
-      -webkit-transform: rotateY(65deg);
+      -webkit-transform: rotateY(65deg)  translate(0px, 60px);
       -webkit-opacity: 0.7;
       left:10%;
       z-index:2;
     }
     .coverflow4 {
-      -webkit-transform: rotateY(65deg);
+      -webkit-transform: rotateY(65deg)  translate(0px, 40px);
       left:15%;
       z-index:3;
     }
     .coverflow5 {
-      -webkit-transform: rotateY(65deg);
+      -webkit-transform: rotateY(65deg)  translate(0px, 20px);
       left:20%;
       z-index:4;
     }
     .coverflow6 {
-      -webkit-transform: rotateY(0deg) scale(1.15);
+      -webkit-transform: rotateY(0deg) scale(1.15) translate(0px, 0px);
       left:36.1%;
       z-index:10;
     }
     .coverflow7 {
-      -webkit-transform: rotateY(-65deg);
+      -webkit-transform: rotateY(-65deg)  translate(0px, 20px);
       left:52.5%;
       z-index:4;
     }
     .coverflow8 {
-      -webkit-transform: rotateY(-65deg);
+      -webkit-transform: rotateY(-65deg)  translate(0px, 40px);
       left:57.5%;
       z-index:3;
     }
     .coverflow9 {
-      -webkit-transform: rotateY(-65deg);
+      -webkit-transform: rotateY(-65deg)  translate(0px, 60px);
       -webkit-opacity: 0.7;
       left:62.5%;
       z-index:2;
     }
     .coverflow10 {
-      -webkit-transform: rotateY(-65deg);
+      -webkit-transform: rotateY(-65deg)  translate(0px, 80px);
       -webkit-opacity: 0.3;
       left:67.5%;
       z-index:1;
     }
     .coverflow11 {
-      -webkit-transform: rotateY(-65deg);
+      -webkit-transform: rotateY(-65deg)  translate(0px, 100px);
       -webkit-opacity: 0.1;
       left:72.5%;
       z-index:0;
@@ -332,6 +332,9 @@
     .coverflow12 {
       -webkit-opacity: 0.0;
       left:77.5%;
+    }
+    #buttons, #coverflow {
+      /* -webkit-transform: rotateZ(-65deg); */
     }
   </style>
  </head>
