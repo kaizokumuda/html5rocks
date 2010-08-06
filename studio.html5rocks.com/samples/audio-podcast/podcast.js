@@ -184,6 +184,3 @@ function PodcastPlayer(id, playButtonId) {
   };
 }
 
-function HSLit(elem){
-  document.body.style.backgroundColor = 'hsl('+elem.value+',25%, 30%)'; 
-}

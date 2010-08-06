@@ -45,11 +45,16 @@
       </div>
     </div>
     <small id="compatibilityMsg"></small>
-    <small><label>Change skin color: <input type=range min="0" max="359" value="0" onchange="HSLit(this);"></label></small>
+    <small><label>Change skin color: <input type="range" min="0" max="359" value="0" onchange="HSLit(this);"></label></small>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="http://www.google.com/jsapi"></script>
     <script src="podcast.js"></script>
     <script>
+    
+      function HSLit(elem) {
+        document.body.style.backgroundColor = 'hsl('+elem.value+',25%, 30%)'; 
+      }
+      
       $('#compatibilityMsg').html('Your browser <strong>' + ($('#player').get(0).canPlayType('audio/mpeg') != '' ? 'can' : 'cannot') + '</strong> play .mp3 files using HTML5 audio');
 
       $('#play_button').click(function(e) {
