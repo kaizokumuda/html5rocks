@@ -1,7 +1,11 @@
+body, html {
+  height: 100%;
+  width: 100%;
+}
 body {
   font: 12pt 'Cantarell', arial, serif;
   text-align: center;
-  background-color: darkRed;
+  background-color:  hsl(0,25%,30%);
 }
 select#feeds {
   text-align: center;
@@ -210,3 +214,5 @@ li.playing {
 #playerControls #right_arrow {
   margin-left: 10px;
 }
+
+small { display: block; margin: 15px 0 5px; }
