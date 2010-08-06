@@ -4,23 +4,17 @@
 <title>video2ascii in a cube!</title>
 
 <!-- 
-  Tab Atkins created this demo for the HTML5 Meetup of the 
-  Silicon Valley Google Technology User Group on July 7th, 2010.
+  Tab Atkins created the video to ascii demo for the HTML5 Meetup of the 
+  Silicon Valley Google Technology User Group on July 7th, 2010:
+      http://www.xanthir.com/video/demo3.html
 
-  It was originally hosted at http://www.xanthir.com/video/demo3.html
-  I chucked it on here so we could throw some traffic at it.
   
-  All credit goes to Tab Atkins. He did everything below with the 
-  exception of the resolution slider that I added. 
-  
-  Tab has released this code released into the public domain.
-  
-  ~paul
-  
-  update: 2010.07.08: this is my port to not use jquery.. original
-     is here: http://paulirish.com/work/video2ascii/
+   Brendan Kenny provided some matrix mathematics to project a 3D cube in 2D space:
+      http://extremelysatisfactorytotalitarianism.com/projects/etc/cube_position.html
+      
+  Then I added some form controls to add some interactivity.
+      ~ Paul Irish
 -->
-
 
 <style> 
 
@@ -29,12 +23,17 @@ html, body, div {
   margin: 0;
 	padding: 0;
 }
-
+html,body { height: 100%; width: 100%; display:block;}
 body {
 	font-size: 9px;
-	color: white;
-	background: black;
+	color: black;
+	background-color: #444;
+	background-image: -webkit-gradient(radial, 500 300, 400, 500 300, 40, from(#FAFFF5), to(#aaaaaa));
+	
+  -webkit-user-select: none;
 }
+
+aside { display:block;  position: absolute; top: 20px; left: 20px;  font-family: sans-serif; color: #555; }
 
 div {
   position:absolute;
@@ -85,9 +84,8 @@ canvas {
   position: absolute;
   width: 0;
   height: 0;
-  top: 400px;
-  left: 400px;
-  -webkit-user-select: none;
+  top: 290px;
+  left: 500px;
 }
 .face {
   position: absolute;
@@ -102,31 +100,45 @@ canvas {
 #back {
   /* background-color: mediumvioletred; */
 }
+fieldset { border: 0; height: 20px; display:block; line-height: 14px; padding: 4px;}
+input, label { margin: 3px; padding: 1px;}
+#hey { opacity: 0; position: absolute; top: 445px; left: 300px; width: 360px; text-align: center; font-size: 16px;
+    
+   -moz-transition: opacity 0.6s ease-out;  
+     -o-transition: opacity 0.6s ease-out;  
+-webkit-transition: opacity 0.6s ease-out; 
+        transition: opacity 0.6s ease-out; 
+}
+
+.unplayed #hey { opacity: 1; }
 </style> 
 
 </head> 
-<body class=""> 
-<!-- 
- <h1>Cube 'o ASCII</h1>
- <ul>
-   <li>First we start with standards shepherd <a href="http://twitter.com/tabatkins">Tab Atkin</a>'s excellent <a href="http://paulirish.com/work/video2ascii/">video 2 ascii canvas demo</a>
-   <li>Then we use the insane matrix mathematics from <a href="http://twitter.com/brendankenny">Brendan Kenny</a>'s brain and <a href="http://extremelysatisfactorytotalitarianism.com/projects/etc/cube_position.html">cube position 3D via 2D matrix tool</a>.
-   <li>Then I mixed 'em up and added some sweet form controls for the funtimes.
-  </ul>
-</label>
- -->
+<body class="unplayed"> 
+
  
- <br>
- <br>
+ <aside>
 
-  <label for=range>Adjust resolution:</label>
-  <input type=range min=2 max=14 id=range value=8>
 
-  <br>
-  <label for=fadey>Fadey Mask</label>
-  <input type=checkbox id=fadey>
+  <fieldset>
+    <label for=range>Adjust resolution:</label>
+    <input type=range min=2 max=13 id=range value=8>
+  </fieldset>
 
+  <fieldset>
+    <label for=fadey>Fade the edges: </label>
+    <input type=checkbox id=fadey>
+  </fieldset>
+    
+  <fieldset>
+    <button onclick="v.src = v.currentSrc; v.play();">Reset Video</button>
+  </fieldset>
   
+ </aside>
+ 
+ <aside id="hey">
+   Hit play. Drag the video around.
+ </aside>
 
 
 <div id='cube'> 
@@ -138,11 +150,11 @@ canvas {
  
   <video controls="true" loop="true" class='face' id='back'>
     
-     <source src="http://hardtoguess3.latest.html5rocks.appspot.com/tutorials/video/basics/Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' /> 
+     <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' /> 
   
-      <source src="http://hardtoguess3.latest.html5rocks.appspot.com/tutorials/video/basics/Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' /> 
+      <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' /> 
   
-      <source src="http://hardtoguess3.latest.html5rocks.appspot.com/tutorials/video/basics/Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
+      <source src="Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
       
   </video>
   
@@ -286,7 +298,7 @@ function makeCubeGo() {
   }
   
   // set width, height, depth of cube
-  setCubeSize(480, 360, 400);
+  setCubeSize(512, 288, 288);
   window.setCubeSize = setCubeSize;
   
   document.addEventListener('mousedown', dragStart, false);
@@ -389,8 +401,12 @@ document.addEventListener('DOMContentLoaded', makeCubeGo, false);
   },false);
 
   document.querySelector('input[type="checkbox"]').addEventListener('change',function(e){  
-    console.log(e.target.checked)
     document.body.className = '' + (e.target.checked ? 'fadey' : '');
+  },false);
+  
+  document.body.addEventListener('mouseup', function f() {
+    this.removeEventListener('mouseup',f)
+    document.body.className = document.body.className.replace('unplayed','');
   },false);
   
 </script>
