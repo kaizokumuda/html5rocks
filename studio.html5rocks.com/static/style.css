@@ -679,7 +679,7 @@ footer {   width: 880px; margin: 0 auto; font-family: sans-serif;
 .tooltip .arrow {
   position: absolute;
   left: 90px;
-  top : -12px;
+  top : -14px;
   color: rgb(40,40,40);
   text-shadow: 0 -3px 2px rgba(155,155,155,.5);
 }
