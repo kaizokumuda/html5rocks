@@ -72,7 +72,6 @@
         var speed = 0.05;
         if (queue.length < 4) speed = 0.1;
         if (queue.length < 2) speed = 0.2;
-        //$('li.img').css('webkitTransition', 'all '+speed+'s ease-out');
         var canvas = $('#coverflow li');
         $('#coverflow li').each(function(index) {
           var order = index + _offset;
@@ -233,7 +232,6 @@
       border:1px solid #aaa;
       z-index:0;
       -webkit-border-radius: 20px;
-      /* -webkit-transform: scale(1.4); */
     }
     header {
       font-family: Sans-Serif;
@@ -269,30 +267,30 @@
       left:-5%;
     }
     .coverflow1 {
-      -webkit-transform: rotateY(65deg)  translate(0px, 100px);
+      -webkit-transform: rotateY(65deg) translate(0px, 100px);
       -webkit-opacity: 0.1;
       left:0%;
       z-index:0;
     }
     .coverflow2 {
-      -webkit-transform: rotateY(65deg)  translate(0px, 80px);
+      -webkit-transform: rotateY(65deg) translate(0px, 80px);
       -webkit-opacity: 0.3;
       left:5%;
       z-index:1;
     }
     .coverflow3 {
-      -webkit-transform: rotateY(65deg)  translate(0px, 60px);
+      -webkit-transform: rotateY(65deg) translate(0px, 60px);
       -webkit-opacity: 0.7;
       left:10%;
       z-index:2;
     }
     .coverflow4 {
-      -webkit-transform: rotateY(65deg)  translate(0px, 40px);
+      -webkit-transform: rotateY(65deg) translate(0px, 40px);
       left:15%;
       z-index:3;
     }
     .coverflow5 {
-      -webkit-transform: rotateY(65deg)  translate(0px, 20px);
+      -webkit-transform: rotateY(65deg) translate(0px, 20px);
       left:20%;
       z-index:4;
     }
@@ -302,29 +300,29 @@
       z-index:10;
     }
     .coverflow7 {
-      -webkit-transform: rotateY(-65deg)  translate(0px, 20px);
+      -webkit-transform: rotateY(-65deg) translate(0px, 20px);
       left:52.5%;
       z-index:4;
     }
     .coverflow8 {
-      -webkit-transform: rotateY(-65deg)  translate(0px, 40px);
+      -webkit-transform: rotateY(-65deg) translate(0px, 40px);
       left:57.5%;
       z-index:3;
     }
     .coverflow9 {
-      -webkit-transform: rotateY(-65deg)  translate(0px, 60px);
+      -webkit-transform: rotateY(-65deg) translate(0px, 60px);
       -webkit-opacity: 0.7;
       left:62.5%;
       z-index:2;
     }
     .coverflow10 {
-      -webkit-transform: rotateY(-65deg)  translate(0px, 80px);
+      -webkit-transform: rotateY(-65deg) translate(0px, 80px);
       -webkit-opacity: 0.3;
       left:67.5%;
       z-index:1;
     }
     .coverflow11 {
-      -webkit-transform: rotateY(-65deg)  translate(0px, 100px);
+      -webkit-transform: rotateY(-65deg) translate(0px, 100px);
       -webkit-opacity: 0.1;
       left:72.5%;
       z-index:0;
@@ -332,9 +330,6 @@
     .coverflow12 {
       -webkit-opacity: 0.0;
       left:77.5%;
-    }
-    #buttons, #coverflow {
-      /* -webkit-transform: rotateZ(-65deg); */
     }
   </style>
  </head>
