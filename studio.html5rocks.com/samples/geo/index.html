@@ -218,6 +218,14 @@
                       withinEl.textContent + 'mi');
     });
 
+    jobPositionEl.addEventListener('keypress', function(e) {
+      // Prevent enter key from sticking return in the contenteditable box.
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+
     withinEl.addEventListener('blur', function(e) {
       if (this.attributes['data-previous'].value == this.textContent) {
         return;
@@ -229,6 +237,14 @@
       resetMap();
       queryGoogleBase(JOB_CATEGORY, jobPositionEl.textContent, here.address,
                       this.textContent + 'mi');
+    });
+
+    withinEl.addEventListener('keypress', function(e) {
+      // Prevent enter key from sticking return in the contenteditable box.
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
     });
 
     document.getElementById('closest-job').addEventListener('click', function(e) {
