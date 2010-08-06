@@ -320,3 +320,8 @@ footer .note {
   text-align: center;
   margin-top: 20px;
 }
+abbr, acronym {
+  border-bottom: 1px dotted #888;
+  cursor: help;
+}
+
