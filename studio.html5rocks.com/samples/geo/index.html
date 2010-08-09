@@ -166,6 +166,9 @@
     var geocoder = new GClientGeocoder();
     var map;
 
+    var jobPositionEl = document.getElementById('position');
+    var withinEl = document.getElementById('within');
+
     window.onload = function() {
       if (!GBrowserIsCompatible() || !navigator.geolocation) {
         handleError("Can't do this!");
@@ -190,7 +193,7 @@
     };
 
     function handleError(message) {
-      alert(message || "can't do this!");
+      alert(message || "Can't do this!");
     }
 
    function resetMap() {
@@ -202,20 +205,21 @@
      map.addOverlay(new GMarker(here.pos));
    }
 
-    var jobPositionEl = document.getElementById('position');
-    var withinEl = document.getElementById('within');
-
-    jobPositionEl.addEventListener('blur', function(e) {
-      if (this.attributes['data-previous'].value == this.textContent) {
+    function doQuery(el, jobPositionEl, withinEl) {
+      if (el.attributes['data-previous'].value == el.textContent) {
         return;
-      } else if (this.textContent == '') {
-        this.textContent = this.attributes['data-previous'].value
+      } else if (el.textContent == '') {
+        el.textContent = el.attributes['data-previous'].value
         return;
       }
-      this.attributes['data-previous'].value = this.textContent;
+      el.attributes['data-previous'].value = el.textContent;
       resetMap();
-      queryGoogleBase(JOB_CATEGORY, this.textContent, here.address,
+      queryGoogleBase(JOB_CATEGORY, jobPositionEl.textContent, here.address,
                       withinEl.textContent + 'mi');
+    }
+
+    jobPositionEl.addEventListener('blur', function(e) {
+      doQuery(this, jobPositionEl, withinEl);
     });
 
     jobPositionEl.addEventListener('keypress', function(e) {
@@ -223,20 +227,12 @@
       if (e.keyCode == 13) {
         e.preventDefault();
         e.stopPropagation();
+        doQuery(this, jobPositionEl, withinEl);
       }
     });
 
     withinEl.addEventListener('blur', function(e) {
-      if (this.attributes['data-previous'].value == this.textContent) {
-        return;
-      } else if (this.textContent == '') {
-        this.textContent = this.attributes['data-previous'].value
-        return;
-      }
-      this.attributes['data-previous'].value = this.textContent;
-      resetMap();
-      queryGoogleBase(JOB_CATEGORY, jobPositionEl.textContent, here.address,
-                      this.textContent + 'mi');
+      doQuery(this, jobPositionEl, withinEl);
     });
 
     withinEl.addEventListener('keypress', function(e) {
@@ -244,6 +240,7 @@
       if (e.keyCode == 13) {
         e.preventDefault();
         e.stopPropagation();
+        doQuery(this, jobPositionEl, withinEl);
       }
     });
 
