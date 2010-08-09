@@ -367,6 +367,14 @@ div.box { width: 140px; height: 140px; position: absolute;
       -moz-transition-delay: 0ms; 
       transition-delay: 0ms;
 }
+
+.show.open div.box   {            
+  -webkit-transition-property: -webkit-transform; 
+  -o-transition-property: -o-transform; 
+  -moz-transition-property: -moz-transform; 
+  transition-property: transform;
+}
+
   
 .go .toc  div.box:hover { 
    
