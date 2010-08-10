@@ -113,7 +113,7 @@ video, canvas {
     &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
   &lt;/video></pre>
   <p>
-    This snippet uses the <em>&lt;source&gt;</em> tag which let's you include multiple formats as fallback types in case the user's browser doesn't support one of them. More about this in the next section.
+    This snippet uses the <em>&lt;source&gt;</em> tag which lets you include multiple formats as fallback types in case the user's browser doesn't support one of them. More about this in the next section.
   </p>
   <p>
     You can also use a single video format which makes the syntax very similar to the image tag. This syntax will be the most used one in the near future when all browsers support one common video format.
@@ -327,10 +327,10 @@ video, canvas {
     Canvas is yet another HTML5 element with many possibilities when used in conjunction with the video tag.
   </p>
   <p>
-    In the following sample we are taking advantage of two features of the &lt;canvas&gt; element to import and export images. The first one is the <em>drawImage</em> method which let's you import images from three different sources: an image element, another canvas element and a <em>&lt;video&gt; element</em>! This means that every time we run this method, the current frame in the video will be imported and rendered into the canvas.
+    In the following sample we are taking advantage of two features of the &lt;canvas&gt; element to import and export images. The first one is the <em>drawImage</em> method which lets you import images from three different sources: an image element, another canvas element and a <em>&lt;video&gt; element</em>! This means that every time we run this method, the current frame in the video will be imported and rendered into the canvas.
   </p>
   <p>
-    The second feature of the &lt;canvas&gt; tag we are using is the <em>toDataURL</em> method which let's you export the content of the canvas to an image. Click play in the following video to see how an image is created from the video every 1.5 seconds. The canvas we use to import/export is actually <em>hidden</em>.
+    The second feature of the &lt;canvas&gt; tag we are using is the <em>toDataURL</em> method which lets you export the content of the canvas to an image. Click play in the following video to see how an image is created from the video every 1.5 seconds. The canvas we use to import/export is actually <em>hidden</em>.
   </p>
   <video poster="star.png" id="video-canvas-frames" controls>
     <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
@@ -359,7 +359,7 @@ video, canvas {
   }, false);
 </pre>
   <p>
-    In the following sample we are going another step further. If you increase the frequency at which you import and render the image from the video you can really emulate the same video frame rate in the canvas. This let's you do all sorts of fancy transforms in the canvas as if you were doing it in the video.
+    In the following sample we are going another step further. If you increase the frequency at which you import and render the image from the video you can really emulate the same video frame rate in the canvas. This lets you do all sorts of fancy transforms in the canvas as if you were doing it in the video.
   </p>
   <p>
     On the left side you can see the original video playing. In the middle there's a canvas we are using to import the images every 33 milliseconds. On the right side there's a second canvas which will "suffer" all the transforms at the same time it imports the images from the first canvas. The only reason we are using two canvases is because the performance is much better than using a single one which imports the images and transforms at the same time.
