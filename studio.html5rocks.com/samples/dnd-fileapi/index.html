@@ -113,10 +113,23 @@ html, body {
   box-shadow: inset 0px 0px 50px #777;
 
 }
+tt {
+  display: block;
+  text-align: center;
+  margin: 0 0 35px; 
+  color: #999;
+}
+tt span {
+  display: block;
+  font-size: 80%;
+}
 </style>
 </head>
 <body class="center">
   <div id="container">
+    <tt>This demo requires Drag 'n Drop and File API support. <span></span></tt>
+    
+    
     <div id="drop_it_like_its_hot" class="center linear">
       <h2>Drop image files here from your desktop</h2>
       <span>( try multiple files )</span>
@@ -134,6 +147,14 @@ html, body {
     </div>
   </script>
   <script type="text/javascript">
+  
+    // test browser support.
+    document.querySelector('tt span').innerHTML = '' +
+      ('draggable' in document.createElement('span') && !!window.FileReader) ? 
+      '(Your browser appears to support these features.)' :
+      '(Your browser may not support these features.)';
+      
+    
     // Simple JavaScript Templating
     // John Resig - http://ejohn.org/ - MIT Licensed
     (function(){
@@ -188,6 +209,43 @@ html, body {
             new RegExp("(?:^|\\s+)" + name + "(?:\\s+|$)", "g"), "");
       }
     };
+    
+    
+    // insertAdjacentHTML(), insertAdjacentText() and insertAdjacentElement 
+    // for Netscape 6/Mozilla by Thor Larholm me@jscript.dk 
+    if (typeof HTMLElement != "undefined" && !HTMLElement.prototype.insertAdjacentElement) {
+        HTMLElement.prototype.insertAdjacentElement = function (where, parsedNode) {
+            switch (where) {
+            case 'beforeBegin':
+                this.parentNode.insertBefore(parsedNode, this)
+                break;
+            case 'afterBegin':
+                this.insertBefore(parsedNode, this.firstChild);
+                break;
+            case 'beforeEnd':
+                this.appendChild(parsedNode);
+                break;
+            case 'afterEnd':
+                if (this.nextSibling) this.parentNode.insertBefore(parsedNode, this.nextSibling);
+                else this.parentNode.appendChild(parsedNode);
+                break;
+            }
+        }
+
+        HTMLElement.prototype.insertAdjacentHTML = function (where, htmlStr) {
+            var r = this.ownerDocument.createRange();
+            r.setStartBefore(this);
+            var parsedHTML = r.createContextualFragment(htmlStr);
+            this.insertAdjacentElement(where, parsedHTML)
+        }
+
+
+        HTMLElement.prototype.insertAdjacentText = function (where, txtStr) {
+            var parsedText = document.createTextNode(txtStr)
+            this.insertAdjacentElement(where, parsedText)
+        }
+    }
+
 
     function onDragEnter(e) {
       e.stopPropagation();
