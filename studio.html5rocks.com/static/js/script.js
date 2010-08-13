@@ -122,9 +122,14 @@ var tip = {
     
     var h3 = $('<h3>').text($(lastDemo).find('a:first span').text());
     var info = $(lastDemo).find('p,ul').clone();
+    var support = $(lastDemo).data('support');
+    var suphtml = $('<div class="support">').addClass( (''+!!support) ).text(
+        'Your browser ' + (support ? ' appears to ' : ' may not fully ') + ' support these features.'
+      );
+      
 
-    $('.tooltip').find('h3,p,ul').remove().end()
-     .append(h3).append(info)
+    $('.tooltip').find('h3,p,ul,.support').remove().end()
+     .append(h3).append(info).append(suphtml)
      .appendTo("#info").addClass('popped');
    },
    out: function (e) {
@@ -191,4 +196,7 @@ function getOffset() {
 
 $(document).ready(setShowCaseSize);
 $(window).resize(setShowCaseSize);
+
+
+
 

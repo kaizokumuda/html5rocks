@@ -6,13 +6,19 @@
 
     <title>HTML5 Studio</title>
     
-   
-     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
-     <link rel="stylesheet" href="/static/style.css">
-     
-     
-     <script src="static/js/modernizr.js"> </script>
-     
+  
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
+    <link rel="stylesheet" href="/static/style.css">
+
+
+    <script src="static/js/modernizr.js"> </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script>
+      function supported(fn) {
+        var box = $(document.scripts[document.scripts.length-1]).closest('div.box');
+        box.data('support', fn());
+      }
+    </script>
 </head>
 
 <body>
@@ -83,6 +89,14 @@
               <li>HTML5 video
               <li>Media element API
               <li>Canvas
+                
+               
+            <script>
+              supported(function() {
+                return Modernizr.video && Modernizr.canvas;
+              });
+            </script>
+            
           </div>
           
           
@@ -92,6 +106,13 @@
               <li>Geolocation
               <li>Google Base API
               <li>Google Maps API 
+               
+            <script>
+              supported(function() {
+                return Modernizr.geolocation;
+              });
+            </script>
+            
           </div>
           
           <div class="box app"><a href="samples/css3-col-layout/index.html"><img src="static/img/multicolumns.png"><span>Newspaper Columns</span></a>
@@ -99,6 +120,14 @@
             <ul>
               <li>CSS3 Columns
               <li>input type=range
+                
+               
+            <script>
+              supported(function() {
+                return Modernizr.inputtypes.range && Modernizr.csscolumns;
+              });
+            </script>
+            
           </div>
           
           <div class="box app"><a href="samples/audio-podcast/index.html"><img src="static/img/player.jpg"><span>Podcast Player</span></a>
@@ -106,6 +135,14 @@
             <ul>
               <li>HTML5 audio
               <li>Google Feed API
+                
+               
+            <script>
+              supported(function() {
+                return Modernizr.audio;
+              });
+            </script>
+            
           </div>
           
           
@@ -116,6 +153,14 @@
               <li>CSS 2D Transforms
               <li>CSS 3D Transforms
               <li>input type=range 
+                
+                
+            <script>
+              supported(function() {
+                return Modernizr.inputtypes.range && Modernizr.csstransforms;
+              });
+            </script>
+            
           </div>
           
           
@@ -125,6 +170,12 @@
               <li>CSS3 Transitions
               <li>CSS3 Gradients
               <li>CSS3 2D Transforms
+                
+            <script>
+              supported(function() {
+                return Modernizr.csstransforms && Modernizr.csstransitions;
+              });
+            </script>
           </div>
           
           
@@ -133,6 +184,13 @@
             <ul>
               <li>CSS3 2D transforms
               <li>CSS3 animation
+                
+            <script>
+              supported(function() {
+                return 'WebkitTransform' in document.body && !!window.WebKitAnimationEvent;
+              });
+            </script>  
+                
           </div>
           
           
@@ -141,6 +199,12 @@
             <ul>
               <li>HTML5 Drag 'n Drop
               <li>FileReader API
+              
+            <script>
+              supported(function() {
+                return 'draggable' in document.createElement('span') && !!window.FileReader;
+              });
+            </script>
           </div>
           
           
@@ -152,6 +216,13 @@
               <li>Canvas  
               <li>CSS 2D Transforms
               <li>CSS3 mask image
+            
+            <script>
+              supported(function() {
+                return Modernizr.video && Modernizr.canvas && !!window.WebKitCSSMatrix;
+              });
+            </script>
+            
           </div>
           
           
@@ -179,7 +250,6 @@
   </footer>
   
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="static/js/plugins.js"></script>
   <script src="static/js/script.js"></script>
   

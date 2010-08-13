@@ -39,7 +39,6 @@ fieldset { border: 0; height: 20px; display: block; line-height: 14px; padding: 
 input, label { margin: 3px; padding: 1px; }
 #hey { opacity: 0; position: absolute; top: 445px; left: 300px; width: 360px; text-align: center; font-size: 16px; -moz-transition: opacity 0.6s ease-out; -o-transition: opacity 0.6s ease-out; -webkit-transition: opacity 0.6s ease-out; transition: opacity 0.6s ease-out; }
 .unplayed #hey { opacity: 1; }
-tt { font-size: 10px !important;}
 </style> 
 
 </head> 
@@ -47,8 +46,7 @@ tt { font-size: 10px !important;}
 
  
  <aside>
-   <tt>This demo requires WebKitCSSMatrix support for the full effect. <span></span></tt>
-
+ 
 
   <fieldset>
     <label for="range">Adjust resolution:</label>
@@ -97,13 +95,6 @@ tt { font-size: 10px !important;}
 
  
 <script>
-  // test browser support.
- document.querySelector('tt span').innerHTML = '' +
-   (!!window.WebKitCSSMatrix) ? 
-   '(which your browser supports!)' :
-   '(Your browser may not support this feature.)';
-   
- 
 
  /**
   * this script handles creating the cube and its manipulation

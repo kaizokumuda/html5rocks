@@ -113,23 +113,12 @@ html, body {
   box-shadow: inset 0px 0px 50px #777;
 
 }
-tt {
-  display: block;
-  text-align: center;
-  margin: 0 0 35px; 
-  color: #999;
-}
-tt span {
-  display: block;
-  font-size: 80%;
-}
+
 </style>
 </head>
 <body class="center">
   <div id="container">
-    <tt>This demo requires Drag 'n Drop and File API support. <span></span></tt>
-    
-    
+
     <div id="drop_it_like_its_hot" class="center linear">
       <h2>Drop image files here from your desktop</h2>
       <span>( try multiple files )</span>
@@ -148,12 +137,6 @@ tt span {
   </script>
   <script type="text/javascript">
   
-    // test browser support.
-    document.querySelector('tt span').innerHTML = '' +
-      ('draggable' in document.createElement('span') && !!window.FileReader) ? 
-      '(Your browser appears to support these features.)' :
-      '(Your browser may not support these features.)';
-      
     
     // Simple JavaScript Templating
     // John Resig - http://ejohn.org/ - MIT Licensed
