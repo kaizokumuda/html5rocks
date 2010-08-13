@@ -187,7 +187,7 @@
                 
             <script>
               supported(function() {
-                return 'WebkitTransform' in document.body && !!window.WebKitAnimationEvent;
+                return Modernizr.csstransforms && Modernizr.cssanimations;
               });
             </script>  
                 
