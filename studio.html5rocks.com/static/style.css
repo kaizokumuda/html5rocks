@@ -615,6 +615,8 @@ footer {   width: 880px; margin: 0 auto; font-family: sans-serif;
     position: absolute;
     
     max-height: 0px;
+    overflow: hidden;
+    
     top: 34px; left: -68px;
     
     opacity: 0;
