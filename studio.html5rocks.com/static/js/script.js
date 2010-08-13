@@ -125,7 +125,7 @@ var tip = {
     
     // hover over the invisible tooltip?
     var srcElement = (e && e.srcElement && $(e.srcElement)) || [];
-    if (srcElement.length && srcElement.closest('.tooltip').length && srcElement.is(':visible')){
+    if (srcElement.length && srcElement.closest('.tooltip').length && srcElement.closest('.tooltip').is(':visible')){
       return;
     }
     

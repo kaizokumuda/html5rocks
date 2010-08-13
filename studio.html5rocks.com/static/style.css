@@ -553,7 +553,7 @@ a.button, a.button:visited {
 /* the stage and iframe */
 #stage { diplay:none;}
 .show #stage {display:block;}
-#stage iframe { width: 100%; height: 580px; display:none;
+#stage iframe { width: 100%; min-height: 580px; height: 580px; display:none;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
@@ -698,6 +698,7 @@ footer {   width: 880px; margin: 0 auto; font-family: sans-serif;
   right: 10px;
   text-transform: lowercase;
   font-size: 11px;
+  color: rgba(220, 220, 220, 0.9);
 }
 .tooltip .close:hover { color: #eee;}
 
