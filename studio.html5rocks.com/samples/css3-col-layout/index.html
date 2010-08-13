@@ -320,10 +320,13 @@ article footer.posted:before {
         value++;
       }
       
-      elem.style['-webkit-'+prop] = value;
-      elem.style['-moz-'+prop] = value;
-      elem.style[prop] = value;
-      console.log('-webkit-'+prop,value)
+      prop = prop.replace(/(:?^.|(-[a-z]))/ig, function(all, letter) {
+        return letter.replace('-','').toUpperCase();
+      });
+      
+      elem.style['Webkit'+prop] = value;
+      elem.style['Moz'+prop] = value;
+      elem.style[prop.charAt(0).toLowerCase() + prop.slice(1)] = value;
     });
   }
   
@@ -336,7 +339,7 @@ article footer.posted:before {
     } else {
       el.className = 'web10';
     }
-  });
+  }, false);
   
 </script>
 </body>

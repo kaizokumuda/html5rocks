@@ -59,6 +59,12 @@ $('#boxes').delegate('.toc .box', 'click', function (e) {
 
   $(document.body).removeClass('go');
   $('#body').removeClass('toc');
+  
+  // if we dont have transitionEnd events..
+  if (!Modernizr.csstransitions){
+    transitionEnd(true);
+    transitionEnd(true);
+  }
 
 }).delegate('.box a', 'click', function (e) {
   e.preventDefault();
@@ -89,10 +95,12 @@ var transitionEnd = function (e) {
   f.fns = (f.fns && f.fns.length) ? f.fns : $.extend([], fnQueue);
 
   f.boxes--;
-  if (f.boxes === 0) {
+  
+  // allow for forced progression (!csstransitions)
+  if (f.boxes === 0 || e === true) {
     f.boxes = boxes.length;
     var fn = f.fns.shift();
-    fn && setTimeout(fn, 500);
+    fn && setTimeout(fn, 400);
   }
 };
 
@@ -118,14 +126,13 @@ var tip = {
     // hover over the invisible tooltip?
     var srcElement = (e && e.srcElement && $(e.srcElement)) || [];
     if (srcElement.length && srcElement.closest('.tooltip').length && srcElement.is(':visible')){
-      console.log('omgggg')
       return;
     }
     
     var h3 = $('<h3>').text($(lastDemo).find('a:first span').text());
     var info = $(lastDemo).find('p,ul').clone();
     var support = $(lastDemo).data('support');
-    var suphtml = $('<div class="support">').addClass( (''+!!support) ).text(
+    var suphtml = $('<div class="support">').addClass( ('' + !!support) ).text(
         'Your browser ' + (support ? ' appears to ' : ' may not fully ') + ' support these features.'
       );
       

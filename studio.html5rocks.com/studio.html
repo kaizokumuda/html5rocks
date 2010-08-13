@@ -15,7 +15,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script>
       function supported(fn) {
-        var box = $(document.scripts[document.scripts.length-1]).closest('div.box');
+        var scripts = document.querySelectorAll('script');
+        var box = $(scripts[ scripts.length - 1 ]).closest('div.box');
         box.data('support', fn());
       }
     </script>
@@ -133,13 +134,13 @@
           <div class="box app"><a href="samples/audio-podcast/index.html"><img src="static/img/player.jpg"><span>Podcast Player</span></a>
             <p>Load in podcast feeds dynamically, then listen to episodes in a custom player UI. The player UI is a semi-opaque skin on top of the background color.</p>
             <ul>
-              <li>HTML5 audio
+              <li>HTML5 audio (mp3)
               <li>Google Feed API
                 
                
             <script>
               supported(function() {
-                return Modernizr.audio;
+                return Modernizr.audio && Modernizr.audio.mp3;
               });
             </script>
             
