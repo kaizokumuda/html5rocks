@@ -49,11 +49,11 @@ video, canvas {
 }
 
 @-webkit-keyframes crawl {
-	0% { -webkit-transform: translate(0, 10px);  }
-	25% { -webkit-transform: translate(2px, 5px); }
-	50% { -webkit-transform: translate(0, 0); }
-	75% { -webkit-transform: translate(-2px, 5px); }
-	1000% { -webkit-transform: translate(0, 10px);  }
+  0% { -webkit-transform: translate(0, 10px);  }
+  25% { -webkit-transform: translate(2px, 5px); }
+  50% { -webkit-transform: translate(0, 0); }
+  75% { -webkit-transform: translate(-2px, 5px); }
+  1000% { -webkit-transform: translate(0, 10px);  }
 }
 
 #video-css.enhanced {
@@ -67,7 +67,7 @@ video, canvas {
   -o-transform: translate(0, -10px);  /* Opera 10.5 */
   -webkit-transform: translate(0, -10px);  /* Saf3.1+, Chrome */
   
-	-webkit-animation-name: crawl;
+  -webkit-animation-name: crawl;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: ease-in-out;
@@ -96,7 +96,7 @@ video, canvas {
 {% endblock %}
 
 {% block content %}
-  <h2 id="toc-intro">Introduction</h2> 
+  <h2 id="toc-intro">Introduction</h2>
   <p>
     The video tag is one of those HTML5 features that gets a lot of attention. Often presented as an alternative to flash in the media, the video tag actually goes beyond that. Although it's recently joined the rest of the ubiquitous HTML tags, its capabilities and support across browsers have increased at an amazing speed. As you will see in this tutorial its main advantage is the natural integration with the other layers of the web development stack such as CSS and JavaScript as well as the other HTML tags.
   </p>
@@ -108,34 +108,33 @@ video, canvas {
     To make HTML video work in your site, the following lines should be sufficient.
   </p>
 <pre class="prettyprint">
-  &lt;video>
-    &lt;source src="movie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-    &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
-  &lt;/video></pre>
+&lt;video>
+  &lt;source src="movie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+  &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
+&lt;/video></pre>
   <p>
     This snippet uses the <em>&lt;source&gt;</em> tag which lets you include multiple formats as fallback types in case the user's browser doesn't support one of them. More about this in the next section.
   </p>
   <p>
     You can also use a single video format which makes the syntax very similar to the image tag. This syntax will be the most used one in the near future when all browsers support one common video format.
   </p>
-<pre class="prettyprint">
-  &lt;video src="movie.webm">&lt;/video></pre>
+<pre class="prettyprint">&lt;video src="movie.webm">&lt;/video></pre>
   <p>
     For now, we'll focus on the former case which is currently more common. <em>The most important thing to remember</em> is to make sure your server is serving video files with the correct MIME type in the  <code>Content-Type</code> header. If not, videos might not work properly, even if they were working on a local copy of your site. In an Apache httpd.conf it's enough by adding these lines:
   </p>
 <pre class="prettyprint">
-  AddType video/ogg .ogv
-  AddType video/mp4 .mp4
-  AddType video/webm .webm
+AddType video/ogg .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm
 </pre>
   <p>
     If your app is being served in a Google App Engine app then you would need to add something like the following to app.yaml (one for each format):
   </p>
 <pre class="prettyprint">
-  - url: /(.*\.ogv)
-    static_files: videos_folder/\1
-    mime_type: video/ogg
-    upload: videos_folder/(.*\.ogv)
+- url: /(.*\.ogv)
+  static_files: videos_folder/\1
+  mime_type: video/ogg
+  upload: videos_folder/(.*\.ogv)
 </pre>
   <p>
     In order to improve the client side performance it's important to not forget to specify the <em>type</em> attribute in the <em>source</em> tags when dealing with multiple formats. This way, the browser can decide which format can download and play. In other words, it won't download the ones it can't play in order to increase the performance of the site.
@@ -181,12 +180,12 @@ video, canvas {
     At the time of this writing (August 2010) this is the snippet that has the safest combination of formats so you can be sure your video is displayed in all browsers:
   </p>
 <pre class="prettyprint">
-  &lt;video>
-    &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
-    &lt;source src="movie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-    &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' />
-    Video tag not supported. Download the video &lt;a href="movie.webm">here&lt;/a>.
-  &lt;video></pre>
+&lt;video>
+  &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
+  &lt;source src="movie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+  &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' />
+  Video tag not supported. Download the video &lt;a href="movie.webm">here&lt;/a>.
+&lt;video></pre>
   <p>
     <em>Note</em>: Because of a bug in the iPad you will need to put .mp4 as the first option if you want the video to be loaded in that device. That is, until the bug is fixed.
   </p>
@@ -195,11 +194,11 @@ video, canvas {
     As I mentioned before, almost all browser vendors agreed to support a common video format. So, in less than a year from now, here is the code which will most likely be used across the web:
   </p>
 <pre class="prettyprint">
-  &lt;video>
-    &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
-    &lt;source src="movie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-    Video tag not supported. Download the video &lt;a href="movie.webm">here&lt;/a>.
-  &lt;video></pre>
+&lt;video>
+  &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' />
+  &lt;source src="movie.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+  Video tag not supported. Download the video &lt;a href="movie.webm">here&lt;/a>.
+&lt;video></pre>
   
   <p>
     One of the main concerns about using the .mp4 format is that its video codec (h.264) is not an open codec and the licenses that a company would have to pay for using it are very complex to understand. There's more information about this format in <a href="http://diveintohtml5.org/video.html#licensing">this video chapter</a>.
@@ -234,11 +233,11 @@ video, canvas {
     All the common HTML attributes can now be used in the video player. For instance, in the following snippet we are using <em>tabindex</em> to make the player keyboard accessible. There are new attributes that can be used in the video tag which are also common to the audio tag such as <em>loop</em> and <em>autoplay</em>, both are self explanatory. The attribute <em>poster</em> indicates what image will be shown while the video is initially loading and finally, <em>controls</em> is used to indicate that instead of building our custom controls we want the browser to render ones automatically for us. There's also a <em>preload</em> attribute we can use to download the video in the background as soon as the page loads, even if it hasn't started playing.
   </p>
 <pre class="prettyprint">
-  &lt;video <em>poster="star.png" autoplay loop controls tabindex="0"</em>&gt;
-    &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' /&gt;
-    &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' /&gt;
-  &lt;/video&gt;
-</pre>  
+&lt;video <em>poster="star.png" autoplay loop controls tabindex="0"</em>&gt;
+  &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' /&gt;
+  &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' /&gt;
+&lt;/video&gt;
+</pre>
   <p>
     The full level of integration of the video tag as a native browser element deprecates some issues you might have had in the past with third party embedded players such as drop down menus and iframes overlaying on the player or weird layout behavior when the <em>other HTML elements</em> surrounding the video were dynamically resized.
   </p>
@@ -249,14 +248,13 @@ video, canvas {
   <p>
     <em>Note:</em> If you are trying to write <a href="http://dev.w3.org/html5/html-author/#polyglot-documents">polyglot documents</a> to keep the XHTML syntax in the context of HTML5 then the attributes in your code should look like this:
   </p>
-  <pre class="prettyprint">
-    &lt;video <em>poster="star.png" autoplay="autoplay" loop="loop" controls="controls" tabindex="0"</em>&gt;
-      &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' /&gt;
-      &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' /&gt;
-    &lt;/video&gt;
-  </pre>
-  
-  
+<pre class="prettyprint">
+ &lt;video <em>poster="star.png" autoplay="autoplay" loop="loop" controls="controls" tabindex="0"</em>&gt;
+  &lt;source src="movie.webm" type='video/webm; codecs="vp8, vorbis"' /&gt;
+  &lt;source src="movie.ogv" type='video/ogg; codecs="theora, vorbis"' /&gt;
+&lt;/video&gt;
+</pre>
+
   <h3 id="toc-fun-js">5.2. Video + JS</h3>
   <p>
     The video tag comes with a set of attributes and methods which let you have a fine control of your video from your JS code. You can see them in real time in the <a href="http://www.w3.org/2010/05/video/mediaevents.html">following sample</a>.
@@ -268,11 +266,11 @@ video, canvas {
     At its simplest level you can attach the canplay event to start doing stuff with the video.
   </p>
 <pre class="prettyprint">
-  video.addEventListener('canplay', function(e) {
-    this.volume = 0.4;
-    this.currentTime = 10;
-    this.play();
-  }, false);
+video.addEventListener('canplay', function(e) {
+  this.volume = 0.4;
+  this.currentTime = 10;
+  this.play();
+}, false);
 </pre>
   <p>
     There are several custom player controls available on the internet right now. In the following sample we are using some elements to control two videos simultaneously and also emulate the fast forward effect with the <em>playbackRate</em> attribute. Use the slider to toggle the volume between the videos.
@@ -280,10 +278,10 @@ video, canvas {
   <div id="control-icons">
     <img src="control-skip-180.png" id="rw" />
     <img src="control.png" id="play" />
-    <img src="control-double.png" id="ff" />    
+    <img src="control-double.png" id="ff" />
   </div>
   <input type="range" min="0" max="100" value="25" id="volume-mix" />
-    
+
   <video poster="star.png" id="video-left" tabindex="0">
     <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
     <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
@@ -310,16 +308,16 @@ video, canvas {
   </video>
   
 <pre class="prettyprint">
-  #video-css.enhanced {
-    border: 1px solid white;
-    -moz-box-shadow: 0px 0px 4px #ffffff; /* FF3.5+ */
-    -webkit-box-shadow: 5px 44px 28px #333; /* Saf3.0+, Chrome */
-    box-shadow: 0px 0px 4px #ffffff; /* Opera 10.5, IE 9.0 */
+#video-css.enhanced {
+  border: 1px solid white;
+  -moz-box-shadow: 0px 0px 4px #ffffff; /* FF3.5+ */
+  -webkit-box-shadow: 5px 44px 28px #333; /* Saf3.0+, Chrome */
+  box-shadow: 0px 0px 4px #ffffff; /* Opera 10.5, IE 9.0 */
 
-    -moz-transform: translate(0, 10px);  /* FF3.5+ */
-    -o-transform: translate(0, 10px);  /* Opera 10.5 */
-    -webkit-transform: translate(0, 10px);  /* Saf3.1+, Chrome */
-  }
+  -moz-transform: translate(0, 10px);  /* FF3.5+ */
+  -o-transform: translate(0, 10px);  /* Opera 10.5 */
+  -webkit-transform: translate(0, 10px);  /* Saf3.1+, Chrome */
+}
 </pre>
 
   <h3 id="toc-fun-canvas">5.4. Video + canvas</h3>
@@ -343,20 +341,20 @@ video, canvas {
     You can see in the following code how we are simply creating an interval which runs every 1.5 seconds with the drawImage method which takes the video element as the source.
   </p>
 <pre class="prettyprint">
-  video_dom.addEventListener('play', function() {
-    video_dom.width = canvas_draw.width = video_dom.offsetWidth;
-    video_dom.height = canvas_draw.height = video_dom.offsetHeight;
-    var ctx_draw = canvas_draw.getContext('2d');
-    draw_interval = setInterval(function() {
-      // import the image from the video
-      ctx_draw.drawImage(video_dom, 0, 0, video_dom.width, video_dom.height);
-      // export the image from the canvas
-      var img = new Image();
-      img.src = canvas_draw.toDataURL('image/png');
-      img.width = 40;
-      frames.appendChild(img);
-    }, 1500)
-  }, false);
+video_dom.addEventListener('play', function() {
+  video_dom.width = canvas_draw.width = video_dom.offsetWidth;
+  video_dom.height = canvas_draw.height = video_dom.offsetHeight;
+  var ctx_draw = canvas_draw.getContext('2d');
+  draw_interval = setInterval(function() {
+    // import the image from the video
+    ctx_draw.drawImage(video_dom, 0, 0, video_dom.width, video_dom.height);
+    // export the image from the canvas
+    var img = new Image();
+    img.src = canvas_draw.toDataURL('image/png');
+    img.width = 40;
+    frames.appendChild(img);
+  }, 1500)
+}, false);
 </pre>
   <p>
     In the following sample we are going another step further. If you increase the frequency at which you import and render the image from the video you can really emulate the same video frame rate in the canvas. This lets you do all sorts of fancy transforms in the canvas as if you were doing it in the video.
@@ -379,16 +377,16 @@ video, canvas {
     SVG provides a programatic way to render and manipulate vector graphics but it also comes with more features such as <a href="http://en.wikipedia.org/wiki/SVG_filter_effects">SVG filter effects</a>. With these filters you can target a specific DOM element and apply some out of the box effects such as blur, composite, tiles, etc. At the time of this writing (August 2010), Firefox 4 and IE9 support inline SVG which allows to target the video element with HTML and CSS (for this sample we are using JavaScript and canvas to make it also work for browsers which don't support inline SVG yet):
   </p>
 <pre class="prettyprint">
-  &lt;svg id='image' version="1.1" xmlns="http://www.w3.org/2000/svg"> 
-    &lt;defs>
-      &lt;filter id="myblur"> 
-        &lt;feGaussianBlur stdDeviation="1" /> 
-      &lt;/filter>
-    &lt;/defs>
-  &lt;/svg>
-  &lt;style>
-    video { filter:url(#myblur); border: 2px solid red; }
-  &lt;/style>
+&lt;svg id='image' version="1.1" xmlns="http://www.w3.org/2000/svg"> 
+  &lt;defs>
+    &lt;filter id="myblur"> 
+      &lt;feGaussianBlur stdDeviation="1" /> 
+    &lt;/filter>
+  &lt;/defs>
+&lt;/svg>
+&lt;style>
+  video { filter:url(#myblur); border: 2px solid red; }
+&lt;/style>
 </pre>
   <div class="video-container">
     <p>Click me to toggle blur filter</p>
@@ -400,8 +398,7 @@ video, canvas {
   </div>
   <div id="svg"></div>
   <canvas id="canvas-svg-draw"></canvas>
-  
-    
+
   <h2 id="toc-conclusion">Missing Features and Differences with Flash</h2>
   <p>
     There's no doubt that having the video tag as a native element gives the best environment to integrate video with the rest of your web application. <a href="http://www.craftymind.com/2010/04/20/blowing-up-html5-video-and-mapping-it-into-3d-space/">More</a> and <a href="http://demos.hacks.mozilla.org/openweb/WARMCSS/">more samples</a>, <a href="http://dev.opera.com/articles/view/custom-html5-video-player-with-css3-and-jquery/">video controls</a> and <a href="http://yayquery.github.com/jquery-singalong/">related UI components</a> are being created everyday.
