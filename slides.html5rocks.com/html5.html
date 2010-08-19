@@ -1404,8 +1404,7 @@ socket.<b>onclose</b> = function(event) { alert(“closed”); }
             <pre>&lt;ul id="tree1"
       <b>role</b>="<b>tree</b>" 
       tabindex="0" 
-      <b>aria-labelledby</b>="label_1"
-      >
+      <b>aria-labelledby</b>="label_1">
   &lt;li <b>role</b>="<b>treeitem</b>" tabindex="-1" <b>aria-expanded</b>="true">Fruits&lt;/li>
   &lt;li <b>role</b>="<b>group</b>">
     &lt;ul>
@@ -1424,42 +1423,50 @@ socket.<b>onclose</b> = function(event) { alert(“closed”); }
 
           <section>
             <style>
+            [required] {
+              background-color: lightyellow;
+            }
             :invalid {
               background-color: red;
             }
+            .form-inputs {
+              font-size: 80%;
+            }
+            .form-inputs input {
+              padding: 2px;
+            }
             </style>
-            <h2>
-              Implemented
-            </h2>
-            <pre><strong>Dedicated UI:</strong>
-              
-&lt;input type="<b>range</b>" min="0" max="50" value="0" /&gt; <input  type="range" min="0" max="50" value="0" />
-&lt;input results="10" type="<b>search</b>" /&gt; <input results="10" type="search" />
-&lt;input type="text" <b>placeholder</b>="Search inside" /&gt; <input type="text" placeholder="Search inside" />
+            <pre class="form-inputs">
+&lt;style&gt;
+  [required] { background-color: lightyellow; }
+  :invalid { background-color: red; }
+&lt;/style&gt;
 
-<strong>Input Validation:</strong>
-
-&lt;style> :invalid { background-color: red; } &lt;/style>
-&lt;input type="<b>color</b>" /&gt; <input type="color" size="30" placeholder="Type a valid color here to validate" />
-&lt;input type="<b>number</b>" /&gt; <input type="number" value="abc" />
-&lt;input type="<b>email</b>" /&gt; <input type="email" value="some@email.com" />
-&lt;input type="<b>tel</b>" /&gt; <input type="tel" value="1234" />
-etc...
+&lt;input type="text" <b>required</b> /&gt;<input type="text" required />
+&lt;input type="<b>email</b>" value="some@email.com" /&gt; <input type="email" value="some@email.com" />
+&lt;input type="<b>date</b>" <b>min</b>="2010-08-14" <b>max</b>="2011-08-14" value="2010-08-14"/&gt; <input type="date" min="2010-08-14" max="2011-08-14" value="2010-08-14" />
+&lt;input type="<b>range</b>" <b>min</b>="0" <b>max</b>="50" value="10" /&gt; <input  type="range" min="0" max="50" value="10" />
+&lt;input type="<b>search</b>" <b>results</b>="10" <b>placeholder</b>="Search..." /&gt; <input results="10" type="search" placeholder="Search..." />
+&lt;input type="<b>tel</b>" placeholder="(555) 555-5555" <b>pattern</b>="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" /&gt;
+<input type="tel" placeholder="(555) 555-5555" pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" />
+&lt;input type="<b>color</b>" <b>placeholder</b>="e.g. #bbbbbb" /&gt; <input type="color" placeholder="e.g. #bbbbbb" />
+&lt;input type="<b>number</b>" <b>step</b>="1" <b>min</b>="-5" <b>max</b>="10" value="0" /&gt; <input type="number" step="1" min="-5" max="10" value="0" />
 </pre>
 
-<h2>
-  Not yet
-</h2>
-<pre>&lt;<b>meter</b>&gt;
-&lt;<b>progress</b>&gt;
+<h2>Others:</h2>
+<pre class="form-inputs">&lt;<b>meter</b> <b>min</b>="0" <b>max</b>="100" <b>low</b>="40" <b>high</b>="90" <b>optimum</b>="100" value="91"&gt;A+&lt;/<b>meter</b>&gt;
+Your score is: <meter value="91" min="0" max="100" low="40" high="90" optimum="100">A+</meter>
+&lt;<b>progress</b>&gt;working...&lt;/<b>progress</b>&gt;
+Download is: <progress>working...</progress>
+&lt;<b>progress</b> value="75" <b>max</b>="100"&gt;3/4 complete&lt;/<b>progress</b>&gt;
+Goal is: <progress value="75" max="100">3/4 complete</progress>
 &lt;<b>output</b>&gt;
-etc...
 </pre>
 
           </section>
         </div>
 
-       
+
         <div class="slide">
           <style>
             #video-column {
@@ -1496,10 +1503,9 @@ document.getElementById("video").<b>play</b>();
                 Your browser does not support the video tag
               </video>
               <div class="media-buttons">
-                <input type=button id="play-button" onclick="PlayVideo()"; value="Play" />
-                <input type=button id="pause-button" onclick="PauseVideo()"; value="Pause" disabled />
-                <input type=button id="mute" onclick="Mute()" value="Mute" />
-                <input type=button id="unmute" onclick="Unmute()" value="Unmute" />
+                <input type="button" id="play-button" onclick="PlayVideo()"; value="Play" />
+                <input type="button" id="pause-button" onclick="PauseVideo()"; value="Pause" disabled />
+                <input type="button" id="mute" onclick="MuteUnMute()" value="Mute" />
               </div>
             </div>
             
@@ -1507,86 +1513,77 @@ document.getElementById("video").<b>play</b>();
               <audio id="audio-clip" width="670" controls>
                 <source src="src/rushus-modal_blues.mp3" type="audio/mpeg" />
                 <source src="src/rushus-modal_blues.webm" type="audio/webm" />
-                Your browser dows not support the audio tag
+                Your browser does not support the audio tag
               </audio>
-
               <div class="media-buttons">
                 <input type=button id="audio-play-button" onclick="PlayAudio()" value="Play" />
                 <input type=button id="audio-pause-button" onclick="PauseAudio()" value="Pause" disabled />
-                <input type=button id="audio-mute" onclick="MuteAudio()" value="Mute" />
-                <input type=button id="audio-unmute" onclick="UnmuteAudio()" value="Unmute" />
+                <input type=button id="audio-mute" onclick="MuteUnMuteAudio()" value="Mute" />
               </div>
-
             </div>
           </section>
           <script>
-            var clip = document.querySelector('#clip');
-            var audio_clip = document.querySelector('#audio-clip');
-            
-            
+            var videoClip = document.getElementById('clip');
+            var playButton = document.getElementById('play-button');
+            var pauseButton = document.getElementById('pause-button');
+
             function PlayVideo() {
-              clip.play();
-              play_button.disabled = true;
-              pause_button.disabled = false;
+              videoClip.play();
+              playButton.disabled = true;
+              pauseButton.disabled = false;
             }
-         
+
             function PauseVideo() {
-              clip.pause();
-              play_button.disabled = false;
-              pause_button.disabled = true;
+              videoClip.pause();
+              playButton.disabled = false;
+              pauseButton.disabled = true;
             }
 
-            function Mute() {
-              clip.muted = true;
+            function MuteUnMute() {
+              document.getElementById('mute').value = videoClip.muted ? 'Mute' : 'Unmute';
+              videoClip.muted = videoClip.muted ? false : true;
             }
 
-            function Unmute() {
-              clip.muted = false;
-            }
-            
             function OnFinished() {
-              play_button.disabled = false;
-              pause_button.disabled = true;
+              playButton.disabled = false;
+              pauseButton.disabled = true;
             }
-            
+
             function addReflection() {
-              clip.style.webkitBoxReflect = clip.style.webkitBoxReflect !== '' ? '' : "below 0px -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.55, transparent), to(white))";
-            }
-            function jumpSeek() {
-              clip.currentTime = 26.85;
+              videoClip.style.webkitBoxReflect = videoClip.style.webkitBoxReflect !== '' ? '' : "below 0px -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.55, transparent), to(white))";
             }
           </script>
-          
+
           <script>
-            audio_clip.addEventListener('ended', OnAudioFinished, false);
-            
+            var audioClip = document.getElementById('audio-clip');
+            var audioPlayButton = document.getElementById('audio-play-button');
+            var audioPauseButton = document.getElementById('audio-pause-button');
+            audioClip.addEventListener('ended', OnAudioFinished, false);
+
             function PlayAudio() {
-              audio_clip.play();
-              audio_play_button.disabled = true;
-              audio_pause_button.disabled = false;
+              audioClip.play();
+              audioPlayButton.disabled = true;
+              audioPauseButton.disabled = false;
             }
-         
+
             function PauseAudio() {
-              audio_clip.pause();
-              audio_play_button.disabled = false;
-              audio_pause_button.disabled = true;
+              audioClip.pause();
+              audioPlayButton.disabled = false;
+              audioPauseButton.disabled = true;
             }
 
-            function MuteAudio() {
-              audio_clip.muted = true;
+            function MuteUnMuteAudio() {
+              document.getElementById('audio-mute').value = audioClip.muted ? 'Mute' : 'Unmute';
+              audioClip.muted = audioClip.muted ? false : true;
             }
 
-            function UnmuteAudio() {
-              audio_clip.muted = false;
-            }
-            
             function OnAudioFinished() {
-              audio_play_button.disabled = false;
-              audio_pause_button.disabled = true;
+              audioPlayButton.disabled = false;
+              audioPauseButton.disabled = true;
             }
           </script>
         </div>
-        
+
         <div class="slide">
           <header><span class="html">HTML</span> <h1>Canvas</h1></header>
           <section>
