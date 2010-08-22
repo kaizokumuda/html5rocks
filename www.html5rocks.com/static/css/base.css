@@ -1,5 +1,5 @@
 /* For browsers that do not yet support these elements */
-section, article, header, footer {
+section, article, header, footer, hgroup {
   display: block;
 }
 body { 
@@ -300,7 +300,7 @@ footer {
   text-align: left; 
   padding: 20px 0;
   font-size: 12px; 
-  border-top: 1px solid #ddd;
+  border-top: 2px solid #222;
 }
 footer .note {
   color: #bbb;
