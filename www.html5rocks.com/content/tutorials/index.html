@@ -4,25 +4,30 @@
 
 {% block head %}
   <link rel="stylesheet" href="/static/css/samples_index.css" />
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
   <script>
-    google.load("jquery", "1.4.2");
-
     function clearFilter() {
-      $(".sample.hidden").removeClass('hidden');
-      $("#filter").addClass('hidden');
+      $('.sample.hidden').removeClass('hidden');
+      $('#filter').addClass('hidden');
+      document.location.hash = '';
     };
 
-    function filterTag() {
-      var tag = $(this).text();
-      $(".sample span.tag:not(:contains('" + tag + "'))").closest('.sample').addClass('hidden');
-      $(".sample span.tag:contains('" + tag + "')").closest('.sample').removeClass('hidden');
+    function filterTag(opt_tag) {
+      var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
+      document.location.hash = tag;
+      $('.sample span.tag:not(:contains("' + tag + '"))').closest('.sample').addClass('hidden');
+      $('.sample span.tag:contains("' + tag + '")').closest('.sample').removeClass('hidden');
       $('#filter_tag').text(tag);
       $('#filter').removeClass('hidden');
     };
 
-    google.setOnLoadCallback(function() {
-      $('.tag').live('click', filterTag);
+    $(document).ready(function() {
+      $('.tag').click(filterTag);
+      if (document.location.hash) {
+        // Hide all samples as soon as DOM is loaded to prevent flicker effect.
+        $('.sample').addClass('hidden');
+        filterTag(document.location.hash.substring(1));
+      }
     });
   </script>
 {% endblock %}
@@ -57,7 +62,7 @@
 
     <article class="sample">
       <h2 id="video-basics" data-pubdate="2010-08-03">
-        <a href="video/basics/">HTML5 Video</a>
+        <a href="/tutorials/video/basics/">HTML5 Video</a>
       </h2>
       <div>
         <span class="date">August 3, 2010</span>
@@ -69,7 +74,7 @@
         (without a plugin) and gives interesting examples of using the &lt;video&gt; tag.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="video/basics/">View tutorial</a> &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/video/basics/">View tutorial</a> &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie"></span>
@@ -82,7 +87,7 @@
 
     <article class="sample">
       <h2 id="offline-the-why" data-pubdate="2010-08-02">
-        <a href="offline/whats-offline/">"Offline": What does it mean and why should I care?</a>
+        <a href="/tutorials/offline/whats-offline/">"Offline": What does it mean and why should I care?</a>
       </h2>
       <div>
         <span class="date">August 2, 2010</span>
@@ -93,7 +98,7 @@
         to developers for doing so.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="offline/whats-offline/">View tutorial</a> &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/offline/whats-offline/">View tutorial</a> &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie supported"></span>
@@ -106,7 +111,7 @@
 
     <article class="sample">
       <h2 id="webfonts" data-pubdate="2010-08-02">
-        <a href="webfonts/quick/">Quick guide to webfonts via @font-face</a>
+        <a href="/tutorials/webfonts/quick/">Quick guide to webfonts via @font-face</a>
       </h2>
       <div>
         <span class="date">August 2, 2010</span>
@@ -116,7 +121,7 @@
         Webfonts give new typographic freedom to designers while retaining scalability and accessibility.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="webfonts/quick/">View tutorial</a> &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/webfonts/quick/">View tutorial</a> &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie supported"></span>
@@ -129,7 +134,7 @@
 
     <article class="sample">
       <h2 id="chrome-devtools-audit-panel" data-pubdate="2010-07-28">
-        <a href="developertools/auditpanel/">Auditing Your Web App For Speed</a>
+        <a href="/tutorials/developertools/auditpanel/">Auditing Your Web App For Speed</a>
       </h2>
       <div>
         <span class="date">July 28th, 2010</span>
@@ -140,7 +145,7 @@
         enhance performance and reduce latency.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="developertools/auditpanel/">View tutorial</a> &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/developertools/auditpanel/">View tutorial</a> &rArr;</span>
          <span class="browser_logos">
            <span class="opera"></span>
            <span class="ie"></span>
@@ -153,7 +158,7 @@
 
     <article class="sample">
       <h2 id="web-workers" data-pubdate="2010-07-26">
-        <a href="workers/basics/">The Basics of Web Workers</a>
+        <a href="/tutorials/workers/basics/">The Basics of Web Workers</a>
       </h2>
       <div>
         <span class="date">July 26th, 2010</span>
@@ -165,7 +170,7 @@
         giving thread-like message passing for handling computationally intensive tasks.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="workers/basics/">View tutorial</a> &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/workers/basics/">View tutorial</a> &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie"></span>
@@ -178,7 +183,7 @@
 
     <article class="sample">
       <h2 id="chrome-devtools-part1" data-pubdate="2010-06-18">
-        <a href="developertools/part1/">Introduction to Chrome Developer Tools, Part One</a>
+        <a href="/tutorials/developertools/part1/">Introduction to Chrome Developer Tools, Part One</a>
       </h2>
       <div>
         <span class="date">June 18th, 2010</span>
@@ -188,7 +193,7 @@
         An introduction to the tools available in Google Chrome that make a developer's life easier!
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="developertools/part1/">View tutorial</a> &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/developertools/part1/">View tutorial</a> &rArr;</span>
          <span class="browser_logos">
            <span class="opera"></span>
            <span class="ie"></span>
@@ -201,7 +206,7 @@
 
     <article class="sample">
       <h2 id="best-practices-faster-web" data-pubdate="2010-06-18">
-        <a href="speed/quick/">Best Practices for a Faster Web App with HTML5</a>
+        <a href="/tutorials/speed/quick/">Best Practices for a Faster Web App with HTML5</a>
       </h2>
       <div>
         <span class="date">June 18th, 2010</span>
@@ -214,7 +219,7 @@
         How to effectively use features from HTML5 to improve the performance and responsiveness of your app.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="speed/quick/">View tutorial</a> &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/speed/quick/">View tutorial</a> &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie supported"></span>
@@ -227,7 +232,7 @@
 
     <article class="sample">
       <h2 id="intro-appcache" data-pubdate="2010-06-18">
-        <a href="appcache/beginner/">A Beginner's Guide to Using the Application Cache</a>
+        <a href="/tutorials/appcache/beginner/">A Beginner's Guide to Using the Application Cache</a>
       </h2>
       <div>
         <span class="date">June 18th, 2010</span>
@@ -238,7 +243,7 @@
         A step-by-step guide to taking your web app offline using the application cache APIs.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="appcache/beginner/">View tutorial</a> &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/appcache/beginner/">View tutorial</a> &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie"></span>
@@ -251,7 +256,7 @@
 
     <article class="sample">
       <h2 id="todolist-offline" data-pubdate="2010-06-18">
-        <a href="offline/takingappoffline/">Practical Guide to Take Your TODO List Offline</a>
+        <a href="/tutorials/offline/takingappoffline/">Practical Guide to Take Your TODO List Offline</a>
       </h2>
       <div>
         <span class="date">June 18th, 2010</span>
@@ -259,11 +264,11 @@
         <span class="tag">offline</span>
       </div>
       <div class="summary">
-        Expanding on the <a href="webdatabase/todo/">simple TODO list</a>, this tutorial
+        Expanding on the <a href="/tutorials/webdatabase/todo/">simple TODO list</a>, this tutorial
         gives a practical guide for taking the sample offline using the application cache.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="offline/takingappoffline/">View tutorial</a> &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/offline/takingappoffline/">View tutorial</a> &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie"></span>
@@ -276,7 +281,7 @@
 
     <article class="sample">
       <h2 id="reading-files-js" data-pubdate="2010-06-18">
-        <a href="file/dndfiles/">Reading local files in JavaScript</a>
+        <a href="/tutorials/file/dndfiles/">Reading local files in JavaScript</a>
       </h2>
       <div>
         <span class="date">June 18th, 2010</span>
@@ -287,7 +292,7 @@
         using the File and FileReader APIs.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="file/dndfiles/">View tutorial</a>  &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/file/dndfiles/">View tutorial</a>  &rArr;</span>
          <span class="browser_logos">
            <span class="opera"></span>
            <span class="ie"></span>
@@ -300,7 +305,7 @@
 
     <article class="sample">
       <h2 id="geolocation-tripmeter" data-pubdate="2010-05-24">
-        <a href="geolocation/trip_meter/">A Simple Trip Meter using the Geolocation API</a>
+        <a href="/tutorials/geolocation/trip_meter/">A Simple Trip Meter using the Geolocation API</a>
       </h2>
       <div>
         <span class="date">May 24th, 2010</span>
@@ -310,7 +315,7 @@
         Learn how to implement geolocation very quickly including a distance calculator
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="geolocation/trip_meter/">View tutorial</a>  &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/geolocation/trip_meter/">View tutorial</a>  &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie"></span>
@@ -323,7 +328,7 @@
 
     <article class="sample">
       <h2 id="intro-noticiations-api" data-pubdate="2010-02-24">
-        <a href="notifications/quick/">Using the Notifications API</a>
+        <a href="/tutorials/notifications/quick/">Using the Notifications API</a>
       </h2>
       <div>
         <span class="date">February 24th, 2010</span>
@@ -333,7 +338,7 @@
         Learn the notification basics creating a twitter notification
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="notifications/quick/">View tutorial</a>  &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/notifications/quick/">View tutorial</a>  &rArr;</span>
          <span class="browser_logos">
            <span class="opera"></span>
            <span class="ie"></span>
@@ -346,7 +351,7 @@
 
     <article class="sample">
       <h2 id="todolist-webdb" data-pubdate="2010-02-17">
-        <a href="webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a>
+        <a href="/tutorials/webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a>
       </h2>
       <div>
         <span class="date">February 17th, 2010</span>
@@ -357,7 +362,7 @@
         Create a TODO list which persists data using a client side database.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="webdatabase/todo/">View tutorial</a>  &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/webdatabase/todo/">View tutorial</a>  &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie"></span>
@@ -370,7 +375,7 @@
 
     <article class="sample">
       <h2 id="quick-guide-audio-tag" data-pubdate="2010-02-05">
-        <a href="audio/quick/">Quick Guide to Implementing the HTML5 Audio Tag</a>
+        <a href="/tutorials/audio/quick/">Quick Guide to Implementing the HTML5 Audio Tag</a>
       </h2>
       <div>
         <span class="date">February 5th, 2010</span>
@@ -382,7 +387,7 @@
         platforms which do not support it.
       </div>
       <div class="footer_links">
-         <span class="buttonlink"><a href="audio/quick/">View tutorial</a>  &rArr;</span>
+         <span class="buttonlink"><a href="/tutorials/audio/quick/">View tutorial</a>  &rArr;</span>
          <span class="browser_logos">
            <span class="opera supported"></span>
            <span class="ie"></span>

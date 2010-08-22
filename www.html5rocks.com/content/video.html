@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block headtitle %}Video Resources{% endblock %}
+
+{% block head %}
+  <style media="screen">
+    hgroup {
+      border-bottom: 1px solid #ddd;
+    }
+    hgroup > h4 {
+      margin: 0;
+      color: #3D5C9D;
+    }
+    hgroup > h2 {
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+    hgroup {
+      font-family: 'Droid Sans';
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+    section {
+      float: left;
+      width: 48%;
+      margin-top: 34px;
+    }
+    section:nth-child(even) {
+      padding-left: 30px;
+    }
+    section:last-of-type {
+      margin-bottom: 2em;
+    }
+    .demos {
+      clear: both;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+{% include "section_header.html" %}
+<div style="margin-bottom: 1em">
+  <section class="tutorials">
+    <hgroup>
+      <h2>Tutorials</h2>
+      <h4>learn how to use {{category}}.</h4>
+    </hgroup>
+    <div>
+      <p>View all tutorials tagged '<a href="/tutorials/#{{category}}">{{category}}</a>' &rArr;</p>
+    </div>
+  </section>
+  <section class="in-the-wild">
+    <hgroup>
+      <h2>In the Wild</h2>
+      <h4>who is using {{category}}?</h4>
+    </hgroup>
+    <div>
+      TODO: fill me
+    </div>
+  </section>
+  <section class="demos">
+    <hgroup>
+      <h2>Demos / Samples</h2>
+      <h4>see {{category}} in action!</h4>
+    </hgroup>
+    <div>
+      TODO: fill me
+    </div>
+  </section>
+  <section class="resources">
+    <hgroup>
+      <h2>Additional Resources</h2>
+      <h4>lots of great stuff out there!</h4>
+    </hgroup>
+    <div>
+      TODO: fill me
+    </div>
+  </section>
+</div>
+
+  {% include "footer.html" %}
+{% endblock %}

@@ -103,10 +103,12 @@ class ContentHandler(webapp.RequestHandler):
 
   def render(self, data={}, template_path=None, status=None, message=None):
     if status is not None and status != 200:
-      logging.error(message)
-      self.response.set_status(status, message)
-      self.response.out.write(message)
-      return
+      # Check if we have a customize error page (template) to display.
+      if template_path is None:
+        logging.error(message)
+        self.response.set_status(status, message)
+        self.response.out.write(message)
+        return
 
     template_data = {
       'toc' : self.get_toc(template_path),
@@ -120,6 +122,9 @@ class ContentHandler(webapp.RequestHandler):
       return
 
     template_data.update(data)
+    if not 'category' in template_data:
+      template_data['category'] = 'this feature'
+
     self.response.headers.add_header('Content-Type', 'text/html;charset=UTF-8')
     # self.response.headers.add_header("X-UA-Compatible","IE=Edge,chrome=1")
     self.response.out.write(
@@ -152,22 +157,26 @@ class ContentHandler(webapp.RequestHandler):
 
     basedir = os.path.dirname(__file__)
 
-    logging.info(relpath)
+    logging.info('relpath: ' + relpath)
 
-    if relpath == '' or relpath[-1:] == '/':  # Landing page.
+    if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
+       (relpath == 'tutorials' and relpath[-1] != '/')):  # Accept /tutorials\/?
       path = os.path.join(basedir, 'content', relpath, 'index.html')
     else:
       path = os.path.join(basedir, 'content', relpath)
 
     # Render the .html page if it exists. Otherwise, check that the Atom feed
     # the user is requesting jas a corresponding .html page that exists.
-    logging.info(path)
+    logging.info('path: ' + path)
     if os.path.isfile(path):
       self.render(template_path=path)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
       self.render(template_path=path[:path.rfind('.')] + '.html')
+    elif os.path.isfile(path + '.html'):
+      self.render(data={'category': relpath}, template_path=path + '.html')
     else:
-      self.render(status=404, message='Sample not found')
+      self.render(status=404, message='Page Not Found',
+                  template_path=os.path.join(basedir, 'content/404.html'))
 
 
 def main():
