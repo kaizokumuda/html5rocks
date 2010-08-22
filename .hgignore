@@ -1,0 +1,10 @@
+syntax: glob
+
+*~
+*.pyc
+*.DS_Store
+
+syntax: regexp
+
+# Don't commit studio .zip files.
+^studio\.html5rocks\.com\/samples\/.*\.zip
