@@ -35,6 +35,9 @@ $('.show.open div.box').live('click', function f() {
   tip.over();
   clearTimeout(f); // clear any stale timeouts
   f = setTimeout(tip.out,10*1000);
+  
+  // tell google analytics
+  window._gaq && _gaq.push(['_trackPageview', link.attr('href') ]);
 });
 
 
