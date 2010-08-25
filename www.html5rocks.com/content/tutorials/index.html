@@ -29,6 +29,16 @@
         filterTag(document.location.hash.substring(1));
       }
     });
+
+    // Adds back button support.
+    if (window.addEventListener) {
+      window.addEventListener('hashchange', function(e) {
+        filterTag(document.location.hash.substring(1));
+        if (window._gaq) {
+          _gaq.push(['_trackPageview', document.location.href]);
+        }
+      }, false);
+    }
   </script>
 {% endblock %}
 
