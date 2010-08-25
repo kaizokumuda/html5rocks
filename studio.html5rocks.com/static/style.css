@@ -551,7 +551,7 @@ a.button, a.button:visited {
 
 
 /* the stage and iframe */
-#stage { diplay:none;}
+#stage, .toc #stage { display:none;}
 .show #stage {display:block;}
 #stage iframe { width: 100%; min-height: 580px; height: 580px; display:none;
   -webkit-user-select: none;
