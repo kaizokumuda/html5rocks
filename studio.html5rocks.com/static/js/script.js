@@ -10,7 +10,9 @@
 
 $(window).load(function () {
   
-  if (location.hash.length > 2) return;
+  if (location.hash.length > 2) {
+    return;
+  }
   
   setTimeout(function () {
     $(document.body).addClass('go');
@@ -27,7 +29,8 @@ $('.show.open div.box').live('click', function f(e, forced) {
    
   $(this).addClass('selected').siblings().removeClass('selected');
   var link = $(this).find('a:first');
-  $('<iframe>').attr('src', link.attr('href')).insertAfter('#stage iframe').show().prev().remove();;
+  var iframe = $('<iframe>').attr('src', link.attr('href'));
+  iframe.insertAfter('#stage iframe').show().prev().remove();
   
   
   var hashtext = $(lastDemo).find('a').text().split(/\s+/).slice(-1);
@@ -35,7 +38,7 @@ $('.show.open div.box').live('click', function f(e, forced) {
   
   
   // tell google analytics
-  window._gaq && _gaq.push(['_trackPageview', link.attr('href') ]);
+  window._gaq && _gaq.push(['_trackPageview', link.attr('href')]);
   
   
   // don't show the tooltip twice
@@ -63,7 +66,7 @@ $('#return').click(function (e) {
 
 var lastDemo;
 
-function tocToDemos(e){
+function tocToDemos(e) {
 
   lastDemo = this;
 
@@ -80,7 +83,7 @@ function tocToDemos(e){
 // when we click from TOC view, kick off the transition to showcase view
 $('#boxes')
   .delegate('.toc .box', 'click', tocToDemos)
-  .delegate('.box a', 'click', function (e) {
+  .delegate('.box a', 'click', function(e) {
     e.preventDefault();
   });
 
@@ -225,18 +228,20 @@ $(window).resize(setShowCaseSize);
 
 
 
-$(window).bind( 'hashchange', function(e, firstTime) {
+$(window).bind('hashchange', function(e, firstTime) {
   
   var text = location.hash.replace(/^#/,'');
   
-  // empty hash.. they went back to the start.
+  // An empty hash means he user went back to the start.
   if (text === ''){
     $('body')[0].className = 'go';
     $('#body')[0].className = 'toc nofan';
   } else {
     firstTime && tocToDemos();
     $('#body').addClass('show open');
-    $('div.box').find('a:contains(' + text + ')').trigger('click', [true]);
+    $('div.box')
+      .find('a:contains(' + text + ')')
+      .trigger('click', [true]);
   }
   
 });
