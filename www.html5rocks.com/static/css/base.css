@@ -1,29 +1,25 @@
 /* For browsers that do not yet support these elements */
-section, article, header, footer, hgroup {
+section, article, header, footer, hgroup, figcaption, figure {
   display: block;
 }
-body { 
+body {
   color: #222;
   background-color: #ddd;
   font: 14px Arial;
   margin: 0;
   padding: 0;
 }
-
 body a {
   color: #3D5C9D;
   text-decoration: none;
 }
-
 body a:hover {
   text-decoration: underline;
 }
-
 #wrap {
   margin: 0;
   padding: 0;
 }
-
 #content {
   background-color: white;
   width: 73.074em;
@@ -33,7 +29,6 @@ body a:hover {
   -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
   -moz-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
   box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
-  
 }
 header {
   border-bottom: 2px solid #222;
@@ -41,6 +36,15 @@ header {
 }
 article header {
   border: none;
+}
+figure {
+  padding: 10px;
+}
+figcaption {
+  font-size: 90%;
+  font-style: italic;
+  text-align: center;
+  margin-top: 5px;
 }
 h1#title {
   cursor: pointer;
@@ -50,12 +54,10 @@ h1#title {
   float: left;
   width: auto;
 }
-
-#title { 
-  font-style: normal; 
-  font-weight: bold; 
+#title {
+  font-style: normal;
+  font-weight: bold;
 }
-
 #title .normal {
   font-family: 'Droid Sans', Arial;
   font-style: normal;
@@ -64,16 +66,14 @@ h1#title {
   letter-spacing: -0.09em;
   padding-right: 4px;
 }
-
-#title .five { 
+#title .five {
   color: #fff;
   font-family: 'Droid Sans', Arial;
   text-shadow: 1px 0px 1px #000, -1px 0px 1px #000;
 }
-.no-textshadow #title .five { 
+.no-textshadow #title .five {
   color: #bbb;
 }
-
 #title .rocks { 
   font-family: 'Droid Sans', Arial;
   color: #3D5C9D;
@@ -82,27 +82,22 @@ h1#title {
   letter-spacing: -0.09em;
   margin-left: -3px;
 }
-
 #section-header #title {
   font-size: 39px;
   width: auto;
 }
-
 #section-header #title .rocks {
   margin-left: -1px;
 }
-
 header nav ul {
   padding-left: 0;
   list-style: none;
   float: right;
   padding-top: 30px;
 }
-
 #section-header nav ul {
   padding-top: 21px;
 }
-
 header nav ul li {
   float: left;
   padding: 0 3px 0 8px;
@@ -146,13 +141,11 @@ a.buttonlink img {
 a.buttonlink span {
   text-decoration: underline;
 }
-
 a img {
   border: 0;
 }
-
 article section h1, article section h2, article section h3 {
-  font-family: Helvetica, Trebuchet MS, Arial; 
+  font-family: Helvetica, 'Trebuchet MS', Arial;
   margin: 30px 0 10px 0;
   padding: 0;
 }
@@ -160,11 +153,11 @@ article section a[href^='http']:not([href*='html5rocks.']) {
   background: transparent url(data:image/png;base64,R0lGODlhCQAMAMQAAPr7/Cpdi6q/0X2duURxmjRlkfz9/vz8/TVlkae8z4+qwoWivTlplDVmkvv8/Up1nUVymvn6/LrL2i1gjStejKS6zkNwmUFvmD5slkJwmbjJ2DZnkqm90Cdbiv///wAAACH5BAEAAB4ALAAAAAAJAAwAAAU6oCeOY7R0aNoByWURQUoOMTpqD0p1Ird1hEGGJ/gVJB5Ip9gpcESYDqOD4BxEFcWkwTGMHACSeDwKAQA7) no-repeat center right;
   padding-right: 14px;
 }
-h1 { 
-  font-size: 200%; 
+h1 {
+  font-size: 200%;
 }
-h2 { 
-  font-size: 150%; 
+h2 {
+  font-size: 150%;
 }
 h3 {
   font-size: 100%;
@@ -182,24 +175,23 @@ pre {
   border: 1px solid rgba(255, 0, 0, 0.2);
 }
 code {
-  font: 13px Monaco, monospace; 
+  font: 13px Monaco, monospace;
   color: #060;
 }
 pre code {
   display: block;
-  overflow: auto; 
+  overflow: auto;
   margin: 0;
   padding: 0;
 }
-em { 
-  font-weight: bold; 
-  color: #000; 
-  font-style: normal; 
+em {
+  font-weight: bold;
+  color: #000;
+  font-style: normal;
 }
-
-.date { 
-  font-size: 85%; 
-  color: #bbb; 
+.date {
+  font-size: 85%;
+  color: #bbb;
   font-style: italic;
   float: left;
 }
@@ -209,7 +201,6 @@ article header.article_header {
 article.sample .tag,
 aside > .tag {
   font-size: 75%;
-  /* color: #ff5a5a; */
   color: #696;
   padding: 4px;
   text-decoration: underline;
@@ -224,21 +215,21 @@ article.sample .date {
 .center {
   text-align: center;
 }
-.sample_title, .last_p { 
-  margin-top: 30px; 
+.sample_title, .last_p {
+  margin-top: 30px;
 }
-.old { 
+.old {
   color: #696;
 }
-.new { 
-  font-weight: bold; 
+.new {
+  font-weight: bold;
   color: #060;
 }
 .browser_support {
   float: left;
   font-size: 85%;
   color: #bbb;
-  clear:both;
+  clear: both;
 }
 .browser_support > span:first-child {
   float: left;
@@ -280,24 +271,21 @@ article.sample .date {
   margin-left: 1em;
   margin-top: -4px;
 }
-#share_buttons ul :last-child iframe {
-  margin-top: -1px;
-}
 #share_buttons li {
   float: left;
   margin-left: 5px;
 }
-.footer { 
-  font-size: 80%; 
-  color: #bbb; 
-  padding: 15px 0; 
+.footer {
+  font-size: 80%;
+  color: #bbb;
+  padding: 15px 0;
 }
-.footer a { 
+.footer a {
   color: #bbb;
 }
-footer { 
-  clear: both; 
-  text-align: left; 
+footer {
+  clear: both;
+  text-align: left;
   padding: 20px 0;
   font-size: 12px; 
   border-top: 2px solid #222;
@@ -308,7 +296,10 @@ footer .note {
   margin-top: 10px;
 }
 .madeby {
-  float: right; width: 30%; margin: 0; text-align: right;
+  float: right;
+  width: 30%;
+  margin: 0;
+  text-align: right;
 }
 .madeby img {
   margin-bottom: -7px;
@@ -324,4 +315,3 @@ abbr, acronym {
   border-bottom: 1px dotted #888;
   cursor: help;
 }
-
