@@ -6,7 +6,6 @@
 {% block pagebreadcrumb %}Using the Notifications API{% endblock %}
 {% block date %}February 24th, 2010{% endblock %}
 
-
 {% block browsersupport %}
 <span class="opera"></span>
 <span class="ie"></span>
@@ -21,18 +20,15 @@
 
 {% block content %}
   <h2 id="toc-introduction">Introduction</h2>
-  <p>The <a
-    href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">Notifications
-    API</a> allows you to display notifications to the user for given events,
-  both passively (new emails, tweets or calendar events) and on user
-  interactions regardless of which tab has focus. There is <a
-    href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">draft
-    spec</a>  but it is not currently in any standard.</p>
+  <p>The <a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">Notifications API</a> allows you to display notifications to the user for given events,
+  both passively (new emails, tweets or calendar events) and on user interactions regardless of which tab has focus.
+  There is <a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">draft spec</a>
+  but it is not currently in any standard.</p>
   <p>You can follow these simple steps to implement notifications in just a few minutes:</p>
 
   <h2 id="toc-step1">Step 1: Check for Notifications API support</h2>
-  <p>We check if webkitNotifications is supported. Note that the name of webkitNotifications is because it's part of a draft spec. The final spec will have a notifications() function
-  instead.</p>
+  <p>We check if <code>webkitNotifications</code> is supported. Note that the name of <code>webkitNotifications</code> is because it's part of
+  a draft spec. The final spec will have a notifications() function instead.</p>
   <pre class="prettyprint">// check for notifications support
 // you can omit the 'window' keyword
 if (window.webkitNotifications) {
@@ -67,8 +63,13 @@ document.querySelector('#show_button').addEventListener('click', function() {
   }
 }, false);</pre>
 
-  <p>If the web application doesn't have permissions to show notifications then the requestPermission method will show an infobar:</p>
-  <img src="notifications_infobar.png" style="border: 1px solid black;" />
+  <p>If the web application doesn't have permissions to show notifications then the <code>requestPermission</code> method will show an infobar:</p>
+
+  <figure class="center">
+    <img src="notifications_infobar.png" style="border: 1px solid black;" alt="The notifications permission infobar in Google Chrome" title="The notifications permission infobar in Google Chrome" />
+    <figcaption>The notifications permission infobar in Google Chrome.</figcaption>
+  </figure>
+
   <p>However, it's <em>very important</em> to remember that the <em>requestPermission</em> method only works in event handlers triggered by a user
   action, like mouse or keyboard events, in order to avoid unsolicited infobars. In this case, the user action is the click on the button with id "show_button".</p>
   <p>The snippet above will never work if the user hasn't explicitly clicked on a button or link that triggers the <em>requestPermission</em> at some point.</p>
@@ -110,7 +111,7 @@ document.querySelector('#show_button').addEventListener('click', function() {
   <p>Notice that there is a limit of notifications that can be displayed depending on the screen and notification size. The average tends to be around 5 and any new notification beyond that will be queued waiting for the current notifications to be closed.
   </p>
   <pre class="prettyprint">
-<span class="new">// retrieve tweets using jsonp</span>
+<span class="new">// Retrieve tweets using jsonp.</span>
 var script = document.createElement("script");
 script.src = 'http://twitter.com/statuses/user_timeline/'+ username+'.json?' +
              'count=3&callback=<span class="new">fetchTweets</span>';
@@ -138,7 +139,7 @@ function fetchTweets(data) {
   <p>
     It's very important to understand that the tweet notifications are created on a callback function. If the user doesn't have permissions at that moment then we won't be able to display infobar asking for permissions through the requestPermission() method. This method can only be triggered on a user action, as we explained in Step 3.
   </p>
-  
+
   <script>
   /*
    * Common code
@@ -155,7 +156,7 @@ function fetchTweets(data) {
   document.querySelector('#show_html_notification').addEventListener('click', function() {
     if (window.webkitNotifications.checkPermission() == 0) {
       // you can pass any url as a parameter
-      // window.webkitNotifications.createHTMLNotification(url).show(); // note the show()
+      window.webkitNotifications.createHTMLNotification(url).show(); // note the show()
     } else {
       alert("This page doesn't have permission to show notifications yet.");
     }
@@ -172,7 +173,7 @@ function fetchTweets(data) {
     if (interval) {
       clearInterval(interval);
     }
-    interval = setInterval(readTweets, 60000); // check for new tweets every minute
+    interval = setInterval(readTweets, 60000); // Check for new tweets every 60 seconds.
   }, false);
 
   function readTweets() {
@@ -202,7 +203,7 @@ function fetchTweets(data) {
           // Note that we can't call requestPermission from here as we are in the callback function and not triggered just on user action 
           document.getElementById('show_tweets').innerHTML = "Show tweets";
           alert('You have to click on "Set notification permissions for this page" first to be able to receive notifications.');
-          return;          
+          return;
         }
       }
     }

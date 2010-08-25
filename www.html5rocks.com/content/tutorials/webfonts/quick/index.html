@@ -27,13 +27,11 @@
 {% block head %}
   <script src="http://www.google.com/jsapi"></script>
   <script>
-    google.load("webfont", "1");
+    google.load('webfont', '1');
   </script>
-  
-  
   <style>
     th { text-transform: uppercase; font-size: 90%; }
-    figure { float: right; width: 350px; padding: 10px; border: 1px solid #eee; display:block; }
+    figure { float: right; width: 350px; padding: 10px; border: 1px solid #eee; margin-left: 5px; }
     figure.big { float: none; width: 600px; text-align: center; margin: 0 auto; }
     h2 { clear: right; }
     table { width: 100%; }
@@ -41,8 +39,7 @@
     td:empty { background: #eee; }
     th:empty { border: 0; }
     td { text-align: center; }
-  </style>  
-
+  </style>
 {% endblock %}
 
 {% block content %}
@@ -65,14 +62,14 @@ View the <a href="http://code.google.com/webfonts/preview">Font Previewer</a> fo
 <pre class="prettyprint brush:css">
 @font-face {
   font-family: 'Tagesschrift';
-  src: url('tagesschrift.ttf');  
+  src: url('tagesschrift.ttf');
 }
 </pre>
 
 <p>Then put it to use:</p>
 
 <pre class="prettyprint brush:css">
-h1,h2,h3 { font-family: 'Tagesschrift', 'Georgia', serif; }
+h1, h2, h3 { font-family: 'Tagesschrift', 'Georgia', serif; }
 </pre>
 
 <p>In this @font-face declaration we're using the <code>font-family</code> property to explicitly name the font. It can be anything, regardless of what the font is actually called; <code>font-family: 'SuperDuperComicSans';</code> would work out just fine, though perhaps not for your reputation. In the <code>src</code> property we point to where the browser can find the font asset. Depending on the browser, some valid font types are eot, ttf, otf, svg, or a <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URI</a> embedding the entire font data inline.</p>
@@ -138,8 +135,7 @@ h1,h2,h3 { font-family: 'Tagesschrift', 'Georgia', serif; }
       <td></td>
     </tr>
   </tbody>
-</table>  
-
+</table>
 
 <p>Of course, nothing is ever as simple as it should be. The initial limitation of the above code was that it did not serve an EOT to IE 6-8. The <a href="http://paulirish.com/2009/bulletproof-font-face-implementation-syntax/">bulletproof @font-face syntax</a> proposed a way of solving this; a robust version follows.</p>
 
@@ -185,7 +181,7 @@ The <a href="http://www.fontsquirrel.com/fontface/generator">Font Squirrel gener
 WebFont.load({
   custom: {
     families: ['Tagesschrift'],
-    urls : ['http://paulirish.com/tagesschrift.css']
+    urls: ['http://paulirish.com/tagesschrift.css']
   }
 });
 &lt;/script>
@@ -193,11 +189,11 @@ WebFont.load({
 
 <pre class="prettyprint brush:css">
 /* we want Tagesschrift to apply to all h2's */
-.wf-loading h2 { 
-  visibility: hidden; 
+.wf-loading h2 {
+  visibility: hidden;
 }
 .wf-active h2, .wf-inactive h2 {
-  visibility: visible; 
+  visibility: visible;
   font-family: 'Tagesschrift', 'Georgia', serif;
 }
 </pre>
@@ -209,11 +205,4 @@ WebFont.load({
 <h2 id="toc-summary">Summary</h2>
 <p>Webfonts deliver quite a bit of freedom to designers and with upcoming features like <a href="http://hacks.mozilla.org/2009/10/font-control-for-designers/">discretionary ligatures and stylistic alternates</a>, they will have a lot more flexibility. For now, you can feel confident implementing this part of CSS3 as it covers <abbr title="Essentially everyone except FF < 3.5">98%</abbr> of deployed browsers. Enjoy!</p>
 
-<div class="footer">
-  <p>
-  </p>
-</div>
-  
-  
-  
 {% endblock %}

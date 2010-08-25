@@ -26,7 +26,7 @@
   }
 </style>
 {% endblock %}
-    
+
 {% block onload %}{% endblock %}
 
 {% block content %}
@@ -61,7 +61,10 @@ Note, the Audit Panel tool is currently only available in Chrome, but we expect 
 Starting Developer Tools is as easy as using the wrench icon (upper right of the Chrome window) and selecting Tool, Developer Tools.
 </p>
 
-<img src="/static/images/screenshots/auditpanel/index.001.png">
+<figure class="center">
+  <img src="/static/images/screenshots/auditpanel/index.001.png" />
+  <figcaption>The Developer Tools are accessible in the Wrench menu.</figcaption>
+</figure>
 
 <p>
   For more information on how to get started with Developer Tools, please read <a href="http://www.html5rocks.com/tutorials/developertools/part1/">Introduction to Chrome Developer Tools, Part One</a>.
@@ -71,13 +74,19 @@ Starting Developer Tools is as easy as using the wrench icon (upper right of the
 The Audit Panel is located in the main tools button panel.  You'll notice that, once selected, the Audit Panel has not yet run through its analysis of your web app.  Running all of the heuristics can be slow, especially for a large web app such as GMail, so the tool is disabled by default.
 </p>
 
-<img src="/static/images/screenshots/auditpanel/index.002.png">
+<figure class="center">
+  <img src="/static/images/screenshots/auditpanel/index.002.png" />
+  <figcaption>Audit Panel</figcaption>
+</figure>
 
 <p>
   Let's dive in by clicking the Run button, which reloads the web app with the performance heuristics turned on.  After the page reload, you'll see a list of recommendations similar to the screenshot below.
 </p>
 
-<img src="/static/images/screenshots/auditpanel/index.003.png">
+<figure class="center">
+  <img src="/static/images/screenshots/auditpanel/index.003.png" />
+  <figcaption>Recommendations of performance improvements from the Audit Panel.</figcaption>
+</figure>
 
 <p>
   You'll notice that the Audit Panel classifies the suggestions by severity, with the most severe marked with a red dot, and the medium severity suggestions marked with a yellow dot.  This color coding helps you prioritize the suggestions, focusing on the most important (and biggest gains) first.
@@ -128,7 +137,10 @@ According to the Audit Panel, to improve Network Utilization we should:
   For example, let's first dive into the recommendation to leverage browser caching.  What does this mean, specifically?  Opening up the option in the UI, we are presented with the following details:
 </p>
 
-<img src="/static/images/screenshots/auditpanel/index.004.png">
+<figure class="center">
+  <img src="/static/images/screenshots/auditpanel/index.004.png" />
+  <figcaption>The Audit Panel gives you recommendations for performance improvements.</figcaption>
+</figure>
 
 <ul>
   <li>The following resources are missing a cache expiration.  Resources that do not specify an expiration may not be cached by browsers.</li>
@@ -154,21 +166,30 @@ According to the Audit Panel, to improve Network Utilization we should:
 
 <p>
 Because caching is accomplished via the HTTP protocol, we need to look at the HTTP request and response for the http://www.html5rocks.com/ resource.  Simply click on the resource to view the original request and response headers and details.
-</p>  
-    
-<img src="/static/images/screenshots/auditpanel/index.005.png">
+</p>
+
+<figure class="center">
+  <img src="/static/images/screenshots/auditpanel/index.005.png" />
+  <figcaption>Navigating the recommendations.</figcaption>
+</figure>
 
 <p>
   You are then taken to the Resources Panel with the contents of the resources in view.  Click the Headers tab, next to Content, to view the headers used in the request and the response.
 </p>
 
-<img src="/static/images/screenshots/auditpanel/index.006.png">
+<figure class="center">
+  <img src="/static/images/screenshots/auditpanel/index.006.png" />
+  <figcaption>Viewing header information.</figcaption>
+</figure>
 
 <p>
   We are trying to confirm that the server has told the client "do not cache the homepage of html5rocks.com".  To do this, we need to look at the Response Headers, as these are the headers and instructions sent by the server.
 </p>
 
-<img src="/static/images/screenshots/auditpanel/index.007.png">
+<figure class="center">
+  <img src="/static/images/screenshots/auditpanel/index.007.png" />
+  <figcaption>Example: The <code>Cache-Control</code> header.</figcaption>
+</figure>
 
 <p>
   Sure enough, the server sent the "Cache-Control: no-cache" header to the client.  This, as you would imagine, tells the client to always ask for the resource and to not cache it locally.  Specifically, the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.1">HTTP specification for "no-cache"</a> reads:
