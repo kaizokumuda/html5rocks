@@ -9,6 +9,9 @@
 */
 
 $(window).load(function () {
+  
+  if (location.hash.length > 2) return;
+  
   setTimeout(function () {
     $(document.body).addClass('go');
   }, 200);
@@ -16,7 +19,7 @@ $(window).load(function () {
 
 
 // load iframe
-$('.show.open div.box').live('click', function f() {
+$('.show.open div.box').live('click', function f(e, forced) {
 
   tip.out();
   
@@ -24,7 +27,16 @@ $('.show.open div.box').live('click', function f() {
    
   $(this).addClass('selected').siblings().removeClass('selected');
   var link = $(this).find('a:first');
-  $('#stage iframe').attr('src', link.attr('href')).show();
+  $('<iframe>').attr('src', link.attr('href')).insertAfter('#stage iframe').show().prev().remove();;
+  
+  
+  var hashtext = $(lastDemo).find('a').text().split(/\s+/).slice(-1);
+  location.hash = hashtext;
+  
+  
+  // tell google analytics
+  window._gaq && _gaq.push(['_trackPageview', link.attr('href') ]);
+  
   
   // don't show the tooltip twice
   if (Modernizr.sessionstorage){
@@ -36,8 +48,7 @@ $('.show.open div.box').live('click', function f() {
   clearTimeout(f); // clear any stale timeouts
   f = setTimeout(tip.out,10*1000);
   
-  // tell google analytics
-  window._gaq && _gaq.push(['_trackPageview', link.attr('href') ]);
+
 });
 
 
@@ -50,15 +61,11 @@ $('#return').click(function (e) {
 });
 
 
-
 var lastDemo;
 
-// when we click from TOC view, kick off the transition to showcase view
-$('#boxes').delegate('.toc .box', 'click', function (e) {
+function tocToDemos(e){
 
   lastDemo = this;
-
-  
 
   $(document.body).removeClass('go');
   $('#body').removeClass('toc');
@@ -68,10 +75,14 @@ $('#boxes').delegate('.toc .box', 'click', function (e) {
     transitionEnd(true);
     transitionEnd(true);
   }
+}
 
-}).delegate('.box a', 'click', function (e) {
-  e.preventDefault();
-});
+// when we click from TOC view, kick off the transition to showcase view
+$('#boxes')
+  .delegate('.toc .box', 'click', tocToDemos)
+  .delegate('.box a', 'click', function (e) {
+    e.preventDefault();
+  });
 
 // transition queue action...
 var boxes = $('.box');
@@ -80,7 +91,6 @@ var fnQueue = [
     $('#body').addClass('show')
   }, function () {
     $('#body').addClass('open');
-    //log(lastDemo)
     $(lastDemo).click()
   }
 ];
@@ -212,3 +222,23 @@ $(window).resize(setShowCaseSize);
 
 
 
+
+
+
+$(window).bind( 'hashchange', function(e, firstTime) {
+  
+  var text = location.hash.replace(/^#/,'');
+  
+  // empty hash.. they went back to the start.
+  if (text === ''){
+    $('body')[0].className = 'go';
+    $('#body')[0].className = 'toc nofan';
+  } else {
+    firstTime && tocToDemos();
+    $('#body').addClass('show open');
+    $('div.box').find('a:contains(' + text + ')').trigger('click', [true]);
+  }
+  
+});
+
+$(window).trigger('hashchange', [true]);
