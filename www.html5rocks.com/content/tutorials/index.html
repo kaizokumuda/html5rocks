@@ -29,6 +29,11 @@
         filterTag(document.location.hash.substring(1));
       }
     });
+
+    // Adds back button support.
+    window.addEventListener('hashchange', function(e) {
+      filterTag(document.location.hash.substring(1));
+    }, false);
   </script>
 {% endblock %}
 
