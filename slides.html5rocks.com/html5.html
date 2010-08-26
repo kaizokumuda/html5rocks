@@ -1488,10 +1488,10 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </style>
           <header><span class="html">HTML</span> <h1>Audio + Video</h1></header>
           <section>
-            <pre>&lt;<b>audio</b> src="sound.mp3" <b>controls</b>&gt;&lt;/audio&gt;
+            <pre>&lt;<b>audio</b> id="audio" src="sound.mp3" <b>controls</b>&gt;&lt;/audio&gt;
 document.getElementById("audio").<b>muted</b> = false;
 
-&lt;<b>video</b> src="movie.mp4" <b>autoplay</b> <b>controls</b>&gt;&lt;/video&gt;
+&lt;<b>video</b> id="video" src="movie.mp4" <b>autoplay</b> <b>controls</b>&gt;&lt;/video&gt;
 document.getElementById("video").<b>play</b>();
 </pre>
             <div id="video-column" class="center">
