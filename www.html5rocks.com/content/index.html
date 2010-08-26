@@ -3,6 +3,9 @@
 {% block headtitle %}A resource for open web HTML5 developers{% endblock %}
 
 {% block head %}
+
+  <link rel="alternate" type="application/rss+xml" title="HTML5Rocks - Tutorials" href="http://feeds.feedburner.com/html5rocks" />
+  
   <style>
     #index {
       overflow: hidden;
@@ -166,7 +169,7 @@
     </a>
   </section>
   <section class="clear fl feed-section">
-    <h2>Latest Tutorials <a href="/tutorials/index.xml"><img src="/static/images/feed_icon16x16.png"/></a></h2>
+    <h2>Latest Tutorials <a href="http://feeds.feedburner.com/html5rocks"><img src="/static/images/feed_icon16x16.png"/></a></h2>
     <ul id="latest_articles_feed"><li><i>loading feed...</i></li></ul>
     <p><a href="/tutorials/">See more &rArr;</a></p>
   </section>
