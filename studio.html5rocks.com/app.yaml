@@ -1,5 +1,5 @@
 application: html5playbook
-version: canary-v3
+version: 3
 runtime: python
 api_version: 1
 
