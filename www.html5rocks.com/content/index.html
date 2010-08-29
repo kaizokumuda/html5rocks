@@ -3,9 +3,7 @@
 {% block headtitle %}A resource for open web HTML5 developers{% endblock %}
 
 {% block head %}
-
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
-  
   <style>
     #index {
       overflow: hidden;
@@ -93,8 +91,10 @@
       font-weight: normal;
       display: block;
     }
-    .feed-section h2 img { vertical-align: top; }
-    .feed-section a[href^='http']:not([href*='html5rocks.']),
+    .feed-section h2 img {
+      vertical-align: top;
+    }
+    .feed-section a[href^='http']:not([href*='html5rocks']),
     .info-section a[href^='http']:not([href*='html5rocks.']) {
       background: transparent url(data:image/png;base64,R0lGODlhCQAMAMQAAPr7/Cpdi6q/0X2duURxmjRlkfz9/vz8/TVlkae8z4+qwoWivTlplDVmkvv8/Up1nUVymvn6/LrL2i1gjStejKS6zkNwmUFvmD5slkJwmbjJ2DZnkqm90Cdbiv///wAAACH5BAEAAB4ALAAAAAAJAAwAAAU6oCeOY7R0aNoByWURQUoOMTpqD0p1Ird1hEGGJ/gVJB5Ip9gpcESYDqOD4BxEFcWkwTGMHACSeDwKAQA7) no-repeat center right;
       padding-right: 14px;
@@ -135,7 +135,7 @@
       <div class="app">
         <div class="appcontent">
           <h2><span>Interactive</span> Presentation</h2>
-          <img src="/static/images/html5rocks-presentation.png">
+          <img src="/static/images/html5rocks-presentation.png" width="70" height="70" />
           <p class="desc">Watch the slideshow that lets you play with HTML5 features.</p>
         </div>
       </div>
@@ -144,7 +144,7 @@
       <div class="app">
         <div class="appcontent">
           <h2><span>Code</span> Playground</h2>
-          <img src="/static/images/html5rocks-playground.png">
+          <img src="/static/images/html5rocks-playground.png" width="70" height="70" />
           <p class="desc">Jump headfirst into HTML5 by experimenting with each API.</p>
         </div>
       </div>
@@ -153,7 +153,7 @@
       <div class="app">
         <div class="appcontent">
           <h2><span>Samples</span> Studio</h2>
-          <img src="/static/images/html5rocks-studio.png">
+          <img src="/static/images/html5rocks-studio.png" width="70" height="70" />
           <p class="desc">A showroom of content that you can reuse in your own site.</p>
         </div>
       </div>
@@ -162,7 +162,7 @@
       <div class="app">
         <div class="appcontent">
           <h2><span>Step by Step</span> Tutorials</h2>
-          <img src="/static/images/html5rocks-tutorials.png">
+          <img src="/static/images/html5rocks-tutorials.png" width="70" height="70" />
           <p class="desc">Take a guided tour through code that uses HTML5 features.</p>
         </div>
       </div>
