@@ -3,6 +3,8 @@ version: 3
 runtime: python
 api_version: 1
 
+default_expiration: "30d"
+
 handlers:
 
 - url: /google75906d613a2a09ba.html

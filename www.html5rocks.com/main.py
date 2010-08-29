@@ -13,10 +13,13 @@
 # limitations under the License.
 #
 
+__author__ = ('kurrik@html5rocks.com (Arne Kurrik) ',
+              'ericbidelman@html5rocks.com (Eric Bidelman)')
+
 # Standard Imports
 import datetime
-import os
 import logging
+import os
 
 # Libraries
 import html5lib
@@ -125,8 +128,7 @@ class ContentHandler(webapp.RequestHandler):
     if not 'category' in template_data:
       template_data['category'] = 'this feature'
 
-    self.response.headers.add_header('Content-Type', 'text/html;charset=UTF-8')
-    # self.response.headers.add_header("X-UA-Compatible","IE=Edge,chrome=1")
+    self.response.headers.add_header('X-UA-Compatible', 'IE=Edge,chrome=1')
     self.response.out.write(
         webapp.template.render(template_path, template_data))
 
