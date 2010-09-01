@@ -437,7 +437,11 @@
         width: 100%;
         text-align: center;
       }
-            
+      
+      .hsl-value {
+        display: inline-block;
+        width: 50px;
+      }
     </style>
     
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
@@ -1483,15 +1487,15 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
             <pre>&lt;<b>audio</b> id="audio" src="sound.mp3" <b>controls</b>&gt;&lt;/audio&gt;
 document.getElementById("audio").<b>muted</b> = false;
 
-&lt;<b>video</b> id="video" src="movie.mp4" <b>autoplay</b> <b>controls</b>&gt;&lt;/video&gt;
+&lt;<b>video</b> id="video" src="movie.webm" <b>autoplay</b> <b>controls</b>&gt;&lt;/video&gt;
 document.getElementById("video").<b>play</b>();
 </pre>
             <div id="video-column" class="center">
               <input type="button" id="reflection-button" onclick="addReflection()" value="Add CSS reflection to video" />
               <video width="390" id="clip" controls>
-                <source src="src/chrome-japan.webm" type="video/webm" />
-                <source src="src/chrome-japan.mp4" type="video/mp4" />
-                <source src="src/chrome_japan.ogv" type="video/ogg" />
+                <source src="src/chrome_japan.webm" type='video/webm; codecs="vp8, vorbis"' />
+                <source src="src/chrome_japan.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+                <source src="src/chrome_japan.ogv" type='video/ogg; codecs="theora, vorbis"' />
                 Your browser does not support the video tag
               </video>
               <div class="media-buttons">
@@ -1504,7 +1508,7 @@ document.getElementById("video").<b>play</b>();
             <div id="audio-column" class="center">
               <audio id="audio-clip" width="670" controls>
                 <source src="src/rushus-modal_blues.mp3" type="audio/mpeg" />
-                <source src="src/rushus-modal_blues.webm" type="audio/webm" />
+                <source src="src/rushus-modal_blues.ogg" type="audio/ogg" />
                 Your browser does not support the audio tag
               </audio>
               <div class="media-buttons">
@@ -2104,10 +2108,10 @@ header {
           <header><span class="css">CSS</span> <h1>Hue/saturation/luminance color model</h1></header>
           <section>
         <pre>color: <b>hsla</b>(
-  <span id="hsl-h-value">128</span>, <input id="hsl-h" type="range" min="0" max="360" value="128" onchange="changeHSL()">
-  <span id="hsl-s-value">75</span>%, <input id="hsl-s" type="range" min="0" max="100" value="75" onchange="changeHSL()">
-  <span id="hsl-l-value">33</span>%, <input id="hsl-l" type="range" min="0" max="100" value="33" onchange="changeHSL()">
-  <span id="hsl-a-value">1.00</span>); <input id="hsl-a" type="range" min="0" max="100" value="100" onchange="changeHSL()">
+  <span class="hsl-value" id="hsl-h-value">128</span> <input id="hsl-h" type="range" min="0" max="360" value="128" onchange="changeHSL()">
+  <span class="hsl-value" id="hsl-s-value">74%</span> <input id="hsl-s" type="range" min="0" max="100" value="75" onchange="changeHSL()">
+  <span class="hsl-value" id="hsl-l-value">33%</span> <input id="hsl-l" type="range" min="0" max="100" value="33" onchange="changeHSL()">
+  <span class="hsl-value" id="hsl-a-value">1.00</span> <input id="hsl-a" type="range" min="0" max="100" value="100" onchange="changeHSL()">
         </pre>
 
             <div id="hsl-example" class="example">
@@ -2125,9 +2129,9 @@ header {
                 el.style.color = 'hsla(' + h + ', ' + s + '%, ' + l + '%, ' + a + ')';
 
                 document.getElementById('hsl-h-value').innerHTML = h;
-                document.getElementById('hsl-s-value').innerHTML = s;
-                document.getElementById('hsl-l-value').innerHTML = l;
-                document.getElementById('hsl-a-value').innerHTML = a;
+                document.getElementById('hsl-s-value').innerHTML = s + '%,';
+                document.getElementById('hsl-l-value').innerHTML = l + '%,';
+                document.getElementById('hsl-a-value').innerHTML = a + ');';
               }
 
               changeHSL();
