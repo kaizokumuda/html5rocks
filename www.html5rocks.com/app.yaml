@@ -40,6 +40,11 @@ handlers:
   mime_type: audio/ogg
   upload: content/tutorials/(.*\.(ogg|oga))
 
+- url: /tutorials/(.*\.mp3)
+  static_files: content/tutorials/\1
+  mime_type: audio/mpeg
+  upload: content/tutorials/(.*\.mp3)
+
 # Catch other static content.
 - url: /tutorials/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
   static_files: content/tutorials/\1

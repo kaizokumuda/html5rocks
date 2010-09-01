@@ -18,6 +18,26 @@ handlers:
   static_files: samples/html5_misc/offline.manifest
   upload: samples/html5_misc/offline.manifest
   mime_type: text/cache-manifest
+- url: /samples/html5_misc/(.*\.mp4)
+  static_files: samples/html5_misc/\1
+  mime_type: video/mp4
+  upload: samples/html5_misc/(.*\.mp4)
+- url: /samples/html5_misc/(.*\.webm)
+  static_files: samples/html5_misc/\1
+  mime_type: video/webm
+  upload: samples/html5_misc/(.*\.webm)
+- url: /samples/html5_misc/(.*\.(ogg|oga))
+  static_files: samples/html5_misc/\1
+  mime_type: audio/ogg
+  upload: samples/html5_misc/(.*\.(ogg|oga))
+- url: /samples/html5_misc/(.*\.ogv)
+  static_files: samples/html5_misc/\1
+  mime_type: video/ogg
+  upload: samples/html5_misc/(.*\.ogv)
+- url: /samples/html5_misc/(.*\.mp3)
+  static_files: samples/html5_misc/\1
+  mime_type: audio/mpeg
+  upload: samples/html5_misc/(.*\.mp3)
 - url: /popout.html
   static_files: popout.html
   upload: popout.html

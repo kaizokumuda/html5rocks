@@ -41,6 +41,11 @@ handlers:
   mime_type: video/ogg
   upload: /(.*\.ogv)
 
+- url: /(.*\.mp3)
+  static_files: /\1
+  mime_type: audio/mpeg
+  upload: /(.*\.mp3)
+
 - url: /
   static_files: html5.html
   upload: html5.html
