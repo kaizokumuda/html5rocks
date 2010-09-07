@@ -16,9 +16,7 @@
 {% endblock %}
 
 {% block iscompatible %}
-  var has3d = false;
-  if("WebkitPerspective" in window.document.body.style) {has3d = true;}
-  return has3d ;
+  return Modernizr.csstransforms3d;
 {% endblock %}
 
 {% block content %}
