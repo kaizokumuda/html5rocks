@@ -16,7 +16,9 @@
 {% endblock %}
 
 {% block iscompatible %}
-  return !!(window.applicationCache);
+  var has3d = false;
+  if("WebkitPerspective" in window.document.body.style) {has3d = true;}
+  return has3d ;
 {% endblock %}
 
 {% block content %}
@@ -44,20 +46,23 @@
   <h2 id="toc-sample1">Basic Sample</h2>
   <p>There is nothing better than jumping straight in. In this sample we will apply a basic set of rotations of an arbitrary DOM element.</p>
   <p>We start by defining a perspective on the root element. Persective</p>
-  <pre class="prettyprint">&lt;div style="-webkit-perspective: 800; margin: 100px 0 0 50px"&gt;</pre>
+  <pre class="prettyprint">&lt;div style="-webkit-perspective: 800; perspective: 800; margin: 100px 0 0 50px"&gt;</pre>
   <p>Perspective is important because it defines how the depth of the 3D scene is rendered, values from 1-1000 will produce a very pronounced effect, and values over 1000 less so.</p>
   <p>We then add an iframe and apply a 45 degree rotation around the Z and Y axis</p>
   <pre class="prettyprint">&lt;iframe 
     src="http://www.google.com/" 
     style="-webkit-transform: rotate3d(0,1,1, 45deg)"&gt;&lt;/iframe&gt;</pre>
-  <div style="-webkit-perspective: 800; margin: 100px 0 100px 50px">
-    <iframe src="http://www.google.com/" style="-webkit-transform: rotate3d(0,1,1, 45deg)"></iframe>
+  <div style="-webkit-perspective: 800; perspective: 800; 
+    margin: 100px 0 100px 50px">
+    <iframe src="http://www.google.com/" style="-webkit-transform: rotate3d(0,1,1, 45deg);
+    transform: rotate3d(0,1,1, 45deg);"></iframe>
   </div>
   <p>BAM! That is it, the element is fully interactive, and in all respects it is a fully fledged DOM element (excpect that it now looks even cooler).</p>
   <p>If your browser doesn't support 3D transformations, nothing will happen. You will just see a simple iframe with no rotation applied.  If your browser supports 3d transformations but without hardware acceleration, it might look a little odd.</p>
-  <pre class="prettyprint">&lt;div style="-webkit-perspective: 800; margin: 100px 0 100px 50px"&gt;
+  <pre class="prettyprint">&lt;div style="-webkit-perspective: 800; perspective: 800; margin: 100px 0 100px 50px"&gt;
     &lt;iframe src="http://www.google.com/" 
-      style="-webkit-transform: rotate3d(0,1,1, 45deg)"&gt;&lt;/iframe&gt;
+      style="-webkit-transform: rotate3d(0,1,1, 45deg); 
+      transform: rotate3d(0,1,1, 45deg);"&gt;&lt;/iframe&gt;
 &lt;/div&gt;</pre>
   <h2 id="toc-animation">Animating</h2>
   <p>The thing that I love about CSS3 3D transformations is that it ties so beautifully with the <a href="">CSS Transition module</a>.  Animations and transitions are easy to define in CSS, and applying these to 3d is no exception.</p>
