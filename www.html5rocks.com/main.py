@@ -162,7 +162,8 @@ class ContentHandler(webapp.RequestHandler):
     logging.info('relpath: ' + relpath)
 
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
-       (relpath == 'tutorials' and relpath[-1] != '/')):  # Accept /tutorials\/?
+       (relpath == 'tutorials' and relpath[-1] != '/') or   # Accept /tutorials\/?
+       (relpath == 'features' and relpath[-1] != '/')):      # Accept /features\/?
       path = os.path.join(basedir, 'content', relpath, 'index.html')
     else:
       path = os.path.join(basedir, 'content', relpath)
