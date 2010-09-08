@@ -29,6 +29,11 @@ section:nth-child(even) {
 section:last-of-type {
   margin-bottom: 2em;
 }
+section ul {
+  padding: 5px 18px;
+}
+
+
 .demos {
   clear: both;
 }

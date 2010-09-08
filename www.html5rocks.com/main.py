@@ -176,7 +176,7 @@ class ContentHandler(webapp.RequestHandler):
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
       self.render(template_path=path[:path.rfind('.')] + '.html')
     elif os.path.isfile(path + '.html'):
-      self.render(data={'category': relpath}, template_path=path + '.html')
+      self.render(data={'category': relpath.replace('features/','') }, template_path=path + '.html')
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'content/404.html'))
