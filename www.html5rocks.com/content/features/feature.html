@@ -6,11 +6,11 @@
   <link rel="stylesheet" href="/static/css/feature.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script>
-  var feature = '#{{category}}'.replace('#','');
+  var feature = '{{category}}';
   
   var div = $('<div>').load('/tutorials/ #index', function(){
     
-    var ul = $('<ul>').prependTo('section.tutorials div');
+    var ul = $('section.tutorials ul');
     
     div.find('.sample span.tag:contains(' + feature + ')')
       .closest('.sample').find('h2 a').clone()
@@ -23,41 +23,50 @@
 
 {% block body %}
 {% include "../section_header.html" %}
-<div style="margin-bottom: 1em">
+
+<h2>{% block h2title %}Feature{% endblock %}</h2>
+<p class="description">{% block description %}{% endblock %}</h2>
+
+
+<div style="margin-bottom: 2em" class="clearfix">
+  
   <section class="tutorials">
     <hgroup>
-      <h2>Tutorials</h2>
+      <h3>Tutorials</h3>
       <h4>learn how to use {{category}}.</h4>
     </hgroup>
     <div>
+      <ul>
+        {% block tuts %}{% endblock %}
+      </ul>
       <p>View all tutorials tagged '<a href="/tutorials/#{{category}}">{{category}}</a>' &rArr;</p>
     </div>
   </section>
   <section class="in-the-wild">
     <hgroup>
-      <h2>In the Wild</h2>
+      <h3>In the Wild</h3>
       <h4>who is using {{category}}?</h4>
     </hgroup>
     <div>
-      TODO: fill me
+      {% block inthewild %}{% endblock %}
     </div>
   </section>
   <section class="demos">
     <hgroup>
-      <h2>Demos / Samples</h2>
+      <h3>Demos / Samples</h3>
       <h4>see {{category}} in action!</h4>
     </hgroup>
     <div>
-      TODO: fill me
+      {% block demos %}{% endblock %}
     </div>
   </section>
   <section class="resources">
     <hgroup>
-      <h2>Additional Resources</h2>
+      <h3>Additional Resources</h3>
       <h4>lots of great stuff out there!</h4>
     </hgroup>
     <div>
-      TODO: fill me
+      {% block resources %}{% endblock %}
     </div>
   </section>
 </div>

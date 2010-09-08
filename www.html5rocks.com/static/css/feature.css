@@ -8,7 +8,7 @@ hgroup > h4 {
   margin: 0;
   color: #3D5C9D;
 }
-hgroup > h2 {
+hgroup > h3 {
   font-size: 20px;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -32,8 +32,21 @@ section:last-of-type {
 section ul {
   padding: 5px 18px;
 }
+section li { 
+  padding: 3px 0;
+}
+section figure { 
+  width: 170px;
+  padding: 5px;
+  display: inline-block;
+}
+section:nth-child(even) {
 
+}
 
 .demos {
   clear: both;
 }
+
+.clearfix:after  { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { zoom: 1; }
