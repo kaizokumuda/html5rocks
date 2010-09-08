@@ -39,7 +39,12 @@ section figure {
   width: 170px;
   padding: 5px;
   display: inline-block;
+  vertical-align: top;
 }
+figcaption {
+  font-style: normal;
+}
+
 section:nth-child(even) {
 
 }
@@ -50,3 +55,7 @@ section:nth-child(even) {
 
 .clearfix:after  { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
 .clearfix { zoom: 1; }
+
+dd { 
+  margin: 2px 0 10px 5px;
+}

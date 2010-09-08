@@ -11,6 +11,12 @@
 
 
 {% block inthewild %} 
+<figure>
+  <a href="http://googlecode.blogspot.com/2009/04/gmail-for-mobile-html5-series-using.html">
+    <img src="/static/images/features/offline-gmail.png">
+    <figcaption>Mobile Gmail</figcaption>
+  </a>
+</figure>
 {% endblock %}
 
 
@@ -18,19 +24,36 @@
 <figure>
   <a href="http://html5demos.com/offline">
     <img src="/static/images/features/offline-h5d.png">
-    <figcaption>sldkfds</figcaption>
+    <figcaption>HTML5 Demos: Offline events</figcaption>
   </a>
 </figure>
 
 <figure>
-  <a href="http://html5demos.com/offline">
-    <img src="/static/images/features/offline-h5d.png">
-    <figcaption>sldkfds</figcaption>
+  <a href="http://htmlfive.appspot.com/static/stickies.html">
+    <img src="/static/images/features/offline-stickies.png">
+    <figcaption>Stickies demo with app cache and web SQL database</figcaption>
   </a>
 </figure>
 {% endblock %}
 
 
 {% block resources %} 
+<dl>
+  <dt><a href="http://dev.w3.org/html5/spec-author-view/offline.html#offline">W3C HTML5 Spec, author view: Offline Web Applications</a></dt>
+  <dd>The w3c spec has the strict details on how the cache.manifest and applicationCache APIs work.</dd>
+  <dt><a href="http://diveintohtml5.org/offline.html">Dive into HTML5: Let's take this offline</a></dt>
+  <dd>Mark Pilgrim dives into using the app cache in practice.</dd>
+  <dt><a href="https://developer.mozilla.org/En/Offline_resources_in_Firefox">MDC: Offline resources in Firefox</a></dt>
+  <dt><a href="https://developer.mozilla.org/en/Online_and_offline_events">MDC: Online and offline events</a></dt>
+  <dd>Mozilla Developer Center reference documentation and guides, covering online and offline events and app cache.</dd>
+  <dt><a href="http://hacks.mozilla.org/2010/01/offline-web-applications/">Mozilla Hacks: offline web applications</a></dt>
+  <dd>Creating a todo list manager using localStorage, app cache and offline events. Putting everything together.</dd>
+  <dt><a href="http://dev.opera.com/articles/view/offline-applications-html5-appcache/">DevOpera: Running your web applications offline with HTML5 AppCache</a></dt>
+  <dd>The app cache explained with solid examples showing different features and configurations in use.</dd>
+  <dt><a href="http://trac.webkit.org/browser/trunk/WebCore/loader/appcache">Webkit app cache Source Code</a></dt>
+  <dd>The C code used by Webkit for the app cache</dd>
+</dl>
+
+
 {% endblock %}
 
