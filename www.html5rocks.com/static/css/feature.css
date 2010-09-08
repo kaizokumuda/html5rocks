@@ -1,5 +1,8 @@
 /* used by /video etc */
 
+.description p:empty {
+  display: none;
+}
 
 hgroup {
   border-bottom: 1px solid #ddd;
@@ -51,6 +54,11 @@ section:nth-child(even) {
 
 .demos {
   clear: both;
+}
+
+.tutorials ul:empty, 
+.tutorials ul:empty + p {
+  display: none;
 }
 
 .clearfix:after  { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
