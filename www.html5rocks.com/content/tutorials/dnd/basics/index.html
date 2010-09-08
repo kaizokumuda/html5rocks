@@ -1,0 +1,86 @@
+{% extends "../../sample.html" %}
+
+{% block headauthor %}Eric Bidelman <ericbidelman@chromium.org>{% endblock %}
+{% block pageauthor %}Eric Bidelman{% endblock %}
+{% block headtitle %}Native HTML5 Drag and Drop{% endblock %}
+{% block pagetitle %}Native HTML5 Drag and Drop{% endblock %}
+{% block pagebreadcrumb %}Native HTML5 Drag and Drop{% endblock %}
+{% block date %}September 5, 2010{% endblock %}
+
+{% block browsersupport %}
+<span class="opera"></span>
+<span class="ie supported"></span>
+<span class="safari supported"></span>
+<span class="ff supported"></span>
+<span class="chrome supported"></span>
+{% endblock %}
+
+{% block iscompatible %}
+  return Modernizr.draganddrop;
+{% endblock %}
+
+{% block content %}
+
+ <h2 id="toc-introduction">Introduction</h2> 
+ 
+  <p>TODO:</p> 
+ 
+  <p>The first thing to do is check that your browser fully supports HTML5 drag and drop.
+  An easy way to do that is use a library called <a href="http://www.modernizr.com/">Modernizr</a> 
+  to check for a certain feature:</p> 
+  <pre class="prettyprint"> 
+if (Modernizr.draganddrop) {
+  // Browser supports native HTML5 DnD.
+} else {
+  // Fallback to a library solution.
+}
+</pre> 
+ 
+  <h2 id="toc-creating-dnd-content">Creating draggable content</h2> 
+ 
+  <p>TODO:</p> 
+ 
+  <h2 id="toc-events">Drag Events</h2> 
+ 
+  <p>TODO:</p> 
+ 
+  <h2 id="toc-dnd-properties">Dragging properties</h2> 
+ 
+  <p>TODO:</p> 
+ 
+  <h2 id="toc-desktop-dnd">Dragging to/from the desktop</h2> 
+ 
+  <p>TODO:</p> 
+ 
+  <h3 id="toc-desktop-dnd-into">Drag-in: dragging from the desktop to the browser</h3> 
+ 
+  <p>TODO:</p> 
+ 
+  <h3 id="toc-desktop-dnd-out">Drag-out: dragging from the browser to the desktop</h3> 
+ 
+  <p>TODO:</p> 
+ 
+  <h2 id="toc-window-dnd">Drag and drop between windows</h2> 
+ 
+  <p>TODO:</p> 
+ 
+  <h2 id="toc-examples">Examples</h2> 
+ 
+  <ul> 
+    <li>Column dnd</li> 
+    <li>Rearrange list</li> 
+    <li>Creating an image gallery</li> 
+    <li>Exporting a canvas image</li> 
+  </ul> 
+ 
+  <h2 id="toc-references">References</h2> 
+  <ul> 
+    <li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dnd">Drag and Drop</a> specification</li> 
+  </ul> 
+ 
+<script> 
+$ = function(id) { return document.getElementById(id); }
+ 
+</script>
+
+{% endblock %}
