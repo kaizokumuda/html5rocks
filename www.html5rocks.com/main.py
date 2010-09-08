@@ -133,8 +133,9 @@ class ContentHandler(webapp.RequestHandler):
         webapp.template.render(template_path, template_data))
 
   def render_atom_feed(self, template_path, data):
-    prefix = self.request.url[:self.request.url.rfind('/') + 1]
+    prefix = '%s://%s' % (self.request.scheme, self.request.host)
     logging.info(prefix)
+
     feed = feedgenerator.Atom1Feed(
         title=u'HTML5Rocks - Tutorials',  # TODO: make generic for any page.
         link=prefix,

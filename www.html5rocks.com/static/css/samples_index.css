@@ -12,9 +12,8 @@ img.logo {
 #tags {
   float: right;
   width: 20%;
-  margin-top: 40px;
+  margin: 40px auto;
   background-color: #f6f7fb;
-  padding-bottom: 10px;
 }
 #tags h3 {
   -moz-border-radius-topleft: 4px;
@@ -24,12 +23,22 @@ img.logo {
   padding: 5px 10px;
   background-color: #3D5C9D;
   color: #fff;
-  margin-top: 0;
+  margin: 0;
   font-weight: normal;
 }
 #tags .tag {
   font-size: 100%;
   padding: 5px 10px;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+}
+#tags .tag:first-of-type {
+  padding-top: 10px;
+}
+#tags .tag:last-of-type {
+  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 10px;
 }
 .tag {
   cursor: pointer;
@@ -66,6 +75,7 @@ img.logo {
   padding: 0;
   font-size: 18px;
   font-weight: normal;
+  text-shadow: #aaa 0px 1px 1px;
 }
 h2 {
   margin-bottom: 0;

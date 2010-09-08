@@ -18,10 +18,12 @@
     function filterTag(opt_tag) {
       var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
       document.location.hash = tag;
-      $('.sample span.tag:not(:contains("' + tag + '"))').closest('.sample').addClass('hidden');
-      $('.sample span.tag:contains("' + tag + '")').closest('.sample').removeClass('hidden');
-      $('#filter_tag').text(tag);
-      $('#filter').removeClass('hidden');
+      if (tag) {
+        $('.sample span.tag:not(:contains("' + tag + '"))').closest('.sample').addClass('hidden');
+        $('.sample span.tag:contains("' + tag + '")').closest('.sample').removeClass('hidden');
+        $('#filter_tag').text(tag);
+        $('#filter').removeClass('hidden');
+      }
     };
 
     $(document).ready(function() {
@@ -55,10 +57,13 @@
   </section>
   <aside id="tags">
     <h3>Filter by tag</h3>
+    <div class="tag">3D</div>
     <div class="tag">appcache</div>
     <div class="tag">audio</div>
+    <div class="tag">dnd</div>
     <div class="tag">devtools</div>
     <div class="tag">file</div>
+    <div class="tag">filereader</div>
     <div class="tag">flash</div>
     <div class="tag">geolocation</div>
     <div class="tag">notifications</div>
@@ -71,7 +76,54 @@
   </aside>
 
   <div id="index">
-    <a href="http://feeds.feedburner.com/html5rocks"><img src="/static/images/feed_icon16x16.png" /></a>
+    <a href="http://feeds.feedburner.com/html5rocks"><img src="/static/images/feed_icon16x16.png" width="16" height="16" /></a>
+
+    <article class="sample">
+      <h2 id="css3-3d" data-pubdate="2010-09-07">
+        <a href="/tutorials/3d/css/">3D and CSS</a>
+      </h2>
+      <div>
+        <span class="date">September 7, 2010</span>
+        <span class="tag">3D</span>
+      </div>
+      <div class="summary">
+        TODO: Fill me
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/3d/css/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="dnd-basics" data-pubdate="2010-09-05">
+        <a href="/tutorials/dnd/basics/">Native HTML5 Drag and Drop</a>
+      </h2>
+      <div>
+        <span class="date">September 5, 2010</span>
+        <span class="tag">dnd</span>
+        <span class="tag">filereader</span>
+      </div>
+      <div class="summary">
+        Fill me...
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/dnd/basics/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie supported"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
 
     <article class="sample">
       <h2 id="video-basics" data-pubdate="2010-08-03">
@@ -294,15 +346,17 @@
 
     <article class="sample">
       <h2 id="reading-files-js" data-pubdate="2010-06-18">
-        <a href="/tutorials/file/dndfiles/">Reading local files in JavaScript</a>
+        <a href="/tutorials/file/dndfiles/">Reading files in JavaScript using the File APIs</a>
       </h2>
       <div>
         <span class="date">June 18th, 2010</span>
+        <span class="tag">dnd</span>
         <span class="tag">file</span>
+        <span class="tag">filereader</span>
       </div>
       <div class="summary">
-        Starter guide for implementing file drag and drop from the desktop to the browser
-        using the File and FileReader APIs.
+        Starter guide for using the File/FileList/FileReader APIs to process
+        and read binary files in JavaScript.
       </div>
       <div class="footer_links">
          <span class="buttonlink"><a href="/tutorials/file/dndfiles/">View tutorial</a>  &rArr;</span>
