@@ -15,7 +15,7 @@
     div.find('.sample span.tag:contains(' + feature + ')')
       .closest('.sample').find('h2 a').clone()
       .map(function(){ return $(this).wrap('<li>').parent(); })
-      .appendTo(ul);
+      .prependTo(ul);
       
   });
   </script>
@@ -39,7 +39,7 @@
       <ul>
         {% block tuts %}{% endblock %}
       </ul>
-      <p>View all tutorials tagged '<a href="/tutorials/#{{category}}">{{category}}</a>' &rArr;</p>
+      <p>View all HTML5Rocks tutorials tagged '<a href="/tutorials/#{{category}}">{{category}}</a>' &rArr;</p>
     </div>
   </section>
   <section class="in-the-wild">
@@ -53,7 +53,7 @@
   </section>
   <section class="demos">
     <hgroup>
-      <h3>Demos / Samples</h3>
+      <h3>Demos</h3>
       <h4>see {{category}} in action</h4>
     </hgroup>
     <div>
@@ -63,7 +63,7 @@
   <section class="resources">
     <hgroup>
       <h3>Additional Resources</h3>
-      <h4>learn from the best, explore potentials</h4>
+      <h4>learn from the best, explore the potential</h4>
     </hgroup>
     <div>
       {% block resources %}{% endblock %}
