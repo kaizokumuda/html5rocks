@@ -1,15 +1,30 @@
 /* used by /video etc */
 
-.description p:empty {
-  display: none;
+h2 {
+  font-size: 28px;
+   font-family: 'Droid Sans', sans-serif;
+}
+.description {
+  font-size: 15px;
 }
 
+.description p:empty {
+ 
+}
+.description img {
+  float: right;
+  border: 1px solid #eee; 
+  padding: 2px;
+  margin: 0 0 10px 10px;
+  height: 140px;
+}
 hgroup {
   border-bottom: 1px solid #ddd;
 }
 hgroup > h4 {
   margin: 0;
-  color: #3D5C9D;
+  color: #aaa;
+  text-shadow: rgba(200,200,200,.5) 0px 0px 2px;
 }
 hgroup > h3 {
   font-size: 20px;
@@ -39,7 +54,7 @@ section li {
   padding: 3px 0;
 }
 section figure { 
-  width: 170px;
+  width: 165px;
   padding: 5px;
   display: inline-block;
   vertical-align: top;
@@ -61,7 +76,7 @@ section:nth-child(even) {
   display: none;
 }
 
-.tutorials a[href^='http']:not([href*='html5rocks.']) {
+.tutorials a[href^='http']:not([href*='html5rocks.']), .description a[href^='http']:not([href*='html5rocks.']) {
   background: transparent url(data:image/png;base64,R0lGODlhCQAJAIABADNmzP///yH5BAEAAAEALAAAAAAJAAkAAAISDI5niRYPgYNP0pioVdFJVl0FADs=) no-repeat center right;
   padding-right: 14px;
 }
@@ -70,5 +85,5 @@ section:nth-child(even) {
 .clearfix { zoom: 1; }
 
 dd { 
-  margin: 2px 0 10px 5px;
+  margin: 2px 0 18px 5px;
 }

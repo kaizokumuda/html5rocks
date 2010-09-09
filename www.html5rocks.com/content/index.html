@@ -20,7 +20,7 @@
       width: 70px;
       padding-top: 10px;
     }
-    #index div.app {
+    #index div.app, .feed-section div.app {
       font-family: Helvetica, sans-serif;
       height: 160px;
       width: 150px;
@@ -38,13 +38,23 @@
       -o-transition: all 0.10s ease-in-out;
       cursor: pointer;
     }
-    #index div.app:hover {
+    #index div.app:hover, .feed-section div.app:hover {
       border-color: #e1e1e1;
       -webkit-box-shadow: #666 0px 0px 6px;
       -moz-box-shadow: #666 0px 0px 6px;
       box-shadow: #666 0px 0px 6px;
       background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
     }
+    
+    .feed-section div.app {
+      display:inline-block;
+      width: 100px;
+      height: 12px;
+      margin: 3px;
+      padding: 10px 10px 10px 45px;
+      text-align: left;
+    }
+    
     .app h2 {
       text-transform: uppercase;
       padding: 0;
@@ -169,9 +179,40 @@
     </a>
   </section>
   <section class="clear fl feed-section">
+    <!--
+    <h2>Major HTML5 Features</h2>
+    <p>Learn by feature</p>
+    <div class="app">
+      Offline
+    </div>
+    <div class="app">
+      Video
+    </div>
+    <div class="app">
+      Audio
+    </div>
+    <div class="app">
+      CSS3
+    </div>
+    <div class="app">
+      Webfonts
+    </div>
+    <div class="app">
+      Stuff
+    </div>
+    <div class="app">
+      Offline
+    </div>
+    <div class="app">
+      Ernests
+    </div>
+    
+    -->
     <h2>Latest Tutorials <a href="http://feeds.feedburner.com/html5rocks"><img src="/static/images/feed_icon16x16.png" width="16" height="16" /></a></h2>
     <ul id="latest_articles_feed"><li><i>loading feed...</i></li></ul>
     <p><a href="/tutorials/">See more &rArr;</a></p>
+    
+    
   </section>
   <section class="fr feed-section">
     <h2>Additional Resources</h2>
