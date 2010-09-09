@@ -163,7 +163,8 @@ class ContentHandler(webapp.RequestHandler):
     logging.info('relpath: ' + relpath)
 
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
-       (relpath == 'tutorials' and relpath[-1] != '/')):  # Accept /tutorials\/?
+       (relpath == 'tutorials' and relpath[-1] != '/') or   # Accept /tutorials\/?
+       (relpath == 'features' and relpath[-1] != '/')):      # Accept /features\/?
       path = os.path.join(basedir, 'content', relpath, 'index.html')
     else:
       path = os.path.join(basedir, 'content', relpath)
@@ -176,7 +177,7 @@ class ContentHandler(webapp.RequestHandler):
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
       self.render(template_path=path[:path.rfind('.')] + '.html')
     elif os.path.isfile(path + '.html'):
-      self.render(data={'category': relpath}, template_path=path + '.html')
+      self.render(data={'category': relpath.replace('features/','') }, template_path=path + '.html')
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'content/404.html'))
