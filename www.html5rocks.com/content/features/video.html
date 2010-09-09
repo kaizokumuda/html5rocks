@@ -1,20 +1,33 @@
 {% extends "feature.html" %}
 
-{% block headtitle %}Video{% endblock %}
-{% block h2title   %}Video{% endblock %}
+{% block headtitle %}Multimedia{% endblock %}
+{% block h2title   %}Multimedia{% endblock %}
 
-{% block description %}<p>"Web" and "online" are two closely associated terms, downright synonymous to many people. So why on earth would we talk about "offline" web technologies, and what does the term even mean? HTML5 and related specs introduce a number of features to make offline web apps a reality.</p>{% endblock %}
+{% block description %}<p></p>{% endblock %}
 
-<!-- wrap any tuts content with LI's -->
+<!-- wrap any tuts content with LI's 
+     these will be added to existing tutorials scraped from h5r.com -->
 {% block tuts %} 
 {% endblock %}
 
 
 {% block inthewild %} 
+<figure>
+  <a href="">
+    <img src="/static/images/features/">
+    <figcaption></figcaption>
+  </a>
+</figure>
 {% endblock %}
 
 
 {% block demos %} 
+<figure>
+  <a href="http://jakearchibald.com/scratch/alphavid/">
+    <img src="/static/images/features/">
+    <figcaption>HTML5 Video with alpha transparency via canvas</figcaption>
+  </a>
+</figure>
 {% endblock %}
 
 
