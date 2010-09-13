@@ -1,4 +1,4 @@
-var chart_url = 'html5rocks.com';
+var chart_url = 'http://www.html5rocks.com';
 
 document.getElementById('request_permission').addEventListener('click', function() {
   window.webkitNotifications.requestPermission();
