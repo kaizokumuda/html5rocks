@@ -1,0 +1,78 @@
+{% extends "feature.html" %}
+
+{% block headtitle %}Multimedia{% endblock %}
+{% block h2title   %}Multimedia{% endblock %}
+
+{% block description %}
+<p>
+Audio and Video became first-class citizens on the Web with HTML5 the same way that other media types like images did in the past. Through their new APIs you can access, control and manipulate timeline data and network states of the files. With the coming additions to the APIs you will be able to read and write raw data to audio files (Audio Data API) or manipulate captions in videos (Timed Track API). But the real power of these new HTML elements stands out when they are combined with the other technologies of the web stack, be it Canvas, SVG, CSS or even WebGL.
+</p>
+<p>
+For instance, you can build a DJ mixer table app where you show several controls to fade and mix audio tracks. Canvas lets you read pixel data from videos so you could add a video visualizer with a scene selection feature and, on top of that, use SVG filters a la Photoshop to distort the movie while the videos are playing.
+</p>
+<p>
+  <h4>Browser support</h4>
+  <p>See: <a href="http://caniuse.com/#feat={{category}}">current browser support for {{category}}</a> on caniuse.com.
+  Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>
+</p>
+{% endblock %}
+
+<!-- wrap any tuts content with LI's 
+     these will be added to existing tutorials scraped from h5r.com -->
+{% block tuts %}
+<li><a href="http://www.html5rocks.com/tutorials/video/basics/">HTML5 Video</a></li>
+<li><a href="http://www.html5rocks.com/tutorials/audio/quick/">Quick Guide to Implementing the HTML5 Audio Tag</a></li>
+<li><a href="http://html5doctor.com/native-audio-in-the-browser/">HTML5 Doctor: Native audio in the browser</a></li>
+<li><a href="http://html5doctor.com/the-video-element/">HTML5 Doctor: The video element</a></li>
+{% endblock %}
+
+
+{% block inthewild %} 
+<figure>
+  <a href="">
+    <img src="/static/images/features/">
+    <figcaption></figcaption>
+  </a>
+</figure>
+{% endblock %}
+
+
+{% block demos %} 
+<figure>
+  <a href="http://studio.html5rocks.com/#PiP">
+    <img src="/static/images/features/video-swap.png" width="174" height="120">
+    <figcaption>HTML5 Studio: Picture-in-picture Video Swap</figcaption>
+  </a>
+</figure>
+<figure>
+  <a href="http://craftymind.com/factory/html5video/CanvasVideo.html">
+    <img src="/static/images/features/video-blow.png" width="174" height="120" />
+    <figcaption>Craftymind: Blowing Up HTML5 Video</figcaption>
+  </a>
+</figure>
+{% endblock %}
+
+
+{% block resources %} 
+<dl>
+  <dt><a href="http://www.w3.org/TR/html5/video.html#audio">W3C Spec: Audio Element</a></dt>
+  <dd>This W3C specification defines the audio element with all the available methods, attributes and events.</dd>
+</dl>
+<dl>
+  <dt><a href="http://www.w3.org/TR/html5/video.html#video">W3C Spec: Video Element</a></dt>
+  <dd>This W3C specification defines the video element with all the available methods, attributes and events.</dd>
+</dl>
+<dl>
+  <dt><a href="http://www.w3.org/TR/html5/video.html#media-elements">W3C Spec: Media Elements</a></dt>
+  <dd>This W3C specification defines those methods and properties which are common to both audio and video elements.</dd>
+</dl>
+<dl>
+  <dt><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/video.html#timed-track-api">WhatWG: Timed Track API</a></dt>
+  <dd>A subset of the media element spec currently being written where it defines means to handle metadata of audio/video files such as captions and subtitles.</dd>
+</dl>
+<dl>
+  <dt><a href="https://wiki.mozilla.org/Audio_Data_API">Mozilla Wiki: Audio Data API</a></dt>
+  <dd>Draft recommendation for Audio Data API where methods are defined to read and write spectrum data of audio files.</dd>
+</dl>
+{% endblock %}
+
