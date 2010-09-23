@@ -45,14 +45,15 @@ section:last-of-type {
 section ul {
   padding: 5px 18px;
 }
-section li { 
+section li {
   padding: 3px 0;
 }
-section figure { 
+section figure {
   width: 165px;
   padding: 5px;
   display: inline-block;
   vertical-align: top;
+  text-align: center;
 }
 figcaption {
   font-style: normal;
