@@ -1,32 +1,6 @@
-{% extends "../base.html" %}
+{% extends "feature_concept.html" %}
 
-{% block headtitle %}Feature{% endblock %}
-
-{% block head %}
-  <link rel="stylesheet" href="/static/css/feature.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script>
-  var feature = '{{category}}';
-  
-  var div = $('<div>').load('/tutorials/ #index', function(){
-    
-    var ul = $('section.tutorials ul');
-    
-    div.find('.sample span.tag:contains(' + feature + ')')
-      .closest('.sample').find('h2 a').clone()
-      .map(function(){ return $(this).wrap('<li>').parent(); })
-      .prependTo(ul);
-      
-  });
-  </script>
-{% endblock %}
-
-{% block body %}
-{% include "../section_header.html" %}
-
-<h2>{% block h2title %}Feature{% endblock %}</h2>
-<div class="description">{% block description %}{% endblock %}</div>
-
+{% block contents %}
 
 <div style="margin-bottom: 2em" class="clearfix">
   
@@ -71,5 +45,4 @@
   </section>
 </div>
 
-  {% include "../footer.html" %}
 {% endblock %}
