@@ -42,9 +42,7 @@
         var addedOn = new Date();
         tx.executeSql("INSERT INTO todo(todo, added_on) VALUES (?,?)", 
             [todoText, addedOn],
-            function() {
-              html5rocks.webdb.getAllTodoItems(loadTodoItems);
-            },
+            html5rocks.webdb.onSuccess,
             html5rocks.webdb.onError);
        });
     }
@@ -54,7 +52,8 @@
     }
   
     html5rocks.webdb.onSuccess = function(tx, r) {
-    
+      // re-render the data.
+      html5rocks.webdb.getAllTodoItems(loadTodoItems);
     }
   
   
@@ -70,9 +69,7 @@
       var db = html5rocks.webdb.db;
       db.transaction(function(tx){
         tx.executeSql("DELETE FROM todo WHERE ID=?", [id],      
-            function() {
-              html5rocks.webdb.getAllTodoItems(loadTodoItems);
-            }, 
+            html5rocks.webdb.onSuccess, 
             html5rocks.webdb.onError);
         });
     }
@@ -160,7 +157,8 @@ html5rocks.webdb.onError = function(tx, e) {
 
 html5rocks.webdb.onSuccess = function(tx, r) {
   // re-render all the data
-  html5rocks.webdb.getAllTodoItems(tx, r);
+  // loadTodoItems is defined in Step 4a
+  html5rocks.webdb.getAllTodoItems(loadTodoItems);
 }</pre>
 
   <h2 id="toc-step2">Step 2. Creating a table</h2>
