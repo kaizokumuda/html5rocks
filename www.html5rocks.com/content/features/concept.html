@@ -1,0 +1,61 @@
+{% extends 'feature_concept.html' %}
+
+{% block contents %}
+
+<div style="margin-bottom: 2em" class="clearfix">
+  
+  <section class="tutorials">
+    <hgroup>
+      <h3>Tutorials</h3>
+      <h4>learn more about {{category}}.</h4>
+    </hgroup>
+    <div>
+      <ul>
+        {% block tuts %}{% endblock %}
+      </ul>
+      <p>View all HTML5Rocks tutorials tagged '<a href="/tutorials/#{{category}}">{{category}}</a>' &rArr;</p>
+    </div>
+  </section>
+  <section class="themes">
+    <hgroup>
+      <h3>Themes</h3>
+    </hgroup>
+    <div>
+      {% block themes %}{% endblock %}
+    </div>
+  </section>
+  <section class="technologies">
+    <hgroup>
+      <h3>Technologies</h3>
+    </hgroup>
+    <div>
+      {% block technologies %}{% endblock %}
+    </div>
+  </section>
+  <section class="techniques">
+    <hgroup>
+      <h3>Techniques</h3>
+    </hgroup>
+    <div>
+      {% block techniques %}{% endblock %}
+    </div>
+  </section>
+  <section class="tools">
+    <hgroup>
+      <h3>Tools</h3>
+    </hgroup>
+    <div>
+      {% block tools %}{% endblock %}
+    </div>
+  </section>
+  <section class="text">
+    <hgroup>
+      <h3>Text</h3>
+    </hgroup>
+    <div>
+      {% block text %}{% endblock %}
+    </div>
+  </section>
+</div>
+
+{% endblock %}
