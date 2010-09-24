@@ -1,0 +1,76 @@
+{% extends "feature.html" %}
+
+{% block headtitle %}Presentation{% endblock %}
+{% block h2title   %}Presentation{% endblock %}
+
+{% block description %}<p>
+  With the introduction of CSS3 Transformations, Transitions and 3D, it has never been easier to create rich and beautiful sites and applications in HTML.
+</p>
+<h4>Browser support</h4>
+<p>See: <a href="http://caniuse.com/#feat=css3">current browser support for CSS3</a> on caniuse.com. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>{% endblock %}
+
+<!-- wrap any tuts content with LI's 
+     these will be added to existing tutorials scraped from h5r.com -->
+{% block tuts %} 
+<li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/css-fundametals-css-3-transitions/">Net Tuts: Transitions</a></li>
+<li><a href="http://webfonts.info/wiki/index.php?title=Checking_@font-face_support_with_Modernizr">Web Fonts: Checking for @font_face support</a></li>
+<li><a href="http://dev.opera.com/articles/view/custom-html5-video-player-with-css3-and-jquery/">Opera: Building a Custom HTML5 video player with CSS3 and jQuery</a></li>
+<li><a href="http://www.kmsm.ca/2010/an-almost-complete-guide-to-css3-multi-column-layouts/">An almost complete guide to CSS3 multi-column layouts</a></li>
+{% endblock %}
+
+
+{% block inthewild %} 
+<figure>
+  <a href="http://typekit.com/">
+    <img src="/static/images/features/typekit.png">
+    <figcaption>Typekit - Webfonts</figcaption>
+  </a>
+  <a href="http://www.css3maker.com/">
+    <img src="/static/images/features/css3maker.png">
+    <figcaption>CSS3 Maker</figcaption>
+  </a>
+</figure>
+{% endblock %}
+
+
+{% block demos %} 
+<figure>
+  <a href="http://www.thewildernessdowntown.com/">
+    <img src="/static/images/features/arcadefire.png">
+    <figcaption>Arcade Fire: The Wilderness Downtown</figcaption>
+  </a>
+  <a href="http://www.satine.org/research/webkit/snowleopard/snowstack.html">
+    <img src="/static/images/features/snowstack.png">
+    <figcaption>Snow Stack</figcaption>
+  </a>
+</figure>
+{% endblock %}
+
+
+{% block resources %} 
+<dl>
+  <dt><a href="http://www.w3.org/Style/CSS/current-work">CSS3 Spec status</a></dt>
+   <dd>A list of the current status of the CSS3 specifications.</dd>
+  <dt><a href="http://www.w3.org/TR/css3-selectors/">W3C Spec: CSS3 Selectors</a></dt>
+  <dd>This W3C specification defines the new selectors available to developers.</dd>
+</dl>
+<dl>
+  <dt><a href="http://dev.w3.org/csswg/css3-fonts/">W3C Draft Spec: CSS Fonts (Formerly Web Fonts)</a></dt>
+  <dd>This W3C specification defines new properties to improve the typeography support in browsers.</dd>
+</dl>
+<dl>
+  <dt><a href="http://www.w3.org/TR/css3-2d-transforms">W3C Draft CSS3 2d Transform module</a></dt>
+  <dd>This W3C specification defines how rotations, transformations, skews and scaling should be applied to DOM elements in 2 dimensions.</dd>
+</dl>
+<dl>
+  <dt><a href="http://www.w3.org/TR/css3-3d-transforms">W3C Draft CSS3 3d Transform module</a></dt>
+  <dd>This W3C specification defines how 3d transformations should be applied to DOM elements.</dd>
+</dl>
+<dl>
+  <dt><a href="http://www.w3.org/TR/css3-transitions">W3C Draft CSS3 Transition Module</a></dt>
+  <dd>This W3C specification defines how properties should be animated between states.</dd>
+  <dt><a href="http://www.w3.org/TR/css3-animations">W3C Draft CSS3 Animation Module</a></dt>
+   <dd>This W3C specification defines the new animation properties available.</dd>
+</dl>
+{% endblock %}
+
