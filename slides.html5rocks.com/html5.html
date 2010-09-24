@@ -2884,7 +2884,7 @@ div {
             document.querySelector('#presentation-counter').innerText = this.current;
             if (history.pushState) {
               if (!dontPush) {
-                history.pushState(this.current, 'Slide ' + this.current, '#slide' + this.current);
+                history.replaceState(this.current, 'Slide ' + this.current, '#slide' + this.current);
               }
             } else {
               window.location.hash = 'slide' + this.current;
@@ -2908,9 +2908,6 @@ div {
             this._update();
           },
           go: function(num) {
-            if (history.pushState && this.current != num) {
-              history.replaceState(this.current, 'Slide ' + this.current, '#slide' + this.current);
-            }
             this.current = num;
             this._update(true);
           },
