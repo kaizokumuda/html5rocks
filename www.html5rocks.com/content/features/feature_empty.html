@@ -5,9 +5,12 @@
 
 {% block description %}<p></p>{% endblock %}
 
-<!-- wrap any tuts content with LI's 
-     these will be added to existing tutorials scraped from h5r.com -->
-{% block tuts %} 
+<!-- wrap tutorials content with LI's 
+     Note: do not add existing tutorials from html5rocks. Those will be
+     added here automatically by scraping the tutorial page's tags.
+     Only add external tutorials. -->
+{% block tuts %}
+<!-- <li><a href="">External tutorial name</a></li>-->
 {% endblock %}
 
 

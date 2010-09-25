@@ -15,15 +15,11 @@ Web app optimization cross cuts all aspects of development, from the server to t
 </p>
 {% endblock %}
 
-<!-- wrap any tuts content with LI's 
-     these will be added to existing tutorials scraped from h5r.com -->
-{% block tuts %} 
-<li><a href="http://www.html5rocks.com/tutorials/offline/whats-offline/">Offline: What does it mean and why should I care?</a></li>
-<li><a href="http://www.html5rocks.com/tutorials/developertools/auditpanel/">Auditing your web app for speed</a></li>
-<li><a href="http://www.html5rocks.com/tutorials/workers/basics/">The basics of web workers</a></li>
-<li><a href="http://www.html5rocks.com/tutorials/developertools/part1/">Introduction to Chrome Developer Tools, Part One</a></li>
-<li><a href="http://www.html5rocks.com/tutorials/speed/quick/">Best practices for a faster web app with HTML5</a></li>
-<li><a href="http://www.html5rocks.com/tutorials/appcache/beginner/">A beginner's guide to using the application cache</a></li>
+<!-- wrap tutorials content with LI's 
+     Note: do not add existing tutorials from html5rocks. Those will be
+     added here automatically by scraping the tutorial page's tags.
+     Only add external tutorials. -->
+{% block tuts %}
 {% endblock %}
 
 
