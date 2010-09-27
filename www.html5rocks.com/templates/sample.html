@@ -1,0 +1,63 @@
+{% extends "../../../../templates/base.html" %}
+
+{% block body %}
+  {% include "../../../../templates/section_header.html" %}
+  <nav>
+      <p class="breadcrumb">
+        <a class="buttonlink" href="/">
+          <span>Home</span>
+        </a >&gt; 
+        <a class="buttonlink" href="/tutorials/">
+          <span>Tutorials</span>
+        </a> &gt; {% block pagebreadcrumb %}{% endblock %}
+     </p>
+  </nav>
+  <article>
+    <header>
+      <h1>{% block pagetitle %}{% endblock %}</h1>
+      <div>
+        <span class="date">
+          {% block pageauthor %}{% endblock %}, <time pubdate>{% block date %}{% endblock %}</time>
+        </span>
+        <span id="share_buttons">
+          <ul>
+            <li><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a></li>
+            <li><iframe src="http://www.facebook.com/plugins/like.php?href={{self_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
+            <li>
+              <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="ChromiumDev">Tweet</a>
+            </li>
+          </ul>
+        </span>
+      </div>
+      <span class="browser_support">
+        <span>Supported browsers:</span>
+        <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
+      </span>
+    </header>
+    <section>
+      <div class="compatible-block"> 
+        <p id="notcompatible" class="hidden">
+          {% block notcompatible_text %}
+          Your browser may not support all of
+          the functionality used in this sample.
+          {% endblock %}
+        </p>
+        <p id="compatible" class="hidden">
+          {% block compatible_text %}
+          Your browser appears to support
+          all of the functionality used in this sample.
+          {% endblock %}
+        </p>
+      </div>
+    </section>
+    <nav>
+      {% toc %}
+    </nav>
+    <section>
+    {% block content %}{% endblock %}
+    </section>
+  </article>
+  {% include "../../../../templates/article_footer.html" %}
+  {% include "../../../../templates/footer.html" %}
+
+{% endblock %}

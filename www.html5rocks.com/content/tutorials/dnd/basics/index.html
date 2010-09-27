@@ -1,4 +1,4 @@
-{% extends "../../sample.html" %}
+{% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Eric Bidelman <ericbidelman@chromium.org>{% endblock %}
 {% block pageauthor %}Eric Bidelman{% endblock %}
@@ -21,64 +21,200 @@
 
 {% block content %}
 
- <h2 id="toc-introduction">Introduction</h2> 
- 
-  <p>TODO:</p> 
- 
-  <p>The first thing to do is check that your browser fully supports HTML5 drag and drop.
-  An easy way to do that is use a library called <a href="http://www.modernizr.com/">Modernizr</a> 
-  to check for a certain feature:</p> 
-  <pre class="prettyprint"> 
+  <h2 id="toc-introduction">Introduction</h2>
+
+  <p>For years, we've been using libraries like JQuery and Dojo to simplify
+  complex UI elements like animations, rounded corners, and drag and drop.
+  There's no doubt, eye-candy is important for making rich, immersive experiences on the web.
+  But why should a library be required for common tasks that all developers are using?</p>
+
+  <p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dnd">Drag and drop</a>
+  (DnD) is a first class citizen in HTML5! The spec defines an event-based mechanism, JavaScript API,
+  and additional markup for declaring just about any element be <code>draggable</code> on a page.
+  I don't think anyone can argue against native browser support for a particular feature.
+  Native browser DnD means faster, more responsive web apps.</p>
+
+  <h3 id="toc-feature-detection">Feature Detection</h3>
+
+  <p>Many apps that utilize DnD would have a poor experience without it. For example, imagine a chess game
+  pieces that don't move. Oops! Although browser support is fairly complete,
+  determining if a browser implements DnD (or any HTML5 feature for that matter) is important
+  for providing a solution that degrades nicely. When/where DnD isn't available, fire up that library fallback
+  to maintain a working app.</p>
+
+  <p>If you need to rely on a API, always use feature detection rather than sniffing the browser's User-Agent.
+  One of the better libraries for feature detection is called <a href="http://www.modernizr.com/">Modernizr</a>.
+  Modernizr sets a boolean property for each feature it tests. Thus, checking for DnD is a one-liner:</p>
+  <pre class="prettyprint">
 if (Modernizr.draganddrop) {
-  // Browser supports native HTML5 DnD.
+  // Browser supports HTML5 DnD.
 } else {
   // Fallback to a library solution.
 }
-</pre> 
- 
-  <h2 id="toc-creating-dnd-content">Creating draggable content</h2> 
+</pre>
+
+  <h2 id="toc-creating-dnd-content">Creating draggable content</h2>
+
+  <p>Making an element draggable is simple. Just set the <code>draggable=true</code> attribute
+  on the object you want the user to be able to move. You can make just about anything draggable.
+  That includes images, links, or other DOM nodes. As an example, lets start creating rearrangeable columns.
+  The basic markup may look something like this:</p>
+
+<pre class="prettyprint">
+&lt;div id="columns"&gt;
+  &lt;div class="column" draggable="true"&gt;&lt;header&gt;A&lt;/header&gt;&lt;/div&gt;
+  &lt;div class="column" draggable="true"&gt;&lt;header&gt;B&lt;/header&gt;&lt;/div&gt;
+  &lt;div class="column" draggable="true"&gt;&lt;header&gt;C&lt;/header&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+  <p>Using a little bit of CSS3 magic, we can spruce up this markup to look like columns.
+  Adding <code>cursor: move</code> gives users a visual indicator that something is moveable:</p>
+
+<pre class="prettyprint">
+&lt;style&gt;
+/* Prevent the contents of draggable elements from being selectable. */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.column {
+  height: 350px;
+  width: 100px;
+  float: left;
+  border: 2px solid #666666;
+  background-color: #ccc;
+  margin-right: 5px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 3px #000;
+  box-shadow: inset 0 0 3px #000;
+  text-align: center;
+  cursor: move;
+}
+.column header {
+  color: #fff;
+  text-shadow: #000 0 1px;
+  box-shadow: 5px;
+  padding: 5px;
+  background: -moz-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+  background: -webkit-gradient(linear, left top, right top,
+                               color-stop(0, rgb(0,0,0)),
+                               color-stop(0.50, rgb(79,79,79)),
+                               color-stop(1, rgb(21,21,21)));
+  border-bottom: 1px solid #ddd;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  border-top-right-radius: 10px;
+}
+&lt;/style&gt;
+</pre>
+
+<style>
+/* Prevent the contents of draggable elements from being selectable. */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+h2 {
+  clear: both;
+}
+.column {
+  height: 350px;
+  width: 100px;
+  float: left;
+  border: 2px solid #666666;
+  background-color: #ccc;
+  margin-right: 5px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 3px #000;
+  box-shadow: inset 0 0 3px #000;
+  text-align: center;
+  cursor: move;
+}
+.column header {
+  color: #fff;
+  text-shadow: #000 0 1px;
+  box-shadow: 5px;
+  padding: 5px;
+  background: -moz-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+  background: -webkit-gradient(linear, left top, right top,
+                               color-stop(0, rgb(0,0,0)),
+                               color-stop(0.50, rgb(79,79,79)),
+                               color-stop(1, rgb(21,21,21)));
+  border-bottom: 1px solid #ddd;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  border-top-right-radius: 10px;
+}
+</style>
+<p>Results:</p>
+<div id="columns">
+  <div class="column" draggable="true"><header>A</header></div>
+  <div class="column" draggable="true"><header>B</header></div>
+  <div class="column" draggable="true"><header>C</header></div>
+</div>
+
+  <h2 id="toc-events">Drag Events</h2>
  
   <p>TODO:</p> 
  
-  <h2 id="toc-events">Drag Events</h2> 
- 
+  <h2 id="toc-dnd-properties">Dragging properties</h2>
+
   <p>TODO:</p> 
- 
-  <h2 id="toc-dnd-properties">Dragging properties</h2> 
- 
-  <p>TODO:</p> 
- 
+
   <h2 id="toc-desktop-dnd">Dragging to/from the desktop</h2> 
- 
+
   <p>TODO:</p> 
- 
+
   <h3 id="toc-desktop-dnd-into">Drag-in: dragging from the desktop to the browser</h3> 
- 
-  <p>TODO:</p> 
- 
-  <h3 id="toc-desktop-dnd-out">Drag-out: dragging from the browser to the desktop</h3> 
- 
-  <p>TODO:</p> 
- 
-  <h2 id="toc-window-dnd">Drag and drop between windows</h2> 
- 
-  <p>TODO:</p> 
- 
-  <h2 id="toc-examples">Examples</h2> 
- 
-  <ul> 
+
+  <p>TODO:</p>
+
+  <h3 id="toc-desktop-dnd-out">Drag-out: dragging from the browser to the desktop</h3>
+
+  <p>TODO:</p>
+
+  <h2 id="toc-window-dnd">Drag and drop between windows</h2>
+
+  <p>TODO:</p>
+
+  <h2 id="toc-examples">Examples</h2>
+
+  <ul>
     <li>Column dnd</li> 
     <li>Rearrange list</li> 
     <li>Creating an image gallery</li> 
     <li>Exporting a canvas image</li> 
-  </ul> 
- 
-  <h2 id="toc-references">References</h2> 
-  <ul> 
+  </ul>
+
+  <h2 id="toc-conclusion">Conclusion</h2>
+
+  <p>Hopefully popular libraries that implement DnD functionality will eventually
+  include native HTML5 support by default, and fallback to a customize JS solution
+  as needed.</p>
+
+  <h2 id="toc-references">References</h2>
+  <ul>
     <li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dnd">Drag and Drop</a> specification</li> 
-  </ul> 
- 
-<script> 
+    <li><a href="https://developer.mozilla.org/En/DragDrop/Drag_Operations">Drag Operations</a> from MDC</li>
+    <li>"<a href="http://html5doctor.com/native-drag-and-drop/">Native Drag and Drop</a>" article from html5doctor</li>
+  </ul>
+
+<script>
 $ = function(id) { return document.getElementById(id); }
  
 </script>

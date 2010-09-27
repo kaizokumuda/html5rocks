@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "../templates/base.html" %}
 
 {% block headtitle %}A resource for open web HTML5 developers{% endblock %}
 
@@ -134,7 +134,7 @@
 {% endblock %}
 
 {% block body %}
-{% include "header.html" %}
+{% include "../templates/header.html" %}
   <section id="index">
     <a href="http://slides.html5rocks.com">
       <div class="app">
@@ -231,7 +231,7 @@
     <pre class="prettyprint">&lt;meta http-equiv="X-UA-Compatible" content="chrome=1"&gt;</pre>
   </section>
 
-  {% include "footer.html" %}
+  {% include "../templates/footer.html" %}
 
   <script>
     function processFeedResponse(result) {

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "../templates/base.html" %}
 
 {% block headtitle %}Home{% endblock %}
 
@@ -45,7 +45,7 @@
 {% endblock %}
 
 {% block body %}
-{% include "section_header.html" %}
+{% include "../templates/section_header.html" %}
 <div>
   <section>
     <h2 class="resource-category">Reference</h2>
@@ -258,5 +258,5 @@
   </section>
 </div>
 
-  {% include "footer.html" %}
+  {% include "../templates/footer.html" %}
 {% endblock %}

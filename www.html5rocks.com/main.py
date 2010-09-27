@@ -180,7 +180,7 @@ class ContentHandler(webapp.RequestHandler):
       self.render(data={'category': relpath.replace('features/','') }, template_path=path + '.html')
     else:
       self.render(status=404, message='Page Not Found',
-                  template_path=os.path.join(basedir, 'content/404.html'))
+                  template_path=os.path.join(basedir, 'templates/404.html'))
 
 
 def main():
