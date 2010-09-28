@@ -7,6 +7,12 @@
 {% block pagebreadcrumb %}Drag and Drop Download in Chrome{% endblock %}
 {% block date %}September 25, 2010{% endblock %}
 
+{% block head %}
+<style>
+figure img { border: 1px solid #ccc; }
+</style>
+{% endblock %}
+
 {% block browsersupport %}
 <span class="opera"></span>
 <span class="ie"></span>
@@ -58,12 +64,13 @@ if (Modernizr.draganddrop) {
   (the desired file name of the downloaded file), and the download URL of the file.
   Thus, this is added to the HTML template:</p>
 
-  <pre class="prettyprint">&lt;a href="#" class="dnd" data-downloadurl="{$item.mime}:{$item.filename}:{$item.url}"&gt;&lt;/a&gt;</pre>
+  <pre class="prettyprint">&lt;a href="#" class="dnd"
+   data-downloadurl="{$item.mime}:{$item.filename}:{$item.url}"&gt;&lt;/a&gt;</pre>
 
   <p>which would create an output like the following:</p>
 
   <pre class="prettyprint">&lt;a href="#" class="dnd" data-downloadurl=
-"image/jpeg:Penguins.jpg:https://www.box.net/box_download_file?file_id=f66690"&gt;&lt;/a&gt;</pre>
+  "image/jpeg:Penguins.jpg:https://www.box.net/box_download_file?file_id=f66690"&gt;&lt;/a&gt;</pre>
 
   <p>Based on a jQuery <a href="http://dev.blog.salesking.eu/coding/jquery-plugin-to-drag-files-from-browser-onto-desktop/">plugin</a>
   that von Schorsch created, which is based on Seddon&#8217;s article,
@@ -135,10 +142,10 @@ $.fn.extend({
   <a href="http://jqueryui.com/demos/draggable/">Draggable plugin</a>.
   Inside the mousedown event of a target element, we put the following code:</p>
 
-  <pre class="prettyprint">// this piece of code is for DnD to desktop when the Ctrl key is pressed while dragging
+  <pre class="prettyprint">// DnD to desktop when the Ctrl key is pressed while dragging
 if (e.ctrlKey) {
   var that = $(e.target);
-  // make sure it is not IE. will branch into attachEvent when IE supports this feature.
+  // make sure it is not IE (attachEvent).
   if (that[0].addEventListener) {
       that[0].addEventListener("dragstart",function(e) {
          // e.dataTransfer in Firefox uses the DataTransfer constructor
@@ -181,22 +188,26 @@ if (e.ctrlKey) {
   link <a href="https://www.box.net/box_download_file?file_id=f_60466690">https://www.box.net/box_download_file?file_id=f_60466690</a> from above would let you download the file when you enter it in the browser location bar, it would not work with DnD.</p>
 
   <p>To better illustrate the differences between an &#8220;actual URL&#8221; and a &#8220;redirect URL&#8221;, see the screenshots:</p>
-  <p class="center">
-    <img src="redirect-url.png" style="max-width: 100%" title="The illustration of a redicrect URL" alt="The illustration of a redicrect URL" />
-  </p>
-  <p class="center">
-    <img src="actual-url.png" style="max-width: 100%" title="The illustration of an actual URL" alt="The illustration of an actual URL" />
-  </p>
+  
+  <figure class="center">
+    <img src="/static/images/screenshots/casestudies/box/redirect-url.png" style="max-width: 100%" title="302 redirect URL" alt="302 redirect URL" />
+    <figcaption>302 redirect URL</figcaption>
+  </figure>
+  
+  <figure class="center">
+    <img src="/static/images/screenshots/casestudies/box/actual-url.png" style="max-width: 100%" title="Actual URL" alt="Actual URL" />
+    <figcaption>Actual URL</figcaption>
+  </figure>
 
   <h2 id="toc-interarion2">Iteration 3</h2>
 
   <p>Let&#8217;s try Ajax.</p>
 
   <p>We slightly modified the code in the previous iteration and came up with the following:</p>
-  <pre class="prettyprint">// this piece of code is for DnD to desktop when the Ctrl key is pressed while dragging
+  <pre class="prettyprint">// DnD to desktop when the Ctrl key is pressed while dragging
 if (e.ctrlKey) {
   var that = $(e.target);
-  // make sure it is not IE. will branch into attachEvent when IE supports this feature.
+  // make sure it is not IE (attachEvent).
   if (that[0].addEventListener) {
     that[0].addEventListener("dragstart", function(e) {
       // e.dataTransfer in Firefox uses the DataTransfer constructor
@@ -271,15 +282,17 @@ $.ajax({
   to your IM client in order to transfer it directly to your friend...
   This opens up endless possibilities to increase your productivity.</p>
 
-  <p class="center">
-    <img src="drag-file-to-printer.png" style="max-width: 100%" title="The illustration of dragging a file to printer" alt="The illustration of dragging a file to printer" />
-  </p>
-  <br/>
-  <p class="center">
-    <img src="drag-file-to-skype.png" style="max-width: 100%" title="The illustration of dragging a file to IM client" alt="The illustration of dragging a file to IM client" />
-  </p>
+  <figure class="center">
+    <img src="/static/images/screenshots/casestudies/box/drag-file-to-printer.png" style="max-width: 100%" title="Dragging a file to the printer" alt="Dragging a file to the printer" />
+    <figcaption>Dragging a file to the printer.</figcaption>
+  </figure>
 
-  <h2 id="toc-examples">Thoughts, and future improvements</h2>
+  <figure class="center">
+    <img src="/static/images/screenshots/casestudies/box/drag-file-to-skype.png" style="max-width: 100%" title="Dragging a file to IM client" alt="Dragging a file to IM client" />
+    <figcaption>Dragging a file to IM client.</figcaption>
+  </figure>
+
+  <h2 id="toc-future">Thoughts, and future improvements</h2>
 
   <p>This is still less than ideal, as a synchronous call could lock up the browser
   for a brief moment. The HTML 5 Web Worker does not help either, as a Web Worker has
