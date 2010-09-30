@@ -55,6 +55,11 @@
       text-align: left;
     }
     
+    .feed-section div.app a:hover {
+      text-decoration: none;
+      color: #1D3C7D;
+    }
+    
     .app h2 {
       text-transform: uppercase;
       padding: 0;
@@ -174,39 +179,36 @@
     </a>
   </section>
   <section class="clear fl feed-section">
-    <!--
+    
     <h2>Major HTML5 Features</h2>
-    <p>Learn by feature</p>
+    <p>Learn by feature or theme:</p>
     <div class="app">
-      Offline
+      <a href="/features/offline">Offline</a>
     </div>
     <div class="app">
-      Video
+      <a href="/features/file">File Access</a>
     </div>
     <div class="app">
-      Audio
+      <a href="/features/multimedia">Multimedia</a>
     </div>
     <div class="app">
-      CSS3
+      <a href="/features/performance">Performance</a>
     </div>
     <div class="app">
-      Webfonts
+     <a href="/features/presentation">Presentation</a>
     </div>
     <div class="app">
-      Stuff
+     <a href="/features/graphics">Graphics</a>
     </div>
     <div class="app">
-      Offline
-    </div>
-    <div class="app">
-      Ernests
+     <a href="/features/storage">Storage</a>
     </div>
     
-    -->
+   <!--
     <h2>Latest Tutorials <a href="http://feeds.feedburner.com/html5rocks"><img src="/static/images/feed_icon16x16.png" width="16" height="16" /></a></h2>
     <ul id="latest_articles_feed"><li><i>loading feed...</i></li></ul>
     <p><a href="/tutorials/">See more &rArr;</a></p>
-    
+     -->
     
   </section>
   <section class="fr feed-section">
@@ -236,6 +238,10 @@
   <script>
     function processFeedResponse(result) {
       var container = document.getElementById('latest_articles_feed');
+
+      if (!container) {
+        return;
+      }
 
       if (!result.responseData) {
         container.innerHTML = '<li>' + result.responseDetails + '<\/li>';

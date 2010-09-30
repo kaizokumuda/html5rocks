@@ -55,11 +55,25 @@ section li {
   padding: 3px 0;
 }
 section figure {
-  width: 165px;
-  padding: 5px;
+  width: 170px;
+  padding:  0 0px 0px 10px;
   display: inline-block;
   vertical-align: top;
   text-align: center;
+}
+
+section figure:nth-child(2n) {
+  padding:  0;
+}
+
+section img { 
+  border: 1px solid #eee;
+       -moz-box-shadow: 0px 7px 6px -4px #888; 
+    -webkit-box-shadow: 0px 7px 6px -4px #888; 
+            box-shadow: 0px 7px 6px -4px #888; 
+            
+  height: auto !important;
+  width: 165px !important;
 }
 
 figcaption {
