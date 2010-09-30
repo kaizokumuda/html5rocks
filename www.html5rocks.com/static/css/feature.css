@@ -31,14 +31,20 @@ hgroup {
   padding-bottom: 5px;
   margin-bottom: 15px;
 }
-section {
-  float: left;
+
+.column {
+  float:left; 
   width: 48%;
+  margin-right: 2%;
+}
+.column:last-child {
+  margin-right: 0%;
+}
+
+section {
   margin-bottom: 34px;
 }
-section:nth-child(even) {
-  padding-left: 30px;
-}
+
 section:last-of-type {
   margin-bottom: 2em;
 }
@@ -55,6 +61,7 @@ section figure {
   vertical-align: top;
   text-align: center;
 }
+
 figcaption {
   font-style: normal;
 }

@@ -4,45 +4,56 @@
 
 <div style="margin-bottom: 2em" class="clearfix">
   
-  <section class="tutorials">
-    <hgroup>
-      <h3>Tutorials</h3>
-      <h4>learn how to use {{category}}.</h4>
-    </hgroup>
-    <div>
-      <ul>
-        {% block tuts %}{% endblock %}
-      </ul>
-      <p>View all HTML5Rocks tutorials tagged '<a href="/tutorials/#{{category}}">{{category}}</a>' &rArr;</p>
-    </div>
-  </section>
-  <section class="in-the-wild">
-    <hgroup>
-      <h3>In the Wild</h3>
-      <h4>who is using {{category}}?</h4>
-    </hgroup>
-    <div>
-      {% block inthewild %}{% endblock %}
-    </div>
-  </section>
-  <section class="demos">
-    <hgroup>
-      <h3>Demos</h3>
-      <h4>see {{category}} in action</h4>
-    </hgroup>
-    <div>
-      {% block demos %}{% endblock %}
-    </div>
-  </section>
-  <section class="resources">
-    <hgroup>
-      <h3>Additional Resources</h3>
-      <h4>learn from the best, explore the potential</h4>
-    </hgroup>
-    <div>
-      {% block resources %}{% endblock %}
-    </div>
-  </section>
+  <div class="column">
+  
+    <section class="tutorials">
+      <hgroup>
+        <h3>Tutorials</h3>
+        <h4>learn how to use {{category}}.</h4>
+      </hgroup>
+      <div>
+        <ul>
+          {% block tuts %}{% endblock %}
+        </ul>
+        <p>View all HTML5Rocks tutorials tagged '<a href="/tutorials/#{{category}}">{{category}}</a>' &rArr;</p>
+      </div>
+    </section>
+
+    <section class="demos">
+      <hgroup>
+        <h3>Demos</h3>
+        <h4>see {{category}} in action</h4>
+      </hgroup>
+      <div>
+        {% block demos %}{% endblock %}
+      </div>
+    </section>
+  
+  </div>
+  <div class="column">
+  
+    <section class="in-the-wild">
+      <hgroup>
+        <h3>In the Wild</h3>
+        <h4>who is using {{category}}?</h4>
+      </hgroup>
+      <div>
+        {% block inthewild %}{% endblock %}
+      </div>
+    </section>
+  
+  
+    <section class="resources">
+      <hgroup>
+        <h3>Additional Resources</h3>
+        <h4>learn from the best, explore the potential</h4>
+      </hgroup>
+      <div>
+        {% block resources %}{% endblock %}
+      </div>
+    </section>
+  
+  </div>
 </div>
 
 {% endblock %}
