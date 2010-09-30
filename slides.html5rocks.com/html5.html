@@ -2856,11 +2856,10 @@ div {
           this._slides = (slides || []).map(function(el, idx) {
             return new Slide(el, idx);
           });
-
           var h = window.location.hash;
           try {
             this.current = parseInt(h.split('#slide')[1], 10);
-          }catch (e) { /* squeltch */ }
+          } catch (e) { /* squeltch */ }
           this.current = isNaN(this.current) ? 1 : this.current;
           var _t = this;
           doc.addEventListener('keydown', 
@@ -2874,7 +2873,7 @@ div {
           doc.addEventListener('touchend', 
               function(e) { _t.handleTouchEnd(e); }, false);
           window.addEventListener('popstate', 
-              function(e) { _t.go(e.state); }, false);
+              function(e) { if (e.state) { _t.go(e.state); } }, false);
           this._update();          
         };
 
