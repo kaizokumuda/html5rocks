@@ -38,6 +38,9 @@
       -o-transition: all 0.10s ease-in-out;
       cursor: pointer;
     }
+    .feed-section div.feature {
+      border-width: 2px;
+    }
     #index div.app:hover, .feed-section div.app:hover {
       border-color: #e1e1e1;
       -webkit-box-shadow: #666 0px 0px 6px;
@@ -45,7 +48,11 @@
       box-shadow: #666 0px 0px 6px;
       background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
     }
-    
+    .feed-section div.feature:hover {
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow:  none;
+    }
     .feed-section div.app {
       display:inline-block;
       width: 155px;
@@ -184,34 +191,25 @@
     </a>
   </section>
   <section class="clear fl feed-section">
-    
     <h2>Learn by major HTML5 feature groups</h2>
-    <div class="app">
+    <div class="app feature">
       <a href="/features/offline">Offline</a>
     </div>
-    <div class="app">
+    <div class="app feature">
       <a href="/features/file">File Access</a>
     </div>
-    <div class="app">
+    <div class="app feature">
       <a href="/features/multimedia">Multimedia</a>
     </div>
-    <div class="app">
+    <div class="app feature">
       <a href="/features/performance">Performance</a>
     </div>
-    <div class="app">
+    <div class="app feature">
      <a href="/features/presentation">Presentation</a>
     </div>
-    <div class="app">
+    <div class="app feature">
      <a href="/features/graphics">Graphics</a>
     </div>
-    <div class="app">
-     <a href="/features/storage">Storage</a>
-    </div>
-    
-   <!--
-   
-     -->
-    
   </section>
   <section class="fr feed-section">
     
