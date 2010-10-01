@@ -61,6 +61,7 @@
     <div class="tag">CSS</div>
     <div class="tag">appcache</div>
     <div class="tag">audio</div>
+    <div class="tag">casestudy</div>
     <div class="tag">dnd</div>
     <div class="tag">devtools</div>
     <div class="tag">file</div>
@@ -74,6 +75,7 @@
     <div class="tag">performance</div>
     <div class="tag">presentation</div>
     <div class="tag">storage</div>
+    <div class="tag">svg</div>
     <div class="tag">video</div>
     <div class="tag">webdatabase</div>
     <div class="tag">webfonts</div>
@@ -104,6 +106,55 @@
            <span class="ie supported"></span>
            <span class="safari supported"></span>
            <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="box-dnd" data-pubdate="2010-09-28">
+        <a href="/tutorials/case-studies/html5_in_deviantart_muro.html">Case Study: HTML5 in deviantART muro</a>
+      </h2>
+      <div>
+        <span class="date">September 28, 2010</span>
+        <span class="tag">casestudy</span>
+        <span class="tag">canvas</span>
+        <span class="tag">svg</span>
+      </div>
+      <div class="summary">
+        Learn how deviantART used HTML5 drawing features in deviantART muro.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/case-studies/html5_in_deviantart_muro.html">View article</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="box-dnd" data-pubdate="2010-09-25">
+        <a href="/tutorials/case-studies/box_dnd_download.html">Case Study: Drag and Drop Download in Chrome</a>
+      </h2>
+      <div>
+        <span class="date">September 25, 2010</span>
+        <span class="tag">casestudy</span>
+        <span class="tag">dnd</span>
+      </div>
+      <div class="summary">
+        Learn how Box.net implemented GMail's attachment drag and drop to the desktop.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/case-studies/box_dnd_download.html">View article</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari"></span>
+           <span class="ff"></span>
            <span class="chrome supported"></span>
          </span>
       </div>
@@ -510,6 +561,19 @@
     </article>
 
   </div>
+
+  <script>
+  var div = $('<div>').load('/tutorials/ #index', function(){
+    
+    var ul = $('section.tutorials ul');
+    
+    div.find('.sample span.tag:contains(' + feature + ')')
+      .closest('.sample').find('h2 a').clone()
+      .map(function(){ return $(this).wrap('<li>').parent(); })
+      .prependTo(ul);
+      
+  });
+  </script>
 
   {% include "../../templates/footer.html" %}
 

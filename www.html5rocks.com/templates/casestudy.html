@@ -1,14 +1,14 @@
-{% extends "../../templates/base.html" %}
+{% extends "../../../templates/base.html" %}
 
 {% block body %}
-  {% include "../../templates/section_header.html" %}
+  {% include "../../../templates/section_header.html" %}
 
   <nav>
       <p class="breadcrumb">
         <a class="buttonlink" href="/">
           <span>Home</span>
         </a >&gt; 
-        <a class="buttonlink" href="/case-studies/">
+        <a class="buttonlink" href="/tutorials#casestudy">
           <span>Case Studies</span>
         </a> &gt; {% block pagebreadcrumb %}{% endblock %}
      </p>
@@ -58,7 +58,7 @@
     {% block content %}{% endblock %}
     </section>
   </article>
-  {% include "../../templates/article_footer.html" %}
-  {% include "../../templates/footer.html" %}
+  {% include "../../../templates/article_footer.html" %}
+  {% include "../../../templates/footer.html" %}
 
 {% endblock %}
