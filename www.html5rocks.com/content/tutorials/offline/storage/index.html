@@ -158,7 +158,7 @@ store.db.transaction(function(tx) {
 <p>For localStorage, we simply de-serialize the checkins array structure and find its length.</p>
 
 <pre class="prettyprint">
-  handler(JSON.parse(localStorage["checkins"]).length);
+handler(JSON.parse(localStorage["checkins"]).length);
 </pre>
 
 <p>With Web SQL Database, we could retrieve each row in the database (<tt>select * from checkins</tt>) and look at the length of the result set, but if we know our way around SQL, there's an easier - and faster - way. We can perform a special select statement to retrieve the count. It will return exactly one row, having one column containing the count.</p>
@@ -177,6 +177,8 @@ store.db.transaction(function(tx) {
 
 <h2 id="summary">Summary</h3>
 
-<p>This has been a high-level overview of modern client-side storage techniques. You should also check out the <a href="../whats-offline">overview on offline apps</a> and <a href="../../">tutorials</a> on specific client-side storage techniques.</p>
+<p>This has been a high-level overview of modern client-side storage techniques.
+You should also check out the <a href="../whats-offline">overview on offline apps</a> and
+<a href="../../#offline">tutorials</a> on specific client-side storage techniques.</p>
 
 {% endblock %}
