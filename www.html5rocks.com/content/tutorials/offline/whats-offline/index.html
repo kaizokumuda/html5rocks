@@ -1,5 +1,4 @@
-{% extends "../../../../templates/sample.html" %}
-
+{% extends "../../sample.html" %}
 {% block headauthor %}Michael Mahemoff{% endblock %}
 {% block pageauthor %}Michael Mahemoff{% endblock %}
 
@@ -70,7 +69,9 @@ Browser-specific features are capabilities that are available, but outside the r
 
 <h3 id="toc-web-storage">Web Storage</h3>
 
-<p><a href="http://dev.w3.org/html5/webstorage/">Web Storage</a> is a very convenient form of offline storage, being just a simple structure of key-value pairs like any JavaScript object. This works well for situations such as the game example, where you could store the current game under a "currentGame" key: <code>localStorage["currentGame"] = gameState</code>, and load it back the same way: <code>gameState = localStorage["gameState"]</code>. If you wanted to keep a list of saved games, you'd just store an array inside this structure, <code>savedGames = localStorage["savedGames"];</code>.</p>
+<p><a href="http://dev.w3.org/html5/webstorage/">Web Storage</a> is a very convenient form of offline storage, being just a simple structure of key-value pairs like any JavaScript object. This works well for situations such as the game example, where you could store the current game under a "currentGame" key: <code>localStorage["currentGame"] = gameState</code>, and load it back the same way: <code>gameState = localStorage["currentGame"]</code>. If you wanted to keep a list of saved games, you'd just store an array inside this structure, <code>savedGames = localStorage["savedGames"];</code>.</p>
+
+<p>Although the spec indicates values can be any type, this is not the case in practiceare presently supporting only string values, so you will need to serialize your values for storage (i.e., convert them to strings). Fortunately, we have built-in serialization these days, by way of the JSON API, so you can do something like: <code>localStorage["currentGame"] = JSON.stringify(gameState)</code> and <code>gameState = JSON.parse(localStorage["currentGame"])</code>.</p>
 
 <p>There's also a variant of localStorage: sessionStorage. It's there mostly for security purposes, as the data is removed when the window is closed.</p>
 
