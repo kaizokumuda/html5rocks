@@ -74,22 +74,23 @@ The storage techniques have several features in common, explained here.
 <p>For localStorage, we only need to check the store exists and is of the right type. If not, we'll create a new array and store it against the localStorage "checkins" key. We use JSON to convert the structure to a string first, since, in most browsers, localStorage only stores strings.</p>
 
 <pre class="prettyprint">
-  if (!localStorage["checkins"])
-    localStorage["checkins"] = JSON.stringify([]);
+if (!localStorage["checkins"]) {
+  localStorage["checkins"] = JSON.stringify([]);
+}
 </pre>
 
 <p>For Web SQL Database, we need to create the database structure if it doesn't exist. <tt>openDatabase</tt> fortunately creates the database automatically if it doesn't exist, and, likewise, we use the SQL phrase "if not exists" to ensure the new checkins table is not overridden if it is already present. We have to define the structure of the data upfront, i.e. the name and type of each column in the checkins table. Each row will represent a single checkin.</p>
 
 <pre class="prettyprint">
-  this.db = openDatabase('geomood', '1.0', 'Geo-Mood Checkins', 8192);
-  this.db.transaction(function(tx) {
-    tx.executeSql("create table if not exists " + 
-      "checkins(id integer primary key asc, time integer, latitude float,"+
-                "longitude float, mood string)",
-      [],
-      function() { console.log("siucc"); }
-    );
-  });
+this.db = openDatabase('geomood', '1.0', 'Geo-Mood Checkins', 8192);
+this.db.transaction(function(tx) {
+  tx.executeSql("create table if not exists " + 
+    "checkins(id integer primary key asc, time integer, latitude float," +
+              "longitude float, mood string)",
+    [],
+    function() { console.log("siucc"); }
+  );
+});
 </pre>
 
 <h3 id="save">Saving a Checkin</h3>
@@ -97,22 +98,23 @@ The storage techniques have several features in common, explained here.
 <p>With localStorage, we simply pull the checkins array out, add a new one to the end, and save it again. We also have to do the JSON dance to store it in string form.</p>
 
 <pre class="prettyprint">
-  var checkins = JSON.parse(localStorage["checkins"]);
-  checkins.push(checkin);
-  localStorage["checkins"] = JSON.stringify(checkins);
+var checkins = JSON.parse(localStorage["checkins"]);
+checkins.push(checkin);
+localStorage["checkins"] = JSON.stringify(checkins);
 </pre>
 
 <p>With Web SQL Database, we run everything inside a transaction. We're going to create a new row in the checkins table, It's a straightforward SQL call, and instead of including the checkin data in the "insert" command, we use "?" syntax because it's cleaner and more secure. The actual data - the four values we want to store as columns in the new checkins row - are specified in the second row. The "?" elements will be replaced by those values (<tt>checkin.time</tt>, <tt>checkin.latitude</tt>, etc.). The next two arguments indicate functions which will be called when the operation has completed, one for success and one for failure. In this app, we use the same generic error handler for all transactions. In this case, the success function is simply the handler that was passed into the search function - we ensure the handler will be called on success so that the UI logic can be notified when the operation has been completed (e.g. to update the count of checkins so far).</p>
 
 <pre class="prettyprint">
-  store.db.transaction(function(tx) {
-    tx.executeSql(
-      "insert into checkins "
-      +"(time, latitude, longitude, mood) values (?,?,?,?);",
-      [checkin.time, checkin.latitude, checkin.longitude, checkin.mood],
-      handler,
-      store.onError
-    );
+store.db.transaction(function(tx) {
+  tx.executeSql(
+    "insert into checkins " +
+    "(time, latitude, longitude, mood) values (?,?,?,?);",
+    [checkin.time, checkin.latitude, checkin.longitude, checkin.mood],
+    handler,
+    store.onError
+  );
+});
 </pre>
 
 <h3 id="search">Searching for Matching Checkins</h3>
@@ -120,31 +122,33 @@ The storage techniques have several features in common, explained here.
 <p>The next function fishes out all checkins matching a particular mood, so the user can see where and when they were happy recently, for example. With localStorage, we have to manually walk through each checkin and compare it to the mood, building up a list of matches. It's good practice to return clones of the data that's stored, rather than the actual objects, since searching should be a read-only operation; hence we pass each matching checkin object through a generic <tt>clone()</tt> operation.</p>
 
 <pre class="prettyprint">
-  var allCheckins = JSON.parse(localStorage["checkins"]);
-  var matchingCheckins = [];
-  allCheckins.forEach(function(checkin) {
-    if (checkin.mood==moodQuery) matchingCheckins.push(clone(checkin));
-  });
-  handler(matchingCheckins);
+var allCheckins = JSON.parse(localStorage["checkins"]);
+var matchingCheckins = [];
+allCheckins.forEach(function(checkin) {
+  if (checkin.mood == moodQuery) {
+    matchingCheckins.push(clone(checkin));
+  }
+});
+handler(matchingCheckins);
 </pre>
 
 <p>With Web SQL Database, we perform a query that returns only the checkin rows that we need. However, we still have to manually walk through that list to accumulate the checkin structures, as the database API returns database rows, rather than an array. (This is a good thing for large result sets, but right now, it adds some work for us to do!)</p>
 
 <pre class="prettyprint">
-      var matchingCheckins = [];
-      store.db.transaction(function(tx) {
-        tx.executeSql(
-          "select * from checkins where mood=?",
-          [moodQuery],
-          function(tx, results) {
-            for (i = 0; i < results.rows.length; i++) {
-              matchingCheckins.push(clone(results.rows.item(i)));
-            }
-            handler(matchingCheckins);
-          },
-          store.onError
-        );
-      });
+var matchingCheckins = [];
+store.db.transaction(function(tx) {
+  tx.executeSql(
+    "select * from checkins where mood=?",
+    [moodQuery],
+    function(tx, results) {
+      for (var i = 0; i &lt; results.rows.length; i++) {
+        matchingCheckins.push(clone(results.rows.item(i)));
+      }
+      handler(matchingCheckins);
+    },
+    store.onError
+  );
+});
 </pre>
 
 <h3 id="count">Counting All Checkins</h3>
@@ -160,15 +164,15 @@ The storage techniques have several features in common, explained here.
 <p>With Web SQL Database, we could retrieve each row in the database (<tt>select * from checkins</tt>) and look at the length of the result set, but if we know our way around SQL, there's an easier - and faster - way. We can perform a special select statement to retrieve the count. It will return exactly one row, having one column containing the count.</p>
 
 <pre class="prettyprint">
-  store.db.transaction(function(tx) {
-    tx.executeSql(
-      "select count(*) from checkins;",
-      [],
-      function(tx, results) {
-        handler(results.rows.item(0)["count(*)"]);
-      },
-      store.onError
-    );
+store.db.transaction(function(tx) {
+  tx.executeSql(
+    "select count(*) from checkins;",
+    [],
+    function(tx, results) {
+      handler(results.rows.item(0)["count(*)"]);
+    },
+    store.onError
+  );
 </pre>
 
 <h2 id="summary">Summary</h3>
