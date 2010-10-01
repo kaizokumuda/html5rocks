@@ -29,7 +29,7 @@ varies
 
 <p>File access is a catch-all term for a range of APIs currently under development. The initial ones revolve around the "file" input type, which has always been used to upload files on a standard web form, but only now can it be manipulated from Javascript. For example, the app can read content of files added to the control. In the future, the app will also be able to modify such files, and maybe even access its own sandboxed filesystem, consisting of an entire directory hierarchy tied to the domain.</p>
 
-<p>Browser support varies. Web Storage is available on all the modern browsers (for the purposes of this article, let's define those as recent versions of Chrome, Firefox, Opera, Safari, and Internet Explorer). Web SQL Database is only available on Chrome, Safari, and Opera, and the remaining browsers don't have it on their roadmap. That IE and Firefox will never use it is not necesarily a reason to rule it out, because one important application of client-side storage is caching, where the app will still work fine in its absence. IndexedDB has an early implementation in Firefox 4 and a good chance of being present on all the browsers eventually, but the specification is still evolving. File access has good support early on in Chrome and Firefox, but there's a lot to cover and a lot more to come. All that will be explored in a future article on HTML5Rocks.</p>
+<p>Browser support varies. Web Storage is available on all the modern browsers (for the purposes of this article, let's define those as recent versions of Chrome, Firefox, Opera, Safari, and Internet Explorer). Web SQL Database is only available on Chrome, Safari, and Opera, and the remaining browsers don't have it on their roadmap. That IE and Firefox will never use it is not necessarily a reason to rule it out, because one important application of client-side storage is caching, where the app will still work fine in its absence. IndexedDB has an early implementation in Firefox 4 and a good chance of being present on all the browsers eventually, but the specification is still evolving. File access has good support early on in Chrome and Firefox, but there's a lot to cover and a lot more to come. All that will be explored in a future article on HTML5Rocks.</p>
 
 <h2 id="features">Common Features</h1>
 
@@ -37,13 +37,13 @@ The storage techniques have several features in common, explained here.
 
 <h3 id="sandboxed">Sandboxed</h3>
 
-<p>Each storage format is tied to the "origin" they are used in. e.g. if http://abc.example.com saves some data, then only http://abc.example.com can access that data in the future. When it comes to "origins", the domain must be exactly the same, so http://example.com and http://def.example.com are both disqualified. The port must match too, so http://abc.example.com:123 also cannot see http://abc.example.com (which defalts to port 80).</li>
+<p>Each storage format is tied to the "origin" they are used in. e.g. if http://abc.example.com saves some data, then only http://abc.example.com can access that data in the future. When it comes to "origins", the domain must be exactly the same, so http://example.com and http://def.example.com are both disqualified. The port must match too, so http://abc.example.com:123 also cannot see http://abc.example.com (which defaults to port 80).</li>
 
 <h3 id="quotas">Quotas</h3>
 
 <p>Each storage format is subject to quotas - in other words, limits on the amount each origin can store, with the user typically being able to override the default setting for a particular origin. You might expect the browser to enforce a single limit for all storage an origin can use, but the major browsers are actually enforcing limits separately for each storage mechanism. This may change in the future, but for now, you should think of the browser as maintaining a 2-D matrix, with "origin" in one dimension and "storage" in the other. In each slot is a value indicating the limit. For example, "http://abc.example.com" is allowed to store up to 5MB of Web Storage, 25MB of Web SQL Database Storage, and forbidden to use Indexed Database.</p>
   
-<p>The user interface for these limits is fairly primitive right now. The limit is typically increased on demand, i.e. when a site tries to allocate more storage than it's allowed by default, the browser will prompt the user to increase it by a bit. Right now, the magic number is 5MB; this is the most common default vlue for storage, which sites can use without any user prompting. (Though Firefox will prompt the first time a site tries to use any manner of storage.)</p>
+<p>The user interface for these limits is fairly primitive right now. The limit is typically increased on demand, i.e. when a site tries to allocate more storage than it's allowed by default, the browser will prompt the user to increase it by a bit. Right now, the magic number is 5MB; this is the most common default value for storage, which sites can use without any user prompting. (Though Firefox will prompt the first time a site tries to use any manner of storage.)</p>
 
 <p>There are also environments where the user can see upfront how much storage will be used, e.g. in the case of the Chrome Web Store, when a user installs an app, they will be prompted upfront to accept its permissions, which include storage limits. One possible value is "unlimited".</p>
 
@@ -57,7 +57,7 @@ The storage techniques have several features in common, explained here.
 
 <h3 id="events">Events</h3>
 
-<p>The storage mechanisms provide event mechanisms to keep the application informed of activity. In the case of event handlers, the event handlers provide the necessary interface for hooking into the results of operations. But there is more than those, because there are also ways for the application to register general interest in storage activity, so as to be notified when new data is created, modified, or deleted. You ould use this kind of notification to architect your app around a publish-subscribe structure, where user-interface elements are kept in sync with the underlying model.</p>
+<p>The storage mechanisms provide event mechanisms to keep the application informed of activity. In the case of event handlers, the event handlers provide the necessary interface for hooking into the results of operations. But there is more than those, because there are also ways for the application to register general interest in storage activity, so as to be notified when new data is created, modified, or deleted. You could use this kind of notification to architect your app around a publish-subscribe structure, where user-interface elements are kept in sync with the underlying model.</p>
 
 <h2 id="code">Show Me the Code</h2>
 
