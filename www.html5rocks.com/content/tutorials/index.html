@@ -19,8 +19,10 @@
       var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
       document.location.hash = tag;
       if (tag) {
-        $('.sample span.tag:not(:contains("' + tag + '"))').closest('.sample').addClass('hidden');
-        $('.sample span.tag:contains("' + tag + '")').closest('.sample').removeClass('hidden');
+        $('.sample').addClass('hidden');
+        $.each( tag.split(','), function(i, eachtag) {
+          $('.sample span.tag:contains("' + eachtag + '")').closest('.sample').removeClass('hidden');
+        });
         $('#filter_tag').text(tag);
         $('#filter').removeClass('hidden');
       }

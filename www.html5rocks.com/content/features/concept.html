@@ -17,7 +17,7 @@
       <ul>
         {% block tuts %}{% endblock %}
       </ul>
-      <p>View all HTML5Rocks tutorials tagged '<a href="/tutorials/#{{category}}">{{category}}</a>' &rArr;</p>
+      <p>View all <a href="/tutorials/#{% block tuts %}{% endblock %}">related HTML5Rocks tutorials</a>' &rArr;</p>
     </div>
   </section>
   <section class="themes">
