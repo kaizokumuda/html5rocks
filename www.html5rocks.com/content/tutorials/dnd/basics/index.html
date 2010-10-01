@@ -61,7 +61,8 @@ dd {
 }
 #columns-full .column.over,
 #columns-dragOver .column.over,
-#columns-dragEnd .column.over {
+#columns-dragEnd .column.over,
+#columns-almostFinal .column.over {
   border: 2px dashed #000;
 }
 #columns-full .column.moving {
@@ -100,7 +101,7 @@ dd {
 
   <p><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dnd">Drag and drop</a>
   (DnD) is a first class citizen in HTML5! The spec defines an event-based mechanism, JavaScript API,
-  and additional markup for declaring just about any element be <code>draggable</code> on a page.
+  and additional markup for declaring that just about any type of element be <code>draggable</code> on a page.
   I don't think anyone can argue against native browser support for a particular feature.
   Native browser DnD means faster, more responsive web apps.</p>
 
@@ -125,10 +126,11 @@ if (Modernizr.draganddrop) {
 
   <h2 id="toc-creating-dnd-content">Creating draggable content</h2>
 
-  <p>Making an object draggable is simple. Just set the <code>draggable=true</code> attribute
-  on the element you want to make moveable; and just about anything can be drag-enabled.
-  That includes images, links, or other DOM nodes. As an example, lets start creating rearrangeable columns.
-  The basic markup may look something like this:</p>
+  <p>Making an object draggable is simple. Set the <code>draggable=true</code> attribute
+  on the element you want to make moveable. Just about anything can be drag-enabled,
+  including images, links, files, or other DOM nodes.</p>
+
+  <p>As an example, lets start creating rearrangeable columns. The basic markup may look something like this:</p>
 
   <pre class="prettyprint">
 &lt;div id="columns"&gt;
@@ -138,10 +140,10 @@ if (Modernizr.draganddrop) {
 &lt;/div&gt;
 </pre>
 
-  <p>It's worth nothing that in most browsers, text selections, img elements, and anchor
+  <p>It's worth noting that in most browsers, text selections, img elements, and anchor
   elements with an <code>href</code> attribute are draggable by default. For example, dragging
   the logo on google.com produces a ghost image:</p>
-  
+
   <figure class="center">
     <img src="/static/images/screenshots/dnd/img_drag.png" width="500" height="269" title="Dragging an image in the browser" alt="Dragging an image in the browser" />
     <figcaption>Most browsers support dragging an image by default.</figcaption>
@@ -149,14 +151,14 @@ if (Modernizr.draganddrop) {
 
   <p>which can be dropped in the address bar, a <code>&lt;input type="file" /&gt;</code> element, or even
   the desktop. If you want to enable other types of content to be draggable, you'll need to leverage the HTML5
-  drag and drop APIs.</p>
+  DnD APIs.</p>
 
-  <p>Using a little bit of CSS3 magic, we can spruce up this markup to look like columns.
+  <p>Using a little CSS3 magic we can spruce up our markup to look like columns.
   Adding <code>cursor: move</code> gives users a visual indicator that something is moveable:</p>
 
 <pre class="prettyprint">
 &lt;style&gt;
-/* Prevent the contents of draggable elements from being selectable. */
+/* Prevent the text contents of draggable elements from being selectable. */
 [draggable] {
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -206,13 +208,15 @@ if (Modernizr.draganddrop) {
     <div class="column" draggable="true"><header>C</header></div>
   </div>
 
-  <p style="padding-top:10px;clear:both">Most browsers will create a ghost image
-  of the content being dragged. In the next section, we'll add listeners to handle the drag/drop events
-  and make this example more interesting.</p>
+  <p style="padding-top:10px;clear:both">In the example above, most browsers will
+  create a ghost image of the content being dragged. Others will require that some data be
+  sent in the drag operation and event listeners be set. In the next section, we'll
+  start to make our column example more interesting by adding listeners
+  to process the drag/drop event model.</p>
 
   <h2 id="toc-dragging-events">Listening for Dragging Events</h2>
 
-  <p>There are a number of different DnD events to attach to for monitoring the entire drag and drop process:</p>
+  <p>There are a number of different events to attach to for monitoring the entire drag and drop process:</p>
   <ul>
     <li><code>dragstart</code></li>
     <li><code>drag</code></li>
@@ -224,16 +228,16 @@ if (Modernizr.draganddrop) {
   </ul>
 
   <p>To handle the DnD flow, we need the notion of a source element (where the drag originates), the data payload
-  (what we're trying to drop), and a target (an area to catch the drop). The source element is the object that is
-  being dragged. Again, this can be an image, list, link, file object, block of HTML...you name it. The target is the
-  drop zone (or set of drop zones) that accept the data the user is trying to drop.</p>
+  (what we're trying to drop), and a target (an area to catch the drop). The source element can be an image, list,
+  link, file object, block of HTML...you name it. The target is the drop zone (or set of drop zones) that accept
+  the data the user is trying to drop.</p>
 
   <h3 id="toc-dragstart">1. Starting a Drag</h3>
 
   <p>Once you have <code>draggable="true"</code> attributes defined on your content, attach
   <code>dragstart</code> event handlers to kick off the DnD sequence for each column.</p>
 
-  <p>This code will set the opacity of a column to 40% when the user begins dragging it:</p>
+  <p>This code will set the column's opacity to 40% when the user begins dragging it:</p>
 
 <pre class="prettyprint">
 function handleDragStart(e) {
@@ -261,8 +265,9 @@ var cols = document.querySelectorAll('#columns .column');
 
   <h3 id="toc-dragover-dragleave">2. dragover and dragleave</h3>
 
-  <p>By defining <code>dragover</code> and <code>dragleave</code> event handlers for each column,
-  we can toggle a CSS class to indicate to the user that he/she is dragging over a drop area.</p>
+  <p><code>dragover</code> and <code>dragleave</code> event handlers can be used to
+  provide additional visual cues during the drag process. For example, when a column is hovered over during a drag,
+  its border could become dashed. This will let users know the columns are also drop targets.</p>
 
 <pre class="prettyprint">
 &lt;style&gt;
@@ -300,11 +305,14 @@ var cols = document.querySelectorAll('#columns .column');
 });
 </pre>
 
+  <p>Notice that the <code>this</code>/<code>e.target</code> changes for each
+  type of event, depending on where we are in the DnD event model.</p>
+
   <p>To prevent the browser's default behavior, be sure to call <code>e.preventDeafult()</code>
-  in the <code>dragover</code> event. Another good practice is to return false in that same handler.
+  in the <code>dragover</code> event. Another good practice is to <code>return false</code> in that same handler.
   Browsers are somewhat inconsistent about needing these, but they don't hurt to add.</p>
 
-  <p>The JQuery-esk add/toggle/remove class name helpers:</p>
+  <p>The JQuery-esk add/toggle/remove class helpers that I'm using:</p>
 <pre class="prettyprint">
 Element.prototype.hasClassName = function(name) {
   return new RegExp("(?:^|\\s+)" + name + "(?:\\s+|$)").test(this.className);
@@ -336,8 +344,9 @@ Element.prototype.removeClassName = function(name) {
   the browser's default behavior for drops, which is typically some sort of annoying redirect.
   You can prevent the event from bubbling up the DOM by calling <code>e.stopPropagation()</code>.</p>
 
-  <p style="padding-top:10px;clear:both">Our column example doesn't do much with the
-  <code>dragend</code> event. It simply asserts the 'over' class is removed from each column.</p>
+  <p style="padding-top:10px;clear:both">Our column example won't do much without the
+  <code>drop</code> event in place, but before we do that, an immediate improvement
+  is to use <code>dragend</code> to remove the 'over' class from each column:</p>
 
 <pre class="prettyprint">
 ...
@@ -379,23 +388,65 @@ var cols = document.querySelectorAll('#columns .column');
     <div class="column"><header>C</header></div>
   </div>
 
+  <p style="padding-top:10px;clear:both">If you've been following closely up until now,
+  you may notice that our example still doesn't drop the column as expected.
+  Enter the <code>DataTransfer</code> object.</p>
+
   <h2 id="toc-dataTransfer">The DataTransfer object</h2>
 
-  <p>The <code>dataTransfer</code> property holds the piece of data sent in a drag and is set in the <code>dragstart</code> event.
-  Calling <code>e.dataTransfer.setData(format, data)</code> will set the object's content to
-  the mimetype and data payload.</p>
+  <p>The <code>dataTransfer</code> property is where all the DnD magic happens.
+  It holds the piece of data sent in a drag and is set in the <code>dragstart</code> event
+  and read/handled in the <code>drop</code> event. Calling <code>e.dataTransfer.setData(format, data)</code>
+  will set the object's content to the mimetype and data payload passed as arguments.</p>
 
-  <p>In our columns example, lets set the data as the HTML of the column:</p>
+  <p>In our example, the data payload is set to the actual HTML of the source column:</p>
 
 <pre class="prettyprint">
+var dragSrcEl = null;
+
 function handleDragStart(e) {
   // Target (this) element is the source node.
   this.style.opacity = '0.4';
+
+  dragSrcEl = this;
 
   <span class="new">e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/html', this.innerHTML);</span>
 }
 </pre>
+
+  <p>Conveniently, <code>dataTransfer</code> also has a <code>getData(format)</code>
+  for fetching the drag data by mimetype. Here is the modification to process the column drop:</p>
+
+<pre class="prettyprint">
+function handleDrop(e) {
+  // this/e.target is current target element.
+
+  if (e.stopPropagation) {
+    e.stopPropagation(); // Stops some browsers from redirecting.
+  }
+
+  <span class="new">// Don't do anything if dropping the same column we're dragging.
+  if (dragSrcEl != this) {
+    // Set the source column's HTML to the HTML of the columnwe dropped on.
+    dragSrcEl.innerHTML = this.innerHTML;
+    this.innerHTML = e.dataTransfer.getData('text/html');
+  }</span>
+
+  return false;
+}
+</pre>
+
+  <p>I've added a global var named <code>dragSrcEl</code> as a convenience to facilitate the column swap.
+  In <code>handleDragStart()</code>, the <code>innerHTML</code> of the source column is stored in that variable and later
+  read in <code>handleDrop()</code> to swap the source column and target column's HTML.</p>
+
+  <p>Result:</p>
+  <div id="columns-almostFinal">
+    <div class="column"><header>A</header></div>
+    <div class="column"><header>B</header></div>
+    <div class="column"><header>C</header></div>
+  </div>
 
   <h3 id="toc-drag-properties">Dragging properties</h3>
 
@@ -434,34 +485,43 @@ e.dataTransfer.setDragImage(dragIcon, -10, -10);</pre>
     </dd>
   </dl>
 
-  <p style="padding-top:10px;clear:both">
-  Next, we can add listeners for <code>dragover</code> and <code>dragleave</code> to
-  provide additional cues during the drag process. Now, when a column is hovered over on a drag,
-  its border will become dashed. This will let users know the columns are also drop target.</p>
+  <h2 id="toc-dnd-files">Dragging Files</h2>
 
-  <p style="clear:both">Next, we add a listener for the <code>drop</code> drop target to act on a dropped column.</p>
+  <p>With the DnD APIs, it is possible to drag files from the desktop to your web app
+  in the browser window. As an extension to this idea, Google Chrome supports the ability to drag file
+  objects out from the browser to the desktop.</p>
 
-  <p>TODO:</p> 
+  <h3 id="toc-desktop-dnd-into">Drag-in: dragging from the desktop to the browser</h3>
 
-  <h2 id="toc-desktop-dnd">Dragging to/from the desktop</h2> 
+  <p>Dragging a file from the desktop is achieved by using the DnD events as other types of content.
+  The main difference is in your <code>drop</code> handler. Instead of using
+  <code>dataTransfer.getData()</code> to access the files, their data will be contained
+  in the <code>dataTransfer.files</code> property:</p>
 
-  <p>TODO:</p> 
+<pre class="prettyprint">
+function handleDrop(e) {
+  e.stopPropagation(); // Stops some browsers from redirecting.
+  e.preventDefault();
 
-  <h3 id="toc-desktop-dnd-into">Drag-in: dragging from the desktop to the browser</h3> 
+  var files = e.dataTransfer.files;
+  for (var i = 0, f; f = files[i]; i++) {
+    // Read the File objects in this FileList.
+  }
+}
+</pre>
 
-  <p>TODO:</p>
+  <p>For a complete guide to dragging files from desktop to the browser, see
+  <a href="/tutorials/file/dndfiles/#toc-selecting-files-dnd">Using drag and drop for selecting</a>
+  in "<a href="/tutorials/file/dndfiles/">Reading local files in JavaScript</a>".</p>
 
   <h3 id="toc-desktop-dnd-out">Drag-out: dragging from the browser to the desktop</h3>
 
-  <p>TODO:</p>
-
-  <h2 id="toc-window-dnd">Drag and drop between windows</h2>
-
-  <p>TODO:</p>
+  <p>For a complete guide to dragging files our from the browser to the desktop, see 
+  "<a href="http://www.thecssninja.com/javascript/gmail-dragout">Drag out files like Gmail</a>" from the CSS Ninja.</p>
 
   <h2 id="toc-examples">Examples</h2>
 
-  <p>Result:</p>
+  <p>Here is the final product with a little more polish and a counter for each move:</p>
   <div id="columns-full">
     <div class="column"><header>A</header><div class="count" data-col-moves="0"></div></div>
     <div class="column"><header>B</header><div class="count" data-col-moves="0"></div></div>
@@ -469,24 +529,27 @@ e.dataTransfer.setDragImage(dragIcon, -10, -10);</pre>
     <div class="column"><header>D</header><div class="count" data-col-moves="0"></div></div>
   </div>
 
-  <ul>
-    <li>Column dnd</li> 
-    <li>Rearrange list</li> 
-    <li>Creating an image gallery</li> 
-    <li>Exporting a canvas image</li> 
-  </ul>
+<!--
+  other exaqmples:
+  <li>Rearrange list</li> 
+  <li>Creating an image gallery</li> 
+  <li>Exporting a canvas image</li> 
+-->
 
   <h2 id="toc-conclusion">Conclusion</h2>
 
-  <p>Hopefully popular libraries that implement DnD functionality will eventually
-  include native HTML5 support by default, and fallback to a customize JS solution
-  as needed.</p>
+  <p>HTML5's DnD model is complicated compared to other solutions like JQuery UI.
+  In my personal opinion, any time you can take advantage of the browser's native APIs, do so!
+  After all, that's the whole point of HTML5, right? Hopefully popular libraries that
+  implement DnD functionality will eventually include native HTML5 support by default,
+  and fallback to a customize JS solution as needed.</p>
 
   <h2 id="toc-references">References</h2>
   <ul>
     <li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dnd">Drag and Drop</a> specification</li> 
     <li><a href="https://developer.mozilla.org/En/DragDrop/Drag_Operations">Drag Operations</a> from MDC</li>
     <li>"<a href="http://html5doctor.com/native-drag-and-drop/">Native Drag and Drop</a>" article from html5doctor</li>
+    <li>"<a href="http://www.thecssninja.com/javascript/gmail-dragout">Drag out files like Gmail</a>" from the CSS Ninja</li>
   </ul>
 
 <script>
@@ -597,17 +660,35 @@ var samples = samples || {};
     this.style.opacity = '0.4';
   };
 
+  this.handleDragLeave = function(e) {
+    // this/e.target is previous target element.
+
+    this.removeClassName('over');
+  };
+
+  this.handleDragEnd = function(e) {
+    // this/e.target is the source node.
+
+    this.style.opacity = '1';
+
+    [].forEach.call(cols_, function (col) {
+      col.removeClassName('over');
+    });
+  };
+
   [].forEach.call(cols_, function (col) {
     // Enable columns to be draggable.
     col.setAttribute('draggable', 'true');
     col.addEventListener('dragstart', this.handleDragStart, false);
+    col.addEventListener('dragend', this.handleDragEnd, false);
+    col.addEventListener('dragleave', this.handleDragLeave, false);
   });
 
 })();
 
-// Full example
+// Almost final example
 (function() {
-  var id_ = 'columns-full';
+  var id_ = 'columns-almostFinal';
   var cols_ = document.querySelectorAll('#' + id_ + ' .column');
   var dragSrcEl_ = null;
 
@@ -616,6 +697,8 @@ var samples = samples || {};
     e.dataTransfer.setData('text/html', this.innerHTML);
 
     dragSrcEl_ = this;
+
+    this.style.opacity = '0.4';
 
     // this/e.target is the source node.
     this.addClassName('moving');
@@ -649,6 +732,74 @@ var samples = samples || {};
     if (dragSrcEl_ != this) {
       dragSrcEl_.innerHTML = this.innerHTML;
       this.innerHTML = e.dataTransfer.getData('text/html');
+    }
+
+    return false;
+  };
+
+  this.handleDragEnd = function(e) {
+    // this/e.target is the source node.
+    this.style.opacity = '1';
+
+    [].forEach.call(cols_, function (col) {
+      col.removeClassName('over');
+      col.removeClassName('moving');
+    });
+  };
+
+  [].forEach.call(cols_, function (col) {
+    col.setAttribute('draggable', 'true');  // Enable columns to be draggable.
+    col.addEventListener('dragstart', this.handleDragStart, false);
+    col.addEventListener('dragover', this.handleDragOver, false);
+    col.addEventListener('dragleave', this.handleDragLeave, false);
+    col.addEventListener('drop', this.handleDrop, false);
+    col.addEventListener('dragend', this.handleDragEnd, false);
+  });
+})();
+
+// Full example
+(function() {
+  var id_ = 'columns-full';
+  var cols_ = document.querySelectorAll('#' + id_ + ' .column');
+  var dragSrcEl_ = null;
+
+  this.handleDragStart = function(e) {
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.innerHTML);
+
+    dragSrcEl_ = this;
+
+    // this/e.target is the source node.
+    this.addClassName('moving');
+  };
+
+  this.handleDragOver = function(e) {
+    if (e.preventDefault) {
+      e.preventDefault(); // Allows us to drop.
+    }
+  
+    e.dataTransfer.dropEffect = 'move';
+    this.addClassName('over');
+    
+    return false;
+  };
+
+  this.handleDragLeave = function(e) {
+    // this/e.target is previous target element.
+    this.removeClassName('over');
+  };
+
+  this.handleDrop = function(e) {
+    // this/e.target is current target element.
+
+    if (e.stopPropagation) {
+      e.stopPropagation(); // stops the browser from redirecting.
+    }
+
+    // Don't do anything if we're dropping on the same column we're dragging.
+    if (dragSrcEl_ != this) {
+      dragSrcEl_.innerHTML = this.innerHTML;
+      this.innerHTML = e.dataTransfer.getData('text/html');
 
       // Set number of times the column has been moved.
       var count = this.querySelector('.count');
@@ -662,7 +813,6 @@ var samples = samples || {};
 
   this.handleDragEnd = function(e) {
     // this/e.target is the source node.
-
     [].forEach.call(cols_, function (col) {
       col.removeClassName('over');
       col.removeClassName('moving');
