@@ -1,0 +1,178 @@
+{% extends "../../../../templates/sample.html" %}
+
+{% block headauthor %}Michael Mahemoff{% endblock %}
+{% block pageauthor %}Michael Mahemoff{% endblock %}
+
+{% block headtitle %}Client-Side Storage{% endblock %}
+{% block pagetitle %}Client-Side Storage{% endblock %}
+{% block pagebreadcrumb %}Client-Side Storage{% endblock %}
+{% block date %}October 1, 2010{% endblock %}
+
+{% block browsersupport %}
+varies
+{% endblock %}
+
+{% block iscompatible %}{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block onload %}{% endblock %}
+
+{% block content %}
+
+<h2 id="toc-introduction">Introduction</h2>
+
+<p>This is an overview of client-side storage, which is a general term for several separate but related APIs: Web Storage, Web SQL Database, Indexed Database, and File Access. Each of these techniques provides a distinct way to store data on the user's hard drive, instead of the server, where data usually resides. There are two main reasons to do this: (a) to make the web app available offline; (b) to improve performance. For a detailed explanation of the use cases for client-side storage, see the HTML5Rocks article, <a href="http://www.html5rocks.com/tutorials/offline/whats-offline/">"Offline": What does it mean and why should I care?</a>.</p>
+
+<p>The most basic technique, Web Storage, consists of two APIs: Local Storage and Session Storage. Session storage only lasts as long as the current window is open, so is suitable for a single interaction, while Local Storage lasts across browser sessions, like all the other mechanisms, and is therefore the more popular form of Web Storage. In both cases, the store is simply a key-value map, where the keys are strings and the values can be any data structure. Web SQL Database is a structured database with all the functionality - and complexity - of a typical <a href="http://en.wikipedia.org/wiki/Structured_Query_Language">SQL-powered relational database</a>. Indexed Database sits somewhere between the two. It has free-form key-value pairs, like Web Storage, but also the capability to index fields from those values, so searching is much faster.</p>
+
+<p>File access is a catch-all term for a range of APIs currently under development. The initial ones revolve around the "file" input type, which has always been used to upload files on a standard web form, but only now can it be manipulated from Javascript. For example, the app can read content of files added to the control. In the future, the app will also be able to modify such files, and maybe even access its own sandboxed filesystem, consisting of an entire directory hierarchy tied to the domain.</p>
+
+<p>Browser support varies. Web Storage is available on all the modern browsers (for the purposes of this article, let's define those as recent versions of Chrome, Firefox, Opera, Safari, and Internet Explorer). Web SQL Database is only available on Chrome, Safari, and Opera, and the remaining browsers don't have it on their roadmap. That IE and Firefox will never use it is not necesarily a reason to rule it out, because one important application of client-side storage is caching, where the app will still work fine in its absence. IndexedDB has an early implementation in Firefox 4 and a good chance of being present on all the browsers eventually, but the specification is still evolving. File access has good support early on in Chrome and Firefox, but there's a lot to cover and a lot more to come. All that will be explored in a future article on HTML5Rocks.</p>
+
+<h2 id="features">Common Features</h1>
+
+The storage techniques have several features in common, explained here.
+
+<h3 id="sandboxed">Sandboxed</h3>
+
+<p>Each storage format is tied to the "origin" they are used in. e.g. if http://abc.example.com saves some data, then only http://abc.example.com can access that data in the future. When it comes to "origins", the domain must be exactly the same, so http://example.com and http://def.example.com are both disqualified. The port must match too, so http://abc.example.com:123 also cannot see http://abc.example.com (which defalts to port 80).</li>
+
+<h3 id="quotas">Quotas</h3>
+
+<p>Each storage format is subject to quotas - in other words, limits on the amount each origin can store, with the user typically being able to override the default setting for a particular origin. You might expect the browser to enforce a single limit for all storage an origin can use, but the major browsers are actually enforcing limits separately for each storage mechanism. This may change in the future, but for now, you should think of the browser as maintaining a 2-D matrix, with "origin" in one dimension and "storage" in the other. In each slot is a value indicating the limit. For example, "http://abc.example.com" is allowed to store up to 5MB of Web Storage, 25MB of Web SQL Database Storage, and forbidden to use Indexed Database.</p>
+  
+<p>The user interface for these limits is fairly primitive right now. The limit is typically increased on demand, i.e. when a site tries to allocate more storage than it's allowed by default, the browser will prompt the user to increase it by a bit. Right now, the magic number is 5MB; this is the most common default vlue for storage, which sites can use without any user prompting. (Though Firefox will prompt the first time a site tries to use any manner of storage.)</p>
+
+<p>There are also environments where the user can see upfront how much storage will be used, e.g. in the case of the Chrome Web Store, when a user installs an app, they will be prompted upfront to accept its permissions, which include storage limits. One possible value is "unlimited".</p>
+
+<h3 id="transactions">Transactions</h3>
+
+<p>The two "database" storage formats support transactions. The aim is the same reason regular relational databases use transactions: To ensure the integrity of the database. Transactions prevent "race conditions", a phenomenon where two sequences of operations are applied to the database at the same time, leading to results that are both unpredictable and a database whose state is of dubious accuracy.</p>
+
+<h3 id="synchronous">Synchronous and Asynchronous Modes</h3>
+
+<p>The storage formats all support synchronous and asynchronous modes.  Synchronous mode is blocking, meaning that the storage operation will be executed to completion before the next line of Javascript is executed. Asynchronous mode will cause the next line of Javascript to be executed immediately, with a new thread implicitly created to perform the storage operation. The application will be notified when the operation is finished by way of a callback function being called, a function which must be specified when the call is made. You should usually use asynchronous mode, because it keeps the application running smoothly; any time the system is blocking, it's not able to respond to user actions. However, if your app uses Web Workers and you are performing storage operations inside the workers, you can use the synchronous mode, since the worker is already running in a separate thread.</p>
+
+<h3 id="events">Events</h3>
+
+<p>The storage mechanisms provide event mechanisms to keep the application informed of activity. In the case of event handlers, the event handlers provide the necessary interface for hooking into the results of operations. But there is more than those, because there are also ways for the application to register general interest in storage activity, so as to be notified when new data is created, modified, or deleted. You ould use this kind of notification to architect your app around a publish-subscribe structure, where user-interface elements are kept in sync with the underlying model.</p>
+
+<h2 id="code">Show Me the Code</h2>
+
+<p>This section compares how Web Storage and Web SQL Database tackle the same problem. We'll add an Indexed DB example when the specification is more stable and there are more browser implementations out there. The example is a "geo-mood" checkin system, where you can track your mood across time and place.</p>
+
+<p><a href="demo.html?local">Try the Geo-Mood Demo</a></p>
+
+<p>To make the demo interesting, we'll isolate the data storage aspects using <a href="http://en.wikipedia.org/wiki/Polymorphism_in_object-oriented_programming">standard object-oriented design techniques</a>. Specifically, the UI logic will only know there is a "store"; it won't need to know how the store is implemented, because each store has exactly the same methods on it. So the UI code can just call <tt>store.setup()</tt>, <tt>store.count()</tt>, and so on. In reality, there are three implementations of the store, one for each storage type. When the app starts up, it inspects the URL and instantiates the right store. To keep the interface consistent, the methods are asynchronous (except setup), i.e. they pass results back to the caller. It wouldn't need to be that way for the localStore, since localStorage is synchronous, but it's cleaner to provide the same interface for all three techniques.</p>
+
+<p>In the walkthroughs below, we'll skip the UI and geolocation logic, so we can focus on the storage techniques.</p>
+
+<h3 id="setup">Setting up the Store</h3>
+
+<p>For localStorage, we only need to check the store exists and is of the right type. If not, we'll create a new array and store it against the localStorage "checkins" key. We use JSON to convert the structure to a string first, since, in most browsers, localStorage only stores strings.</p>
+
+<pre class="prettyprint">
+  if (!localStorage["checkins"])
+    localStorage["checkins"] = JSON.stringify([]);
+</pre>
+
+<p>For Web SQL Database, we need to create the database structure if it doesn't exist. <tt>openDatabase</tt> fortunately creates the database automatically if it doesn't exist, and, likewise, we use the SQL phrase "if not exists" to ensure the new checkins table is not overridden if it is already present. We have to define the structure of the data upfront, i.e. the name and type of each column in the checkins table. Each row will represent a single checkin.</p>
+
+<pre class="prettyprint">
+  this.db = openDatabase('geomood', '1.0', 'Geo-Mood Checkins', 8192);
+  this.db.transaction(function(tx) {
+    tx.executeSql("create table if not exists " + 
+      "checkins(id integer primary key asc, time integer, latitude float,"+
+                "longitude float, mood string)",
+      [],
+      function() { console.log("siucc"); }
+    );
+  });
+</pre>
+
+<h3 id="save">Saving a Checkin</h2>
+
+<p>With localStorage, we simply pull the checkins array out, add a new one to the end, and save it again. We also have to do the JSON dance to store it in string form.</p>
+
+<pre class="prettyprint">
+  var checkins = JSON.parse(localStorage["checkins"]);
+  checkins.push(checkin);
+  localStorage["checkins"] = JSON.stringify(checkins);
+</pre>
+
+<p>With Web SQL Database, we run everything inside a transaction. We're going to create a new row in the checkins table, It's a straightforward SQL call, and instead of including the checkin data in the "insert" command, we use "?" syntax because it's cleaner and more secure. The actual data - the four values we want to store as columns in the new checkins row - are specified in the second row. The "?" elements will be replaced by those values (<tt>checkin.time</tt>, <tt>checkin.latitude</tt>, etc.). The next two arguments indicate functions which will be called when the operation has completed, one for success and one for failure. In this app, we use the same generic error handler for all transactions. In this case, the success function is simply the handler that was passed into the search function - we ensure the handler will be called on success so that the UI logic can be notified when the operation has been completed (e.g. to update the count of checkins so far).</p>
+
+<pre class="prettyprint">
+  store.db.transaction(function(tx) {
+    tx.executeSql(
+      "insert into checkins "
+      +"(time, latitude, longitude, mood) values (?,?,?,?);",
+      [checkin.time, checkin.latitude, checkin.longitude, checkin.mood],
+      handler,
+      store.onError
+    );
+</pre>
+
+<h3 id="search">Searching for Matching Checkins</h2>
+
+<p>The next function fishes out all checkins matching a particular mood, so the user can see where and when they were happy recently, for example. With localStorage, we have to manually walk through each checkin and compare it to the mood, building up a list of matches. It's good practice to return clones of the data that's stored, rather than the actual objects, since searching should be a read-only operation; hence we pass each matching checkin object through a generic <tt>clone()</tt> operation.</p>
+
+<pre class="prettyprint">
+  var allCheckins = JSON.parse(localStorage["checkins"]);
+  var matchingCheckins = [];
+  allCheckins.forEach(function(checkin) {
+    if (checkin.mood==moodQuery) matchingCheckins.push(clone(checkin));
+  });
+  handler(matchingCheckins);
+</pre>
+
+<p>With Web SQL Database, we perform a query that returns only the checkin rows that we need. However, we still have to manually walk through that list to accumulate the checkin structures, as the database API returns database rows, rather than an array. (This is a good thing for large result sets, but right now, it adds some work for us to do!)</p>
+
+<pre class="prettyprint">
+      var matchingCheckins = [];
+      store.db.transaction(function(tx) {
+        tx.executeSql(
+          "select * from checkins where mood=?",
+          [moodQuery],
+          function(tx, results) {
+            for (i = 0; i < results.rows.length; i++) {
+              matchingCheckins.push(clone(results.rows.item(i)));
+            }
+            handler(matchingCheckins);
+          },
+          store.onError
+        );
+      });
+</pre>
+
+<h3 id="count">Counting All Checkins</h2>
+
+<p>Finally, we need to count all checkins. </p>
+
+<p>For localStorage, we simply de-serialize the checkins array structure and find its length.</p>
+
+<pre class="prettyprint">
+  handler(JSON.parse(localStorage["checkins"]).length);
+</pre>
+
+<p>With Web SQL Database, we could retrieve each row in the database (<tt>select * from checkins</tt>) and look at the length of the result set, but if we know our way around SQL, there's an easier - and faster - way. We can perform a special select statement to retrieve the count. It will return exactly one row, having one column containing the count.</p>
+
+<pre class="prettyprint">
+  store.db.transaction(function(tx) {
+    tx.executeSql(
+      "select count(*) from checkins;",
+      [],
+      function(tx, results) {
+        handler(results.rows.item(0)["count(*)"]);
+      },
+      store.onError
+    );
+</pre>
+
+<h2 id="summary">Summary</h3>
+
+<p>This has been a high-level overview of modern client-side storage techniques. You should also check out the <a href="../whats-offline">overview on offline apps</a> and <a href="../../">tutorials</a> on specific client-side storage techniques.</p>
+
+{% endblock %}

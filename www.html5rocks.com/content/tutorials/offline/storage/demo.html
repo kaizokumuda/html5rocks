@@ -1,0 +1,267 @@
+<style>
+  * { margin: 0; padding: 0; font-weight: normal; }
+  html { margin: 1em; font-family: sans-serif; font-size: 10pt; }
+  table { border-collapse: collapse; }
+  td { padding: 0.3em 0.6em 0.3em 0; text-align: right; }
+  td.geo, td.geo * { text-align: right; }
+  button { padding: 0.5em; }
+  h1,h2 { font-size: 1em; font-weight: bold; margin: 0 0 1em; }
+  p { margin: 1em 0; }
+  section { margin: 0.3em 0; padding: 0.3em;
+            border-radius: 1em; }
+  #searchResults { margin-top: 1em; }
+</style>
+
+<script>
+
+/* Generic Utilities *********************************************************/
+
+  function $_(selector) { return document.querySelector(selector); }
+  function clone(o) { // shallow clone
+    var clone = {};
+    for (var key in o) {
+      clone[key] = o[key];
+    }
+    return clone;
+  }
+
+  function timeAgo(millis) {
+    var secs = Math.round((+new Date - millis)/1000);
+    var ago = secs < 2*60 ? secs + " secs" :
+                secs < 2*60*60 ? Math.floor(secs/60) + " mins" :
+                  secs < 2*24*60*60 ? Math.floor(secs/60/60) + " hours" :
+                    Math.floor(secs/24/60/60) + " days";
+                    
+    return ago + " ago";
+  }
+
+/* Application/UI Logic ******************************************************/
+
+  var store;
+
+  window.onload = function() {
+    var storeType = document.location.search.substr(1)+"Store";
+    if (!window[storeType]) storeType = "localStore";
+    $_("#storeType").innerHTML = storeType;
+    store = window[storeType];
+    store.setup();
+    populateGeo();
+    updateCount();
+    updateSearch();
+    $_("#save").onclick = function() {
+      var checkin = {
+        time:  +new Date,
+        latitude:  $_("#latitude").value,
+        longitude: $_("#longitude").value,
+        mood: $_("#mood").value,
+      };
+      store.save(checkin, function() {
+        updateCount();
+        updateSearch();
+      });
+    };
+    $_("#moodQuery").onchange = updateSearch;
+    setInterval(updateSearch, 5000); // keep times up to date
+  }
+
+  function populateGeo() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        $_("#latitude").value  = pos.coords.latitude.toFixed(2);
+        $_("#longitude").value = pos.coords.longitude.toFixed(2);
+      });
+    }
+  }
+
+  function updateCount() {
+     store.count(function(count) {
+        $_("#checkinCount").innerHTML = count;
+    });
+  }
+
+  function updateSearch() {
+    store.search($_("#moodQuery").value, function(checkins) {
+      $_("#searchResults").innerHTML = "";
+      checkins.forEach(function(checkin) {
+        $_("#searchResults").innerHTML +=
+          "I was " + checkin.mood +
+          " at (" + checkin.latitude + "," + checkin.longitude + ")" +
+          " " + timeAgo(parseInt(checkin.time)) + "<br/>"
+      });
+    });
+  }
+
+/* localStore ****************************************************************/
+
+  var localStore = {
+    setup: function() {
+      if (!localStorage["checkins"])
+        localStorage["checkins"] = JSON.stringify([]);
+    },
+    save: function(checkin, handler) {
+      var checkins = JSON.parse(localStorage["checkins"]);
+      checkins.push(checkin);
+      localStorage["checkins"] = JSON.stringify(checkins);
+      handler();
+    },
+    search: function(moodQuery, handler) {
+      var allCheckins = JSON.parse(localStorage["checkins"]);
+      var matchingCheckins = [];
+      allCheckins.forEach(function(checkin) {
+        if (checkin.mood==moodQuery) matchingCheckins.push(clone(checkin));
+      });
+      handler(matchingCheckins);
+    },
+    count: function(handler) {
+      handler(JSON.parse(localStorage["checkins"]).length);
+    }
+  };
+
+/* indexedStore ************************************************************/
+
+  var indexedStore = {
+    setup: function() {
+      var conn = window.moz_indexed.open("geomood", "Geo-Mood App DB");
+      conn.onsuccess = function(ev) {
+        var db = ev.result;
+        d=db;
+        if (db.version!="1.0") {
+          console.log(db);
+          var checkins = db.createObjectStore("jijaDaaaiaaB Checkins Store", "jilzbcheckins", true);
+          // NOT IMPLEMENTED?????
+          // var checkinsByMoodIndex = checkins.createIndex("The Checkins Index", "mood", false);
+          db.setVersion="1.0";
+          console.log("vers", db.version);
+        }
+      };
+    },
+    count: function(handler) {
+      console.log("count");
+      var req = window.moz_indexed.open("geomood", "Geo-Mood Checkins");
+      req.onsuccess = function(ev) {
+        var checkins = event.result.objectStore("checkins").openCursor();
+        handler(checkins.length);
+      };
+    },
+    search: function(moodQuery, handler) {
+      handler([]);
+    }
+  };
+
+/* sqlStore ******************************************************************/
+
+  var sqlStore = {
+    setup: function() {
+      this.db = openDatabase('geomood', '1.0', 'Geo-Mood Checkins', 8192);
+      this.db.transaction(function(tx) {
+        tx.executeSql("create table if not exists " + 
+          "checkins(id integer primary key asc, time integer, latitude float,"+
+                    "longitude float, mood string)",
+          [],
+          function() { console.log("siucc"); }
+        );
+      });
+    },
+    save: function(checkin, handler) {
+      store.db.transaction(function(tx) {
+        tx.executeSql("insert into checkins (time, latitude, longitude, mood) values (?,?,?,?);",
+        [checkin.time, checkin.latitude, checkin.longitude, checkin.mood],
+        handler,
+        store.onError);
+      });
+    },
+    search: function(moodQuery, handler) {
+      var matchingCheckins = [];
+      store.db.transaction(function(tx) {
+        tx.executeSql("select * from checkins where mood=?",
+        [moodQuery],
+        function(tx, results) {
+          for (i = 0; i < results.rows.length; i++) {
+            matchingCheckins.push(clone(results.rows.item(i)));
+          }
+          handler(matchingCheckins);
+        },
+        store.onError);
+      });
+    },
+    count: function(handler) {
+      store.db.transaction(function(tx) {
+        tx.executeSql("select count(*) from checkins;", [], function(tx, results) {
+          handler(results.rows.item(0)["count(*)"]);
+        },
+        store.onError);
+      });
+    },
+    onError: function(tx,error) {
+      console.log("Error occurred: ", error.message);
+    }
+  };
+
+</script>
+
+    <header>
+      <h1>Geo-Mood: Client-Side Storage Demo on HTML5Rocks</h1>
+    </header>
+
+    <section>
+
+      <h2>Data Stores</h2>
+
+      <p>This variant of the app is using the <span id="storeType">...</span>.</p>
+
+      <p>Assuming your browser supports it, you can try this app using the
+        <a href="?local">localStore</a> |
+        <a href="?sql">sqlStore</a> |
+        <a href="?indexed">indexedStore</a>.</p>
+
+    </section>
+
+    <section>
+
+      <h2>Check in</h2>
+
+      <table>
+        <tr>
+          <th>Latitude:</th>
+          <th>Longitude:</th>
+          <th>Mood:</th>
+          <th>&nbsp;</th>
+        </tr>
+        <tr>
+          <td class="geo"><input id="latitude" size="6" value="0" /></td>
+          <td class="geo"><input id="longitude" size="6" value="0" /></td>
+          <td>
+            <select id="mood">
+              <option>Happy</option>
+              <option>Sad</option>
+              <option>Mad</option>
+              <option>Tired</option>
+              <option>Other</option>
+            </select>
+          </td>
+          <td><button id="save">Save</button></td>
+        </tr>
+      </table>
+
+    </section>
+
+    <section>
+      <h2>Checkin count</h2>
+      Checkins so far: <span id="checkinCount"></span>
+    </section>
+
+    <section>
+      <h2>Geo-mood search</h2>
+      When was I last 
+        <select id="moodQuery">
+          <option>Happy</option>
+          <option>Sad</option>
+          <option>Mad</option>
+          <option>Tired</option>
+          <option>Other</option>
+        </select>
+      ?
+
+      <div id="searchResults">
+      </div>
+    </section>
