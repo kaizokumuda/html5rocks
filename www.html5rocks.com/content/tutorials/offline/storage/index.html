@@ -92,7 +92,7 @@ The storage techniques have several features in common, explained here.
   });
 </pre>
 
-<h3 id="save">Saving a Checkin</h2>
+<h3 id="save">Saving a Checkin</h3>
 
 <p>With localStorage, we simply pull the checkins array out, add a new one to the end, and save it again. We also have to do the JSON dance to store it in string form.</p>
 
@@ -115,7 +115,7 @@ The storage techniques have several features in common, explained here.
     );
 </pre>
 
-<h3 id="search">Searching for Matching Checkins</h2>
+<h3 id="search">Searching for Matching Checkins</h3>
 
 <p>The next function fishes out all checkins matching a particular mood, so the user can see where and when they were happy recently, for example. With localStorage, we have to manually walk through each checkin and compare it to the mood, building up a list of matches. It's good practice to return clones of the data that's stored, rather than the actual objects, since searching should be a read-only operation; hence we pass each matching checkin object through a generic <tt>clone()</tt> operation.</p>
 
@@ -147,7 +147,7 @@ The storage techniques have several features in common, explained here.
       });
 </pre>
 
-<h3 id="count">Counting All Checkins</h2>
+<h3 id="count">Counting All Checkins</h3>
 
 <p>Finally, we need to count all checkins. </p>
 
