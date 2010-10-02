@@ -2,18 +2,25 @@
 
 {% block headtitle %}Feature{% endblock %}
 
+
+
 {% block head %}
   <link rel="stylesheet" href="/static/css/feature.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script>
-  var feature = '{{category}}';
+  var feature = '{% block tuttags %}{% endblock %}';
   
   var div = $('<div>').load('/tutorials/ #index', function(){
     
-    var ul = $('section.tutorials ul');
+    var ul = $('section.tutorials ul'), matches = $([]);
     
-    div.find('.sample span.tag:contains(' + feature + ')')
-      .closest('.sample').find('h2 a').clone()
+    $.each( feature.split(','), function(i, eachtag) {
+      var elem = div.find('.sample span.tag:contains(' + eachtag + ')').closest('.sample');
+      matches = matches.add(elem);
+    });
+    
+    $(matches)
+      .find('h2 a').clone()
       .map(function(){ return $(this).wrap('<li>').parent(); })
       .prependTo(ul);
       
