@@ -62,7 +62,7 @@ section figure {
   text-align: center;
 }
 
-section figure:nth-child(2n) {
+section figure:nth-child(2n+1) {
   padding:  0;
 }
 
