@@ -309,7 +309,7 @@ var cols = document.querySelectorAll('#columns .column');
   type of event, depending on where we are in the DnD event model.</p>
 
   <p>In the case of dragging something like a link, we need to prevent the browser's
-  default behavior, which is to navigate to that link. To do this, call <code>e.preventDeafult()</code>
+  default behavior, which is to navigate to that link. To do this, call <code>e.preventDefault()</code>
   in the <code>dragover</code> event. Another good practice is to <code>return false</code> in that same handler.
   Browsers are somewhat inconsistent about needing these, but they don't hurt to add.</p>
 
