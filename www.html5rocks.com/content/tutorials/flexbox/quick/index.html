@@ -34,6 +34,8 @@
   /* hbox and vbox classes */
 
   .hbox {
+    width: 100%;
+    
   	display: -webkit-box;
   	-webkit-box-orient: horizontal;
   	-webkit-box-align: stretch;
@@ -141,30 +143,6 @@
 
 
 
-<!--
-
-
-
-sticky footer
-
-
-
-
-
-http://blog.isotoma.com/2010/08/css3-flexbox/
-http://hacks.mozilla.org/2010/04/the-css-3-flexible-box-model/
-http://hacks.mozilla.org/wp-content/uploads/2010/02/exemple-simple.html
-http://hacks.mozilla.org/wp-content/uploads/2010/04/exemple-blog.html
-
-http://dev.w3.org/csswg/css3-flexbox/
-
-http://www.the-haystack.com/2010/01/23/css3-flexbox-part-1/
-
-http://htmlrockstars.com/playground/flexible-box-layout-module/
-
-http://infrequently.org/2009/08/css-3-progress/
-
--->
 <h2 id="toc-intro">Introduction</h2>
 
 <p>I'd bet that you've done your fair share of styling elements to be arranged horizontally or vertically on a page. As of yet, though, <abbr>CSS</abbr> has lacked a suitable mechanism for this task. Enter the <abbr>CSS</abbr>3 Flexible Box Module, or <i>Flexbox</i> for short.</p> 
@@ -212,11 +190,11 @@ Eight new properties? Yeah, a little overwhelming, right? Okay let's break these
   
   <dt><code>box-orient</code></td>
   <dd>Values: <b><code>horizontal</code></b> | <code>vertical</code> | <code>inherit</code></dd>
-  <dd>How should the box's children be aligned? <small>There are two additional values <code>inline-axis</code> (the real default) and <code>block-axis</code>, but they map to horizontal and vertical respectively.</small></dd>
+  <dd>How should the box's children be aligned? There are two additional values <code>inline-axis</code> (the real default) and <code>block-axis</code>, but they map to horizontal and vertical respectively.</dd>
   
   <dt><code>box-pack</code></td>
   <dd>Values: <b><code>start</code> </b>| <code>end</code> | <code>center</code> | <code>justify</code></dd>
-  <dd>Sets the alignment of the box along the box-orient axis. So if box-orient is horizontal it will chose how the boxes children are aligned horizontally, and vice-versa.</small></dd>
+  <dd>Sets the alignment of the box along the <code>box-orient</code> axis. So if <code>box-orient</code> is horizontal it will chose how the box's children are aligned horizontally, and vice-versa.</small></dd>
   
   <dt><code>box-align</code></td>
   <dd>Values: <code>start</code> | <code>end</code> | <code>center</code> | <code>baseline</code> | <b><code>stretch</code></b></dd>
@@ -236,24 +214,24 @@ Eight new properties? Yeah, a little overwhelming, right? Okay let's break these
 
 <p>I've left <code>box-flex-group</code>, <code>box-ordinal-group</code>, <code>box-direction</code>, <code>box-lines</code> out of the above because, frankly, they're not necessary for most of your flexbox work. View the links in <a href="#toc-summary">the summary</a> to see those properties at work.</p>
 
-
+<p>A note on syntax: current implementations of flexbox in WebKit and Gecko require the use of vendor prefixes. In this tutorial, I've mostly left them out for clarity. For the details, read the <a href="#toc-support">browser support</a> section.</p>
 
 <h2 id="toc-flexibility">What is flexibility?</h2>
 
 The <code>box-flex</code> style property defines if a child of a flexbox should be flexible or inflexible, and helps to define its flexibility ratio relative to its siblings. Let's demonstrate what that actually means. First, let's start with three boxes. 
 
 <pre class="prettyprint">&lt;div id="flexbox">
-    &lt;p>child 1&lt;/p>
-    &lt;p>child 2&lt;/p>
-    &lt;p>child 3&lt;/p>
+  &lt;p>child 1&lt;/p>
+  &lt;p>child 2&lt;/p>
+  &lt;p>child 3&lt;/p>
 &lt;/div>
 </pre> 
  
-<p>Now, we want them to lay out horizontally next to eachother, and their heights should always match, regardless of the content in each. How would you currently tackle this? Most, without thinking, would simply float these paragraphs, perhaps adding <code>overflow:hidden;</code> to the parent in order to clear the floats. Nothing very special. But we could also do it quite easily with flexbox:</p> 
+<p>Now, we want them to lay out horizontally next to each other, and their heights should always match, regardless of the content in each. How would you currently tackle this? Most, without thinking, would simply float these paragraphs, perhaps adding <code>overflow:hidden;</code> to the parent in order to clear the floats. Nothing very special. But we could also do it quite easily with flexbox:</p> 
  
 <pre class="prettyprint">#flexbox { 
-    display: box;
-    box-orient: horizontal;
+  display: box;
+  box-orient: horizontal;
 }
 </pre> 
  
@@ -261,7 +239,7 @@ The <code>box-flex</code> style property defines if a child of a flexbox should 
 
 <p>The widths of the children remain as specified (or their inherent width if not specified). This means that if the total widths of all the children is less than the total width of the parent, we&#8217;ll get something like this:</p> 
  
-<p><img src="flex01.gif" alt="3 child elements retain their inherent widths within the parent element" title="flex01" width="475" height="297"  /></p> 
+<figure><img src="flex01.gif" alt="3 child elements retain their inherent widths within the parent element" title="flex01" width="475" height="297"  /></figure> 
  
 <p>By default, children of a flexbox remain inflexible. That might seem a little odd, but it's it gives a chance for the children to opt into the flexible experience. But what if you wanted children one and two to have specific widths and child three to adjust itself depending on the available space within the parent? Flexbox to the rescue:</p> 
  
@@ -276,25 +254,25 @@ The <code>box-flex</code> style property defines if a child of a flexbox should 
  
 <p>Here, we&#8217;re telling the last child to become flexible, and to take up available space. Since we&#8217;ve only allocated space to one element, it will take up <i>all</i> of the available space:</p> 
  
-<p><img src="flex02.gif" alt="The 3rd child element, having flex, takes up the available space." width="475" height="297" /></p> 
+<figure><img src="flex02.gif" alt="The 3rd child element, having flex, takes up the available space." width="475" height="297" /></figure> 
  
 <p>Note that the element only becomes flexible along the orientation axis of the box; in this case the element becomes flexible horizontally.</p> 
  
 <p>The value for box-flex is relative. So if we were to make the second and third children flexible:</p> 
  
 <pre class="prettyprint">#flexbox { 
- display: box;
- box-orient: horizontal;
+  display: box;
+  box-orient: horizontal;
 }
 #flexbox > p:nth-child(2),
 #flexbox > p:nth-child(3) {
- box-flex: 1;
+  box-flex: 1;
 }
 </pre>
  
 <p>These would each take up the same amount of available space, in fact dividing the available space equally between them.</p> 
  
-<p><img src="flex03.gif" alt="2 of the 3 child elements share the available space in the parent element."  width="475" height="297"  /></p> 
+<figure><img src="flex03.gif" alt="2 of the 3 child elements share the available space in the parent element."  width="475" height="297"  /></figure> 
 
 Now we could also play with setting the <code>box-flex</code> of children 1, 2, and 3 to be <code>1</code>, <code>2</code>, <code>3</code> respectively and they would then absorb the extra space of their parent in that ratio. But instead, lets put this into action.
 
@@ -322,10 +300,10 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
   -moz-box-flex: 1;
   box-flex: 1;
 
-   -moz-transition: all 0.7s ease-out;  
-     -o-transition: all 0.7s ease-out;  
--webkit-transition: all 0.7s ease-out;  
-        transition: all 0.7s ease-out;
+   -moz-transition: width 0.7s ease-out;  
+     -o-transition: width 0.7s ease-out;  
+-webkit-transition: width 0.7s ease-out;  
+        transition: width 0.7s ease-out;
 }
 
 .box > div:nth-child(1){ background : #FCC;}
@@ -372,7 +350,7 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
 
 .box > div {
   box-flex: 1;
-  transition: all 0.7s ease-out;
+  transition: width 0.7s ease-out;
 }
 
 /* our colors */
@@ -395,7 +373,7 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
 
 <h2 id="toc-center">Center stage: positioning in the middle</h2>
 
-<p>Centering something horizontally and vertically has long been a challenge in CSS. With flexbox we can get there a touch easier:</p>
+<p>Centering something horizontally and vertically has long been a challenge in CSS. The best CSS-only solution we have is <code>position:absolute; left: 50%; top: 50%;</code> paired with negative left/top margins that equal half of the width/height. And that only flies with explicitly sized elements. Ugh! With flexbox we can get there a touch easier:</p>
 
 
 <style>
@@ -423,9 +401,7 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
 }
 
 
-.centerbox > div:nth-child(1){ background : #FCC;}
-
-
+.centerbox > div:nth-child(1) { background : #FCC;}
 </style>
 
 <div class="centerbox">
@@ -458,7 +434,7 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
   box-align: center;
 }
 
-.centerbox > div:nth-child(1){ background : #CFC;}
+.centerbox > div:nth-child(1) { background : #FCC; }
   </pre>
 </div>
  
@@ -469,7 +445,7 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
 <h2 id="toc-support">Browser support</h2> 
  
 
-<p>So can you use the flexible box model in your work today? Not yet, not if you're targeting all browsers. So far we haven't seen flexbox land in IE9 or Opera 10.60, but it was in one of the IE9 Platform previews, so it's likely Microsoft will add it at some point.</p>
+<p>So can you use the flexible box model in your work today? Not yet, not if you're targeting all browsers. So far, we haven't seen flexbox land in IE9 or Opera 10.60, but it was in one of the IE9 Platform previews, so it's likely Microsoft will add it at some point.</p>
 
 <p><a href="http://caniuse.com/#feat=flexbox">Caniuse.com gives you the lowdown on current browser support</a> &ndash; basically it's Firefox 3+, Safari 3+, and Chrome. If you're doing mobile webkit development, flexbox is a great alternative to your standard layout schemes.</p>
 
