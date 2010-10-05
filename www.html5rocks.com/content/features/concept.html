@@ -3,77 +3,65 @@
 {% block contents %}
 
 <div style="margin-bottom: 2em" class="clearfix">
-  
-  
-  <div class="column">
-  
 
-  <section class="tutorials">
-    <hgroup>
-      <h3>Tutorials</h3>
-      <h4>learn more about {{category}}.</h4>
-    </hgroup>
-    <div>
-      <ul>
-        {% block tuts %}{% endblock %}
-      </ul>
-      <p>View all <a href="/tutorials/#{% block tuts %}{% endblock %}">related HTML5Rocks tutorials</a>' &rArr;</p>
-    </div>
-  </section>
-  <section class="themes">
-    <hgroup>
-      <h3>Themes</h3>
-    </hgroup>
-    <div>
-      {% block themes %}{% endblock %}
-    </div>
-  </section>
-  
-
-  
-  <section class="technologies">
-    <hgroup>
-      <h3>Technologies</h3>
-    </hgroup>
-    <div>
-      {% block technologies %}{% endblock %}
-    </div>
-  </section>
-  
-  
-  </div> <!-- eo .column -->
-  
   <div class="column">
-    
-    
-  <section class="techniques">
-    <hgroup>
-      <h3>Techniques</h3>
-    </hgroup>
-    <div>
-      {% block techniques %}{% endblock %}
-    </div>
-  </section>
-  <section class="tools">
-    <hgroup>
-      <h3>Tools</h3>
-    </hgroup>
-    <div>
-      {% block tools %}{% endblock %}
-    </div>
-  </section>
-  <section class="text">
-    <hgroup>
-      <h3>Text</h3>
-    </hgroup>
-    <div>
-      {% block text %}{% endblock %}
-    </div>
-  </section>
-  
-  
+    <section class="tutorials">
+      <hgroup>
+        <h3>Tutorials</h3>
+        <h4>learn more about {{category}}.</h4>
+      </hgroup>
+      <div>
+        <ul>
+          {% block tuts %}{% endblock %}
+        </ul>
+        <p>View all <a href="/tutorials/#{% block tuttags %}{% endblock %}">related HTML5Rocks tutorials</a>' &rArr;</p>
+      </div>
+    </section>
+    <section class="themes">
+      <hgroup>
+        <h3>Themes</h3>
+      </hgroup>
+      <div>
+        {% block themes %}{% endblock %}
+      </div>
+    </section>
+    <section class="technologies">
+      <hgroup>
+        <h3>Technologies</h3>
+      </hgroup>
+      <div>
+        {% block technologies %}{% endblock %}
+      </div>
+    </section>
   </div> <!-- eo .column -->
-  
+
+  <div class="column">
+    <section class="techniques">
+      <hgroup>
+        <h3>Techniques</h3>
+      </hgroup>
+      <div>
+        {% block techniques %}{% endblock %}
+      </div>
+    </section>
+    <section class="tools">
+      <hgroup>
+        <h3>Tools</h3>
+      </hgroup>
+      <div>
+        {% block tools %}{% endblock %}
+      </div>
+    </section>
+    <section class="text">
+      <hgroup>
+        <h3>Text</h3>
+      </hgroup>
+      <div>
+        {% block text %}{% endblock %}
+      </div>
+    </section>
+  </div> <!-- eo .column -->
+
 </div>
 
 {% endblock %}
