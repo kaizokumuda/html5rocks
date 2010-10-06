@@ -123,16 +123,24 @@ Web app optimization cross cuts all aspects of development, from the server to t
 {% endblock %}
 
 {% block tools %} 
-<ul>
-  <li>Developer tools for <a href="http://www.chromium.org/devtools">Chrome</a> and <a href="http://developer.apple.com/technologies/safari/developer-tools.html">Safari</a></li>
-  <li><a href="http://www.opera.com/dragonfly/">Dragonfly</a> for Opera</li>
-  <li><a href="http://getfirebug.com/">Firebug</a> for Firefox</li>
-  <li><a href="http://www.html5rocks.com/tutorials/developertools/auditpanel/">Audit panel</a> in the Developer tools</li>
-  <li><a href="http://code.google.com/webtoolkit/speedtracer/">Speedtracer</a> - not just for GWT, check out the <a href="http://www.igvita.com/2010/07/19/speed-tracer-server-side-tracing-with-rack/">Ruby plugin</a></li>
-  <li><a href="http://developer.yahoo.com/yslow/">YSlow</a> for Firebug</li>
-  <li><a href="http://code.google.com/closure/compiler/">Closure JavaScript compiler</a></li>
-  <li><a href="http://developer.yahoo.com/yui/compressor/">YUI Compressor</a></li>
-</ul>
+<dl>
+  <dt>Developer tools for <a href="http://www.chromium.org/devtools">Chrome</a> and <a href="http://developer.apple.com/technologies/safari/developer-tools.html">Safari</a></dt>
+  <dd>Peer into requests, walk the DOM, set JavaScript breakpoints, get behind the scenes</dd>
+  <dt><a href="http://www.opera.com/dragonfly/">Dragonfly</a> for Opera</dt>
+  <dd>Similar to Webkit Developer Tools, but for Opera</dd>
+  <dt><a href="http://getfirebug.com/">Firebug</a> for Firefox</dt>
+  <dd>Similar to Opera Dragonfly, but for Firefox.</dd>
+  <dt><a href="http://www.html5rocks.com/tutorials/developertools/auditpanel/">Audit panel</a> in the Developer tools</dt>
+  <dd>Get suggestions for speeding up your web app</dd>
+  <dt><a href="http://code.google.com/webtoolkit/speedtracer/">Speedtracer</a> - not just for GWT, check out the <a href="http://www.igvita.com/2010/07/19/speed-tracer-server-side-tracing-with-rack/">Ruby plugin</a></dt>
+  <dd>Identify and fix performance problems in your web app</dd>
+  <dt><a href="http://developer.yahoo.com/yslow/">YSlow</a> for Firebug</dt>
+  <dd>Like the Developer Tools' Audit Panel, but for Firefox</dd>
+  <dt><a href="http://code.google.com/closure/compiler/">Closure JavaScript compiler</a></dt>
+  <dd>Minify, reduce, and obfuscate your JavaScript</dd>
+  <dt><a href="http://developer.yahoo.com/yui/compressor/">YUI Compressor</a></dt>
+  <dd>Minify and obfuscate your JavaScript and CSS</dd>
+</dl>
 {% endblock %}
 
 {% block text %} 
