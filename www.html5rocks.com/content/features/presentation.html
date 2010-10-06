@@ -10,7 +10,7 @@
 <style>
 
 #pre1 {
-  -webkit-transform: rotate(-1deg);
+  -webkit-transform: rotate(-1deg) skewX(5deg);
 }
 
 #pre2 {
@@ -18,7 +18,8 @@
 }
 
 #pre2:hover {
-  -webkit-transform: rotate(10deg);
+  background-color: #F2F5FE;
+  border-color: black;
 }
 
 #pre3 {
@@ -30,17 +31,18 @@
   -webkit-transform: rotate3d(1,1,0, 45deg);
 }
 </style>
-<p>CSS3 Transformations allow you to modify any DOM element with simple styles.</p>
+<p>CSS3 Transformations allow you to apply rotations, scales, skews and translations to any DOM element with simple styles.</p>
 <pre class="prettyprint" id="pre1">pre {
-  transform: rotate(-1deg);
+  transform: rotate(-1deg) skewX(5deg);
 }</pre> 
-<p>Transitions allow you to specify how a DOM element will animate between transformed states.</p>
+<p>Transitions allow you to specify how the style on a DOM element will animate between transformed states.  For example, you can animate the background color when the user hovers over an element.</p>
 <pre class="prettyprint" id="pre2">pre {
   transition: all 1s ease-inout;
 }
 
 pre:hover {
-  transform: rotate(45deg);
+  background-color: #F2F5FE;
+  border-color: black;
 }</pre>
 
 <p>Applying 3D transforms is simple too.  Just specify the transformation in 3d co-ordinates and you are ready.</p>
