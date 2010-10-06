@@ -4,11 +4,53 @@
 {% block h2title   %}Presentation{% endblock %}
 {% block tuttags   %}presentation,css,3D,webfonts{% endblock %}
 
-{% block description %}<p>
-  With the introduction of CSS3 Transformations, Transitions and 3D, it has never been easier to create rich and beautiful sites and applications in HTML.
-</p>
+{% block description %}<p>With the introduction of CSS3 it has never been easier to create rich and beautiful sites and applications in HTML. There are many new technologies and extensions to CSS3 including: <a href="http://www.w3.org/TR/css3-2d-transforms">2D Transformations</a>, <a href="http://www.w3.org/TR/css3-transistion">Transitions</a>, <a href="http://www.w3.org/TR/css3-3d-transforms">3D Transforms</a> and <a href="http://www.w3.org/TR/css3-webfonts">WebFonts</a> to name just a few.</p>
+
+<p>You can create rich user experiences with no coding effort required, just simply apply a little CSS to your existing applications.</p>
+<style>
+
+#pre1 {
+  -webkit-transform: rotate(-1deg);
+}
+
+#pre2 {
+  -webkit-transition: all 1s ease-in-out;
+}
+
+#pre2:hover {
+  -webkit-transform: rotate(10deg);
+}
+
+#pre3 {
+  -webkit-transition: all 1s ease-in-out; 
+  -webkit-perspective: 1200;
+}
+
+#pre3:hover {
+  -webkit-transform: rotate3d(1,1,0, 45deg);
+}
+</style>
+<p>CSS3 Transformations allow you to modify any DOM element with simple styles.</p>
+<pre class="prettyprint" id="pre1">pre {
+  transform: rotate(-1deg);
+}</pre> 
+<p>Transitions allow you to specify how a DOM element will animate between transformed states.</p>
+<pre class="prettyprint" id="pre2">pre {
+  transition: all 1s ease-inout;
+}
+
+pre:hover {
+  transform: rotate(45deg);
+}</pre>
+
+<p>Applying 3D transforms is simple too.  Just specify the transformation in 3d co-ordinates and you are ready.</p>
+<div id="pre3container">
+<pre class="prettyprint" id="pre3">div {
+  transform: rotate3d(1,1,0, 45deg);
+}</pre>
+</div>
 <h4>Browser support</h4>
-<p>See: <a href="http://caniuse.com/#feat=css3">current browser support for CSS3</a> on caniuse.com. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>{% endblock %}
+<p>Not every browser supports transforms, transitions and 3d.  Check <a href="http://caniuse.com/#feat=css3">current browser support for CSS3</a> on <a href="http://caniuse.com/">caniuse.com</a>. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>{% endblock %}
 
 <!-- wrap any tuts content with LI's 
      these will be added to existing tutorials scraped from h5r.com -->
@@ -60,10 +102,6 @@
    <dd>A list of the current status of the CSS3 specifications.</dd>
   <dt><a href="http://www.w3.org/TR/css3-selectors/">W3C Spec: CSS3 Selectors</a></dt>
   <dd>This W3C specification defines the new selectors available to developers.</dd>
-</dl>
-<dl>
-  <dt><a href="http://dev.w3.org/csswg/css3-fonts/">W3C Draft Spec: CSS Fonts (Formerly Web Fonts)</a></dt>
-  <dd>This W3C specification defines new properties to improve the typeography support in browsers.</dd>
 </dl>
 <dl>
   <dt><a href="http://www.w3.org/TR/css3-2d-transforms">W3C Draft CSS3 2d Transform module</a></dt>
