@@ -2,15 +2,16 @@
 
 {% block headtitle %}Storage{% endblock %}
 {% block h2title   %}Storage{% endblock %}
+{% block tuttags   %}storage,file,offline,webdatabase{% endblock %}
 
 {% block description %}
-<img src="/static/images/features/storage.png"><p>When web developers think of storing anything about the user, they immediately think of uploading to the server. HTML5 changes that, as there are now several technologies allowing the app to save data on the client device. It might also be sync'd back to the server, or it might only ever stay on the client: that's down to you, the developer.
+<p>When web developers think of storing anything about the user, they immediately think of uploading to the server. HTML5 changes that, as there are now several technologies allowing the app to save data on the client device. It might also be sync'd back to the server, or it might only ever stay on the client: that's down to you, the developer.
 
 <p>There are several reasons to use client-side storage. First, you can make your app work when the user is offline, possibly sync'ing data back once the network is connected again. Second, it's a performance booster; you can show a large corpus of data as soon as the user clicks on to your site, instead of waiting for it to download again. Third, it's an easier programming model, with no server infrastructure required. Of course, the data is more vulnerable and the user can't accessit from multiple clients, so you should only use it for non-critical data, in particular cached versions of data that's also "in the cloud". See <a href="/tutorials/offline/storage/">"Offline": What does it mean and why should I care?</a> for a general discussion of offline technologies, of which client-side storage is one component.</p>
 
 The technologies are:
 <ul>
-  <li><a href="http://dev.w3.org/html5/webstorage/">Web Storage </a> simply provides a key-value mapping, e.g. <tt>localStorage["name"] = username;</tt>.  Unfortunately, present implementations only support string-to-string mappings, so you need to serialise and de-serialise other data structures. You can do so using <tt>JSON.stringify()</tt> and <tt>JSON.parse()</tt>.</li>
+  <li><a href="http://dev.w3.org/html5/webstorage/">Web Storage </a> simply provides a key-value mapping, e.g. <code>localStorage["name"] = username;</code>.  Unfortunately, present implementations only support string-to-string mappings, so you need to serialise and de-serialise other data structures. You can do so using <code>JSON.stringify()</code> and <code>JSON.parse()</code>.</li>
   <li><a href="http://dev.w3.org/html5/webdatabase/">Web SQL Database</a> gives you all the power - and effort - of a structured SQL relational database.</li>
   <li><a href="http://www.w3.org/TR/IndexedDB/">Indexed Database</a> is somewhere in between Web Storage and Web SQL Database. Like Indexed Database, it's a straightforward key-value mapping, but it supports indexes like those of relational databases, so searching objects matching a particular field is fast; you don't have to manually iterate through every object in the store.</li>
   <li><a href="http://www.w3.org/TR/FileAPI/">File Access</a> is an API for reading file content in JavaScript. Given a set of files the user has added to a "file" input element, you can read the content of the file or reference it as a URL, e.g. if the user has specified an image file, you can show the image. There are also proposals underway for file writing capabilities.</li>
@@ -19,20 +20,19 @@ The technologies are:
 <p>For a detailed comparison of client-side storage techniques with code demos, see our <a href="/tutorials/offline/storage/">Client-Side Storage</a> article.</p>
 
 <h4>Browser support</h4>
-<p>See: <a href="http://caniuse.com/#feat=storage">current browser support for storage</a> on caniuse.com. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>
+<p>See: <a href="http://caniuse.com/#feat={{category}}">current browser support for {{category}}</a> on caniuse.com. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>
 <p>Web Storage is supported in all modern browsers (Chrome, Safari, Firefox, Opera, and IE8+). Web SQL Database is supported in Chrome, Safari, and Opera; with Firefox and IE unlikely to support it any time soon (Mozilla is <a href="http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/">phiilosophically opposed</a>.) Indexed Database has an early implementation in Firefox 4.0 Beta, and Chrome engineers are working towards another implementation. There's a good chance all browsers will support it in the future, but that's not yet clear. Chrome, Safari, and Firefox all have some degree of support for File APIs, but work is ongoing.</p>
 {% endblock %}
 
-<!-- wrap any tuts content with LI's -->
-{% block tuts %} 
-<li><a href="../tutorials/webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a></li>
-<li><a href="../tutorials/file/dndfiles/">Reading local files in JavaScript</a></li>
+<!-- wrap any tuts content with LI's 
+     these will be added to existing tutorials scraped from h5r.com -->
+{% block tuts %}
 <li><a href="http://html5tutorial.net/tutorials/working-with-html5-localstorage.html">4-part tutorial on Web Storage</a></li>
 <li><a href="http://hacks.mozilla.org/2010/06/comparing-indexeddb-and-webdatabase/">Firefox 4: An early walk-through of IndexedDB</a></li>
 {% endblock %}
 
 
-{% block inthewild %} 
+{% block inthewild %}
 <figure>
   <a href="http://googlecode.blogspot.com/2009/04/gmail-for-mobile-html5-series-using.html">
     <img src="/static/images/features/offline-gmail.png">
