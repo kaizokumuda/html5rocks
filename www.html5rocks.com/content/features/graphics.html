@@ -5,7 +5,7 @@
 {% block tuttags   %}graphics,canvas,svg{% endblock %}
 
 {% block description %}
-<img src="/static/images/features/graphics.png" widht="160" height="170">
+<img src="/static/images/features/graphics.png" width="160" height="170">
 <p>The web has always been a visual medium, but a restricted one at best.
 Until recently, HTML developers were limited to CSS and JavaScript in order to produce animations or visual effects for their websites,
 or they would have to rely on a plugin like Flash.  With the addition of technologies like the canvas element, Web GL, and SVG images,
@@ -64,17 +64,31 @@ Chrome specific details can be found on the <a href="http://dev.chromium.org/dev
 {% endblock %}
 
 
-{% block inthewild %} 
-<dl>
-  <dt><a href="http://thewildernessdowntown.com/">The Wilderness Downtown</a></dt>
-  <dd>Online music video from the Arcade Fire)</dd>
-  <dt><a href="http://muro.deviantart.com/">deviantART muro</a></dt>
-  <dd>Online drawing application</dd>
-  <dt><a href="http://wikipedia.com">Wikipedia</a></dt>
-  <dd>SVG support via svgweb</dd>
-  <dt><a href="http://www.monocubed.com/?p=549">Galactic Inbox</a></dt>
-  <dd>GMail the game</dd>
-</dl>
+{% block inthewild %}
+<figure>
+  <a href="http://thewildernessdowntown.com/">
+    <img src="/static/images/features/arcadefire.png" alt="Online music video from the Arcade Fire" title="Online music video from the Arcade Fire" />
+    <figcaption>The Wilderness Downtown</figcaption>
+  </a>
+</figure>
+<figure>
+  <a href="http://muro.deviantart.com/">
+    <img src="/static/images/features/deviantart_muro.png" alt="Online drawing application" title="Online drawing application" height="98">
+    <figcaption>deviantART muro</figcaption>
+  </a>
+</figure>
+<figure>
+  <a href="http://wikipedia.com">
+    <img src="/static/images/features/wikipedia.png" alt="SVG support via svgweb" title="SVG support via svgweb">
+    <figcaption>Wikipedia</figcaption>
+  </a>
+</figure>
+<figure>
+  <a href="http://www.monocubed.com/?p=549">
+    <img src="/static/images/features/galactic_inbox.png" alt="GMail the game" title="GMail the game">
+    <figcaption>Galactic Inbox</figcaption>
+  </a>
+</figure>
 {% endblock %}
 
 
