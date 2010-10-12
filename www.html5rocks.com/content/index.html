@@ -26,10 +26,10 @@
       width: 150px;
       text-align: center;
       padding: 13px 10px;
-      margin: 0 5px;
+      margin: 0 6px;
       background: -moz-linear-gradient(90deg, #eee, #fff, #eee);
       background: -webkit-gradient(linear, left top, left bottom, from(#eee), color-stop(0.5, #fff), to(#eee));
-      border: 3px solid #e1e1e1;
+      border: 2px solid #e1e1e1;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
       border-radius: 15px;
@@ -39,7 +39,10 @@
       cursor: pointer;
     }
     .feed-section div.feature {
-      border-width: 2px;
+      border-width: 1px;
+    }
+    .feed-section div.feature a {
+      outline: 0;
     }
     #index div.app:hover, .feed-section div.app:hover {
       border-color: #e1e1e1;
@@ -47,6 +50,7 @@
       -moz-box-shadow: #666 0px 0px 6px;
       box-shadow: #666 0px 0px 6px;
       background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+      background: -moz-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
     }
     .feed-section div.feature:hover {
       -webkit-box-shadow: none;
@@ -54,7 +58,7 @@
       box-shadow:  none;
     }
     .feed-section div.app {
-      display:inline-block;
+      display: inline-block;
       width: 155px;
       height: 32px;
       margin: 3px;
@@ -210,16 +214,15 @@
     <div class="app feature">
      <a href="/features/graphics">Graphics</a>
     </div>
+    <div class="app feature">
+     <a href="/features/storage">Storage</a>
+    </div>
   </section>
   <section class="fr feed-section">
-    
     <h2>Latest Tutorials <a href="http://feeds.feedburner.com/html5rocks"><img src="/static/images/feed_icon16x16.png" width="16" height="16" /></a></h2>
     <ul id="latest_articles_feed"><li><i>loading feed...</i></li></ul>
     <p><a href="/tutorials/">See more &rArr;</a></p>
-    
-    
   </section>
-  
   
   <section class="clear info-section">
     <h2>Contribute</h2>
