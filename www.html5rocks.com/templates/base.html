@@ -66,6 +66,13 @@
       window.addEventListener && document.querySelector('#title').addEventListener('click', function() {
         window.location = '/';
       }, false);
+      
+      
+      // kill those feedburner and marketing tracking arguments cuz they're ugly. 
+      if (/^\?utm_/.test(location.search) && history.replaceState){  
+        history.replaceState({},'', location.href.replace(/\?utm_.*/,'')); 
+      }
+      
     })();
 
     var _gaq = _gaq || [];
