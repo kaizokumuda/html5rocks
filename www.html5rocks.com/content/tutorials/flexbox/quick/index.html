@@ -383,7 +383,8 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
   height: 95px;
   font-size: 14px;
   border: 1px solid #555;
-  
+  background : #CFC;
+    
   display: -webkit-box;
   -webkit-box-orient: horizontal;
   -webkit-box-pack: center;
@@ -400,12 +401,10 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
   box-align: center;
 }
 
-
-.centerbox > div:nth-child(1) { background : #FCC;}
 </style>
 
 <div class="centerbox">
-  <div>center me, please</div>
+  <textarea>resize me, please</textarea>
 </div>
 
 <p>And the source:</p>
@@ -422,7 +421,7 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
   <pre class="prettyprint">
 .centerbox {
   /* basic styling */
-  width: 350px; height: 95px;
+  width: 350px; height: 95px; background : #CFC;
   font-size: 14px; border: 1px solid #555;
 
   /* flexbox, por favor */
@@ -433,8 +432,6 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
   box-pack: center;
   box-align: center;
 }
-
-.centerbox > div:nth-child(1) { background : #FCC; }
   </pre>
 </div>
  
