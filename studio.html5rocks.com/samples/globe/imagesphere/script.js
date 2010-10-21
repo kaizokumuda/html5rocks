@@ -158,7 +158,7 @@ function setupSlider($, elem, ui, obj) {
 
 
 
-  $('#'+ ui.name).slider({
+  $.fn.slider && $('#'+ ui.name).slider({
     range: false,
     step: 1,
     max: ui.max * 1000,
