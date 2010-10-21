@@ -147,13 +147,9 @@ Browser-specific features are capabilities that are available, but outside the r
 
 <h3 id="toc-detect-offline">Detecting if you're online</h3>
 
-<p>There's an HTML5 API to let you query if a browser is online: <code>navigator.onLine()</code>. It works on recent IE, Firefox, and Opera, but not on Safari and Chrome. At least in the case of Chrome, it's intentionally <i>not</i> supported, for reasons explained <a href="http://code.google.com/p/chromium/issues/detail?id=7469#c7">here</a>:</p>
+<p>There's an HTML5 API to let you query if a browser is online: <code>navigator.onLine()</code>. It works on recent IE, Firefox, and Opera, with Chrome support <a href="http://code.google.com/p/chromium/issues/detail?id=7469#c7">coming soon</a>. You can also catch events using <tt>document.body.addEventListener("online", function () {...}</tt> and <tt>document.body.addEventListener("offline", function () {...}</tt>.</p>
 
-<blockquote>
-<p>navigator.onLine and online/offline events are not supported because they are not useful.  they only tell you about the status of your immediate network adapter.  It doesn't say anything about whether or not you can actually connect to a server.  Your ISP connection may be down for example, and your local operating system would have no idea.  Your OS would just be able to tell you that "yes, you have a connection to your router." ... the only reliable way to determine if you are online is to actually try to make a connection to a server.  This forces you to write your application in a more robust way.</p>
-</blockquote>
-
-<p>The most robust way to detect if you're online is not to detect you're online, but to actually try running operations and be ready to deal with any problems that arise. For instance, if your online-offline app is automatically syncing every 10 seconds, then just keep trying to sync and flag the problem if you're unable to do so after a few attempts.</p>
+<p>You should generally assume the network is present and make calls as normal. It's only in the event of a server timeout or related error that you should invoke <tt>navigator.online</tt>. Doing so will serve two purposes: (a) you can decide if the error is caused by a network outage versus a server-specific outage, and if it's a network outage, inform the user so they can get back online; (b) you can start watching for the "online" event, and take action when the user's back online.</p>
 
 <h3 id="toc-structure">Structuring file data</h3>
 
