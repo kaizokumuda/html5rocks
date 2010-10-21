@@ -197,6 +197,21 @@ em {
   font-style: italic;
   float: left;
 }
+.date time.updated {
+  font-size: 90%;
+  font-style: italic;
+  margin-left: 1em;
+}
+.date time.updated:empty {
+  disply: none;
+  margin-left: 0;
+}
+.date time.updated:not(:empty):before {
+  content: '( updated: ';
+}
+.date time.updated:not(:empty):after {
+  content: ' )';
+}
 article header.article_header {
   clear: both;
 }
