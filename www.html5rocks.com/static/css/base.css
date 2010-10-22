@@ -176,6 +176,10 @@ code {
   font: 13px Monaco, monospace;
   color: #060;
 }
+b code {
+  font: bold 13px Monaco, monospace;
+  color: #060;
+}
 pre code {
   display: block;
   overflow: auto;
@@ -327,6 +331,9 @@ footer .note {
 abbr, acronym {
   border-bottom: 1px dotted #888;
   cursor: help;
+}
+b, strong { 
+  font-weight: bold;
 }
 
 .tutorials a[href^='http']:not([href*='html5rocks.']), 
