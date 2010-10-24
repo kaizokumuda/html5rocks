@@ -284,7 +284,7 @@ var bb = new BlobBuilder();
 bb.append("onmessage = function(e) { postMessage('msg from worker'); }");
 
 // Obtain a blob URL reference to our worker 'file'.
-var blobURL = window.createBlobURL(bb.getBlob());
+var blobURL = window.createObjectURL(bb.getBlob());
 
 var worker = new Worker(blobURL);
 worker.onmessage = function(e) {
@@ -295,7 +295,7 @@ worker.postMessage(); // Start the worker.
 
   <h3 id="toc-inlineworkers-bloburls">Blob URLs</h3>
 
-  <p>The magic comes with the call to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-createBlobURL"><code>window.createBlobURL()</code></a>.
+  <p>The magic comes with the call to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-createObjectURL"><code>window.createObjectURL()</code></a>.
   This method creates a simple URL string which can be used to reference data stored in a
   DOM <code>File</code> or <code>Blob</code> object. For example:</p>
 
@@ -344,7 +344,7 @@ worker.postMessage(); // Start the worker.
     var bb = new BlobBuilder();
     bb.append(document.querySelector('#worker1').textContent);
 
-    var worker = new Worker(window.createBlobURL(bb.getBlob()));
+    var worker = new Worker(window.createObjectURL(bb.getBlob()));
     worker.onmessage = function(e) {
       log("Received: " + e.data);
     }
