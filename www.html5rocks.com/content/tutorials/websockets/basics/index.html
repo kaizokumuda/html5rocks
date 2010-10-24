@@ -80,7 +80,7 @@ connection.onmessage = function (e) {
   <h3 id="toc-gettingstarted-workercomm">Communicating with the Server</h3>
 
   <p>There is really not much too it. As soon as we have a connection to the server (when <code>onopen</code> fired)
-  we can starte sending data to the server using the <code>send('your message')</code> method on the connection
+  we can start sending data to the server using the <code>send('your message')</code> method on the connection
   object. Equally the server might send us messages at any time. Whenever this happens the <code>onmessage</code> callback
   fires. The callback receives an event object and the actual message is accessible via the <code>data</code>
   property.</p>
@@ -92,7 +92,7 @@ connection.onmessage = function (e) {
   between parties on any domain. The server gets to decide to make it's service available to all clients or
   only to those that reside on a set of well defined domains.</p>
 
-  <h2 id="toc-usecases">Proxy Servers</h2>
+  <h2 id="toc-proxyservers">Proxy Servers</h2>
 
   <p>Every new technology comes with a new set of problems. In the case of WebSockets it is the compatibility
   with so called proxy servers which mediate HTTP connections in most company networks. The WebSocket protocol uses the
@@ -101,13 +101,40 @@ connection.onmessage = function (e) {
   might implement the WebSocket spec it might not be possible to actually open a connection. This makes the next
   paragraph even more important :)</p>
 
-  <h2 id="toc-usecases">Use WebSockets Today</h2>
+  <h2 id="toc-usetoday">Use WebSockets Today</h2>
   
   <p>While WebSockets are very recent technology and there is still active work on the actual wire protocol
   format you can use WebSockets today with libraries that use one of the fallbacks mentioned above whenever
   WebSockets are not available. A library that has become very popular in this domain is 
   <a href="http://socket.io/">socket.io</a> which comes with a client and a server implementation of the protocol
   and all the fallbacks.</p>
+  
+  <h2 id="toc-serverside">The Server Side</h2>
+  
+  <p>Using WebSockets creates a whole new usage pattern for server side applications. While traditional
+  server stacks such as LAMP are designed around are designed around the HTTP request/response cycle
+  they often do not deal well with the larger number of open or "hanging" connections that come along
+  with WebSockets. Keeping a large number of connections open at the same time requires an architecture
+  that receives high concurrency at a low performance cost. Such architectures a usually designed around
+  either threading or so called non-blocking IO.</p>
+  
+  <h3 id="toc-serversideimplementations">Server Side Implementations</h3>
+  
+  <ul>
+    <li><a href="http://socket.io/">Socket.IO (server side implementations for Java and node.js)</a></li>
+    <li><a href="http://github.com/miksago/node-websocket-server">node-websocket-server</a></li>
+    <li><a href="http://www.eclipse.org/jetty/">Jetty (Java)</a></li>
+    <li><a href="http://github.com/igrigorik/em-websocket">Ruby/EventMachine</a></li>
+    <li><a href="http://github.com/rlotun/txWebSocket">Python/Twisted</a>
+  </ul>
+  
+  <h3 id="toc-protocolversion">Protocol Versions</h3>
+  
+  <p>The wire protocol for WebSockets has changed recently. This means that you might come into the situation
+  that either a client or a server implementation does not support the correct version. All recent versions
+  of the modern browsers support the <a href="http://tools.ietf.org/html/draft-hixie-thewebsocketprotocol-76">version
+  76</a> of the spec. For now it is best to pick a server implementation that supports at least this version
+  of the protocol.</p>
   
   <h2 id="toc-usecases">Use Cases</h2>
 
@@ -120,16 +147,18 @@ connection.onmessage = function (e) {
     <li>Chat applications</li>
     <li>Live sports ticker</li>
     <li>Live updating social streams</li>
-    <li>...</li>
   </ul>
 
   <h2 id="toc-examples">Demos</h2>
   <ul>
-    <li>...</li>
+    <li><a href="http://www.websockets.org/echo.html">Ping server (used in examples above)</a></li>
+    <li><a href="http://scrabb.ly/">massively multiplayer online crossword</a></li>
+    <li><a href="http://html5demos.com/web-socket">HTML5demos sample</a></li>
   </ul>
 
   <h2 id="toc-references">References</h2>
   <ul>
-    <li>...</li>
+    <li><a href="http://dev.w3.org/html5/websockets/">The WebSocket API</a></li>
+    <li><a href="http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-03">The WebSocket Protocol</a></li>
   </ul>
 {% endblock %}
