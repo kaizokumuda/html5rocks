@@ -13,7 +13,7 @@ The technologies are:
 <ul>
   <li><a href="http://dev.w3.org/html5/webstorage/">Web Storage </a> simply provides a key-value mapping, e.g. <code>localStorage["name"] = username;</code>.  Unfortunately, present implementations only support string-to-string mappings, so you need to serialise and de-serialise other data structures. You can do so using <code>JSON.stringify()</code> and <code>JSON.parse()</code>.</li>
   <li><a href="http://dev.w3.org/html5/webdatabase/">Web SQL Database</a> gives you all the power - and effort - of a structured SQL relational database.</li>
-  <li><a href="http://www.w3.org/TR/IndexedDB/">Indexed Database</a> is somewhere in between Web Storage and Web SQL Database. Like Indexed Database, it's a straightforward key-value mapping, but it supports indexes like those of relational databases, so searching objects matching a particular field is fast; you don't have to manually iterate through every object in the store.</li>
+  <li><a href="http://www.w3.org/TR/IndexedDB/">Indexed Database</a> is somewhere in between Web Storage and Web SQL Database. Like Web Storage, it's a straightforward key-value mapping, but it supports indexes like those of relational databases, so searching objects matching a particular field is fast; you don't have to manually iterate through every object in the store.</li>
   <li><a href="http://www.w3.org/TR/FileAPI/">File Access</a> is an API for reading file content in JavaScript. Given a set of files the user has added to a "file" input element, you can read the content of the file or reference it as a URL, e.g. if the user has specified an image file, you can show the image. There are also proposals underway for file writing capabilities.</li>
 </ul>
 
