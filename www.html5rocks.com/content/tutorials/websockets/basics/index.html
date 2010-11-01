@@ -47,9 +47,6 @@
   <p>The <a href="http://dev.w3.org/html5/websockets/">WebSockets</a> specification defines
   an API establishing "socket" connections between a web browser and a server. In plain words: There is an open connection 
   between the client and the server and both parties can start sending data at any time.</p>
-  
-  <p>WebSockets use the <code>postMessage()</code> API which might feel familiar if you have worked with 
-  <a href="/tutorials/#workers">Web Workers</a> in the past.</p>
 
   <h2 id="toc-gettingstarted">Getting Started</h2>
 
@@ -115,7 +112,7 @@ connection.onmessage = function (e) {
   <a href="http://socket.io/">socket.io</a> which comes with a client and a server implementation of the protocol
   and includes fallbacks. There are also commercial solutions such as <a href="http://pusherapp.com/">PusherApp</a>
   which can be easily integrated into any web environment by providing a HTTP API to send web socket messages
-  to clients. Due to the extra HTTP there will always be extra overhead compared to pure WebSockets.</p>
+  to clients. Due to the extra HTTP request there will always be extra overhead compared to pure WebSockets.</p>
   
   <h2 id="toc-serverside">The Server Side</h2>
   
@@ -147,13 +144,13 @@ connection.onmessage = function (e) {
 
   <p>Use WebSockets whenever you need a truly low latency, near realtime connection between the client and the server. Keep in
   mind that this might involve rethinking how you build your server side applications with a new focus on
-  technologies such as event queues:</p>
+  technologies such as event queues. Some example use cases are:</p>
   
   <ul>
     <li>Multiplayer online games</li>
     <li>Chat applications</li>
     <li>Live sports ticker</li>
-    <li>Live updating social streams</li>
+    <li>Realtime updating social streams</li>
   </ul>
 
   <h2 id="toc-examples">Demos</h2>
