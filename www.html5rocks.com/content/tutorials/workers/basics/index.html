@@ -302,9 +302,9 @@ worker.postMessage(); // Start the worker.
 
   <p>Blob URLs are unique and last for the lifetime of your application (e.g. until the <code>document</code>
   is unloaded). If you're creating many Blob URLs, it's a good idea to release references that are
-  no longer needed. You can explicitly release a Blob URL by passing it to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-revokeBlobURL"><code>window.revokeBlobURL()</code></a>:</p>
+  no longer needed. You can explicitly release a Blob URL by passing it to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-revokeObjectURL"><code>window.revokeObjectURL()</code></a>:</p>
 
-  <pre class="prettyprint">window.revokeBlobURL(blobURL);</pre>
+  <pre class="prettyprint">window.revokeObjectURL(blobURL);</pre>
 
   <h3 id="toc-inlineworkers-example">Full Example</h3>
 
