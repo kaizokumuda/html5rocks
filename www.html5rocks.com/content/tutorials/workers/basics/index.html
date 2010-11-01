@@ -273,6 +273,101 @@ importScripts('script1.js', 'script2.js');
   <p>For an sample of how to spawn a subworker, see <a href="http://www.whatwg.org/specs/web-workers/current-work/#delegation">the example</a>
   in the specification.</p>
 
+  <h2 id="toc-inlineworkers">Inline Workers</h2>
+
+  <p>Check this out! With the new <a href="http://dev.w3.org/2009/dap/file-system/file-writer.html#the-blobbuilder-interface"><code>BlobBuilder</code></a>
+  interface, you can "inline" your worker in the same HTML file as your main logic by creating a
+  <code>BlobBuilder</code> and appending the worker code as a string:</p>
+<pre class="prettyprint">
+var bb = new BlobBuilder();
+bb.append("onmessage = function(e) { postMessage('msg from worker'); }");
+
+// Obtain a blob URL reference to our worker 'file'.
+var blobURL = window.createObjectURL(bb.getBlob());
+
+var worker = new Worker(blobURL);
+worker.onmessage = function(e) {
+  // e.data == 'msg from worker'
+};
+worker.postMessage(); // Start the worker.
+</pre>
+
+  <h3 id="toc-inlineworkers-bloburls">Blob URLs</h3>
+
+  <p>The magic comes with the call to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-createObjectURL"><code>window.createObjectURL()</code></a>.
+  This method creates a simple URL string which can be used to reference data stored in a
+  DOM <code>File</code> or <code>Blob</code> object. For example:</p>
+
+  <pre class="prettyprint">blob:http://localhost/c745ef73-ece9-46da-8f66-ebes574789b1</pre>
+
+  <p>Blob URLs are unique and last for the lifetime of your application (e.g. until the <code>document</code>
+  is unloaded). If you're creating many Blob URLs, it's a good idea to release references that are
+  no longer needed. You can explicitly release a Blob URL by passing it to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-revokeBlobURL"><code>window.revokeBlobURL()</code></a>:</p>
+
+  <pre class="prettyprint">window.revokeBlobURL(blobURL);</pre>
+
+  <h3 id="toc-inlineworkers-example">Full Example</h3>
+
+  <p>Taking this one step further, we can get clever with how the worker's JS
+  code is inlined in our page. This technique uses a <code>&lt;script&gt;</code> tag
+  to define the worker:</p>
+
+  <pre class="prettyprint">
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8" />
+&lt;/head>
+&lt;body>
+
+  &lt;div id="log"&gt;&lt;/div&gt;
+
+  &lt;script id="worker1" type="text/html"&gt;
+    // This script won't be interpreted by the JS engine because its type is text/html.
+    self.onmessage = function(e) {
+      self.postMessage('msg from worker');
+    };
+    // Rest of your worker code goes here.
+  &lt;/script&gt;
+
+  &lt;script&gt;
+    function log(msg) {
+      // Use a fragment: browser will only render/reflow once.
+      var fragment = document.createDocumentFragment();
+      fragment.appendChild(document.createTextNode(msg));
+      fragment.appendChild(document.createElement('br'));
+
+      document.querySelector("#log").appendChild(fragment);
+    }
+
+    var bb = new BlobBuilder();
+    bb.append(document.querySelector('#worker1').textContent);
+
+    var worker = new Worker(window.createObjectURL(bb.getBlob()));
+    worker.onmessage = function(e) {
+      log("Received: " + e.data);
+    }
+    worker.postMessage(); // Start the worker.
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+  <p>In my opinion, this new approach is a bit cleaner and more legible.
+  It defines a script tag with <var>id="worker1"</var> and
+  <var>type='text/html'</var> (so the browser doesn't parse the JS). That code is extracted as a
+  string using <code>document.querySelector('#worker1').textContent</code> and passed to
+  <code>BlobBuilder.append()</code>.</p>
+
+  <h3 id="toc-inlineworkers-loadingscripts">Loading External Scripts</h3>
+
+  <p>When using these techniques to inline your worker code,
+  <code>importScripts()</code> will only work if you supply an absolute URI. If
+  you attempt to pass a relative URI, the browser will complain with a security
+  error. The reason being: the worker (now created from a blob URL) will be resolved with a
+  <code>blob:</code> prefix, while your app will be running from a different (presumably <code>http://</code>)
+  scheme. Hence, the failure will be due to XD restrictions.</p>
+
   <h2 id="toc-errors">Handling Errors</h2>
 
   <p>As with any JavaScript logic, you'll want to handle any errors that are thrown in your web workers.
