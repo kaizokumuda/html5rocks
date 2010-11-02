@@ -973,7 +973,7 @@ extra_work.js:
           <section>
 <pre>var socket = new <b>WebSocket</b>(location);
 socket.<b>onopen</b> = function(event) {
-  socket.<b>postMessage</b>(“Hello, WebSocket”);
+  socket.<b>send</b>(“Hello, WebSocket”);
 }
 socket.<b>onmessage</b> = function(event) { alert(event.data); }
 socket.<b>onclose</b> = function(event) { alert(“closed”); }
