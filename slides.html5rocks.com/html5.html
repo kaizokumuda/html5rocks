@@ -604,10 +604,10 @@ var els = document.<b>querySelectorAll</b>("table.test > tr > td");
 // use localStorage for persistent storage
 // use sessionStorage for per tab storage
 textarea.addEventListener('keyup', function () {
-  window.<b>localStorage</b>['value'] = area.value;
-  window.<b>localStorage</b>['timestamp'] = (new Date()).getTime();
+  window.<b>localStorage</b>.setItem('value', area.value);
+  window.<b>localStorage</b>.setItem('timestamp', new Date()).getTime());
 }, false);
-textarea.value = window.<b>localStorage</b>['value'];
+textarea.value = window.<b>localStorage</b>.getItem('value');
 </pre>
 <p id="localstorage-message">Save text value on the client side (crash-safe)</p>
 <textarea id="ta" placeholder="Type your text here..."></textarea>
