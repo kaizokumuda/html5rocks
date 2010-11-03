@@ -275,7 +275,8 @@ importScripts('script1.js', 'script2.js');
 
   <h2 id="toc-inlineworkers">Inline Workers</h2>
 
-  <p>Check this out! With the new <a href="http://dev.w3.org/2009/dap/file-system/file-writer.html#the-blobbuilder-interface"><code>BlobBuilder</code></a>
+  <p>What if you want to create your worker script on the fly, or create a self-contained
+  page without having to create separate worker files? With the new <a href="http://dev.w3.org/2009/dap/file-system/file-writer.html#the-blobbuilder-interface"><code>BlobBuilder</code></a>
   interface, you can "inline" your worker in the same HTML file as your main logic by creating a
   <code>BlobBuilder</code> and appending the worker code as a string:</p>
 <pre class="prettyprint">
@@ -292,7 +293,7 @@ worker.onmessage = function(e) {
 worker.postMessage(); // Start the worker.
 </pre>
 
-  <h3 id="toc-inlineworkers-bloburls">Blob URLs</h3>
+  <h3 id="toc-inlineworkers-bloburis">Blob URIs</h3>
 
   <p>The magic comes with the call to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-createObjectURL"><code>window.createObjectURL()</code></a>.
   This method creates a simple URL string which can be used to reference data stored in a
@@ -300,9 +301,9 @@ worker.postMessage(); // Start the worker.
 
   <pre class="prettyprint">blob:http://localhost/c745ef73-ece9-46da-8f66-ebes574789b1</pre>
 
-  <p>Blob URLs are unique and last for the lifetime of your application (e.g. until the <code>document</code>
-  is unloaded). If you're creating many Blob URLs, it's a good idea to release references that are
-  no longer needed. You can explicitly release a Blob URL by passing it to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-revokeObjectURL"><code>window.revokeObjectURL()</code></a>:</p>
+  <p>Blob URIs are unique and last for the lifetime of your application (e.g. until the <code>document</code>
+  is unloaded). If you're creating many Blob URIs, it's a good idea to release references that are
+  no longer needed. You can explicitly release a Blob URIs by passing it to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-revokeObjectURL"><code>window.revokeObjectURL()</code></a>:</p>
 
   <pre class="prettyprint">window.revokeObjectURL(blobURL);</pre>
 
@@ -322,7 +323,7 @@ worker.postMessage(); // Start the worker.
 
   &lt;div id="log"&gt;&lt;/div&gt;
 
-  &lt;script id="worker1" type="text/html"&gt;
+  &lt;script id="worker1" type="text/plain"&gt;
     // This script won't be interpreted by the JS engine because its type is text/html.
     self.onmessage = function(e) {
       self.postMessage('msg from worker');
@@ -366,7 +367,7 @@ worker.postMessage(); // Start the worker.
   you attempt to pass a relative URI, the browser will complain with a security
   error. The reason being: the worker (now created from a blob URL) will be resolved with a
   <code>blob:</code> prefix, while your app will be running from a different (presumably <code>http://</code>)
-  scheme. Hence, the failure will be due to XD restrictions.</p>
+  scheme. Hence, the failure will be due to cross origin restrictions.</p>
 
   <h2 id="toc-errors">Handling Errors</h2>
 
