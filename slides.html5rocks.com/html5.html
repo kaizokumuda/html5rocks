@@ -186,9 +186,9 @@
       h1 {
         font-size: 100%;
         display: inline;
-      	font-weight: normal;
-      	padding: 0;
-      	margin: 0;
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
       }
       
       h2 {
@@ -228,6 +228,10 @@
       .gmap a {
         line-height: 100%;
         border-bottom: none;
+      }
+
+      .gmap > img {
+        border: 1px solid #ccc;
       }
 
       li {
@@ -306,7 +310,6 @@
       }
       
       button {
-        margin: 20px 10px 0 0;
         font-family: Verdana;
       }
       
@@ -443,8 +446,6 @@
         width: 50px;
       }
     </style>
-    
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
   </head>
   <body>
     <div class="presentation">
@@ -802,118 +803,122 @@ CACHE:
           </style>
           <header><span class="js">JS APIs</span> <h1>Web Workers</h1></header>
           <section>
-<pre>main.js:
-  var worker = new <b>Worker</b>('extra_work.js');
-  worker.<b>onmessage</b> = function(event) { alert(event.data); };
-
-extra_work.js:
-  self.<b>onmessage</b> = function(event) {
-    // Do some work.
-    self.<b>postMessage</b>(some_data);
-  }
+main.js:
+<pre>
+var worker = new <b>Worker</b>('task.js');
+worker.<b>onmessage</b> = function(event) { alert(event.data); };
+worker.<b>postMessage</b>('data');
 </pre>
-        <script src="src/webworkers/points.js"></script>
-        <script src="src/webworkers/annealing.js"></script>
+task.js:
+<pre>
+self.<b>onmessage</b> = function(event) {
+  // Do some work.
+  self.<b>postMessage</b>("recv'd: " + event.data);
+};
+</pre>
 
         <div id="w-wrapper">
-          <div id="wmap" class="gmap"></div>
-          <button id="find-route-y">Find Route with Workers</button>
-          <button id="find-route-n">Find Route without Workers</button>
-          <p id="w-loading">Loading Route...</p>
-          <p>Try dragging the map while the complex route is being calculated (you will only be able to do that with Workers!)</p>
+          <div id="wmap" class="gmap">
+            <img src="http://maps.google.com/maps/api/staticmap?center=13,13&zoom=3&size=680x200&sensor=false"/>
+          </div>
+          <div style="margin-top:5px">
+            <button id="find-route-y">Find route with Workers</button>
+            <button id="find-route-n">Find route without Workers</button>
+            <p id="w-loading">Loading Route...</p>
+          </div>
+          <p style="font-size: 90%;" class="center">Try dragging the map while the complex route is being calculated (you will only be able to do that with Workers!)</p>
         </div>
+        <script src="src/webworkers/points.js"></script>
+        <script src="src/webworkers/annealing.js"></script>
         <script>
-        var markersArray = [];
-        var workermap = null;
-        var useThreads = false;
-        window.addEventListener('load', function() {
-          var myOptions = {
-            zoom: 3,
-            center: new google.maps.LatLng(13, 13),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          }
-          workermap = new google.maps.Map(document.getElementById("wmap"), myOptions);
-          workermap.setCenter(new google.maps.LatLng(13, 13));
-          drawPoints();
+        (function() {
+          var markersArray = [];
+          var map = null;
+          var useThreads = false;
 
           document.querySelector('#w-wrapper').addEventListener('click', function(event) {
+            if (!map) {
+              map = new google.maps.Map(document.querySelector('#wmap'), {
+                zoom: 3,
+                center: new google.maps.LatLng(13, 13),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              });
+              map.getDiv().style.border =  '1px solid #ccc';
+              drawPoints();
+            }
+
             if (event.target.id == 'find-route-y') {
               useThreads = true;
-              document.getElementById('w-loading').style.visibility = 'visible'
+              document.querySelector('#w-loading').style.visibility = 'visible';
               test();
-            }
-            else if (event.target.id == 'find-route-n'){
+            } else if (event.target.id == 'find-route-n'){
               useThreads = false;
-              document.getElementById('w-loading').style.visibility = 'visible'
+              document.querySelector('#w-loading').style.visibility = 'visible';
               // this setTimout is so that we see the 'loading' label
               setTimeout(function() { test(); }, 10);
             }
           }, false);
-        }, false);
 
-        function drawPath(path) {
-          var firstPoint = true;
-          var l = p1.length;
-          var scaleFactor = 5;
-          for (var i = 0; i < l - 1; i++) {
-            var points = [
-              new google.maps.LatLng(p1[i].x / scaleFactor,
-                                     p1[i].y / scaleFactor),
-              new google.maps.LatLng(p1[i + 1].x / scaleFactor,
-                                     p1[i + 1].y / scaleFactor)
-            ];
-            var polyline = new google.maps.Polyline(
-                {path: points, strokeColor: '#ff0000', strokeWeight: 1 });
-            markersArray.push(polyline);
-            polyline.setMap(workermap);
-          }
-        }
-
-        function drawPoints() {
-          var blueIcon = new google.maps.MarkerImage('src/webworkers/point.png',
-                // size
-                new google.maps.Size(3, 3),
-                // origin
-                new google.maps.Point(0, 0),
-                // anchor
-                new google.maps.Point(0, 0));
-          for (var i = 0; i < p1.length; i++) {
-            // Render in Gmap instead of canvas
-            var point = new google.maps.LatLng(p1[i].x / 5, p1[i].y / 5);
-            var marker = new google.maps.Marker({position: point,
-                                                 icon: blueIcon});
-            markersArray.push(marker);
-            marker.setMap(workermap);
-          }
-        }
-
-        function deleteOverlays() {
-          if (markersArray) {
-            for (i in markersArray) {
-              markersArray[i].setMap(null);
+          function drawPath(path) {
+            var firstPoint = true;
+            var l = p1.length;
+            var scaleFactor = 5;
+            for (var i = 0; i < l - 1; ++i) {
+              var points = [
+                new google.maps.LatLng(p1[i].x / scaleFactor,
+                                       p1[i].y / scaleFactor),
+                new google.maps.LatLng(p1[i + 1].x / scaleFactor,
+                                       p1[i + 1].y / scaleFactor)
+              ];
+              var polyline = new google.maps.Polyline(
+                  {path: points, strokeColor: '#ff0000', strokeWeight: 1});
+              markersArray.push(polyline);
+              polyline.setMap(map);
             }
-            markersArray.length = 0;
           }
-        }
 
-        function test() {
-          var name = "Test 1";
-          var self = this;
-          deleteOverlays();
-          drawPoints();
-          setTimeout(function() {
+          function drawPoints() {
+            var blueIcon = new google.maps.MarkerImage(
+                'src/webworkers/point.png',
+                new google.maps.Size(3, 3), // size
+                new google.maps.Point(0, 0), // origin
+                new google.maps.Point(0, 0)); // anchor
+            for (var i = 0; i < p1.length; ++i) {
+              // Render in Gmap instead of canvas
+              var point = new google.maps.LatLng(p1[i].x / 5, p1[i].y / 5);
+              var marker = new google.maps.Marker({
+                  position: point, icon: blueIcon, map: map});
+              markersArray.push(marker);
+            }
+          }
+
+          function deleteOverlays() {
+            if (markersArray) {
+              for (var i in markersArray) {
+                markersArray[i].setMap(null);
+              }
+              markersArray = [];
+            }
+          }
+
+          function test() {
+            var name = "Test 1";
+            var self = this;
+            deleteOverlays();
+            drawPoints();
+            setTimeout(function() {
               var opts = {
                 points: p1,
                 t0: 1,
                 g: 0.99,
                 stepsPerT: 10
-              }
+              };
               var callback = {
                 name: name,
                 newMin: function(p) {
                 },
                 draw: function(p) {
-                  document.getElementById('w-loading').style.visibility = 'hidden';
+                  document.querySelector('#w-loading').style.visibility = 'hidden';
                   drawPath(p);
                 }
               };
@@ -930,33 +935,27 @@ extra_work.js:
                   console.log(event);
                 };
                 worker.postMessage(JSON.stringify({
-                        opts: opts,
-                        width: 200,
-                        height: 200
-                      }));
-              }
-              else {
+                  opts: opts,
+                  width: 200,
+                  height: 200
+                }));
+              } else {
                 var annealing = new Annealing();
-                  var callback2 = {
-                    onNewMin: function(p) {
-                      // postMessage('newmin')
-                    },
-                    onDone: function(p) {
-                      document.getElementById('w-loading').style.visibility = 'hidden';
-                      drawPath(p);
-                    }
-                  };
-                  annealing.init(opts, opts.width,
-                                 opts.height, callback2)
-                  annealing.go();
+                var callback2 = {
+                  onNewMin: function(p) {
+                    // postMessage('newmin')
+                  },
+                  onDone: function(p) {
+                    document.querySelector('#w-loading').style.visibility = 'hidden';
+                    drawPath(p);
+                  }
+                };
+                annealing.init(opts, opts.width, opts.height, callback2);
+                annealing.go();
               }
-                // a = new Annealing();
-              // a.init(opts, 200, 200, listener);
-              // a.go();
-
-          }, 10);
-        }
-        
+            }, 10);
+          }
+        })();
         </script>
         </section>
         </div>
@@ -1010,8 +1009,9 @@ extra_work.js:
               position: relative;
               left: -10px;
             }
-            #ws-left button {
-              margin-top: 0;
+            #ws-left button,
+            #ws-right button {
+              margin-top: 5px;
               font-size: 14px;
             }
             #ws-config-config, #ws-config-message {
@@ -1026,16 +1026,14 @@ extra_work.js:
               padding-top: 15px;
               clear: both;
             }
-
             #ws-powered a {
-              border: 0px;
+              border: 0
             }
-
             #wsKaazingLogo {
               position: relative;
               top: 4px;
               left: 2px;
-              border: 0px;
+              border: 0;
             }
           </style>
 
@@ -1302,66 +1300,79 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
 
         <div class="slide force-render">
           <style>
-            #map-container {
-              position: relative;
+            #see-position {
+              margin-bottom: 10px;
             }
             #geo-map {
               height: 280px;
             }
             #geo-log {
-              z-index: 1000;
-              position: absolute;
-              top: 0;
-              display: inline;
               background-color: red;
               color: white;
+              padding: 5px;
+              border-radius: 5px;
             }
           </style>
           <header><span class="js">JS APIs</span> <h1>Geolocation</h1></header>
           <section>
 <pre>if (<b>navigator</b>.<b>geolocation</b>) {
   <b>navigator</b>.<b>geolocation</b>.<b>getCurrentPosition</b>(function(position) {
-    var lat = position.<b>coords</b>.<b>latitude</b>;
-    var lng = position.<b>coords</b>.<b>longitude</b>;
-    var options = { position: new google.maps.LatLng(lat, lng) }
-    var marker = new google.maps.Marker(options);
-    marker.setMap(map);
-  });
+    var latLng = new google.maps.LatLng(
+        position.<b>coords</b>.<b>latitude</b>, position.<b>coords</b>.<b>longitude</b>);
+    var marker = new google.maps.Marker({position: latLng, map: map});
+    map.setCenter(latLng);
+  }, errorHandler);
 }
 </pre>
-          <button id="see-position">Show Position</button>
-          <div id="map-container">
-            <div id="geo-map" class="gmap"></div>
-            <p id="geo-log"></p>
+          <button id="see-position">Show Position</button> <span id="geo-log"></span>
+          <div id="geo-map" class="gmap">
+            <img src="http://maps.google.com/maps/api/staticmap?center=37.4419,-94.1419&zoom=3&size=680x278&sensor=true"/>
           </div>
+
           <script>
-          var options = { 
-            zoom: 4,
-            center: new google.maps.LatLng(13, 13),
-            mapTypeId: google.maps.MapTypeId.ROADMAP 
-          }
-          var map = new google.maps.Map(document.getElementById("geo-map"), options);
-          var geolog = document.querySelector('#geo-log');
-          document.getElementById('see-position').addEventListener('click', function() {
-            if (navigator.geolocation) {
-              geolog.innerHTML = "Looking for location...";
-              navigator.geolocation.getCurrentPosition(showPosition);
-              // also monitor position as it changes
-              navigator.geolocation.watchPosition(showPosition);
-            } else {
-              geolog.innerHTML = "no geolocation support";
-              console.log("no geolocation support");
-            }
+          (function() {
+            var map = null;
+            var geolog = document.querySelector('#geo-log');
 
             function showPosition(position) {
-              geolog.innerHTML = "";
-              var lat = position.coords.latitude;
-              var lng = position.coords.longitude;
-              var marker = new google.maps.Marker({ position: new google.maps.LatLng(lat, lng) });
-              map.setCenter(new google.maps.LatLng(lat, lng));
-              marker.setMap(map);
+              geolog.textContent = "You're within " + position.coords.accuracy +
+                  " meters of (" + position.coords.latitude + ", " +
+                  position.coords.longitude + ")";
+              var latLng = new google.maps.LatLng(
+                  position.coords.latitude, position.coords.longitude);
+              var marker = new google.maps.Marker({
+                position: latLng,
+                map: map
+              });
+              map.setCenter(latLng);
+              map.setZoom(15);
             }
-          }, false);
+
+            function handlePositionError(evt) {
+              geolog.textContent = evt.message;
+            }
+
+            document.querySelector('#see-position').addEventListener('click', function(evt) {
+              // Load map if it doesn't already exist and when user clicks the button.
+              if (!map) {
+                map = new google.maps.Map(document.querySelector('#geo-map'), {
+                  zoom: 3,
+                  center: new google.maps.LatLng(37.4419, -94.1419), // United States
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+                });
+                map.getDiv().style.border =  '1px solid #ccc';
+              }
+
+              if (navigator.geolocation) {
+                geolog.textContent = 'Looking for location...';
+                navigator.geolocation.getCurrentPosition(showPosition, handlePositionError);
+                // Also monitor position as it changes.
+                //navigator.geolocation.watchPosition(showPosition, handlePositionError);
+              } else {
+                geolog.textContent = 'Oops! Your browser does not support geolocation.';
+              }
+            }, false);
+          })();
           </script>
           </section>
         </div>
@@ -1392,9 +1403,14 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         
 
         <div class="slide">
-          <header><span class="html">HTML</span> <h1>New semantic tags</h1></header>
+          <header><span class="html">HTML</span> <h1>Better semantic meanings</h1></header>
           <section>
-            <pre class="two-column">&lt;body&gt;
+            <style>
+              #semantic-tags {
+                font-size: 95%;
+              }
+            </style>
+            <pre id="semantic-tags" class="two-column">&lt;body&gt;
   &lt;<b>header</b>&gt;
     &lt;<b>hgroup</b>&gt;
       &lt;h1&gt;Page title&lt;/h1&gt;
@@ -1407,7 +1423,6 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
      Navigation...
    &lt;/ul&gt;
   &lt;/nav&gt;
-
   &lt;<b>section</b>&gt;
    &lt;<b>article</b>&gt;
      &lt;<b>header</b>&gt;
@@ -1417,16 +1432,6 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
        Content...
      &lt;/section&gt;
    &lt;/article&gt;
-
-   &lt;article&gt;
-     &lt;header&gt;
-       &lt;h1&gt;Title&lt;/h1&gt;
-     &lt;/header&gt;
-     &lt;section&gt;
-       Content...
-     &lt;/section&gt;
-   &lt;/article&gt;
-
    &lt;article&gt;
      &lt;header&gt;
        &lt;h1&gt;Title&lt;/h1&gt;
@@ -1441,26 +1446,66 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
    Top links...
   &lt;/aside&gt;
 
+  &lt;<b>figure</b>&gt;
+    &lt;img src="..."/&gt;
+    &lt;<b>figcaption</b>&gt;Chart 1.1&lt;/figcaption&gt;
+  &lt;/figure&gt;
+
   &lt;<b>footer</b>&gt;
-   Copyright &copy; 2009.
+   Copyright &copy;<br>   &lt;<b>time</b> <b>datetime</b>="2010-11-08"&gt;2010&lt;/time&gt;.
   &lt;/footer&gt;
 &lt;/body&gt;
-
-            </pre>
+</pre>
           </section>
         </div>
 
+        <div class="slide">
+          <header><span class="html">HTML</span> <h1>Markup for applications</h1></header>
+          <section>
+            <style>
+              #semantic-tags {
+                height: 520px;
+              }
+            </style>
+            <pre>
+&lt;input <b>list</b>="cars"/&gt;
+&lt;<b>datalist</b> id="cars"&gt;
+  &lt;option value="BMW"/&gt;
+  &lt;option value="Ford"/&gt;
+  &lt;option value="Volvo"/&gt;
+&lt;/datalist&gt;
+
+&lt;<b>menu</b>&gt;
+  &lt;<b>command</b> type="command"&gt;Click Me!&lt;/command&gt;
+&lt;/menu&gt;
+
+&lt;<b>details</b>&gt;
+  &lt;<b>summary</b>&gt;HTML 5&lt;/summary&gt;
+  This slide deck teaches you everything you need to know about HTML 5.
+&lt;/details&gt;
+</pre>
+
+<pre>&lt;<b>meter</b> <b>min</b>="0" <b>max</b>="100" <b>low</b>="40" <b>high</b>="90" <b>optimum</b>="100" value="91"&gt;A+&lt;/<b>meter</b>&gt;
+Your score is: <meter value="91" min="0" max="100" low="40" high="90" optimum="100">A+</meter><br>
+&lt;<b>progress</b>&gt;working...&lt;/<b>progress</b>&gt;
+Download is: <progress>working...</progress><br>
+&lt;<b>progress</b> value="75" <b>max</b>="100"&gt;3/4 complete&lt;/<b>progress</b>&gt;
+Goal is: <progress value="75" max="100">3/4 complete</progress>
+</pre>
+
+          </section>
+        </div>
 
         <div class="slide">
-          <header><span class="html">HTML</span> <h1>New link relations</h1></header>
+          <header><span class="html">HTML</span> <h1>Descriptive link relations</h1></header>
           <style>
             .underlined { text-decoration: underline; }
           </style>
           <section>
-            <pre>&lt;link rel="alternate" type="application/rss+xml" href="http://myblog.com/feed" /&gt;
-&lt;link <b>rel="icon"</b> href="/favicon.ico" /&gt;
-&lt;link <b>rel="pingback"</b> href="http://myblog.com/xmlrpc.php"&gt;
-&lt;link <b>rel="prefetch"</b> href="http://myblog.com/main.php"&gt;
+            <pre>&lt;link rel="alternate" type="application/rss+xml" href="http://myblog.com/feed"/&gt;
+&lt;link <b>rel="icon"</b> href="/favicon.ico"/&gt;
+&lt;link <b>rel="pingback"</b> href="http://myblog.com/xmlrpc.php"/&gt;
+&lt;link <b>rel="prefetch"</b> href="http://myblog.com/main.php"/&gt;
 ...
 
 &lt;a <b>rel="archives"</b> href="http://myblog.com/archives"&gt;<span class="underlined">old posts</span>&lt;/a&gt;
@@ -1519,7 +1564,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
         <div class="slide">
-          <header><span class="html">HTML</span> <h1>New form field types</h1></header>
+          <header><span class="html">HTML</span> <h1>More form types</h1></header>
 
           <section>
             <style>
@@ -1531,17 +1576,17 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
             }
             .form-inputs {
               font-size: 80%;
-            }
             .form-inputs input {
               padding: 2px;
             }
             </style>
-            <pre class="form-inputs">
+            <pre>
 &lt;style&gt;
   [required] { background-color: lightyellow; }
   :invalid { background-color: red; }
 &lt;/style&gt;
-
+</pre>
+<pre class="form-inputs">
 &lt;input type="text" <b>required</b> /&gt;<input type="text" required />
 &lt;input type="<b>email</b>" value="some@email.com" /&gt; <input type="email" value="some@email.com" />
 &lt;input type="<b>date</b>" <b>min</b>="2010-08-14" <b>max</b>="2011-08-14" value="2010-08-14"/&gt; <input type="date" min="2010-08-14" max="2011-08-14" value="2010-08-14" />
@@ -1552,17 +1597,6 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
 &lt;input type="<b>color</b>" <b>placeholder</b>="e.g. #bbbbbb" /&gt; <input type="color" placeholder="e.g. #bbbbbb" />
 &lt;input type="<b>number</b>" <b>step</b>="1" <b>min</b>="-5" <b>max</b>="10" value="0" /&gt; <input type="number" step="1" min="-5" max="10" value="0" />
 </pre>
-
-<h2>Others:</h2>
-<pre class="form-inputs">&lt;<b>meter</b> <b>min</b>="0" <b>max</b>="100" <b>low</b>="40" <b>high</b>="90" <b>optimum</b>="100" value="91"&gt;A+&lt;/<b>meter</b>&gt;
-Your score is: <meter value="91" min="0" max="100" low="40" high="90" optimum="100">A+</meter>
-&lt;<b>progress</b>&gt;working...&lt;/<b>progress</b>&gt;
-Download is: <progress>working...</progress>
-&lt;<b>progress</b> value="75" <b>max</b>="100"&gt;3/4 complete&lt;/<b>progress</b>&gt;
-Goal is: <progress value="75" max="100">3/4 complete</progress>
-&lt;<b>output</b>&gt;
-</pre>
-
           </section>
         </div>
 
@@ -2705,12 +2739,12 @@ div {
             <ul class="bullets">
               <li>Minimal effort for bringing IE6, 7 and 8 up to the latest HTML5 technologies</li>
               <li>Two ways to get your websites ready for Chrome Frame:</li>
-        		</ul>
-      			<p>Client side:</p>
-      			<pre>&lt;meta http-equiv="X-UA-Compatible" content="chrome=1"></pre>
-      			<p>Server side:</p>
-      			<pre>X-UA-Compatible: chrome=1</pre>
-      			<p style="font-size: 30px">
+            </ul>
+            <p>Client side:</p>
+            <pre>&lt;meta http-equiv="X-UA-Compatible" content="chrome=1"></pre>
+            <p>Server side:</p>
+            <pre>X-UA-Compatible: chrome=1</pre>
+            <p style="font-size: 30px">
               Try to load this presentation in IE!
             </p>
           </section>
@@ -3085,9 +3119,11 @@ div {
     <script 
       src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
     </script>
-		<script>CFInstall.check({ mode: "overlay" });</script>
+    <script>CFInstall.check({ mode: "overlay" });</script>
     <![endif]-->
-    
+
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
     <script>
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-15028909-5']);
