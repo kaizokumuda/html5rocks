@@ -966,24 +966,128 @@ extra_work.js:
           <style>
             #websockets-message {
               text-align: center;
-              padding: 20px;
+              padding: 0px;
+            }
+            #ws-left {
+              float: left;
+              width: 490px;
+              padding-right: 10px
+            }
+            #ws-left h4 {
+              margin: 10px 0 0 0;
+            }
+            #ws-right {
+              float: left;
+              width: 300px;
+              border-left: solid 1px #9a9ab3;
+              padding-left: 20px;
+            }
+            #wsConsoleLog {
+              background-color: white;
+              border: solid 1px #999;
+              border-top-color: #ccc;
+              border-left-color: #ccc;
+              padding: 5px;
+              width: 290px;
+              height: 175px;
+              overflow-y: auto;
+            }
+            #wsConsoleLog p:first-of-type {
+              margin: 0 0;
+            }
+            #wsConsoleLog p {
+              margin: 0.5em 0;
+              font-size: 12px;
+            }
+            #ws-left input[type='text'] {
+              width: 370px;
+            }
+            #wsSecureCb {
+              position: relative;
+              top: 2px;
+            }
+            #wsSecureCbLabel {
+              position: relative;
+              left: -10px;
+            }
+            #ws-left button {
+              margin-top: 0;
+              font-size: 14px;
+            }
+            #ws-config-config, #ws-config-message {
+              margin-top: 15px;
+            }
+            #ws-right button {
+              font-size: 14px;
+              margin-top: 3px;
+            }
+            #ws-powered {
+              text-align: center;
+              padding-top: 15px;
+              clear: both;
+            }
+
+            #ws-powered a {
+              border: 0px;
+            }
+
+            #wsKaazingLogo {
+              position: relative;
+              top: 4px;
+              left: 2px;
+              border: 0px;
             }
           </style>
-          <header><span class="js">JS APIs</span> <h1>Web Sockets</h1></header>
-          <section>
-<pre>var socket = new <b>WebSocket</b>(location);
-socket.<b>onopen</b> = function(event) {
-  socket.<b>send</b>(“Hello, WebSocket”);
-}
-socket.<b>onmessage</b> = function(event) { alert(event.data); }
-socket.<b>onclose</b> = function(event) { alert(“closed”); }
 
+          <header><span class="js">JS APIs</span> <h1>WebSocket</h1></header>
+          <section>
+<pre>var socket = new <b>WebSocket</b>('ws://html5rocks.websocket.org/echo');
+socket.<b>onopen</b> = function(event) {
+  socket.<b>send</b>('Hello, WebSocket');
+};
+socket.<b>onmessage</b> = function(event) { alert(event.data); }
+socket.<b>onclose</b> = function(event) { alert('closed'); }
 </pre>
 
-            <p id="websockets-message">Bi-directional, full-duplex communications channels, over a single Transmission Control Protocol (TCP) socket, designed to be implemented in web browsers and web servers.</p>
-          </section>
-        </div>
+            <p id="websockets-message">Full-duplex, bi-directional communication over the Web:
+            Both the server and client can send data at any time, or even at the same time.
+            Only the data itself is sent, without the overhead of HTTP headers, dramatically
+            reducing bandwidth.</p>
 
+            <div id="ws-left">
+              Use the echo demo below to test a WebSocket connection from your browser.
+              Both the message you send and the response you receive travel over the same WebSocket connection.
+
+              <div id="ws-config-location">
+                <h4>Location:</h4>
+                <input type="text" id="wsUri" disabled />
+                <br>
+                <input type="checkbox" id="wsSecureCb" onclick="wsToggleTls();" disabled />
+                <label id="wsSecureCbLabel" for="wsSecureCb">Use secure WebSocket (TLS/SSL)</label>
+                <br>
+                <button id="wsConnectBut" disabled>Connect</button>
+                <button id="wsDisconnectBut" disabled>Disconnect</button>
+              </div>
+              <div id="ws-config-message">
+                <h4>Message:</h4>
+                <input  type="text" id="wsMessage" value="Hello, WebSocket" disabled />
+                <button id="wsSendBut" disabled>Send</button>
+              </div>
+            </div>
+            <div id="ws-right">
+              <div id="ws-log">
+                <strong>Output:</strong>
+                <div id="wsConsoleLog"></div>
+                <button id="wsClearLogBut">Clear log</button>
+              </div>
+            </div>
+            <div id="ws-powered">
+              Demo powered by <a href="http://kaazing.com" target="_blank"><img id="wsKaazingLogo" src="src/websocket/kaazing-logo_99x16.png" width="99" height="16" alt="Powered by Kaazing" /></a>
+            </div>
+
+          </section>
+          <script src="src/websocket/websocket.js"></script>
+        </div>
 
 
         <div class="slide">
@@ -1195,7 +1299,7 @@ socket.<b>onclose</b> = function(event) { alert(“closed”); }
             </script>
           </section>
         </div>
-                
+
         <div class="slide force-render">
           <style>
             #map-container {
