@@ -580,7 +580,8 @@ els[0].focus();</pre>
             </h2>
 
             <pre>var els = document.<b>querySelectorAll</b>("ul li:nth-child(odd)");
-var els = document.<b>querySelectorAll</b>("table.test > tr > td");
+var tds = document.<b>querySelectorAll</b>("table.test > tr > td");
+var el = document.<b>querySelector</b>("table.test > tr > td"); // el == tds[0]
 </pre>
 
           </section>
@@ -591,7 +592,7 @@ var els = document.<b>querySelectorAll</b>("table.test > tr > td");
         <div class="slide">
           <style>
             #ta {
-              width: 300px;
+              width: 400px;
               height: 150px;
               display: block;
             }
@@ -664,7 +665,7 @@ textarea.value = window.<b>localStorage</b>.getItem('value');
           
           <header><span class="js">JS APIs</span> <h1>Web SQL Database</h1></header>
           <section>
-<pre>var db = window.<b>openDatabase</b>("Database Name", "Database Version");
+<pre>var db = window.<b>openDatabase</b>("DBName", "1.0", "description", 5*1024*1024); //5MB
 db.<b>transaction</b>(function(tx) {
   tx.<b>executeSql</b>(<em>"SELECT * FROM test"</em>, [], successCallback, errorCallback);
 });
@@ -1195,8 +1196,8 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
           <header><span class="js">JS APIs</span> <h1>Drag and drop</h1></header>
           <section id="dnd-section">
 <pre>document.addEventListener(<b>'dragstart'</b>, function(event) {
-   <b>event.dataTransfer.setData</b>('text', 'Customized text');
-   <b>event.dataTransfer.effectAllowed</b> = 'copy';
+  <b>event.dataTransfer.setData</b>('text', 'Customized text');
+  <b>event.dataTransfer.effectAllowed</b> = 'copy';
 }, false);
 </pre>
             <ol id="drag-zone">
