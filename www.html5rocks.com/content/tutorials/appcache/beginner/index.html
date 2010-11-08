@@ -83,7 +83,9 @@ scripts/main.js
 
   <p><strong>Note</strong>:  The <code>CACHE MANIFEST</code> string is the first line and is required.</p>
 
-  <p><strong>Note</strong>: Sites are limited to 5MB worth of cached data.</p>
+  <p><strong>Note</strong>: Sites are limited to 5MB worth of cached data. However, if you are writing an
+  app for the <a href="http://code.google.com/chrome/apps/docs/developers_guide.html">Chrome Web Store</a>,
+  using the <code>unlimitedStorage</code> removes that restriction.</p>
 
   <p><strong>Note</strong>: If the manifest file or a resource specified in it fails to download,
   the entire cache update process fails. The browser will keep using the old application cache in the event of failure.</p>
