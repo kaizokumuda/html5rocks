@@ -57,6 +57,7 @@
 {% endblock %}
 {% block pagebreadcrumb %}Reading local files in JavaScript{% endblock %}
 {% block date %}June 18, 2010{% endblock %}
+{% block updated %}November 8, 2010{% endblock %}
 
 {% block browsersupport %}
 <span class="opera"></span>
@@ -181,13 +182,17 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   and its <code>result</code> attribute can be used to access the file data.</p>
   <p><code>FileReader</code> includes three options for reading a file, asynchronously:</p>
   <ul>
-    <li><code>FileReader.readAsBinaryString(fileBlob)</code> - The <code>result</code> property will contain the file's data as a binary string.
-    Every byte is represented by an integer in the range [0..255].</li>
-    <li><code>FileReader.readAsText(fileBlob, opt_encoding)</code> - The <code>result</code> property will contain the file's data as a text string.
-    By default the string is decoded as 'UTF-8'. Use the optional encoding parameter can specify a different format.</li>
-    <li><code>FileReader.readAsDataURL(file)</code> -  The <code>result</code> property will contain the file's data encoded as a data URL.</li>
+    <li><code>FileReader.readAsBinaryString(Blob|File)</code> - The <code>result</code> property will contain the file/blob's data
+    as a binary string. Every byte is represented by an integer in the range [0..255].</li>
+    <li><code>FileReader.readAsText(Blob|File, opt_encoding)</code> - The <code>result</code> property will contain the
+    file/blob's data as a text string. By default the string is decoded as 'UTF-8'. Use the optional encoding parameter
+    can specify a different format.</li>
+    <li><code>FileReader.readAsDataURL(Blob|File)</code> -  The <code>result</code> property will contain the file/blob's
+    data encoded as a <a href="http://en.wikipedia.org/wiki/Data_URI_scheme">data URL</a>.</li>
+    <li><code>FileReader.readAsArrayBuffer(Blob|File)</code> -  The <code>result</code> property will contain the file/blob's
+    data as an <a href="https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/TypedArray-spec.html">ArrayBuffer</a> object.</li>
   </ul>
-  
+
   <p>Once one of these read methods is called on your <code>FileReader</code> object, the <code>onloadstart</code>,
   <code>onprogress</code>, <code>onload</code>, <code>onabort</code>, <code>onerror</code>, and <code>onloadend</code>
   can be used to track its progress.</p>
