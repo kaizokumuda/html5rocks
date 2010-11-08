@@ -606,7 +606,7 @@ var els = document.<b>querySelectorAll</b>("table.test > tr > td");
 // use sessionStorage for per tab storage
 textarea.addEventListener('keyup', function () {
   window.<b>localStorage</b>.setItem('value', area.value);
-  window.<b>localStorage</b>.setItem('timestamp', new Date()).getTime());
+  window.<b>localStorage</b>.setItem('timestamp', (new Date()).getTime());
 }, false);
 textarea.value = window.<b>localStorage</b>.getItem('value');
 </pre>
