@@ -1311,6 +1311,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
               color: white;
               padding: 5px;
               border-radius: 5px;
+              visibility: hidden;
             }
           </style>
           <header><span class="js">JS APIs</span> <h1>Geolocation</h1></header>
@@ -1333,6 +1334,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
           (function() {
             var map = null;
             var geolog = document.querySelector('#geo-log');
+            var geoMap = document.querySelector('#geo-map');
 
             function showPosition(position) {
               geolog.textContent = "You're within " + position.coords.accuracy +
@@ -1352,10 +1354,10 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
               geolog.textContent = evt.message;
             }
 
-            document.querySelector('#see-position').addEventListener('click', function(evt) {
+            function successPositionHandler(evt) {
               // Load map if it doesn't already exist and when user clicks the button.
               if (!map) {
-                map = new google.maps.Map(document.querySelector('#geo-map'), {
+                map = new google.maps.Map(geoMap, {
                   zoom: 3,
                   center: new google.maps.LatLng(37.4419, -94.1419), // United States
                   mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -1364,6 +1366,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
               }
 
               if (navigator.geolocation) {
+                geolog.style.visibility = 'visible';
                 geolog.textContent = 'Looking for location...';
                 navigator.geolocation.getCurrentPosition(showPosition, handlePositionError);
                 // Also monitor position as it changes.
@@ -1371,17 +1374,18 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
               } else {
                 geolog.textContent = 'Oops! Your browser does not support geolocation.';
               }
-            }, false);
+            }
+
+            document.querySelector('#see-position').addEventListener('click', successPositionHandler, false);
+            geoMap.addEventListener('click', successPositionHandler, false);
           })();
           </script>
           </section>
         </div>
 
-
-
         <div class="slide">
           <header><span class="js">JS APIs</span></header>
-          
+
           <section>
             <ul class="summary">
               <li>Client Side Storage (Web SQL Database, App Cache, Web Storage)
@@ -1391,16 +1395,14 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
             </li></ul>
           </section>
         </div>
-                
 
-<div class="slide">
+        <div class="slide">
           <section class="middle">
             <h1>
               <span class="html">HTML</span>
             </h1>
           </section>
         </div>
-        
 
         <div class="slide">
           <header><span class="html">HTML</span> <h1>Better semantic meanings</h1></header>
