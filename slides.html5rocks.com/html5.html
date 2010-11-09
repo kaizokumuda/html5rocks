@@ -114,6 +114,41 @@
         display: none;
       }
 
+      .slide.transitionSlide h2 {
+        font-size: 40px;
+        margin: 0;
+        line-height: 10px;
+      }
+      .slide.transitionSlide p {
+        margin: 0;
+      }
+
+      .vbox {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-box-align: stretch;
+
+        display: -moz-box;
+        -moz-box-orient: vertical;
+        -moz-box-align: stretch;
+
+        display: box;
+        box-orient: vertical;
+        box-align: stretch;
+      }
+
+      .flex {
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        box-flex: 1;
+      }
+
+      .boxcenter {
+        -webkit-box-pack: center;
+        -moz-box-pack: center;
+        box-pack: center;
+      }
+
       .force-render {
         display: block;
         visibility: hidden;
@@ -230,10 +265,6 @@
         border-bottom: none;
       }
 
-      .gmap > img {
-        border: 1px solid #ccc;
-      }
-
       li {
         list-style: none;
         padding: 10px 0;
@@ -272,7 +303,7 @@
       section.small li {
         padding-bottom: 0;
       }
-            
+
       section.middle {
         line-height: 68px;
         text-align: center;
@@ -281,10 +312,10 @@
         height: 700px;
         width: 900px;
       }
-      
+
       pre {
         text-align: left;
-        font-family: 'Droid Sans Mono', Courier;        
+        font-family: 'Droid Sans Mono', Courier;
         padding: 10px 20px;
         background: rgba(255, 0, 0, 0.05);
         -webkit-border-radius: 8px;
@@ -303,7 +334,7 @@
         font-size: 16px;
         margin-right: 10px;
         font-family: Helvetica;
-        padding: 3px;
+        padding: 3px 5px;
       }
       input[type="range"] {
         width: 100%;
@@ -543,22 +574,21 @@
             +
             <span class="css">CSS</span>
             +
-            <span class="js">JS APIs</span>
+            <span class="js">JS</span>
           </section>
         </div>
-        
 
-        <div class="slide">
+
+        <div class="slide transitionSlide">
           <section class="middle">
-            <h1>
-              <span class="js">JS APIs</span>
-            </h1>
+            <h2>Nuts &amp; Bolts</h2>
+            <p>Improvements to the core platform</p>
           </section>
         </div>
 
 
         <div class="slide">
-          <header><span class="js">JS APIs</span> <h1>New Selectors</h1></header>
+          <header><span class="js">JS</span> <h1>New Selectors</h1></header>
 
           <section>
 
@@ -589,6 +619,13 @@ var el = document.<b>querySelector</b>("table.test > tr > td"); // el == tds[0]
         </div>
 
 
+        <div class="slide transitionSlide">
+          <section class="middle">
+            <h2>Offline / Storage</h2>
+            <p>Expect the unexpected</p>
+          </section>
+        </div>
+
         <div class="slide">
           <style>
             #ta {
@@ -600,7 +637,7 @@ var el = document.<b>querySelector</b>("table.test > tr > td"); // el == tds[0]
               padding-top: 50px;
             }
           </style>
-          <header><span class="js">JS APIs</span> <h1>Web Storage</h1></header>
+          <header><span class="js">JS</span> <h1>Web Storage</h1></header>
           <section>
 <pre>
 // use localStorage for persistent storage
@@ -663,7 +700,7 @@ textarea.value = window.<b>localStorage</b>.getItem('value');
             }
           </style>
           
-          <header><span class="js">JS APIs</span> <h1>Web SQL Database</h1></header>
+          <header><span class="js">JS</span> <h1>Web SQL Database</h1></header>
           <section>
 <pre>var db = window.<b>openDatabase</b>("DBName", "1.0", "description", 5*1024*1024); //5MB
 db.<b>transaction</b>(function(tx) {
@@ -765,11 +802,12 @@ db.<b>transaction</b>(function(tx) {
               text-align: center;
             }
           </style>
-          <header><span class="js">JS APIs</span> <h1>Application Cache</h1></header>
+          <header><span class="js">JS</span> <h1>Application Cache</h1></header>
           <section>
 <pre>&lt;html <b>manifest="cache.manifest"</b>&gt;
 window.<b>applicationCache</b>.addEventListener(<em>'checking'</em>, updateCacheStatus, false);
 </pre>
+cache.manifest:
 <pre>CACHE MANIFEST
 
 # version 1
@@ -782,10 +820,16 @@ CACHE:
 </pre>
 
 
-            <p id="appcache-message">Turn off your internet connection and refresh this page! <img src="src/refresh.png" /></p>
+            <p id="appcache-message">Turn off your internet connection and refresh this page! <img src="src/refresh.png" style="vertical-align:top"/></p>
           </section>
         </div>
 
+        <div class="slide transitionSlide">
+          <section class="middle">
+            <h2>Realtime / Communication</h2>
+            <p>Stay connected</p>
+          </section>
+        </div>
 
 
         <div class="slide force-render">
@@ -802,7 +846,7 @@ CACHE:
               border-radius: 5px;
             }
           </style>
-          <header><span class="js">JS APIs</span> <h1>Web Workers</h1></header>
+          <header><span class="js">JS</span> <h1>Web Workers</h1></header>
           <section>
 main.js:
 <pre>
@@ -819,7 +863,7 @@ self.<b>onmessage</b> = function(event) {
 </pre>
 
         <div id="w-wrapper">
-          <div id="wmap" class="gmap">
+          <div id="wmap" class="gmap example">
             <img src="http://maps.google.com/maps/api/staticmap?center=13,13&zoom=3&size=680x200&sensor=false"/>
           </div>
           <div style="margin-top:5px">
@@ -1038,7 +1082,7 @@ self.<b>onmessage</b> = function(event) {
             }
           </style>
 
-          <header><span class="js">JS APIs</span> <h1>WebSocket</h1></header>
+          <header><span class="js">JS</span> <h1>WebSocket</h1></header>
           <section>
 <pre>var socket = new <b>WebSocket</b>('ws://html5rocks.websocket.org/echo');
 socket.<b>onopen</b> = function(event) {
@@ -1095,7 +1139,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
               text-align: center;
             }
           </style>
-          <header><span class="js">JS APIs</span> <h1>Notifications</h1></header>
+          <header><span class="js">JS</span> <h1>Notifications</h1></header>
           <section>
 <pre>if (window.<b>webkitNotifications</b>.<b>checkPermission</b>() == 0) {
   // you can pass any url as a parameter
@@ -1156,7 +1200,15 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
 
           </section>
         </div>
-     
+
+
+        <div class="slide transitionSlide">
+          <section class="middle">
+            <h2>File / Hardware Access</h2>
+            <p>Deeper integration with the Operating System</p>
+          </section>
+        </div>
+
 
         <div class="slide">
           <style>
@@ -1193,7 +1245,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
               padding: 5px;
             }
           </style>
-          <header><span class="js">JS APIs</span> <h1>Drag and drop</h1></header>
+          <header><span class="js">JS</span> <h1>Native Drag &amp; Drop</h1></header>
           <section id="dnd-section">
 <pre>document.addEventListener(<b>'dragstart'</b>, function(event) {
   <b>event.dataTransfer.setData</b>('text', 'Customized text');
@@ -1299,6 +1351,72 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
           </section>
         </div>
 
+
+        <div class="slide">
+          <style>
+            #dropzone {
+              height: 150px;
+              -webkit-border-radius: 10px;
+              -khtml-border-radius: 10px;
+              -moz-border-radius: 10px;
+              border-radius: 10px;
+              border: 2px dashed #0687FF;
+            }
+            #dropzone.rounded {
+              -webkit-box-shadow: inset 0px 0px 50px #777;
+              -moz-box-shadow: inset 0px 0px 50px #777;
+              -o-box-shadow: inset 0px 0px 50px #777;
+              box-shadow: inset 0px 0px 50px #777;
+            }
+            #dnd-thumbnails {
+              height: 150px;
+              margin-top: 10px;
+            }
+            #dnd-thumbnails img {
+              width: 75px;
+              height: 75px;
+              border: 1px solid black;
+              margin-right: 10px;
+              -webkit-transition: -webkit-transform 0.2s ease-in, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+              -moz-transition: -moz-transform 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+              -o-transition: -o-transform 1s ease-in-out, margin-left 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+            }
+            #dnd-thumbnails img:hover {
+              -webkit-transform: scale(3.0) rotate(10deg);
+              -webkit-transform-origin: 50% 75px;
+              -moz-transform: scale(3.0) rotate(10deg);
+              -moz-transform-origin: 50% 75px;
+              margin: 0 100px;
+            }
+          </style>
+          <header><span class="js">JS</span> <h1>Desktop Drag &amp; Drop (File API)</h1></header>
+          <section id="dnd-section">
+<pre>var reader = new <b>FileReader</b>();
+reader.onload = function(evt) {
+  document.querySelector('img').src = <b>evt.target.result</b>;
+};
+
+function onDrop(evt) {
+  reader.<b>readAsDataURL</b>(<b>evt.dataTransfer.files[0]</b>);
+};
+</pre>
+            <div class="example">
+              <div id="dropzone" class="vbox boxcenter center">
+                Drop image files from your desktop
+              </div>
+            </div>
+
+            <div id="dnd-thumbnails" class="center"></div>
+            <script src="src/dnd/dnd-lib.js"></script>
+            <script>
+             (function() {
+               var dndc = new DNDFileController('dropzone', 'dnd-thumbnails');
+             })();
+            </script>
+          </section>
+        </div>
+
+
         <div class="slide force-render">
           <style>
             #see-position {
@@ -1315,7 +1433,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
               visibility: hidden;
             }
           </style>
-          <header><span class="js">JS APIs</span> <h1>Geolocation</h1></header>
+          <header><span class="js">JS</span> <h1>Geolocation</h1></header>
           <section>
 <pre>if (<b>navigator</b>.<b>geolocation</b>) {
   <b>navigator</b>.<b>geolocation</b>.<b>getCurrentPosition</b>(function(position) {
@@ -1327,7 +1445,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
 }
 </pre>
           <button id="see-position">Show Position</button> <span id="geo-log"></span>
-          <div id="geo-map" class="gmap">
+          <div id="geo-map" class="gmap example">
             <img src="http://maps.google.com/maps/api/staticmap?center=37.4419,-94.1419&zoom=3&size=680x278&sensor=true"/>
           </div>
 
@@ -1384,29 +1502,15 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
           </section>
         </div>
 
-        <div class="slide">
-          <header><span class="js">JS APIs</span></header>
-
-          <section>
-            <ul class="summary">
-              <li>Client Side Storage (Web SQL Database, App Cache, Web Storage)
-              </li><li>Communication (Web Sockets, Worker Workers)
-              </li><li>Desktop experience (Notifications, Drag and Drop API)
-              </li><li>Geolocation
-            </li></ul>
-          </section>
-        </div>
-
-        <div class="slide">
+        <div class="slide transitionSlide">
           <section class="middle">
-            <h1>
-              <span class="html">HTML</span>
-            </h1>
+            <h2>Semantics &amp; Markup</h2>
+            <p>More meaningful elements</p>
           </section>
         </div>
 
         <div class="slide">
-          <header><span class="html">HTML</span> <h1>Better semantic meanings</h1></header>
+          <header><span class="html">HTML</span> <h1>Better semantic tags</h1></header>
           <section>
             <style>
               #semantic-tags {
@@ -1567,26 +1671,46 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
         </div>
 
         <div class="slide">
-          <header><span class="html">HTML</span> <h1>More form types</h1></header>
+          <header><span class="html">HTML</span> <h1>Web Forms 2.0</h1></header>
 
           <section>
             <style>
-            [required] {
-              background-color: lightyellow;
-            }
-            :invalid {
-              background-color: red;
-            }
             .form-inputs {
               font-size: 80%;
+            }
             .form-inputs input {
-              padding: 2px;
+              border: 1px solid #CCC;
+              -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset;
+              -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset;
+              -o-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset;
+              box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset;
+              padding: 3px 5px;
+            }
+            input:invalid {
+              border-color: #e88;
+              -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+              -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+              -o-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+              box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+            }
+            input[required] {
+              border-color: #88a;
+              -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
+              -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
+              -o-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
+              box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
             }
             </style>
             <pre>
 &lt;style&gt;
-  [required] { background-color: lightyellow; }
-  :invalid { background-color: red; }
+  :invalid { 
+    border-color: #e88;
+    -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+  }
+  [required] {
+    border-color: #88a;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+  }
 &lt;/style&gt;
 </pre>
 <pre class="form-inputs">
@@ -1603,6 +1727,13 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
+
+        <div class="slide transitionSlide">
+          <section class="middle">
+            <h2>Graphics / Multimedia</h2>
+            <p>2D &amp; 3D</p>
+          </section>
+        </div>
 
         <div class="slide">
           <style>
@@ -1623,11 +1754,12 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
               margin: 40px 0;
             }
           </style>
-          <header><span class="html">HTML</span> <h1>Audio + Video</h1></header>
+          <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Audio + Video</h1></header>
           <section>
             <pre>&lt;<b>audio</b> id="audio" src="sound.mp3" <b>controls</b>&gt;&lt;/audio&gt;
 document.getElementById("audio").<b>muted</b> = false;
-
+</pre>
+<pre>
 &lt;<b>video</b> id="video" src="movie.webm" <b>autoplay</b> <b>controls</b>&gt;&lt;/video&gt;
 document.getElementById("video").<b>play</b>();
 </pre>
@@ -1722,7 +1854,7 @@ document.getElementById("video").<b>play</b>();
         </div>
 
         <div class="slide">
-          <header><span class="html">HTML</span> <h1>Canvas</h1></header>
+          <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Canvas 2D</h1></header>
           <section>
             <style>
               #canvas-area {
@@ -1769,8 +1901,10 @@ document.getElementById("video").<b>play</b>();
               margin-left: 150px;
               margin-top: 40px;
               padding: 0;
-              width: 520px;
-              height: 500px;
+              width: 530px;
+              height: 505px;
+              padding: 5px;
+              text-align:center;
             }
             #canvas-example iframe {
               width: 520px;
@@ -1779,10 +1913,10 @@ document.getElementById("video").<b>play</b>();
               background: white;
             }
           </style>
-          <header><span class="html">HTML</span> <h1>Canvas example</h1></header>
+          <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Canvas example</h1></header>
           <section>
             <div id="canvas-example" class="example">
-              <iframe src="src/canvasphoto/index.html" scrolling="no"></iframe>
+              <iframe _src="src/canvasphoto/index.html" scrolling="no"></iframe>
             </div>
           </section>
         </div>
@@ -1792,10 +1926,10 @@ document.getElementById("video").<b>play</b>();
             #webgl-iframe {
               border: none;
               width: 100%;
-              height:352px;
+              height: 352px;
             }
           </style>
-          <header><span class="html">HTML</span> <h1>Canvas 3D (WebGL)</h1></header>
+          <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Canvas 3D (WebGL)</h1></header>
           <section>
             <pre>&lt;canvas id="canvas" width="838" height="220"&gt;&lt;/canvas&gt;
 
@@ -1805,13 +1939,13 @@ document.getElementById("video").<b>play</b>();
   ...
 &lt;/script&gt;
             </pre>
-            <iframe scrolling="no" src="src/webgl/san_angeles.html" id="webgl-iframe"></iframe>
+            <iframe scrolling="no" _src="src/webgl/san_angeles.html" id="webgl-iframe"></iframe>
           </section>
         </div>
         
         
         <div class="slide force-render">
-          <header><span class="html">HTML</span> <h1>SVG in HTML5</h1></header>
+          <header><span class="html">HTML</span> <h1>Inline SVG</h1></header>
           <section>
             <style>
               #svg {
@@ -1893,7 +2027,7 @@ document.getElementById("video").<b>play</b>();
           </style>
           <header><span class="html">HTML</span> <h1>SVG example</h1></header>
           <section>
-            <div id="svg-example" class="example"></div>
+            <div id="svg-example"></div>
           </section>
           <script>
             window.addEventListener('load', function() {
@@ -1902,28 +2036,13 @@ document.getElementById("video").<b>play</b>();
           </script>
         </div>
 
-        <div class="slide">
-          <header><span class="html">HTML</span></header>
-          <section>
-            <ul class="summary">
-              <li>Semantics (New tags, Link Relations, Microdata)
-              </li><li>Accessibility (ARIA roles)
-              </li><li>Web Forms 2.0 (Input Fields)
-              </li><li>Multimedia (Audio Tag, Video Tag)
-              </li><li>2D and 3D drawing (Canvas, WebGL, SVG)
-            </li></ul>
-          </section>
-        </div>
 
-
-        <div class="slide">
+        <div class="slide transitionSlide">
           <section class="middle">
-            <h1>
-              <span class="css">CSS</span>
-            </h1>
+            <h2>CSS3</h2>
+            <p>Presentation &amp; Styling</p>
           </section>
         </div>
-
 
         <div class="slide">
           <style>
@@ -1992,7 +2111,7 @@ h2 <b>+</b> header { ... }
               font-family: LeagueGothic;
             }
           </style>
-          <header><span class="css">CSS</span> <h1>New font support</h1></header>
+          <header><span class="css">CSS</span> <h1>Webfonts</h1></header>
           <section>
 
             <pre><b>@font-face</b> {
@@ -2246,7 +2365,7 @@ header {
               color: rgb(21, 147, 38);
             }
           </style>
-          <header><span class="css">CSS</span> <h1>Hue/saturation/luminance color model</h1></header>
+          <header><span class="css">CSS</span> <h1>Hue/saturation/luminance color</h1></header>
           <section>
         <pre>color: <b>hsla</b>(
   <span class="hsl-value" id="hsl-h-value">128</span> <input id="hsl-h" type="range" min="0" max="360" value="128" onchange="changeHSL()">
@@ -2708,18 +2827,6 @@ div {
 
 
         <div class="slide">
-          <header><span class="css">CSS</span></header>          
-          <section>
-            <ul class="summary">
-              <li>Typography
-              </li><li>Visuals
-              </li><li>Transitions, transforms and animations
-            </li></ul>
-          </section>
-        </div>
-        
-
-        <div class="slide">
           <header><h1>See it today?</h1></header>
           <section>
             <ul class="bullets">
@@ -2771,7 +2878,7 @@ div {
             +
             <span class="css">CSS</span>
             +
-            <span class="js">JS APIs</span>
+            <span class="js">JS</span>
             <p>
               HTML5 <em class="stroke">=</em> Next Generation Features for Modern Web Development
             </p>
@@ -2931,6 +3038,52 @@ div {
             */
             var _t = this;
             setTimeout(function(){ _t._runAutos(); } , 400);
+
+            if (state == 'current') {
+              this._onLoad();
+            } else {
+              this._onUnload();
+            }
+          },
+          _onLoad: function() {
+            this._fireEvent('onload');
+            this._showFrames();
+          },
+          _onUnload: function() {
+            this._fireEvent('onunload');
+            this._hideFrames();
+          },
+          _fireEvent: function(name) {
+            var eventSrc = this._node.getAttribute(name);
+            if (eventSrc) {
+              eventSrc = '(function() { ' + eventSrc + ' })';
+              var fn = eval(eventSrc);
+              fn.call(this._node);
+            }
+          },
+          _showFrames: function() {
+            var frames = query('iframe', this._node);
+            function show() {
+              frames.forEach(function(el) {
+                var _src = el.getAttribute('_src');
+                if (_src.length > 0) {
+                  el.src = _src;
+                }
+              });
+            }
+            setTimeout(show, 0);
+          },
+          _hideFrames: function() {
+            var frames = query('iframe', this._node);
+            function hide() {
+              frames.forEach(function(el) {
+                var _src = el.getAttribute('_src');
+                if (_src.length > 0) {
+                  el.src = '';
+                }
+              });
+            }
+            setTimeout(hide, 250);
           },
           _makeCounter: function() {
             if(!this._count || !this._node) { return; }
