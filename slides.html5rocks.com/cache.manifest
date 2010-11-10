@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#2010-10-12 15:13:53.153961
+#2010-11-09 18:17:46.058853
 
 /src/chrome.png
 /src/compile
@@ -21,12 +21,21 @@ CACHE MANIFEST
 /src/canvasphoto/excanvas.js
 /src/canvasphoto/index.html
 /src/canvasphoto/utilities.js
+/src/dnd/dnd-lib.js
+/src/orientation/chrome-layer-01.png
+/src/orientation/chrome-layer-02.png
+/src/orientation/chrome-layer-03.png
+/src/orientation/chrome-layer-04.png
+/src/orientation/chrome-layer-05.png
 /src/svg/famoustiger.svg
 /src/webgl/angeles.js
 /src/webgl/context.js
 /src/webgl/demo.js
 /src/webgl/matrix4x4.js
 /src/webgl/san_angeles.html
+/src/websocket/kaazing-logo_99x16.png
+/src/websocket/tls-lock.png
+/src/websocket/websocket.js
 /src/webworkers/annealing.js
 /src/webworkers/ground.js
 /src/webworkers/main.js
