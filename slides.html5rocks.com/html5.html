@@ -3038,6 +3038,11 @@ div {
           return s;
         };
 
+        // Needed for browsers that don't support String.trim() (e.g. iPad)
+        var trim = function(str) {
+          return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+        };
+
         var addClass = function(node, classStr) {
           classStr = strToArray(classStr);
           var cls = ' ' + node.className + ' ';
@@ -3047,7 +3052,7 @@ div {
               cls += c + ' ';
             }
           }
-          node.className = cls.trim();
+          node.className = trim(cls);
         };
 
         var removeClass = function(node, classStr) {
@@ -3058,7 +3063,7 @@ div {
             for (var i = 0, len = classStr.length; i < len; ++i) {
               cls = cls.replace(' ' + classStr[i] + ' ', ' ');
             }
-            cls = cls.trim();
+            cls = trim(cls);
           } else {
             cls = '';
           }
@@ -3069,7 +3074,7 @@ div {
 
         var toggleClass = function(node, classStr) {
           var cls = ' ' + node.className + ' ';
-          if (cls.indexOf(' ' + classStr.trim() + ' ') >= 0) {
+          if (cls.indexOf(' ' + trim(classStr) + ' ') >= 0) {
             removeClass(node, classStr);
           } else {
             addClass(node, classStr);
