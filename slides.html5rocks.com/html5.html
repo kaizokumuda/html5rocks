@@ -1440,7 +1440,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
             }
           </style>
           <header><span class="js">JS</span> <h1>Desktop Drag-In (File API)</h1></header>
-          <section id="dnd-section">
+          <section>
 <h3>Drag files in from the desktop:</h3>
 <pre>
 document.querySelector('#dropzone').addEventListener('drop', function(e) {
@@ -1520,6 +1520,7 @@ for (var i = 0, file; file = files[i]; ++i) {
             </script>
           </section>
         </div>
+
 
         <div class="slide">
           <style>
@@ -1681,6 +1682,32 @@ window.addEventListener('<b>deviceorientation</b>', function(event) {
           };
           var os = new OrientationSlide('#slide-orientation');
         </script>
+
+
+        <div class="slide">
+          <style>
+            #speech-input {
+              width: 400px;
+              height: 50px;
+              padding: 10px 15px;
+              font-size: 155%;
+              border-radius: 10px;
+              border: 1px solid #ccc;
+              outline: 0;
+            }
+          </style>
+          <header><span class="html">HTML</span> <h1>Speech Input</h1></header>
+          <section>
+
+            <pre>&lt;input type="text" <b>x-webkit-speech</b> <b>speech</b> /&gt;</pre>
+
+            <div class="flex hbox boxcenter">
+              <div class="noflex vbox boxcenter" style="height:300px">
+               <input id="speech-input" type="text" x-webkit-speech speech />
+              </div>
+            </div>
+          </section>
+        </div>
 
 
         <div class="slide transitionSlide">
