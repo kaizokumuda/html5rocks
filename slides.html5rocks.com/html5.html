@@ -1405,6 +1405,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
           <style>
             #dropzone {
               height: 150px;
+              width: 100%;
               -webkit-border-radius: 10px;
               -khtml-border-radius: 10px;
               -moz-border-radius: 10px;
@@ -1418,7 +1419,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
               box-shadow: inset 0px 0px 50px #777;
             }
             #dnd-thumbnails {
-              height: 150px;
+              height: 125px;
               margin-top: 10px;
             }
             #dnd-thumbnails img {
@@ -1438,33 +1439,87 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
               margin: 0 100px;
             }
           </style>
-          <header><span class="js">JS</span> <h1>Desktop Drag &amp; Drop (File API)</h1></header>
+          <header><span class="js">JS</span> <h1>Desktop Drag-In (File API)</h1></header>
           <section id="dnd-section">
-<pre>var reader = new <b>FileReader</b>();
-reader.onload = function(evt) {
-  document.querySelector('img').src = <b>evt.target.result</b>;
-};
+<h3>Drag files in from the desktop:</h3>
+<pre>
+document.querySelector('#dropzone').addEventListener('drop', function(e) {
+  var reader = new <b>FileReader</b>();
+  reader.onload = function(evt) {
+    document.querySelector('img').src = <b>evt.target.result</b>;
+  };
 
-function onDrop(evt) {
   reader.<b>readAsDataURL</b>(<b>evt.dataTransfer.files[0]</b>);
-};
+}, false);
 </pre>
             <div class="example">
               <div id="dropzone" class="vbox boxcenter center">
-                Drop image files from your desktop
+                Drop in images from your desktop
               </div>
             </div>
-
             <div id="dnd-thumbnails" class="center"></div>
+
             <script src="src/dnd/dnd-lib.js"></script>
             <script>
-             (function() {
-               var dndc = new DNDFileController('dropzone', 'dnd-thumbnails');
-             })();
+              (function() {
+                var dndc = new DNDFileController('dropzone', 'dnd-thumbnails');
+              })();
             </script>
           </section>
         </div>
 
+
+        <div class="slide">
+          <style>
+            .dragout {
+              background: #0687FF;
+              color: #fff;
+              padding: 10px;
+              margin: 10px;
+              -moz-border-radius: 5px;
+              -webkit-border-radius: 5px;
+              -o-border-radius: 5px;
+              border-radius: 5px;
+            }
+          </style>
+          <header><span class="js">JS</span> <h1>Desktop Drag-Out</h1></header>
+          <section id="dnd-section">
+
+            <h3>Drag files out onto the desktop:</h3>
+
+            <pre>
+&lt;a href="src/star.mp3" draggable="true" class="dragout"
+   data-downloadurl="<b>MIMETYPE:FILENAME:ABSOLUTE_URI_TO_FILE</b>"&gt;download&lt;/a&gt;
+</pre>
+
+            <pre>
+var files = document.querySelectorAll('.dragout');
+for (var i = 0, file; file = files[i]; ++i) {
+  file.addEventListener('dragstart', function(e) {
+    e.dataTransfer.setData('DownloadURL', this.dataset.downloadurl);
+  }, false);
+}
+</pre>
+
+            <div class="example">
+              Drag each of these files onto your desktop:
+              <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/intl/en/landing/chrome/cadie/glasses.pdf" class="dragout" data-downloadurl="application/pdf:Chrome3DGlasses.pdf:http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/intl/en/landing/chrome/cadie/glasses.pdf">.pdf file</a>
+              <a href="src/star.mp3" class="dragout" data-downloadurl="audio/mpeg:star.mp3:http://slides.html5rocks.com/src/star.mp3">.mp3 file</a>
+            </div>
+            <p class="center" style="font-size:90%">( this features is only available in Google Chrome )</p>
+            <script>
+              (function() {
+                var files = document.querySelectorAll('.dragout');
+                for (var i = 0, file; file = files[i]; ++i) {
+                  file.setAttribute('draggable', 'true'); // Don't really need, but good practice.
+                  file.addEventListener('dragstart', function(evt) {
+                    evt.dataTransfer.setData('DownloadURL', this.getAttribute('data-downloadurl'));
+                  }, false);
+                }
+              })();
+            </script>
+          </section>
+        </div>
 
         <div class="slide">
           <style>

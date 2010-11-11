@@ -26,7 +26,7 @@ function DNDFileController(id, thumbsId) {
     el_.classList.remove('rounded');
 
     var files = e.dataTransfer.files;
-  
+
     for (var i = 0, file; file = files[i]; i++) {
       var imageType = /image.*/;
       if (!file.type.match(imageType)) {
@@ -36,14 +36,21 @@ function DNDFileController(id, thumbsId) {
       var reader = new FileReader();
 
       reader.onerror = function(evt) {
-         alert('Error code: ' + evt.target.error.code);
+         var msg = 'Error ' + evt.target.error.code;
+         switch (evt.target.error.code) {
+           case FileError.NOT_READABLE_ERR:
+             msg += ': NOT_READABLE_ERR';
+             break;
+         };
+         alert(msg);
       };
 
       reader.onload = (function(aFile) {
         return function(evt) {
           if (evt.target.readyState == FileReader.DONE) {
             thumbnails_.insertAdjacentHTML(
-                'afterBegin', '<img src="' + evt.target.result + '" alt="' + aFile.name + '" title="' + aFile.name + '" />');
+                'afterBegin', '<img src="' + evt.target.result + '" alt="' +
+                aFile.name + '" title="' + aFile.name + '" />');
           }
         };
       })(file);
