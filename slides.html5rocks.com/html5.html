@@ -665,8 +665,30 @@ screenName: user1
 foo: bar
 </pre>
           </section>
-
         </div>
+
+
+        <div class="slide">
+          <style>
+
+          </style>
+          <header><span class="js">JS</span> <h1>Element.classList</h1></header>
+          <section>
+            <pre>&lt;div id="main" class="shadow rounded"&gt;&lt;/div&gt;</pre>
+            <pre>
+var el = document.querySelector('#main').<b>classList</b>;
+el.add('highlight');
+el.remove('shadow');
+el.toggle('highlight');
+
+// el.contains('highlight') == false
+// el.contains('shadow') == false
+// el.classList.toString() == el.className
+</pre>
+
+          </section>
+        </div>
+
 
         <div class="slide transitionSlide">
           <section class="middle">
