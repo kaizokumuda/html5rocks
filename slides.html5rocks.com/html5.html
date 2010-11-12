@@ -678,9 +678,13 @@ el.add('highlight');
 el.remove('shadow');
 el.toggle('highlight');
 
-// el.contains('highlight') == false
-// el.contains('shadow') == false
-// el.classList.toString() == el.className
+console.log(el.contains('highlight')); // false
+console.log(el.contains('shadow')); // false
+console.log(el.classList.toString() == el.className); // true
+</pre>
+<p>Output:</p>
+<pre>
+&lt;div id="main" class="rounded"&gt;&lt;/div&gt;
 </pre>
           </section>
         </div>
