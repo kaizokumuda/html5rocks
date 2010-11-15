@@ -3394,10 +3394,6 @@ div {
           var _t = this;
           doc.addEventListener('keydown', 
               function(e) { _t.handleKeys(e); }, false);
-          doc.addEventListener('mousewheel', 
-              function(e) { _t.handleWheel(e); }, false);
-          doc.addEventListener('DOMMouseScroll', 
-              function(e) { _t.handleWheel(e); }, false);
           doc.addEventListener('touchstart', 
               function(e) { _t.handleTouchStart(e); }, false);
           doc.addEventListener('touchend', 
@@ -3456,26 +3452,6 @@ div {
           },
           switch3D: function() {
             toggleClass(document.body, 'three-d');
-          },
-          handleWheel: function(e) {
-            var delta = 0;
-            if (e.wheelDelta) {
-              delta = e.wheelDelta/120;
-              if (isOpera) {
-                delta = -delta;
-              }
-            } else if (e.detail) {
-              delta = -e.detail/3;
-            }
-
-            if (delta > 0 ) {
-              this.prev();
-              return;
-            }
-            if (delta < 0 ) {
-              this.next();
-              return;
-            }
           },
           handleKeys: function(e) {
             
