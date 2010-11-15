@@ -54,7 +54,7 @@
         left: 0;
         top: 0;
         position: absolute;
-        display: block;
+        display: none;
         -webkit-transition: -webkit-transform 1s ease-in-out;
         -moz-transition: -moz-transform 1s ease-in-out;
         -o-transition: -o-transform 1s ease-in-out;
@@ -496,7 +496,7 @@
   </head>
   <body>
     <div class="presentation">
-      <div id="presentation-counter"></div>
+      <div id="presentation-counter">Loading...</div>
       <div class="slides">
         <div class="slide">
           <style>
@@ -3410,7 +3410,13 @@ div {
         SlideShow.prototype = {
           _slides: [],
           _update: function(dontPush) {
-            document.querySelector('#presentation-counter').innerText = this.current;
+            // in order to delay the time where the counter shows the slide number we check if 
+            // the slides are already loaded (so we show the loading... instead)
+            // the technique to test visibility is taken from here
+            // http://stackoverflow.com/questions/704758/how-to-check-if-an-element-is-really-visible-with-javascript
+            if (document.elementFromPoint('50%', '50%').className != 'presentation') {
+              document.querySelector('#presentation-counter').innerText = this.current;
+            }
             if (history.pushState) {
               if (!dontPush) {
                 history.replaceState(this.current, 'Slide ' + this.current, '#slide' + this.current);
@@ -3504,10 +3510,14 @@ div {
 
         // Initialize
         var slideshow = new SlideShow(query('.slide'));
+        document.body.onload = function() {
+          query('.slides')[0].style.display = 'block';
+        }
 
         query('pre').forEach(function(el) {
           addClass(el, 'prettyprint');
         });
+
       })();
     </script>
 
