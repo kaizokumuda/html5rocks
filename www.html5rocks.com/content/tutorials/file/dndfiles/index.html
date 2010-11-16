@@ -180,7 +180,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   <p>After you've obtained a <code>File</code> reference, instantiate a <a href="http://dev.w3.org/2006/webapi/FileAPI/#filereader-interface"><code>FileReader</code></a> object
   to read its contents into memory. When the load finishes, the reader's <code>onload</code> event is fired 
   and its <code>result</code> attribute can be used to access the file data.</p>
-  <p><code>FileReader</code> includes three options for reading a file, asynchronously:</p>
+  <p><code>FileReader</code> includes four options for reading a file, asynchronously:</p>
   <ul>
     <li><code>FileReader.readAsBinaryString(Blob|File)</code> - The <code>result</code> property will contain the file/blob's data
     as a binary string. Every byte is represented by an integer in the range [0..255].</li>
