@@ -2894,7 +2894,105 @@ background:
           </section>
         </div>
 
+        <div class="slide"> 
+          <style>
+            #box-orient-example {
+              height: 300px;
+              display: -webkit-box; -webkit-box-orient: horizontal;
+            }
+            #box-orient-example div:nth-child(1) {
+              background: white; padding: 10px; -webkit-box-flex: 1; text-align: center;
+            }
+            #box-orient-example div:nth-child(2) {
+              background: #ddd; padding: 10px; -webkit-box-flex: 1; text-align: center;
+            }
+            #box-orient-example div:nth-child(3) {
+              background: white; padding: 10px; -webkit-box-flex: 3; text-align: center;
+            }
+          </style>
+          <header><span class="css">CSS</span> <h1>Flexible Box Model</h1></header>
+          <section>
+<pre>.box {
+  display: -webkit-<b>box</b>;
+  -webkit-<b>box-orient</b>: <select onchange='changeBoxOrient(event)'> 
+      <option>horizontal</option> 
+      <option>vertical</option> 
+    </select>;
+}
+.box .one, .box .two {
+  -webkit-<b>box-flex</b>: 1;
+}
+.box .three {
+  -webkit-<b>box-flex</b>: 3;
+}
+</pre> 
 
+          <div id="box-orient-example" class="example">
+            <div>
+              Box one
+            </div> 
+            <div>
+              Box two
+            </div> 
+            <div>
+              Box three
+            </div> 
+          </div>
+
+          <script> 
+            function changeBoxOrient(event) {
+              document.getElementById('box-orient-example').style.webkitBoxOrient = event.target.value; 
+            }
+          </script> 
+          </section> 
+        </div>
+
+
+        <div class="slide">
+          <style>
+            #box-orient-example-2 {
+              height: 200px; display: -webkit-box; 
+              -webkit-box-pack: center; -webkit-box-align: center; 
+              -webkit-box-orient: horizontal;
+            }
+            #box-orient-example-2 div {
+              background: #ddd; padding: 20px;
+            }
+          </style>
+          <header><span class="css">CSS</span> <h1>Flexible Box Model</h1></header>
+          <section> 
+<pre>.box {
+    display: -webkit-<b>box</b>;
+    -webkit-<b>box-pack</b>: <select onchange='changeBoxPack(event)'> 
+        <option>center</option> 
+        <option>start</option> 
+        <option>end</option> 
+      </select>;
+    -webkit-<b>box-align</b>: <select onchange='changeBoxAlign(event)'> 
+        <option>center</option> 
+        <option>start</option> 
+        <option>end</option> 
+        <option>stretch</option> 
+      </select>;
+  }
+</pre> 
+
+            <div id="box-orient-example-2" class="example">
+              <div>Test</div> 
+            </div>
+
+            <script> 
+              function changeBoxPack(event) {
+                document.getElementById('box-orient-example-2').style.webkitBoxPack = event.target.value; 
+              }
+              function changeBoxAlign(event) {
+                document.getElementById('box-orient-example-2').style.webkitBoxAlign = event.target.value; 
+              }
+            </script> 
+
+          </section> 
+        </div>
+                
         <div class="slide">
           <style>
             #transitions-box-2 {
