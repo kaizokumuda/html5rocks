@@ -3416,6 +3416,7 @@ div {
         };
 
         SlideShow.prototype = {
+          _presentationCounter: query('#presentationCounter')[0],
           _slides: [],
           _update: function(dontPush) {
             // in order to delay the time where the counter shows the slide number we check if 
@@ -3423,7 +3424,7 @@ div {
             // the technique to test visibility is taken from here
             // http://stackoverflow.com/questions/704758/how-to-check-if-an-element-is-really-visible-with-javascript
             if (document.elementFromPoint('50%', '50%').className != 'presentation') {
-              document.querySelector('#presentation-counter').innerText = this.current;
+              this._presentationCounter.innerText = this.current;
             }
             if (history.pushState) {
               if (!dontPush) {
