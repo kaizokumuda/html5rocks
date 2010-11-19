@@ -8,6 +8,7 @@
   <script>
   var feature = '{% block tuttags %}{% endblock %}';
   
+  // request associated tutorials and populate into this page
   var div = $('<div>').load('/tutorials/ #index', function(){
     
     var ul = $('section.tutorials ul'), matches = $([]);

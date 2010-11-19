@@ -639,18 +639,6 @@
 
   </div>
 
-  <script>
-  var div = $('<div>').load('/tutorials/ #index', function(){
-    
-    var ul = $('section.tutorials ul');
-    
-    div.find('.sample span.tag:contains(' + feature + ')')
-      .closest('.sample').find('h2 a').clone()
-      .map(function(){ return $(this).wrap('<li>').parent(); })
-      .prependTo(ul);
-      
-  });
-  </script>
 
   {% include "../../templates/footer.html" %}
 
