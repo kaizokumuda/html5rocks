@@ -2951,12 +2951,19 @@ background:
         <div class="slide">
           <style>
             #box-orient-example-2 {
-              height: 200px; display: -webkit-box; 
-              -webkit-box-pack: center; -webkit-box-align: center; 
+              height: 200px; 
+              display: -moz-box; 
+              -moz-box-pack: center;
+              -moz-box-align: center; 
+              -moz-box-orient: horizontal;
+              
+              display: -webkit-box; 
+              -webkit-box-pack: center;
+              -webkit-box-align: center; 
               -webkit-box-orient: horizontal;
             }
-            #box-orient-example-2 div {
-              background: #ddd; padding: 20px;
+            #box-orient-example-2 div, #box-orient-example-2 textarea {
+              background: #ddd; padding: 10px; width: 200px; font-size: 14px;
             }
           </style>
           <header><span class="css">CSS</span> <h1>Flexible Box Model</h1></header>
@@ -2978,7 +2985,7 @@ background:
 </pre> 
 
             <div id="box-orient-example-2" class="example">
-              <div>Test</div> 
+              <textarea>change the dropdowns and resize this &lt;textarea></textarea> 
             </div>
 
             <script> 
