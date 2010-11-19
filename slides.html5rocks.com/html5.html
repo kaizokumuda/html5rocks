@@ -736,6 +736,14 @@ textarea.value = window.<b>localStorage</b>.getItem('value');
 <button id="save-ta">Save</button>
 <p id="ta-log"></p>
 <script>
+(function(){
+
+  try {
+    (window.localStorage.getItem) // will throw in Firefox under some settings
+  } catch(e){
+    return; // quit because dom.storage.enabled is false
+  }
+
   var area = document.querySelector('#ta');
   // place content from previous edit
   if (!area.value) {
@@ -765,7 +773,8 @@ textarea.value = window.<b>localStorage</b>.getItem('value');
       }
     }
   }
-  
+
+})();  
 </script>
           </section>
         </div>
@@ -3528,7 +3537,8 @@ div {
             // the slides are already loaded (so we show the loading... instead)
             // the technique to test visibility is taken from here
             // http://stackoverflow.com/questions/704758/how-to-check-if-an-element-is-really-visible-with-javascript
-            if (document.elementFromPoint('50%', '50%').className != 'presentation') {
+            var elem = document.elementFromPoint('50%', '50%');
+            if (elem && elem.className != 'presentation') {
               this._presentationCounter.innerText = this.current;
             }
             if (history.pushState) {
