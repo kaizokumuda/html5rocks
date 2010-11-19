@@ -2908,15 +2908,19 @@ background:
             #box-orient-example {
               height: 300px;
               display: -webkit-box; -webkit-box-orient: horizontal;
+              display: -moz-box; -moz-box-orient: horizontal;
             }
             #box-orient-example div:nth-child(1) {
-              background: white; padding: 10px; -webkit-box-flex: 1; text-align: center;
+              background: white; padding: 10px; -webkit-box-flex: 1; 
+              -moz-box-flex: 1; text-align: center;
             }
             #box-orient-example div:nth-child(2) {
-              background: #ddd; padding: 10px; -webkit-box-flex: 1; text-align: center;
+              background: #ddd; padding: 10px; -webkit-box-flex: 1; 
+              -moz-box-flex: 1; text-align: center;
             }
             #box-orient-example div:nth-child(3) {
-              background: white; padding: 10px; -webkit-box-flex: 3; text-align: center;
+              background: white; padding: 10px; -webkit-box-flex: 3; 
+              -moz-box-flex: 3; text-align: center;
             }
           </style>
           <header><span class="css">CSS</span> <h1>Flexible Box Model</h1></header>
