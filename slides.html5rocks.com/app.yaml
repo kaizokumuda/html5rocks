@@ -7,6 +7,9 @@ handlers:
 - url: /src
   static_dir: src
 
+- url: /css
+  static_dir: css
+
 - url: /disclaimer.html
   static_files: disclaimer.html
   upload: disclaimer.html
