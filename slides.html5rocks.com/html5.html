@@ -26,10 +26,10 @@
     <title>HTML5 Presentation</title>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet" type="text/css" />
     <link id="prettify-link" href="src/prettify/prettify.css" rel="stylesheet" disabled />
-    <link href="css/moon.css" rel="stylesheet" />
-    <link href="css/sand.css" rel="stylesheet" />
-    <link href="css/sea_wave.css" rel="stylesheet" />
-    <link href="css/default.css" rel="stylesheet" />
+    <link href="css/moon.css" class="theme" rel="stylesheet" />
+    <link href="css/sand.css" class="theme" rel="stylesheet" />
+    <link href="css/sea_wave.css" class="theme" rel="stylesheet" />
+    <link href="css/default.css" class="theme" rel="stylesheet" />
   </head>
   <body>
     <div class="presentation">
@@ -268,10 +268,10 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
 // use localStorage for persistent storage
 // use sessionStorage for per tab storage
 textarea.addEventListener('keyup', function () {
-  window.<b>localStorage</b>.setItem('value', area.value);
-  window.<b>localStorage</b>.setItem('timestamp', (new Date()).getTime());
+  window.<b>localStorage</b>.<b>setItem</b>('value', area.value);
+  window.<b>localStorage</b>.<b>setItem</b>('timestamp', (new Date()).getTime());
 }, false);
-textarea.value = window.<b>localStorage</b>.getItem('value');
+textarea.value = window.<b>localStorage</b>.<b>getItem</b>('value');
 </pre>
 <p id="localstorage-message">Save text value on the client side (crash-safe)</p>
 <textarea id="ta" placeholder="Type your text here..."></textarea>
@@ -2803,7 +2803,6 @@ div {
       (function() {
         var doc = document;
         var disableBuilds = true;
-        var nonThemeLinks = 2; // assume non theme stylesheets will always go first in the markup
         
         var ctr = 0;
         var spaces = /\s+/, a1 = [''];
@@ -3134,12 +3133,14 @@ div {
             toggleClass(document.body, 'three-d');
           },
           toggleHightlight: function() {
-            query('#prettify-link')[0].disabled = !(query('#prettify-link')[0].disabled);
+            var link = query('#prettify-link')[0];
+            link.disabled = !(link.disabled);
+            sessionStorage['highlightOn'] = !link.disabled;
           },
           changeTheme: function() {
-            var linkEls = query('link').splice(nonThemeLinks);
+            var linkEls = query('link.theme');
             var sheetIndex = 0;
-            [].forEach.call(linkEls, function(stylesheet, i) {
+            linkEls.forEach(function(stylesheet, i) {
               if (!stylesheet.disabled) {
                 sheetIndex = i;
               }
@@ -3150,7 +3151,9 @@ div {
           },
           handleKeys: function(e) {
             
-            if (/^(input|textarea)$/i.test(e.target.nodeName)) return;
+            if (/^(input|textarea)$/i.test(e.target.nodeName) || e.target.isContentEditable) {
+              return;
+            }
             
             switch (e.keyCode) {
               case 37: // left arrow
@@ -3183,22 +3186,24 @@ div {
           },
         };
         
+        // load highlight setting from session storage, if available.
+        // session storage can only store strings so we have to assume type coercion
+        // for the boolean logic here
+        query('#prettify-link')[0].disabled = !(sessionStorage['highlightOn'] == 'true');        
+            
         // disable style theme stylesheets
-        var linkEls = query('link').splice(nonThemeLinks);
+        var linkEls = query('link.theme');
         var stylesheetPath = sessionStorage['theme'] || 'css/default.css';
-        [].forEach.call(linkEls, function(stylesheet) {
-          if (stylesheet.href.indexOf(stylesheetPath) != -1) {
-            stylesheet.disabled = false;
-          } else {
-            stylesheet.disabled = true;
-          }
+        linkEls.forEach(function(stylesheet) {
+          stylesheet.disabled = !(stylesheet.href.indexOf(stylesheetPath) != -1);
         });
         
         // Initialize
         var slideshow = new SlideShow(query('.slide'));
-        document.body.onload = function() {
+
+        document.addEventListener('DOMContentLoaded', function() {
           query('.slides')[0].style.display = 'block';
-        }
+        }, false);
 
         query('pre').forEach(function(el) {
           addClass(el, 'prettyprint');
