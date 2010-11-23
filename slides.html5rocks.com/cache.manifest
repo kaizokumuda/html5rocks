@@ -1,12 +1,10 @@
 CACHE MANIFEST
-#2010-11-09 18:31:57.381891
+#2010-11-22 18:13:40.595256
 
 /src/chrome.png
 /src/compile
 /src/dwd1.png
 /src/gray_lines_bg.png
-/src/Junction02.otf
-/src/LeagueGothic.otf
 /src/magpie.png
 /src/opacity_bg.jpg
 /src/refresh.png
@@ -22,11 +20,41 @@ CACHE MANIFEST
 /src/canvasphoto/index.html
 /src/canvasphoto/utilities.js
 /src/dnd/dnd-lib.js
+/src/fonts/inconsolata/Inconsolata.ttf
+/src/fonts/junction02/junction02-webfont.eot
+/src/fonts/junction02/junction02-webfont.svg
+/src/fonts/junction02/junction02-webfont.ttf
+/src/fonts/junction02/junction02-webfont.woff
+/src/fonts/leaguegothic/leaguegothic-webfont.eot
+/src/fonts/leaguegothic/leaguegothic-webfont.svg
+/src/fonts/leaguegothic/leaguegothic-webfont.ttf
+/src/fonts/leaguegothic/leaguegothic-webfont.woff
+/src/fonts/vitesse/Vitesse-Medium.otf
+/src/fonts/vitesse/VitesseSans-Book.otf
+/src/fonts/vitesse/VitesseSans-BookItalic.otf
+/src/fonts/vitesse/VitesseSans-Light.otf
+/src/fonts/vitesse/VitesseSans-Medium.otf
+/src/fonts/yanone/YanoneKaffeesatz-Regular.ttf
 /src/orientation/chrome-layer-01.png
 /src/orientation/chrome-layer-02.png
 /src/orientation/chrome-layer-03.png
 /src/orientation/chrome-layer-04.png
 /src/orientation/chrome-layer-05.png
+/src/prettify/lang-apollo.js
+/src/prettify/lang-css.js
+/src/prettify/lang-hs.js
+/src/prettify/lang-lisp.js
+/src/prettify/lang-lua.js
+/src/prettify/lang-ml.js
+/src/prettify/lang-proto.js
+/src/prettify/lang-scala.js
+/src/prettify/lang-sql.js
+/src/prettify/lang-vb.js
+/src/prettify/lang-vhdl.js
+/src/prettify/lang-wiki.js
+/src/prettify/lang-yaml.js
+/src/prettify/prettify.css
+/src/prettify/prettify.js
 /src/svg/famoustiger.svg
 /src/webgl/angeles.js
 /src/webgl/context.js
