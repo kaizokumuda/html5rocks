@@ -3089,7 +3089,8 @@ div {
             // the slides are already loaded (so we show the loading... instead)
             // the technique to test visibility is taken from here
             // http://stackoverflow.com/questions/704758/how-to-check-if-an-element-is-really-visible-with-javascript
-            var elem = document.elementFromPoint('50%', '50%');
+            var docElem = document.documentElement;
+            var elem = document.elementFromPoint( docElem.clientWidth / 2, docElem.clientHeight / 2);
             if (elem && elem.className != 'presentation') {
               this._presentationCounter.innerText = this.current;
             }
