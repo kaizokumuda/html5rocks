@@ -1,5 +1,5 @@
 application: html5playbook
-version: 4
+version: 4.1
 runtime: python
 api_version: 1
 
@@ -22,6 +22,11 @@ handlers:
   static_files: samples/\1
   mime_type: text/cache-manifest
   upload: samples/(.*\.manifest)
+
+- url: /samples/(.*\.crx)
+  static_files: samples/\1
+  mime_type: application/x-chrome-extension
+  upload: samples/(.*\.crx)
 
 - url: /samples/(.*\.mp4)
   static_files: samples/\1
