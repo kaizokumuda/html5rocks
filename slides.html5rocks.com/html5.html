@@ -321,8 +321,6 @@ textarea.value = window.<b>localStorage</b>.<b>getItem</b>('value');
           </section>
         </div>
 
-
-
         <div class="slide">
           <style>
             .record-list li:nth-child(odd) { background-color: #eee; }
@@ -332,8 +330,10 @@ textarea.value = window.<b>localStorage</b>.<b>getItem</b>('value');
               overflow: auto;
               text-align: left;
             }
+            #websqldb-example .error {
+              color: red;
+            }
           </style>
-          
           <header><span class="js">JS</span> <h1>Web SQL Database</h1></header>
           <section>
 <pre>var db = window.<b>openDatabase</b>("DBName", "1.0", "description", 5*1024*1024); //5MB
@@ -343,14 +343,14 @@ db.<b>transaction</b>(function(tx) {
 </pre>
 
 
-          <div class="center">
-            <ul class="record-list" id="db-results"></ul>
-            <div id="db-log"></div>
+          <div class="center" id="websqldb-example">
             <input type="text" id="todoitem" />
             <button onclick="newRecord()">new to do item</button>
             <button onclick="createTable()">create table</button>
             <button onclick="dropTable()">drop table</button>
             <p>See the generated database: Developer > Developer Tools > Storage</p>
+            <ul class="record-list" id="db-results"></ul>
+            <div id="db-log"></div>
           </div>
           <script>
             var db;
@@ -362,7 +362,7 @@ db.<b>transaction</b>(function(tx) {
             document.getElementById('db-results').addEventListener('click', function(e) { e.preventDefault(); }, false);
 
             function onError(tx, error) {
-              log.innerHTML += '<p>' + error.message + '</p>';
+              log.innerHTML = '<p class="error">Error: ' + error.message + '</p>';
             }
 
             // select all records and display them
