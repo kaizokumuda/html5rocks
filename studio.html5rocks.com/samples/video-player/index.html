@@ -1,6 +1,25 @@
 <!DOCTYPE html>
+<!--
+ * Copyright (c) 2010 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Author: Paul Irish <paulirish@html5rocks.com>
+-->
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
     <title>Video PIP</title>
     <style>
       body {
@@ -12,10 +31,7 @@
       body > * {
         margin: 0px;
         padding: 0px;
-        
       }
-      
-
       #player #controls {
         margin: 5px;
         top: -80px;
@@ -34,24 +50,16 @@
         -moz-user-select: none;
         user-select: none;
       }
-      
-    
-      
       #player:hover #controls {
         opacity: 0.4;
       }
-    
       #player #controls:hover {
         opacity: 1.0;
       }
-      
-
-      
       #play_button {
        padding-left: 30px;
        padding-right: 30px;
       }
-      
       button {
         margin: 12px 0px 5px 12px;
         border: 2px solid #fff;
@@ -70,19 +78,16 @@
         background: -webkit-gradient(linear, left top, left bottom, from(#488CE2), to(#3D77C4));
         background: -moz-linear-gradient(top,  #488CE2,  #3D77C4);
       }
-      
       button:hover {
         box-shadow: 0px 0px 2px rgba(0,0,0,1);
         -webkit-box-shadow: 0px 0px 2px rgba(0,0,0,1);
         -moz-box-shadow: 0px 0px 2px  rgba(0,0,0,1);
       }
-      
       button:active {
         box-shadow: 0px 0px 0px rgba(0,0,0,.5);
         -webkit-box-shadow: 0px 0px 0px rgba(0,0,0,.5);
         -moz-box-shadow: 0px 0px 0px  rgba(0,0,0,.5);
       }
-      
       #progressBar {
         width: 348px;
         height: 5px;
@@ -92,26 +97,21 @@
         margin-left: 12px;
         margin-top: 15px;
       }
-      
       #progress {
         width: 0%;
         height: 5px;
         -webkit-transition: width 0.1s ease-in-out;
         background-color: red;
       }
-      
-     
-      #player { 
-        margin-left: -195px;  
+      #player {
+        margin-left: -195px;
         position: absolute; 
         left: 50%; 
-        top: 80px;}
-      
+        top: 80px;
+      }
       #video-wrap {
         position: relative;
       }
- 
-      
       canvas.ambilight-left,
       canvas.ambilight-right {
         position: absolute;
@@ -120,50 +120,45 @@
         top: -50%;
         z-index: -1;
       }
-
       canvas.ambilight-left {
         left: -270px;
         top: -53%;
         background-image: url(mask3-left.png);
       }
-
       canvas.ambilight-right {
         right: -270px;
         top: -51%;
         background-image: url(mask3-right.png);
       }
-      #video-wrap , #player{ 
-        width: 390px; 
-        height: 240px;  
+      #video-wrap , #player{
+        width: 390px;
+        height: 240px;
       }
-      
-      #video-bg, video { 
-        width: 390px; 
+      #video-bg, video {
+        width: 390px;
         height: 220px
       }
       #video-bg { 
         background: #222;
       }
-      
-      video {  
-        position: absolute; 
+      video {
+        position: absolute;
         top: 0; 
         left: 0;
-             -moz-transition: all 0.3s ease-out;  
-               -o-transition: all 0.3s ease-out;  
-          -webkit-transition: all 0.3s ease-out;
-                  transition: all 0.3s ease-out;
-        }
-      
-      .view1 #clip2 , .view2 #clip1 { 
-        width: 70px; 
-        height: 41px; 
-        left: 313px; 
-        top: 170px; 
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        -webkit-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+      }
+      .view1 #clip2 , .view2 #clip1 {
+        width: 70px;
+        height: 41px;
+        left: 313px;
+        top: 170px;
         z-index: 10;
         cursor: pointer;
-        border: 1px solid rgba(50,50,50,.6); 
-        }
+        border: 1px solid rgba(50,50,50,.6);
+      }
     </style>
   </head>
   <body>
@@ -310,7 +305,7 @@
   </script>
   
   <!-- -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script src="ambilight.js"></script> 
   <script> 
       ambiLight.create(document.getElementById('clip2'));
