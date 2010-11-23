@@ -3197,9 +3197,10 @@ div {
         
         // Initialize
         var slideshow = new SlideShow(query('.slide'));
-        document.body.onload = function() {
+
+        document.addEventListener('DOMContentLoaded', function() {
           query('.slides')[0].style.display = 'block';
-        }
+        }, false);
 
         query('pre').forEach(function(el) {
           addClass(el, 'prettyprint');
