@@ -37,6 +37,9 @@ def zip_samples(samples_dir):
     if not sample.startswith('.'):
       base_path = '%s/%s' % (SAMPLES_DIR, sample)
 
+      if not os.path.isdir(base_path):
+        continue
+
       file_name = '%s/%s.zip' % (base_path, sample)
 
       # Delete archive if already exists before we establish the files to zip.
