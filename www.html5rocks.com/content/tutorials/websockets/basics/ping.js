@@ -1,4 +1,4 @@
-var connection = new WebSocket('ws://websockets.org:8787/echo');
+var connection = new WebSocket('ws://html5rocks.websocket.org/echo');
 
 // When the connection is open, send some data to the server
 connection.onopen = function () {

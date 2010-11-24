@@ -2,9 +2,9 @@
 
 {% block headauthor %}Malte Ubl <malte.ubl@google.com>{% endblock %}
 {% block pageauthor %}Malte Ubl{% endblock %}
-{% block headtitle %}Introducing Web Sockets: Bringing Sockets to the Web{% endblock %}
-{% block pagetitle %}Introducing Web Sockets: Bringing Sockets to the Web{% endblock %}
-{% block pagebreadcrumb %}Introducing Web Sockets: Bringing Sockets to the Web{% endblock %}
+{% block headtitle %}Introducing WebSockets: Bringing Sockets to the Web{% endblock %}
+{% block pagetitle %}Introducing WebSockets: Bringing Sockets to the Web{% endblock %}
+{% block pagebreadcrumb %}Introducing WebSockets: Bringing Sockets to the Web{% endblock %}
 {% block head %}
 {% endblock %}
 {% block date %}October 20, 2010{% endblock %}
@@ -23,7 +23,7 @@
 
 {% block content %}
   <h2 id="toc-introduction-lowlatency">The Problem: Low Latency Client-Server and Server-Client Connections</h2>
-  <p>The web has been largely built around the so called request/response paradigm of HTTP. A client loads up a web page
+  <p>The web has been largely built around the so-called request/response paradigm of HTTP. A client loads up a web page
   and then nothing happens until the user clicks onto the next page. Around 2005, AJAX started to make the web feel more 
   dynamic. Still, all HTTP communication was steered by the client, which required user interaction or periodic polling 
   to load new data from the server.</p>
@@ -42,7 +42,7 @@
   suited for low latency applications. Think multiplayer first person shooter games in the browser or any other online game 
   with a realtime component.</p>
 
-  <h2 id="toc-introduction-sockets">Introducing Web Sockets: Bringing Sockets to the Web</h2>
+  <h2 id="toc-introduction-sockets">Introducing WebSockets: Bringing Sockets to the Web</h2>
 
   <p>The <a href="http://dev.w3.org/html5/websockets/">WebSockets</a> specification defines
   an API establishing "socket" connections between a web browser and a server. In plain words: There is an open connection 
@@ -50,10 +50,10 @@
 
   <h2 id="toc-gettingstarted">Getting Started</h2>
 
-  <p>You open up a web socket connection simply by calling the WebSocket constructor:</p>
+  <p>You open up a WebSocket connection simply by calling the WebSocket constructor:</p>
 
   <pre class="prettyprint">
-var connection = new WebSocket('ws://websockets.org:8787/echo');
+var connection = new WebSocket('ws://html5rocks.websocket.org/echo');
 </pre>
 
   <p>Notice the <code>ws:</code>. This is the new URL schema for WebSocket connections. There is also
@@ -111,7 +111,7 @@ connection.onmessage = function (e) {
   WebSockets are not available. A library that has become very popular in this domain is 
   <a href="http://socket.io/">socket.io</a> which comes with a client and a server implementation of the protocol
   and includes fallbacks. There are also commercial solutions such as <a href="http://pusherapp.com/">PusherApp</a>
-  which can be easily integrated into any web environment by providing a HTTP API to send web socket messages
+  which can be easily integrated into any web environment by providing a HTTP API to send WebSocket messages
   to clients. Due to the extra HTTP request there will always be extra overhead compared to pure WebSockets.</p>
   
   <h2 id="toc-serverside">The Server Side</h2>
