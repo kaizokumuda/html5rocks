@@ -323,8 +323,11 @@ textarea.value = window.<b>localStorage</b>.<b>getItem</b>('value');
 
         <div class="slide">
           <style>
-            .record-list li:nth-child(odd) { background-color: #eee; }
-            .record-list li:nth-child(even) { background-color: #ddd; }
+            #websqldb-example .record-list li:nth-child(odd) { background-color: #eee; }
+            #websqldb-example .record-list li:nth-child(even) { background-color: #ddd; }
+            #websqldb-example .record-list li {
+              padding-left: 5px;
+            }
             #db-results {
               max-height: 150px;
               overflow: auto;
@@ -341,7 +344,6 @@ db.<b>transaction</b>(function(tx) {
   tx.<b>executeSql</b>(<em>"SELECT * FROM test"</em>, [], successCallback, errorCallback);
 });
 </pre>
-
 
           <div class="center" id="websqldb-example">
             <input type="text" id="todoitem" />
@@ -439,32 +441,34 @@ db.<b>transaction</b>(function(tx) {
 
       <div class="slide">
           <style>
-            .record-list li:nth-child(odd) { background-color: #eee; }
-            .record-list li:nth-child(even) { background-color: #ddd; }
+            #indexeddb-example .record-list li:nth-child(odd) { background-color: #eee; }
+            #indexeddb-example .record-list li:nth-child(even) { background-color: #ddd; }
+            #indexeddb-example .record-list li {
+              padding-left: 5px;
+            }
             #idb-results {
               max-height: 250px;
               overflow: auto;
               text-align: left;
+              padding: 0;
             }
             .keyval {
-              border-style: dashed;
-              border-width: thin;
-              padding: 1px;
-              padding-left: 4px;
-              padding-right: 4px;
+              border: 1px dashed;
+              padding: 4px;
+              outline: none;
             }
             #indexeddb-example .error {
               color: red;
             }
           </style>
-
           <header><span class="js">JS</span> <h1>IndexedDB</h1></header>
           <section>
-<pre>var request = window.<b>webkitIndexedDB</b>.<b>open</b>("Database Name", "Description");
-request.onsuccess = function () {
+<pre>var idbRequest = window.<b>indexedDB</b>.<b>open</b>("Database Name", "Description");
+idbRequest.onsuccess = function(event) {
   var db = event.result;
-  var objectStore = db.<b>transaction</b>([]).<b>objectStore</b>("ObjectStore Name");
-  objectStore.<b>openCursor</b>().<b>onsuccess</b> = ...;
+  var transaction = db.<b>transaction</b>([], <b>IDBTransaction.READ_ONLY</b>);
+  var request = transaction.<b>objectStore</b>("ObjectStore Name").<b>openCursor</b>();
+  request.<b>onsuccess</b> = ...;
 }
 </pre>
           <div class="center" id="indexeddb-example">
@@ -477,165 +481,192 @@ request.onsuccess = function () {
           </div>
           <script>
             var indexedDbSample = (function() {
-              var idb;
-              var idbRequest;
-              var idbLog = document.getElementById('idb-log');
+              var idb_;
+              var idbRequest_;
+              var idbLog_ = document.getElementById('idb-log');
+              var idResultsWrapper_ = document.getElementById('idb-results-wrapper');
 
-              // Since the IndexedDB spec is still evolving, various browsers keep it behind various flags.
+              // IndexedDB spec is still evolving, various browsers keep it
+              // behind various flags and implementation varies.
               if ('webkitIndexedDB' in window) {
-                indexedDB = webkitIndexedDB;
-                IDBTransaction = webkitIDBTransaction;
-              }
-              if ('moz_indexedDB' in window) {
-                indexedDB = moz_indexedDB;
-                IDBTransaction = moz_IDBTransaction;
+                window.indexedDB = window.webkitIndexedDB;
+                window.IDBTransaction = window.webkitIDBTransaction ||
+                                        {READ_WRITE: 0, READ_ONLY: 1};
+              } else if ('moz_indexedDB' in window) {
+                window.indexedDB = window.moz_indexedDB;
+                window.IDBTransaction = window.moz_IDBTransaction ||
+                                        {READ_WRITE: 0, READ_ONLY: 1};
               }
 
               // Open our IndexedDB.
-              if ('indexedDB' in window) {
-                idbRequest = indexedDB.open("Test", "A test object store.");
-                idbRequest.onerror = idbError;
-                idbRequest.addEventListener('success', function() { idb = event.result; }, false);
-                idbRequest.addEventListener('success', idbShow, false);
+              idbRequest_ = window.indexedDB.open("Test", "A test object store.");
+              idbRequest_.onerror = idbError_;
+              idbRequest_.addEventListener('success', function(event) {
+                idb_ = event.result;
+                idbShow_(event);
+              }, false);
+
+              function idbError_(event) {
+                idbLog_.innerHTML += '<p class="error">Error: ' +
+                                     event.message + ' (' + event.code + ')</p>';
               }
 
-              function idbError() {
-                idbLog.innerHTML += '<p class="error">Error: ' + event.message + ' (' + event.code + ')</p>';
-              }
-
-              function idbShow() {
-                if (!idb.objectStores.contains("myObjectStore")) {
-                  document.getElementById('idb-log').innerHTML = "<p>Object store not yet created.</p>";
+              function idbShow_(event) {
+                // crbug.com/64373
+                if ((idb_.objectStores && !idb_.objectStores.contains('myObjectStore')) ||
+                    (idb_.objectStoreNames && !idb_.objectStoreNames.contains('myObjectStore'))) {
+                  idbLog_.innerHTML = "<p>Object store not yet created.</p>";
                   return;
                 }
 
-                var html = '<ul class="record-list" id="idb-results">';
-                var transaction = idb.transaction([]);
-                var objectStore = transaction.objectStore("myObjectStore");
-                var request = objectStore.openCursor(); // Get all results.
-                request.onerror = idbError;
-                request.onsuccess = function () {
-                  var cursor = event.result;
+                var html = [];
+                var transaction = idb_.transaction([], IDBTransaction.READ_ONLY); // Ready is default.
+                var request = transaction.objectStore("myObjectStore").openCursor(); // Get all results.
+
+                // This callback will continue to be called until we have no more results.
+                request.onsuccess = function(e) {
+                  var cursor = e.result;
                   if (!cursor) {
-                    document.getElementById('idb-results-wrapper').innerHTML = html + '</ul>';
-                    document.getElementById('idb-results').addEventListener('click', function(e) { e.preventDefault(); }, false);
+                    idResultsWrapper_.innerHTML = '<ul class="record-list" id="idb-results">' + html.join('') + '</ul>';
                     return;
                   }
-                  html += '<li><span class="keyval" contenteditable="true" '
-                                 + 'onblur="indexedDbSample.updateKey(\'' + cursor.key + '\',this)">' + cursor.key + '</span> ' +
-                          '=> <span class="keyval" contenteditable="true" '
-                                 + 'onblur="indexedDbSample.updateValue(\'' + cursor.key + '\', this)">' + cursor.value + '</span>&nbsp; ' +
-                          '<a href="#" onclick="indexedDbSample.deleteKey(\'' + cursor.key + '\')">[Delete]</a></li>';
+                  html.push('<li><span class="keyval" contenteditable onblur="indexedDbSample.updateKey(\'',
+                            cursor.key, '\', this)">', cursor.key, '</span> ',
+                            '=> <span class="keyval" contenteditable onblur="indexedDbSample.updateValue(\'',
+                            cursor.key, '\', this)">', cursor.value, '</span>&nbsp; ',
+                            '<a href="javascript:void(0)" onclick="indexedDbSample.deleteKey(\'',
+                            cursor.key, '\')">[Delete]</a></li>');
                   cursor.continue();
                 }
+                request.onerror = idbError_;
               }
 
-              function idbCreate() {
-                if (!idb) {
-                  if (idbRequest)
-                    idbRequest.addEventListener('success', removeObjectStore, false); // If indexedDB is still opening, just queue this up.
+              function idbCreate_() {
+                if (!idb_) {
+                  if (idbRequest_) {
+                    idbRequest_.addEventListener('success', removeObjectStore, false); // If indexedDB is still opening, just queue this up.
+                  }
                   return;
                 }
 
-                var request = idb.setVersion("the new version string");
-                request.onerror = idbError;
-                request.onsuccess = function() {
-                  if (!idb.objectStores.contains('myObjectStore')) {
+                var request = idb_.setVersion('the new version string');
+                request.onerror = idbError_;
+                request.onsuccess = function(e) {
+                  // crbug.com/64373
+                  if (idb_.objectStores && !idb_.objectStores.contains('myObjectStore')) {
                     try {
-                      idb.createObjectStore("myObjectStore");
-                      idbLog.innerHTML = "<p>Object store created.</p>";
+                      idb_.createObjectStore('myObjectStore');
+                      idbLog_.innerHTML = "<p>Object store created.</p>";
                     } catch (err) {
-                      idbLog.innerHTML = '<p class="error">An error occurred.</p>';
+                      idbLog_.innerHTML = '<p class="error">' + err.toString() + '</p>';
+                    }
+                  } else if (idb_.objectStoreNames && !idb_.objectStoreNames.contains('myObjectStore')) {
+                    try {
+                      idb_.createObjectStore('myObjectStore', ''); // FF is requiring the 2nd keyPath arg. It can be optional :(
+                      idbLog_.innerHTML = "<p>Object store created.</p>";
+                    } catch (err) {
+                      idbLog_.innerHTML = '<p class="error">' + err.toString() + '</p>';
                     }
                   } else {
-                    idbLog.innerHTML = '<p class="error">Object store already exists.</p>';
+                    idbLog_.innerHTML = '<p class="error">Object store already exists.</p>';
                   }
                 }
               }
 
-              function idbSet() {
-                if (!idb) {
-                  if (idbRequest)
-                    idbRequest.addEventListener('success', removeObjectStore, false); // If indexedDB is still opening, just queue this up.
+              function idbSet_() {
+                if (!idb_) {
+                  if (idbRequest_) {
+                    idbRequest_.addEventListener('success', removeObjectStore, false); // If indexedDB is still opening, just queue this up.
+                  }
                   return;
                 }
 
-                if (!idb.objectStores.contains('myObjectStore')) {
-                    idbLog.innerHTML = "<p class=\"error\">Object store doesn't exist.</p>";
-                    return;
+                // crbug.com/64373
+                if ((idb_.objectStores && !idb_.objectStores.contains('myObjectStore')) ||
+                    (idb_.objectStoreNames && !idb_.objectStoreNames.contains('myObjectStore'))) {
+                  idbLog_.innerHTML = "<p class=\"error\">Object store doesn't exist.</p>";
+                  return;
                 }
-                var transaction = idb.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
-                var objectStore = transaction.objectStore("myObjectStore");
-                var request = objectStore.put(document.getElementById('idb-value').value, document.getElementById('idb-key').value);
-                request.onerror = idbError;
-                request.onsuccess = idbShow;
+
+                 // Create a transaction that locks the world.
+                var objectStore = idb_.transaction([], IDBTransaction.READ_WRITE)
+                                      .objectStore("myObjectStore");
+                var request = objectStore.put(
+                    document.getElementById('idb-value').value,
+                    document.getElementById('idb-key').value);
+                request.onerror = idbError_;
+                request.onsuccess = idbShow_;
               }
 
-              function updateKey(key, element) {
-                var newKey = element.innerText;
-                var transaction = idb.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
+              function updateKey_(key, element) {
+                var newKey = element.textContent;
+                var transaction = idb_.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
                 var objectStore = transaction.objectStore("myObjectStore");
                 var request = objectStore.get(key);
-                request.onerror = idbError;
-                request.onsuccess = function () {
+                request.onerror = idbError_;
+                request.onsuccess = function(event) {
                   var value = event.result;
                   var request = objectStore.remove(key);
-                  request.onerror = idbError;
-                  request.onsuccess = function () {
+                  request.onerror = idbError_;
+                  request.onsuccess = function(event) {
                     var request = objectStore.add(value, newKey);
-                    request.onerror = idbError;
-                    request.onsuccess = idbShow;
+                    request.onerror = idbError_;
+                    request.onsuccess = idbShow_;
                   };
                 };
               }
 
-              function updateValue(key, element) {
-                var transaction = idb.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
+              function updateValue_(key, element) {
+                var transaction = idb_.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
                 var objectStore = transaction.objectStore("myObjectStore");
-                var request = objectStore.put(element.innerText, key);
-                request.onerror = idbError;
-                request.onsuccess = idbShow;
+                var request = objectStore.put(element.textContent, key);
+                request.onerror = idbError_;
+                request.onsuccess = idbShow_;
               }
 
-              function deleteKey(key) {
-                var transaction = idb.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
+              function deleteKey_(key) {
+                var transaction = idb_.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
                 var objectStore = transaction.objectStore("myObjectStore");
                 var request = objectStore.remove(key);
-                request.onerror = idbError;
-                request.onsuccess = idbShow;
+                request.onerror = idbError_;
+                request.onsuccess = idbShow_;
               }
 
-              function idbRemove() {
-                if (!idb) {
-                  if (idbRequest)
-                    idbRequest.addEventListener('success', removeObjectStore, false); // If indexedDB is still opening, just queue this up.
+              function idbRemove_() {
+                if (!idb_) {
+                  if (idbRequest_) {
+                    idbRequest_.addEventListener('success', removeObjectStore, false); // If indexedDB is still opening, just queue this up.
+                  }
                   return;
                 }
 
-                var request = idb.setVersion("the new version string");
-                request.onerror = idbError;
-                request.onsuccess = function() {
-                  if (idb.objectStores.contains('myObjectStore')) {
+                var request = idb_.setVersion("the new version string");
+                request.onerror = idbError_;
+                request.onsuccess = function(event) {
+
+                  // crbug.com/64373
+                  if ((idb_.objectStores && idb_.objectStores.contains('myObjectStore')) ||
+                      (idb_.objectStoreNames && idb_.objectStoreNames.contains('myObjectStore'))) {
                     try {
-                      idb.removeObjectStore("myObjectStore");
-                      document.getElementById('idb-results-wrapper').innerHTML = '';
-                      idbLog.innerHTML = "<p>Object store removed.</p>";
+                      idb_.removeObjectStore("myObjectStore");
+                      idResultsWrapper_.innerHTML = '';
+                      idbLog_.innerHTML = "<p>Object store removed.</p>";
                     } catch (err) {
-                      idbLog.innerHTML = '<p class="error">An error occurred.</p>';
+                      idbLog_.innerHTML = '<p class="error">' + err.toString() + '</p>';
                     }
                   } else {
-                    idbLog.innerHTML = "<p class=\"error\">Object store doesn't exist.</p>";
+                    idbLog_.innerHTML = "<p class=\"error\">Object store doesn't exist.</p>";
                   }
-                }
+                };
               }
-              
+
               return {
-                idbSet: idbSet,
-                idbCreate: idbCreate,
-                idbRemove: idbRemove,
-                updateKey: updateKey,
-                updateValue: updateValue,
-                deleteKey: deleteKey
+                idbSet: idbSet_,
+                idbCreate: idbCreate_,
+                idbRemove: idbRemove_,
+                updateKey: updateKey_,
+                updateValue: updateValue_,
+                deleteKey: deleteKey_
               }
             })();
           </script>
@@ -1423,6 +1454,9 @@ for (var i = 0, file; file = files[i]; ++i) {
               -webkit-transition-property: x, y;
               -webkit-transition-duration: 0.1s;
               -webkit-transition-timing-function: linear;
+              -moz-transition-property: x, y;
+              -moz-transition-duration: 0.1s;
+              -moz-transition-timing-function: linear;
             }
           </style>
           <header><span class="js">JS</span> <h1>Device Orientation</h1></header>
@@ -1452,6 +1486,12 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
             this._lastGamma = 0;
           }
           OrientationSlide.prototype.orientationListener = function(evt) {
+            // For FF3.6+
+            if (!evt.gamma && !evt.beta) {
+              evt.gamma = -(evt.x * (180 / Math.PI));
+              evt.beta = -(evt.y * (180 / Math.PI));
+            }
+
             var overThreshold = Math.abs(evt.gamma) > 4 || Math.abs(evt.beta) > 4;
             var gamma = overThreshold ? evt.gamma : 0;
             var beta = overThreshold ? evt.beta : 0;
@@ -1467,6 +1507,7 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
                 style.left = x.toString() + 'px';
                 style.top = y.toString() + 'px';
                 style.webkitTransform = 'rotateY(' + (-2.0 * gamma) + 'deg) rotateX(' + (-2.0 * beta) + 'deg)';
+                style.MozTransform = 'rotateY(' + (-2.0 * gamma) + 'deg) rotateX(' + (-2.0 * beta) + 'deg)';
               }
               this._lastGamma = gamma;
               this._lastBeta = beta;
@@ -1474,9 +1515,11 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           };
           OrientationSlide.prototype.onunload = function(evt) {
             window.removeEventListener('deviceorientation', this.orientationListener, false);
+            window.removeEventListener('MozOrientation', this.orientationListener, false);
           };
           OrientationSlide.prototype.onload = function(evt) {
             window.addEventListener('deviceorientation', this.orientationListener, false);
+            window.addEventListener('MozOrientation', this.orientationListener, false);
           };
           var os = new OrientationSlide('#slide-orientation');
         </script>
@@ -1497,11 +1540,11 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           <header><span class="html">HTML</span> <h1>Speech Input</h1></header>
           <section>
 
-            <pre>&lt;input type="text" <b>x-webkit-speech</b> <b>speech</b> /&gt;</pre>
+            <pre>&lt;input type="text" <b>x-webkit-speech</b> /&gt;</pre>
 
             <div class="flex hbox boxcenter">
               <div class="noflex vbox boxcenter" style="height:300px">
-               <input id="speech-input" type="text" x-webkit-speech speech />
+               <input id="speech-input" type="text" x-webkit-speech />
               </div>
             </div>
           </section>
@@ -3305,7 +3348,7 @@ div {
             var docElem = document.documentElement;
             var elem = document.elementFromPoint( docElem.clientWidth / 2, docElem.clientHeight / 2);
             if (elem && elem.className != 'presentation') {
-              this._presentationCounter.innerText = this.current;
+              this._presentationCounter.textContent = this.current;
             }
             if (history.pushState) {
               if (!dontPush) {
