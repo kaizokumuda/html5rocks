@@ -277,7 +277,7 @@ textarea.value = window.<b>localStorage</b>.<b>getItem</b>('value');
             <textarea id="ta" placeholder="Type your text here..."></textarea>
             <button id="save-ta">Save</button>
             <p id="ta-log"></p>
-            <script>
+            <script defer>
               (function(){
 
                 try {
@@ -354,7 +354,7 @@ db.<b>transaction</b>(function(tx) {
             <ul class="record-list" id="db-results"></ul>
             <div id="db-log"></div>
           </div>
-          <script>
+          <script defer>
             var webSqlSample = (function() {
               var db;
               var log = document.getElementById('db-log');
@@ -479,7 +479,7 @@ idbRequest.onsuccess = function(event) {
             <div class="record-list" id="idb-results-wrapper"></div>
             <div id="idb-log"></div>
           </div>
-          <script>
+          <script defer>
             var indexedDbSample = (function() {
               var idb_;
               var idbRequest_;
@@ -499,12 +499,14 @@ idbRequest.onsuccess = function(event) {
               }
 
               // Open our IndexedDB.
-              idbRequest_ = window.indexedDB.open("Test", "A test object store.");
-              idbRequest_.onerror = idbError_;
-              idbRequest_.addEventListener('success', function(event) {
-                idb_ = event.result;
-                idbShow_(event);
-              }, false);
+              if (window.indexDB) {
+                idbRequest_ = window.indexedDB.open("Test", "A test object store.");
+                idbRequest_.onerror = idbError_;
+                idbRequest_.addEventListener('success', function(event) {
+                  idb_ = event.result;
+                  idbShow_(event);
+                }, false);
+              }
 
               function idbError_(event) {
                 idbLog_.innerHTML += '<p class="error">Error: ' +
@@ -751,9 +753,9 @@ self.<b>onmessage</b> = function(event) {
           </div>
           <p style="font-size: 90%;" class="center">Try dragging the map while the complex route is being calculated (you will only be able to do that with Workers!)</p>
         </div>
-        <script src="src/webworkers/points.js"></script>
-        <script src="src/webworkers/annealing.js"></script>
-        <script>
+        <script src="src/webworkers/points.js" defer></script>
+        <script src="src/webworkers/annealing.js" defer></script>
+        <script defer>
         (function() {
           var markersArray = [];
           var map = null;
@@ -1007,7 +1009,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
             </div>
 
           </section>
-          <script src="src/websocket/websocket.js"></script>
+          <script src="src/websocket/websocket.js" defer></script>
         </div>
 
 
@@ -1039,7 +1041,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
           <button id="show-tweets">Show tweet notifications</button>
         </div>
 
-          <script>
+          <script defer>
           document.getElementById('request-permission').addEventListener('click', function() {
             window.webkitNotifications.requestPermission();
           }, false);
@@ -1137,7 +1139,8 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
             </ol>
             <div id="drop-data">Source Data</div>
             <div id="drop-zone">Drop Area</div>
-            <script>
+            <script defer>
+            (function() {
               var dragZone = document.querySelector('#drag-zone');
               var dropZone = document.querySelector('#drop-zone');
               dragZone.addEventListener('dragstart', function(event) {
@@ -1214,8 +1217,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
                   document.body.appendChild(img_buffer); // this line only needed in safari
                   img_buffer.onload = function() { ctx.drawImage(img_buffer,0,0,100,100); }
                   this.appendChild(cEl);
-                }
-                else {
+                } else {
                   if (event.dataTransfer.getData('text')) {
                     this.innerHTML = event.dataTransfer.getData('text');
                   }
@@ -1225,6 +1227,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
                 }
                 return false;
               }, false);
+            })();
             </script>
           </section>
         </div>
@@ -1288,11 +1291,11 @@ document.querySelector('#dropzone').addEventListener('drop', function(e) {
             </div>
             <div id="dnd-thumbnails" class="center"></div>
 
-            <script src="src/dnd/dnd-lib.js"></script>
-            <script>
-              (function() {
+            <script src="src/dnd/dnd-lib.js" defer></script>
+            <script defer>
+              window.addEventListener('load', function(e) {
                 var dndc = new DNDFileController('dropzone', 'dnd-thumbnails');
-              })();
+              }, false);
             </script>
           </section>
         </div>
@@ -1336,7 +1339,7 @@ for (var i = 0, file; file = files[i]; ++i) {
               <a href="src/star.mp3" class="dragout" data-downloadurl="audio/mpeg:star.mp3:http://slides.html5rocks.com/src/star.mp3">.mp3 file</a>
             </div>
             <p class="center" style="font-size:90%">( this feature is only available in Google Chrome )</p>
-            <script>
+            <script defer>
               (function() {
                 var files = document.querySelectorAll('.dragout');
                 for (var i = 0, file; file = files[i]; ++i) {
@@ -1383,7 +1386,7 @@ for (var i = 0, file; file = files[i]; ++i) {
             <img src="http://maps.google.com/maps/api/staticmap?center=37.4419,-94.1419&zoom=3&size=680x278&sensor=true"/>
           </div>
 
-          <script>
+          <script defer>
           (function() {
             var map = null;
             var geolog = document.querySelector('#geo-log');
@@ -1479,7 +1482,7 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           </div>
           </section>
         </div>
-        <script>
+        <script defer>
           function OrientationSlide(slide) {
             this._slide = document.querySelector(slide);
             this._lastBeta = 0;
@@ -1840,7 +1843,7 @@ document.getElementById("video").<b>play</b>();
               </div>
             </div>
           </section>
-          <script>
+          <script defer>
             var videoClip = document.getElementById('clip');
             var playButton = document.getElementById('play-button');
             var pauseButton = document.getElementById('pause-button');
@@ -1872,7 +1875,7 @@ document.getElementById("video").<b>play</b>();
             }
           </script>
 
-          <script>
+          <script defer>
             var audioClip = document.getElementById('audio-clip');
             var audioPlayButton = document.getElementById('audio-play-button');
             var audioPauseButton = document.getElementById('audio-pause-button');
@@ -1930,7 +1933,7 @@ document.getElementById("video").<b>play</b>();
 &lt;/script&gt;
             </pre>
             <canvas id="canvas-area" width="838" height="225"></canvas>
-            <script>
+            <script defer>
               var canvasContext = document.getElementById("canvas-area").getContext("2d");
               canvasContext.fillRect(250, 25, 150, 100);
               canvasContext.beginPath();
@@ -2017,49 +2020,47 @@ document.getElementById("video").<b>play</b>();
 
             <div class="svg"></div>
 
-          <script>
+          <script defer>
             // insert SVG using script until SVG in HTML5 is more widely supported
             // (currently supported in IE 9 and Firefox nightlies only)
-            window.addEventListener('DOMContentLoaded', function() {
-              var container = document.getElementsByClassName('svg')[0];
-              var svgns = 'http://www.w3.org/2000/svg';
-              var svg = document.createElementNS(svgns, 'svg');
-              svg.setAttribute('width', '300px');
-              svg.setAttribute('height', '300px');
-              
-              // our linearGradient
-              var defs = document.createElementNS(svgns, 'defs');
-              var gradient = document.createElementNS(svgns, 'linearGradient');
-              gradient.setAttribute('id', 'myGradient');
-              gradient.setAttribute('x1', '0%');
-              gradient.setAttribute('y1', '100%');
-              gradient.setAttribute('x2', '100%');
-              gradient.setAttribute('y2', '0%');
-              var stop = document.createElementNS(svgns, 'stop');
-              stop.setAttribute('offset', '5%');
-              stop.setAttribute('stop-color', 'red');
-              gradient.appendChild(stop);
-              stop = document.createElementNS(svgns, 'stop');
-              stop.setAttribute('offset', '95%');
-              stop.setAttribute('stop-color', 'blue');
-              stop.setAttribute('stop-opacity', '0.5');
-              gradient.appendChild(stop);
-              defs.appendChild(gradient);
-              svg.appendChild(defs);
-              
-              // our example circle
-              var circle = document.createElementNS(svgns, 'circle');
-              circle.setAttribute('cx', '50%');
-              circle.setAttribute('cy', '50%');
-              circle.setAttribute('r', 100);
-              circle.setAttribute('fill', 'url(#myGradient)');
-              circle.setAttribute('stroke-color', 'red');
-              circle.addEventListener('mousedown', function() {
-                alert('hello');
-              }, false);
-              svg.appendChild(circle);
-              container.appendChild(svg);
+            var container = document.getElementsByClassName('svg')[0];
+            var svgns = 'http://www.w3.org/2000/svg';
+            var svg = document.createElementNS(svgns, 'svg');
+            svg.setAttribute('width', '300px');
+            svg.setAttribute('height', '300px');
+            
+            // our linearGradient
+            var defs = document.createElementNS(svgns, 'defs');
+            var gradient = document.createElementNS(svgns, 'linearGradient');
+            gradient.setAttribute('id', 'myGradient');
+            gradient.setAttribute('x1', '0%');
+            gradient.setAttribute('y1', '100%');
+            gradient.setAttribute('x2', '100%');
+            gradient.setAttribute('y2', '0%');
+            var stop = document.createElementNS(svgns, 'stop');
+            stop.setAttribute('offset', '5%');
+            stop.setAttribute('stop-color', 'red');
+            gradient.appendChild(stop);
+            stop = document.createElementNS(svgns, 'stop');
+            stop.setAttribute('offset', '95%');
+            stop.setAttribute('stop-color', 'blue');
+            stop.setAttribute('stop-opacity', '0.5');
+            gradient.appendChild(stop);
+            defs.appendChild(gradient);
+            svg.appendChild(defs);
+            
+            // our example circle
+            var circle = document.createElementNS(svgns, 'circle');
+            circle.setAttribute('cx', '50%');
+            circle.setAttribute('cy', '50%');
+            circle.setAttribute('r', 100);
+            circle.setAttribute('fill', 'url(#myGradient)');
+            circle.setAttribute('stroke-color', 'red');
+            circle.addEventListener('mousedown', function() {
+              alert('hello');
             }, false);
+            svg.appendChild(circle);
+            container.appendChild(svg);
           </script>
             
           </section>
@@ -2079,10 +2080,8 @@ document.getElementById("video").<b>play</b>();
           <section>
             <div id="svg-example"></div>
           </section>
-          <script>
-            window.addEventListener('load', function() {
-              document.querySelector('#svg-example').innerHTML = '<object type="image/svg+xml" style="border:none; width:550px; height:540px; background: white;" data="src/svg/famoustiger.svg"></object>'
-            }, false);
+          <script defer>
+            document.querySelector('#svg-example').innerHTML = '<object type="image/svg+xml" style="border:none; width:550px; height:540px; background: white;" data="src/svg/famoustiger.svg"></object>';
           </script>
         </div>
 
@@ -2216,7 +2215,7 @@ header {
             </p>
           </section>
 
-          <script>
+          <script defer>
             function changeWrapping(event) {
               document.getElementById('wrapping').style.width = event.target.value + '%';
             }
@@ -2290,16 +2289,16 @@ header {
             </div>
           </section>
 
-          <script>
+          <script defer>
             function changeColumnNoSlider(event) {
               var val = event.target.value;
-              document.getElementById('columns-no-value').innerHTML = val;
-              document.getElementById('columns-no-example').style.webkitColumnCount = val;
-              document.getElementById('columns-no-example').style.MozColumnCount = val;
+              document.getElementById('columns-no-value').textContent = val;
+              var el = document.getElementById('columns-no-example');
+              el.style.webkitColumnCount = val;
+              el.style.MozColumnCount = val;
             }
           </script>
         </div>
-
 
 
         <div class="slide">
@@ -2324,11 +2323,11 @@ header {
               Text stroke example
             </div>
 
-            <script>
+            <script defer>
               function changeTextStroke() {
                 var width = (document.getElementById('text-stroke').value * 0.25).toFixed(2);
                 document.getElementById('text-stroke-example').style.webkitTextStrokeWidth = width + 'px';
-                document.getElementById('text-stroke-value').innerHTML = width;
+                document.getElementById('text-stroke-value').textContent = width;
               }
             </script>
           </section>
@@ -2383,7 +2382,7 @@ header {
               </div>
             </div>
 
-            <script>
+            <script defer>
               function changeOpacity() {
                 var textOpacity = (document.getElementById('opacity-color').value / 100).toFixed(2);
                 var backgroundOpacity = (document.getElementById('opacity-background').value / 100).toFixed(2);
@@ -2393,8 +2392,8 @@ header {
                 el.style.color = 'rgba(255, 0, 0, ' + textOpacity + ')';
                 el.style.background = 'rgba(0, 0, 255, ' + backgroundOpacity + ')';
 
-                document.getElementById('opacity-color-value').innerHTML = textOpacity;
-                document.getElementById('opacity-background-value').innerHTML = backgroundOpacity;
+                document.getElementById('opacity-color-value').textContent = textOpacity;
+                document.getElementById('opacity-background-value').textContent = backgroundOpacity;
               }
 
               changeOpacity();
@@ -2432,7 +2431,7 @@ header {
               HSL example
             </div>
 
-            <script>
+            <script defer>
               function changeHSL() {
                 var h = document.getElementById('hsl-h').value * 1.0;
                 var s = document.getElementById('hsl-s').value * 1.0;
@@ -2442,10 +2441,10 @@ header {
 
                 el.style.color = 'hsla(' + h + ', ' + s + '%, ' + l + '%, ' + a + ')';
 
-                document.getElementById('hsl-h-value').innerHTML = h;
-                document.getElementById('hsl-s-value').innerHTML = s + '%,';
-                document.getElementById('hsl-l-value').innerHTML = l + '%,';
-                document.getElementById('hsl-a-value').innerHTML = a + ');';
+                document.getElementById('hsl-h-value').textContent = h;
+                document.getElementById('hsl-s-value').textContent = s + '%,';
+                document.getElementById('hsl-l-value').textContent = l + '%,';
+                document.getElementById('hsl-a-value').textContent = a + ');';
               }
 
               changeHSL();
@@ -2478,12 +2477,12 @@ header {
             </div>
           </div>
 
-          <script>
+          <script defer>
             function changeRounded() {
               var el = document.getElementById('rounded-example');
 
               var borderVal = document.getElementById('rounded-border').value;
-              document.getElementById('rounded-border-value').innerHTML = borderVal;
+              document.getElementById('rounded-border-value').textContent = borderVal;
 
               el.style.borderRadius = borderVal + 'px';
             }
@@ -2521,14 +2520,14 @@ header {
 </pre>
             <div id="gradients-radial-example" class="example"></div>
 
-            <script>
+            <script defer>
               function changeGradients() {
                 var size = document.getElementById('gradients-radial').value;
 
                 document.getElementById('gradients-radial-example').style.background = 
                     '-webkit-gradient(radial, 430 50, 0, 430 50, ' + size + ', from(red), to(#000))';
 
-                document.getElementById('gradients-radial-value').innerHTML = size;
+                document.getElementById('gradients-radial-value').textContent = size;
               }
             </script>
           </section>
@@ -2550,7 +2549,7 @@ header {
   <span id="shadows-text-x-value">0</span>px <input id="shadows-text-x" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)">
   <span id="shadows-text-y-value">0</span>px <input id="shadows-text-y" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)">
   <span id="shadows-text-size-value">0</span>px; <input id="shadows-text-size" type="range" min="0" max="9" value="0" onchange="changeShadow(event)">
-<b>box-shadow</b>: 
+<br><b>box-shadow</b>: 
   rgba(0, 0, 128, 0.25) 
   <span id="shadows-box-x-value">0</span>px <input id="shadows-box-x" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)">
   <span id="shadows-box-y-value">0</span>px <input id="shadows-box-y" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)">
@@ -2563,7 +2562,7 @@ header {
 
           </section>
 
-          <script>
+          <script defer>
             function changeShadow() {
               var el = document.getElementById('shadow-example');
 
@@ -2571,20 +2570,21 @@ header {
               var textYVal = document.getElementById('shadows-text-y').value;
               var textSizeVal = document.getElementById('shadows-text-size').value;
 
-              document.getElementById('shadows-text-x-value').innerHTML = textXVal;
-              document.getElementById('shadows-text-y-value').innerHTML = textYVal;
-              document.getElementById('shadows-text-size-value').innerHTML = textSizeVal;
+              document.getElementById('shadows-text-x-value').textContent = textXVal;
+              document.getElementById('shadows-text-y-value').textContent = textYVal;
+              document.getElementById('shadows-text-size-value').textContent = textSizeVal;
 
               var boxXVal = document.getElementById('shadows-box-x').value;
               var boxYVal = document.getElementById('shadows-box-y').value;
               var boxSizeVal = document.getElementById('shadows-box-size').value;
 
-              document.getElementById('shadows-box-x-value').innerHTML = boxXVal;
-              document.getElementById('shadows-box-y-value').innerHTML = boxYVal;
-              document.getElementById('shadows-box-size-value').innerHTML = boxSizeVal;
+              document.getElementById('shadows-box-x-value').textContent = boxXVal;
+              document.getElementById('shadows-box-y-value').textContent = boxYVal;
+              document.getElementById('shadows-box-size-value').textContent = boxSizeVal;
 
               el.style.textShadow = 'rgba(64, 64, 64, 0.5) ' + textXVal + 'px ' + textYVal + 'px ' + textSizeVal + 'px';
               el.style.webkitBoxShadow = 'rgba(0, 0, 128, 0.25) ' + boxXVal + 'px ' + boxYVal + 'px ' + boxSizeVal + 'px';
+              el.style.MozBoxShadow = 'rgba(0, 0, 128, 0.25) ' + boxXVal + 'px ' + boxYVal + 'px ' + boxSizeVal + 'px';
             }
           </script>
         </div>
@@ -2625,23 +2625,23 @@ background:
 
           </section>
 
-          <script>
+          <script defer>
             function changeWeb20() {
               var el = document.getElementById('web20-google');
 
               var textShadowVal = document.getElementById('web20-shadow').value;
-              document.getElementById('web20-shadow-value-1').innerHTML = textShadowVal;
-              document.getElementById('web20-shadow-value-2').innerHTML = textShadowVal;
+              document.getElementById('web20-shadow-value-1').textContent = textShadowVal;
+              document.getElementById('web20-shadow-value-2').textContent = textShadowVal;
 
               var gradientVal = document.getElementById('web20-gradient').value / 100;
-              document.getElementById('web20-gradient-value-1').innerHTML = gradientVal;
-              document.getElementById('web20-gradient-value-2').innerHTML = gradientVal;
+              document.getElementById('web20-gradient-value-1').textContent = gradientVal;
+              document.getElementById('web20-gradient-value-2').textContent = gradientVal;
 
               var borderVal = document.getElementById('web20-border').value;
-              document.getElementById('web20-border-value').innerHTML = borderVal;
+              document.getElementById('web20-border-value').textContent = borderVal;
 
               var reflectVal = document.getElementById('web20-reflect').value / 100;
-              document.getElementById('web20-reflect-value').innerHTML = reflectVal;
+              document.getElementById('web20-reflect-value').textContent = reflectVal;
 
               el.style.textShadow = 'rgba(0, 0, 0, 0.5) 0 ' + textShadowVal + 'px ' + textShadowVal + 'px';
               el.style.background = '-webkit-gradient(linear, left top, left bottom, from(rgba(200, 200, 240, ' + gradientVal + ')), to(rgba(255, 255, 255, ' + gradientVal + ')))';
@@ -2697,7 +2697,7 @@ background:
             </pre>
 
             <div id="background-example" class="example">Test</div>
-            <script>
+            <script defer>
               function changeBackgroundSize(event) {
                 document.getElementById('background-textarea').style.backgroundSize = event.target.value;
               }
@@ -2754,9 +2754,11 @@ background:
             </div> 
           </div>
 
-          <script> 
+          <script defer> 
             function changeBoxOrient(event) {
-              document.getElementById('box-orient-example').style.webkitBoxOrient = event.target.value; 
+              var el = document.getElementById('box-orient-example');
+              el.style.webkitBoxOrient = event.target.value;
+              el.style.MozBoxOrient = event.target.value; 
             }
           </script> 
           </section> 
@@ -2803,12 +2805,16 @@ background:
               <textarea>change the dropdowns and resize this &lt;textarea></textarea> 
             </div>
 
-            <script> 
+            <script defer> 
               function changeBoxPack(event) {
-                document.getElementById('box-orient-example-2').style.webkitBoxPack = event.target.value; 
+                var el = document.getElementById('box-orient-example-2');
+                el.style.webkitBoxPack = event.target.value;
+                el.style.MozBoxPack = event.target.value; 
               }
               function changeBoxAlign(event) {
-                document.getElementById('box-orient-example-2').style.webkitBoxAlign = event.target.value; 
+                var el = document.getElementById('box-orient-example-2');
+                el.style.webkitBoxAlign = event.target.value;
+                el.style.MozBoxAlign = event.target.value; 
               }
             </script> 
 
@@ -2866,7 +2872,7 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
 </pre>
 
 
-            <script>
+            <script defer>
               function transitionLeft(no) {
                 document.getElementById('transitions-box-' + no).className = 'left';
               }
@@ -3056,7 +3062,7 @@ div {
 
     </div> <!-- presentation -->
 
-    <script>
+    <script defer>
       (function() {
         var doc = document;
         var disableBuilds = true;
@@ -3256,7 +3262,7 @@ div {
           _makeCounter: function() {
             if(!this._count || !this._node) { return; }
             var c = doc.createElement('span');
-            c.innerHTML = this._count;
+            c.textContent = this._count;
             c.className = 'counter';
             this._node.appendChild(c);
           },
@@ -3447,8 +3453,8 @@ div {
         // load highlight setting from session storage, if available.
         // session storage can only store strings so we have to assume type coercion
         // for the boolean logic here
-        query('#prettify-link')[0].disabled = !(sessionStorage['highlightOn'] == 'true');        
-            
+        query('#prettify-link')[0].disabled = !(sessionStorage['highlightOn'] == 'true');
+
         // disable style theme stylesheets
         var linkEls = query('link.theme');
         var stylesheetPath = sessionStorage['theme'] || 'css/default.css';
@@ -3477,7 +3483,7 @@ div {
     <script>CFInstall.check({ mode: "overlay" });</script>
     <![endif]-->
 
-    <script src="src/prettify/prettify.js" onload="prettyPrint();"></script>
+    <script src="src/prettify/prettify.js" onload="prettyPrint();" defer></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
     <script>
