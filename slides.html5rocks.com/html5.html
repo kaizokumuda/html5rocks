@@ -490,16 +490,13 @@ idbRequest.onsuccess = function(event) {
               // behind various flags and implementation varies.
               if ('webkitIndexedDB' in window) {
                 window.indexedDB = window.webkitIndexedDB;
-                window.IDBTransaction = window.webkitIDBTransaction ||
-                                        {READ_WRITE: 0, READ_ONLY: 1};
+                window.IDBTransaction = window.webkitIDBTransaction;
               } else if ('moz_indexedDB' in window) {
                 window.indexedDB = window.moz_indexedDB;
-                window.IDBTransaction = window.moz_IDBTransaction ||
-                                        {READ_WRITE: 0, READ_ONLY: 1};
               }
 
               // Open our IndexedDB.
-              if (window.indexDB) {
+              if (window.indexedDB) {
                 idbRequest_ = window.indexedDB.open("Test", "A test object store.");
                 idbRequest_.onerror = idbError_;
                 idbRequest_.addEventListener('success', function(event) {
