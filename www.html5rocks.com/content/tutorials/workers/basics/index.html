@@ -325,7 +325,7 @@ worker.postMessage(); // Start the worker.
   &lt;div id="log"&gt;&lt;/div&gt;
 
   &lt;script id="worker1" type="text/plain"&gt;
-    // This script won't be interpreted by the JS engine because its type is text/html.
+    // This script won't be interpreted by the JS engine because its type is text/plain.
     self.onmessage = function(e) {
       self.postMessage('msg from worker');
     };
