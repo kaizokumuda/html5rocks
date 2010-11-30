@@ -189,11 +189,6 @@ body.three-d div.slides {
 */
 
 @font-face { font-family: 'Inconsolata'; src: url('/src/fonts/inconsolata/Inconsolata.ttf'); }
-@font-face { font-family: 'VitesseSans-Light'; src: url('/src/fonts/vitesse/VitesseSans-Light.otf'); }
-@font-face { font-family: 'VitesseSans-Book'; src: url('/src/fonts/vitesse/VitesseSans-Book.otf'); }
-@font-face { font-family: 'VitesseSans-BookItalic'; src: url('/src/fonts/vitesse/VitesseSans-BookItalic.otf'); }
-@font-face { font-family: 'VitesseSans-Medium'; src: url('/src/fonts/vitesse/VitesseSans-Medium.otf'); }
-@font-face { font-family: 'Vitesse-Medium'; src: url('/src/fonts/vitesse/Vitesse-Medium.otf'); }
 
 @font-face {
 	font-family: 'JunctionRegular';
@@ -211,7 +206,7 @@ body.three-d div.slides {
 }
 
 header {
-  font-family: 'VitesseSans-Book';
+  font-family: 'Arial';
   letter-spacing: -.03em;
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
   font-weight: normal;
@@ -227,7 +222,7 @@ header {
 
 h1 {
   letter-spacing: -.05em;
-  font-family: 'Vitesse-Medium';
+  font-family: 'Arial';
   font-size: 100%;
   display: inline;
   font-weight: normal;
@@ -236,7 +231,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'VitesseSans-Book';
+  font-family: 'Arial';
   color: black;
   font-size: 20px;
   padding: 0;
@@ -248,7 +243,7 @@ h2:first-child {
 }
 
 section, footer {
-  font-family: 'VitesseSans-Light';
+  font-family: 'Arial';
   color: #3f3f3f;
   text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
   margin: 100px 30px 0;
@@ -402,7 +397,7 @@ video {
 .js,
 .html,
 .key {
-  font-family: 'VitesseSans-Medium';
+  font-family: 'Arial';
   color: black;
   display: inline-block;
   padding: 6px 10px 3px 10px;
