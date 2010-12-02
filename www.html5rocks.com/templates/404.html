@@ -4,24 +4,24 @@
 
 {% block head %}
   <style>
-    div {
+    #oops {
       text-align: center;
       margin-top: 1.5em;
     }
-    img {
+    #oops img {
       -moz-border-radius: 20px;
       border-radius: 20px;
     }
-    h4 {
+    #oops h4 {
       margin: 1.5em auto;
     }
   </style>
 {% endblock %}
 
 {% block body %}
-{% include "section_header.html" %}
+{% include "header.html" %}
 
-<div>
+<div id="oops">
   <img src="/static/images/html5_fist.png" width="256" height="268" title="I pity da foo who doesn't use HTML5!" alt="I pity da foo who doesn't use HTML5!"/>
   <h4>Oops!! We didn't find any HTML<sub>5</sub> resources here.</h4>
 </div>

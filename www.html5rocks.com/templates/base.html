@@ -44,6 +44,23 @@
       {% block body %}{% endblock %}
     </div>
   </div>
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load('search', '1');
+    google.setOnLoadCallback(function() {
+      google.search.CustomSearchControl.attachAutoCompletion(
+        '007435387813601113811:ef_kuvvx6a8',
+        document.getElementById('q'),
+        'cse-search-box');
+    });
+    (function() {
+      document.getElementById('q').addEventListener('keydown', function(e) {
+        if (e.keyCode == 13) { // enter key
+          document.getElementById('cse-search-box').submit();
+        }
+      }, false);
+    })();
+  </script>
   <script>
     (function() {
       var lis = document.querySelectorAll('header nav li');
