@@ -3376,7 +3376,7 @@ div {
 
           current: 0,
           next: function() {
-            var next = query('#' + this.current+' + .slide')[0];
+            var next = query('#' + this.current + ' + .slide')[0];
             this.current = (next) ? next.id : this.current;
             this._update();
           },
