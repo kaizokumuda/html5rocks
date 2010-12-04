@@ -1559,7 +1559,7 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           <header><span class="html">HTML</span> <h1>Better semantic tags</h1></header>
           <section>
             <style>
-              #semantic-tags {
+              #semantic-tags-1 {
                 font-size: 95%;
               }
             </style>
@@ -1616,7 +1616,7 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           <header><span class="html">HTML</span> <h1>Markup for applications</h1></header>
           <section>
             <style>
-              #semantic-tags {
+              #semantic-tags-2 {
                 height: 520px;
               }
             </style>
@@ -3358,7 +3358,7 @@ div {
             var elem = document.elementFromPoint( docElem.clientWidth / 2, docElem.clientHeight / 2);
             var currentIndex = this._getCurrentIndex();
             if (elem && elem.className != 'presentation') {
-                this._presentationCounter.textContent = this._getCurrentIndex();
+                this._presentationCounter.textContent = currentIndex;
             }
             if (history.pushState) {
               if (!dontPush) {
@@ -3376,7 +3376,7 @@ div {
 
           current: 0,
           next: function() {
-            var next = query('#'+this.current+' + .slide')[0];
+            var next = query('#' + this.current+' + .slide')[0];
             this.current = (next) ? next.id : this.current;
             this._update();
           },
