@@ -3381,7 +3381,7 @@ div {
             this._update();
           },
           prev: function() {
-            var prev = query('.slide:nth-child('+ (this._getCurrentIndex() - 1) +')')[0];
+            var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')')[0];
             this.current = (prev) ? prev.id : this.current;
             this._update();
           },
