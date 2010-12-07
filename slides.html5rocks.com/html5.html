@@ -35,7 +35,7 @@
     <div class="presentation">
       <div id="presentation-counter">Loading...</div>
       <div class="slides">
-        <div class="slide">
+        <div class="slide" id="landing-slide">
           <style>
             #landing-slide p {
               font-size: 35px;
@@ -44,20 +44,20 @@
               font-size: 20px;
             }
           </style>
-          <section id="landing-slide" class="middle">
+          <section class="middle">
             <p>This presentation is an HTML5 website</p>
             <p>Press <span id="left-init-key" class="key">&rarr;</span> key to advance.</p>
             <p id="disclaimer-message">Having issues seeing the presentation? Read the <a href="disclaimer.html">disclaimer</a></p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="controls-slide">
           <style>
             #controls-slide li, #controls-slide p {
               font-size: 35px;
             }
           </style>
-          <section id="controls-slide">
+          <section>
             <p>Slides controls, press:</p>
             <ul>
               <li><span class="key">&larr;</span> and <span class="key">&rarr;</span> to move around.</li>
@@ -68,22 +68,22 @@
           </section>
         </div>
                 
-        <div class="slide">
+        <div class="slide" id="title-slide">
           <style>
-            .intro h1, .intro h2 {
+            #title-slide h1, #title-slide h2 {
               color: black;
             }
-            .intro h1 {
+            #title-slide h1 {
               letter-spacing: -2px;
               font-size: 96px;
             }
-            .intro h2 {
+            #title-slide h2 {
               margin-top: -5px;
               font-size: 40px;
               letter-spacing: -1px;
             }
           </style>
-          <section class="middle intro">
+          <section class="middle">
             <hgroup>
               <h1>
                 HTML5*
@@ -97,7 +97,7 @@
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="timeline-slide">
           <header>Rough Timeline of Web Technologies</header>
           <section>
             <style>
@@ -137,7 +137,7 @@
         </div>
 
         
-        <div class="slide">
+        <div class="slide" id="formula-intro-slide">
           <section class="middle formula">
             HTML5 ~=
             <span class="html">HTML</span>
@@ -149,7 +149,7 @@
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="nuts-bolts-title">
           <section class="middle">
             <h2>Nuts &amp; Bolts</h2>
             <p>Improvements to the core platform</p>
@@ -157,7 +157,7 @@
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="new-selectors">
           <header><span class="js">JS</span> <h1>New Selectors</h1></header>
 
           <section>
@@ -189,7 +189,7 @@ var el = document.<b>querySelector</b>("table.test > tr > td"); // el == tds[0]
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="custom-data">
           <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Custom data-* attributes</h1></header>
 
           <section>
@@ -222,7 +222,7 @@ foo: bar
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="class-list">
           <header><span class="js">JS</span> <h1>Element.classList</h1></header>
           <section>
             <pre>&lt;div id="main" class="shadow rounded"&gt;&lt;/div&gt;</pre>
@@ -244,14 +244,14 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="offline-storage-title">
           <section class="middle">
             <h2>Offline / Storage</h2>
             <p>Expect the unexpected</p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="web-storage">
           <style>
             #ta {
               width: 400px;
@@ -321,7 +321,7 @@ textarea.value = window.<b>localStorage</b>.<b>getItem</b>('value');
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="web-sql-db">
           <style>
             #websqldb-example .record-list li:nth-child(odd) { background-color: #eee; }
             #websqldb-example .record-list li:nth-child(even) { background-color: #ddd; }
@@ -439,7 +439,7 @@ db.<b>transaction</b>(function(tx) {
         </section>
       </div>
 
-      <div class="slide">
+      <div class="slide" id="indexed-db">
           <style>
             #indexeddb-example .record-list li:nth-child(odd) { background-color: #eee; }
             #indexeddb-example .record-list li:nth-child(even) { background-color: #ddd; }
@@ -670,7 +670,7 @@ idbRequest.onsuccess = function(event) {
         </section>
       </div>
 
-        <div class="slide">
+        <div class="slide" id="app-cache">
           <style>
             #appcache-message {
               padding-top: 20px;
@@ -699,7 +699,7 @@ CACHE:
           </section>
         </div>
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="realtime-title">
           <section class="middle">
             <h2>Realtime / Communication</h2>
             <p>Stay connected</p>
@@ -707,7 +707,7 @@ CACHE:
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="web-workers">
           <style>
             #wmap {
               height: 200px;
@@ -881,7 +881,7 @@ self.<b>onmessage</b> = function(event) {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="web-sockets">
           <style>
             #websockets-message {
               text-align: center;
@@ -1008,7 +1008,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="notifications-api">
           <style>
             #notifications-message {
               text-align: center;
@@ -1077,7 +1077,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="hardware-access-title">
           <section class="middle">
             <h2>File / Hardware Access</h2>
             <p>Deeper integration with the Operating System</p>
@@ -1085,7 +1085,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="drag-and-drop">
           <style>
             #drag-zone {
               list-style: none;
@@ -1228,7 +1228,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="drag-in">
           <style>
             #dropzone {
               height: 150px;
@@ -1296,7 +1296,7 @@ document.querySelector('#dropzone').addEventListener('drop', function(e) {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="drag-out">
           <style>
             .dragout {
               background: #0687FF;
@@ -1349,7 +1349,7 @@ for (var i = 0, file; file = files[i]; ++i) {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="geolocation">
           <style>
             #see-position {
               margin-bottom: 10px;
@@ -1475,57 +1475,56 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
               <div class="layer"><img src="src/orientation/chrome-layer-05.png"/></div>
             </div>
           </div>
+          <script defer>
+            function OrientationSlide(slide) {
+              this._slide = document.querySelector(slide);
+              this._lastBeta = 0;
+              this._lastGamma = 0;
+            }
+            OrientationSlide.prototype.orientationListener = function(evt) {
+              // For FF3.6+
+              if (!evt.gamma && !evt.beta) {
+                evt.gamma = -(evt.x * (180 / Math.PI));
+                evt.beta = -(evt.y * (180 / Math.PI));
+              }
+
+              var overThreshold = Math.abs(evt.gamma) > 4 || Math.abs(evt.beta) > 4;
+              var gamma = overThreshold ? evt.gamma : 0;
+              var beta = overThreshold ? evt.beta : 0;
+
+              if (this._lastGamma != gamma || this._lastBeta != beta) {
+                var zindex = 0;
+                var layers = document.querySelectorAll('.layer');
+                for (var i = 0, elem; elem = layers[i]; ++i) {
+                  zindex++;
+                  var x = Math.round(1.5 * gamma * zindex);
+                  var y = Math.round(1.5 * beta * zindex);
+                  var style = elem.style;
+                  style.left = x.toString() + 'px';
+                  style.top = y.toString() + 'px';
+                  style.webkitTransform = 'rotateY(' + (-2.0 * gamma) + 'deg) rotateX(' + (-2.0 * beta) + 'deg)';
+                  style.MozTransform = 'rotateY(' + (-2.0 * gamma) + 'deg) rotateX(' + (-2.0 * beta) + 'deg)';
+                }
+                this._lastGamma = gamma;
+                this._lastBeta = beta;
+              }
+            };
+            OrientationSlide.prototype.onunload = function(evt) {
+              window.removeEventListener('deviceorientation', this.orientationListener, false);
+              window.removeEventListener('MozOrientation', this.orientationListener, false);
+            };
+            OrientationSlide.prototype.onload = function(evt) {
+              window.addEventListener('deviceorientation', this.orientationListener, false);
+              window.addEventListener('MozOrientation', this.orientationListener, false);
+            };
+            var os = new OrientationSlide('#slide-orientation');
+          </script>
           </section>
         </div>
-        <script defer>
-          function OrientationSlide(slide) {
-            this._slide = document.querySelector(slide);
-            this._lastBeta = 0;
-            this._lastGamma = 0;
-          }
-          OrientationSlide.prototype.orientationListener = function(evt) {
-            // For FF3.6+
-            if (!evt.gamma && !evt.beta) {
-              evt.gamma = -(evt.x * (180 / Math.PI));
-              evt.beta = -(evt.y * (180 / Math.PI));
-            }
 
-            var overThreshold = Math.abs(evt.gamma) > 4 || Math.abs(evt.beta) > 4;
-            var gamma = overThreshold ? evt.gamma : 0;
-            var beta = overThreshold ? evt.beta : 0;
-
-            if (this._lastGamma != gamma || this._lastBeta != beta) {
-              var zindex = 0;
-              var layers = document.querySelectorAll('.layer');
-              for (var i = 0, elem; elem = layers[i]; ++i) {
-                zindex++;
-                var x = Math.round(1.5 * gamma * zindex);
-                var y = Math.round(1.5 * beta * zindex);
-                var style = elem.style;
-                style.left = x.toString() + 'px';
-                style.top = y.toString() + 'px';
-                style.webkitTransform = 'rotateY(' + (-2.0 * gamma) + 'deg) rotateX(' + (-2.0 * beta) + 'deg)';
-                style.MozTransform = 'rotateY(' + (-2.0 * gamma) + 'deg) rotateX(' + (-2.0 * beta) + 'deg)';
-              }
-              this._lastGamma = gamma;
-              this._lastBeta = beta;
-            }
-          };
-          OrientationSlide.prototype.onunload = function(evt) {
-            window.removeEventListener('deviceorientation', this.orientationListener, false);
-            window.removeEventListener('MozOrientation', this.orientationListener, false);
-          };
-          OrientationSlide.prototype.onload = function(evt) {
-            window.addEventListener('deviceorientation', this.orientationListener, false);
-            window.addEventListener('MozOrientation', this.orientationListener, false);
-          };
-          var os = new OrientationSlide('#slide-orientation');
-        </script>
-
-
-        <div class="slide">
+        <div class="slide" id="speech-input">
           <style>
-            #speech-input {
+            #speech-input-field {
               width: 400px;
               height: 50px;
               padding: 10px 15px;
@@ -1542,29 +1541,29 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
 
             <div class="flex hbox boxcenter">
               <div class="noflex vbox boxcenter" style="height:300px">
-               <input id="speech-input" type="text" x-webkit-speech />
+               <input id="speech-input-field" type="text" x-webkit-speech />
               </div>
             </div>
           </section>
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="semantics-markup-title">
           <section class="middle">
             <h2>Semantics &amp; Markup</h2>
             <p>More meaningful elements</p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="semantic-tags-1">
           <header><span class="html">HTML</span> <h1>Better semantic tags</h1></header>
           <section>
             <style>
-              #semantic-tags {
+              #semantic-tags-1 {
                 font-size: 95%;
               }
             </style>
-            <pre id="semantic-tags" class="two-column">&lt;body&gt;
+            <pre class="two-column">&lt;body&gt;
   &lt;<b>header</b>&gt;
     &lt;<b>hgroup</b>&gt;
       &lt;h1&gt;Page title&lt;/h1&gt;
@@ -1613,11 +1612,11 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="semantic-tags-2">
           <header><span class="html">HTML</span> <h1>Markup for applications</h1></header>
           <section>
             <style>
-              #semantic-tags {
+              #semantic-tags-2 {
                 height: 520px;
               }
             </style>
@@ -1650,7 +1649,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="link-relations">
           <header><span class="html">HTML</span> <h1>Descriptive link relations</h1></header>
           <style>
             .underlined { text-decoration: underline; }
@@ -1673,7 +1672,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="microdata">
           <style>
             #microdata-screenshot {
               width: 84%;
@@ -1697,7 +1696,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
         </div>
                 
 
-        <div class="slide">
+        <div class="slide" id="aria-attributes">
           <header><span class="html">HTML</span> <h1>ARIA attributes</h1></header>
           <section>
             <pre>&lt;ul id="tree1"
@@ -1717,7 +1716,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="new-form-types">
           <header><span class="html">HTML</span> <h1>New form types</h1></header>
 
           <section>
@@ -1775,14 +1774,14 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="graphics-multimedia-title">
           <section class="middle">
             <h2>Graphics / Multimedia</h2>
             <p>2D &amp; 3D</p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="video-audio">
           <style>
             #video-column {
               float: left;
@@ -1900,7 +1899,7 @@ document.getElementById("video").<b>play</b>();
           </script>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="canvas-2d">
           <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Canvas 2D</h1></header>
           <section>
             <style>
@@ -1942,7 +1941,7 @@ document.getElementById("video").<b>play</b>();
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="canvas-2d-example">
           <style>
             #canvas-example {
               margin-left: 150px;
@@ -1969,7 +1968,7 @@ document.getElementById("video").<b>play</b>();
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="canvas-3d">
           <style>
             #webgl-iframe {
               border: none;
@@ -1992,7 +1991,7 @@ document.getElementById("video").<b>play</b>();
         </div>
         
         
-        <div class="slide">
+        <div class="slide" id="inline-svg">
           <header><span class="html">HTML</span> <h1>Inline SVG</h1></header>
           <section>
             <style>
@@ -2061,7 +2060,7 @@ document.getElementById("video").<b>play</b>();
           </section>
         </div>
         
-        <div class="slide">
+        <div class="slide" id="svg-example-slide">
           <style>
             #svg-example {
               margin-left: 150px;
@@ -2081,14 +2080,14 @@ document.getElementById("video").<b>play</b>();
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="css3-title">
           <section class="middle">
             <h2>CSS3</h2>
             <p>Presentation &amp; Styling</p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="css-selectors">
           <style>
             .row {
               padding: 4px;
@@ -2147,7 +2146,7 @@ h2 <b>+</b> header { ... }
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="web-fonts">
           <style>
             #fontface-sample {
               text-align: center;
@@ -2180,7 +2179,7 @@ header {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="text-wrapping">
           <style>
             div#wrapping {width: 95%}
             #overflow-hidden { font-size: 25px; height: 1.1em; overflow: hidden; }
@@ -2219,7 +2218,7 @@ header {
 
 
 
-        <div class="slide">
+        <div class="slide" id="css-columns">
           <style>
           #columns-no-example {
             -webkit-column-count: 2;
@@ -2296,7 +2295,7 @@ header {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-stroke">
           <style>
             #text-stroke-example { 
               font-size: 85px;
@@ -2329,7 +2328,7 @@ header {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-opacity">
           <header><span class="css">CSS</span> <h1>Opacity</h1></header>
           <section>
             <style>
@@ -2397,7 +2396,7 @@ header {
 
         </div>
 
-        <div class="slide">
+        <div class="slide" id="css-color">
           <style>
             #hsl-example {
               font-size: 75px;
@@ -2448,7 +2447,7 @@ header {
 
         </div>
 
-        <div class="slide">
+        <div class="slide" id="rounded-corners">
           <style>
             #rounded-example {
               border: 1px solid #bbb;
@@ -2486,7 +2485,7 @@ header {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-gradients">
           <style>
             #gradients-linear-example {
               border: 0;
@@ -2528,7 +2527,7 @@ header {
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="css-shadow">
           <style>
             #shadow-example {
               font-size: 75px;
@@ -2585,7 +2584,7 @@ header {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="logo-demo">
           <style>
             #logo-container {
               font-size: 66px;
@@ -2647,7 +2646,7 @@ background:
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-background">
           <style>
             #background-textarea {
               background: white url(http://www.google.com/intl/en_ALL/images/logo.gif) center center no-repeat;
@@ -2700,7 +2699,7 @@ background:
           </section>
         </div>
 
-        <div class="slide"> 
+        <div class="slide" id="flex-box-1">
           <style>
             #box-orient-example {
               height: 300px;
@@ -2760,7 +2759,7 @@ background:
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="flex-box-2">
           <style>
             #box-orient-example-2 {
               height: 200px; 
@@ -2816,7 +2815,7 @@ background:
           </section> 
         </div>
                 
-        <div class="slide">
+        <div class="slide" id="css-transitions">
           <style>
             #transitions-box-2 {
               -webkit-transition: margin-left 1s ease-in-out;
@@ -2879,7 +2878,7 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-transforms">
           <style>
             #threed-example {
               margin: 50px 20px;
@@ -2927,7 +2926,7 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-animation">
           <style>
             #animation-example {
               font-family: Arial;
@@ -2990,7 +2989,7 @@ div {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="browser-support">
           <header><h1>See it today?</h1></header>
           <section>
             <ul class="bullets">
@@ -3002,7 +3001,7 @@ div {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="chrome-frame">
           <style>
             span.space {
               padding: 0 5px;
@@ -3025,7 +3024,7 @@ div {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="formula-outro-slide">
           <style>
             p.resource-link {
               font-size: 40px;
@@ -3093,7 +3092,6 @@ div {
           }
           // don't choke on something like ".yada.yada >"
           if ('>~+'.indexOf(query.slice(-1)) >= 0) { query += ' *'; }
-
           return toArray(doc.querySelectorAll(query));
         };
 
@@ -3235,7 +3233,7 @@ div {
             function show() {
               frames.forEach(function(el) {
                 var _src = el.getAttribute('_src');
-                if (_src.length > 0) {
+                if (_src && _src.length) {
                   el.src = _src;
                 }
               });
@@ -3247,7 +3245,7 @@ div {
             function hide() {
               frames.forEach(function(el) {
                 var _src = el.getAttribute('_src');
-                if (_src.length > 0) {
+                if (_src && _src.length) {
                   el.src = '';
                 }
               });
@@ -3321,9 +3319,9 @@ div {
           });
           var h = window.location.hash;
           try {
-            this.current = parseInt(h.split('#slide')[1], 10);
+            this.current = h;
           } catch (e) { /* squeltch */ }
-          this.current = isNaN(this.current) ? 1 : this.current;
+          this.current = (!this.current) ? "landing-slide" : this.current.replace('#', '');
           var _t = this;
           doc.addEventListener('keydown', 
               function(e) { _t.handleKeys(e); }, false);
@@ -3341,6 +3339,16 @@ div {
         SlideShow.prototype = {
           _presentationCounter: query('#presentation-counter')[0],
           _slides: [],
+          _getCurrentIndex: function() {
+            var me = this;
+            var slideCount = null;
+            query('.slide').forEach(function(slide, i) {
+              if (slide.id == me.current) {
+                slideCount = i;
+              }
+            });
+            return slideCount + 1;  
+          },
           _update: function(dontPush) {
             // in order to delay the time where the counter shows the slide number we check if 
             // the slides are already loaded (so we show the loading... instead)
@@ -3348,36 +3356,37 @@ div {
             // http://stackoverflow.com/questions/704758/how-to-check-if-an-element-is-really-visible-with-javascript
             var docElem = document.documentElement;
             var elem = document.elementFromPoint( docElem.clientWidth / 2, docElem.clientHeight / 2);
+            var currentIndex = this._getCurrentIndex();
             if (elem && elem.className != 'presentation') {
-              this._presentationCounter.textContent = this.current;
+                this._presentationCounter.textContent = currentIndex;
             }
             if (history.pushState) {
               if (!dontPush) {
-                history.replaceState(this.current, 'Slide ' + this.current, '#slide' + this.current);
+                history.replaceState(this.current, 'Slide ' + this.current, '#' + this.current);
               }
             } else {
-              window.location.hash = 'slide' + this.current;
+              window.location.hash = this.current;
             }
-            for (var x = this.current-1; x < this.current + 7; x++) {
+            for (var x = currentIndex-1; x < currentIndex + 7; x++) {
               if (this._slides[x-4]) {
-                this._slides[x-4].setState(Math.max(0, x-this.current));
+                this._slides[x-4].setState(Math.max(0, x-currentIndex));
               }
             }
           },
 
           current: 0,
           next: function() {
-            if (!this._slides[this.current-1].buildNext()) {
-              this.current = Math.min(this.current + 1, this._slides.length);
-              this._update();
-            }
-          },
-          prev: function() {
-            this.current = Math.max(this.current-1, 1);
+            var next = query('#' + this.current + ' + .slide')[0];
+            this.current = (next) ? next.id : this.current;
             this._update();
           },
-          go: function(num) {
-            this.current = num;
+          prev: function() {
+            var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')')[0];
+            this.current = (prev) ? prev.id : this.current;
+            this._update();
+          },
+          go: function(slideId) {
+            this.current = slideId;
             this._update(true);
           },
 

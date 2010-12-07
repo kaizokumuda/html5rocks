@@ -6,8 +6,11 @@
 <script type="text/javascript" src="http://playground.html5rocks.com/samples/html5_misc/webgl/glUtils.js"></script>
 <script type="text/javascript" src="http://playground.html5rocks.com/samples/html5_misc/webgl/helper.js"></script>
 <script id="shader-fs" type="x-shader/x-fragment"> 
-  varying vec2 vTextureCoord;
- 
+  #ifdef GL_ES
+  precision highp float;
+  #endif
+  
+  varying vec2 vTextureCoord; 
   uniform sampler2D uSampler;
  
   void main(void) {
@@ -15,7 +18,11 @@
   }
 </script> 
  
-<script id="shader-vs" type="x-shader/x-vertex"> 
+<script id="shader-vs" type="x-shader/x-vertex">
+  #ifdef GL_ES
+  precision highp float;
+  #endif
+  
   attribute vec3 aVertexPosition;
   attribute vec2 aTextureCoord;
  

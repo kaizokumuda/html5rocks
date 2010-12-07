@@ -4,10 +4,10 @@
 
 {% block head %}
 <style>
-ul {
+#feature-list {
   padding: 10px 25px;
 }
-li {
+#feature-list li {
   list-style: none;
   margin: 10px 0;
 }
@@ -15,8 +15,8 @@ li {
 {% endblock %}
 
 {% block body %}
-  {% include "../../templates/section_header.html" %}
-    <ul>
+  {% include "../../templates/header.html" %}
+    <ul id="feature-list">
       <li><a href="/features/file">File Access</a></li>
       <li><a href="/features/graphics">Graphics</a></li>
       <li><a href="/features/multimedia">Multimedia</a></li>
