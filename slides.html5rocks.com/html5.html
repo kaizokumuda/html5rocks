@@ -3233,7 +3233,7 @@ div {
             function show() {
               frames.forEach(function(el) {
                 var _src = el.getAttribute('_src');
-                if (_src.length > 0) {
+                if (_src && _src.length) {
                   el.src = _src;
                 }
               });
@@ -3245,7 +3245,7 @@ div {
             function hide() {
               frames.forEach(function(el) {
                 var _src = el.getAttribute('_src');
-                if (_src.length > 0) {
+                if (_src && _src.length) {
                   el.src = '';
                 }
               });
