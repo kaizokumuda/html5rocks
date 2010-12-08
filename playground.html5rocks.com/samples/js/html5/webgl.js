@@ -23,7 +23,7 @@ function initTexture() {
   crateImage.onload = function() {
     handleLoadedTexture(crateTextures)
   }
-  crateImage.src = "crate.gif";
+  crateImage.src = "http://playground.html5rocks.com/samples/html5_misc/webgl/crate.gif";
 }
 
 var xRot = 0;

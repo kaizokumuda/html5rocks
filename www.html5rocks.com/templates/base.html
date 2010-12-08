@@ -23,11 +23,11 @@
   -->
   <meta name="description" content="{% block meta_description %}A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.{% endblock %}" />
   <meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,offline,audio,video,drag and drop,chrome" />
-  <title>HTML5Rocks - {% block headtitle %}{% endblock %}</title>
+  <title>HTML5 Rocks - {% block headtitle %}{% endblock %}</title>
   <link rel="stylesheet" href="/static/css/base.css" />
   <link rel="stylesheet" href="/static/css/prettify.css" />
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
-  <script src="/static/js/modernizr-1.1.min.js"></script>
+  <script src="/static/js/modernizr-1.6.min.js"></script>
   <script src="/static/js/prettify.js"></script>
   <script>
     function isCompatible() {
@@ -44,6 +44,23 @@
       {% block body %}{% endblock %}
     </div>
   </div>
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load('search', '1');
+    google.setOnLoadCallback(function() {
+      google.search.CustomSearchControl.attachAutoCompletion(
+        '007435387813601113811:ef_kuvvx6a8',
+        document.getElementById('q'),
+        'cse-search-box');
+    });
+    (function() {
+      document.getElementById('q').addEventListener('keydown', function(e) {
+        if (e.keyCode == 13) { // enter key
+          document.getElementById('cse-search-box').submit();
+        }
+      }, false);
+    })();
+  </script>
   <script>
     (function() {
       var lis = document.querySelectorAll('header nav li');

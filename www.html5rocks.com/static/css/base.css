@@ -48,9 +48,9 @@ figcaption {
 }
 h1#title {
   cursor: pointer;
-  font-size: 55px;
+  font-size: 50px;
   margin: 0;
-  padding: 20px 0 20px 1px;
+  padding: 7px 0 0 1px;
   float: left;
   width: auto;
 }
@@ -80,23 +80,24 @@ h1#title {
   font-style: normal;
   text-transform: uppercase;
   letter-spacing: -0.09em;
-  margin-left: -18px;
+  margin-left: -12px;
 }
-#section-header #title {
-  font-size: 39px;
-  width: auto;
+#cse-search-box {
+  float: right;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.10s ease-in-out;
+  -moz-transition: opacity 0.10s ease-in-out;
+  -o-transition: opacity 0.10s ease-in-out;
 }
-#section-header #title .rocks {
-  margin-left: -1px;
+#cse-search-box:hover {
+  opacity: 1;
 }
 header nav ul {
   padding-left: 0;
   list-style: none;
   float: right;
-  padding-top: 30px;
-}
-#section-header nav ul {
-  padding-top: 21px;
+  margin-bottom: 5px;
+  /*padding-top: 30px;*/
 }
 header nav ul li {
   float: left;

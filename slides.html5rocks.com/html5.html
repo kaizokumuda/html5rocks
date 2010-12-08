@@ -19,7 +19,7 @@
                  Alex Russell (slightlyoff@chromium.org)
                  Brad Neuberg
 -->
-<html manifest="cache.manifest">
+<html>  
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
@@ -35,7 +35,7 @@
     <div class="presentation">
       <div id="presentation-counter">Loading...</div>
       <div class="slides">
-        <div class="slide">
+        <div class="slide" id="landing-slide">
           <style>
             #landing-slide p {
               font-size: 35px;
@@ -44,20 +44,20 @@
               font-size: 20px;
             }
           </style>
-          <section id="landing-slide" class="middle">
+          <section class="middle">
             <p>This presentation is an HTML5 website</p>
             <p>Press <span id="left-init-key" class="key">&rarr;</span> key to advance.</p>
             <p id="disclaimer-message">Having issues seeing the presentation? Read the <a href="disclaimer.html">disclaimer</a></p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="controls-slide">
           <style>
             #controls-slide li, #controls-slide p {
               font-size: 35px;
             }
           </style>
-          <section id="controls-slide">
+          <section>
             <p>Slides controls, press:</p>
             <ul>
               <li><span class="key">&larr;</span> and <span class="key">&rarr;</span> to move around.</li>
@@ -68,22 +68,22 @@
           </section>
         </div>
                 
-        <div class="slide">
+        <div class="slide" id="title-slide">
           <style>
-            .intro h1, .intro h2 {
+            #title-slide h1, #title-slide h2 {
               color: black;
             }
-            .intro h1 {
+            #title-slide h1 {
               letter-spacing: -2px;
               font-size: 96px;
             }
-            .intro h2 {
+            #title-slide h2 {
               margin-top: -5px;
               font-size: 40px;
               letter-spacing: -1px;
             }
           </style>
-          <section class="middle intro">
+          <section class="middle">
             <hgroup>
               <h1>
                 HTML5*
@@ -97,7 +97,7 @@
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="timeline-slide">
           <header>Rough Timeline of Web Technologies</header>
           <section>
             <style>
@@ -137,7 +137,7 @@
         </div>
 
         
-        <div class="slide">
+        <div class="slide" id="formula-intro-slide">
           <section class="middle formula">
             HTML5 ~=
             <span class="html">HTML</span>
@@ -149,7 +149,7 @@
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="nuts-bolts-title">
           <section class="middle">
             <h2>Nuts &amp; Bolts</h2>
             <p>Improvements to the core platform</p>
@@ -157,7 +157,7 @@
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="new-selectors">
           <header><span class="js">JS</span> <h1>New Selectors</h1></header>
 
           <section>
@@ -189,7 +189,7 @@ var el = document.<b>querySelector</b>("table.test > tr > td"); // el == tds[0]
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="custom-data">
           <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Custom data-* attributes</h1></header>
 
           <section>
@@ -222,7 +222,7 @@ foo: bar
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="class-list">
           <header><span class="js">JS</span> <h1>Element.classList</h1></header>
           <section>
             <pre>&lt;div id="main" class="shadow rounded"&gt;&lt;/div&gt;</pre>
@@ -244,14 +244,14 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="offline-storage-title">
           <section class="middle">
             <h2>Offline / Storage</h2>
             <p>Expect the unexpected</p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="web-storage">
           <style>
             #ta {
               width: 400px;
@@ -273,67 +273,70 @@ textarea.addEventListener('keyup', function () {
 }, false);
 textarea.value = window.<b>localStorage</b>.<b>getItem</b>('value');
 </pre>
-<p id="localstorage-message">Save text value on the client side (crash-safe)</p>
-<textarea id="ta" placeholder="Type your text here..."></textarea>
-<button id="save-ta">Save</button>
-<p id="ta-log"></p>
-<script>
-(function(){
+            <p id="localstorage-message">Save text value on the client side (crash-safe)</p>
+            <textarea id="ta" placeholder="Type your text here..."></textarea>
+            <button id="save-ta">Save</button>
+            <p id="ta-log"></p>
+            <script defer>
+              (function(){
 
-  try {
-    (window.localStorage.getItem) // will throw in Firefox under some settings
-  } catch(e){
-    return; // quit because dom.storage.enabled is false
-  }
+                try {
+                  (window.localStorage.getItem) // will throw in Firefox under some settings
+                } catch(e){
+                  return; // quit because dom.storage.enabled is false
+                }
 
-  var area = document.querySelector('#ta');
-  // place content from previous edit
-  if (!area.value) {
-    area.value = window.localStorage.getItem('value');
-  }
-  updateLog(false);
+                var area = document.querySelector('#ta');
+                // place content from previous edit
+                if (!area.value) {
+                  area.value = window.localStorage.getItem('value');
+                }
+                updateLog(false);
   
-  // your content will be saved locally
-  document.querySelector('#save-ta').addEventListener('click', function () {
-    window.localStorage.setItem('value', area.value);
-    window.localStorage.setItem('timestamp', (new Date()).getTime());
-    updateLog(true);
-  }, false);
+                // your content will be saved locally
+                document.querySelector('#save-ta').addEventListener('click', function () {
+                  window.localStorage.setItem('value', area.value);
+                  window.localStorage.setItem('timestamp', (new Date()).getTime());
+                  updateLog(true);
+                }, false);
 
-  function updateLog(new_save) {
-    var log = document.querySelector("#ta-log");
-    var delta = 0;
-    if (window.localStorage.getItem('value')) {
-      delta = ((new Date()).getTime() - (new Date()).setTime(window.localStorage.getItem('timestamp'))) / 1000;
-      if (new_save) {
-        log.textContent = 'Saved. Content will be available after browser refresh/reopen.';
-        setTimeout(function() {
-          log.textContent = '';
-        }, 3000);
-      } else {
-        log.textContent = 'last saved: ' + delta + 's ago';
-      }
-    }
-  }
+                function updateLog(new_save) {
+                  var log = document.querySelector("#ta-log");
+                  var delta = 0;
+                  if (window.localStorage.getItem('value')) {
+                    delta = ((new Date()).getTime() - (new Date()).setTime(window.localStorage.getItem('timestamp'))) / 1000;
+                    if (new_save) {
+                      log.textContent = 'Saved. Content will be available after browser refresh/reopen.';
+                      setTimeout(function() {
+                        log.textContent = '';
+                      }, 3000);
+                    } else {
+                      log.textContent = 'last saved: ' + delta + 's ago';
+                    }
+                  }
+                }
 
-})();  
-</script>
+              })();  
+            </script>
           </section>
         </div>
 
-
-
-        <div class="slide">
+        <div class="slide" id="web-sql-db">
           <style>
-            .record-list li:nth-child(odd) { background-color: #eee; }
-            .record-list li:nth-child(even) { background-color: #ddd; }
+            #websqldb-example .record-list li:nth-child(odd) { background-color: #eee; }
+            #websqldb-example .record-list li:nth-child(even) { background-color: #ddd; }
+            #websqldb-example .record-list li {
+              padding-left: 5px;
+            }
             #db-results {
               max-height: 150px;
               overflow: auto;
               text-align: left;
             }
+            #websqldb-example .error {
+              color: red;
+            }
           </style>
-          
           <header><span class="js">JS</span> <h1>Web SQL Database</h1></header>
           <section>
 <pre>var db = window.<b>openDatabase</b>("DBName", "1.0", "description", 5*1024*1024); //5MB
@@ -342,94 +345,332 @@ db.<b>transaction</b>(function(tx) {
 });
 </pre>
 
-
-          <div class="center">
+          <div class="center" id="websqldb-example">
+            <input type="text" id="todoitem" />
+            <button onclick="webSqlSample.newRecord()">new to do item</button>
+            <button onclick="webSqlSample.createTable()">create table</button>
+            <button onclick="webSqlSample.dropTable()">drop table</button>
+            <p>See the generated database: Developer > Developer Tools > Storage</p>
             <ul class="record-list" id="db-results"></ul>
             <div id="db-log"></div>
-            <input type="text" id="todoitem" />
-            <button onclick="newRecord()">new to do item</button>
-            <button onclick="createTable()">create table</button>
-            <button onclick="dropTable()">drop table</button>
-            <p>See the generated database: Developer > Developer Tools > Storage</p>
           </div>
-          <script>
-            var db;
-            var log = document.getElementById('db-log');
-            if (window.openDatabase) {
-              db = openDatabase("DBTest", "1.0", "HTML5 Database API example", 200000);
-              showRecords();  
-            }
-            document.getElementById('db-results').addEventListener('click', function(e) { e.preventDefault(); }, false);
+          <script defer>
+            var webSqlSample = (function() {
+              var db;
+              var log = document.getElementById('db-log');
+              if (window.openDatabase) {
+                db = openDatabase("DBTest", "1.0", "HTML5 Database API example", 200000);
+                showRecords();  
+              }
+              document.getElementById('db-results').addEventListener('click', function(e) { e.preventDefault(); }, false);
 
-            function onError(tx, error) {
-              log.innerHTML += '<p>' + error.message + '</p>';
-            }
+              function onError(tx, error) {
+                log.innerHTML = '<p class="error">Error: ' + error.message + '</p>';
+              }
 
-            // select all records and display them
-            function showRecords() {
-              document.getElementById('db-results').innerHTML = '';
-              db.transaction(function(tx) {
-                tx.executeSql("SELECT * FROM Table1Test", [], function(tx, result) {
-                  for (var i = 0, item = null; i < result.rows.length; i++) {
-                    item = result.rows.item(i);
-                    document.getElementById('db-results').innerHTML += 
-                        '<li><span contenteditable="true" onkeyup="updateRecord('+item['id']+', this)">'+
-                        item['text'] + '</span> <a href="#" onclick="deleteRecord('+item['id']+')">[Delete]</a></li>';
-                  }
+              // select all records and display them
+              function showRecords() {
+                document.getElementById('db-results').innerHTML = '';
+                db.transaction(function(tx) {
+                  tx.executeSql("SELECT * FROM Table1Test", [], function(tx, result) {
+                    for (var i = 0, item = null; i < result.rows.length; i++) {
+                      item = result.rows.item(i);
+                      document.getElementById('db-results').innerHTML += 
+                          '<li><span contenteditable="true" onkeyup="webSqlSample.updateRecord('+item['id']+', this)">'+
+                          item['text'] + '</span> <a href="#" onclick="webSqlSample.deleteRecord('+item['id']+')">[Delete]</a></li>';
+                    }
+                  });
                 });
-              });
-            }
+              }
 
-            function createTable() {
-              db.transaction(function(tx) {
-                tx.executeSql("CREATE TABLE Table1Test (id REAL UNIQUE, text TEXT)", [],
-                    function(tx) {  log.innerHTML = '<p>Table1Test created!</p>' },
-                    onError);
-              });
-            }
+              function createTable() {
+                db.transaction(function(tx) {
+                  tx.executeSql("CREATE TABLE Table1Test (id REAL UNIQUE, text TEXT)", [],
+                      function(tx) {  log.innerHTML = '<p>"Table1Test" created!</p>' },
+                      onError);
+                });
+              }
 
-            // add record with random values
-            function newRecord() {
-              var num = Math.round(Math.random() * 10000); // random data
-              db.transaction(function(tx) {
-                tx.executeSql("INSERT INTO Table1Test (id, text) VALUES (?, ?)", [num, document.querySelector('#todoitem').value],
-                    function(tx, result) {
-                      log.innerHTML = '';
-                      showRecords();
-                    }, 
-                    onError);
-              });
-            }
+              // add record with random values
+              function newRecord() {
+                var num = Math.round(Math.random() * 10000); // random data
+                db.transaction(function(tx) {
+                  tx.executeSql("INSERT INTO Table1Test (id, text) VALUES (?, ?)", [num, document.querySelector('#todoitem').value],
+                      function(tx, result) {
+                        log.innerHTML = '';
+                        showRecords();
+                      }, 
+                      onError);
+                });
+              }
 
-            function updateRecord(id, textEl) {
-              db.transaction(function(tx) {
-                tx.executeSql("UPDATE Table1Test SET text = ? WHERE id = ?", [textEl.innerHTML, id], null, onError);
-              });
-            }
+              function updateRecord(id, textEl) {
+                db.transaction(function(tx) {
+                  tx.executeSql("UPDATE Table1Test SET text = ? WHERE id = ?", [textEl.innerHTML, id], null, onError);
+                });
+              }
 
-            function deleteRecord(id) {
-              db.transaction(function(tx) {
-                tx.executeSql("DELETE FROM Table1Test WHERE id=?", [id],
-                    function(tx, result) { showRecords() }, 
-                    onError);
-              });
-            }
+              function deleteRecord(id) {
+                db.transaction(function(tx) {
+                  tx.executeSql("DELETE FROM Table1Test WHERE id=?", [id],
+                      function(tx, result) { showRecords() }, 
+                      onError);
+                });
+              }
 
-            // delete table from db
-            function dropTable() {
-              db.transaction(function(tx) {
-                tx.executeSql("DROP TABLE Table1Test", [],
-                    function(tx) { showRecords() }, 
-                    onError);
-              });
-            }
+              // delete table from db
+              function dropTable() {
+                db.transaction(function(tx) {
+                  tx.executeSql("DROP TABLE Table1Test", [],
+                      function(tx) { showRecords() }, 
+                      onError);
+                });
+              }
+              
+              return {
+                newRecord: newRecord,
+                createTable: createTable,
+                updateRecord: updateRecord,
+                deleteRecord: deleteRecord,
+                dropTable: dropTable
+              }
+            })();
           </script>
         </section>
       </div>
 
+      <div class="slide" id="indexed-db">
+          <style>
+            #indexeddb-example .record-list li:nth-child(odd) { background-color: #eee; }
+            #indexeddb-example .record-list li:nth-child(even) { background-color: #ddd; }
+            #indexeddb-example .record-list li {
+              padding-left: 5px;
+            }
+            #idb-results {
+              max-height: 250px;
+              overflow: auto;
+              text-align: left;
+              padding: 0;
+            }
+            .keyval {
+              border: 1px dashed;
+              padding: 4px;
+              outline: none;
+            }
+            #indexeddb-example .error {
+              color: red;
+            }
+          </style>
+          <header><span class="js">JS</span> <h1>IndexedDB</h1></header>
+          <section>
+<pre>var idbRequest = window.<b>indexedDB</b>.<b>open</b>('Database Name');
+idbRequest.onsuccess = function(event) {
+  <b>var db = event.result</b>;
+  var transaction = db.<b>transaction</b>([], <b>IDBTransaction.READ_ONLY</b>);
+  var curRequest = transaction.<b>objectStore</b>('ObjectStore Name').<b>openCursor</b>();
+  curRequest.<b>onsuccess</b> = ...;
+};
+</pre>
+          <div class="center" id="indexeddb-example">
+            <input type="text" placeholder="key" id="idb-key" size="10" /> <input type="text" placeholder="value" id="idb-value" size="15" />
+            <button onclick="indexedDbSample.idbSet()">set</button>
+            <button onclick="indexedDbSample.idbCreate()">create objectStore</button>
+            <button onclick="indexedDbSample.idbRemove()">remove objectStore</button>
+            <div id="idb-log"></div>
+            <div class="record-list" id="idb-results-wrapper"></div>
+          </div>
+          <script defer>
+            var indexedDbSample = (function() {
+              var idb_;
+              var idbRequest_;
+              var idbLog_ = document.getElementById('idb-log');
+              var idResultsWrapper_ = document.getElementById('idb-results-wrapper');
 
+              // IndexedDB spec is still evolving, various browsers keep it
+              // behind various flags and implementation varies.
+              if ('webkitIndexedDB' in window) {
+                window.indexedDB = window.webkitIndexedDB;
+                window.IDBTransaction = window.webkitIDBTransaction;
+              } else if ('moz_indexedDB' in window) {
+                window.indexedDB = window.moz_indexedDB;
+              }
 
-        <div class="slide">
+              // Open our IndexedDB if the browser supports it.
+              if (window.indexedDB) {
+                idbRequest_ = window.indexedDB.open("Test", "A test object store.");
+                idbRequest_.onerror = idbError_;
+                idbRequest_.addEventListener('success', function(event) {
+                  idb_ = event.result;
+                  idbShow_(event);
+                }, false);
+              }
+
+              function idbError_(event) {
+                idbLog_.innerHTML += '<p class="error">Error: ' +
+                                     event.message + ' (' + event.code + ')</p>';
+              }
+
+              function idbShow_(event) {
+                if (!idb_.objectStoreNames.contains('myObjectStore')) {
+                  idbLog_.innerHTML = "<p>Object store not yet created.</p>";
+                  return;
+                }
+
+                var html = [];
+                var transaction = idb_.transaction([], IDBTransaction.READ_ONLY); // Ready is default.
+                var request = transaction.objectStore("myObjectStore").openCursor(); // Get all results.
+                // This callback will continue to be called until we have no more results.
+                request.onsuccess = function(e) {
+                  var cursor = e.result;
+                  if (!cursor) {
+                    idResultsWrapper_.innerHTML = '<ul class="record-list" id="idb-results">' + html.join('') + '</ul>';
+                    return;
+                  }
+                  html.push('<li><span class="keyval" contenteditable onblur="indexedDbSample.updateKey(\'',
+                            cursor.key, '\', this)">', cursor.key, '</span> ',
+                            '=> <span class="keyval" contenteditable onblur="indexedDbSample.updateValue(\'',
+                            cursor.key, '\', this)">', cursor.value, '</span>&nbsp; ',
+                            '<a href="javascript:void(0)" onclick="indexedDbSample.deleteKey(\'',
+                            cursor.key, '\')">[Delete]</a></li>');
+                  cursor.continue();
+                }
+                request.onerror = idbError_;
+              }
+
+              function idbCreate_() {
+                if (!idb_) {
+                  if (idbRequest_) {
+                    idbRequest_.addEventListener('success', removeObjectStore, false); // If indexedDB is still opening, just queue this up.
+                  }
+                  return;
+                }
+
+                var request = idb_.setVersion('the new version string');
+                request.onerror = idbError_;
+                request.onsuccess = function(e) {
+                  if (!idb_.objectStoreNames.contains('myObjectStore')) {
+                    try {
+                      var objectStore = idb_.createObjectStore('myObjectStore', null); // FF is requiring the 2nd keyPath arg. It can be optional :(
+                      idbLog_.innerHTML = "<p>Object store created.</p>";
+                    } catch (err) {
+                      idbLog_.innerHTML = '<p class="error">' + err.toString() + '</p>';
+                    }
+                  } else {
+                    idbLog_.innerHTML = '<p class="error">Object store already exists.</p>';
+                  }
+                }
+              }
+
+              function idbSet_() {
+                if (!idb_) {
+                  if (idbRequest_) {
+                    idbRequest_.addEventListener('success', removeObjectStore, false); // If indexedDB is still opening, just queue this up.
+                  }
+                  return;
+                }
+
+                if (!idb_.objectStoreNames.contains('myObjectStore')) {
+                  idbLog_.innerHTML = "<p class=\"error\">Object store doesn't exist.</p>";
+                  return;
+                }
+
+                 // Create a transaction that locks the world.
+                var objectStore = idb_.transaction([], IDBTransaction.READ_WRITE)
+                                      .objectStore("myObjectStore");
+                var request = objectStore.put(
+                    document.getElementById('idb-value').value,
+                    document.getElementById('idb-key').value);
+                request.onerror = idbError_;
+                request.onsuccess = idbShow_;
+              }
+
+              function updateKey_(key, element) {
+                var newKey = element.textContent;
+                var transaction = idb_.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
+                var objectStore = transaction.objectStore("myObjectStore");
+                var request = objectStore.get(key);
+                request.onerror = idbError_;
+                request.onsuccess = function(event) {
+                  var value = event.result;
+                  if (objectStore.delete) {
+                    var request = objectStore.delete(key);
+                  } else {
+                    var request = objectStore.remove(key);
+                  }
+                  request.onerror = idbError_;
+                  request.onsuccess = function(event) {
+                    var request = objectStore.add(value, newKey);
+                    request.onerror = idbError_;
+                    request.onsuccess = idbShow_;
+                  };
+                };
+              }
+
+              function updateValue_(key, element) {
+                var transaction = idb_.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
+                var objectStore = transaction.objectStore("myObjectStore");
+                var request = objectStore.put(element.textContent, key);
+                request.onerror = idbError_;
+                request.onsuccess = idbShow_;
+              }
+
+              function deleteKey_(key) {
+                var transaction = idb_.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
+                var objectStore = transaction.objectStore("myObjectStore");
+                if (objectStore.delete) {
+                  var request = objectStore.delete(key);
+                } else {
+                  var request = objectStore.remove(key);
+                }
+                request.onerror = idbError_;
+                request.onsuccess = idbShow_;
+              }
+
+              function idbRemove_() {
+                if (!idb_) {
+                  if (idbRequest_) {
+                    idbRequest_.addEventListener('success', removeObjectStore, false); // If indexedDB is still opening, just queue this up.
+                  }
+                  return;
+                }
+
+                var request = idb_.setVersion("the new version string");
+                request.onerror = idbError_;
+                request.onsuccess = function(event) {
+
+                  if (idb_.objectStoreNames.contains('myObjectStore')) {
+                    try {
+                      // Spec has been updated to deleteObjectStore.
+                      if (idb_.deleteObjectStore) {
+                        idb_.deleteObjectStore('myObjectStore');
+                      } else {
+                        idb_.removeObjectStore('myObjectStore');
+                      }
+                      idResultsWrapper_.innerHTML = '';
+                      idbLog_.innerHTML = "<p>Object store removed.</p>";
+                    } catch (err) {
+                      idbLog_.innerHTML = '<p class="error">' + err.toString() + '</p>';
+                    }
+                  } else {
+                    idbLog_.innerHTML = "<p class=\"error\">Object store doesn't exist.</p>";
+                  }
+                };
+              }
+
+              return {
+                idbSet: idbSet_,
+                idbCreate: idbCreate_,
+                idbRemove: idbRemove_,
+                updateKey: updateKey_,
+                updateValue: updateValue_,
+                deleteKey: deleteKey_
+              }
+            })();
+          </script>
+        </section>
+      </div>
+
+        <div class="slide" id="app-cache">
           <style>
             #appcache-message {
               padding-top: 20px;
@@ -454,11 +695,11 @@ CACHE:
 </pre>
 
 
-            <p id="appcache-message">Turn off your internet connection and refresh this page! <img src="src/refresh.png" style="vertical-align:top"/></p>
+          <!--  <p id="appcache-message">Turn off your internet connection and refresh this page! <img src="src/refresh.png" style="vertical-align:top"/></p> -->
           </section>
         </div>
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="realtime-title">
           <section class="middle">
             <h2>Realtime / Communication</h2>
             <p>Stay connected</p>
@@ -466,7 +707,7 @@ CACHE:
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="web-workers">
           <style>
             #wmap {
               height: 200px;
@@ -507,9 +748,9 @@ self.<b>onmessage</b> = function(event) {
           </div>
           <p style="font-size: 90%;" class="center">Try dragging the map while the complex route is being calculated (you will only be able to do that with Workers!)</p>
         </div>
-        <script src="src/webworkers/points.js"></script>
-        <script src="src/webworkers/annealing.js"></script>
-        <script>
+        <script src="src/webworkers/points.js" defer></script>
+        <script src="src/webworkers/annealing.js" defer></script>
+        <script defer>
         (function() {
           var markersArray = [];
           var map = null;
@@ -640,7 +881,7 @@ self.<b>onmessage</b> = function(event) {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="web-sockets">
           <style>
             #websockets-message {
               text-align: center;
@@ -762,11 +1003,11 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
             </div>
 
           </section>
-          <script src="src/websocket/websocket.js"></script>
+          <script src="src/websocket/websocket.js" defer></script>
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="notifications-api">
           <style>
             #notifications-message {
               text-align: center;
@@ -794,7 +1035,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
           <button id="show-tweets">Show tweet notifications</button>
         </div>
 
-          <script>
+          <script defer>
           document.getElementById('request-permission').addEventListener('click', function() {
             window.webkitNotifications.requestPermission();
           }, false);
@@ -835,7 +1076,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="hardware-access-title">
           <section class="middle">
             <h2>File / Hardware Access</h2>
             <p>Deeper integration with the Operating System</p>
@@ -843,7 +1084,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="drag-and-drop">
           <style>
             #drag-zone {
               list-style: none;
@@ -892,7 +1133,8 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
             </ol>
             <div id="drop-data">Source Data</div>
             <div id="drop-zone">Drop Area</div>
-            <script>
+            <script defer>
+            (function() {
               var dragZone = document.querySelector('#drag-zone');
               var dropZone = document.querySelector('#drop-zone');
               dragZone.addEventListener('dragstart', function(event) {
@@ -969,8 +1211,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
                   document.body.appendChild(img_buffer); // this line only needed in safari
                   img_buffer.onload = function() { ctx.drawImage(img_buffer,0,0,100,100); }
                   this.appendChild(cEl);
-                }
-                else {
+                } else {
                   if (event.dataTransfer.getData('text')) {
                     this.innerHTML = event.dataTransfer.getData('text');
                   }
@@ -980,12 +1221,13 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
                 }
                 return false;
               }, false);
+            })();
             </script>
           </section>
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="drag-in">
           <style>
             #dropzone {
               height: 150px;
@@ -1043,17 +1285,17 @@ document.querySelector('#dropzone').addEventListener('drop', function(e) {
             </div>
             <div id="dnd-thumbnails" class="center"></div>
 
-            <script src="src/dnd/dnd-lib.js"></script>
-            <script>
-              (function() {
+            <script src="src/dnd/dnd-lib.js" defer></script>
+            <script defer>
+              window.addEventListener('load', function(e) {
                 var dndc = new DNDFileController('dropzone', 'dnd-thumbnails');
-              })();
+              }, false);
             </script>
           </section>
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="drag-out">
           <style>
             .dragout {
               background: #0687FF;
@@ -1090,8 +1332,8 @@ for (var i = 0, file; file = files[i]; ++i) {
               <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/intl/en/landing/chrome/cadie/glasses.pdf" class="dragout" data-downloadurl="application/pdf:Chrome3DGlasses.pdf:http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/intl/en/landing/chrome/cadie/glasses.pdf">.pdf file</a>
               <a href="src/star.mp3" class="dragout" data-downloadurl="audio/mpeg:star.mp3:http://slides.html5rocks.com/src/star.mp3">.mp3 file</a>
             </div>
-            <p class="center" style="font-size:90%">( this features is only available in Google Chrome )</p>
-            <script>
+            <p class="center" style="font-size:90%">( this feature is only available in Google Chrome )</p>
+            <script defer>
               (function() {
                 var files = document.querySelectorAll('.dragout');
                 for (var i = 0, file; file = files[i]; ++i) {
@@ -1106,7 +1348,7 @@ for (var i = 0, file; file = files[i]; ++i) {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="geolocation">
           <style>
             #see-position {
               margin-bottom: 10px;
@@ -1138,7 +1380,7 @@ for (var i = 0, file; file = files[i]; ++i) {
             <img src="http://maps.google.com/maps/api/staticmap?center=37.4419,-94.1419&zoom=3&size=680x278&sensor=true"/>
           </div>
 
-          <script>
+          <script defer>
           (function() {
             var map = null;
             var geolog = document.querySelector('#geo-log');
@@ -1209,6 +1451,9 @@ for (var i = 0, file; file = files[i]; ++i) {
               -webkit-transition-property: x, y;
               -webkit-transition-duration: 0.1s;
               -webkit-transition-timing-function: linear;
+              -moz-transition-property: x, y;
+              -moz-transition-duration: 0.1s;
+              -moz-transition-timing-function: linear;
             }
           </style>
           <header><span class="js">JS</span> <h1>Device Orientation</h1></header>
@@ -1229,48 +1474,56 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
               <div class="layer"><img src="src/orientation/chrome-layer-05.png"/></div>
             </div>
           </div>
+          <script defer>
+            function OrientationSlide(slide) {
+              this._slide = document.querySelector(slide);
+              this._lastBeta = 0;
+              this._lastGamma = 0;
+            }
+            OrientationSlide.prototype.orientationListener = function(evt) {
+              // For FF3.6+
+              if (!evt.gamma && !evt.beta) {
+                evt.gamma = -(evt.x * (180 / Math.PI));
+                evt.beta = -(evt.y * (180 / Math.PI));
+              }
+
+              var overThreshold = Math.abs(evt.gamma) > 4 || Math.abs(evt.beta) > 4;
+              var gamma = overThreshold ? evt.gamma : 0;
+              var beta = overThreshold ? evt.beta : 0;
+
+              if (this._lastGamma != gamma || this._lastBeta != beta) {
+                var zindex = 0;
+                var layers = document.querySelectorAll('.layer');
+                for (var i = 0, elem; elem = layers[i]; ++i) {
+                  zindex++;
+                  var x = Math.round(1.5 * gamma * zindex);
+                  var y = Math.round(1.5 * beta * zindex);
+                  var style = elem.style;
+                  style.left = x.toString() + 'px';
+                  style.top = y.toString() + 'px';
+                  style.webkitTransform = 'rotateY(' + (-2.0 * gamma) + 'deg) rotateX(' + (-2.0 * beta) + 'deg)';
+                  style.MozTransform = 'rotateY(' + (-2.0 * gamma) + 'deg) rotateX(' + (-2.0 * beta) + 'deg)';
+                }
+                this._lastGamma = gamma;
+                this._lastBeta = beta;
+              }
+            };
+            OrientationSlide.prototype.onunload = function(evt) {
+              window.removeEventListener('deviceorientation', this.orientationListener, false);
+              window.removeEventListener('MozOrientation', this.orientationListener, false);
+            };
+            OrientationSlide.prototype.onload = function(evt) {
+              window.addEventListener('deviceorientation', this.orientationListener, false);
+              window.addEventListener('MozOrientation', this.orientationListener, false);
+            };
+            var os = new OrientationSlide('#slide-orientation');
+          </script>
           </section>
         </div>
-        <script>
-          function OrientationSlide(slide) {
-            this._slide = document.querySelector(slide);
-            this._lastBeta = 0;
-            this._lastGamma = 0;
-          }
-          OrientationSlide.prototype.orientationListener = function(evt) {
-            var overThreshold = Math.abs(evt.gamma) > 4 || Math.abs(evt.beta) > 4;
-            var gamma = overThreshold ? evt.gamma : 0;
-            var beta = overThreshold ? evt.beta : 0;
 
-            if (this._lastGamma != gamma || this._lastBeta != beta) {
-              var zindex = 0;
-              var layers = document.querySelectorAll('.layer');
-              for (var i = 0, elem; elem = layers[i]; ++i) {
-                zindex++;
-                var x = Math.round(1.5 * gamma * zindex);
-                var y = Math.round(1.5 * beta * zindex);
-                var style = elem.style;
-                style.left = x.toString() + 'px';
-                style.top = y.toString() + 'px';
-                style.webkitTransform = 'rotateY(' + (-2.0 * gamma) + 'deg) rotateX(' + (-2.0 * beta) + 'deg)';
-              }
-              this._lastGamma = gamma;
-              this._lastBeta = beta;
-            }
-          };
-          OrientationSlide.prototype.onunload = function(evt) {
-            window.removeEventListener('deviceorientation', this.orientationListener, false);
-          };
-          OrientationSlide.prototype.onload = function(evt) {
-            window.addEventListener('deviceorientation', this.orientationListener, false);
-          };
-          var os = new OrientationSlide('#slide-orientation');
-        </script>
-
-
-        <div class="slide">
+        <div class="slide" id="speech-input">
           <style>
-            #speech-input {
+            #speech-input-field {
               width: 400px;
               height: 50px;
               padding: 10px 15px;
@@ -1283,33 +1536,33 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           <header><span class="html">HTML</span> <h1>Speech Input</h1></header>
           <section>
 
-            <pre>&lt;input type="text" <b>x-webkit-speech</b> <b>speech</b> /&gt;</pre>
+            <pre>&lt;input type="text" <b>x-webkit-speech</b> /&gt;</pre>
 
             <div class="flex hbox boxcenter">
               <div class="noflex vbox boxcenter" style="height:300px">
-               <input id="speech-input" type="text" x-webkit-speech speech />
+               <input id="speech-input-field" type="text" x-webkit-speech />
               </div>
             </div>
           </section>
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="semantics-markup-title">
           <section class="middle">
             <h2>Semantics &amp; Markup</h2>
             <p>More meaningful elements</p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="semantic-tags-1">
           <header><span class="html">HTML</span> <h1>Better semantic tags</h1></header>
           <section>
             <style>
-              #semantic-tags {
+              #semantic-tags-1 {
                 font-size: 95%;
               }
             </style>
-            <pre id="semantic-tags" class="two-column">&lt;body&gt;
+            <pre class="two-column">&lt;body&gt;
   &lt;<b>header</b>&gt;
     &lt;<b>hgroup</b>&gt;
       &lt;h1&gt;Page title&lt;/h1&gt;
@@ -1358,14 +1611,9 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="semantic-tags-2">
           <header><span class="html">HTML</span> <h1>Markup for applications</h1></header>
           <section>
-            <style>
-              #semantic-tags {
-                height: 520px;
-              }
-            </style>
             <pre>
 &lt;input <b>list</b>="cars"/&gt;
 &lt;<b>datalist</b> id="cars"&gt;
@@ -1395,7 +1643,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="link-relations">
           <header><span class="html">HTML</span> <h1>Descriptive link relations</h1></header>
           <style>
             .underlined { text-decoration: underline; }
@@ -1418,7 +1666,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="microdata">
           <style>
             #microdata-screenshot {
               width: 84%;
@@ -1442,7 +1690,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
         </div>
                 
 
-        <div class="slide">
+        <div class="slide" id="aria-attributes">
           <header><span class="html">HTML</span> <h1>ARIA attributes</h1></header>
           <section>
             <pre>&lt;ul id="tree1"
@@ -1462,7 +1710,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="new-form-types">
           <header><span class="html">HTML</span> <h1>New form types</h1></header>
 
           <section>
@@ -1520,14 +1768,14 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="graphics-multimedia-title">
           <section class="middle">
             <h2>Graphics / Multimedia</h2>
             <p>2D &amp; 3D</p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="video-audio">
           <style>
             #video-column {
               float: left;
@@ -1583,7 +1831,7 @@ document.getElementById("video").<b>play</b>();
               </div>
             </div>
           </section>
-          <script>
+          <script defer>
             var videoClip = document.getElementById('clip');
             var playButton = document.getElementById('play-button');
             var pauseButton = document.getElementById('pause-button');
@@ -1615,7 +1863,7 @@ document.getElementById("video").<b>play</b>();
             }
           </script>
 
-          <script>
+          <script defer>
             var audioClip = document.getElementById('audio-clip');
             var audioPlayButton = document.getElementById('audio-play-button');
             var audioPauseButton = document.getElementById('audio-pause-button');
@@ -1645,7 +1893,7 @@ document.getElementById("video").<b>play</b>();
           </script>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="canvas-2d">
           <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Canvas 2D</h1></header>
           <section>
             <style>
@@ -1673,7 +1921,7 @@ document.getElementById("video").<b>play</b>();
 &lt;/script&gt;
             </pre>
             <canvas id="canvas-area" width="838" height="225"></canvas>
-            <script>
+            <script defer>
               var canvasContext = document.getElementById("canvas-area").getContext("2d");
               canvasContext.fillRect(250, 25, 150, 100);
               canvasContext.beginPath();
@@ -1687,7 +1935,7 @@ document.getElementById("video").<b>play</b>();
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="canvas-2d-example">
           <style>
             #canvas-example {
               margin-left: 150px;
@@ -1714,7 +1962,7 @@ document.getElementById("video").<b>play</b>();
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="canvas-3d">
           <style>
             #webgl-iframe {
               border: none;
@@ -1737,7 +1985,7 @@ document.getElementById("video").<b>play</b>();
         </div>
         
         
-        <div class="slide">
+        <div class="slide" id="inline-svg">
           <header><span class="html">HTML</span> <h1>Inline SVG</h1></header>
           <section>
             <style>
@@ -1760,55 +2008,53 @@ document.getElementById("video").<b>play</b>();
 
             <div class="svg"></div>
 
-          <script>
+          <script defer>
             // insert SVG using script until SVG in HTML5 is more widely supported
             // (currently supported in IE 9 and Firefox nightlies only)
-            window.addEventListener('DOMContentLoaded', function() {
-              var container = document.getElementsByClassName('svg')[0];
-              var svgns = 'http://www.w3.org/2000/svg';
-              var svg = document.createElementNS(svgns, 'svg');
-              svg.setAttribute('width', '300px');
-              svg.setAttribute('height', '300px');
-              
-              // our linearGradient
-              var defs = document.createElementNS(svgns, 'defs');
-              var gradient = document.createElementNS(svgns, 'linearGradient');
-              gradient.setAttribute('id', 'myGradient');
-              gradient.setAttribute('x1', '0%');
-              gradient.setAttribute('y1', '100%');
-              gradient.setAttribute('x2', '100%');
-              gradient.setAttribute('y2', '0%');
-              var stop = document.createElementNS(svgns, 'stop');
-              stop.setAttribute('offset', '5%');
-              stop.setAttribute('stop-color', 'red');
-              gradient.appendChild(stop);
-              stop = document.createElementNS(svgns, 'stop');
-              stop.setAttribute('offset', '95%');
-              stop.setAttribute('stop-color', 'blue');
-              stop.setAttribute('stop-opacity', '0.5');
-              gradient.appendChild(stop);
-              defs.appendChild(gradient);
-              svg.appendChild(defs);
-              
-              // our example circle
-              var circle = document.createElementNS(svgns, 'circle');
-              circle.setAttribute('cx', '50%');
-              circle.setAttribute('cy', '50%');
-              circle.setAttribute('r', 100);
-              circle.setAttribute('fill', 'url(#myGradient)');
-              circle.setAttribute('stroke-color', 'red');
-              circle.addEventListener('mousedown', function() {
-                alert('hello');
-              }, false);
-              svg.appendChild(circle);
-              container.appendChild(svg);
+            var container = document.getElementsByClassName('svg')[0];
+            var svgns = 'http://www.w3.org/2000/svg';
+            var svg = document.createElementNS(svgns, 'svg');
+            svg.setAttribute('width', '300px');
+            svg.setAttribute('height', '300px');
+            
+            // our linearGradient
+            var defs = document.createElementNS(svgns, 'defs');
+            var gradient = document.createElementNS(svgns, 'linearGradient');
+            gradient.setAttribute('id', 'myGradient');
+            gradient.setAttribute('x1', '0%');
+            gradient.setAttribute('y1', '100%');
+            gradient.setAttribute('x2', '100%');
+            gradient.setAttribute('y2', '0%');
+            var stop = document.createElementNS(svgns, 'stop');
+            stop.setAttribute('offset', '5%');
+            stop.setAttribute('stop-color', 'red');
+            gradient.appendChild(stop);
+            stop = document.createElementNS(svgns, 'stop');
+            stop.setAttribute('offset', '95%');
+            stop.setAttribute('stop-color', 'blue');
+            stop.setAttribute('stop-opacity', '0.5');
+            gradient.appendChild(stop);
+            defs.appendChild(gradient);
+            svg.appendChild(defs);
+            
+            // our example circle
+            var circle = document.createElementNS(svgns, 'circle');
+            circle.setAttribute('cx', '50%');
+            circle.setAttribute('cy', '50%');
+            circle.setAttribute('r', 100);
+            circle.setAttribute('fill', 'url(#myGradient)');
+            circle.setAttribute('stroke-color', 'red');
+            circle.addEventListener('mousedown', function() {
+              alert('hello');
             }, false);
+            svg.appendChild(circle);
+            container.appendChild(svg);
           </script>
             
           </section>
         </div>
         
-        <div class="slide">
+        <div class="slide" id="svg-example-slide">
           <style>
             #svg-example {
               margin-left: 150px;
@@ -1822,22 +2068,20 @@ document.getElementById("video").<b>play</b>();
           <section>
             <div id="svg-example"></div>
           </section>
-          <script>
-            window.addEventListener('load', function() {
-              document.querySelector('#svg-example').innerHTML = '<object type="image/svg+xml" style="border:none; width:550px; height:540px; background: white;" data="src/svg/famoustiger.svg"></object>'
-            }, false);
+          <script defer>
+            document.querySelector('#svg-example').innerHTML = '<object type="image/svg+xml" style="border:none; width:550px; height:540px; background: white;" data="src/svg/famoustiger.svg"></object>';
           </script>
         </div>
 
 
-        <div class="slide transitionSlide">
+        <div class="slide transitionSlide" id="css3-title">
           <section class="middle">
             <h2>CSS3</h2>
             <p>Presentation &amp; Styling</p>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="css-selectors">
           <style>
             .row {
               padding: 4px;
@@ -1896,7 +2140,7 @@ h2 <b>+</b> header { ... }
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="web-fonts">
           <style>
             #fontface-sample {
               text-align: center;
@@ -1929,7 +2173,7 @@ header {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="text-wrapping">
           <style>
             div#wrapping {width: 95%}
             #overflow-hidden { font-size: 25px; height: 1.1em; overflow: hidden; }
@@ -1959,7 +2203,7 @@ header {
             </p>
           </section>
 
-          <script>
+          <script defer>
             function changeWrapping(event) {
               document.getElementById('wrapping').style.width = event.target.value + '%';
             }
@@ -1968,7 +2212,7 @@ header {
 
 
 
-        <div class="slide">
+        <div class="slide" id="css-columns">
           <style>
           #columns-no-example {
             -webkit-column-count: 2;
@@ -2033,19 +2277,19 @@ header {
             </div>
           </section>
 
-          <script>
+          <script defer>
             function changeColumnNoSlider(event) {
               var val = event.target.value;
-              document.getElementById('columns-no-value').innerHTML = val;
-              document.getElementById('columns-no-example').style.webkitColumnCount = val;
-              document.getElementById('columns-no-example').style.MozColumnCount = val;
+              document.getElementById('columns-no-value').textContent = val;
+              var el = document.getElementById('columns-no-example');
+              el.style.webkitColumnCount = val;
+              el.style.MozColumnCount = val;
             }
           </script>
         </div>
 
 
-
-        <div class="slide">
+        <div class="slide" id="css-stroke">
           <style>
             #text-stroke-example { 
               font-size: 85px;
@@ -2067,18 +2311,18 @@ header {
               Text stroke example
             </div>
 
-            <script>
+            <script defer>
               function changeTextStroke() {
                 var width = (document.getElementById('text-stroke').value * 0.25).toFixed(2);
                 document.getElementById('text-stroke-example').style.webkitTextStrokeWidth = width + 'px';
-                document.getElementById('text-stroke-value').innerHTML = width;
+                document.getElementById('text-stroke-value').textContent = width;
               }
             </script>
           </section>
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-opacity">
           <header><span class="css">CSS</span> <h1>Opacity</h1></header>
           <section>
             <style>
@@ -2126,7 +2370,7 @@ header {
               </div>
             </div>
 
-            <script>
+            <script defer>
               function changeOpacity() {
                 var textOpacity = (document.getElementById('opacity-color').value / 100).toFixed(2);
                 var backgroundOpacity = (document.getElementById('opacity-background').value / 100).toFixed(2);
@@ -2136,8 +2380,8 @@ header {
                 el.style.color = 'rgba(255, 0, 0, ' + textOpacity + ')';
                 el.style.background = 'rgba(0, 0, 255, ' + backgroundOpacity + ')';
 
-                document.getElementById('opacity-color-value').innerHTML = textOpacity;
-                document.getElementById('opacity-background-value').innerHTML = backgroundOpacity;
+                document.getElementById('opacity-color-value').textContent = textOpacity;
+                document.getElementById('opacity-background-value').textContent = backgroundOpacity;
               }
 
               changeOpacity();
@@ -2146,7 +2390,7 @@ header {
 
         </div>
 
-        <div class="slide">
+        <div class="slide" id="css-color">
           <style>
             #hsl-example {
               font-size: 75px;
@@ -2175,7 +2419,7 @@ header {
               HSL example
             </div>
 
-            <script>
+            <script defer>
               function changeHSL() {
                 var h = document.getElementById('hsl-h').value * 1.0;
                 var s = document.getElementById('hsl-s').value * 1.0;
@@ -2185,10 +2429,10 @@ header {
 
                 el.style.color = 'hsla(' + h + ', ' + s + '%, ' + l + '%, ' + a + ')';
 
-                document.getElementById('hsl-h-value').innerHTML = h;
-                document.getElementById('hsl-s-value').innerHTML = s + '%,';
-                document.getElementById('hsl-l-value').innerHTML = l + '%,';
-                document.getElementById('hsl-a-value').innerHTML = a + ');';
+                document.getElementById('hsl-h-value').textContent = h;
+                document.getElementById('hsl-s-value').textContent = s + '%,';
+                document.getElementById('hsl-l-value').textContent = l + '%,';
+                document.getElementById('hsl-a-value').textContent = a + ');';
               }
 
               changeHSL();
@@ -2197,7 +2441,7 @@ header {
 
         </div>
 
-        <div class="slide">
+        <div class="slide" id="rounded-corners">
           <style>
             #rounded-example {
               border: 1px solid #bbb;
@@ -2221,12 +2465,12 @@ header {
             </div>
           </div>
 
-          <script>
+          <script defer>
             function changeRounded() {
               var el = document.getElementById('rounded-example');
 
               var borderVal = document.getElementById('rounded-border').value;
-              document.getElementById('rounded-border-value').innerHTML = borderVal;
+              document.getElementById('rounded-border-value').textContent = borderVal;
 
               el.style.borderRadius = borderVal + 'px';
             }
@@ -2235,7 +2479,7 @@ header {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-gradients">
           <style>
             #gradients-linear-example {
               border: 0;
@@ -2264,20 +2508,20 @@ header {
 </pre>
             <div id="gradients-radial-example" class="example"></div>
 
-            <script>
+            <script defer>
               function changeGradients() {
                 var size = document.getElementById('gradients-radial').value;
 
                 document.getElementById('gradients-radial-example').style.background = 
                     '-webkit-gradient(radial, 430 50, 0, 430 50, ' + size + ', from(red), to(#000))';
 
-                document.getElementById('gradients-radial-value').innerHTML = size;
+                document.getElementById('gradients-radial-value').textContent = size;
               }
             </script>
           </section>
         </div>
 
-        <div class="slide">
+        <div class="slide" id="css-shadow">
           <style>
             #shadow-example {
               font-size: 75px;
@@ -2293,7 +2537,7 @@ header {
   <span id="shadows-text-x-value">0</span>px <input id="shadows-text-x" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)">
   <span id="shadows-text-y-value">0</span>px <input id="shadows-text-y" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)">
   <span id="shadows-text-size-value">0</span>px; <input id="shadows-text-size" type="range" min="0" max="9" value="0" onchange="changeShadow(event)">
-<b>box-shadow</b>: 
+<br><b>box-shadow</b>: 
   rgba(0, 0, 128, 0.25) 
   <span id="shadows-box-x-value">0</span>px <input id="shadows-box-x" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)">
   <span id="shadows-box-y-value">0</span>px <input id="shadows-box-y" type="range" min="-9" max="9" value="0" onchange="changeShadow(event)">
@@ -2306,7 +2550,7 @@ header {
 
           </section>
 
-          <script>
+          <script defer>
             function changeShadow() {
               var el = document.getElementById('shadow-example');
 
@@ -2314,26 +2558,27 @@ header {
               var textYVal = document.getElementById('shadows-text-y').value;
               var textSizeVal = document.getElementById('shadows-text-size').value;
 
-              document.getElementById('shadows-text-x-value').innerHTML = textXVal;
-              document.getElementById('shadows-text-y-value').innerHTML = textYVal;
-              document.getElementById('shadows-text-size-value').innerHTML = textSizeVal;
+              document.getElementById('shadows-text-x-value').textContent = textXVal;
+              document.getElementById('shadows-text-y-value').textContent = textYVal;
+              document.getElementById('shadows-text-size-value').textContent = textSizeVal;
 
               var boxXVal = document.getElementById('shadows-box-x').value;
               var boxYVal = document.getElementById('shadows-box-y').value;
               var boxSizeVal = document.getElementById('shadows-box-size').value;
 
-              document.getElementById('shadows-box-x-value').innerHTML = boxXVal;
-              document.getElementById('shadows-box-y-value').innerHTML = boxYVal;
-              document.getElementById('shadows-box-size-value').innerHTML = boxSizeVal;
+              document.getElementById('shadows-box-x-value').textContent = boxXVal;
+              document.getElementById('shadows-box-y-value').textContent = boxYVal;
+              document.getElementById('shadows-box-size-value').textContent = boxSizeVal;
 
               el.style.textShadow = 'rgba(64, 64, 64, 0.5) ' + textXVal + 'px ' + textYVal + 'px ' + textSizeVal + 'px';
               el.style.webkitBoxShadow = 'rgba(0, 0, 128, 0.25) ' + boxXVal + 'px ' + boxYVal + 'px ' + boxSizeVal + 'px';
+              el.style.MozBoxShadow = 'rgba(0, 0, 128, 0.25) ' + boxXVal + 'px ' + boxYVal + 'px ' + boxSizeVal + 'px';
             }
           </script>
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="logo-demo">
           <style>
             #logo-container {
               font-size: 66px;
@@ -2368,23 +2613,23 @@ background:
 
           </section>
 
-          <script>
+          <script defer>
             function changeWeb20() {
               var el = document.getElementById('web20-google');
 
               var textShadowVal = document.getElementById('web20-shadow').value;
-              document.getElementById('web20-shadow-value-1').innerHTML = textShadowVal;
-              document.getElementById('web20-shadow-value-2').innerHTML = textShadowVal;
+              document.getElementById('web20-shadow-value-1').textContent = textShadowVal;
+              document.getElementById('web20-shadow-value-2').textContent = textShadowVal;
 
               var gradientVal = document.getElementById('web20-gradient').value / 100;
-              document.getElementById('web20-gradient-value-1').innerHTML = gradientVal;
-              document.getElementById('web20-gradient-value-2').innerHTML = gradientVal;
+              document.getElementById('web20-gradient-value-1').textContent = gradientVal;
+              document.getElementById('web20-gradient-value-2').textContent = gradientVal;
 
               var borderVal = document.getElementById('web20-border').value;
-              document.getElementById('web20-border-value').innerHTML = borderVal;
+              document.getElementById('web20-border-value').textContent = borderVal;
 
               var reflectVal = document.getElementById('web20-reflect').value / 100;
-              document.getElementById('web20-reflect-value').innerHTML = reflectVal;
+              document.getElementById('web20-reflect-value').textContent = reflectVal;
 
               el.style.textShadow = 'rgba(0, 0, 0, 0.5) 0 ' + textShadowVal + 'px ' + textShadowVal + 'px';
               el.style.background = '-webkit-gradient(linear, left top, left bottom, from(rgba(200, 200, 240, ' + gradientVal + ')), to(rgba(255, 255, 255, ' + gradientVal + ')))';
@@ -2395,7 +2640,7 @@ background:
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-background">
           <style>
             #background-textarea {
               background: white url(http://www.google.com/intl/en_ALL/images/logo.gif) center center no-repeat;
@@ -2440,7 +2685,7 @@ background:
             </pre>
 
             <div id="background-example" class="example">Test</div>
-            <script>
+            <script defer>
               function changeBackgroundSize(event) {
                 document.getElementById('background-textarea').style.backgroundSize = event.target.value;
               }
@@ -2448,7 +2693,7 @@ background:
           </section>
         </div>
 
-        <div class="slide"> 
+        <div class="slide" id="flex-box-1">
           <style>
             #box-orient-example {
               height: 300px;
@@ -2497,16 +2742,18 @@ background:
             </div> 
           </div>
 
-          <script> 
+          <script defer> 
             function changeBoxOrient(event) {
-              document.getElementById('box-orient-example').style.webkitBoxOrient = event.target.value; 
+              var el = document.getElementById('box-orient-example');
+              el.style.webkitBoxOrient = event.target.value;
+              el.style.MozBoxOrient = event.target.value; 
             }
           </script> 
           </section> 
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="flex-box-2">
           <style>
             #box-orient-example-2 {
               height: 200px; 
@@ -2546,19 +2793,23 @@ background:
               <textarea>change the dropdowns and resize this &lt;textarea></textarea> 
             </div>
 
-            <script> 
+            <script defer> 
               function changeBoxPack(event) {
-                document.getElementById('box-orient-example-2').style.webkitBoxPack = event.target.value; 
+                var el = document.getElementById('box-orient-example-2');
+                el.style.webkitBoxPack = event.target.value;
+                el.style.MozBoxPack = event.target.value; 
               }
               function changeBoxAlign(event) {
-                document.getElementById('box-orient-example-2').style.webkitBoxAlign = event.target.value; 
+                var el = document.getElementById('box-orient-example-2');
+                el.style.webkitBoxAlign = event.target.value;
+                el.style.MozBoxAlign = event.target.value; 
               }
             </script> 
 
           </section> 
         </div>
                 
-        <div class="slide">
+        <div class="slide" id="css-transitions">
           <style>
             #transitions-box-2 {
               -webkit-transition: margin-left 1s ease-in-out;
@@ -2609,7 +2860,7 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
 </pre>
 
 
-            <script>
+            <script defer>
               function transitionLeft(no) {
                 document.getElementById('transitions-box-' + no).className = 'left';
               }
@@ -2621,7 +2872,7 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-transforms">
           <style>
             #threed-example {
               margin: 50px 20px;
@@ -2669,7 +2920,7 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="css-animation">
           <style>
             #animation-example {
               font-family: Arial;
@@ -2732,7 +2983,7 @@ div {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="browser-support">
           <header><h1>See it today?</h1></header>
           <section>
             <ul class="bullets">
@@ -2744,7 +2995,7 @@ div {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="chrome-frame">
           <style>
             span.space {
               padding: 0 5px;
@@ -2767,7 +3018,7 @@ div {
         </div>
 
 
-        <div class="slide">
+        <div class="slide" id="formula-outro-slide">
           <style>
             p.resource-link {
               font-size: 40px;
@@ -2799,7 +3050,7 @@ div {
 
     </div> <!-- presentation -->
 
-    <script>
+    <script defer>
       (function() {
         var doc = document;
         var disableBuilds = true;
@@ -2835,7 +3086,6 @@ div {
           }
           // don't choke on something like ".yada.yada >"
           if ('>~+'.indexOf(query.slice(-1)) >= 0) { query += ' *'; }
-
           return toArray(doc.querySelectorAll(query));
         };
 
@@ -2977,7 +3227,7 @@ div {
             function show() {
               frames.forEach(function(el) {
                 var _src = el.getAttribute('_src');
-                if (_src.length > 0) {
+                if (_src && _src.length) {
                   el.src = _src;
                 }
               });
@@ -2989,7 +3239,7 @@ div {
             function hide() {
               frames.forEach(function(el) {
                 var _src = el.getAttribute('_src');
-                if (_src.length > 0) {
+                if (_src && _src.length) {
                   el.src = '';
                 }
               });
@@ -2999,7 +3249,7 @@ div {
           _makeCounter: function() {
             if(!this._count || !this._node) { return; }
             var c = doc.createElement('span');
-            c.innerHTML = this._count;
+            c.textContent = this._count;
             c.className = 'counter';
             this._node.appendChild(c);
           },
@@ -3063,9 +3313,9 @@ div {
           });
           var h = window.location.hash;
           try {
-            this.current = parseInt(h.split('#slide')[1], 10);
+            this.current = h;
           } catch (e) { /* squeltch */ }
-          this.current = isNaN(this.current) ? 1 : this.current;
+          this.current = (!this.current) ? "landing-slide" : this.current.replace('#', '');
           var _t = this;
           doc.addEventListener('keydown', 
               function(e) { _t.handleKeys(e); }, false);
@@ -3083,42 +3333,54 @@ div {
         SlideShow.prototype = {
           _presentationCounter: query('#presentation-counter')[0],
           _slides: [],
+          _getCurrentIndex: function() {
+            var me = this;
+            var slideCount = null;
+            query('.slide').forEach(function(slide, i) {
+              if (slide.id == me.current) {
+                slideCount = i;
+              }
+            });
+            return slideCount + 1;  
+          },
           _update: function(dontPush) {
             // in order to delay the time where the counter shows the slide number we check if 
             // the slides are already loaded (so we show the loading... instead)
             // the technique to test visibility is taken from here
             // http://stackoverflow.com/questions/704758/how-to-check-if-an-element-is-really-visible-with-javascript
-            var elem = document.elementFromPoint('50%', '50%');
+            var docElem = document.documentElement;
+            var elem = document.elementFromPoint( docElem.clientWidth / 2, docElem.clientHeight / 2);
+            var currentIndex = this._getCurrentIndex();
             if (elem && elem.className != 'presentation') {
-              this._presentationCounter.innerText = this.current;
+                this._presentationCounter.textContent = currentIndex;
             }
             if (history.pushState) {
               if (!dontPush) {
-                history.replaceState(this.current, 'Slide ' + this.current, '#slide' + this.current);
+                history.replaceState(this.current, 'Slide ' + this.current, '#' + this.current);
               }
             } else {
-              window.location.hash = 'slide' + this.current;
+              window.location.hash = this.current;
             }
-            for (var x = this.current-1; x < this.current + 7; x++) {
+            for (var x = currentIndex-1; x < currentIndex + 7; x++) {
               if (this._slides[x-4]) {
-                this._slides[x-4].setState(Math.max(0, x-this.current));
+                this._slides[x-4].setState(Math.max(0, x-currentIndex));
               }
             }
           },
 
           current: 0,
           next: function() {
-            if (!this._slides[this.current-1].buildNext()) {
-              this.current = Math.min(this.current + 1, this._slides.length);
-              this._update();
-            }
-          },
-          prev: function() {
-            this.current = Math.max(this.current-1, 1);
+            var next = query('#' + this.current + ' + .slide')[0];
+            this.current = (next) ? next.id : this.current;
             this._update();
           },
-          go: function(num) {
-            this.current = num;
+          prev: function() {
+            var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')')[0];
+            this.current = (prev) ? prev.id : this.current;
+            this._update();
+          },
+          go: function(slideId) {
+            this.current = slideId;
             this._update(true);
           },
 
@@ -3189,8 +3451,8 @@ div {
         // load highlight setting from session storage, if available.
         // session storage can only store strings so we have to assume type coercion
         // for the boolean logic here
-        query('#prettify-link')[0].disabled = !(sessionStorage['highlightOn'] == 'true');        
-            
+        query('#prettify-link')[0].disabled = !(sessionStorage['highlightOn'] == 'true');
+
         // disable style theme stylesheets
         var linkEls = query('link.theme');
         var stylesheetPath = sessionStorage['theme'] || 'css/default.css';
@@ -3219,7 +3481,7 @@ div {
     <script>CFInstall.check({ mode: "overlay" });</script>
     <![endif]-->
 
-    <script src="src/prettify/prettify.js" onload="prettyPrint();"></script>
+    <script src="src/prettify/prettify.js" onload="prettyPrint();" defer></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
     <script>

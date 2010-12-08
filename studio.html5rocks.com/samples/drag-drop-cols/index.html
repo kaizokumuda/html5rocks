@@ -19,6 +19,9 @@
 -->
 <html>
 <head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+<title>Drag and Drop Columns</title>
 <style type="text/css">
 html {
   /*  in order to hide the parent iframe scrollbars in chrome*/
@@ -83,7 +86,7 @@ body {
 </head>
 <body>
 
-Enable column hover: <input type="checkbox" id="ghostCol" name="ghostCol"/>
+<!--Enable column hover: <input type="checkbox" id="ghostCol" name="ghostCol"/>-->
 
 <div id="columns">
   <div class="column" id="one"><div class="header">A</div><div class="count" data-col-moves="0"></div></div>
@@ -219,9 +222,9 @@ function attachColumnListener(col) {
   col.addEventListener('dragend', handleDragEnd);
 }
 
-document.getElementById('ghostCol').addEventListener('click', function(e) {
+/*document.getElementById('ghostCol').addEventListener('click', function(e) {
   ENABLE_GHOST_COL = this.checked;
-});
+});*/
 
 var cols = document.querySelectorAll('.column');
 [].forEach.call(cols, function (col) {
@@ -253,19 +256,5 @@ function simulateClick() {
   
 }
 </script>
-
-
-
-<!-- 
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="http://v3.javascriptmvc.com/funcunit/dist/scripts/syn.js"></script>
-<script>
-Syn
-  .click({},'one')
-  .drag({'to':'#two'});
-</script>
-
--->
-
 </body>
 </html>

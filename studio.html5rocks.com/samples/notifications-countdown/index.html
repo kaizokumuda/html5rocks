@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <!--
  * Copyright (c) 2010 Google Inc.
@@ -18,8 +19,11 @@
  * Modified: Ernest Delgado
 -->
 <!-- theme http://www.colourlovers.com/palette/588222/royal --> 
-<head> 
-<style> 
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+<title>Notifications Countdown</title>
+<style>
 body { margin: 10px; font-family: sans-serif; }
 #statusWrapper { background: #eef; margin: 1em 0; padding: 0.5em; font-size: x-small; text-align: right; }
 #request { text-align: center; font-size: 24pt; margin-top: 75px; }
@@ -39,7 +43,7 @@ body { margin: 10px; font-family: sans-serif; }
   -webkit-animation-direction: normal;
 }
 </style>
-<script src="date.js" type="text/javascript" charset="utf-8"></script> 
+<script src="date.js" type="text/javascript" charset="utf-8"></script>
 <script> 
 var timer, notifications = window.webkitNotifications;
 window.onload = function() {
