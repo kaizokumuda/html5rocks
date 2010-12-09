@@ -1,0 +1,102 @@
+{% extends "../templates/base.html" %}
+{% block body %}
+  {% include "../templates/header.html" %}
+  <link href="http://fonts.googleapis.com/css?family=Cantarell:italic|Droid+Serif:bold" rel="stylesheet" type="text/css"></link>
+  <xlink href="http://fonts.googleapis.com/css?family=Droid+Sans|Lobster|Droid+Serif:regular,italic,bold,bolditalic|Nobile|Yanone+Kaffeesatz|PT+Sans:regular,italic,bold,bolditalic|PT+Sans+Caption:regular,bold|PT+Sans+Narrow|Reenie+Beanie|Tangerine:regular,bold|Molengo|OFL+Sorts+Mill+Goudy+TT:regular,italic|Vollkorn:regular,italic,bold,bolditalic|Cantarell|Inconsolata|Crimson+Text|Arvo:regular,italic,bold,bolditalic|Cardo|Neucha|Neuton|Droid+Sans+Mono|Cuprum|Old+Standard+TT:regular,italic,bold|Philosopher|Tinos:regular,italic,bold,bolditalic|Josefin+Sans:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic|Arimo:regular,italic,bold,bolditalic|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic|Allerta|Geo|Allerta+Stencil|Puritan|Puritan:regular,italic,bold,bolditalic|Cousine:regular,italic,bold,bolditalic|UnifrakturMaguntia|Bentham|IM+Fell+DW+Pica:regular,italic|IM+Fell+English:regular,italic|IM+Fell+English+SC|IM+Fell+DW+Pica+SC|IM+Fell+Double+Pica+SC|IM+Fell+Double+Pica|IM+Fell+Great+Primer+SC|IM+Fell+Great+Primer|IM+Fell+French+Canon|IM+Fell+French+Canon+SC" rel="stylesheet" type="text/css">
+  <link type="text/css" rel="stylesheet" href="/static/css/cleanslate.css"></link>
+  <link type="text/css" rel="stylesheet" href="/static/css/profiles.css"></link>
+  <nav>
+    <p class="breadcrumb">
+      <a class="buttonlink" href="/">
+        <span>Home</span>
+      </a >&gt; Profiles
+    </p>
+  </nav>
+  <article>
+    <header>
+      <h1>{% block pagetitle %}{% endblock %}</h1>
+    </header>
+    <!-- see http://microformats.org/wiki/microdata -->
+    <!-- http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#vcard -->
+
+    <div id="profiles">
+
+      <section id="mahemoff" itemscope itemtype="http://microformats.org/profile/hcard">
+        <h2>
+         <div itemprop="fn">
+          <div itemprop="n" itemscope>
+           <span itemprop="given-name">Michael</span>
+           <span itemprop="family-name">Mahemoff</span>
+          </div>
+        </div>
+
+        </h2>
+
+      <div class="photoZone">
+       <img itemprop="photo" alt="" src="http://2.bp.blogspot.com/_PaNv_g1T5DM/TM61n_mS6fI/AAAAAAAAAuA/_NzbuzJIVPo/s400/michael1.jpg">
+      </div>
+
+       <div itemprop="org" itemscope>
+        <div itemprop="organization-unit">Developer Relations</div>
+        <div itemprop="organization-name">Google</div>
+       </div>
+       <div class="details">
+         <div itemprop="adr" itemscope>
+          <span itemprop="locality">Victoria</span>
+          <span itemprop="region">London</span><br/>
+          <span itemprop="country-name">United Kingdom</span><br>
+         </div>
+         <ul class="urls">
+           <li><a data-type="homepage" itemprop="url" href="http://mahemoff.com">&nbsp;</a></li>
+           <li><a data-type="google" itemprop="url" href="http://google.com/profiles/mahemoff">&nbsp;</a></li>
+           <li><a data-type="twitter" itemprop="url" href="http://twitter.com/mahemoff">&nbsp;</a></li>
+         </ul>
+         <p itemprop="geo">51.5001524, -0.1262362</p>
+        </div>
+      </section>
+
+      <section class="clearance">&nbsp;</section>
+
+      <section id="mahemoff" itemscope itemtype="http://microformats.org/profile/hcard">
+        <h2>
+         <div itemprop="fn">
+          <div itemprop="n" itemscope>
+           <span itemprop="given-name">Michael</span>
+           <span itemprop="family-name">Mahemoff</span>
+          </div>
+        </div>
+
+        </h2>
+
+      <div class="photoZone">
+       <img itemprop="photo" alt="" src="http://2.bp.blogspot.com/_PaNv_g1T5DM/TM61n_mS6fI/AAAAAAAAAuA/_NzbuzJIVPo/s400/michael1.jpg">
+      </div>
+
+       <div itemprop="org" itemscope>
+        <div itemprop="organization-unit">Developer Relations</div>
+        <div itemprop="organization-name">Google</div>
+       </div>
+       <div class="details">
+         <div itemprop="adr" itemscope>
+          <div itemprop="locality">Victoria</div>
+          <div itemprop="region">London</div>
+          <div itemprop="country-name">United Kingdom</div>
+         </div>
+         <ul class="urls">
+           <li><a data-type="homepage" itemprop="url" href="http://mahemoff.com">&nbsp;</a></li>
+           <li><a data-type="google" itemprop="url" href="http://google.com/profiles/mahemoff">&nbsp;</a></li>
+           <li><a data-type="twitter" itemprop="url" href="http://twitter.com/mahemoff">&nbsp;</a></li>
+         </ul>
+         <p itemprop="geo">51.5001524, -0.1262362</p>
+        </div>
+      </section>
+
+      <section class="clearance">&nbsp;</section>
+
+
+
+    </div>
+  </article>
+  {% include "../templates/footer.html" %}
+{% endblock %}
+
