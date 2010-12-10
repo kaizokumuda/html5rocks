@@ -1,11 +1,10 @@
-
 id: ebidelman
 name:
   given: Eric
   family: Bidelman
 org:
   name: Google
-  unit: Developer relations
+  unit: Developer Relations
 address:
   locality: Mountain View
   region: California
@@ -15,17 +14,15 @@ address:
 homepage: http://www.google.com/profiles/ebidel
 google: ebidel
 twitter: ebidel
-email: mahemoff@google.com
-
+email: e.bidelman@google.com
 ---
-
 id: mahemoff
 name:
   given: Michael
   family: Mahemoff
 org:
   name: Google
-  unit: Developer relations
+  unit: Developer Relations
 address:
   locality: Victoria
   region: London

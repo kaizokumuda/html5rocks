@@ -26,6 +26,8 @@ import html5lib
 from html5lib import treebuilders, treewalkers, serializer
 from html5lib.filters import sanitizer
 
+import yaml
+
 # Google App Engine Imports
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
@@ -183,10 +185,31 @@ class ContentHandler(webapp.RequestHandler):
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
 
+class ProfileHandler(ContentHandler):
+
+  def get(self):
+    if self.request.get('cache', '1') == '0':
+      self.request.cache = False
+    else:
+      self.request.cache = True
+
+    base_dir = os.path.dirname(__file__)
+    template_path = os.path.join(base_dir, 'content/profiles.html')
+
+    f = file(base_dir + '/profiles.yaml', 'r')
+    profiles = []
+    for data in yaml.load_all(f):
+      profiles.append(data)
+    f.close()
+
+    self.render(data={'profiles': profiles}, template_path=template_path)
+
+
 def main():
   application = webapp.WSGIApplication([
+    ('/profiles', ProfileHandler),
     ('/(.*)', ContentHandler)
-  ], debug=True)
+  ], debug=False)
   util.run_wsgi_app(application)
 
 if __name__ == '__main__':
