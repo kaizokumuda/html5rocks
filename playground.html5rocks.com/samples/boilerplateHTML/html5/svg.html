@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+INSERT_CSS_HERE
+    </style>
+  </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" 
-     xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width='300px' height='300px'>
-    <circle cx='120' cy='150' r='60' style='fill: gold;'>
-     <animate attributeName='r' from='2' to='80' begin='0' 
-      dur='3' repeatCount='indefinite' /></circle>
+    <p>The shapes below are drawn with inline SVG.</p>
+    <svg id="svg-area" width="838" height="140" viewBox="0 0 2000 380">
+      <rect x="100" y="20" rx="25" width="100" height="335" fill="#FAEBD7" stroke="purple" stroke-width="2" />
+      <rect x="-50" y="300" width="300" height="75" fill="none" stroke="#4B0082" stroke-width="4" transform="rotate(-30)" />
 
-      <polyline points='120 30, 25 150, 290 150' 
-       stroke-width='4' stroke='brown' style='fill: none;' />
-
-       <polygon points='210 100, 210 200, 270 150' 
-        style='fill: lawngreen;' /> 
-           
-        <text x='60' y='250' fill='blue'>Hello, World!</text>
-
-        </svg>
+      <path d="M 950,200 h -150 a 150,150 0 1,0 150,-150 z" fill="red" stroke="blue" stroke-width="5" />
+      <path d="M 925,175 v -150 a 150,150 0 0,0 -150,150 z" fill="yellow" stroke="blue" stroke-width="5" />
+      <path d="M 1450,350 l 50,-25
+               a 25,25 -30 0,1 50,-25 l 50,-25
+               a 25,50 -30 0,1 50,-25 l 50,-25
+               a 25,75 -30 0,1 50,-25 l 50,-25
+               a 25,100 -30 0,1 50,-25 l 50,-25"
+            fill="none" stroke="red" stroke-width="5" />
+    </svg>
   </body>
 </html>
