@@ -337,16 +337,15 @@ var tempJSON = [
         "sampleName": "New Selectors",
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-selectors/"
-      }/*,
+      },
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/flex_box_model.html",
-        "files": ["samples/css/html5/flex_box_model.css"],
+        "files": ["samples/css/html5/flex_box_model.css", "samples/js/html5/flex_box_model.js"],
         "editor": "css",
         "sampleName": "Flex Box Model",
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-flexbox/"
       }
-      */
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
   }
