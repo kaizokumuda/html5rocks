@@ -15,7 +15,9 @@ homepage: http://www.google.com/profiles/ebidel
 google: ebidel
 twitter: ebidel
 email: e.bidelman@google.com
+
 ---
+
 id: mahemoff
 name:
   given: Michael
@@ -24,11 +26,91 @@ org:
   name: Google
   unit: Developer Relations
 address:
-  locality: Victoria
+  locality: London
   region: London
   country: UK
-  lat: 51.5001524
-  lon: -0.1262362
+  lat: 51.51452
+  lon: 0
+homepage: http://mahemoff.com
+google: mahemoff
+twitter: mahemoff
+email: mahemoff@google.com
+
+---
+
+id: ebidelman
+name:
+  given: Eric
+  family: Bidelman
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.385981
+  lon: -122.083855
+homepage: http://www.google.com/profiles/ebidel
+google: ebidel
+twitter: ebidel
+email: e.bidelman@google.com
+
+---
+
+id: mahemoff
+name:
+  given: Michael
+  family: Mahemoff
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: London
+  region: London
+  country: UK
+  lat: 51.51452
+  lon: 0
+homepage: http://mahemoff.com
+google: mahemoff
+twitter: mahemoff
+email: mahemoff@google.com
+
+---
+
+id: ebidelman
+name:
+  given: Eric
+  family: Bidelman
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.385981
+  lon: -122.083855
+homepage: http://www.google.com/profiles/ebidel
+google: ebidel
+twitter: ebidel
+email: e.bidelman@google.com
+
+---
+
+id: mahemoff
+name:
+  given: Michael
+  family: Mahemoff
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: London
+  region: London
+  country: UK
+  lat: 51.51452
+  lon: 0
 homepage: http://mahemoff.com
 google: mahemoff
 twitter: mahemoff
