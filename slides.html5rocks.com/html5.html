@@ -29,7 +29,7 @@
     <link href="css/moon.css" class="theme" rel="stylesheet" />
     <link href="css/sand.css" class="theme" rel="stylesheet" />
     <link href="css/sea_wave.css" class="theme" rel="stylesheet" />
-    <link href="css/default.css" class="theme" rel="stylesheet" />
+    <link href="css/default.css" class="theme" rel="stylesheet" media="screen" />
   </head>
   <body>
     <div class="presentation">
@@ -122,13 +122,13 @@
               }
             </style>
             
-            <ul id="timeline">
-              <li><span class="year">1991</span> <span class="html">HTML</span></li>
-              <li><span class="year">1994</span> <span class="html">HTML 2</span></li>
-              <li><span class="year">1996</span> <span class="css">CSS 1</span> + <span class="js">JavaScript</span></li>
-              <li><span class="year">1997</span> <span class="html">HTML 4</span></li>
-              <li><span class="year">1998</span> <span class="css">CSS 2</span></li>
-              <li><span class="year">2000</span> <span class="html">XHTML 1</span></li>
+            <ul id="timeline" data-build>
+              <li data-auto><span class="year">1991</span> <span class="html">HTML</span></li>
+              <li data-auto><span class="year">1994</span> <span class="html">HTML 2</span></li>
+              <li data-auto><span class="year">1996</span> <span class="css">CSS 1</span> + <span class="js">JavaScript</span></li>
+              <li data-auto><span class="year">1997</span> <span class="html">HTML 4</span></li>
+              <li data-auto><span class="year">1998</span> <span class="css">CSS 2</span></li>
+              <li data-auto><span class="year">2000</span> <span class="html">XHTML 1</span></li>
               <li><span class="year"><em class="stroke">2002</em></span> <span class="css">Tableless Web Design</span></li>
               <li><span class="year"><em class="stroke">2005</em></span> <span class="js">AJAX</span></li>
               <li><span class="year"><em class="stroke">2009</em></span> <span class="html">HTML 5</span></li>
@@ -138,7 +138,7 @@
 
         
         <div class="slide" id="formula-intro-slide">
-          <section class="middle formula">
+          <section class="middle formula" data-build>
             HTML5 ~=
             <span class="html">HTML</span>
             +
@@ -3059,7 +3059,7 @@ div {
     <script defer>
       (function() {
         var doc = document;
-        var disableBuilds = true;
+        var disableBuilds = false;
         
         var ctr = 0;
         var spaces = /\s+/, a1 = [''];
@@ -3262,8 +3262,11 @@ div {
           _makeBuildList: function() {
             this._buildList = [];
             if (disableBuilds) { return; }
+            console.log('make')
+            console.log(this._node)
             if (this._node) {
               this._buildList = query('[data-build] > *', this._node);
+              console.log(this._buildList)
             }
             this._buildList.forEach(function(el) {
               addClass(el, 'to-build');
@@ -3376,9 +3379,11 @@ div {
 
           current: 0,
           next: function() {
-            var next = query('#' + this.current + ' + .slide')[0];
-            this.current = (next) ? next.id : this.current;
-            this._update();
+            if (!this._slides[this._getCurrentIndex() - 1].buildNext()) {
+              var next = query('#' + this.current + ' + .slide')[0];
+              this.current = (next) ? next.id : this.current;
+              this._update();
+            }
           },
           prev: function() {
             var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')')[0];
