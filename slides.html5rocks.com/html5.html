@@ -3262,11 +3262,8 @@ div {
           _makeBuildList: function() {
             this._buildList = [];
             if (disableBuilds) { return; }
-            console.log('make')
-            console.log(this._node)
             if (this._node) {
               this._buildList = query('[data-build] > *', this._node);
-              console.log(this._buildList)
             }
             this._buildList.forEach(function(el) {
               addClass(el, 'to-build');
