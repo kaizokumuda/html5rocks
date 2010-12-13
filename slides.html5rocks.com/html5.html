@@ -29,7 +29,7 @@
     <link href="css/moon.css" class="theme" rel="stylesheet" />
     <link href="css/sand.css" class="theme" rel="stylesheet" />
     <link href="css/sea_wave.css" class="theme" rel="stylesheet" />
-    <link href="css/default.css" class="theme" rel="stylesheet" />
+    <link href="css/default.css" class="theme" rel="stylesheet" media="screen" />
   </head>
   <body>
     <div class="presentation">
@@ -122,13 +122,13 @@
               }
             </style>
             
-            <ul id="timeline">
-              <li><span class="year">1991</span> <span class="html">HTML</span></li>
-              <li><span class="year">1994</span> <span class="html">HTML 2</span></li>
-              <li><span class="year">1996</span> <span class="css">CSS 1</span> + <span class="js">JavaScript</span></li>
-              <li><span class="year">1997</span> <span class="html">HTML 4</span></li>
-              <li><span class="year">1998</span> <span class="css">CSS 2</span></li>
-              <li><span class="year">2000</span> <span class="html">XHTML 1</span></li>
+            <ul id="timeline" data-build>
+              <li data-auto><span class="year">1991</span> <span class="html">HTML</span></li>
+              <li data-auto><span class="year">1994</span> <span class="html">HTML 2</span></li>
+              <li data-auto><span class="year">1996</span> <span class="css">CSS 1</span> + <span class="js">JavaScript</span></li>
+              <li data-auto><span class="year">1997</span> <span class="html">HTML 4</span></li>
+              <li data-auto><span class="year">1998</span> <span class="css">CSS 2</span></li>
+              <li data-auto><span class="year">2000</span> <span class="html">XHTML 1</span></li>
               <li><span class="year"><em class="stroke">2002</em></span> <span class="css">Tableless Web Design</span></li>
               <li><span class="year"><em class="stroke">2005</em></span> <span class="js">AJAX</span></li>
               <li><span class="year"><em class="stroke">2009</em></span> <span class="html">HTML 5</span></li>
@@ -138,7 +138,7 @@
 
         
         <div class="slide" id="formula-intro-slide">
-          <section class="middle formula">
+          <section class="middle formula" data-build>
             HTML5 ~=
             <span class="html">HTML</span>
             +
@@ -1672,9 +1672,17 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           <style>
             #microdata-screenshot {
               width: 84%;
-              margin: 30px auto;
+              margin: 0 auto;
               display: block;
               border: 3px solid #ccc;
+            }
+            #microdata figure {
+              display: block;
+              width: 100%;
+              text-align: center;
+            }
+            #microdata figcaption {
+              display: block;
             }
           </style>
           <header><span class="html">HTML</span> <h1>Microdata</h1></header>
@@ -1686,8 +1694,10 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
  &lt;p&gt;I am &lt;span <b>itemprop="nationality"</b>&gt;British&lt;/span&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </pre>
-
-            <img id="microdata-screenshot" src="src/magpie.png" />
+            <figure>
+              <img id="microdata-screenshot" src="src/magpie.png" alt="Google Rich Snippets Tool screenshot" />
+              <figcaption>Rich Snippets Testing Tool (Beta) at http://www.google.com/webmasters/tools/richsnippets</figcaption>
+            <figure>
           </section>
         </div>
                 
@@ -1721,6 +1731,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
               font-size: 80%;
             }
             .form-inputs input {
+              float: right;
               border: 1px solid #CCC;
               -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset;
               -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset;
@@ -1756,20 +1767,72 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
 &lt;/style&gt;
 </pre>
 <pre class="form-inputs">
-&lt;input type="text" <b>required</b> /&gt;<input type="text" required />
-&lt;input type="<b>email</b>" value="some@email.com" /&gt; <input type="email" value="some@email.com" />
-&lt;input type="<b>date</b>" <b>min</b>="2010-08-14" <b>max</b>="2011-08-14" value="2010-08-14"/&gt; <input type="date" min="2010-08-14" max="2011-08-14" value="2010-08-14" />
-&lt;input type="<b>range</b>" <b>min</b>="0" <b>max</b>="50" value="10" /&gt; <input  type="range" min="0" max="50" value="10" />
-&lt;input type="<b>search</b>" <b>results</b>="10" <b>placeholder</b>="Search..." /&gt; <input results="10" type="search" placeholder="Search..." />
-&lt;input type="<b>tel</b>" placeholder="(555) 555-5555" <b>pattern</b>="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" /&gt;
-<input type="tel" placeholder="(555) 555-5555" pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" />
-&lt;input type="<b>color</b>" <b>placeholder</b>="e.g. #bbbbbb" /&gt; <input type="color" placeholder="e.g. #bbbbbb" />
-&lt;input type="<b>number</b>" <b>step</b>="1" <b>min</b>="-5" <b>max</b>="10" value="0" /&gt; <input type="number" step="1" min="-5" max="10" value="0" />
+<input type="text" required />&lt;input type="text" <b>required</b> /&gt;
+
+<input type="email" value="some@email.com" />&lt;input type="<b>email</b>" value="some@email.com" /&gt;
+
+<input type="date" min="2010-08-14" max="2011-08-14" value="2010-08-14" />&lt;input type="<b>date</b>" <b>min</b>="2010-08-14" <b>max</b>="2011-08-14" value="2010-08-14"/&gt;
+
+<input type="range" min="0" max="50" value="10" />&lt;input type="<b>range</b>" <b>min</b>="0" <b>max</b>="50" value="10" /&gt;
+
+<input results="10" type="search" placeholder="Search..." />&lt;input type="<b>search</b>" <b>results</b>="10" <b>placeholder</b>="Search..." /&gt;
+
+<input type="tel" placeholder="(555) 555-5555" pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" />&lt;input type="<b>tel</b>"  placeholder="(555) 555-5555"
+         <b>pattern</b>="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" /&gt;
+
+<input type="color" placeholder="e.g. #bbbbbb" />&lt;input type="<b>color</b>" <b>placeholder</b>="e.g. #bbbbbb" /&gt;
+
+<input type="number" step="1" min="-5" max="10" value="0" />&lt;input type="<b>number</b>" <b>step</b>="1" <b>min</b>="-5" <b>max</b>="10" value="0" /&gt;
 </pre>
           </section>
         </div>
 
-
+        <div class="slide" id="form-types-mobile">
+          <header><span class="html">HTML</span> <h1>Form field types on mobile</h1></header>
+          <section>
+            <style type="text/css" media="screen">
+              #form-types-mobile div {
+                float: left;
+                width: 24%;
+                padding-right: 1%;
+                text-align: center;
+              }
+              #form-types-mobile img {
+                width: 90%;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 4px 6px;
+              }
+            </style>
+            <div>
+<pre>type="<em>text</em>"</pre>
+              <figure>
+                <img src="src/android-form-text.png" alt="android keyboard on input type text" />
+                <figcaption>Android Device</figcaption>
+              </figure>
+            </div>
+            <div>
+<pre>type="<em>number</em>"</pre>
+              <figure>
+                <img src="src/android-form-number.png" alt="android keyboard on input type number" />
+                <figcaption>Android Device</figcaption>
+              </figure>
+            </div>
+            <div>
+<pre>type="<em>email</em>"</pre>
+              <figure>
+                <img src="src/iphone-form-email.png" alt="iphone keyboard on input type email" />
+                <figcaption>iPhone Device</figcaption>
+              </figure>
+            </div>
+            <div>
+<pre>type="<em>tel</em>"</pre>
+              <figure>
+                <img src="src/iphone-form-tel.png" alt="iphone keyboard on input type tel" />
+                <figcaption>iPhone Device</figcaption>
+              <figure>
+            </div>
+          </section>
+        </div>
+                
         <div class="slide transitionSlide" id="graphics-multimedia-title">
           <section class="middle">
             <h2>Graphics / Multimedia</h2>
@@ -3059,7 +3122,7 @@ div {
     <script defer>
       (function() {
         var doc = document;
-        var disableBuilds = true;
+        var disableBuilds = false;
         
         var ctr = 0;
         var spaces = /\s+/, a1 = [''];
@@ -3376,9 +3439,11 @@ div {
 
           current: 0,
           next: function() {
-            var next = query('#' + this.current + ' + .slide')[0];
-            this.current = (next) ? next.id : this.current;
-            this._update();
+            if (!this._slides[this._getCurrentIndex() - 1].buildNext()) {
+              var next = query('#' + this.current + ' + .slide')[0];
+              this.current = (next) ? next.id : this.current;
+              this._update();
+            }
           },
           prev: function() {
             var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')')[0];
