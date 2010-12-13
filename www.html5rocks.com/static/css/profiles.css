@@ -1,0 +1,162 @@
+/* 
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+witter: @rich_clark
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000; 
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;   
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+#profiles { margin: 20px 0; overflow: hidden; }
+
+.profile.active {
+  -webkit-box-shadow: 10px 10px 5px #000;
+  margin: 80px 0 100px 200px;
+  -webkit-transform: rotate(-2deg) scale(1.6);
+  z-index: 1000;
+}
+
+.profile {
+  margin-bottom: -180px;
+  height: 50px;
+}
+
+.profile:hover,.profile.active {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsl(120,80%,50%)), to(hsl(120,900%,50%)));
+}
+
+.profile:hover h2,.profile.active h2 {
+  background: hsl(320, 80%, 50%); 
+}
+
+.profile.active:nth-last-child(2) {
+  margin-bottom: 0;
+}
+
+.profile {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsl(120,50%,50%)), to(hsl(120,70%,50%))); width: 350px; height: 200px; 
+  position: relative;
+  text-align: right;
+  border: 1px solid black; 
+  -webkit-transition: all 0.6s ease-in-out;
+}
+section[itemtype="http://microformats.org/profile/hcard"] a {
+  text-decoration: none;
+}
+
+article section h2 { margin: 0 0 10px; padding: 5px 20px 5px 30px; border-radius: 0 0 0 30px; color: hsl(320,50%,20%); overflow: hidden; font-weight: normal; float: right; font-size: 16pt; font-family: "IM Fell DW Pica"; background: hsl(320, 50%, 50%); }
+
+.urls li { display: inline; }
+.urls a[data-type="homepage"][href^="http"] { background-image:url('/static/images/home.png'); background-position: right middle; padding-right: 16px; }
+.urls a[data-type="twitter"][href^="http"] { color: orange; background-image:url('/static/images/twitter.png'); background-position: right top; padding-right: 16px; }
+.urls a[data-type="google"][href^="http"] { color: orange; background-image:url('/static/images/buzz.png'); background-position: right top; padding-right: 16px; }
+
+.photoZone { width: 180px; height: 180px; position: absolute; right: 170px; top: 20px; overflow: hidden; }
+img[itemprop="photo"] { clear: left; width: 200px; height: 200px; margin: 0 auto; margin: 10px 0 0; border-radius: 200px; border-width: 200px; position: absolute; left: -20px; bottom: -20px; }
+
+[itemprop="locality"] { display: none; }
+.urls, [itemprop="org"],[itemprop="adr"] { margin: 0 20px 10px; text-align: right; float: right; clear: both; }
+[itemprop="org"] { margin-top: 20px; font-family: Tangerine; color: white; font-size: 24px; }
+[itemprop="organization-name"] { font-family: Droid Sans; margin-top: 0; font-size: 36px; }
+[itemprop="adr"] { margin-top: 10px; font-family: Droid Sans; font-size: small; color: white; }
+h2[itemprop=fn] { background: #fff; }
+p[itemprop=geo] { display: none; }
+[itemprop="country-name"] { display: none; }
+.clearance { clear: both; }
+
+.details { position: absolute; bottom: 0; right: 0; text-align: right; font-family: serif; }
+
