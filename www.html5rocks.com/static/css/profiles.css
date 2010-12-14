@@ -116,7 +116,7 @@ input, select {
 }
 
 .profile:hover,.profile.active {
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsl(120,80%,50%)), to(hsl(120,900%,50%)));
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsl(120,80%,50%)), to(hsl(120,100%,50%)));
 }
 
 .profile:hover h2,.profile.active h2 {
@@ -145,8 +145,8 @@ article section h2 { margin: 0 0 10px; padding: 5px 20px 5px 30px; border-radius
 .urls a[data-type="twitter"][href^="http"] { color: orange; background-image:url('/static/images/twitter.png'); background-position: right top; padding-right: 16px; }
 .urls a[data-type="google"][href^="http"] { color: orange; background-image:url('/static/images/buzz.png'); background-position: right top; padding-right: 16px; }
 
-.photoZone { width: 180px; height: 180px; position: absolute; right: 170px; top: 20px; overflow: hidden; }
-img[itemprop="photo"] { clear: left; width: 200px; height: 200px; margin: 0 auto; margin: 10px 0 0; border-radius: 200px; border-width: 200px; position: absolute; left: -20px; bottom: -20px; }
+.photoZone { width: 160px; height: 160px; position: absolute; right: 190px; top: 40px; overflow: hidden; }
+img[itemprop="photo"] { clear: left; width: 180px; height: 180px; margin: 0 auto; margin: 10px 0 0; border-radius: 180px; border-width: 180px; position: absolute; left: -20px; bottom: -20px; }
 
 [itemprop="locality"] { display: none; }
 .urls, [itemprop="org"],[itemprop="adr"] { margin: 0 20px 10px; text-align: right; float: right; clear: both; }
@@ -159,4 +159,3 @@ p[itemprop=geo] { display: none; }
 .clearance { clear: both; }
 
 .details { position: absolute; bottom: 0; right: 0; text-align: right; font-family: serif; }
-

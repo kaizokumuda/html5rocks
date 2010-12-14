@@ -36,8 +36,9 @@ from google.appengine.api import memcache
 
 from django.utils import feedgenerator
 
-webapp.template.register_template_library('templatefilters')
+from common import load_profiles
 
+webapp.template.register_template_library('templatefilters')
 
 class ContentHandler(webapp.RequestHandler):
 
@@ -173,46 +174,23 @@ class ContentHandler(webapp.RequestHandler):
 
     # Render the .html page if it exists. Otherwise, check that the Atom feed
     # the user is requesting jas a corresponding .html page that exists.
-    logging.info('path: ' + path)
-    if os.path.isfile(path):
-      self.render(template_path=path)
+    if (relpath == 'profiles'):
+      profiles = load_profiles()
+      sorted_profiles = sorted(profiles.values(),
+          key=lambda profile:profile["name"]["family"])
+      self.render(data={'sorted_profiles': sorted_profiles}, template_path='content/profiles.html')
+    elif os.path.isfile(path):
+      self.render(data={}, template_path=path)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
-      self.render(template_path=path[:path.rfind('.')] + '.html')
+      self.render(data={}, template_path=path[:path.rfind('.')] + '.html')
     elif os.path.isfile(path + '.html'):
       self.render(data={'category': relpath.replace('features/','') }, template_path=path + '.html')
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
-
-class ProfileHandler(ContentHandler):
-
-  def get(self):
-    if self.request.get('cache', '1') == '0':
-      self.request.cache = False
-    else:
-      self.request.cache = True
-
-    base_dir = os.path.dirname(__file__)
-    template_path = os.path.join(base_dir, 'content/profiles.html')
-
-    # Setup caching layer for this file i/o.
-    profiles = memcache.get('profile_data')
-    if profiles is None:
-      f = file(base_dir + '/profiles.yaml', 'r')
-      profiles = []
-      for data in yaml.load_all(f):
-        profiles.append(data)
-      f.close()
-
-      memcache.set('profile_data', profiles)
-
-    self.render(data={'profiles': profiles}, template_path=template_path)
-
-
 def main():
   application = webapp.WSGIApplication([
-    ('/profiles', ProfileHandler),
     ('/(.*)', ContentHandler)
   ], debug=False)
   util.run_wsgi_app(application)
