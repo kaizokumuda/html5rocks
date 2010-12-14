@@ -196,11 +196,16 @@ class ProfileHandler(ContentHandler):
     base_dir = os.path.dirname(__file__)
     template_path = os.path.join(base_dir, 'content/profiles.html')
 
-    f = file(base_dir + '/profiles.yaml', 'r')
-    profiles = []
-    for data in yaml.load_all(f):
-      profiles.append(data)
-    f.close()
+    # Setup caching layer for this file i/o.
+    profiles = memcache.get('profile_data')
+    if profiles is None:
+      f = file(base_dir + '/profiles.yaml', 'r')
+      profiles = []
+      for data in yaml.load_all(f):
+        profiles.append(data)
+      f.close()
+
+      memcache.set('profile_data', profiles)
 
     self.render(data={'profiles': profiles}, template_path=template_path)
 
