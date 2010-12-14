@@ -1,3 +1,4 @@
+
 id: ebidelman
 name:
   given: Eric
@@ -15,6 +16,7 @@ homepage: http://www.google.com/profiles/ebidel
 google: ebidel
 twitter: ebidel
 email: e.bidelman@google.com
+image: TODO
 
 ---
 
@@ -35,33 +37,14 @@ homepage: http://mahemoff.com
 google: mahemoff
 twitter: mahemoff
 email: mahemoff@google.com
+image: TODO
 
 ---
 
-id: ebidelman
+id: paulkinlan
 name:
-  given: Eric
-  family: Bidelman
-org:
-  name: Google
-  unit: Developer Relations
-address:
-  locality: Mountain View
-  region: California
-  country: USA
-  lat: 37.385981
-  lon: -122.083855
-homepage: http://www.google.com/profiles/ebidel
-google: ebidel
-twitter: ebidel
-email: e.bidelman@google.com
-
----
-
-id: mahemoff
-name:
-  given: Michael
-  family: Mahemoff
+  given: Paul
+  family: Kinlan
 org:
   name: Google
   unit: Developer Relations
@@ -71,17 +54,40 @@ address:
   country: UK
   lat: 51.51452
   lon: 0
-homepage: http://mahemoff.com
-google: mahemoff
-twitter: mahemoff
-email: mahemoff@google.com
+homepage: http://paul.kinlan.me
+google: paul.kinlan
+twitter: paul_kinlan
+email: paul.kinlan@google.com
+image: TODO
 
 ---
 
-id: ebidelman
+id: sethladd
 name:
-  given: Eric
-  family: Bidelman
+  given: Seth
+  family: Ladd
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Mountain View
+  region: California
+  country: US
+  lat: 37.385981
+  lon: -122.083855
+homepage: http://sethladd.com
+google: sethladd
+twitter: sethladd
+email: sethladd@google.com
+description: Seth is a Developer Advocate for the Google Chrome team, working with HTML5 and the Chrome Web Store.  Turn-ons include fast web apps, CSS3 transitions, and Ruby on Rails.  Turn-offs include creating yet another username and password for a site.
+image: http://dl.dropbox.com/u/316685/5247261236_3cf3436019_b.jpeg
+
+---
+
+id: paulirish
+name:
+  given: Paul
+  family: Irish
 org:
   name: Google
   unit: Developer Relations
@@ -91,27 +97,50 @@ address:
   country: USA
   lat: 37.385981
   lon: -122.083855
-homepage: http://www.google.com/profiles/ebidel
-google: ebidel
-twitter: ebidel
-email: e.bidelman@google.com
+homepage: http://paulirish.com
+google: paulirish
+twitter: paul_irish
+email: paulirish@google.com
+image: http://paulirish.com/avatar.jpg 
 
 ---
 
-id: mahemoff
+id: michaeldewey
 name:
-  given: Michael
-  family: Mahemoff
+  given: Mike
+  family: Dewey
+org:
+  name: deviantART
+  unit: Muro
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.385981
+  lon: -122.083855
+homepage: http://paulirish.com
+google: paulirish
+twitter: paul_irish
+email: paulirish@google.com
+description: Michael Dewey is a software engineer who has been working with deviantART for the past 4 years.  When he is not writing code you can often find him painting and rock climbing in California’s Sierra mountains.  He can be found on the web at http://mudimba.deviantart.com
+
+---
+
+id: malteubl
+name:
+  given: Malte
+  family: Ubl
 org:
   name: Google
-  unit: Developer Relations
+  unit: Customer Solutions Engineering
 address:
-  locality: London
-  region: London
-  country: UK
-  lat: 51.51452
-  lon: 0
-homepage: http://mahemoff.com
-google: mahemoff
-twitter: mahemoff
-email: mahemoff@google.com
+  locality: Hamburg
+  region: 
+  country: Malte
+  lat: 53.55
+  lon: 10.0
+homepage: http://nonblocking.io
+google: malte.ubl
+twitter: cramforce
+email: malteubl@google.com
+image: http://a0.twimg.com/profile_images/1151487948/glasses.jpg

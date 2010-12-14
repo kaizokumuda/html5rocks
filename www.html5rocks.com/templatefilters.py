@@ -18,6 +18,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 import django
 import django.template
+from common import load_profiles
 
 register = webapp.template.create_template_register()
 
@@ -45,3 +46,21 @@ def do_toc(parser, token):
   return TOCNode()
 
 register.tag('toc', do_toc)
+
+class ProfileLink(django.template.Node):
+  def __init__(self, ids):
+    self.ids = ids
+    self.profiles = load_profiles()
+  def render(self, context):
+    names = []
+    for id in self.ids:
+      profile = self.profiles[id]
+      names.append("<a href='/profiles#%(id)s'>%(name)s</a>" % {"id": profile["id"], "name": profile["name"]["given"] + " " + profile["name"]["family"] })
+    return ', '.join(names)
+
+def do_profile_links(parser, token):
+  ids = token.split_contents()
+  ids.pop(0) # remove tag name
+  return ProfileLink(ids)
+
+register.tag("profilelinks", do_profile_links)
