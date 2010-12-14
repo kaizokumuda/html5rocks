@@ -1873,7 +1873,7 @@ document.getElementById("video").<b>play</b>();
               <video width="390" id="clip" controls>
                 <source src="src/chrome_japan.webm" type='video/webm; codecs="vp8, vorbis"' />
                 <source src="src/chrome_japan.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-                <source src="src/chrome_japan.ogv" type='video/ogg; codecs="theora, vorbis"' />
+                <!--<source src="src/chrome_japan.ogv" type='video/ogg; codecs="theora, vorbis"' />-->
                 Your browser does not support the video tag
               </video>
               <div class="media-buttons">
@@ -1886,7 +1886,7 @@ document.getElementById("video").<b>play</b>();
             <div id="audio-column" class="center">
               <audio id="audio-clip" width="670" controls>
                 <source src="src/rushus-modal_blues.mp3" type="audio/mpeg" />
-                <source src="src/rushus-modal_blues.ogg" type="audio/ogg" />
+                <!--<source src="src/rushus-modal_blues.ogg" type="audio/ogg" />-->
                 Your browser does not support the audio tag
               </audio>
               <div class="media-buttons">
@@ -2503,49 +2503,51 @@ header {
               changeHSL();
             </script>
           </section>
-
         </div>
 
 
-         <div class="slide" id="rounded-corners"> 
-              <style> 
-                #rounded-example {
-                  text-align: center;
-                }
-              </style> 
-    		  <link href="src/rounded/doraemon.css" rel="stylesheet" /> 
-              <header><span class="css">CSS</span> <h1>Rounded corners</h1> 
-    		  </header> 
-              <section> 
-
-    <pre>
-      <b>face: border-radius</b>: <span id="face-rounded-border-value">0</span>px; <input id="face-rounded-border" type="range" min="0" max="146" value="0" onchange="handleCorner(event)"> 
-      <b>left eye: border-radius</b>: <span id="lefteye-rounded-border-value">0</span>px; <input id="lefteye-rounded-border" type="range" min="0" max="35" value="0" onchange="handleCorner(event)"> 
-      <b>right eye: border-radius</b>: <span id="righteye-rounded-border-value">0</span>px; <input id="righteye-rounded-border" type="range" min="0" max="35" value="0" onchange="handleCorner(event)">   
-      <b>base white: border-radius</b>: <span id="base_white-rounded-border-value">0</span>px; <input id="base_white-rounded-border" type="range" min="0" max="150" value="0" onchange="handleCorner(event)"> 
-      <b>mouth: border-radius</b>: <span id="mouth-rounded-border-value">0</span>px; <input id="mouth-rounded-border" type="range" min="0" max="120" value="0" onchange="handleCorner(event)">   
-      <b>nose: border-radius</b>: <span id="nose-rounded-border-value">0</span>px; <input id="nose-rounded-border" type="range" min="0" max="50" value="0" onchange="handleCorner(event)">     
-      <b>left black eye: border-radius</b>: <span id="leftblackeye-rounded-border-value">0</span>px; <input id="leftblackeye-rounded-border" type="range" min="0" max="35" value="0" onchange="handleCorner(event)"> 
-      <b>right black eye: border-radius</b>: <span id="rightblackeye-rounded-border-value">0</span>px; <input id="rightblackeye-rounded-border" type="range" min="0" max="35" value="0" onchange="handleCorner(event)">     
-    </pre> 
-              <div > 
-    		    <iframe id="doraemon" src="src/rounded/write_doraemon.html" border=0 width="100%" height="320px" frameborder=0 style="margin: 2px;"> 
-    			</iframe> 
-              </div> 
-              <script> 
-    		     function handleCorner() {
-    			   var doraemon = document.getElementById('doraemon').contentWindow.document;
-    			   var elements = ["face", "lefteye", "righteye", "base_white", "mouth", "nose", "leftblackeye", "rightblackeye"];
-    			   for (var i = 0; i < elements.length; i++) {
-    			       var element = elements[i] + '-rounded-border';
-    				   var borderVal = document.getElementById(element).value;
-    				   document.getElementById(element + '-value').innerHTML = borderVal;
-    				   doraemon.getElementById(elements[i]).style.borderRadius  = borderVal + 'px';			   
-    			   }
-    			 }
-              </script> 
-              </section> 
+         <div class="slide" id="rounded-corners">
+          <style>
+          #doraemon {
+            height: 320px;
+          }
+          #doraemon iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+          }
+          </style>
+          <header><span class="css">CSS</span> <h1>Rounded corners</h1></header>
+          <section>
+            <pre>
+              face: <b>border-radius</b>: <span id="face-rounded-border-value">0</span>px; <input id="face-rounded-border" type="range" min="0" max="146" value="0" onchange="handleCorner(event)">
+              left eye: <b>border-radius</b>: <span id="lefteye-rounded-border-value">0</span>px; <input id="lefteye-rounded-border" type="range" min="0" max="35" value="0" onchange="handleCorner(event)">
+              right eye: <b>border-radius</b>: <span id="righteye-rounded-border-value">0</span>px; <input id="righteye-rounded-border" type="range" min="0" max="35" value="0" onchange="handleCorner(event)">
+              base white: <b>border-radius</b>: <span id="base_white-rounded-border-value">0</span>px; <input id="base_white-rounded-border" type="range" min="0" max="150" value="0" onchange="handleCorner(event)">
+              mouth: <b>border-radius</b>: <span id="mouth-rounded-border-value">0</span>px; <input id="mouth-rounded-border" type="range" min="0" max="120" value="0" onchange="handleCorner(event)">
+              nose: <b>border-radius</b>: <span id="nose-rounded-border-value">0</span>px; <input id="nose-rounded-border" type="range" min="0" max="50" value="0" onchange="handleCorner(event)">
+              left black eye: <b>border-radius</b>: <span id="leftblackeye-rounded-border-value">0</span>px; <input id="leftblackeye-rounded-border" type="range" min="0" max="35" value="0" onchange="handleCorner(event)">
+              right black eye: <b>border-radius</b>: <span id="rightblackeye-rounded-border-value">0</span>px; <input id="rightblackeye-rounded-border" type="range" min="0" max="35" value="0" onchange="handleCorner(event)">
+            </pre>
+            <div id="doraemon" class="example">
+              <iframe _src="src/rounded/write_doraemon.html"></iframe>
             </div>
+            <script>
+              function handleCorner() {
+                var doraemon = document.querySelector('#doraemon iframe').contentWindow.document;
+                 var elements = ["face", "lefteye", "righteye", "base_white", "mouth", "nose", "leftblackeye", "rightblackeye"];
+                 for (var i = 0; i < elements.length; i++) {
+                   var element = elements[i] + '-rounded-border';
+                   var borderVal = document.getElementById(element).value;
+                   document.getElementById(element + '-value').textContent = borderVal;
+                   var faceEl = doraemon.getElementById(elements[i]);
+                   faceEl.style.borderRadius = borderVal + 'px';
+                   faceEl.style.mozBorderRadius = borderVal + 'px';
+                 }
+               }
+            </script>
+          </section> 
+        </div>
 
 
         <div class="slide" id="css-gradients">
