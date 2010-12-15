@@ -1,19 +1,19 @@
 {% extends "../templates/base.html" %}
+{% block headtitle %}Author Profiles{% endblock %}
 {% block head %}
 <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Lobster|Droid+Serif:regular,italic,bold,bolditalic|Nobile|Yanone+Kaffeesatz|PT+Sans:regular,italic,bold,bolditalic|PT+Sans+Caption:regular,bold|PT+Sans+Narrow|Reenie+Beanie|Tangerine:regular,bold|Molengo|OFL+Sorts+Mill+Goudy+TT:regular,italic|Vollkorn:regular,italic,bold,bolditalic|Cantarell|Inconsolata|Crimson+Text|Arvo:regular,italic,bold,bolditalic|Cardo|Neucha|Neuton|Droid+Sans+Mono|Cuprum|Old+Standard+TT:regular,italic,bold|Philosopher|Tinos:regular,italic,bold,bolditalic|Josefin+Sans:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic|Arimo:regular,italic,bold,bolditalic|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic|Allerta|Geo|Allerta+Stencil|Puritan|Puritan:regular,italic,bold,bolditalic|Cousine:regular,italic,bold,bolditalic|UnifrakturMaguntia|Bentham|IM+Fell+DW+Pica:regular,italic|IM+Fell+English:regular,italic|IM+Fell+English+SC|IM+Fell+DW+Pica+SC|IM+Fell+Double+Pica+SC|IM+Fell+Double+Pica|IM+Fell+Great+Primer+SC|IM+Fell+Great+Primer|IM+Fell+French+Canon|IM+Fell+French+Canon+SC|Coda:800|Raleway:100|UnifrakturCook:bold|Covered+By+Your+Grace|Just+Me+Again+Down+Here" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="/static/css/profiles.css"/>
-<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.ba-hashchange.min.js"></script>
 <script src="/static/js/profiles.js"></script>
 {% endblock %}
 {% block body %}
-
   {% include "../templates/header.html" %}
   <nav>
     <p class="breadcrumb">
       <a class="buttonlink" href="/">
         <span>Home</span>
-      </a >&gt; Profiles
+      </a>&gt; Profiles
     </p>
   </nav>
   <article>
@@ -43,23 +43,23 @@
         <div itemprop="org" itemscope>
           <div itemprop="organization-unit">{{profile.org.unit}}</div>
           <div itemprop="organization-name">{{profile.org.name}}</div>
-         </div>
-         <div class="details">
-           <div itemprop="adr" itemscope>
+        </div>
+        <div class="details">
+          <div itemprop="adr" itemscope>
             <span itemprop="locality">{{profile.address.locality}}</span>
             <span itemprop="region">{{profile.address.region}}</span>
             <span itemprop="country-name">{{profile.address.country}}</span>
-           </div>
-           <ul class="urls">
+          </div>
+          <ul class="urls">
              <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
              <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google}}">&nbsp;</a></li>
              <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter}}">&nbsp;</a></li>
-           </ul>
-           <p itemprop="geo">{{profile.address.lon}},{{profile.address.lat}}</p>
+          </ul>
+        </div>
+        <div itemprop="geo">
+          <img src="http://maps.google.com/maps/api/staticmap?center={{profile.address.lat}},{{profile.address.lon}}&markers=color:blue|label:|{{profile.address.lat}},{{profile.address.lon}}&zoom=10&size=200x128&sensor=false"/>
         </div>
       </section>
-
-      <section>&nbsp;</section>
 
       {% endfor %}
 

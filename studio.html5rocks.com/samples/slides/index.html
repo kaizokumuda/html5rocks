@@ -15,9 +15,7 @@
   limitations under the License.
  
   Original slides: Marcin Wichary (mwichary@google.com)
-  Modifications: Ernest Delgado (ernestd@google.com)
-                 Alex Russell (slightlyoff@chromium.org)
-                 Brad Neuberg
+  Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
 -->
 <html manifest="cache.manifest">
   <head>
@@ -185,9 +183,9 @@
       h1 {
         font-size: 140%;
         display: inline;
-      	font-weight: normal;
-      	padding: 0;
-      	margin: 0;
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
       }
       
       h2 {
@@ -793,9 +791,10 @@
             }
           },
           handleKeys: function(e) {
-            
-            if (/^(input|textarea)$/i.test(e.target.nodeName)) return;
-            
+            if (/^(input|textarea)$/i.test(e.target.nodeName) ||
+                e.target.isContentEditable) {
+              return;
+            }
             switch (e.keyCode) {
               case 37: // left arrow
                 this.prev(); break;
@@ -825,16 +824,11 @@
  
         // Initialize
         var slideshow = new SlideShow(query('.slide'));
-        
-        
-        
-        
-        
+
         document.querySelector('#toggle-counter').addEventListener('click', toggleCounter, false);
         document.querySelector('#toggle-size').addEventListener('click', toggleSize, false);
         document.querySelector('#toggle-transitions').addEventListener('click', toggleTransitions, false);
         document.querySelector('#toggle-gradients').addEventListener('click', toggleGradients, false);
- 
  
         var counters = document.querySelectorAll('.counter');
         var slides = document.querySelectorAll('.slide');
@@ -877,22 +871,14 @@
             }
           });
         }
-        
-        
-        
-        
-        
       })();
-      
-      
-      
     </script> 
  
     <!--[if lt IE 9]>
     <script 
       src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
     </script>
-		<script>CFInstall.check({ mode: "overlay" });</script>
+    <script>CFInstall.check({ mode: "overlay" });</script>
     <![endif]--> 
     
   </body> 
