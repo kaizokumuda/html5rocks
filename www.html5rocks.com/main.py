@@ -173,18 +173,24 @@ class ContentHandler(webapp.RequestHandler):
       path = os.path.join(basedir, 'content', relpath)
 
     # Render the .html page if it exists. Otherwise, check that the Atom feed
-    # the user is requesting jas a corresponding .html page that exists.
+    # the user is requesting has a corresponding .html page that exists.
     if (relpath == 'profiles'):
-      profiles = load_profiles()
+      # Setup caching layer for this file i/o.
+      profiles = memcache.get('profiles')
+      if profiles is None:
+        profiles = load_profiles()
+        memcache.set('profiles', profiles)
       sorted_profiles = sorted(profiles.values(),
-          key=lambda profile:profile["name"]["family"])
-      self.render(data={'sorted_profiles': sorted_profiles}, template_path='content/profiles.html')
+                               key=lambda profile:profile['name']['family'])
+      self.render(data={'sorted_profiles': sorted_profiles},
+                  template_path='content/profiles.html')
     elif os.path.isfile(path):
       self.render(data={}, template_path=path)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
       self.render(data={}, template_path=path[:path.rfind('.')] + '.html')
     elif os.path.isfile(path + '.html'):
-      self.render(data={'category': relpath.replace('features/','') }, template_path=path + '.html')
+      self.render(data={'category': relpath.replace('features/', '')},
+                  template_path=path + '.html')
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))

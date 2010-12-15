@@ -192,15 +192,21 @@ em {
   font-style: normal;
 }
 .date {
-  font-size: 85%;
+  font-size: 90%;
   color: #bbb;
   font-style: italic;
   float: left;
 }
+.date a {
+  color: #bbb;
+}
+.date > div {
+  margin-top: 3px;
+}
 .date time.updated {
   font-size: 90%;
   font-style: italic;
-  margin-left: 1em;
+  margin-left: 0.5em;
 }
 .date time.updated:empty {
   disply: none;
@@ -244,9 +250,10 @@ article.sample .date {
 }
 .browser_support {
   float: left;
-  font-size: 85%;
+  font-size: 90%;
   color: #bbb;
   clear: both;
+  margin-top: 12px;
 }
 .browser_support > span:first-child {
   float: left;
@@ -286,7 +293,6 @@ article.sample .date {
   padding: 0;
   list-style: none;
   margin-left: 1em;
-  margin-top: -4px;
 }
 #share_buttons li {
   float: left;

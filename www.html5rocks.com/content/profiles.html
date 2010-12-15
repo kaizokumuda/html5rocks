@@ -51,9 +51,15 @@
             <span itemprop="country-name">{{profile.address.country}}</span>
           </div>
           <ul class="urls">
+             {% if profile.homepage %}
              <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
+             {% endif %}
+             {% if profile.google %}
              <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google}}">&nbsp;</a></li>
+             {% endif %}
+             {% if profile.twitter %}
              <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter}}">&nbsp;</a></li>
+             {% endif %}
           </ul>
         </div>
         <div itemprop="geo">

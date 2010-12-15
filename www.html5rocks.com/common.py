@@ -6,7 +6,7 @@ def load_profiles():
   f = file(basedir + '/profiles.yaml', 'r')
   profiles = dict()
   for profile in yaml.load_all(f):
-    profiles[profile["id"]] = profile
+    profiles[profile['id']] = profile
   f.close()
   return profiles
 

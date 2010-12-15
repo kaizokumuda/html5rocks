@@ -101,7 +101,7 @@ homepage: http://paulirish.com
 google: paulirish
 twitter: paul_irish
 email: paulirish@google.com
-image: http://paulirish.com/avatar.jpg 
+image: http://paulirish.com/avatar.jpg
 
 ---
 
@@ -110,18 +110,18 @@ name:
   given: Mike
   family: Dewey
 org:
-  name: deviantART
-  unit: Muro
+  name: deviantART muro
+  unit: Software Engineer
 address:
   locality: Mountain View
   region: California
   country: USA
   lat: 37.385981
   lon: -122.083855
-homepage: http://paulirish.com
-google: paulirish
-twitter: paul_irish
-email: paulirish@google.com
+homepage:
+google:
+twitter:
+email:
 description: Michael Dewey is a software engineer who has been working with deviantART for the past 4 years.  When he is not writing code you can often find him painting and rock climbing in California’s Sierra mountains.  He can be found on the web at http://mudimba.deviantart.com
 
 ---
