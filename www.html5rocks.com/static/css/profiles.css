@@ -1,25 +1,28 @@
-#profiles {
-  margin: 20px 0;
-  overflow: hidden;
-}
-
 .profile {
   /*background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsl(120,50%,50%)), to(hsl(120,70%,50%)));*/
-  background: #eee;
+  background: -moz-linear-gradient(90deg, #EEE, white, #EEE);
+  background: -webkit-gradient(linear, left top, left bottom, from(#EEE), color-stop(0.5, white), to(#EEE));
   width: 350px;
   height: 200px;
-  cursor: pointer;
   position: relative;
   text-align: right;
-  border: 1px solid black;
-  border-radius: 8px;
+  border: 1px solid #E1E1E1;
+  /*border-radius: 8px;*/
   margin-bottom: 1em;
+  padding: 10px;
+  color: black;
+  /*-webkit-text-stroke: 1px red;*/
+  -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.4);
   -webkit-transition: -webkit-transform 1s ease-in-out,
                       margin-top 1s ease-in-out,
                       margin-left 1s ease-in-out,
                       margin-bottom 1s ease-in-out;
 }
 
+.profile > div:first-child {
+  z-index: 2;
+  position: relative;
+}
 .profile.active {
   -webkit-box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
   margin: 80px 0 100px 200px;
@@ -27,29 +30,33 @@
   z-index: 5;
 }
 
-.profile:hover,
+/*.profile:hover,*/
 .profile.active {
   /*background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsl(120,80%,50%)), to(hsl(120,900%,50%)));*/
   background: rgb(204,217,255);
 }
 
 article section h2 {
-  margin: 0 0 10px;
+  margin: -7px -7px 0 0;
   padding: 5px 20px 5px 30px;
-  border-radius: 0 7px 0 30px;
-  color: black;
+  border-radius: 0 0 0 30px;
   overflow: hidden;
   font-weight: normal;
   float: right;
   font-size: 16pt;
   font-family: "IM Fell DW Pica";
   background: rgb(61,92,157);
+  color: #fff;
+  /*top: 0;
+  right: 0;
+  position: absolute;*/
+  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.4), 0 -2px 3px rgba(0,0,0,0.4) inset;
 }
 
-.profile:hover h2,
+/*.profile:hover h2,
 .profile.active h2 {
   background: #eee;
-}
+}*/
 
 .profile.active:nth-last-child(2) {
   margin-bottom: 0;
@@ -59,7 +66,18 @@ section[itemtype="http://microformats.org/profile/hcard"] a {
   text-decoration: none;
 }
 
-.urls li { display: inline; }
+.urls {
+  margin: 1em 0 0 0;
+  padding: 0;
+  text-align: center;
+}
+.urls li {
+  display: inline;
+  margin: 0 2px 0 0;
+}
+.urls li:first-of-type {
+  margin-left: 0;
+}
 
 .urls a[data-type="homepage"][href^="http"] {
   background-image: url('/static/images/home.png');
@@ -75,43 +93,79 @@ section[itemtype="http://microformats.org/profile/hcard"] a {
   background-image: url('/static/images/buzz.png');
   background-position: center center;
 }
+.photoZone,
+img[itemprop="photo"] {
+  width: 100px;
+  height: 100px;
+  border-top-left-radius: 25px 25px;
+  border-top-right-radius: 5px 5px;
+  border-bottom-left-radius: 5px 5px;
+  border-bottom-right-radius: 25px 25px;
+}
 .photoZone {
-  width: 180px;
-  height: 180px;
   position: absolute;
-  right: 170px;
-  top: 20px;
-  overflow: hidden;
+  /*top: 10px;
+  left: 10px;*/
+  /*overflow: hidden;*/
+  padding: 7px;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.4) inset, -1px -1px 5px rgba(0,0,0,0.4) inset;
 }
 img[itemprop="photo"] {
-  clear: left;
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  margin: 10px 0 0;
-  border-radius: 150px;
-  position: absolute;
+  /*position: absolute;
   left: -20px;
-  bottom: -20px;
+  top: 0;*/
 }
 
 
-[itemprop="locality"] { display: none; }
-.urls, [itemprop="org"],[itemprop="adr"] { margin: 0 20px 10px; text-align: right; float: right; clear: both; }
-[itemprop="org"] { margin-top: 20px; font-family: Tangerine; color: white; font-size: 24px; }
-[itemprop="organization-name"] { font-family: Droid Sans; margin-top: 0; font-size: 36px; }
-[itemprop="adr"] { margin-top: 10px; font-family: Droid Sans; font-size: small; color: white; }
-h2[itemprop=fn] { background: #fff; }
-div[itemprop=geo] {
+[itemprop="locality"] {
   display: none;
 }
+
+[itemprop="org"] {
+  margin: 20px 0 10px 0;
+  text-align: right;
+  float: right;
+  clear: both;
+}
+[itemprop="org"] {
+  margin-top: 20px;
+  font-family: Tangerine;
+  font-size: 24px;
+  /*position: absolute;
+  right: 0;*/
+}
+[itemprop="organization-unit"] {
+  letter-spacing: 1px;
+}
+[itemprop="organization-name"] {
+  font-family: Droid Sans;
+  font-size: 30px;
+  width: 230px;
+}
+[itemprop="adr"] {
+  font-family: Droid Sans;
+  font-size: small;
+}
+h2[itemprop="fn"] { background: #fff; }
+div[itemprop="geo"] {
+  position: absolute;
+  top: 25px;
+  right: -225px;
+  /*-webkit-transition: right 0.6s ease-in-out;*/
+}
+.profile.active [itemprop="geo"] {
+
+}
+
 [itemprop="country-name"] { display: none; }
 .clearance { clear: both; }
 
 .details {
-  position: absolute;
+  /*position: absolute;
   bottom: 0;
-  right: 0;
+  right: 0;*/
   text-align: right;
-  font-family: serif;
+  float: right;
+  clear: both;
 }

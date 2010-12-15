@@ -18,7 +18,7 @@
   </nav>
   <article>
     <header>
-      <h1>{% block pagetitle %}{% endblock %}</h1>
+      <h1></h1>
     </header>
     <!-- see http://microformats.org/wiki/microdata -->
     <!-- http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#vcard -->
@@ -27,46 +27,48 @@
       {% for profile in sorted_profiles %}
 
       <section class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
-        <h2>
-          <div itemprop="fn">
-            <div itemprop="n" itemscope>
-              <span itemprop="given-name">{{profile.name.given}}</span>
-             <span itemprop="family-name">{{profile.name.family}}</span>
+        <div>
+          <h2>
+            <div itemprop="fn">
+              <div itemprop="n" itemscope>
+                <span itemprop="given-name">{{profile.name.given}}</span>
+               <span itemprop="family-name">{{profile.name.family}}</span>
+              </div>
+            </div>
+          </h2>
+
+          <div class="photoZone">
+            <img itemprop="photo" alt="{{profile.name.given}} {{profile.name.family}}" title="{{profile.name.given}} {{profile.name.family}}" src="/static/images/profiles/{{profile.id}}.png">
+            <ul class="urls">
+              {% if profile.homepage %}
+              <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
+              {% endif %}
+              {% if profile.twitter %}
+              <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter}}">&nbsp;</a></li>
+              {% endif %}
+              {% if profile.google %}
+              <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google}}">&nbsp;</a></li>
+              {% endif %}
+            </ul>
+          </div>
+
+          <div itemprop="org" itemscope>
+            {% if profile.org.unit %}<div itemprop="organization-unit">{{profile.org.unit}}</div>{% endif %}
+            {% if profile.org.name %}<div itemprop="organization-name">{{profile.org.name}}</div>{% endif %}
+          </div>
+          <div class="details">
+            <div itemprop="adr" itemscope>
+              <span itemprop="locality">{{profile.address.locality}}</span>
+              <span itemprop="region">{{profile.address.region}}</span>
+              <span itemprop="country-name">{{profile.address.country}}</span>
             </div>
           </div>
-        </h2>
-
-        <div class="photoZone">
-         <img itemprop="photo" alt="" src="/static/images/profiles/{{profile.id}}.jpg">
-        </div>
-
-        <div itemprop="org" itemscope>
-          <div itemprop="organization-unit">{{profile.org.unit}}</div>
-          <div itemprop="organization-name">{{profile.org.name}}</div>
-        </div>
-        <div class="details">
-          <div itemprop="adr" itemscope>
-            <span itemprop="locality">{{profile.address.locality}}</span>
-            <span itemprop="region">{{profile.address.region}}</span>
-            <span itemprop="country-name">{{profile.address.country}}</span>
-          </div>
-          <ul class="urls">
-             {% if profile.homepage %}
-             <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
-             {% endif %}
-             {% if profile.google %}
-             <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google}}">&nbsp;</a></li>
-             {% endif %}
-             {% if profile.twitter %}
-             <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter}}">&nbsp;</a></li>
-             {% endif %}
-          </ul>
         </div>
         <div itemprop="geo">
-          <img src="http://maps.google.com/maps/api/staticmap?center={{profile.address.lat}},{{profile.address.lon}}&markers=color:blue|label:|{{profile.address.lat}},{{profile.address.lon}}&zoom=10&size=200x128&sensor=false"/>
+          <img src="http://maps.google.com/maps/api/staticmap?center={{profile.address.lat}},{{profile.address.lon}}&markers=color:blue|label:|{{profile.address.lat}},{{profile.address.lon}}&zoom=10&size=200x175&sensor=false"/>
         </div>
-      </section>
 
+      </section>
       {% endfor %}
 
     </div>
