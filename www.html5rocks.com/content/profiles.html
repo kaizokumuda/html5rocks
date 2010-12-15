@@ -26,7 +26,7 @@
     <div id="profiles">
       {% for profile in sorted_profiles %}
 
-      <section class="profile" data-profile-id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
+      <section class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
         <h2>
           <div itemprop="fn">
             <div itemprop="n" itemscope>

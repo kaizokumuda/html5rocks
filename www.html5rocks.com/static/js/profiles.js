@@ -3,7 +3,7 @@ $(function() {
   function updateHash() {
     $activeProfile = $(".active");
     if ($activeProfile.length) {
-      location.hash = $activeProfile.attr("data-profile-id");
+      location.hash = $activeProfile.attr("id");
     } else {
       if (typeof(window["history"])!="undefined")
         history.replaceState({}, document.title, "/profiles");
@@ -28,7 +28,7 @@ $(function() {
     $(".profile").removeClass("active");
     if (!location.hash.length) return;
     var profileID = location.hash.substr(1);
-    $("[data-profile-id='"+profileID+"']").addClass("active");
+    $("#"+profileID).addClass("active");
   };
 
   window.onhashchange(); // run on page load
