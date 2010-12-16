@@ -1,11 +1,7 @@
 $(function() {
   function updateHash(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
     $activeProfile = $(".active");
     if ($activeProfile.length) {
-      //location.hash = '!/' + $activeProfile.attr("id");
       history.replaceState({}, document.title, '/profiles/#!/' + $activeProfile.attr("id"));
     } else {
       if (!!window.history) {
@@ -17,7 +13,7 @@ $(function() {
   }
 
   window.slideMap = function(el) {
-    $(el).toggleClass('active');
+    //$(el).toggleClass('active');
   };
 
   window.scrollToProfile = function(opt_profileID) {
@@ -29,7 +25,6 @@ $(function() {
       $.scrollTo(profileID, 800, {offset: {top: -12}, onAfter: function() {
         $(profileID).addClass("active");
       }});
-      //window.onhashchange(); // run on page load
     }
   };
 
@@ -38,7 +33,7 @@ $(function() {
     $(this).addClass("active");
     updateHash(e);
     //onHashChange('#' + $(this).attr('id'));
-    return false;
+    e.stopPropagation();
   });
 
   $(window).click(function(e) {
@@ -48,10 +43,7 @@ $(function() {
 
   function onHashChange(profileID) {
     $(".profile").removeClass("active");
-
     window.scrollToProfile(profileID);
-
-    //$("#" + profileID).addClass("active");
   }
 
   window.onhashchange = function(e) {

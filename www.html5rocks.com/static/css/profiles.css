@@ -1,8 +1,16 @@
 #profiles article {
   clear: both;
 }
+.profile {
+  -webkit-transition: all 0.2s ease-in;
+  -webkit-transform-origin: 25% 50%;
+}
+.profile:hover {
+  -webkit-transform: rotateZ(-1deg);
+  z-index: 3;
+  position: relative;
+}
 .profile section:first-of-type {
-  /*background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsl(120,50%,50%)), to(hsl(120,70%,50%)));*/
   background: -moz-linear-gradient(90deg, #EEE, white, #EEE);
   background: -webkit-gradient(linear, left top, left bottom, from(#EEE), color-stop(0.5, white), to(#EEE));
   width: 350px;
@@ -10,30 +18,27 @@
   position: relative;
   text-align: right;
   border: 1px solid #E1E1E1;
-  /*border-radius: 8px;*/
+  border-radius: 8px;
   margin-bottom: 1em;
   padding: 10px;
   color: black;
-  /*-webkit-text-stroke: 1px red;*/
   -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.4);
-  /*-webkit-transition: -webkit-transform 1s ease-in-out,
-                      margin-top 1s ease-in-out,
-                      margin-left 1s ease-in-out,
-                      margin-bottom 1s ease-in-out;*/
   float: left;
   clear: both;
   z-index: 2;
+}
+
+.profile:hover section:first-of-type {
+  background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+  background: -moz-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
 }
 
 .profile > div:first-child {
   z-index: 2;
   position: relative;
 }
+
 .profile.active section:first-of-type {
-  /*-webkit-box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-  -margin: 80px 0 100px 200px;
-  webkit-transform: rotateZ(-2deg) scale3d(1.5, 1.5, 1.5);
-  z-index: 5;*/
   -webkit-box-shadow: #66666 0px 0px 6px;
   -moz-box-shadow: #66666 0px 0px 6px;
   box-shadow: #66666 0px 0px 6px;
@@ -44,25 +49,19 @@
 
 article section h2 {
   margin: -7px -7px 0 0;
-  padding: 5px 20px 5px 30px;
-  border-radius: 0 0 0 30px;
+  padding: 6px 10px 4px 0;
+  border-radius: 0 8px 0 30px;
   overflow: hidden;
   font-weight: normal;
   float: right;
   font-size: 16pt;
-  font-family: "IM Fell DW Pica";
+  font-family: "Josefin Slab";
   background: rgb(61,92,157);
   color: #fff;
-  /*top: 0;
-  right: 0;
-  position: absolute;*/
   -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.4), 0 -2px 3px rgba(0,0,0,0.4) inset;
+  text-shadow: 1px 1px black;
+  width: 64%;
 }
-
-/*.profile:hover h2,
-.profile.active h2 {
-  background: #eee;
-}*/
 
 .profile.active:nth-last-child(2) {
   margin-bottom: 0;
@@ -76,6 +75,9 @@ section[itemtype="http://microformats.org/profile/hcard"] a {
   margin: 1em 0 0 0;
   padding: 0;
   text-align: center;
+}
+.urls a:hover {
+  text-decoration: none;
 }
 .urls li {
   display: inline;
@@ -189,9 +191,7 @@ h2[itemprop="fn"] { background: #fff; }
 }
 
 .details {
-  /*position: absolute;
-  bottom: 0;
-  right: 0;*/
+  font-family: Droid Sans;
   text-align: right;
   float: right;
   clear: both;
