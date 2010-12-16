@@ -174,7 +174,8 @@ class ContentHandler(webapp.RequestHandler):
 
     # Render the .html page if it exists. Otherwise, check that the Atom feed
     # the user is requesting has a corresponding .html page that exists.
-    if (relpath == 'profiles'):
+
+    if (relpath == 'profiles' or relpath == 'profiles/'):
       # Setup caching layer for this file i/o.
       profiles = memcache.get('profiles')
       if profiles is None:

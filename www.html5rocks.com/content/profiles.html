@@ -4,9 +4,10 @@
 <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Lobster|Droid+Serif:regular,italic,bold,bolditalic|Nobile|Yanone+Kaffeesatz|PT+Sans:regular,italic,bold,bolditalic|PT+Sans+Caption:regular,bold|PT+Sans+Narrow|Reenie+Beanie|Tangerine:regular,bold|Molengo|OFL+Sorts+Mill+Goudy+TT:regular,italic|Vollkorn:regular,italic,bold,bolditalic|Cantarell|Inconsolata|Crimson+Text|Arvo:regular,italic,bold,bolditalic|Cardo|Neucha|Neuton|Droid+Sans+Mono|Cuprum|Old+Standard+TT:regular,italic,bold|Philosopher|Tinos:regular,italic,bold,bolditalic|Josefin+Sans:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic|Arimo:regular,italic,bold,bolditalic|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic|Allerta|Geo|Allerta+Stencil|Puritan|Puritan:regular,italic,bold,bolditalic|Cousine:regular,italic,bold,bolditalic|UnifrakturMaguntia|Bentham|IM+Fell+DW+Pica:regular,italic|IM+Fell+English:regular,italic|IM+Fell+English+SC|IM+Fell+DW+Pica+SC|IM+Fell+Double+Pica+SC|IM+Fell+Double+Pica|IM+Fell+Great+Primer+SC|IM+Fell+Great+Primer|IM+Fell+French+Canon|IM+Fell+French+Canon+SC|Coda:800|Raleway:100|UnifrakturCook:bold|Covered+By+Your+Grace|Just+Me+Again+Down+Here" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="/static/css/profiles.css"/>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/jquery.ba-hashchange.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.scrollTo-min.js"></script>
 <script src="/static/js/profiles.js"></script>
 {% endblock %}
+{% block onload %}scrollToProfile();{% endblock %}
 {% block body %}
   {% include "../templates/header.html" %}
   <nav>
@@ -26,49 +27,56 @@
     <div id="profiles">
       {% for profile in sorted_profiles %}
 
-      <section class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
-        <div>
-          <h2>
-            <div itemprop="fn">
-              <div itemprop="n" itemscope>
-                <span itemprop="given-name">{{profile.name.given}}</span>
-               <span itemprop="family-name">{{profile.name.family}}</span>
+      <article class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
+        <section>
+          <div>
+            <h2>
+              <div itemprop="fn">
+                <div itemprop="n" itemscope>
+                  <span itemprop="given-name">{{profile.name.given}}</span>
+                 <span itemprop="family-name">{{profile.name.family}}</span>
+                </div>
+              </div>
+            </h2>
+
+            <div class="photoZone">
+              <img itemprop="photo" alt="{{profile.name.given}} {{profile.name.family}}" title="{{profile.name.given}} {{profile.name.family}}" src="/static/images/profiles/{{profile.id}}.png">
+              <ul class="urls">
+                {% if profile.homepage %}
+                <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
+                {% endif %}
+                {% if profile.twitter %}
+                <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter}}">&nbsp;</a></li>
+                {% endif %}
+                {% if profile.google %}
+                <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google}}">&nbsp;</a></li>
+                {% endif %}
+              </ul>
+            </div>
+
+            <div itemprop="org" itemscope>
+              {% if profile.org.unit %}<div itemprop="organization-unit">{{profile.org.unit}}</div>{% endif %}
+              {% if profile.org.name %}<div itemprop="organization-name">{{profile.org.name}}</div>{% endif %}
+            </div>
+            <div class="details">
+              <div itemprop="adr" itemscope>
+                {% if profile.address.locality %}<span itemprop="locality">{{profile.address.locality}},</span>{% endif %}
+                {% if profile.address.region %}<span itemprop="region">{{profile.address.region}},</span>{% endif %}
+                {% if profile.address.country %}<span itemprop="country-name">{{profile.address.country}}</span>{% endif %}
               </div>
             </div>
-          </h2>
-
-          <div class="photoZone">
-            <img itemprop="photo" alt="{{profile.name.given}} {{profile.name.family}}" title="{{profile.name.given}} {{profile.name.family}}" src="/static/images/profiles/{{profile.id}}.png">
-            <ul class="urls">
-              {% if profile.homepage %}
-              <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
-              {% endif %}
-              {% if profile.twitter %}
-              <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter}}">&nbsp;</a></li>
-              {% endif %}
-              {% if profile.google %}
-              <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google}}">&nbsp;</a></li>
-              {% endif %}
-            </ul>
           </div>
-
-          <div itemprop="org" itemscope>
-            {% if profile.org.unit %}<div itemprop="organization-unit">{{profile.org.unit}}</div>{% endif %}
-            {% if profile.org.name %}<div itemprop="organization-name">{{profile.org.name}}</div>{% endif %}
+        </section>
+        <section>
+          {% if profile.address.lat and profile.address.lon %}
+          <div itemprop="geo"> <!--onclick="slideMap(this);">-->
+            <img src="http://maps.google.com/maps/api/staticmap?center={{profile.address.lat}},{{profile.address.lon}}&markers=color:red|label:|{{profile.address.lat}},{{profile.address.lon}}&zoom=14&size=200x175&sensor=false"/>
           </div>
-          <div class="details">
-            <div itemprop="adr" itemscope>
-              <span itemprop="locality">{{profile.address.locality}}</span>
-              <span itemprop="region">{{profile.address.region}}</span>
-              <span itemprop="country-name">{{profile.address.country}}</span>
-            </div>
-          </div>
-        </div>
-        <div itemprop="geo">
-          <img src="http://maps.google.com/maps/api/staticmap?center={{profile.address.lat}},{{profile.address.lon}}&markers=color:blue|label:|{{profile.address.lat}},{{profile.address.lon}}&zoom=10&size=200x175&sensor=false"/>
-        </div>
+          {% endif %}
+        </section>
 
-      </section>
+      </article>
+
       {% endfor %}
 
     </div>

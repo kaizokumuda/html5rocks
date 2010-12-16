@@ -1,4 +1,7 @@
-.profile {
+#profiles article {
+  clear: both;
+}
+.profile section:first-of-type {
   /*background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsl(120,50%,50%)), to(hsl(120,70%,50%)));*/
   background: -moz-linear-gradient(90deg, #EEE, white, #EEE);
   background: -webkit-gradient(linear, left top, left bottom, from(#EEE), color-stop(0.5, white), to(#EEE));
@@ -13,27 +16,30 @@
   color: black;
   /*-webkit-text-stroke: 1px red;*/
   -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.4);
-  -webkit-transition: -webkit-transform 1s ease-in-out,
+  /*-webkit-transition: -webkit-transform 1s ease-in-out,
                       margin-top 1s ease-in-out,
                       margin-left 1s ease-in-out,
-                      margin-bottom 1s ease-in-out;
+                      margin-bottom 1s ease-in-out;*/
+  float: left;
+  clear: both;
+  z-index: 2;
 }
 
 .profile > div:first-child {
   z-index: 2;
   position: relative;
 }
-.profile.active {
-  -webkit-box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-  margin: 80px 0 100px 200px;
-  -webkit-transform: rotateZ(-2deg) scale3d(1.5, 1.5, 1.5);
-  z-index: 5;
-}
-
-/*.profile:hover,*/
-.profile.active {
-  /*background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsl(120,80%,50%)), to(hsl(120,900%,50%)));*/
-  background: rgb(204,217,255);
+.profile.active section:first-of-type {
+  /*-webkit-box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  -margin: 80px 0 100px 200px;
+  webkit-transform: rotateZ(-2deg) scale3d(1.5, 1.5, 1.5);
+  z-index: 5;*/
+  -webkit-box-shadow: #66666 0px 0px 6px;
+  -moz-box-shadow: #66666 0px 0px 6px;
+  box-shadow: #66666 0px 0px 6px;
+  border: 1px solid #E1E1E1;
+  background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+  background: -moz-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
 }
 
 article section h2 {
@@ -148,18 +154,39 @@ img[itemprop="photo"] {
   font-size: small;
 }
 h2[itemprop="fn"] { background: #fff; }
-div[itemprop="geo"] {
-  position: absolute;
-  top: 25px;
-  right: -225px;
-  /*-webkit-transition: right 0.6s ease-in-out;*/
+
+[itemprop="geo"] {
+  position: relative;
+  top: 17px;
+  -webkit-transform: translateX(-210px);
+  -moz-transform: translateX(-210px);
+  z-index: 1;
+  float: left;
+  border: 1px solid #E1E1E1;
+  -moz-radius: 5px;
+  -o-radius: 5px;
+  border-radius: 5px;
+  padding: 7px 25px 7px 7px;
+  background: url('/static/images/grip.png') no-repeat 105% center,
+              -webkit-gradient(linear, left top, left bottom, from(#eee), color-stop(0.5, white), to(#eee));
+  background: -moz-linear-gradient(90deg, #eee, white, #eee);
+  -webkit-transition: all 0.6s ease-in-out;
+  cursor: pointer;
 }
+
+[itemprop="geo"] img {
+  border: 1px solid #e1e1e1;
+}
+[itemprop="geo"].active,
 .profile.active [itemprop="geo"] {
-
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  padding-right: 20px;
 }
 
-[itemprop="country-name"] { display: none; }
-.clearance { clear: both; }
+[itemprop="country-name"] {
+
+}
 
 .details {
   /*position: absolute;

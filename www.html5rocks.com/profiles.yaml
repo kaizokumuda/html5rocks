@@ -9,8 +9,8 @@ address:
   locality: Mountain View
   region: California
   country: USA
-  lat: 37.385981
-  lon: -122.083855
+  lat: 37.42192
+  lon: -122.087824
 homepage: http://ebidel.com
 google: ebidel
 twitter: ebidel
@@ -29,8 +29,8 @@ address:
   locality: London
   region: London
   country: UK
-  lat: 51.51452
-  lon: 0
+  lat: 51.4948
+  lon: -0.1467
 homepage: http://mahemoff.com
 google: mahemoff
 twitter: mahemoff
@@ -49,8 +49,8 @@ address:
   locality: London
   region: London
   country: UK
-  lat: 51.51452
-  lon: 0
+  lat: 51.4948
+  lon: -0.1467
 homepage: http://paul.kinlan.me
 google: paul.kinlan
 twitter: paul_kinlan
@@ -68,9 +68,9 @@ org:
 address:
   locality: Mountain View
   region: California
-  country: US
-  lat: 37.385981
-  lon: -122.083855
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
 homepage: http://sethladd.com
 google: sethladd
 twitter: sethladd
@@ -89,8 +89,8 @@ address:
   locality: Mountain View
   region: California
   country: USA
-  lat: 37.385981
-  lon: -122.083855
+  lat: 37.42192
+  lon: -122.087824
 homepage: http://paulirish.com
 google: paulirish
 twitter: paul_irish
@@ -106,15 +106,15 @@ org:
   name: deviantART
   unit: Muro
 address:
-  locality: Mountain View
-  region: California
+  locality:
+  region:
   country: USA
-  lat: 37.385981
-  lon: -122.083855
-homepage: http://paulirish.com
-google: paulirish
-twitter: paul_irish
-email: paulirish@google.com
+  lat:
+  lon:
+homepage:
+google:
+twitter:
+email:
 
 ---
 
@@ -129,8 +129,8 @@ address:
   locality: Palo Alto
   region: California
   country: USA
-  lat: 37.385981
-  lon: -122.083855
+  lat: 37.4226547
+  lon: -122.1372117
 homepage: http://www.davidtong.me
 google: davidtwtong
 twitter: davidalism
@@ -147,8 +147,8 @@ org:
   unit: Customer Solutions Engineering
 address:
   locality: Hamburg
-  region: 
-  country: Malte
+  region: Hamburg
+  country: Germany
   lat: 53.55
   lon: 10.0
 homepage: http://nonblocking.io
@@ -190,8 +190,8 @@ address:
   locality: Mountain View
   region: California
   country: USA
-  lat: 37.385981
-  lon: -122.083855
+  lat: 37.42192
+  lon: -122.087824
 homepage: http://ernestdelgado.com/
 google: ernestd
 twitter: edr
