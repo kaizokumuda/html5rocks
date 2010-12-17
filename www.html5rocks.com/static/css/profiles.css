@@ -91,14 +91,19 @@ section[itemtype="http://microformats.org/profile/hcard"] a {
   background-image: url('/static/images/home.png');
   background-position: center center;
 }
+.urls a[data-type="google"][href^="http"] {
+  color: orange;
+  background-image: url('/static/images/buzz.png');
+  background-position: center center;
+}
 .urls a[data-type="twitter"][href^="http"] {
   color: orange;
   background-image: url('/static/images/twitter.png');
   background-position: center center;
 }
-.urls a[data-type="google"][href^="http"] {
+.urls a[data-type="lanyrd"][href^="http"] {
   color: orange;
-  background-image: url('/static/images/buzz.png');
+  background-image: url('/static/images/lanyrd.png');
   background-position: center center;
 }
 .photoZone,

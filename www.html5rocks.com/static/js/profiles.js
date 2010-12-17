@@ -5,7 +5,7 @@ $(function() {
       history.replaceState({}, document.title, '/profiles/#!/' + $activeProfile.attr("id"));
     } else {
       if (!!window.history) {
-        history.replaceState({}, document.title, '/profiles/#!/');
+        history.replaceState({}, document.title, '/profiles/');
       } else {
         location.hash = "/#!/"; // oh well, old browsers have to live with a #
       }
@@ -30,7 +30,7 @@ $(function() {
 
   $(".profile").click(function(e) {
     $(".profile").not(this).removeClass("active");
-    $(this).addClass("active");
+    $(this).toggleClass("active");
     updateHash(e);
     //onHashChange('#' + $(this).attr('id'));
     e.stopPropagation();
