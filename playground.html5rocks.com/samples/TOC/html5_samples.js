@@ -230,6 +230,14 @@ var tempJSON = [
         "spec": "http://www.w3.org/TR/SVG/"
       },
       {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/text_inside_svg.html",
+        "files": ["samples/css/html5/text_inside_svg.css"],
+        "editor": "mixed",
+        "sampleName": "Text inside SVG",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/SVG11/text.html"
+      },
+      {
         "boilerplateLoc": "samples/boilerplateHTML/html5/microdata.html",
         "files": ["samples/js/html5/blank.js"],
         "editor": "mixed",
