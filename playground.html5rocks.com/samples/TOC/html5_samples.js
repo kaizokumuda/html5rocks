@@ -221,13 +221,22 @@ var tempJSON = [
         "tags": "",
         "spec": "http://www.w3.org/TR/selectors-api2/"
       },
-      // {
-      //   "boilerplateLoc": "samples/boilerplateHTML/html5/svg.html",
-      //   "files": [],
-      //   "editor": "mixed",
-      //   "sampleName": "SVG",
-      //   "tags": ""
-      // },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/svg.html",
+        "files": ["samples/css/html5/svg.css"],
+        "editor": "mixed",
+        "sampleName": "Inline SVG",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/SVG/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/text_inside_svg.html",
+        "files": ["samples/css/html5/text_inside_svg.css"],
+        "editor": "mixed",
+        "sampleName": "Text inside SVG",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/SVG11/text.html"
+      },
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/microdata.html",
         "files": ["samples/js/html5/blank.js"],
@@ -336,6 +345,14 @@ var tempJSON = [
         "sampleName": "New Selectors",
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-selectors/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/flex_box_model.html",
+        "files": ["samples/css/html5/flex_box_model.css", "samples/js/html5/flex_box_model.js"],
+        "editor": "css",
+        "sampleName": "Flex Box Model",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-flexbox/"
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
