@@ -36,7 +36,7 @@ from google.appengine.api import memcache
 
 from django.utils import feedgenerator
 
-from common import load_profiles
+import common
 
 webapp.template.register_template_library('templatefilters')
 
@@ -177,10 +177,7 @@ class ContentHandler(webapp.RequestHandler):
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
       # Setup caching layer for this file i/o.
-      profiles = memcache.get('profiles')
-      if profiles is None:
-        profiles = load_profiles()
-        memcache.set('profiles', profiles)
+      profiles = common.get_profiles()
       sorted_profiles = sorted(profiles.values(),
                                key=lambda profile:profile['name']['family'])
       self.render(data={'sorted_profiles': sorted_profiles},
