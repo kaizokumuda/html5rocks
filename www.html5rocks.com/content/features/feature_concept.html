@@ -4,27 +4,6 @@
 
 {% block head %}
   <link rel="stylesheet" href="/static/css/feature.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script>
-  var feature = '{% block tuttags %}{% endblock %}';
-  
-  // request associated tutorials and populate into this page
-  var div = $('<div>').load('/tutorials/ #index', function(){
-    
-    var ul = $('section.tutorials ul'), matches = $([]);
-    
-    $.each( feature.split(','), function(i, eachtag) {
-      var elem = div.find('.sample span.tag:contains(' + eachtag + ')').closest('.sample');
-      matches = matches.add(elem);
-    });
-    
-    $(matches)
-      .find('h2 a').clone()
-      .map(function(){ return $(this).wrap('<li>').parent(); })
-      .prependTo(ul);
-      
-  });
-  </script>
 {% endblock %}
 
 {% block body %}
@@ -36,4 +15,25 @@
 {% block contents %}{% endblock %}
 
 {% include "../../templates/footer.html" %}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script>
+var features = '{% block tuttags %}{% endblock %}';
+
+// Request associated tutorials and populate into this page.
+var div = $('<div>').load('/tutorials/ #index', function() {
+  var ul = $('section.tutorials ul');
+  var matches = $([]);
+
+  $.each(features.split(','), function(i, eachtag) {
+    var elem = div.find('.sample span.tag:contains(' + eachtag + ')').closest('.sample');
+    matches = matches.add(elem);
+  });
+
+  $(matches)
+    .find('h2 a').clone()
+    .map(function() { return $(this).wrap('<li>').parent(); })
+    .prependTo(ul);
+});
+</script>
 {% endblock %}

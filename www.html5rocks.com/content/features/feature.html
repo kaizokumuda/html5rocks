@@ -3,9 +3,7 @@
 {% block contents %}
 
 <div style="margin-bottom: 2em" class="clearfix">
-  
   <div class="column">
-  
     <section class="tutorials">
       <hgroup>
         <h3>Tutorials</h3>
@@ -15,10 +13,9 @@
         <ul>
           {% block tuts %}{% endblock %}
         </ul>
-        <p>View all <a href="/tutorials/#{% block tuttags %}{% endblock %}">related HTML5Rocks tutorials</a>' &rArr;</p>
+        <p>View all <a href="/tutorials/#{% block tuttags %}{% endblock %}">related HTML5Rocks tutorials</a> &rArr;</p>
       </div>
     </section>
-
     <section class="demos">
       <hgroup>
         <h3>Demos</h3>
@@ -28,10 +25,8 @@
         {% block demos %}{% endblock %}
       </div>
     </section>
-  
   </div>
   <div class="column">
-  
     <section class="in-the-wild">
       <hgroup>
         <h3>In the Wild</h3>
@@ -41,8 +36,6 @@
         {% block inthewild %}{% endblock %}
       </div>
     </section>
-  
-  
     <section class="resources">
       <hgroup>
         <h3>Additional Resources</h3>
@@ -52,7 +45,6 @@
         {% block resources %}{% endblock %}
       </div>
     </section>
-  
   </div>
 </div>
 
