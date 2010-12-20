@@ -156,6 +156,20 @@ var tempJSON = [
     ]
   },
   {
+    "category":"JavaScript APIs-Web Workers",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/inline_workers.html",
+        "files": ["samples/css/html5/inline_workers.css", "samples/js/html5/inline_workers.js"],
+        "editor": "js",
+        "sampleName": "Inline Workers",
+        "tags": "",
+        "spec": "http://www.whatwg.org/specs/web-workers/current-work/",
+        "tutorial": "http://www.html5rocks.com/tutorials/workers/basics/#toc-inlineworkers"
+      }
+    ]
+  },
+  {
     "category":"HTML",
     "samples":[
       {
@@ -352,7 +366,8 @@ var tempJSON = [
         "editor": "css",
         "sampleName": "Flex Box Model",
         "tags": "",
-        "spec": "http://www.w3.org/TR/css3-flexbox/"
+        "spec": "http://www.w3.org/TR/css3-flexbox/",
+        "tutorial": "http://www.html5rocks.com/tutorials/flexbox/quick/"
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
