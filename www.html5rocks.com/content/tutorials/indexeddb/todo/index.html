@@ -477,9 +477,8 @@ function addTodo() {
 }</pre>
   <h2 id="toc-final">The final product</h2>
   <ul id="todoItems"></ul>
-  <form method="post" onsubmit="addTodo(); return false;">
-    <input type="text" id="todo" name="todo" 
+  <input type="text" id="todo" name="todo" 
       placeholder="What do you need to do?" style="width: 200px;" />
-    <input type="submit" value="Add Todo Item" onclick="return false"/>
-  </form>
+    <input type="submit" value="Add Todo Item" 
+      onclick="addTodo(); return false;"/>
 {% endblock %}
