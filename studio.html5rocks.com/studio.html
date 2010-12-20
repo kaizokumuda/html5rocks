@@ -172,29 +172,25 @@
             <ul>
               <li>CSS3 2D transforms
               <li>CSS3 animation
-                
             <script>
               supported(function() {
                 return Modernizr.csstransforms && Modernizr.cssanimations;
               });
-            </script>  
-                
+            </script> 
           </div>
-          
-          
+
+
           <div class="box app"><a href="/samples/dnd-fileapi/index.html"><img src="static/img/drag.jpg"><span>Drag n Drop Photos</span></a>
             <p>Drag files in from your machine, get an instant preview</p>
             <ul>
               <li>HTML5 Drag 'n Drop
               <li>FileReader API
-              
             <script>
               supported(function() {
                 return 'draggable' in document.createElement('span') && !!window.FileReader;
               });
             </script>
           </div>
-
 
 
           <div class="box app"><a href="/samples/video-cube/index.html"><img src="static/img/cube.jpg"><span>Video Cube</span></a>
@@ -204,7 +200,6 @@
               <li>Canvas  
               <li>CSS 2D Transforms
               <li>CSS3 mask image
-
             <script>
               supported(function() {
                 return Modernizr.video && Modernizr.canvas && !!window.WebKitCSSMatrix;
@@ -213,6 +208,30 @@
           </div>
 
 
+          <div class="box app"><a href="/samples/websocket-ascii-video/index.html"><img src="static/img/ascii.png"><span>ASCII Art</span></a>
+            <p>See ASCII Art video via WebSockets. All current viewers see the same video frame at the same time. Move your mouse over the video to change the color.</p>
+            <ul>
+              <li>HTML5 WebSocket
+
+            <script>
+              supported(function() {
+                return Modernizr.websockets;
+              });
+            </script>
+          </div>
+
+
+          <div class="box app"><a href="/samples/svg-puzzle/index.html"><img src="static/img/svg-puzzle.png"><span>SVG Puzzle</span></a>
+            <p>An interactive puzzle built with SVG and HTML5 Audio</p>
+            <ul>
+              <li>SVG
+              <li>HTML5 audio
+            <script>
+              supported(function() {
+                return Modernizr.audio && Modernizr.svg;
+              });
+            </script>
+          </div>
 
         </div>
       </section>
