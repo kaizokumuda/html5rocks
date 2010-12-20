@@ -109,11 +109,11 @@ org:
   name: deviantART
   unit: Muro
 address:
-  locality:
-  region:
+  locality: Oakland
+  region: California
   country: USA
-  lat:
-  lon:
+  lat: 37.8043637
+  lon: -122.2711137
 homepage:
 google:
 twitter:
