@@ -174,7 +174,7 @@
   </p>
   <p>
     This example code demonstrates how to create a very simple
-    todo list manager.  It is a very high level tour of some of the features
+    todo list manager. It is a very high level tour of some of the features
     available in HTML5.
   </p>
   <p>
@@ -185,15 +185,15 @@
   </p>
   <h2 id="what">What is IndexedDB?</h2>
   <p>
-    IndexedDB is an Object Store.  It is not the same as a Relational Database,
-    which has tables, with collections rows and columns.  It is an important
+    IndexedDB is an Object Store. It is not the same as a Relational Database,
+    which has tables, with collections rows and columns. It is an important
     and fundamental difference and affects the way that you design and build
     your applications.
   </p>
   <p>
     In a traditional relational data store we would have a table of "todo" items
-    that store a collection of the users todo data in rows.  With columns of 
-    named types of data.  To insert data, the semantics normally follow:
+    that store a collection of the users todo data in rows. With columns of 
+    named types of data. To insert data, the semantics normally follow:
     <code>INSERT INTO Todo(id, data, update_time) VALUES (1, "Test", "01/01/2010");</code>
   </p>
   <p>
@@ -241,16 +241,16 @@ html5rocks.indexedDB = {};</pre>
   <p>
     In the majority of cases where you are using Indexed Database 
     you will be using the <a
-      href="http://dev.w3.org/html5/indexeddb/#asynchronous-database-api">Asynchronous API</a>.  The Asynchronous API
+      href="http://dev.w3.org/html5/indexeddb/#asynchronous-database-api">Asynchronous API</a>. The Asynchronous API
     is a non-blocking system and as such will not get data
     through return values, but rather will get data delivered to a defined
     callback function.
   </p>
   <p>
-    The IndexedDB support through HTML is transactional.  It is not
+    The IndexedDB support through HTML is transactional. It is not
     possible to execute commands or open cursors outside of a transaction.
     There are several types of transactions: read/write transactions, read only
-    and snapshot.  In this tutorial, we will be using Read/Write 
+    and snapshot. In this tutorial, we will be using Read/Write 
     transactions
   </p>
   <h2 id="toc-step1">Step 1. Opening the database</h2>
@@ -270,11 +270,11 @@ html5rocks.indexedDB.open = function() {
   request.onfailure = html5rocks.indexedDB.onerror;
 };</pre>
   <p>We have opened a database called "todos" and assinged it to our variable
-  "db" in the html5rocks.indexedDB object.  We can now use this to refer
+  "db" in the html5rocks.indexedDB object. We can now use this to refer
   to our database through out this tutorial.</p>
   <h2 id="toc-step2">Step 2. Creating an Object Store</h2>
   <p>
-    You can only create object stores inside a "SetVersion" transaction.  I 
+    You can only create object stores inside a "SetVersion" transaction. I 
     haven't covered setVersion yet, but it is a very important method - it is 
     the <em>only place in your code that you can create object stores and indexes</em>.
   </p>
@@ -306,13 +306,13 @@ html5rocks.indexedDB.open = function() {
   request.onfailure = html5rocks.indexedDB.onerror;
 }</pre>
 <p>
-    The above code actually does quite a lot.  We define an "open" method in our
-    API, which when called will open the database "todos".  The open request
+    The above code actually does quite a lot. We define an "open" method in our
+    API, which when called will open the database "todos". The open request
     isn't executed straight away. Instead an <code>IDBRequest</code> is
-    returned. The indexedDB.open method will be called when the current function
-    exits.  This  is a little different to how we normally assign asynchronous
-    callbacks, but  we get the chance to attach our own listeners to the
-    <code>IDBRequest</code> object before the callbacks are executed.
+    returned. The <code>indexedDB.open</code> method will be called when the
+    current function exits. This is a little different to how we normally assign
+    asynchronous callbacks, but we get the chance to attach our own listeners to
+    the <code>IDBRequest</code> object before the callbacks are executed.
 </p>
 <p>
     If the open request is successful, our "onsuccess" callback is exectued.
@@ -320,18 +320,18 @@ html5rocks.indexedDB.open = function() {
     as the number we expect, we call "setVersion".</p>
 <p> 
     SetVersion <em>is the only place</em> in our code that we can alter the
-    structure of the database.  In it we can create and delete Object Stores and
+    structure of the database. In it we can create and delete Object Stores and
     build and remove indexes. A call to <code>setVersion</code> returns an 
-    <code>IDBRequest</code> object where we can attach our callbacks.  When
+    <code>IDBRequest</code> object where we can attach our callbacks. When
     successful, we start to create our Object Stores. 
 </p>
 <p>
     Object Stores are created with a single call to 
     <code>createObjectStore</code>. The method takes a name of the store, and an
-    parameter object.  The parameter object is very important, it lets you
+    parameter object. The parameter object is very important, it lets you
     define important optional properties. In our case, we define a "keyPath"
     that is the property that makes an individual object in the store
-    unique.  That property in this example is "timeStamp".  "timeStamp"
+    unique. That property in this example is "timeStamp". "timeStamp"
     <em>must</em> be present on every object that is stored in the objectStore.
 </p>
 <p>
@@ -342,7 +342,7 @@ html5rocks.indexedDB.open = function() {
   <h2 id="toc-step3">Step 3. Adding data to an object store</h2>
   <p>
     We are building a todo list manager so it is pretty important that
-    we are able to add todo items in to the database.  This is done as follows:
+    we are able to add todo items in to the database. This is done as follows:
   </p>
   
   <pre class="prettyprint">html5rocks.indexedDB.addTodo = function(todoText) {
@@ -370,14 +370,14 @@ html5rocks.indexedDB.open = function() {
   </p>
   <p>
     Now that the application has access to the Object Store, we can issue a 
-    simple <code>put</code> command with a basic JSON object.  Notice that there
+    simple <code>put</code> command with a basic JSON object. Notice that there
     is a <code>timeStamp</code> property, that is our unique key for the object.
   </p>
 
   <h2 id="toc-step4">Step 4. Querying the data in a store.</h2>
   <p>
     Now that the data is in the database, we need a way to get access to the 
-    data in a meaningful way.  Luckily, it is pretty straightforward:
+    data in a meaningful way. Luckily, it is pretty straightforward:
   </p>
   <pre class="prettyprint">html5rocks.indexedDB.getAllTodoItems = function() {
   var todos = document.getElementById("todoItems");
