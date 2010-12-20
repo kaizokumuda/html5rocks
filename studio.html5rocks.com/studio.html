@@ -214,6 +214,20 @@
 
 
 
+          <div class="box app"><a href="/samples/websocket-ascii-video/index.html"><img src="static/img/ascii.png"><span>ASCII Art</span></a>
+            <p>See ASCII Art video via WebSockets. All current viewers see the same video frame at the same time. Move your mouse over the video to change the color.</p>
+            <ul>
+              <li>HTML5 WebSocket
+
+            <script>
+              supported(function() {
+                return Modernizr.websockets;
+              });
+            </script>
+          </div>
+
+
+
         </div>
       </section>
 
