@@ -395,11 +395,11 @@
       if (tryString !== null) tryString = tryString[0];
     }
     else if (codeType == 'css') {
-      tryString = this.insertCssRegex.exec(data)[0];
+      tryString = this.insertCssRegex.exec(data);
       if (tryString !== null) tryString = tryString[0];
     }
     var i = '';
-    while(tryString.indexOf(' ') == 0) {
+    while (tryString && tryString.indexOf(' ') == 0) {
       i += ' ';
       tryString = tryString.substring(1);
     }
