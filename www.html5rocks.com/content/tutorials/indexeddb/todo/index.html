@@ -401,13 +401,15 @@ html5rocks.indexedDB.open = function() {
 };</pre>
   <p>
     Note that all of these commands used in this sample
-    are asynchronous and as such the data is not returned from the transaction.
-    The results are passed through to the success callback. 
+    are asynchronous and as such the data is not returned from inside the 
+    transaction. The results are passed through to the success callback on the 
+    cursor.
   </p>
   <h2>Step 4a. Rendering data from an Object Store</h2>
   <p>
-    Once the data has been fetched from the Object Store, the renderTodo method
-  will be called <em>for each result in the cursor</em>.
+    Once the data has been fetched from the Object Store, the 
+    <code>renderTodo</code> method will be called <em>for each result in the
+    cursor</em>.
   </p>
  
   <pre class="prettyprint">function renderTodo(row) {
