@@ -12,9 +12,25 @@ $(function() {
     }
   }
 
-  window.slideMap = function(el) {
-    //$(el).toggleClass('active');
-  };
+  /*window.slideMap = function(el) {
+    $(el).toggleClass('active');
+  };*/
+
+  window.showArticles = function(link) {
+    var $profile = $(link).closest('.profile');
+    $profile.find('.back').toggleClass('active');
+    $profile.find('.front').toggleClass('active');
+    e.stopPropagation();
+    return false;
+  }
+
+  $('.profile .list-articles a').click(function(e) {
+    var $profile = $(this).closest('.profile');
+    $profile.find('.back').toggleClass('active');
+    $profile.find('.front').toggleClass('active');
+    e.stopPropagation();
+    return false;
+  });
 
   window.scrollToProfile = function(opt_profileID) {
     var profileID = opt_profileID || null;
@@ -31,6 +47,8 @@ $(function() {
   $(".profile").click(function(e) {
     $(".profile").not(this).removeClass("active");
     $(this).toggleClass("active");
+    $(this).find('.back').removeClass('active');
+    $(this).find('.front').removeClass('active');
     updateHash(e);
     //onHashChange('#' + $(this).attr('id'));
     e.stopPropagation();
@@ -38,6 +56,8 @@ $(function() {
 
   $(window).click(function(e) {
     $(".profile").removeClass("active");
+    $(".profile").find('.back').removeClass('active');
+    $(".profile").find('.front').removeClass('active');
     updateHash(e);
   });
 

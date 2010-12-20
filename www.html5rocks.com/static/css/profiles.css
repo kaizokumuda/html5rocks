@@ -1,18 +1,19 @@
-#profiles article {
-  clear: both;
-}
 .profile {
-  -webkit-transition: all 0.2s ease-in;
-  -webkit-transform-origin: 25% 50%;
+  /*-webkit-transition: all 0.2s ease-in;
+  -webkit-transform-origin: 25% 50%;*/
+  position: relative;
+  clear: both;
+  height: 225px;
 }
 .profile:hover {
-  -webkit-transform: rotateZ(-1deg);
-  z-index: 3;
-  position: relative;
+  /*-webkit-transform: rotateZ(-1deg);
+  z-index: 3;*/
 }
 .profile section:first-of-type {
-  background: -moz-linear-gradient(90deg, #EEE, white, #EEE);
-  background: -webkit-gradient(linear, left top, left bottom, from(#EEE), color-stop(0.5, white), to(#EEE));
+  background: -moz-linear-gradient(90deg, #eee, white, #eee),
+              #eee;
+  background: -webkit-gradient(linear, left top, left bottom, from(#eee), color-stop(0.5, white), to(#eee)),
+              #eee;
   width: 350px;
   height: 200px;
   position: relative;
@@ -34,8 +35,8 @@
 }
 
 .profile > div:first-child {
-  z-index: 2;
-  position: relative;
+  /*z-index: 2;
+  position: relative;*/
 }
 
 .profile.active section:first-of-type {
@@ -71,6 +72,16 @@ section[itemtype="http://microformats.org/profile/hcard"] a {
   text-decoration: none;
 }
 
+.profile .articles {
+  list-style: none;
+  padding: 0;
+  position: absolute;
+}
+
+.articles li {
+  clear: both;
+  text-align: left;
+}
 .urls {
   margin: 1em 0 0 0;
   padding: 0;
@@ -201,3 +212,59 @@ h2[itemprop="fn"] { background: #fff; }
   float: right;
   clear: both;
 }
+
+.list-articles {
+  position: absolute;
+  bottom: 10px;
+}
+.back {
+  opacity: 0;
+  display: none;
+  height: 89%;
+  width: 93%;
+  position: absolute;
+  overflow: auto;
+  -webkit-transition: opacity 0.5s;
+}
+.front.active {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+}
+.back.active {
+  opacity: 1;
+  display: block;
+}
+/*
+.card {
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.5s;
+  /*-webkit-transition-delay: 0.5s;
+}
+.profile:hover .card {
+  -webkit-transform: rotateY(180deg);
+}
+.face {
+  position: relative;
+  -webkit-backface-visibility: hidden;
+}
+.front {
+  z-index: 10;
+}
+.back {
+  -webkit-transform: rotateY(180deg);
+  -webkit-backface-visibility: hidden;
+  opacity: 0;
+  height: 89%;
+  width: 93%;
+  position: absolute;
+  overflow: auto;
+}
+.profile:hover .front {
+  z-index: 0;
+  opacity: 0;
+}
+.profile:hover .back {
+  z-index: 10;
+  opacity: 1;
+} 
+*/
