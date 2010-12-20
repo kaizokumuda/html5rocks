@@ -206,7 +206,7 @@
   </p>
   <p>
     This tutorial is solely about giving you a real-world example of how to use
-    IndexedDB given the context of an existing applications written to use 
+    IndexedDB given the context of existing applications written to use 
     WebSQL.
   </p>
   <h2 id="why">Why IndexedDB?</h2>
@@ -215,12 +215,17 @@
     database is a deprecated specification. This is a recommendation for web
     developers to no longer use the technology as effectively the spec will
     receive no new updates and browser vendors aren't encouraged to support this
-    technology.
+    technology. 
   </p>
   <p>
     The replacement, IndexedDB and the subject of this tutorial is the 
     data-store that developers should use to store and manipulate data on the
     client-side.
+  </p>
+  <p>
+    Many major browsers including Chrome, Safari, Opera and nearly 
+    all Webkit based mobile devices support WebSQL and will likely maintain 
+    support for the foreseeable future.
   </p>
   <h2 id="toc-prereqs">Pre-requisites</h2>
   <p>
@@ -240,8 +245,9 @@ html5rocks.indexedDB = {};</pre>
   <p>
     The IndexedDB support through HTML is transactional.  It is not
     possible to execute commands or open cursors outside of a transaction.
-    There are several types of transactions: read/write transactions
-    TODO.
+    There are several types of transactions: read/write transactions, read only
+    and snapshot.  In this tutorial, we will be using Read/Write 
+    transactions
   </p>
   <h2 id="toc-step1">Step 1. Opening the database</h2>
   <p>Before we can do anything with the database, it first needs to be opened.
