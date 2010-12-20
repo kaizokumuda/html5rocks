@@ -5,7 +5,7 @@
 {% block headtitle %}A Simple TODO list using HTML5 IndexedDB{% endblock %}
 {% block pagetitle %}A Simple TODO list using HTML5 IndexedDB{% endblock %}
 {% block pagebreadcrumb %}A Simple TODO list using HTML5 IndexedDB{% endblock %}
-{% block date %}November 23rd, 2010{% endblock %}
+{% block date %}December 20, 2010{% endblock %}
 
 {% block browsersupport %}
 <span class="opera"></span>
@@ -476,12 +476,10 @@ function addTodo() {
   todo.value = '';
 }</pre>
   <h2 id="toc-final">The final product</h2>
-  <ul id="todoItems">
-  
-  </ul>
-  <form type="post" onsubmit="addTodo(); return false;">
+  <ul id="todoItems"></ul>
+  <form method="post" onsubmit="addTodo(); return false;">
     <input type="text" id="todo" name="todo" 
       placeholder="What do you need to do?" style="width: 200px;" />
-    <input type="submit" value="Add Todo Item"/>
+    <input type="submit" value="Add Todo Item" onclick="return false"/>
   </form>
 {% endblock %}
