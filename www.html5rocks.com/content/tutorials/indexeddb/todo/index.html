@@ -269,9 +269,9 @@ html5rocks.indexedDB.open = function() {
 
   request.onfailure = html5rocks.indexedDB.onerror;
 };</pre>
-  <p>We have opened a database called "todos" and assinged it to our variable
-  "db" in the html5rocks.indexedDB object. We can now use this to refer
-  to our database through out this tutorial.</p>
+  <p>We have opened a database called "todos" and assigned it to our variable
+  <code>db</code> in the html5rocks.indexedDB object. We can now use this to
+  refer to our database through out this tutorial.</p>
   <h2 id="toc-step2">Step 2. Creating an Object Store</h2>
   <p>
     You can only create object stores inside a "SetVersion" transaction. I 
@@ -282,7 +282,7 @@ html5rocks.indexedDB.open = function() {
   var request = indexedDB.open("todos", 
     "This is a description of the database.");
   
-  request.onsuccess = function(e) {   
+  request.onsuccess = function(e) {
     var v = "1.0";
     html5rocks.indexedDB.db = e.result;
     var db = html5rocks.indexedDB.db;
@@ -316,7 +316,7 @@ html5rocks.indexedDB.open = function() {
 </p>
 <p>
     If the open request is successful, our <code>onsuccess</code> callback is 
-    exectued. In this callback we check the database version and if it is not 
+    executed. In this callback we check the database version and if it is not 
     the same as the number we expect, we call "setVersion".</p>
 <p> 
     SetVersion <em>is the only place</em> in our code that we can alter the
@@ -460,7 +460,7 @@ html5rocks.indexedDB.open = function() {
      needed) and render any todo items that might already be in the database.
   </p>
   <pre class="prettyprint">function init() {
-  html5rocks.indexedDB.open(); // The open, displays the data previously saved
+  html5rocks.indexedDB.open(); // open displays the data previously saved
 }
   
 window.addEventListener("DOMContentLoaded", init(), false);</pre>
