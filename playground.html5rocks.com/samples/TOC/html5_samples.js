@@ -368,6 +368,15 @@ var tempJSON = [
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-flexbox/",
         "tutorial": "http://www.html5rocks.com/tutorials/flexbox/quick/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/complex_box_model.html",
+        "files": ["samples/css/html5/complex_box_model.css"],
+        "editor": "css",
+        "sampleName": "Flex Box Model - Complex",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-flexbox/",
+        "tutorial": "http://www.html5rocks.com/tutorials/flexbox/quick/"
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
