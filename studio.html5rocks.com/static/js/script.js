@@ -25,137 +25,65 @@ window.UI = {
   boxWidth  : 190,
   boxHeight : 190,
   
-  lastDemo : undefined // keeping track of last demo opened
+  lastDemo : undefined, // keeping track of last demo opened
+  boxes    : undefined,
+  
+  onReady : function(){
+      UI.boxes = $('div.box');
+  },
+  
+  onLoad : function(){
+      UI.writeBoxStyles();
+
+      if (location.hash.length > 2) { return; }
+
+      setTimeout(function () {
+        $(document.body).addClass('go');
+      }, 500);
+  } // eo UI.onLoad
+  
   
 };
 
 
-
-$(window).load(function () {
-  
-  
-  UI.writeBoxStyles();
+// css transition handling
+UI.trans = {
     
-  if (location.hash.length > 2) { return; }
-  
-      
-  setTimeout(function () {
-    $(document.body).addClass('go');
-  }, 500);
-})
+    // transition queue
+    fnQueue : [
+      function () {
+        $('#body').addClass('show')
+      }, function () {
+        $('#body').addClass('open');
+        $(UI.lastDemo).click()
+      }
+    ], // eo UI.trans.fnQueue[]
+    
+    onEnd : function f(e) {
 
+      if ($('body').hasClass('toc') || $('#body').hasClass('open')) {
+        return;
+      }
 
+      f.boxes = f.boxes || UI.boxes.length;
+      // use the in progress one or make a shallow copy
+      f.fns = (f.fns && f.fns.length) ? f.fns : $.extend([], UI.trans.fnQueue);
 
-// load iframe
-$('.show.open div.box').live('click', function f(e, forced) {
+      f.boxes--;
 
-  tip.out();
-  
-  UI.lastDemo = this;
-   
-  $(this).addClass('selected').siblings().removeClass('selected');
-  var link = $(this).find('a:first');
-  var iframe = $('<iframe>').attr('src', link.attr('href'));
-  iframe.insertAfter('#stage iframe').show().prev().remove();
-  
-  
-  var hashtext = $(UI.lastDemo).find('a').text().split(/\s+/).slice(-1);
-  location.hash = hashtext;
-  
-  
-  // tell google analytics
-  window._gaq && _gaq.push(['_trackPageview', link.attr('href')]);
-  
-  
-  // don't show the tooltip twice
-  if (Modernizr.sessionstorage){
-    var key = link.text().replace(/\s+/g,'').toLowerCase();
-    if (sessionStorage[key]) return;
-    sessionStorage[key] = true;
-  }
-  tip.over();
-  clearTimeout(f); // clear any stale timeouts
-  f = setTimeout(tip.out,10*1000);
-  
-
-});
-
-
-// return to grid
-$.subscribe('return-to-grid',UI.returnToGrid);
-
-
-
-
-function tocToDemos(e) {
-
-  UI.lastDemo = this;
-
-  $(document.body).removeClass('go toc');
-  
-  // if we dont have transitionEnd events..
-  if (!Modernizr.csstransitions){
-    transitionEnd(true);
-    transitionEnd(true);
-  }
-}
-
-// when we click from TOC view, kick off the transition to showcase view
-$('#boxes')
-  .delegate('.toc .box', 'click', tocToDemos)
-  .delegate('.box a', 'click', function(e) {
-    e.preventDefault();
-  });
-
-// transition queue action...
-var boxes = $('.box');
-var fnQueue = [
-  function () {
-    $('#body').addClass('show')
-  }, function () {
-    $('#body').addClass('open');
-    $(UI.lastDemo).click()
-  }
-];
-
-var transitionEnd = function (e) {
-  
-  if ($('body').hasClass('toc') || $('#body').hasClass('open')) {
-    return;
-  }
-
-  var f = transitionEnd;
-  f.boxes = f.boxes || boxes.length;
-  // use the in progress one or make a shallow copy
-  f.fns = (f.fns && f.fns.length) ? f.fns : $.extend([], fnQueue);
-
-  f.boxes--;
-  
-  // allow for forced progression (!csstransitions)
-  if (f.boxes === 0 || e === true) {
-    f.boxes = boxes.length;
-    var fn = f.fns.shift();
-    fn && setTimeout(fn, 400);
-  }
+      // allow for forced progression (!csstransitions)
+      if (f.boxes === 0 || e === true) {
+        f.boxes = UI.boxes.length;
+        var fn = f.fns.shift();
+        fn && setTimeout(fn, 400);
+      }
+    } // eo UI.trans.onEnd()
 };
 
-$(document).bind('webkitTransitionEnd transitionend oTransitionEnd', transitionEnd);
-
-
-$('#view_source').click(function () {
-  window.open('view-source:' + $('iframe')[0].contentDocument.location.href);
-});
-
-
-// download.. 
-$('#download').click(function () {
-  var path = $('iframe')[0].contentDocument.location.href.split('/');
-  window.open( path.slice(0,-1).join('/') + '/' + path.slice(-2,-1)[0] + '.zip' );
-});
 
 
 // tooltip 
-var tip = {
+window.tip = {
   over: function (e) {
     
     // hover over the invisible tooltip?
@@ -179,75 +107,82 @@ var tip = {
    out: function (e) {
      $('.tooltip').removeClass('popped');
    }
-}
-
-$("#info").hoverIntent({
-  over: tip.over,
-  out: tip.out,
-  timeout: 500
-});
+};
 
 
 
 
+window.flexHeight = {
+    
+    initialOffset : undefined,
+    firstRun: false,
+    
+    tops : {
+      '#stage iframe': 'height',
+      '#container': 'height',
+      '.controlbar': 'top',
+      'footer': 'top'
+    },
+    
+    setShowcaseSize : function() {
+      if (!flexHeight.firstRun) {
+        flexHeight.storeInitialTops(flexHeight.tops);
+        flexHeight.firstRun = true;
+      }
+
+      var offset = flexHeight.getOffset();
+
+      $.each(flexHeight.tops, function (sel, prop) {
+        var elem = $(sel);
+        var value = $.data(elem[0], 'initial');
+        //log(elem[0],prop,   value, offset)
+        elem.css(prop, parseFloat(value) + offset + 'px')
+      });
+
+    },
+    
+    storeInitialTops : function (tops) {
+      $.each(tops, function (sel, prop) {
+        var elem = $(sel); //log( elem.css(prop))
+        var value = elem.css(prop);
+        value = (value === 'auto' || !value) ? 491 : value; // fix for controlbar position
+        $.data(elem[0], 'initial', value);
+      });
+
+      var footer = $('footer');
+      flexHeight.initialOffset = footer.offset().top + footer.height();
+    },
+    
+    getOffset : function () {
+      // magic number 33 is a good looking amount of padding before bottom of window
+      var offset = $(window).height() - 33 - flexHeight.initialOffset;
+      // allow between 0 and 160 px of offset
+      return Math.min(160, Math.max(0, offset));
+    }
+    
+    
+};
 
 
 
-var tops = {
-  '#stage iframe': 'height',
-  '#container': 'height',
-  '.controlbar': 'top',
-  'footer': 'top'
-}
 
-var initialOffset;
 
-function setShowCaseSize() {
-  if (!setShowCaseSize.run) {
-    storeInitialTops(tops);
-    setShowCaseSize.run = true;
+
+UI.tocToDemos = function (e) {
+
+  UI.lastDemo = this;
+
+  $(document.body).removeClass('go toc');
+  
+  // if we dont have transitionEnd events..
+  if (!Modernizr.csstransitions){
+    UI.trans.onEnd(true);
+    UI.trans.onEnd(true);
   }
-
-  var offset = getOffset();
-
-  $.each(tops, function (sel, prop) {
-    var elem = $(sel);
-    var value = $.data(elem[0], 'initial');
-    //log(elem[0],prop,   value, offset)
-    elem.css(prop, parseFloat(value) + offset + 'px')
-  });
-
-}
-
-function storeInitialTops(tops) {
-  $.each(tops, function (sel, prop) {
-    var elem = $(sel); //log( elem.css(prop))
-    var value = elem.css(prop);
-    value = (value === 'auto' || !value) ? 491 : value; // fix for controlbar position
-    $.data(elem[0], 'initial', value);
-  });
-
-  var footer = $('footer');
-  initialOffset = footer.offset().top + footer.height();
-}
-
-function getOffset() {
-  // magic number 33 is a good looking amount of padding before bottom of window
-  var offset = $(window).height() - 33 - initialOffset;
-  // allow between 0 and 160 px of offset
-  return Math.min(160, Math.max(0, offset));
-}
-
-$(document).ready(setShowCaseSize);
-$(window).resize(setShowCaseSize);
+};
 
 
-
-
-
-
-
-$(window).bind('hashchange', function(e, firstTime) {
+UI.hashChange = function(e, firstTime) {
   
   var text = location.hash.replace(/^#/,'');
   
@@ -256,19 +191,16 @@ $(window).bind('hashchange', function(e, firstTime) {
     $('body')[0].className = 'go toc';
        $.publish('return-to-grid');
   } else {
-    firstTime && tocToDemos();
+    firstTime && UI.tocToDemos();
     $('#body').addClass('show open');
     $('div.box')
       .find('a:contains(' + text + ')')
       .trigger('click', [true]);
   }
   
-});
+};
 
-$(window).trigger('hashchange', [true]);
-
-
-$('a#boxtrigger').click(function(){
+UI.scrollDemoContainer = function(){
     
     var boxes = $('div.box');
     var trigger = $(this);
@@ -283,10 +215,7 @@ $('a#boxtrigger').click(function(){
     
 
     return false;
-});
-
-
-
+};
 
 
 UI.writeBoxStyles = function(){
@@ -310,4 +239,94 @@ UI.returnToGrid = function (e) {
   $('#stage iframe').hide().attr('src', 'about:blank');
   $(document.body).addClass('go toc');
   $('#body').removeClass('show open');
-}
+};
+
+
+// load iframe and all that jazz
+UI.demoChosen = function(e, forced) {
+
+  tip.out();
+  
+  UI.lastDemo = this;
+   
+  $(this).addClass('selected').siblings().removeClass('selected');
+  var link = $(this).find('a:first');
+  var iframe = $('<iframe>').attr('src', link.attr('href'));
+  iframe.insertAfter('#stage iframe').show().prev().remove();
+  
+  
+  // set the hash to be the chosen demo
+  var hashtext = $(UI.lastDemo).find('a').text().split(/\s+/).slice(-1);
+  location.hash = hashtext;
+  
+  
+  // tell google analytics
+  window._gaq && _gaq.push(['_trackPageview', link.attr('href')]);
+  
+  
+  // don't show the tooltip twice
+  if (Modernizr.sessionstorage){
+    var key = link.text().replace(/\s+/g,'').toLowerCase();
+    if (sessionStorage[key]) return;
+    sessionStorage[key] = true;
+  }
+  
+  
+  tip.over();
+  
+  clearTimeout(UI.demoChosen.t); // clear any stale timeouts
+  UI.demoChosen.t = setTimeout(tip.out,10*1000);
+  
+
+};
+
+
+
+
+// when we click from TOC view, kick off the transition to showcase view
+$('#boxes')
+  .delegate('.toc .box', 'click', UI.tocToDemos)
+  .delegate('.box a', 'click', function(e) {
+    e.preventDefault();
+  });
+
+
+$('.show.open div.box').live('click', UI.demoChosen);
+
+
+
+$.subscribe('return-to-grid',UI.returnToGrid);
+
+
+ 
+$(document).bind('webkitTransitionEnd transitionend oTransitionEnd', UI.trans.onEnd);
+
+
+$('#view_source').click(function () {
+  window.open('view-source:' + $('iframe')[0].contentDocument.location.href);
+});
+
+
+$('#download').click(function () {
+  var path = $('iframe')[0].contentDocument.location.href.split('/');
+  window.open( path.slice(0,-1).join('/') + '/' + path.slice(-2,-1)[0] + '.zip' );
+});
+
+
+$([document,window]).bind('ready resize', flexHeight.setShowcaseSize)
+$('a#boxtrigger').click(UI.scrollDemoContainer);
+
+$(window).bind('hashchange', UI.hashChange);
+$(window).trigger('hashchange', [true]);
+
+
+$("#info").hoverIntent({
+  over: tip.over,
+  out: tip.out,
+  timeout: 500
+});
+
+$(document).ready(UI.onReady);
+$(window).load(UI.onLoad);
+
+
