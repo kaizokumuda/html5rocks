@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
   <link rel="stylesheet" href="/static/style.css" />
   <script src="static/js/modernizr-1.6.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script src="static/js/jquery-git.js"></script>
   <script>
     function supported(fn) {
       var scripts = document.querySelectorAll('script');
@@ -16,13 +16,13 @@
     }
   </script>
 </head>
-<body>
+<body class="toc">
 
   <div id="container">
     <header>
 
     </header>
-    <div id="body" class="toc">
+    <div id="body">
 
       <div id="stage">
         <div class="itembar">
@@ -43,7 +43,7 @@
 
         </div>
         <iframe src="about:blank" allowtransparency="yes"></iframe>
-      </div>
+      </div> <!-- eo #stage -->
 
       <aside>
         <h1 id="title"><span class="normal">HTML</span><span class="five">5</span><span class="rocks">Studio</span></h1> 
@@ -71,6 +71,58 @@
           
         </div> -->
         <div id="boxes">
+          
+          
+          
+          
+          <div class="box app"><a href="/samples/page-flip/index.html"><img src="static/img/pageflip.jpg"><span>Page Flip</span></a>
+            <p>An animated page flip of real HTML content.</p>
+            <ul>
+              <li>CSS3 2D transforms
+              <li>CSS3 animation
+                
+            <script>
+              supported(function() {
+                return Modernizr.csstransforms && Modernizr.cssanimations;
+              });
+            </script>  
+                
+          </div>
+          
+          
+          <div class="box app"><a href="/samples/dnd-fileapi/index.html"><img src="static/img/drag.jpg"><span>Drag n Drop Photos</span></a>
+            <p>Drag files in from your machine, get an instant preview</p>
+            <ul>
+              <li>HTML5 Drag 'n Drop
+              <li>FileReader API
+              
+            <script>
+              supported(function() {
+                return 'draggable' in document.createElement('span') && !!window.FileReader;
+              });
+            </script>
+          </div>
+
+
+
+          <div class="box app"><a href="/samples/video-cube/index.html"><img src="static/img/cube.jpg"><span>Video Cube</span></a>
+            <p>Build a cube of ASCII reflecting a video in realtime and reposition the view.</p>
+            <ul>
+              <li>HTML5 video
+              <li>Canvas  
+              <li>CSS 2D Transforms
+              <li>CSS3 mask image
+
+            <script>
+              supported(function() {
+                return Modernizr.video && Modernizr.canvas && !!window.WebKitCSSMatrix;
+              });
+            </script>
+          </div>
+
+          
+          
+          
           <div class="box app"><a href="/samples/video-player/index.html"><img src="static/img/video.jpg"><span>Video PiP</span></a>
             <p>Use Picture-in-picture to swap between two video sources while enjoying a color glow effect. Custom pause, mute and progress bar.</p>
             <ul>
@@ -212,14 +264,15 @@
             </script>
           </div>
 
-
+        
 
         </div>
-      </section>
+      </section> <!-- eo section.controlbar -->
 
-    </div>
+    </div> <!-- eo #body -->
 
-  </div>
+    <a href="#" id="boxtrigger">View more</a>
+  </div> <!-- eo #container -->
 
 
    <footer>

@@ -1,3 +1,11 @@
+// todo
+
+// fluid height work
+// js cleanup
+// review words.
+// carousel shit.
+
+
 /*
  1. opens in TOC view.  - toc class
     transitions immediately fire to spin out the thumbnails
@@ -8,16 +16,34 @@
     b. need a fallback for no transition support
 */
 
+
+window.UI = {
+    
+  /* each box: 160 x 166, padded size: 190 x 190 */
+  gridInitX : 30, 
+  gridInitY : 25,
+  boxWidth  : 190,
+  boxHeight : 190,
+  
+  lastDemo : undefined // keeping track of last demo opened
+  
+};
+
+
+
 $(window).load(function () {
   
-  if (location.hash.length > 2) {
-    return;
-  }
   
+  UI.writeBoxStyles();
+    
+  if (location.hash.length > 2) { return; }
+  
+      
   setTimeout(function () {
     $(document.body).addClass('go');
-  }, 200);
+  }, 500);
 })
+
 
 
 // load iframe
@@ -25,7 +51,7 @@ $('.show.open div.box').live('click', function f(e, forced) {
 
   tip.out();
   
-  lastDemo = this;
+  UI.lastDemo = this;
    
   $(this).addClass('selected').siblings().removeClass('selected');
   var link = $(this).find('a:first');
@@ -33,7 +59,7 @@ $('.show.open div.box').live('click', function f(e, forced) {
   iframe.insertAfter('#stage iframe').show().prev().remove();
   
   
-  var hashtext = $(lastDemo).find('a').text().split(/\s+/).slice(-1);
+  var hashtext = $(UI.lastDemo).find('a').text().split(/\s+/).slice(-1);
   location.hash = hashtext;
   
   
@@ -56,22 +82,16 @@ $('.show.open div.box').live('click', function f(e, forced) {
 
 
 // return to grid
-$('#return').click(function (e) {
-  $('#stage iframe').hide().attr('src', 'about:blank');
-  $(document.body).addClass('go');
-  $('#body').addClass('toc open').removeClass('show open');
-
-});
+$.subscribe('return-to-grid',UI.returnToGrid);
 
 
-var lastDemo;
+
 
 function tocToDemos(e) {
 
-  lastDemo = this;
+  UI.lastDemo = this;
 
-  $(document.body).removeClass('go');
-  $('#body').removeClass('toc');
+  $(document.body).removeClass('go toc');
   
   // if we dont have transitionEnd events..
   if (!Modernizr.csstransitions){
@@ -94,14 +114,13 @@ var fnQueue = [
     $('#body').addClass('show')
   }, function () {
     $('#body').addClass('open');
-    $(lastDemo).click()
+    $(UI.lastDemo).click()
   }
 ];
 
 var transitionEnd = function (e) {
   
-  if ($('#body').hasClass('toc') || $('#body').hasClass('open')) {
-    $('#body').addClass('nofan'); // kill the fanned transition delay
+  if ($('body').hasClass('toc') || $('#body').hasClass('open')) {
     return;
   }
 
@@ -145,9 +164,9 @@ var tip = {
       return;
     }
     
-    var h3 = $('<h3>').text($(lastDemo).find('a:first span').text());
-    var info = $(lastDemo).find('p,ul').clone();
-    var support = $(lastDemo).data('support');
+    var h3 = $('<h3>').text($(UI.lastDemo).find('a:first span').text());
+    var info = $(UI.lastDemo).find('p,ul').clone();
+    var support = $(UI.lastDemo).data('support');
     var suphtml = $('<div class="support">').addClass( ('' + !!support) ).text(
         'Your browser ' + (support ? ' appears to ' : ' may not fully ') + ' support these features.'
       );
@@ -234,8 +253,8 @@ $(window).bind('hashchange', function(e, firstTime) {
   
   // An empty hash means he user went back to the start.
   if (text === ''){
-    $('body')[0].className = 'go';
-    $('#body')[0].className = 'toc nofan';
+    $('body')[0].className = 'go toc';
+       $.publish('return-to-grid');
   } else {
     firstTime && tocToDemos();
     $('#body').addClass('show open');
@@ -247,3 +266,48 @@ $(window).bind('hashchange', function(e, firstTime) {
 });
 
 $(window).trigger('hashchange', [true]);
+
+
+$('a#boxtrigger').click(function(){
+    
+    var boxes = $('div.box');
+    var trigger = $(this);
+    
+    $('.controlbar').animate({'scrollTop': '+=' + UI.boxHeight }, function(){
+        // if we've scrolled up all the boxes so no more are invisble,
+        // kill the scroll trigger
+        if (boxes.last().offset().top - $('#container').height() + UI.boxHeight <= 0){
+            trigger.hide();
+        }
+    });
+    
+
+    return false;
+});
+
+
+
+
+
+UI.writeBoxStyles = function(){
+
+    // just making a style rule.
+    var rules = $('div.box').map(function(i, elem){
+
+        return '' + 
+        '.go div.box:nth-child(' + (i+1) + ') { ' + 
+            'left : ' + ((i % 3) * UI.boxWidth + UI.gridInitX) + 'px;' +
+            'top  : ' + ((~~(i/3)) * UI.boxHeight + UI.gridInitY) + 'px;' +
+        '}';
+
+    }).get().join('');
+    
+    $('<style>').text(rules).appendTo('head');
+};
+
+
+UI.returnToGrid = function (e) {
+  $('#stage iframe').hide().attr('src', 'about:blank');
+  $(document.body).addClass('go toc');
+  $('#body').removeClass('show open');
+}
