@@ -57,7 +57,7 @@
 {% endblock %}
 {% block pagebreadcrumb %}Reading local files in JavaScript{% endblock %}
 {% block date %}June 18, 2010{% endblock %}
-{% block updated %}November 8, 2010{% endblock %}
+{% block updated %}December 21, 2010{% endblock %}
 
 {% block browsersupport %}
 <span class="opera"></span>
@@ -118,7 +118,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     var output = [];
     for (var i = 0, f; f = files[i]; i++) {
       output.push('&lt;li&gt;&lt;strong&gt;', f.name, '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes&lt;/li&gt;');
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate.toLocaleDateString(), '&lt;/li&gt;');
     }
     document.getElementById('list').innerHTML = '&lt;ul&gt;' + output.join('') + '&lt;/ul&gt;';
   }
@@ -150,7 +151,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     var output = [];
     for (var i = 0, f; f = files[i]; i++) {
       output.push('&lt;li&gt;&lt;strong&gt;', f.name, '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes&lt;/li&gt;');
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate.toLocaleDateString(), '&lt;/li&gt;');
     }
     document.getElementById('list').innerHTML = '&lt;ul&gt;' + output.join('') + '&lt;/ul&gt;';
   }
@@ -463,7 +465,10 @@ example1.handleFileSelect = function(evt) {
   var files = evt.target.files;
   var output = [];
   for (var i = 0, f; f = files[i]; i++) {
-    output.push('<li><strong>', f.name, '</strong> (', f.type || 'n/a', ') - ', f.size, ' bytes</li>');
+    output.push('<li><strong>', f.name, '</strong> (', f.type || 'n/a', ') - ',
+                f.size, ' bytes, last modified: ',
+                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                '</li>');
   }
   $('file_list').innerHTML = '<ul>' + output.join('') + '</ul>';
 }
@@ -483,7 +488,9 @@ example2.onDragFileDrop = function(evt) {
   var output = [];
   for (var i = 0, f; f = files[i]; i++) {
     output.push('<li><strong>', f.name, '</strong> (', f.type || 'n/a', ') - ',
-                f.size, ' bytes</li>');
+                f.size, ' bytes, last modified: ',
+                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                '</li>');
   }
   $('file_list2').innerHTML = '<ul>' + output.join('') + '</ul>';
 }
