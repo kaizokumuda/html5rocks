@@ -27,9 +27,7 @@
   <link rel="stylesheet" href="/static/css/base.css" />
   <link rel="stylesheet" href="/static/css/prettify.css" />
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
-  <script src="/static/js/modernizr-1.6.min.js"></script>
-  <script src="/static/js/prettify.js"></script>
-  <script>
+  <script defer>
     function isCompatible() {
       {% block iscompatible %}
       return null;
@@ -45,24 +43,24 @@
     </div>
   </div>
   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script src="/static/js/modernizr-1.6.min.js"></script>
+  <script src="/static/js/prettify.js"></script>
   <script type="text/javascript">
-    google.load('search', '1');
-    google.setOnLoadCallback(function() {
-      google.search.CustomSearchControl.attachAutoCompletion(
-        '007435387813601113811:ef_kuvvx6a8',
-        document.getElementById('q'),
-        'cse-search-box');
-    });
     (function() {
+      google.load('search', '1');
+      google.setOnLoadCallback(function() {
+        google.search.CustomSearchControl.attachAutoCompletion(
+          '007435387813601113811:ef_kuvvx6a8',
+          document.getElementById('q'),
+          'cse-search-box');
+      });
+
       document.getElementById('q').addEventListener('keydown', function(e) {
         if (e.keyCode == 13) { // enter key
           document.getElementById('cse-search-box').submit();
         }
       }, false);
-    })();
-  </script>
-  <script>
-    (function() {
+
       var lis = document.querySelectorAll('header nav li');
       var i = lis.length;
       while (i--) {
@@ -73,36 +71,34 @@
         }
       }
 
-      prettyPrint();
-
       if (isCompatible() === false) {
         document.getElementById('notcompatible').className = "";
       } else if (isCompatible() === true) {
         document.getElementById('compatible').className = "";
       }
 
-      window.addEventListener && document.querySelector('#title').addEventListener('click', function() {
+      window.addEventListener && document.querySelector('#title').addEventListener('click', function(e) {
         window.location = '/';
       }, false);
-      
-      
-      // kill those feedburner and marketing tracking arguments cuz they're ugly. 
-      if (/^\?utm_/.test(location.search) && history.replaceState){  
-        history.replaceState({},'', location.href.replace(/\?utm_.*/,'')); 
+
+      // Kill feedburner and marketing tracking arguments cuz they're ugly.
+      if (/^\?utm_/.test(location.search) && history.replaceState) {
+        history.replaceState({}, '', location.href.replace(/\?utm_.*/, ''));
       }
-      
+
+      prettyPrint();
     })();
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-15028909-1']);
     _gaq.push(['_trackPageview']);
     (function() {
-     var ga = document.createElement('script');
-     ga.type = 'text/javascript';
-     ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-     var s = document.getElementsByTagName('script')[0];
-     s.parentNode.insertBefore(ga, s);
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
     })();
   </script>
 </body>
