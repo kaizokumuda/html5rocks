@@ -377,6 +377,14 @@ var tempJSON = [
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-flexbox/",
         "tutorial": "http://www.html5rocks.com/tutorials/flexbox/quick/"
+      },  
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/shadow.html",
+        "files": ["samples/css/html5/shadow.css"],
+        "editor": "css",
+        "sampleName": "Text and Box Shadow",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/2010/WD-css3-text-20101005/#text-shadow",
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
