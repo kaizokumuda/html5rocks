@@ -3144,8 +3144,12 @@ div {
           if (typeof id == 'string') { return doc.getElementById(id); }
           return id;
         };
-
+        
         var query = function(query, root) {
+          return queryAll(query, root)[0];
+        }
+        
+        var queryAll = function(query, root) {
           if (!query) { return []; }
           if (typeof query != 'string') { return toArray(query); }
           if (typeof root == 'string') {
@@ -3301,7 +3305,7 @@ div {
             }
           },
           _showFrames: function() {
-            var frames = query('iframe', this._node);
+            var frames = queryAll('iframe', this._node);
             function show() {
               frames.forEach(function(el) {
                 var _src = el.getAttribute('_src');
@@ -3313,7 +3317,7 @@ div {
             setTimeout(show, 0);
           },
           _hideFrames: function() {
-            var frames = query('iframe', this._node);
+            var frames = queryAll('iframe', this._node);
             function hide() {
               frames.forEach(function(el) {
                 var _src = el.getAttribute('_src');
@@ -3335,7 +3339,7 @@ div {
             this._buildList = [];
             if (disableBuilds) { return; }
             if (this._node) {
-              this._buildList = query('[data-build] > *', this._node);
+              this._buildList = queryAll('[data-build] > *', this._node);
             }
             this._buildList.forEach(function(el) {
               addClass(el, 'to-build');
@@ -3394,6 +3398,13 @@ div {
             this.current = h;
           } catch (e) { /* squeltch */ }
           this.current = (!this.current) ? "landing-slide" : this.current.replace('#', '');
+          if (!query('#' + this.current)) {
+            // if this happens is very likely that someone is coming from
+            // a link with the old permalink format, i.e. #slide24
+            alert('The format of the permalinks have recently changed. If you are coming ' +
+                   'here from an old external link it\'s very likely you will land to the wrong slide');
+            this.current = "landing-slide";
+          }
           var _t = this;
           doc.addEventListener('keydown', 
               function(e) { _t.handleKeys(e); }, false);
@@ -3403,18 +3414,18 @@ div {
               function(e) { _t.handleTouchEnd(e); }, false);
           window.addEventListener('popstate', 
               function(e) { if (e.state) { _t.go(e.state); } }, false);
-          query('#left-init-key')[0].addEventListener('click',
+          query('#left-init-key').addEventListener('click',
               function() { _t.next(); }, false);
           this._update();
         };
 
         SlideShow.prototype = {
-          _presentationCounter: query('#presentation-counter')[0],
+          _presentationCounter: query('#presentation-counter'),
           _slides: [],
           _getCurrentIndex: function() {
             var me = this;
             var slideCount = null;
-            query('.slide').forEach(function(slide, i) {
+            queryAll('.slide').forEach(function(slide, i) {
               if (slide.id == me.current) {
                 slideCount = i;
               }
@@ -3449,13 +3460,13 @@ div {
           current: 0,
           next: function() {
             if (!this._slides[this._getCurrentIndex() - 1].buildNext()) {
-              var next = query('#' + this.current + ' + .slide')[0];
+              var next = query('#' + this.current + ' + .slide');
               this.current = (next) ? next.id : this.current;
               this._update();
             }
           },
           prev: function() {
-            var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')')[0];
+            var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')');
             this.current = (prev) ? prev.id : this.current;
             this._update();
           },
@@ -3467,7 +3478,7 @@ div {
           _notesOn: false,
           showNotes: function() {
             var isOn = this._notesOn = !this._notesOn;
-            query('.notes').forEach(function(el) {
+            queryAll('.notes').forEach(function(el) {
               el.style.display = (notesOn) ? 'block' : 'none';
             });
           },
@@ -3475,12 +3486,12 @@ div {
             toggleClass(document.body, 'three-d');
           },
           toggleHightlight: function() {
-            var link = query('#prettify-link')[0];
+            var link = query('#prettify-link');
             link.disabled = !(link.disabled);
             sessionStorage['highlightOn'] = !link.disabled;
           },
           changeTheme: function() {
-            var linkEls = query('link.theme');
+            var linkEls = queryAll('link.theme');
             var sheetIndex = 0;
             linkEls.forEach(function(stylesheet, i) {
               if (!stylesheet.disabled) {
@@ -3531,23 +3542,23 @@ div {
         // load highlight setting from session storage, if available.
         // session storage can only store strings so we have to assume type coercion
         // for the boolean logic here
-        query('#prettify-link')[0].disabled = !(sessionStorage['highlightOn'] == 'true');
+        query('#prettify-link').disabled = !(sessionStorage['highlightOn'] == 'true');
 
         // disable style theme stylesheets
-        var linkEls = query('link.theme');
+        var linkEls = queryAll('link.theme');
         var stylesheetPath = sessionStorage['theme'] || 'css/default.css';
         linkEls.forEach(function(stylesheet) {
           stylesheet.disabled = !(stylesheet.href.indexOf(stylesheetPath) != -1);
         });
         
         // Initialize
-        var slideshow = new SlideShow(query('.slide'));
+        var slideshow = new SlideShow(queryAll('.slide'));
 
         document.addEventListener('DOMContentLoaded', function() {
-          query('.slides')[0].style.display = 'block';
+          query('.slides').style.display = 'block';
         }, false);
 
-        query('pre').forEach(function(el) {
+        queryAll('pre').forEach(function(el) {
           addClass(el, 'prettyprint');
         });
 
