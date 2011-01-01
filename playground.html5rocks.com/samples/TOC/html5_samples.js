@@ -174,7 +174,7 @@ var tempJSON = [
     "samples":[
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/dnd.html",
-        "files": ["samples/css/html5/dnd.css", "samples/js/html5/dnd.js"],
+        "files": ["samples/css/html5/dnd.css",  "samples/js/html5/dnd.js"],
         "editor": "js",
         "sampleName": "Drag and Drop",
         "tags": "",
