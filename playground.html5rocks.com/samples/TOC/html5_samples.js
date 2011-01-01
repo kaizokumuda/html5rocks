@@ -170,6 +170,20 @@ var tempJSON = [
     ]
   },
   {
+    "category":"JavaScript APIs-Native Drag and Drop",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/dnd.html",
+        "files": ["samples/css/html5/dnd.css", "samples/js/html5/dnd.js"],
+        "editor": "js",
+        "sampleName": "Drag and Drop",
+        "tags": "",
+        "spec": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html",
+        "tutorial": "http://www.html5rocks.com/tutorials/dnd/basics/"
+      }
+    ]
+  },  
+  {
     "category":"HTML",
     "samples":[
       {
