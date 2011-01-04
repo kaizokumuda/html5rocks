@@ -24,7 +24,7 @@ $(function() {
     return false;
   }
 
-  $('.profile .list-articles a').click(function(e) {
+  $('.profile .list-articles').click(function(e) {
     var $profile = $(this).closest('.profile');
     $profile.find('.back').toggleClass('active');
     $profile.find('.front').toggleClass('active');

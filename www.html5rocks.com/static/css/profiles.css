@@ -216,7 +216,10 @@ h2[itemprop="fn"] { background: #fff; }
 .list-articles {
   position: absolute;
   bottom: 10px;
+  color: #3D5C9D;
+  cursor: pointer;
 }
+
 .back {
   opacity: 0;
   display: none;
