@@ -83,7 +83,7 @@ UI.trans = {
 
 
 // tooltip 
-window.tip = {
+UI.tip = {
   over: function (e) {
     
     // hover over the invisible tooltip?
@@ -112,7 +112,7 @@ window.tip = {
 
 
 
-window.flexHeight = {
+UI.flexHeight = {
     
     initialOffset : undefined,
     firstRun: false,
@@ -125,14 +125,14 @@ window.flexHeight = {
     },
     
     setShowcaseSize : function() {
-      if (!flexHeight.firstRun) {
-        flexHeight.storeInitialTops(flexHeight.tops);
-        flexHeight.firstRun = true;
+      if (!UI.flexHeight.firstRun) {
+        UI.flexHeight.storeInitialTops(UI.flexHeight.tops);
+        UI.flexHeight.firstRun = true;
       }
 
-      var offset = flexHeight.getOffset();
+      var offset = UI.flexHeight.getOffset();
 
-      $.each(flexHeight.tops, function (sel, prop) {
+      $.each(UI.flexHeight.tops, function (sel, prop) {
         var elem = $(sel);
         var value = $.data(elem[0], 'initial');
         //log(elem[0],prop,   value, offset)
@@ -150,12 +150,12 @@ window.flexHeight = {
       });
 
       var footer = $('footer');
-      flexHeight.initialOffset = footer.offset().top + footer.height();
+      UI.flexHeight.initialOffset = footer.offset().top + footer.height();
     },
     
     getOffset : function () {
       // magic number 33 is a good looking amount of padding before bottom of window
-      var offset = $(window).height() - 33 - flexHeight.initialOffset;
+      var offset = $(window).height() - 33 - UI.flexHeight.initialOffset;
       // allow between 0 and 160 px of offset
       return Math.min(160, Math.max(0, offset));
     }
@@ -245,7 +245,7 @@ UI.returnToGrid = function (e) {
 // load iframe and all that jazz
 UI.demoChosen = function(e, forced) {
 
-  tip.out();
+  UI.tip.out();
   
   UI.lastDemo = this;
    
@@ -272,14 +272,24 @@ UI.demoChosen = function(e, forced) {
   }
   
   
-  tip.over();
+  UI.tip.over();
   
   clearTimeout(UI.demoChosen.t); // clear any stale timeouts
-  UI.demoChosen.t = setTimeout(tip.out,10*1000);
+  UI.demoChosen.t = setTimeout(UI.tip.out,10*1000);
   
 
 };
 
+
+
+
+
+
+$('.show.open div.box').live('click', UI.demoChosen);
+$.subscribe('return-to-grid',UI.returnToGrid);
+$(document).bind('webkitTransitionEnd transitionend oTransitionEnd', UI.trans.onEnd);
+$(document).ready(UI.onReady);
+$(window).load(UI.onLoad);
 
 
 
@@ -290,16 +300,6 @@ $('#boxes')
     e.preventDefault();
   });
 
-
-$('.show.open div.box').live('click', UI.demoChosen);
-
-
-
-$.subscribe('return-to-grid',UI.returnToGrid);
-
-
- 
-$(document).bind('webkitTransitionEnd transitionend oTransitionEnd', UI.trans.onEnd);
 
 
 $('#view_source').click(function () {
@@ -313,20 +313,18 @@ $('#download').click(function () {
 });
 
 
-$([document,window]).bind('ready resize', flexHeight.setShowcaseSize)
+$([document,window]).bind('ready resize', UI.flexHeight.setShowcaseSize);
 $('a#boxtrigger').click(UI.scrollDemoContainer);
 
 $(window).bind('hashchange', UI.hashChange);
-$(window).trigger('hashchange', [true]);
 
 
 $("#info").hoverIntent({
-  over: tip.over,
-  out: tip.out,
+  over: UI.tip.over,
+  out: UI.tip.out,
   timeout: 500
 });
 
-$(document).ready(UI.onReady);
-$(window).load(UI.onLoad);
 
 
+$(window).trigger('hashchange', [true]);
