@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2010 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -131,6 +132,8 @@ class ContentHandler(webapp.RequestHandler):
     if not 'category' in template_data:
       template_data['category'] = 'this feature'
 
+    # Add CORS support entire site.
+    self.response.headers.add_header('Access-Control-Allow-Origin', '*')
     self.response.headers.add_header('X-UA-Compatible', 'IE=Edge,chrome=1')
     self.response.out.write(
         webapp.template.render(template_path, template_data))
@@ -180,8 +183,6 @@ class ContentHandler(webapp.RequestHandler):
       profiles = common.get_profiles()
       sorted_profiles = sorted(profiles.values(),
                                key=lambda profile:profile['name']['family'])
-      # Add CORS to profiles index.
-      self.response.headers.add_header('Access-Control-Allow-Origin', '*')
       self.render(data={'sorted_profiles': sorted_profiles},
                   template_path='content/profiles.html')
     elif os.path.isfile(path):
