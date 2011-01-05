@@ -592,7 +592,8 @@ a.button, a.button:visited {
  -webkit-transition-delay: 50ms; -o-transition-delay: 50ms; -moz-transition-delay: 50ms; transition-delay: 50ms;        
 }
 
-#body.show.open {  -webkit-transform: translateZ(0); } /* hack for hardware acelleration */
+#body.show.open,
+body.toc #boxes {  -webkit-transform: translateZ(0); } /* hack for hardware acelleration */
 
 .open .controlbar:hover { 
     -webkit-transform: translate(0px, 0px);
