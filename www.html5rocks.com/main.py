@@ -180,6 +180,8 @@ class ContentHandler(webapp.RequestHandler):
       profiles = common.get_profiles()
       sorted_profiles = sorted(profiles.values(),
                                key=lambda profile:profile['name']['family'])
+      # Add CORS to profiles index.
+      self.response.headers.add_header('Access-Control-Allow-Origin', '*')
       self.render(data={'sorted_profiles': sorted_profiles},
                   template_path='content/profiles.html')
     elif os.path.isfile(path):
