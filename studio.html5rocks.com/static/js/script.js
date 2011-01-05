@@ -26,12 +26,9 @@ window.UI = {
   boxHeight : 190,
   
   lastDemo : undefined, // keeping track of last demo opened
-  boxes    : undefined,
+  boxes    : $('div.box'),
   
-  onReady : function(){
-    
-      UI.boxes = $('div.box');
-      
+  onReady : function(){ 
       // update the text to represent how many demos
       $('#howmany').text(UI.numbers[UI.boxes.length]); 
   },
@@ -64,6 +61,8 @@ UI.trans = {
     ], // eo UI.trans.fnQueue[]
     
     onEnd : function f(e) {
+
+//console.log( $('body')[0].className, 'sup');
 
       if ($('body').hasClass('toc') || $('#body').hasClass('open')) {
         return;
@@ -149,7 +148,7 @@ UI.flexHeight = {
       $.each(tops, function (sel, prop) {
         var elem = $(sel); //log( elem.css(prop))
         var value = elem.css(prop);
-        value = (value === 'auto' || !value) ? 491 : value; // fix for controlbar position
+        value = (sel === '.controlbar') ? 491 : value; // fix for controlbar position
         $.data(elem[0], 'initial', value);
       });
 
@@ -179,10 +178,12 @@ UI.tocToDemos = function (e) {
   $(document.body).removeClass('go toc');
   
   // if we dont have transitionEnd events..
-  if (!Modernizr.csstransitions){
+  //if (!Modernizr.csstransitions){
+    
+  setTimeout(function(){
     UI.trans.onEnd(true);
     UI.trans.onEnd(true);
-  }
+  }, 700);
 };
 
 
@@ -236,7 +237,7 @@ UI.writeBoxStyles = function(){
         
     // then in open mode, we gotta keep them all visible with overlap.
     'body .show.open div.box { ' +
-        'margin-left: ' +  -(6.3333*UI.boxes.length + 6) + 'px;' +
+        'margin-left: ' +  -(6.666*UI.boxes.length + 12) + 'px;' +
     '}';
     
     $('<style>').text(rules).appendTo('head');
