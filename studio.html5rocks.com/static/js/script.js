@@ -29,7 +29,11 @@ window.UI = {
   boxes    : undefined,
   
   onReady : function(){
+    
       UI.boxes = $('div.box');
+      
+      // update the text to represent how many demos
+      $('#howmany').text(UI.numbers[UI.boxes.length]); 
   },
   
   onLoad : function(){
@@ -201,14 +205,13 @@ UI.hashChange = function(e, firstTime) {
 };
 
 UI.scrollDemoContainer = function(){
-    
-    var boxes = $('div.box');
+
     var trigger = $(this);
     
     $('.controlbar').animate({'scrollTop': '+=' + UI.boxHeight }, function(){
         // if we've scrolled up all the boxes so no more are invisble,
         // kill the scroll trigger
-        if (boxes.last().offset().top - $('#container').height() + UI.boxHeight <= 0){
+        if ($('div.box').last().offset().top - $('#container').height() + UI.boxHeight <= 0){
             trigger.hide();
         }
     });
@@ -220,8 +223,8 @@ UI.scrollDemoContainer = function(){
 
 UI.writeBoxStyles = function(){
 
-    // just making a style rule.
-    var rules = $('div.box').map(function(i, elem){
+    // we position the boxes dynamically, so it scales with more. 
+    var rules = UI.boxes.map(function(i, elem){
 
         return '' + 
         '.go div.box:nth-child(' + (i+1) + ') { ' + 
@@ -229,7 +232,12 @@ UI.writeBoxStyles = function(){
             'top  : ' + ((~~(i/3)) * UI.boxHeight + UI.gridInitY) + 'px;' +
         '}';
 
-    }).get().join('');
+    }).get().join('') +
+        
+    // then in open mode, we gotta keep them all visible with overlap.
+    'body .show.open div.box { ' +
+        'margin-left: ' +  -(6.3333*UI.boxes.length + 6) + 'px;' +
+    '}';
     
     $('<style>').text(rules).appendTo('head');
 };
@@ -284,7 +292,6 @@ UI.demoChosen = function(e, forced) {
 
 
 
-
 $('.show.open div.box').live('click', UI.demoChosen);
 $.subscribe('return-to-grid',UI.returnToGrid);
 $(document).bind('webkitTransitionEnd transitionend oTransitionEnd', UI.trans.onEnd);
@@ -328,3 +335,8 @@ $("#info").hoverIntent({
 
 
 $(window).trigger('hashchange', [true]);
+
+
+
+UI.numbers = {'9':'nine', '10':'ten', '11':'eleven', '12':'twelve', '13':'thirteen', '14':'fourteen', '15':'fifteen', '16':'sixteen', '17':'seventeen', '18':'eighteen'};
+

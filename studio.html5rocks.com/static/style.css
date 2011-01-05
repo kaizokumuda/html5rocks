@@ -448,7 +448,8 @@ div.box {
   top: 0px;
 }
 a#boxtrigger { display:none;}
-.toc a#boxtrigger { position:absolute; background: #ccc; bottom: 0; display: block; text-align:center; width: 600px; padding: 10px; }
+.toc a#boxtrigger { position:absolute; background: #ccc; bottom: 0; display: block; text-align:center; width: 600px; padding: 10px; 
+  display:none; /* kill for now */ }
 .show #boxes { height: 120px; /* width: 968px; */ }
 
 
@@ -466,9 +467,13 @@ a#boxtrigger { display:none;}
   -webkit-border-radius: 10px;
      -moz-border-radius: 10px;
           border-radius: 10px;
-                
-  margin-left: -92px;  /* magic number based on number of boxes */
+               
+              
+  margin-left: -92px;  /* magic number based on number of boxes, this will be overwritten by UI.writeBoxStyles() */
+                       /* -63 when its 9, -92 when it's 12, thus margin-left: -6.33*boxes.length - 24      */
 }
+
+
     
 /* hover effects */
 .show.open div.box:hover {
@@ -574,21 +579,20 @@ a.button, a.button:visited {
 .box span {  display:block; text-align:left; text-shadow: 1px 1px 1px rgba(61,92,157,0.5);  }
 
 .open .controlbar { 
-    -webkit-transform: translate(0px, 70px);
+ -webkit-transform: translate(0px, 70px);
     -moz-transform: translate(0px, 70px);
-    -o-transform: translate(0px, 70px);
-    transform: translate(0px, 70px);
-   
-    
+      -o-transform: translate(0px, 70px);
+         transform: translate(0px, 70px);
+ 
     -moz-transition: -moz-transform 0.5s ease-in;    
       -o-transition: -o-transform 0.5s ease-in;  
  -webkit-transition: -webkit-transform 0.5s ease-in;  
          transition: transform 0.5s ease-in;
          
-          -webkit-transition-delay: 50ms; -o-transition-delay: 50ms; -moz-transition-delay: 50ms; transition-delay: 50ms;
-         
-         
+ -webkit-transition-delay: 50ms; -o-transition-delay: 50ms; -moz-transition-delay: 50ms; transition-delay: 50ms;        
 }
+
+#body.show.open {  -webkit-transform: translateZ(0); } /* hack for hardware acelleration */
 
 .open .controlbar:hover { 
     -webkit-transform: translate(0px, 0px);
