@@ -67,18 +67,20 @@
     </li>
   </ul>
 
-  <h3 id="toc-flags">Browser flags</h3>
+  <h3 id="toc-support">Browser support &amp; storage limitations</h3>
 
   <p>At the time of writing this article, Google Chrome 9+ has the only working implementation of the
-  FileSystem API. Since the browser does not yet have a dedicated UI for file
+  FileSystem API. Since a dedicated browser UI does not yet exist for file/quota
   management, the API cannot be used without running Chrome with the
-  <code>--unlimited-quota-for-files</code> flag. You may also
-  need the <code>--allow-file-access-from-files</code> flag if you're debugging
+  <code>--unlimited-quota-for-files</code> flag (Note: if you're building an app
+  or extension for the Chrome Web Store, the <code>unlimitedStorage</code> <a href="http://code.google.com/chrome/extensions/manifest.html">manifest file</a>
+  permission will suffice). This means there is currently no storage cap in place for apps,
+  but that will change. Users will eventually receive a permission
+  dialog to grant, deny, or increase storage for an app.
+
+  <p>You may need the <code>--allow-file-access-from-files</code> flag if you're debugging
   your app from <code>file://</code>. Not using these flags will result in
-  a <code>SECURITY_ERR</code> or <code>QUOTA_EXCEEDED_ERR</code> FileError.
-  However, if you're building an app or extension for the Chrome Web Store, the
-  <code>unlimitedStorage</code> <a href="http://code.google.com/chrome/extensions/manifest.html">manifest file</a>
-  permission will suffice.</p>
+  a <code>SECURITY_ERR</code> or <code>QUOTA_EXCEEDED_ERR</code> FileError.</p>
 
   <h2 id="toc-requesting">Requesting a file system</h2>
 
@@ -158,6 +160,9 @@ function errorHandler(e) {
 }
 </pre>
 
+  <p>Granted, this error callback is very generic, but you get the idea. You'll want to
+  provided human-readable messages to users instead.</p>
+
   <h2 id="toc-file">Working with files</h2>
 
   <p>Files in the sandboxed environment are represented by the
@@ -168,8 +173,8 @@ function errorHandler(e) {
 
   <p id="fileentry">Properties and methods of <code>FileEntry</code>:</p>
   <pre class="prettyprint">
-fileEntry.isFile == true
-fileEntry.isDirectory == false
+fileEntry.isFile === true
+fileEntry.isDirectory === false
 fileEntry.name
 fileEntry.fullPath
 ...
@@ -202,7 +207,7 @@ function onInitFs(fs) {
 
   <b>fs.root.getFile</b>('log.txt', <b>{create: true, exclusive: true}</b>, function(fileEntry) {
 
-    // fileEntry.isFile == true
+    // fileEntry.isFile === true
     // fileEntry.name == 'log.txt'
     // fileEntry.fullPath == '/log.txt'
 
@@ -388,7 +393,7 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
 
   <p>Properties and methods of <code>DirectoryEntry</code>:</p>
   <pre class="prettyprint">
-dirEntry.isDirectory == true
+dirEntry.isDirectory === true
 // See the section on <a href="#toc-fileentry">FileEntry</a> for other inherited properties/methods.
 ...
 
@@ -595,6 +600,75 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
   <code>cat</code>, ...) by abstracting the FileSystem API. To add files, drag
   and drop them from your desktop onto the terminal below.</p>
   <iframe id="terminal-iframe" src="terminal.html"></iframe>
+
+  <h2 id="toc-usecases">Use Cases</h2>
+
+  <p>There are several <a href="/tutorials#offline,storage">storage options</a>
+  available in HTML5, but the FileSystem is different in that it aims to satisfy
+  client-side storage use cases, not well served by databases. Generally, these
+  are applications that deal with large binary blobs and/or share data with
+  applications outside of the context of the browser.</p>
+
+  <p>The specification lists several use cases:</p>
+  <ol>
+    <li>Persistent uploader
+      <ul>
+      <li>When a file or directory is selected for upload, it copies the files
+      into a local sandbox and uploads a chunk at a time.</li>
+      <li>Uploads can be restarted after browser crashes, network interruptions, etc.</li>
+      </ul>
+    </li>
+    <li>Video game, music, or other app with lots of media assets
+      <ul>
+      <li>It downloads one or several large tarballs, and expands them locally
+      into a directory structure.</li>
+      <li>The same download works on any operating system.</li>
+      <li>It can manage prefetching just the next-to-be-needed assets in
+      the background, so going to the next game level or activating a new
+      feature doesn't require waiting for a download.</li>
+      <li>It uses those assets directly from its local cache, by direct
+      file reads or by handing local URIs to image or video tags, WebGL asset loaders, etc.</li>
+      <li>The files may be of arbitrary binary format.</li>
+      <li>On the server side, a compressed tarball will often be much
+      smaller than a collection of separately-compressed files. Also, 1
+      tarball instead of 1000 little files will involve fewer seeks, all
+      else being equal.</li>
+      </ul>
+    </li>
+    <li>Audio/Photo editor with offline access or local cache for speed
+      <ul>
+      <li>The data blobs are potentially quite large, and are read-write.</li>
+      <li>It may want to do partial writes to files (ovewriting just the
+      ID3/EXIF tags, for example).</li>
+      <li>The ability to organize project files by creating directories would be useful.</li>
+      <li>Edited files should be accessable by client-side applications [iTunes, Picasa].
+      </li></ul>
+    </li>
+    <li>Offline video viewer
+      <ul>
+      <li>It downloads large files (&gt;1GB) for later viewing.</li>
+      <li>It needs efficient seek + streaming.</li>
+      <li>It must be able to hand a URI to the video tag.</li>
+      <li>It should enable access to partly-downloaded files e.g. to let
+      you watch the first episode of the DVD even if your download didn't
+      complete before you got on the plane.</li>
+      <li>It should be able to pull a single episode out of the middle of
+      a download and give just that to the video tag.</li>
+      </ul>
+    </li>
+    <li>Offline Web Mail Client
+      <ul>
+      <li>Downloads attachments and stores them locally.</li>
+      <li>Caches user-selected attachments for later upload.</li>
+      <li>Needs to be able to refer to cached attachments and image
+      thumbnails for display and upload.</li>
+      <li>Should be able to trigger the UA's download manager just as if
+      talking to a server.</li>
+      <li>Should be able to upload an email with attachments as a
+      multipart post, rather than sending a file at a time in an XHR.</li>
+      </ul>
+    </li>
+  </ol>
 
   <h2 id="toc-references">References</h2>
   <ul>
