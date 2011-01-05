@@ -91,8 +91,9 @@ button {  width: auto; overflow: visible; }
 /* #444 looks better than black: http://twitter.com/H_FJ/statuses/11800719859 */ 
 body, select, input, textarea { color:#444; }
  
-/* http://www.aestheticallyloyal.com/public/optimize-legibility/ */ 
-h1,h2,h3,h4,h5,h6 { font-weight: bold; text-rendering: optimizeLegibility; }
+h1,h2,h3,h4,h5,h6 { font-weight: bold;  }
+
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
 
 strong, th { font-weight: bold; }
 
