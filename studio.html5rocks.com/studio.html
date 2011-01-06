@@ -156,6 +156,24 @@
             
           </div>
           
+          
+          
+          <div class="box app"><a href="/samples/video-cube/index.html"><img src="static/img/cube.jpg"><span>Video Cube</span></a>
+            <p>Build a cube of ASCII reflecting a video in realtime and reposition the view.</p>
+            <ul>
+              <li>HTML5 video
+              <li>Canvas  
+              <li>CSS 2D Transforms
+              <li>CSS3 mask image
+
+            <script>
+              supported(function() {
+                return Modernizr.video && Modernizr.canvas && Modernizr.transforms;
+              });
+            </script>
+          </div>
+
+          
           <div class="box app"><a href="/samples/css3-col-layout/index.html"><img src="static/img/multicolumns.png"><span>Newspaper Columns</span></a>
             <p>A newspaper-like layout provided by CSS3. Adjust the sliders to understand the styles.</p>
             <ul>
@@ -250,22 +268,6 @@
 
 
 
-          <div class="box app"><a href="/samples/video-cube/index.html"><img src="static/img/cube.jpg"><span>Video Cube</span></a>
-            <p>Build a cube of ASCII reflecting a video in realtime and reposition the view.</p>
-            <ul>
-              <li>HTML5 video
-              <li>Canvas  
-              <li>CSS 2D Transforms
-              <li>CSS3 mask image
-
-            <script>
-              supported(function() {
-                return Modernizr.video && Modernizr.canvas && !!window.WebKitCSSMatrix;
-              });
-            </script>
-          </div>
-
-        
 
         </div>
       </section> <!-- eo section.controlbar -->
