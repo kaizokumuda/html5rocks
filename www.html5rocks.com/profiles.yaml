@@ -201,3 +201,22 @@ google: ernestd
 twitter: edr
 email: ernestd@google.com
 
+---
+
+id: danielmoore
+name:
+ given: Daniel X.
+ family: Moore
+org:
+ name: STRd6
+ unit: Pixel Relations
+address:
+ locality: Sunnyvale
+ region: California
+ country: USA
+ lat:  37.3688889
+ lon: -122.0352778
+homepage: http://strd6.com
+google: 104138221626061560232
+twitter: STRd6
+email: yahivin@gmail.com
