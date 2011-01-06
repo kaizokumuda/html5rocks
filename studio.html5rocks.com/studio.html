@@ -91,6 +91,18 @@
                 
           </div>
           
+         <div class="box app"><a href="/samples/websocket-ascii-video/index.html"><img src="static/img/websocketascii.jpg"><span>ASCII Art</span></a>
+            <p>Synchronized ASCII art video via WebSockets. All current viewers see the same video frame at the same time. Move your mouse over the video to change the color.</p>
+            <ul>
+              <li>HTML5 WebSockets
+
+            <script>
+              supported(function() {
+                return Modernizr.websockets;
+              });
+            </script>
+          </div>
+  
           
           <div class="box app"><a href="/samples/svg-puzzle/index.html"><img src="static/img/svgpuzzle.jpg"><span>SVG Puzzle</span></a>
             <p>Solve the puzzle! Hover over the correct area to place tiles, click to rotate.</p>
