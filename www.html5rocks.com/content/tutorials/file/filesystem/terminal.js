@@ -14,12 +14,17 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
   var histtemp_ = 0;
 
   // Always force text cursor to end of input line.
-  cmdLine_.addEventListener('click', function(e) {
-    this.value = this.value;
-  }, false);
+  cmdLine_.addEventListener('click', inputTextClick_, false);
 
-  // Handle up/down key presses for shell history.
-  cmdLine_.addEventListener('keydown', function(e) { // Tab needs to be keydown.
+  // Handle up/down key presses for shell history and enter for new command.
+  cmdLine_.addEventListener('keydown', historyHandler_, false);
+  cmdLine_.addEventListener('keydown', processNewCommand_, false);
+
+  function inputTextClick_(e) {
+    this.value = this.value;
+  }
+
+  function historyHandler_(e) { // Tab needs to be keydown.
 
     if (history_.length) {
       if (e.keyCode == 38 || e.keyCode == 40) {
@@ -47,9 +52,10 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
         this.value = this.value; // Sets cursor to end of input.
       }
     }
-  }, false);
+  }
 
-  cmdLine_.addEventListener('keydown', function(e) { // up/down need keydown
+  function processNewCommand_(e) {
+
     if (e.keyCode == 9) { // tab
       e.preventDefault();
       // TODO(ericbidelman): Implement tab suggest.
@@ -297,7 +303,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
       this.value = ''; // Clear/setup line for next input.
     }
-  }, false);
+  }
 
   function formatColumns_(entries) {
     var maxName = entries[0].name;

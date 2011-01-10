@@ -352,4 +352,14 @@ a[rel='external'] {
   padding-right: 14px;
 }
 
-
+#html5badge {
+  float: right;
+  padding: 10px 0 5px 17px;
+  -webkit-box-shadow: 1px 1px 10px #ccc inset;
+  -moz-box-shadow: 1px 1px 10px #ccc inset;
+  -o-box-shadow: 1px 1px 10px #ccc inset;
+  box-shadow: 1px 1px 10px #ccc inset;
+  -moz-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
+}
