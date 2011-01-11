@@ -218,7 +218,7 @@ body { background: #eee; font: normal normal normal 14px/normal Arial; color: #4
 
 
 
-#container { width: 990px; margin: 0 auto; height: 605px;
+#container { width: 990px; margin: 0 auto; height: 705px;
     position:relative; background: white; border: 1px solid #aaa; border-top: 0; 
     
     -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
@@ -398,8 +398,7 @@ div.box { width: 140px; height: 140px; position: absolute;
     
 }
 
-.controlbar {  top: 491px; /* this value must match in script.js */
-  height: 163px; border:0; border-radius: 15px 15px 0 0; width: 988px;  }
+.controlbar {  top: 591px;  height: 163px; border:0; border-radius: 15px 15px 0 0; width: 988px;  }
 
 .show .controlbar, .show .itembar { display:block; position:absolute; border: 1px solid rgba(180,180,180,.5); 
     background-color: #222;  /* #777781 */ 
@@ -408,7 +407,7 @@ div.box { width: 140px; height: 140px; position: absolute;
 .toc .controlbar {
   top: 0;
   width: 610px;
-  height: 670px;
+  height: 708px;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -567,10 +566,8 @@ a.button, a.button:visited {
 /* the stage and iframe */
 #stage, .toc #stage { display: none;}
 .show #stage {display: block;}
-#stage iframe { width: 100%; min-height: 580px; height: 580px; display: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+#stage iframe { width: 100%; min-height: 680px; height: 680px; display: none;
+                -webkit-user-select: none -moz-user-select: none; user-select: none;
 }
 
 
@@ -608,7 +605,7 @@ body.toc #boxes {  -webkit-transform: translateZ(0); } /* hack for hardware acel
 
 
 footer {   width: 880px; margin: 0 auto; font-family: sans-serif;
-           position:absolute; top: 636px; left: 50%; margin-left: -440px;}
+           position:absolute; top: 736px; left: 50%; margin-left: -440px;}
 
 .madeby { float: right; margin: 0;}
 .madeby img {

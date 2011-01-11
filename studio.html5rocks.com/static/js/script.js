@@ -115,56 +115,6 @@ UI.tip = {
 
 
 
-UI.flexHeight = {
-    
-    initialOffset : undefined,
-    firstRun: false,
-    
-    tops : {
-      '#stage iframe': 'height',
-      '#container': 'height',
-      '.controlbar': 'top',
-      'footer': 'top'
-    },
-    
-    setShowcaseSize : function() {
-      if (!UI.flexHeight.firstRun) {
-        UI.flexHeight.storeInitialTops(UI.flexHeight.tops);
-        UI.flexHeight.firstRun = true;
-      }
-
-      var offset = UI.flexHeight.getOffset();
-
-      $.each(UI.flexHeight.tops, function (sel, prop) {
-        var elem = $(sel);
-        var value = $.data(elem[0], 'initial');
-        //log(elem[0],prop,   value, offset)
-        elem.css(prop, parseFloat(value) + offset + 'px')
-      });
-
-    },
-    
-    storeInitialTops : function (tops) {
-      $.each(tops, function (sel, prop) {
-        var elem = $(sel); //log( elem.css(prop))
-        var value = elem.css(prop);
-        value = (sel === '.controlbar') ? 491 : value; // fix for controlbar position
-        $.data(elem[0], 'initial', value);
-      });
-
-      var footer = $('footer');
-      UI.flexHeight.initialOffset = footer.offset().top + footer.height();
-    },
-    
-    getOffset : function () {
-      // magic number 33 is a good looking amount of padding before bottom of window
-      var offset = $(window).height() - 33 - UI.flexHeight.initialOffset;
-      // allow between 0 and 160 px of offset
-      return Math.min(160, Math.max(0, offset));
-    }
-    
-    
-};
 
 
 
@@ -321,7 +271,6 @@ $('#download').click(function () {
 });
 
 
-$([document,window]).bind('ready resize', UI.flexHeight.setShowcaseSize);
 $('a#boxtrigger').click(UI.scrollDemoContainer);
 
 $(window).bind('hashchange', UI.hashChange);
