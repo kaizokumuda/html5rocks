@@ -358,7 +358,7 @@ var MA = new function() {
       if (diff < 0) {
         diff *= -1;
       }
-      return diff < 0.01;
+      return diff < 0.03;
     }
 
     function dist(a, b) {
@@ -378,7 +378,7 @@ var MA = new function() {
 
         //$('body').css('background-color','#999').animate({'background-color':'#000'}, 300);
 
-        hintOpacity -= 1.5;
+        hintOpacity -= 0.7; /* darker each time you click */
         hintOpacity = (hintOpacity >= 0) ? hintOpacity : 0;
         setAttr(hintImg, 'opacity',hintOpacity/10);
 

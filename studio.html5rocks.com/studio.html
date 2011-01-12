@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
   <link rel="stylesheet" href="/static/style.css" />
   <script src="static/js/modernizr-1.6.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script src="static/js/jquery-git.js"></script>
   <script>
     function supported(fn) {
       var scripts = document.querySelectorAll('script');
@@ -16,13 +16,13 @@
     }
   </script>
 </head>
-<body>
+<body class="toc">
 
   <div id="container">
     <header>
 
     </header>
-    <div id="body" class="toc">
+    <div id="body">
 
       <div id="stage">
         <div class="itembar">
@@ -43,7 +43,7 @@
 
         </div>
         <iframe src="about:blank" allowtransparency="yes"></iframe>
-      </div>
+      </div> <!-- eo #stage -->
 
       <aside>
         <h1 id="title"><span class="normal">HTML</span><span class="five">5</span><span class="rocks">Studio</span></h1> 
@@ -56,7 +56,7 @@
           <li>Use it in your own work.
         </ul>
 
-        <p>The HTML5 Studio has nine demos that show off some fanciful sides of HTML5, CSS3 and friends.</p> 
+        <p>The HTML5 Studio has <span id="howmany">twelve</span> demos that show off some fanciful sides of HTML5, CSS3 and friends.</p> 
 
         <p>Peek around, look under the covers at the source, and feel free to reuse the code in your own applications and sites.</p>
 
@@ -71,6 +71,104 @@
           
         </div> -->
         <div id="boxes">
+          
+          
+          
+          
+          <div class="box app"><a href="/samples/globe/index.html"><img src="static/img/globe.jpg"><span>WebGL Globe</span></a>
+            <p>A WebGL sphere of news stories. Open stories by clicking. When you find the video, hit <cmd>p</cmd> to play.</p>
+            <ul>
+              <li>WebGL
+              <li>CSS3 2D transforms
+              <li>CSS3 transitions
+              <li>Webm video
+                
+            <script>
+              supported(function() {
+                return Modernizr.webgl && Modernizr.transforms;
+              });
+            </script>  
+                
+          </div>
+          
+         <div class="box app"><a href="/samples/websocket-ascii-video/index.html"><img src="static/img/websocketascii.jpg"><span>ASCII Art</span></a>
+            <p>Synchronized ASCII art video via WebSockets. All current viewers see the same video frame at the same time. Move your mouse over the video to change the color.</p>
+            <ul>
+              <li>HTML5 WebSockets
+
+            <script>
+              supported(function() {
+                return Modernizr.websockets;
+              });
+            </script>
+          </div>
+          
+          
+        <div class="box app"><a href="/samples/orientation/index.html"><img src="static/img/orientation.jpg"><span>Orientation Physics</span></a>
+            <p>Break up a video into lots of boxes and move them around by titling your machine.</p>
+            <ul>
+              <li>Canvas
+              <li>Device Orientation
+              <li>Video
+
+            <script>
+              supported(function() {
+                return Modernizr.canvas && Modernizr.video && Modernizr.orientation && Function.prototype.bind;
+              });
+            </script>
+          </div>
+  
+  
+          
+          <div class="box app"><a href="/samples/svg-puzzle/index.html"><img src="static/img/svgpuzzle.jpg"><span>SVG Puzzle</span></a>
+            <p>Solve the puzzle! Hover over the correct area to place tiles, click to rotate.</p>
+            <ul>
+              <li>SVG
+              <li>SVG Transforms
+              
+            <script>
+              supported(function() {
+                return Modernizr.svg;
+              });
+            </script>
+          </div>
+
+
+
+          <div class="box app"><a href="/samples/notifications-countdown/index.html"><img src="static/img/notificationtime.jpg"><span>Notification Time!</span></a>
+            <p>Schedule a countdown to a notification, like an alarm clock.</p>
+            <ul>
+              <li>Desktop Notifications
+              <li>Date.js
+   
+
+            <script>
+              supported(function() {
+                return window.webkitNotifications;
+              });
+            </script>
+          </div>
+
+          <!-- disable for now x
+
+          <div class="box app"><a href="/samples/tts/index.html"><img src="static/img/tts.jpg"><span>Speech to Speech</span></a>
+            <p>Use Chrome's speech input, get an instant transcription, then translate it, and listen to the result. Hola chica!</p>
+            <ul>
+              <li><code>&lt;input speech></code>
+              <li>Google TTS Webservice
+   
+
+            <script>
+              supported(function() {
+                return Modernizr.speechinput;
+              });
+            </script>
+          </div>
+
+          -->
+          
+          
+          
           <div class="box app"><a href="/samples/video-player/index.html"><img src="static/img/video.jpg"><span>Video PiP</span></a>
             <p>Use Picture-in-picture to swap between two video sources while enjoying a color glow effect. Custom pause, mute and progress bar.</p>
             <ul>
@@ -102,6 +200,24 @@
             </script>
             
           </div>
+          
+          
+          
+          <div class="box app"><a href="/samples/video-cube/index.html"><img src="static/img/cube.jpg"><span>Video Cube</span></a>
+            <p>Build a cube of ASCII reflecting a video in realtime and reposition the view.</p>
+            <ul>
+              <li>HTML5 video
+              <li>Canvas  
+              <li>CSS 2D Transforms
+              <li>CSS3 mask image
+
+            <script>
+              supported(function() {
+                return Modernizr.video && Modernizr.canvas && Modernizr.transforms;
+              });
+            </script>
+          </div>
+
           
           <div class="box app"><a href="/samples/css3-col-layout/index.html"><img src="static/img/multicolumns.png"><span>Newspaper Columns</span></a>
             <p>A newspaper-like layout provided by CSS3. Adjust the sliders to understand the styles.</p>
@@ -207,38 +323,13 @@
             </script>
           </div>
 
-
-          <div class="box app"><a href="/samples/websocket-ascii-video/index.html"><img src="static/img/ascii.png"><span>ASCII Art</span></a>
-            <p>See ASCII Art video via WebSockets. All current viewers see the same video frame at the same time. Move your mouse over the video to change the color.</p>
-            <ul>
-              <li>HTML5 WebSocket
-
-            <script>
-              supported(function() {
-                return Modernizr.websockets;
-              });
-            </script>
-          </div>
-
-
-          <div class="box app"><a href="/samples/svg-puzzle/index.html"><img src="static/img/svg-puzzle.png"><span>SVG Puzzle</span></a>
-            <p>An interactive puzzle built with SVG and HTML5 Audio</p>
-            <ul>
-              <li>SVG
-              <li>HTML5 audio
-            <script>
-              supported(function() {
-                return Modernizr.audio && Modernizr.svg;
-              });
-            </script>
-          </div>
-
         </div>
-      </section>
+      </section> <!-- eo section.controlbar -->
 
-    </div>
+    </div> <!-- eo #body -->
 
-  </div>
+    <a href="#" id="boxtrigger">View more</a>
+  </div> <!-- eo #container -->
 
 
    <footer>
