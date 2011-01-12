@@ -8,13 +8,15 @@
 </style>
 
  
-<video style="display: none" src="chrome_japan.webm" onended="this.play()"></video> 
+<video style="display: none" onended="this.play()">
+  <source src="chrome_japan.webm" type='video/webm; codecs="vp8, vorbis"' />
+  <source src="chrome_japan.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+  <source src="chrome_japan.ogv" type='video/ogg; codecs="theora, vorbis"' />
+</video> 
 <div class="content"></div> 
 
 
 <script src="box2d.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
-
 <script> 
 
 /*******************************************************************************
@@ -55,7 +57,6 @@ function PhysicsSimulation(width, height) {
   var gravity = new b2Vec2(0, 100);
   var sleep = false;
   this._world = new b2World(aabb, gravity, sleep);
-  console.log(this._world);
   
   this._createBarrier(0, -50, width, 50);                  // Ceiling
   this._createBarrier(0, height + 50, width, 50);          // Ground
@@ -140,11 +141,9 @@ PhysicsSimulation.prototype.step = function() {
 
 function VideoPhysicsController(parent, video, width, height) {
   this._video = video; 
-  this._proxyVideoCanPlay = $.proxy(this, '_onVideoLoaded');
-  this._proxyVideoEnded = $.proxy(this, '_onVideoEnded');
-  this._video.addEventListener('canplay', this._proxyVideoCanPlay, false);
-  this._video.addEventListener('ended', this._proxyVideoEnded, false);  
-  this._video.src = 'chrome_japan.webm';
+  this._video.addEventListener('canplay', this._onVideoLoaded.bind(this), false);
+  this._video.addEventListener('ended', this._onVideoEnded.bind(this), false);  
+  this._video.src = this._video.currentSrc;
   this._video.style.display = 'none';
   
   this._buffer = document.createElement('canvas');
@@ -155,25 +154,33 @@ function VideoPhysicsController(parent, video, width, height) {
   parent.appendChild(this._output);
   
   this._physics = new PhysicsSimulation(width, height);
-  this._proxyTilt = $.proxy(this, '_onTilt'); 
-  window.addEventListener('deviceorientation', this._proxyTilt, false);
+  window.addEventListener('deviceorientation', this._onTilt.bind(this), false);
+  window.addEventListener('MozOrientation', this._onTilt.bind(this), false);
     
   this._tiles = [];
 };
 
 VideoPhysicsController.prototype._onVideoEnded = function() {
-  console.log('ended');
+  //console.log('ended');
   this.stop();
 };
 
 VideoPhysicsController.prototype._onTilt = function(evt) {
+  
+  // For FF3.6+
+  if (!evt.gamma && !evt.beta) {
+    evt.gamma = -(evt.x * (180 / Math.PI));
+    evt.beta = -(evt.y * (180 / Math.PI));
+  }
+  
+  
   var x = Math.abs(evt.gamma) > 5 ? 200 * evt.gamma : 0;
   var y = Math.abs(evt.beta) > 10 ? 700 - (200 * -evt.beta) : 700;
   this._physics.setGravity(x, y);
 };
 
 VideoPhysicsController.prototype._onVideoLoaded = function() {
-  console.log('video loaded');
+  window.console && console.log('video loaded');
   this._buffer.width = this._video.videoWidth;
   this._buffer.height = this._video.videoHeight;
   
@@ -195,7 +202,7 @@ VideoPhysicsController.prototype._onVideoLoaded = function() {
   this._video.play();
   
   if (!this._interval) {
-    this._interval = window.setInterval($.proxy(this, '_processFrame'), 20);
+    this._interval = window.setInterval( this._processFrame.bind(this) , 20);
   }
 };
 
@@ -207,6 +214,8 @@ VideoPhysicsController.prototype.stop = function() {
   this._video.removeEventListener('ended', this._proxyVideoEnded, false);  
 
   window.removeEventListener('deviceorientation', this._proxyTilt, false);
+  window.removeEventListener('MozOrientation', this._proxyTilt, false);
+
   delete this._video;
   delete this._physics;
 };
@@ -237,22 +246,22 @@ VideoPhysicsController.prototype._processFrame = function() {
 
 var vpc = null;
 function startVideoDemo() {
-  var parent = $('.content').get(0);
-  var video = $('video').get(0);
+  var parent = document.querySelector('.content');
+  var video = document.querySelector('video');
   vpc = new VideoPhysicsController(parent, video, 750, 600);
 };
 function stopVideoDemo() {
   vpc.stop();
   delete vpc;
   vpc = null;
-  var video = $('video').get(0);
+  var video = document.querySelector('video');
   //var src = video.src;
   //video.src = src;
-  $('.content').empty();
+  document.querySelector('.content').innerHTML = '';
 };
 
-startVideoDemo();
-//stopVideoDemo();
+addEventListener('DOMContentLoaded', startVideoDemo, false);
+
 
 </script> 
 
