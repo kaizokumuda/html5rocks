@@ -47,6 +47,12 @@
 <script type="text/javascript" src="tdl/base.js"></script>
 
 <script type="text/javascript">
+
+
+if (window.parent.Modernizr && window.parent.Modernizr.webgl === false){
+  alert('Looks like you don\'t have WebGL Support. Try FF4 or Chrome beta.'); 
+}
+
 tdl.require('tdl.buffers');
 tdl.require('tdl.fast');
 tdl.require('tdl.fps');
