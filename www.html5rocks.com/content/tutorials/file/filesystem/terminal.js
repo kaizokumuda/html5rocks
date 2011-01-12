@@ -295,6 +295,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           }
       };
 
+      window.scrollTo(0, getDocHeight_());
       this.value = ''; // Clear/setup line for next input.
     }
   }, false);
@@ -437,6 +438,16 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
   function output(html) {
     output_.insertAdjacentHTML('beforeEnd', html);
+  }
+
+  // Cross-browser impl to get document's height.
+  function getDocHeight_() {
+    var d = document;
+    return Math.max(
+        Math.max(d.body.scrollHeight, d.documentElement.scrollHeight),
+        Math.max(d.body.offsetHeight, d.documentElement.offsetHeight),
+        Math.max(d.body.clientHeight, d.documentElement.clientHeight)
+    );
   }
 
   return {
