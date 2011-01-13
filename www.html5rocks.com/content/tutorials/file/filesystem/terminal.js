@@ -1,3 +1,8 @@
+var util = util || {};
+util.toArray = function(list) {
+  return Array.prototype.slice.call(list || [], 0);
+};
+
 var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
   var cmdLine_ = document.querySelector(cmdLineContainer);
   var output_ = document.querySelector(outputContainer);
@@ -115,11 +120,11 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           ls_(function(entries) {
             if (entries.length) {
               var html = formatColumns_(entries);
-              for (var i = 0, entry; entry = entries[i]; ++i) {
+              util.toArray(entries).forEach(function(entry, i) {
                 html.push(
                     '<span class="', entry.isDirectory ? 'folder' : 'file',
                     '">', entry.name, '</span><br>');
-              }
+              });
               html.push('</div>');
               output(html.join(''));
             }
@@ -301,17 +306,18 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           }
       };
 
+      window.scrollTo(0, getDocHeight_());
       this.value = ''; // Clear/setup line for next input.
     }
   }
 
   function formatColumns_(entries) {
     var maxName = entries[0].name;
-    for (var i = 0, entry; entry = entries[i]; ++i) {
+    util.toArray(entries).forEach(function(entry, i) {
       if (entry.name.length > maxName.length) {
         maxName = entry.name;
       }
-    }
+    });
 
     // If we have 3 or less entires, shorten the output container's height.
     // 15 is the pixel height with a monospace font-size of 12px;
@@ -418,10 +424,24 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
       return;
     }
 
-    // Read contents of current working directory.
-    cwd_.createReader().readEntries(function(entries) {
-      successCallback(entries);
-    }, errorHandler_);
+    // Read contents of current working directory. According to spec, need to
+    // keep calling readEntries() until length of result array is 0. We're
+    // guarenteed the same entry won't be returned again.
+    var entries = [];
+    var reader = cwd_.createReader();
+
+    var readEntries = function() {
+      reader.readEntries(function(results) {
+        if (!results.length) {
+          successCallback(entries.sort());
+        } else {
+          entries = entries.concat(util.toArray(results));
+          readEntries();
+        }
+      }, errorHandler_);
+    };
+
+    readEntries();
   }
 
   function setTheme_(theme) {
@@ -443,6 +463,16 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
   function output(html) {
     output_.insertAdjacentHTML('beforeEnd', html);
+  }
+
+  // Cross-browser impl to get document's height.
+  function getDocHeight_() {
+    var d = document;
+    return Math.max(
+        Math.max(d.body.scrollHeight, d.documentElement.scrollHeight),
+        Math.max(d.body.offsetHeight, d.documentElement.offsetHeight),
+        Math.max(d.body.clientHeight, d.documentElement.clientHeight)
+    );
   }
 
   return {
@@ -480,16 +510,13 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
     output: output,
     setTheme: setTheme_,
     addDroppedFiles: function(files) {
-      for (var i = 0, file; file = files[i]; ++i) {
-        // Capture current iteration's file in local scope for callback.
-        (function(f) {
-          cwd_.getFile(file.name, {create: true, exclusive: true}, function(fileEntry) {
-            fileEntry.createWriter(function(fileWriter) {
-              fileWriter.write(f);
-            }, errorHandler_);
+      util.toArray(files).forEach(function(file, i) {
+        cwd_.getFile(file.name, {create: true, exclusive: true}, function(fileEntry) {
+          fileEntry.createWriter(function(fileWriter) {
+            fileWriter.write(file);
           }, errorHandler_);
-        })(file);
-      }
+        }, errorHandler_);
+      });
     }
   }
 };

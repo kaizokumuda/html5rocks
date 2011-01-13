@@ -3,50 +3,8 @@
 {% block headtitle %}Tutorials{% endblock %}
 
 {% block head %}
-
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
-
   <link rel="stylesheet" href="/static/css/samples_index.css" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-  <script>
-    function clearFilter() {
-      $('.sample.hidden').removeClass('hidden');
-      $('#filter').addClass('hidden');
-      document.location.hash = '';
-    };
-
-    function filterTag(opt_tag) {
-      var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
-      document.location.hash = tag;
-      if (tag) {
-        $('.sample').addClass('hidden');
-        $.each( tag.split(','), function(i, eachtag) {
-          $('.sample span.tag:contains("' + eachtag + '")').closest('.sample').removeClass('hidden');
-        });
-        $('#filter_tag').text(tag);
-        $('#filter').removeClass('hidden');
-      }
-    };
-
-    $(document).ready(function() {
-      $('.tag').click(filterTag);
-      if (document.location.hash) {
-        // Hide all samples as soon as DOM is loaded to prevent flicker effect.
-        $('.sample').addClass('hidden');
-        filterTag(document.location.hash.substring(1));
-      }
-    });
-
-    // Adds back button support.
-    if (window.addEventListener) {
-      window.addEventListener('hashchange', function(e) {
-        filterTag(document.location.hash.substring(1));
-        if (window._gaq) {
-          _gaq.push(['_trackPageview', document.location.href]);
-        }
-      }, false);
-    }
-  </script>
 {% endblock %}
 
 {% block body %}
@@ -87,10 +45,15 @@
     <div class="tag">webfonts</div>
     <div class="tag">websockets</div>
     <div class="tag">workers</div>
+    <!-- ___H5R_FILTERS___ -->
   </aside>
 
   <div id="index">
-    <a href="http://feeds.feedburner.com/html5rocks"><img src="/static/images/feed_icon16x16.png" width="16" height="16" /></a>
+    <a href="http://feeds.feedburner.com/html5rocks">
+      <img src="/static/images/feed_icon16x16.png" width="16" height="16" />
+    </a>
+
+    <!-- ___H5R_NEW_SAMPLE___ -->
 
     <article class="sample">
       <h2 id="filesystem" data-pubdate="2011-01-04">
@@ -723,6 +686,47 @@
     </article>
 
   </div>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script>
+    function clearFilter() {
+      $('.sample.hidden').removeClass('hidden');
+      $('#filter').addClass('hidden');
+      document.location.hash = '';
+    };
+
+    function filterTag(opt_tag) {
+      var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
+      document.location.hash = tag;
+      if (tag) {
+        $('.sample').addClass('hidden');
+        $.each( tag.split(','), function(i, eachtag) {
+          $('.sample span.tag:contains("' + eachtag + '")').closest('.sample').removeClass('hidden');
+        });
+        $('#filter_tag').text(tag);
+        $('#filter').removeClass('hidden');
+      }
+    };
+
+    $(document).ready(function() {
+      $('.tag').click(filterTag);
+      if (document.location.hash) {
+        // Hide all samples as soon as DOM is loaded to prevent flicker effect.
+        $('.sample').addClass('hidden');
+        filterTag(document.location.hash.substring(1));
+      }
+    });
+
+    // Adds back button support.
+    if (window.addEventListener) {
+      window.addEventListener('hashchange', function(e) {
+        filterTag(document.location.hash.substring(1));
+        if (window._gaq) {
+          _gaq.push(['_trackPageview', document.location.href]);
+        }
+      }, false);
+    }
+  </script>
 
   {% include "../../templates/footer.html" %}
 

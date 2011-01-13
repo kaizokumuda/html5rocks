@@ -218,7 +218,7 @@ function insertVideo(video) {
 $(function(){
   
   $(document).bind('keydown keyup',function(e){
-    if (e.which == 65){  // lowercase a
+    if (e.which == 'P'.charCodeAt(0)){  // lowercase p
       document.querySelector('#texture')[ (e.type == 'keydown') ? 'play' : 'pause']();
           e.preventDefault();
     }
