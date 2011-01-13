@@ -477,27 +477,54 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
   <h3 id="toc-dir-reading">Reading a directory's contents</h3>
 
   <p>To read the contents of a directory, create a <code>DirectoryReader</code>
-  and call its <code>readEntries()</code> method:</p>
+  and call its <code>readEntries()</code> method. There is no
+  guarantee that all of a directory's entries will be returned
+  in a single call to <code>readEntries()</code>. That means you need to keep calling
+  <code>DirectoryReader.readEntries()</code> until no more results are returned.
+  The following is code that demonstrates this:</p>
 
   <pre class="prettyprint">&lt;ul id="filelist"&gt;&lt;/ul&gt;</pre>
 
   <pre class="prettyprint">
+function toArray(list) {
+  return Array.prototype.slice.call(list || [], 0);
+}
+
+function listResults(entries) {
+  // Document fragments can improve performance since they're only appended
+  // to the DOM once. Only one browser reflow occurs.
+  var fragment = document.createDocumentFragment();
+
+  entries.forEach(function(entry, i) {
+    var img = <b>entry.isDirectory</b> ? '&lt;img src="folder-icon.gif"&gt;' :
+                                  '&lt;img src="file-icon.gif"&gt;';
+    var li = document.createElement('li');
+    li.innerHTML = [img, '&lt;span&gt;', entry.name, '&lt;/span&gt;'].join('');
+    fragment.appendChild(li);
+  });
+
+  document.querySelector('#filelist').appendChild(fragment);
+}
+
 function onInitFs(fs) {
-  <b>fs.root.createReader().readEntries</b>(function(entries) {
-    // Using a document fragment improves performance. We're only appending
-    // to the DOM once, and therefore, only one browser layout/redraw happens.
-    var fragment = document.createDocumentFragment();
 
-    for (var i = 0, entry; entry = entries[i]; ++i) {
-      var img = <b>entry.isDirectory</b> ? '&lt;img src="icon-folder.gif"&gt;' :
-                                    '&lt;img src="icon-file.gif"&gt;';
-      var li = document.createElement('li');
-      li.innerHTML = [img, '&lt;span&gt;', entry.name, '&lt;/span&gt;'].join('');
-      fragment.appendChild(li);
-    }
+  var dirReader = <b>fs.root.createReader()</b>;
+  var entries = [];
 
-    document.querySelector('#filelist').appendChild(fragment);
-  }, errorHandler);
+  // Call the reader.readEntries() until no more results are returned.
+  var readEntries = function() {
+     <b>dirReader.readEntries </b>(function(results) {
+      if (!results.length) {
+        listResults(entries.sort());
+      } else {
+        entries = entries.concat(toArray(results));
+        readEntries();
+      }
+    }, errorHandler);
+  };
+
+  readEntries(); // Start reading dirs.
+
 }
 
 window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
