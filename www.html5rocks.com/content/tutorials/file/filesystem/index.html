@@ -61,7 +61,7 @@
     <li>Reading and manipulating files:
       <code>File</code>/<code>Blob</code>, <code>FileList</code>, <code>FileReader</code></li>
     <li>Creating and writing:
-      <code>BlobBuilder</code>, <code>FileSaver</code>, <code>FileWriter</code></li>
+      <code>BlobBuilder</code>, <code>FileWriter</code></li>
     <li>Directories and file system access:
       <code>DirectoryReader</code>, <code>FileEntry</code>/<code>DirectoryEntry</code>, <code>LocalFileSystem</code>
     </li>
@@ -161,7 +161,7 @@ function errorHandler(e) {
 </pre>
 
   <p>Granted, this error callback is very generic, but you get the idea. You'll want to
-  provided human-readable messages to users instead.</p>
+  provide human-readable messages to users instead.</p>
 
   <h2 id="toc-file">Working with files</h2>
 
@@ -196,9 +196,11 @@ fileEntry.createWriter(successCallback, opt_errorCallback);
 
   <h3 id="toc-file-creatingempty">Creating a file</h3>
 
-  <p>You can look up or create a file with the file system's <code>getFile()</code> method.
-  This is a method of <code>fs.root</code>, which is a <a href="#toc-direntry">DirectoryEntry</a>
-  object containing the root of an app's file system.</p>
+  <p>You can look up or create a file with the file system's <code>getFile()</code>,
+  a method of the <a href="#toc-direntry">DirectoryEntry</a> interface.
+  After requesting a file system, the success callback is passed a <code>FileSystem</code>
+  object that contains a <code>DirectoryEntry</code> (<code>fs.root</code>) pointing to
+  the root of the app's file system.</p>
 
   <p>The following code creates an empty file called "log.txt" in the root of the app's file system:</p>
 
@@ -300,7 +302,7 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
 
   <p>This time, we call the FileEntry's <code>createWriter()</code> method to
   obtain a <code>FileWriter</code> object. Inside the success callback, event
-  handlers are setup for <code>error</code> and <code>writeend</code> events.
+  handlers are set up for <code>error</code> and <code>writeend</code> events.
   The text data is written to the file by creating a blob, appending text to it,
   and passing the blob to <code>FileWriter.write()</code>.</p>
 
@@ -353,7 +355,7 @@ document.querySelector('#myfile').onchange = function(e) {
       (function(f) {
         fs.root.getFile(<b>file.name</b>, {create: true, exclusive: true}, function(fileEntry) {
           fileEntry.createWriter(function(fileWriter) {
-            <b>fileWriter.write(f);</b> // write() can also take a File object.
+            <b>fileWriter.write(f);</b> // Note: write() can take a File or Blob object.
           }, errorHandler);
         }, errorHandler);
       })(file);
@@ -367,6 +369,10 @@ document.querySelector('#myfile').onchange = function(e) {
   <p>Although we've used an input for the file import, one could easily leverage
   <a href="/tutorials/dnd/basics/#toc-desktop-dnd-into">HTML5 Drag and Drop</a>
   to achieve the same objective.</p>
+
+  <p>As noted in the comment, <code>FileWriter.write()</code> can accept a <code>Blob</code>
+  or <code>File</code>. This is because <code>File</code> inherits from <code>Blob</code>,
+  and are therefore file objects are blobs.</p>
 
   <h3 id="toc-file-removing">Removing a file</h3>
 
@@ -388,8 +394,9 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
 
   <p>Directories in the sandbox are represented by the
   <a href="http://dev.w3.org/2009/dap/file-system/pub/FileSystem/#the-directoryentry-interface"><code>DirectoryEntry</code></a>
-  interface, which shares most of <a href="#toc-fileentry">FileEntry</a>'s properties,
-  with the addition of a few methods.</p>
+  interface, which shares most of <a href="#toc-fileentry">FileEntry</a>'s properties
+  (they inherit from a common <code>Entry</code> interface). However, <code>DirectoryEntry</code>
+  has additional methods for manipulating directories.</p>
 
   <p>Properties and methods of <code>DirectoryEntry</code>:</p>
   <pre class="prettyprint">
@@ -406,10 +413,9 @@ dirEntry.removeRecursively(successCallback, opt_errorCallback);
 
   <h3 id="toc-dir-creating">Creating directories</h3>
 
-  <p>Similar to <a href="#toc-fileentry">FileEntry</a>'s <code>getFile()</code>,
-  the <code>getDirectory()</code> method of <code>DirectoryEntry</code> 
-  reads or creates directories. You can pass either a name or path as
-  the directory to lookup or create.</p>
+  <p>Use the <code>getDirectory()</code> method of <code>DirectoryEntry</code> 
+  to read or create directories. You can pass either a name or path as
+  the directory to look up or create.</p>
 
   <p>For example, the following code creates a directory named "MyPictures" in the
   root directory:</p>
@@ -437,8 +443,12 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
 var path = 'music/genres/jazz/';
 
 function createDir(rootDirEntry, folders) {
+  // Throw out './' or '/' and move on to prevent something like '/foo/.//bar'.
+  if (folders[0] == '.' || folders[0] == '') {
+    folders = folders.slice(1);
+  }
   rootDirEntry.<b>getDirectory</b>(folders[0], <b>{create: true}</b>, function(dirEntry) {
-    // Recursively add the new subfolder (if we still another to create).
+    // Recursively add the new subfolder (if we still have another to create).
     if (folders.length) {
       createDir(dirEntry, folders.slice(1));
     }
@@ -446,14 +456,7 @@ function createDir(rootDirEntry, folders) {
 };
 
 function onInitFs(fs) {
-  var folders = path.split('/');
-
-  // Throw out './' or '/' if present on the beginning of our path.
-  if (folders[0] == '.' || folders[0] == '') {
-    folders = folders.slice(1);
-  }
-
-  createDir(fs.root, folders); // fs.root is a DirectoryEntry.
+  createDir(fs.root, path.split('/')); // fs.root is a DirectoryEntry.
 }
 
 window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
@@ -474,27 +477,54 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
   <h3 id="toc-dir-reading">Reading a directory's contents</h3>
 
   <p>To read the contents of a directory, create a <code>DirectoryReader</code>
-  and call its <code>readEntries()</code> method:</p>
+  and call its <code>readEntries()</code> method. There is no
+  guarantee that all of a directory's entries will be returned
+  in a single call to <code>readEntries()</code>. That means you need to keep calling
+  <code>DirectoryReader.readEntries()</code> until no more results are returned.
+  The following is code that demonstrates this:</p>
 
   <pre class="prettyprint">&lt;ul id="filelist"&gt;&lt;/ul&gt;</pre>
 
   <pre class="prettyprint">
+function toArray(list) {
+  return Array.prototype.slice.call(list || [], 0);
+}
+
+function listResults(entries) {
+  // Document fragments can improve performance since they're only appended
+  // to the DOM once. Only one browser reflow occurs.
+  var fragment = document.createDocumentFragment();
+
+  entries.forEach(function(entry, i) {
+    var img = <b>entry.isDirectory</b> ? '&lt;img src="folder-icon.gif"&gt;' :
+                                  '&lt;img src="file-icon.gif"&gt;';
+    var li = document.createElement('li');
+    li.innerHTML = [img, '&lt;span&gt;', entry.name, '&lt;/span&gt;'].join('');
+    fragment.appendChild(li);
+  });
+
+  document.querySelector('#filelist').appendChild(fragment);
+}
+
 function onInitFs(fs) {
-  <b>fs.root.createReader().readEntries</b>(function(entries) {
-    // Using a document fragment improves performance. We're only appending
-    // to the DOM once, and therefore, only one browser layout/redraw happens.
-    var fragment = document.createDocumentFragment();
 
-    for (var i = 0, entry; entry = entries[i]; ++i) {
-      var img = <b>entry.isDirectory</b> ? '&lt;img src="icon-folder.gif"&gt;' :
-                                    '&lt;img src="icon-file.gif"&gt;';
-      var li = document.createElement('li');
-      li.innerHTML = [img, '&lt;span&gt;', entry.name, '&lt;/span&gt;'].join('');
-      fragment.appendChild(li);
-    }
+  var dirReader = <b>fs.root.createReader()</b>;
+  var entries = [];
 
-    document.querySelector('#filelist').appendChild(fragment);
-  }, errorHandler);
+  // Call the reader.readEntries() until no more results are returned.
+  var readEntries = function() {
+     <b>dirReader.readEntries </b>(function(results) {
+      if (!results.length) {
+        listResults(entries.sort());
+      } else {
+        entries = entries.concat(toArray(results));
+        readEntries();
+      }
+    }, errorHandler);
+  };
+
+  readEntries(); // Start reading dirs.
+
 }
 
 window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
@@ -557,14 +587,14 @@ function copy(cwd, src, dest) {
   cwd.getFile(src, {}, function(fileEntry) {
 
     cwd.getDirectory(dest, {}, function(dirEntry) {
-      <b>dirEntry.copyTo</b>(parentDirEntry);
+      <b>dirEntry.copyTo</b>(dirEntry);
     }, errorHandler);
 
   }, errorHandler);
 }
 
 window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
-  copy(fs, '/folder1/me.png', 'folder2/mypics/');
+  copy(fs.root, '/folder1/me.png', 'folder2/mypics/');
 }, errorHandler);
 </pre>
 
@@ -579,20 +609,39 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
   <p>The following example renames "me.png" to "you.png", but does not move the file:</p>
 
   <pre class="prettyprint">
-window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
-  fs.root.getFile('me.png', {}, function(fileEntry) {
+function rename(cwd, src, newName) {
+  cwd.getFile(src, {}, function(fileEntry) {
+    <b>fileEntry.moveTo</b>(cwd, newName);
+  }, errorHandler);
+}
 
-    <b>fileEntry.getParent</b>(function(parentDirEntry) {
-      <b>fileEntry.moveTo</b>(parentDirEntry, 'you.png');
+window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+  rename(fs.root, 'me.png', 'you.png');
+}, errorHandler);
+</pre>
+
+  <p>The following example moves "me.png" (located in the root directory) to
+  a folder named "newfolder".</p>
+
+  <pre class="prettyprint">
+function move(src, dirName) {
+  fs.root.getFile(src, {}, function(fileEntry) {
+
+    fs.root.getDirectory(dirName, {}, function(dirEntry) {
+      <b>fileEntry.moveTo</b>(dirEntry);
     }, errorHandler);
 
   }, errorHandler);
+}
+
+window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+  move('/me.png', 'newfolder/');
 }, errorHandler);
 </pre>
 
   <h2 id="toc-dir-fullexample">Putting it all together</h2>
 
-  <h3 id="toc-samples-basic">Basic xxample</h3>
+  <h3 id="toc-samples-basic">Basic example</h3>
   <p>This demo lists the files/folders in the filesystem.</p>
   <div id="example-list-fs" class="example">
     <button>Add some files</button> <button>List files</button> <button>Remove all files</button>
@@ -610,7 +659,7 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
 
   <p>There are several <a href="/tutorials#offline,storage">storage options</a>
   available in HTML5, but the FileSystem is different in that it aims to satisfy
-  client-side storage use cases, not well served by databases. Generally, these
+  client-side storage use cases not well served by databases. Generally, these
   are applications that deal with large binary blobs and/or share data with
   applications outside of the context of the browser.</p>
 
