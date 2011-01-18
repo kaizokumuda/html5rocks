@@ -33,15 +33,26 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
-<title>ABC News Story Sphere</title>
-<link href="imagesphere/style.css?thursmorn" rel="stylesheet"/>
-<link href="imagesphere/button.css?thursmorn" rel="stylesheet"/>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<title>WebGL Story Sphere</title>
+
+<link href='http://fonts.googleapis.com/css?family=Nobile:regular,bold' rel='stylesheet' type='text/css'>
+
+<link href="imagesphere/style.css" rel="stylesheet"/>
+<link href="imagesphere/button.css" rel="stylesheet"/>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="js/webgl-test-utils.js"></script>
 <script type="text/javascript" src="js/webgl-debug.js"></script>
 <script type="text/javascript" src="tdl/base.js"></script>
 
 <script type="text/javascript">
+
+
+if (window.parent.Modernizr && window.parent.Modernizr.webgl === false){
+  alert('Looks like you don\'t have WebGL Support. Try FF4 or Chrome beta.'); 
+}
+
 tdl.require('tdl.buffers');
 tdl.require('tdl.fast');
 tdl.require('tdl.fps');
@@ -205,23 +216,8 @@ ImgTexture = function() {
 tdl.base.inherit(ImgTexture, tdl.textures.Texture);
 
 ImgTexture.prototype.load = function(imgUrl, msg) {
-  
-  if (/(webm|mp4|ogv)$/i.test(imgUrl)){
 
-    var img = document.createElement('video');
-    img.autobuffer = 'true';
-    if (!img.canPlayType) return; // quit if no support
-    
-    console.log('SUP SUP SUP', imgUrl) //, arguments.callee.caller, arguments.callee.caller.caller, arguments.callee.caller.caller.caller);
-
- 
-    // video probably isnt being loaded cuz its not in the DOM..
-    // todo, finish. 
-  } else {
-   var img = new Image();   
-  }
-  
-
+  var img = new Image();   
   var that = this;
   this.img = img;
   this.msg = msg;
@@ -736,7 +732,6 @@ function initialize() {
       "A man walks on a path as fog rises over the lake at Gray's Lake Park in Des Moines, Iowa on Monday, Sept. 27, 2010. (AP Photo/Charlie Neibergall) ",
       "Fall colors just begin to appear in the trees in the evening light at Water Tank Hollow Vista in Susquehannock State Forest, Potter County, Pennsylvania on September 18th, 2010.  here. (  / ) "
 
-    //,"omg omg omg its a video"
     ];
 
     var headlines = titles.concat( titles)// bgcaptions);
@@ -1034,8 +1029,7 @@ $(function(){
 <body class="init">
 
 <section id="welcome" class="prettybox">    
-  <img src="imagesphere/assets/abcnewslogo.png">
-  <h1>Story Sphere</h1>
+  <h1><span>WebGL</span> Story Sphere</h1>
   <p>
     Read the news in 360&deg;, hardware accelerated and in 3D space. Click thumbnails to expand into a full story.
   </p>
@@ -1121,7 +1115,6 @@ $(function(){
 
 <canvas id="canvas" width="1024" height="1024" style="width: 100%; height: 100%;"></canvas>
 
- <img src="imagesphere/assets/abcnewslogo.png" id="logo">
 
 <div id="story" class="  prettybox" style="display:none"> <!-- vbox center aligncenter -->
  
@@ -1152,11 +1145,11 @@ $(function(){
 </div>
 
 
-<video id="texture" autobuffer onplay="insertVideo(this);" onpause="insertVideo(false);"  src="imagesphere/assets/christine512.webm" onended="this.play();"></video> 
+<video id="texture" autobuffer onplay="insertVideo(this);" onpause="insertVideo(false);"  src="/samples/video-player/chromeicon.webm" onended="this.play();"></video> 
 
 <input/>
 
-<script src="imagesphere/script.js?fri117"></script>
+<script src="imagesphere/script.js"></script>
 
 
 

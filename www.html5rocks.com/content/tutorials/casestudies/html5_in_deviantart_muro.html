@@ -1,7 +1,7 @@
 {% extends "../../../templates/casestudy.html" %}
 
 {% block headauthor %}Michael Dewey, Software Engineer, deviantART{% endblock %}
-{% block pageauthor %}Michael Dewey, Software Engineer, deviantART{% endblock %}
+{% block pageauthor %}{% profilelinks michaeldewey %}{% endblock %}
 {% block headtitle %}Case Study: HTML5 in deviantART muro{% endblock %}
 {% block pagetitle %}Case Study: HTML5 in deviantART muro{% endblock %}
 {% block pagebreadcrumb %}HTML5 in deviantART muro{% endblock %}
@@ -19,6 +19,10 @@ figure img { border: 1px solid #ccc; }
 <span class="safari supported"></span>
 <span class="ff supported"></span>
 <span class="chrome supported"></span>
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-graphics.png" width="133" height="64" alt="This article is powered by HTML5 Graphics, 3D &amp; Effects" title="This article is powered by HTML5 Graphics, 3D &amp; Effects" />
 {% endblock %}
 
 {% block iscompatible %}
@@ -187,9 +191,4 @@ figure img { border: 1px solid #ccc; }
     <li><a href="http://excanvas.sourceforge.net/">ExplorerCanvas</a></li>
     <li><a href="http://code.google.com/chrome/chromeframe/">Google Chrome Frame</a></li>
   </ul>
-
-<script>
-$ = function(id) { return document.getElementById(id); }
-</script>
-
 {% endblock %}

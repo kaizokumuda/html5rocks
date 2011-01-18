@@ -1,7 +1,7 @@
 {% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Ernest Delgado <ernestd@chromium.org>{% endblock %}
-{% block pageauthor %}Ernest Delgado{% endblock %}
+{% block pageauthor %}{% profilelinks ernestd %}{% endblock %}
 {% block headtitle %}HTML5 Video{% endblock %}
 {% block pagetitle %}HTML5 Video{% endblock %}
 {% block pagebreadcrumb %}HTML5 Video{% endblock %}
@@ -89,6 +89,10 @@ video, canvas {
 <span class="safari supported"></span>
 <span class="ff supported"></span>
 <span class="chrome supported"></span>
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-multimedia.png" width="133" height="64" alt="This article is powered by HTML5 Multimedia" title="This article is powered by HTML5 Multimedia" />
 {% endblock %}
 
 {% block iscompatible %}

@@ -1,7 +1,7 @@
 {% extends "../../../templates/casestudy.html" %}
 
 {% block headauthor %}David Tong, Software Engineer, Box.net{% endblock %}
-{% block pageauthor %}David Tong, Software Engineer, Box.net{% endblock %}
+{% block pageauthor %}{% profilelinks davidtong %}{% endblock %}
 {% block headtitle %}Case Study: Drag and Drop Download in Chrome{% endblock %}
 {% block pagetitle %}Case Study: Drag and Drop Download in Chrome{% endblock %}
 {% block pagebreadcrumb %}Drag and Drop Download in Chrome{% endblock %}
@@ -21,7 +21,12 @@ figure img { border: 1px solid #ccc; }
 <span class="chrome supported"></span>
 {% endblock %}
 
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-performance.png" width="133" height="64" alt="This article is powered by HTML5 Performance &amp; Integration" title="This article is powered by HTML5 Performance &amp; Integration" />
+{% endblock %}
+
 {% block iscompatible %}
+return Modernizr.draganddrop;
 {% endblock %}
 
 {% block content %}
@@ -321,10 +326,4 @@ $.ajax({
   <ul> 
     <li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dnd">Drag and Drop</a> specification</li> 
   </ul> 
- 
-<script> 
-$ = function(id) { return document.getElementById(id); }
- 
-</script>
-
 {% endblock %}

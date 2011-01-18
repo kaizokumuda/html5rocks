@@ -43,6 +43,14 @@ img.logo {
 .tag {
   cursor: pointer;
 }
+.author {
+  font-size: 90%;
+  font-style: italic;
+  color: #bbb;
+}
+.author a {
+  color: #bbb;
+}
 #filter_tag {
   font-weight: bold;
 }

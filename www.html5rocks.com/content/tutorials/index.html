@@ -3,11 +3,690 @@
 {% block headtitle %}Tutorials{% endblock %}
 
 {% block head %}
-
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
-
   <link rel="stylesheet" href="/static/css/samples_index.css" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+{% endblock %}
+
+{% block body %}
+  {% include "../../templates/header.html" %}
+  <section>
+    <div id="filter" class="hidden">
+      Currently filtering by tag <span id="filter_tag"></span>.
+      <a href="javascript:clearFilter();">[Clear filter]</a>
+    </div>
+  </section>
+  <aside id="tags">
+    <h3>Filter by tag</h3>
+    <div class="tag">3D</div>
+    <div class="tag">CSS</div>
+    <div class="tag">appcache</div>
+    <div class="tag">audio</div>
+    <div class="tag">casestudy</div>
+    <div class="tag">dnd</div>
+    <div class="tag">devtools</div>
+    <div class="tag">file</div>
+    <div class="tag">filereader</div>
+    <div class="tag">filesystem</div>
+    <div class="tag">filewriter</div>
+    <div class="tag">flash</div>
+    <div class="tag">geolocation</div>
+    <div class="tag">graphics</div>
+    <div class="tag">indexeddb</div>
+    <div class="tag">multimedia</div>
+    <div class="tag">notifications</div>
+    <div class="tag">offline</div>
+    <div class="tag">performance</div>
+    <div class="tag">presentation</div>
+    <div class="tag">eventsource</div>
+    <div class="tag">storage</div>
+    <div class="tag">svg</div>
+    <div class="tag">video</div>
+    <div class="tag">webdatabase</div>
+    <div class="tag">webfonts</div>
+    <div class="tag">websockets</div>
+    <div class="tag">workers</div>
+    <!-- ___H5R_FILTERS___ -->
+  </aside>
+
+  <div id="index">
+    <a href="http://feeds.feedburner.com/html5rocks">
+      <img src="/static/images/feed_icon16x16.png" width="16" height="16" />
+    </a>
+
+    <!-- ___H5R_NEW_SAMPLE___ -->
+
+    <article class="sample">
+      <h2 id="filesystem" data-pubdate="2011-01-04">
+        <a href="/tutorials/file/filesystem/">Exploring the FileSystem APIs</a>
+      </h2>
+      <div>
+        <span class="date">January 4, 2010 &nbsp; By: {% simpleprofilelink ebidelman %}</span>
+        <span class="tag">file</span>
+        <span class="tag">filesystem</span>
+        <span class="tag">filewriter</span>
+        <span class="tag">storage</span>
+      </div>
+      <div class="summary">
+        The FileSystem APIs give applications the ability to read/write files and directories
+        in a secure, sandboxed file system on a user's local machine.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/file/filesystem/">View tutorial</a>  &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari"></span>
+           <span class="ff"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="indexeddb-todo" data-pubdate="2010-12-20">
+        <a href="/tutorials/indexeddb/todo/">A Simple TODO list using
+         HTML5 IndexedDB</a>
+      </h2>
+      <div>
+        <span class="date">December 20, 2010 &nbsp; By: {% simpleprofilelink paulkinlan %}</span>
+        <span class="tag">indexeddb</span>
+        <span class="tag">storage</span>
+      </div>
+      <div class="summary">
+        IndexedDB represents the future of query-able client-side storage.  This
+        tutorial presents a real world application implementing the basics of
+        the IndexedDB API.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink">
+           <a href="/tutorials/indexeddb/todo/">View tutorial</a>
+          &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="entanglement" data-pubdate="2010-12-14">
+        <a href="/tutorials/casestudies/entanglement.html">Case Study: Getting Entangled with HTML5 Canvas</a>
+      </h2>
+      <div>
+        <span class="date">December 14, 2010 &nbsp; By: {% simpleprofilelink derekdetweiler %}</span>
+        <span class="tag">canvas</span>
+        <span class="tag">casestudy</span>
+      </div>
+      <div class="summary">
+        Entanglement is a puzzle game made by Gopherwood Studios. This article talks about Entanglement's
+        usage of the &lt;canvas&gt; tag.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/casestudies/entanglement.html">View tutorial</a>  &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="intro-sse" data-pubdate="2010-11-30">
+        <a href="/tutorials/eventsource/basics/">Stream Updates with Server-Sent Events</a>
+      </h2>
+      <div>
+        <span class="date">November 30, 2010 &nbsp; By: {% simpleprofilelink ebidelman %}</span>
+        <span class="tag">eventsource</span>
+        <span class="tag">performance</span>
+      </div>
+      <div class="summary">
+        The EventSource API is designed for receiving push notifications from a server,
+        removing the need for client-size XHR polling.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/eventsource/basics/">View tutorial</a>  &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="intro-websockets" data-pubdate="2010-10-20">
+        <a href="/tutorials/websockets/basics/">Introducing WebSockets: Bringing Sockets to the Web</a>
+      </h2>
+      <div>
+        <span class="date">October 20, 2010 &nbsp; By: {% simpleprofilelink malteubl %}</span>
+        <span class="tag">websockets</span>
+      </div>
+      <div class="summary">
+        Learn how to use WebSockets to add low latency bidirectional client-server communication to your web app.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/websockets/basics/">View tutorial</a>  &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="flexbox" data-pubdate="2010-10-05">
+        <a href="/tutorials/flexbox/quick/">Quick hits with the Flexible Box Model</a>
+      </h2>
+      <div>
+        <span class="date">October 5, 2010 &nbsp; By: {% simpleprofilelink paulirish %}</span>
+        <span class="tag">CSS</span>
+        <span class="tag">presentation</span>
+      </div>
+      <div class="summary">
+        An introduction to <q>flexbox</q>, an alternative <abbr title="Cascading Style Sheets">CSS</abbr> layout scheme based on vboxes and hboxes.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/flexbox/quick/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera "></span>
+           <span class="ie "></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="storage" data-pubdate="2010-10-01">
+        <a href="/tutorials/offline/storage/">Client-Side Storage</a>
+      </h2>
+      <div>
+        <span class="date">October 1, 2010 &nbsp; By: {% simpleprofilelink mahemoff %}</span>
+        <span class="tag">offline</span>
+        <span class="tag">webdatabase</span>
+        <span class="tag">storage</span>
+      </div>
+      <div class="summary">
+        An overview of client-side storage techniques: Web Storage (local/session storage), Web SQL Database,
+        Indexed Database, File access.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/offline/storage/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie supported"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="dnd-basics" data-pubdate="2010-09-30">
+        <a href="/tutorials/dnd/basics/">Native HTML5 Drag and Drop</a>
+      </h2>
+      <div>
+        <span class="date">September 30, 2010 &nbsp; By: {% simpleprofilelink ebidelman %}</span>
+        <span class="tag">dnd</span>
+        <span class="tag">filereader</span>
+      </div>
+      <div class="summary">
+        Drag-and-drop is yet another first class citizen in HTML5! This article
+        explains how to enhance your web applications by adding native DnD functionality.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/dnd/basics/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie supported"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="box-dnd" data-pubdate="2010-09-28">
+        <a href="/tutorials/casestudies/html5_in_deviantart_muro.html">Case Study: HTML5 in deviantART muro</a>
+      </h2>
+      <div>
+        <span class="date">September 28, 2010 &nbsp; By: {% simpleprofilelink michaeldewey %}</span>
+        <span class="tag">casestudy</span>
+        <span class="tag">canvas</span>
+        <span class="tag">svg</span>
+      </div>
+      <div class="summary">
+        Learn how deviantART used HTML5 drawing features in deviantART muro.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/casestudies/html5_in_deviantart_muro.html">View article</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="box-dnd" data-pubdate="2010-09-25">
+        <a href="/tutorials/casestudies/box_dnd_download.html">Case Study: Drag and Drop Download in Chrome</a>
+      </h2>
+      <div>
+        <span class="date">September 25, 2010 &nbsp; By: {% simpleprofilelink davidtong %}</span>
+        <span class="tag">casestudy</span>
+        <span class="tag">dnd</span>
+      </div>
+      <div class="summary">
+        Learn how Box.net implemented GMail's attachment drag and drop to the desktop.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/casestudies/box_dnd_download.html">View article</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari"></span>
+           <span class="ff"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="css3-3d" data-pubdate="2010-09-07">
+        <a href="/tutorials/3d/css/">3D and CSS</a>
+      </h2>
+      <div>
+        <span class="date">September 7, 2010 &nbsp; By: {% simpleprofilelink paulkinlan %}</span>
+        <span class="tag">3D</span>
+        <span class="tag">CSS</span>
+        <span class="tag">presentation</span>
+        <span class="tag">graphics</span>
+      </div>
+      <div class="summary">
+        Learn how to build exciting 3D user interfaces using the power of CSS.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/3d/css/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="video-basics" data-pubdate="2010-08-03">
+        <a href="/tutorials/video/basics/">HTML5 Video</a>
+      </h2>
+      <div>
+        <span class="date">August 3, 2010 &nbsp; By: {% simpleprofilelink ernestd %}</span>
+        <span class="tag">video</span>
+        <span class="tag">multimedia</span>
+        <span class="tag">graphics</span>
+      </div>
+      <div class="summary">
+        Video is one of the most interesting and widely supported features of HTML5.
+        This tutorial covers the mechanics of incorporating native video into your site
+        (without a plugin) and gives interesting examples of using the &lt;video&gt; tag.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/video/basics/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="offline-the-why" data-pubdate="2010-08-02">
+        <a href="/tutorials/offline/whats-offline/">"Offline": What does it mean and why should I care?</a>
+      </h2>
+      <div>
+        <span class="date">August 2, 2010 &nbsp; By: {% simpleprofilelink mahemoff %}</span>
+        <span class="tag">offline</span>
+        <span class="tag">performance</span>
+      </div>
+      <div class="summary">
+        A discussion of what it means to take an application "offline" and the options available
+        to developers for doing so.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/offline/whats-offline/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie supported"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="webfonts" data-pubdate="2010-08-02">
+        <a href="/tutorials/webfonts/quick/">Quick guide to webfonts via @font-face</a>
+      </h2>
+      <div>
+        <span class="date">August 2, 2010 &nbsp; By: {% simpleprofilelink paulirish %}</span>
+        <span class="tag">webfonts</span>
+        <span class="tag">CSS</span>
+        <span class="tag">presentation</span>
+      </div>
+      <div class="summary">
+        Webfonts give new typographic freedom to designers while retaining scalability and accessibility.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/webfonts/quick/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie supported"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="chrome-devtools-audit-panel" data-pubdate="2010-07-28">
+        <a href="/tutorials/developertools/auditpanel/">Auditing Your Web App For Speed</a>
+      </h2>
+      <div>
+        <span class="date">July 28, 2010 &nbsp; By: {% simpleprofilelink sethladd %}</span>
+        <span class="tag">devtools</span>
+        <span class="tag">performance</span>
+      </div>
+      <div class="summary">
+        The Audit Panel is an excellent tool for examining latency in your web apps. It offers customized recommendations to
+        enhance performance and reduce latency.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/developertools/auditpanel/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari"></span>
+           <span class="ff"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="web-workers" data-pubdate="2010-07-26">
+        <a href="/tutorials/workers/basics/">The Basics of Web Workers</a>
+      </h2>
+      <div>
+        <span class="date">July 26, 2010 &nbsp; By: {% simpleprofilelink ebidelman %}</span>
+        <span class="tag">performance</span>
+        <span class="tag">workers</span>
+      </div>
+      <div class="summary">
+        Web Workers are a means of spawning background scripts in your application,
+        giving thread-like message passing for handling computationally intensive tasks.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/workers/basics/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="chrome-devtools-part1" data-pubdate="2010-06-18">
+        <a href="/tutorials/developertools/part1/">Introduction to Chrome Developer Tools, Part One</a>
+      </h2>
+      <div>
+        <span class="date">June 18, 2010 &nbsp; By: {% simpleprofilelink sethladd %}</span>
+        <span class="tag">devtools</span>
+        <span class="tag">performance</span>
+      </div>
+      <div class="summary">
+        An introduction to the tools available in Google Chrome that make a developer's life easier!
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/developertools/part1/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="best-practices-faster-web" data-pubdate="2010-06-18">
+        <a href="/tutorials/speed/quick/">Best Practices for a Faster Web App with HTML5</a>
+      </h2>
+      <div>
+        <span class="date">June 18, 2010 &nbsp; By: {% simpleprofilelink paulirish %}</span>
+        <span class="tag">appcache</span>
+        <span class="tag">offline</span>
+        <span class="tag">performance</span>
+        <span class="tag">webdatabase</span>
+      </div>
+      <div class="summary">
+        How to effectively use features from HTML5 to improve the performance and responsiveness of your app.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/speed/quick/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie supported"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="intro-appcache" data-pubdate="2010-06-18">
+        <a href="/tutorials/appcache/beginner/">A Beginner's Guide to Using the Application Cache</a>
+      </h2>
+      <div>
+        <span class="date">June 18, 2010 &nbsp; By: {% simpleprofilelink ebidelman %}</span>
+        <span class="tag">appcache</span>
+        <span class="tag">offline</span>
+        <span class="tag">performance</span>
+      </div>
+      <div class="summary">
+        A step-by-step guide to taking your web app offline using the application cache APIs.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/appcache/beginner/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="todolist-offline" data-pubdate="2010-06-18">
+        <a href="/tutorials/offline/takingappoffline/">Practical Guide to Take Your TODO List Offline</a>
+      </h2>
+      <div>
+        <span class="date">June 18, 2010 &nbsp; By: {% simpleprofilelink paulkinlan %}</span>
+        <span class="tag">appcache</span>
+        <span class="tag">offline</span>
+      </div>
+      <div class="summary">
+        Expanding on the <a href="/tutorials/webdatabase/todo/">simple TODO list</a>, this tutorial
+        gives a practical guide for taking the sample offline using the application cache.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/offline/takingappoffline/">View tutorial</a> &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="reading-files-js" data-pubdate="2010-06-18">
+        <a href="/tutorials/file/dndfiles/">Reading files in JavaScript using the File APIs</a>
+      </h2>
+      <div>
+        <span class="date">June 18, 2010 &nbsp; By: {% simpleprofilelink ebidelman %}</span>
+        <span class="tag">dnd</span>
+        <span class="tag">file</span>
+        <span class="tag">filereader</span>
+      </div>
+      <div class="summary">
+        Starter guide for using the File/FileList/FileReader APIs to process
+        and read binary files in JavaScript.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/file/dndfiles/">View tutorial</a>  &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="geolocation-tripmeter" data-pubdate="2010-05-24">
+        <a href="/tutorials/geolocation/trip_meter/">A Simple Trip Meter using the Geolocation API</a>
+      </h2>
+      <div>
+        <span class="date">May 24, 2010 &nbsp; By: {% simpleprofilelink mahemoff %}</span>
+        <span class="tag">geolocation</span>
+      </div>
+      <div class="summary">
+        Learn how to implement geolocation very quickly including a distance calculator
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/geolocation/trip_meter/">View tutorial</a>  &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="intro-noticiations-api" data-pubdate="2010-02-24">
+        <a href="/tutorials/notifications/quick/">Using the Notifications API</a>
+      </h2>
+      <div>
+        <span class="date">February 24, 2010 &nbsp; By: {% simpleprofilelink ernestd %}</span>
+        <span class="tag">notifications</span>
+      </div>
+      <div class="summary">
+        Learn the notification basics creating a twitter notification
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/notifications/quick/">View tutorial</a>  &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera"></span>
+           <span class="ie"></span>
+           <span class="safari"></span>
+           <span class="ff"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="todolist-webdb" data-pubdate="2010-02-17">
+        <a href="/tutorials/webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a>
+      </h2>
+      <div>
+        <span class="date">February 17, 2010 &nbsp; By: {% simpleprofilelink paulkinlan %}</span>
+        <span class="tag">webdatabase</span>
+        <span class="tag">offline</span>
+        <span class="tag">performance</span>
+      </div>
+      <div class="summary">
+        Create a TODO list which persists data using a client side database.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/webdatabase/todo/">View tutorial</a>  &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+    <article class="sample">
+      <h2 id="quick-guide-audio-tag" data-pubdate="2010-02-05">
+        <a href="/tutorials/audio/quick/">Quick Guide to Implementing the HTML5 Audio Tag</a>
+      </h2>
+      <div>
+        <span class="date">February 5, 2010 &nbsp; By: {% simpleprofilelink ernestd %}</span>
+        <span class="tag">audio</span>
+        <span class="tag">flash</span>
+        <span class="tag">multimedia</span>
+      </div>
+      <div class="summary">
+        Learn how to use the HTML5 audio tag and fall back to Flash on
+        platforms which do not support it.
+      </div>
+      <div class="footer_links">
+         <span class="buttonlink"><a href="/tutorials/audio/quick/">View tutorial</a>  &rArr;</span>
+         <span class="browser_logos">
+           <span class="opera supported"></span>
+           <span class="ie"></span>
+           <span class="safari supported"></span>
+           <span class="ff supported"></span>
+           <span class="chrome supported"></span>
+         </span>
+      </div>
+    </article>
+
+  </div>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
   <script>
     function clearFilter() {
       $('.sample.hidden').removeClass('hidden');
@@ -47,600 +726,6 @@
       }, false);
     }
   </script>
-{% endblock %}
-
-{% block body %}
-  {% include "../../templates/header.html" %}
-  <section>
-    <div id="filter" class="hidden">
-      Currently filtering by tag <span id="filter_tag"></span>.
-      <a href="javascript:clearFilter();">[Clear filter]</a>
-    </div>
-  </section>
-  <aside id="tags">
-    <h3>Filter by tag</h3>
-    <div class="tag">3D</div>
-    <div class="tag">CSS</div>
-    <div class="tag">appcache</div>
-    <div class="tag">audio</div>
-    <div class="tag">casestudy</div>
-    <div class="tag">dnd</div>
-    <div class="tag">devtools</div>
-    <div class="tag">file</div>
-    <div class="tag">filereader</div>
-    <div class="tag">filesystem</div>
-    <div class="tag">filewriter</div>
-    <div class="tag">flash</div>
-    <div class="tag">geolocation</div>
-    <div class="tag">graphics</div>
-    <div class="tag">multimedia</div>
-    <div class="tag">notifications</div>
-    <div class="tag">offline</div>
-    <div class="tag">performance</div>
-    <div class="tag">presentation</div>
-    <div class="tag">eventsource</div>
-    <div class="tag">storage</div>
-    <div class="tag">svg</div>
-    <div class="tag">video</div>
-    <div class="tag">webdatabase</div>
-    <div class="tag">webfonts</div>
-    <div class="tag">websockets</div>
-    <div class="tag">workers</div>
-  </aside>
-
-  <div id="index">
-    <a href="http://feeds.feedburner.com/html5rocks"><img src="/static/images/feed_icon16x16.png" width="16" height="16" /></a>
-
-    <article class="sample">
-      <h2 id="intro-sse" data-pubdate="2010-11-30">
-        <a href="/tutorials/eventsource/basics/">Stream Updates with Server-Sent Events</a>
-      </h2>
-      <div>
-        <span class="date">November 30, 2010</span>
-        <span class="tag">eventsource</span>
-        <span class="tag">performance</span>
-      </div>
-      <div class="summary">
-        The EventSource API is designed for receiving push notifications from a server,
-        removing the need for client-size XHR polling.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/eventsource/basics/">View tutorial</a>  &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="intro-websockets" data-pubdate="2010-10-20">
-        <a href="/tutorials/websockets/basics/">Introducing WebSockets: Bringing Sockets to the Web</a>
-      </h2>
-      <div>
-        <span class="date">October 20, 2010</span>
-        <span class="tag">websockets</span>
-      </div>
-      <div class="summary">
-        Learn how to use WebSockets to add low latency bidirectional client-server communication to your web app.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/websockets/basics/">View tutorial</a>  &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="flexbox" data-pubdate="2010-10-05">
-        <a href="/tutorials/flexbox/quick/">Quick hits with the Flexible Box Model</a>
-      </h2>
-      <div>
-        <span class="date">October 5, 2010</span>
-        <span class="tag">CSS</span>
-        <span class="tag">presentation</span>
-      </div>
-      <div class="summary">
-        An introduction to <q>flexbox</q>, an alternative <abbr title="Cascading Style Sheets">CSS</abbr> layout scheme based on vboxes and hboxes.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/flexbox/quick/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera "></span>
-           <span class="ie "></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="storage" data-pubdate="2010-10-01">
-        <a href="/tutorials/offline/storage/">Client-Side Storage</a>
-      </h2>
-      <div>
-        <span class="date">October 1, 2010</span>
-        <span class="tag">offline</span>
-        <span class="tag">webdatabase</span>
-        <span class="tag">storage</span>
-      </div>
-      <div class="summary">
-        An overview of client-side storage techniques: Web Storage (local/session storage), Web SQL Database,
-        Indexed Database, File access.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/offline/storage/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie supported"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="dnd-basics" data-pubdate="2010-09-30">
-        <a href="/tutorials/dnd/basics/">Native HTML5 Drag and Drop</a>
-      </h2>
-      <div>
-        <span class="date">September 30, 2010</span>
-        <span class="tag">dnd</span>
-        <span class="tag">filereader</span>
-      </div>
-      <div class="summary">
-        Drag-and-drop is yet another first class citizen in HTML5! This article
-        explains how to enhance your web applications by adding native DnD functionality.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/dnd/basics/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera"></span>
-           <span class="ie supported"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="box-dnd" data-pubdate="2010-09-28">
-        <a href="/tutorials/casestudies/html5_in_deviantart_muro.html">Case Study: HTML5 in deviantART muro</a>
-      </h2>
-      <div>
-        <span class="date">September 28, 2010</span>
-        <span class="tag">casestudy</span>
-        <span class="tag">canvas</span>
-        <span class="tag">svg</span>
-      </div>
-      <div class="summary">
-        Learn how deviantART used HTML5 drawing features in deviantART muro.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/casestudies/html5_in_deviantart_muro.html">View article</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="box-dnd" data-pubdate="2010-09-25">
-        <a href="/tutorials/casestudies/box_dnd_download.html">Case Study: Drag and Drop Download in Chrome</a>
-      </h2>
-      <div>
-        <span class="date">September 25, 2010</span>
-        <span class="tag">casestudy</span>
-        <span class="tag">dnd</span>
-      </div>
-      <div class="summary">
-        Learn how Box.net implemented GMail's attachment drag and drop to the desktop.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/casestudies/box_dnd_download.html">View article</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera"></span>
-           <span class="ie"></span>
-           <span class="safari"></span>
-           <span class="ff"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="css3-3d" data-pubdate="2010-09-07">
-        <a href="/tutorials/3d/css/">3D and CSS</a>
-      </h2>
-      <div>
-        <span class="date">September 7, 2010</span>
-        <span class="tag">3D</span>
-        <span class="tag">CSS</span>
-        <span class="tag">presentation</span>
-        <span class="tag">graphics</span>
-      </div>
-      <div class="summary">
-        Learn how to build exciting 3D user interfaces using the power of CSS.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/3d/css/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="video-basics" data-pubdate="2010-08-03">
-        <a href="/tutorials/video/basics/">HTML5 Video</a>
-      </h2>
-      <div>
-        <span class="date">August 3, 2010</span>
-        <span class="tag">video</span>
-        <span class="tag">multimedia</span>
-        <span class="tag">graphics</span>
-      </div>
-      <div class="summary">
-        Video is one of the most interesting and widely supported features of HTML5.
-        This tutorial covers the mechanics of incorporating native video into your site
-        (without a plugin) and gives interesting examples of using the &lt;video&gt; tag.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/video/basics/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="offline-the-why" data-pubdate="2010-08-02">
-        <a href="/tutorials/offline/whats-offline/">"Offline": What does it mean and why should I care?</a>
-      </h2>
-      <div>
-        <span class="date">August 2, 2010</span>
-        <span class="tag">offline</span>
-        <span class="tag">performance</span>
-      </div>
-      <div class="summary">
-        A discussion of what it means to take an application "offline" and the options available
-        to developers for doing so.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/offline/whats-offline/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie supported"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="webfonts" data-pubdate="2010-08-02">
-        <a href="/tutorials/webfonts/quick/">Quick guide to webfonts via @font-face</a>
-      </h2>
-      <div>
-        <span class="date">August 2, 2010</span>
-        <span class="tag">webfonts</span>
-        <span class="tag">CSS</span>
-        <span class="tag">presentation</span>
-      </div>
-      <div class="summary">
-        Webfonts give new typographic freedom to designers while retaining scalability and accessibility.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/webfonts/quick/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie supported"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="chrome-devtools-audit-panel" data-pubdate="2010-07-28">
-        <a href="/tutorials/developertools/auditpanel/">Auditing Your Web App For Speed</a>
-      </h2>
-      <div>
-        <span class="date">July 28th, 2010</span>
-        <span class="tag">devtools</span>
-        <span class="tag">performance</span>
-      </div>
-      <div class="summary">
-        The Audit Panel is an excellent tool for examining latency in your web apps. It offers customized recommendations to
-        enhance performance and reduce latency.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/developertools/auditpanel/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera"></span>
-           <span class="ie"></span>
-           <span class="safari"></span>
-           <span class="ff"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="web-workers" data-pubdate="2010-07-26">
-        <a href="/tutorials/workers/basics/">The Basics of Web Workers</a>
-      </h2>
-      <div>
-        <span class="date">July 26th, 2010</span>
-        <span class="tag">performance</span>
-        <span class="tag">workers</span>
-      </div>
-      <div class="summary">
-        Web Workers are a means of spawning background scripts in your application,
-        giving thread-like message passing for handling computationally intensive tasks.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/workers/basics/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="chrome-devtools-part1" data-pubdate="2010-06-18">
-        <a href="/tutorials/developertools/part1/">Introduction to Chrome Developer Tools, Part One</a>
-      </h2>
-      <div>
-        <span class="date">June 18th, 2010</span>
-        <span class="tag">devtools</span>
-        <span class="tag">performance</span>
-      </div>
-      <div class="summary">
-        An introduction to the tools available in Google Chrome that make a developer's life easier!
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/developertools/part1/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="best-practices-faster-web" data-pubdate="2010-06-18">
-        <a href="/tutorials/speed/quick/">Best Practices for a Faster Web App with HTML5</a>
-      </h2>
-      <div>
-        <span class="date">June 18th, 2010</span>
-        <span class="tag">appcache</span>
-        <span class="tag">offline</span>
-        <span class="tag">performance</span>
-        <span class="tag">webdatabase</span>
-      </div>
-      <div class="summary">
-        How to effectively use features from HTML5 to improve the performance and responsiveness of your app.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/speed/quick/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie supported"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="intro-appcache" data-pubdate="2010-06-18">
-        <a href="/tutorials/appcache/beginner/">A Beginner's Guide to Using the Application Cache</a>
-      </h2>
-      <div>
-        <span class="date">June 18th, 2010</span>
-        <span class="tag">appcache</span>
-        <span class="tag">offline</span>
-        <span class="tag">performance</span>
-      </div>
-      <div class="summary">
-        A step-by-step guide to taking your web app offline using the application cache APIs.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/appcache/beginner/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="todolist-offline" data-pubdate="2010-06-18">
-        <a href="/tutorials/offline/takingappoffline/">Practical Guide to Take Your TODO List Offline</a>
-      </h2>
-      <div>
-        <span class="date">June 18th, 2010</span>
-        <span class="tag">appcache</span>
-        <span class="tag">offline</span>
-      </div>
-      <div class="summary">
-        Expanding on the <a href="/tutorials/webdatabase/todo/">simple TODO list</a>, this tutorial
-        gives a practical guide for taking the sample offline using the application cache.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/offline/takingappoffline/">View tutorial</a> &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="reading-files-js" data-pubdate="2010-06-18">
-        <a href="/tutorials/file/dndfiles/">Reading files in JavaScript using the File APIs</a>
-      </h2>
-      <div>
-        <span class="date">June 18th, 2010</span>
-        <span class="tag">dnd</span>
-        <span class="tag">file</span>
-        <span class="tag">filereader</span>
-      </div>
-      <div class="summary">
-        Starter guide for using the File/FileList/FileReader APIs to process
-        and read binary files in JavaScript.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/file/dndfiles/">View tutorial</a>  &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera"></span>
-           <span class="ie"></span>
-           <span class="safari"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="geolocation-tripmeter" data-pubdate="2010-05-24">
-        <a href="/tutorials/geolocation/trip_meter/">A Simple Trip Meter using the Geolocation API</a>
-      </h2>
-      <div>
-        <span class="date">May 24th, 2010</span>
-        <span class="tag">geolocation</span>
-      </div>
-      <div class="summary">
-        Learn how to implement geolocation very quickly including a distance calculator
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/geolocation/trip_meter/">View tutorial</a>  &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="intro-noticiations-api" data-pubdate="2010-02-24">
-        <a href="/tutorials/notifications/quick/">Using the Notifications API</a>
-      </h2>
-      <div>
-        <span class="date">February 24th, 2010</span>
-        <span class="tag">notifications</span>
-      </div>
-      <div class="summary">
-        Learn the notification basics creating a twitter notification
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/notifications/quick/">View tutorial</a>  &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera"></span>
-           <span class="ie"></span>
-           <span class="safari"></span>
-           <span class="ff"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="todolist-webdb" data-pubdate="2010-02-17">
-        <a href="/tutorials/webdatabase/todo/">A Simple TODO list using HTML5 WebDatabases</a>
-      </h2>
-      <div>
-        <span class="date">February 17th, 2010</span>
-        <span class="tag">webdatabase</span>
-        <span class="tag">offline</span>
-        <span class="tag">performance</span>
-      </div>
-      <div class="summary">
-        Create a TODO list which persists data using a client side database.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/webdatabase/todo/">View tutorial</a>  &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-    <article class="sample">
-      <h2 id="quick-guide-audio-tag" data-pubdate="2010-02-05">
-        <a href="/tutorials/audio/quick/">Quick Guide to Implementing the HTML5 Audio Tag</a>
-      </h2>
-      <div>
-        <span class="date">February 5th, 2010</span>
-        <span class="tag">audio</span>
-        <span class="tag">flash</span>
-        <span class="tag">multimedia</span>
-      </div>
-      <div class="summary">
-        Learn how to use the HTML5 audio tag and fall back to Flash on 
-        platforms which do not support it.
-      </div>
-      <div class="footer_links">
-         <span class="buttonlink"><a href="/tutorials/audio/quick/">View tutorial</a>  &rArr;</span>
-         <span class="browser_logos">
-           <span class="opera supported"></span>
-           <span class="ie"></span>
-           <span class="safari supported"></span>
-           <span class="ff supported"></span>
-           <span class="chrome supported"></span>
-         </span>
-      </div>
-    </article>
-
-  </div>
-
 
   {% include "../../templates/footer.html" %}
 

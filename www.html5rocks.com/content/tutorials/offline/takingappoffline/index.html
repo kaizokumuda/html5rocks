@@ -1,7 +1,7 @@
 {% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Paul Kinlan{% endblock %}
-{% block pageauthor %}Paul Kinlan{% endblock %}
+{% block pageauthor %}{% profilelinks paulkinlan %}{% endblock %}
 {% block headtitle %}Practical Guide to Take Your TODO List Offline{% endblock %}
 {% block pagetitle %}Practical Guide to Take Your TODO List Offline{% endblock %}
 {% block pagebreadcrumb %}Practical Guide to Take Your TODO List Offline{% endblock %}
@@ -15,12 +15,16 @@
 <span class="chrome supported"></span>
 {% endblock %}
 
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-storage.png" width="133" height="64" alt="This article is powered by HTML5 Offline &amp; Storage" title="This article is powered by HTML5 Offline &amp; Storage" />
+{% endblock %}
+
 {% block iscompatible %}
-  return typeof window.applicationCache == "object" ? true : false;
+  return Modernizr.applicationcache
 {% endblock %}
 
 {% block head %}
-{% endblock %}  
+{% endblock %}
     
 {% block onload %}{% endblock %}
 

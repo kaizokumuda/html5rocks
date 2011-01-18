@@ -1,7 +1,7 @@
 {% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Eric Bidelman <ericbidelman@chromium.org>{% endblock %}
-{% block pageauthor %}Eric Bidelman{% endblock %}
+{% block pageauthor %}{% profilelinks ebidelman %}{% endblock %}
 {% block headtitle %}Native HTML5 Drag and Drop{% endblock %}
 {% block pagetitle %}Native HTML5 Drag and Drop{% endblock %}
 {% block pagebreadcrumb %}Native HTML5 Drag and Drop{% endblock %}
@@ -84,6 +84,10 @@ dd {
 <span class="safari supported"></span>
 <span class="ff supported"></span>
 <span class="chrome supported"></span>
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-performance.png" width="133" height="64" alt="This article is powered by HTML5 Performance &amp; Integration" title="This article is powered by HTML5 Performance &amp; Integration" />
 {% endblock %}
 
 {% block iscompatible %}

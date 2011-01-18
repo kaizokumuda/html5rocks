@@ -1,7 +1,7 @@
 {% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Malte Ubl <malte.ubl@google.com>{% endblock %}
-{% block pageauthor %}Malte Ubl{% endblock %}
+{% block pageauthor %}{% profilelinks malteubl %}{% endblock %}
 {% block headtitle %}Introducing WebSockets: Bringing Sockets to the Web{% endblock %}
 {% block pagetitle %}Introducing WebSockets: Bringing Sockets to the Web{% endblock %}
 {% block pagebreadcrumb %}Introducing WebSockets: Bringing Sockets to the Web{% endblock %}
@@ -15,6 +15,10 @@
 <span class="safari supported"></span>
 <span class="ff supported"></span>
 <span class="chrome supported"></span>
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-connectivity.png" width="133" height="64" alt="This article is powered by HTML5 Connectivity / Realtime" title="This article is powered by HTML5 Connectivity / Realtime" />
 {% endblock %}
 
 {% block iscompatible %}

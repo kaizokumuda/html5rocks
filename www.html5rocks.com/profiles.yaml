@@ -1,0 +1,222 @@
+id: ebidelman
+name:
+  given: Eric
+  family: Bidelman
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
+homepage: http://ebidel.com
+google: ebidel
+twitter: ebidel
+email: e.bidelman@google.com
+
+---
+
+id: mahemoff
+name:
+  given: Michael
+  family: Mahemoff
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: London
+  region: London
+  country: UK
+  lat: 51.4948
+  lon: -0.1467
+homepage: http://mahemoff.com
+google: mahemoff
+twitter: mahemoff
+email: mahemoff@google.com
+lanyrd: true
+
+---
+
+id: paulkinlan
+name:
+  given: Paul
+  family: Kinlan
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: London
+  region: London
+  country: UK
+  lat: 51.4948
+  lon: -0.1467
+homepage: http://paul.kinlan.me
+google: paul.kinlan
+twitter: paul_kinlan
+email: paul.kinlan@google.com
+lanyrd: true
+
+---
+
+id: sethladd
+name:
+  given: Seth
+  family: Ladd
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
+homepage: http://sethladd.com
+google: sethladd
+twitter: sethladd
+email: sethladd@google.com
+
+---
+
+id: paulirish
+name:
+  given: Paul
+  family: Irish
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
+homepage: http://paulirish.com
+google: paulirish
+twitter: paul_irish
+email: paulirish@google.com
+lanyrd: true
+
+---
+
+id: michaeldewey
+name:
+  given: Mike
+  family: Dewey
+org:
+  name: deviantART
+  unit: Muro
+address:
+  locality: Oakland
+  region: California
+  country: USA
+  lat: 37.8043637
+  lon: -122.2711137
+homepage:
+google:
+twitter:
+email:
+
+---
+
+id: davidtong
+name:
+  given: David
+  family: Tong
+org:
+  name: Box.net
+  unit: Box.net
+address:
+  locality: Palo Alto
+  region: California
+  country: USA
+  lat: 37.4226547
+  lon: -122.1372117
+homepage: http://www.davidtong.me
+google: davidtwtong
+twitter: davidalism
+email: davidtwtong@gmail.com
+
+---
+
+id: malteubl
+name:
+  given: Malte
+  family: Ubl
+org:
+  name: Google
+  unit: Customer Solutions Engineering
+address:
+  locality: Hamburg
+  region: Hamburg
+  country: Germany
+  lat: 53.55
+  lon: 10.0
+homepage: http://nonblocking.io
+google: malte.ubl
+twitter: cramforce
+email: malteubl@google.com
+image: http://a0.twimg.com/profile_images/1151487948/glasses.jpg
+lanyrd: true
+
+---
+
+id: derekdetweiler
+name:
+  given: Derek
+  family: Detweiler
+org:
+  name: Gopherwood Studios
+  unit: Game Designer
+address:
+  locality: Hickory
+  region: North Carolina
+  country: USA
+  lat: 35.737778
+  lon: -81.328333
+homepage: http://gopherwoodstudios.com/
+google: http://www.google.com/profiles/derek.detweiler
+twitter: gopherwood
+email: derek.detweiler@gopherwoodstudios.com
+
+---
+
+id: ernestd
+name:
+  given: Ernest
+  family: Delgado
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
+homepage: http://ernestdelgado.com/
+google: ernestd
+twitter: edr
+email: ernestd@google.com
+
+---
+
+id: danielmoore
+name:
+ given: Daniel X.
+ family: Moore
+org:
+ name: STRd6
+ unit: Pixel Relations
+address:
+ locality: Sunnyvale
+ region: California
+ country: USA
+ lat:  37.3688889
+ lon: -122.0352778
+homepage: http://strd6.com
+google: 104138221626061560232
+twitter: STRd6
+email: yahivin@gmail.com

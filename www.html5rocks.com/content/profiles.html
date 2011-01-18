@@ -1,0 +1,107 @@
+{% extends "../templates/base.html" %}
+{% block headtitle %}Author Profiles{% endblock %}
+{% block head %}
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans|Tangerine:regular,bold|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="/static/css/profiles.css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.scrollTo-min.js"></script>
+<script src="/static/js/profiles.js"></script>
+{% endblock %}
+{% block onload %}scrollToProfile();{% endblock %}
+{% block body %}
+  {% include "../templates/header.html" %}
+  <nav>
+    <p class="breadcrumb">
+      <a class="buttonlink" href="/">
+        <span>Home</span>
+      </a>&gt; Profiles
+    </p>
+  </nav>
+  <article>
+    <header>
+      <h1></h1>
+    </header>
+    <!-- see http://microformats.org/wiki/microdata -->
+    <!-- http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#vcard -->
+
+    <div id="profiles">
+      {% for profile in sorted_profiles %}
+
+      <article class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
+        <section class="card">
+          <div class="face front">
+            <h2>
+              <div itemprop="fn">
+                <div itemprop="n" itemscope>
+                  <span itemprop="given-name">{{profile.name.given}}</span>
+                 <span itemprop="family-name">{{profile.name.family}}</span>
+                </div>
+              </div>
+            </h2>
+
+            <div class="photoZone">
+              <img itemprop="photo" alt="{{profile.name.given}} {{profile.name.family}}" title="{{profile.name.given}} {{profile.name.family}}" src="/static/images/profiles/{{profile.id}}.png">
+              <ul class="urls">
+                {% if profile.homepage %}
+                <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
+                {% endif %}
+                {% if profile.google %}
+                <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google}}">&nbsp;</a></li>
+                {% endif %}
+                {% if profile.twitter %}
+                <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter}}">&nbsp;</a></li>
+                {% endif %}
+                {% if profile.lanyrd %}
+                <li><a data-type="lanyrd" itemprop="url" href="http://www.lanyrd.com/people/{{profile.twitter}}">&nbsp;</a></li>
+                {% endif %}
+              </ul>
+            </div>
+
+            <div itemprop="org" itemscope>
+              {% if profile.org.unit %}<div itemprop="organization-unit">{{profile.org.unit}}</div>{% endif %}
+              {% if profile.org.name %}<div itemprop="organization-name">{{profile.org.name}}</div>{% endif %}
+            </div>
+            <div class="details">
+              <div itemprop="adr" itemscope>
+                {% if profile.address.locality %}<span itemprop="locality">{{profile.address.locality}},</span>{% endif %}
+                {% if profile.address.region %}<span itemprop="region">{{profile.address.region}},</span>{% endif %}
+                {% if profile.address.country %}<span itemprop="country-name">{{profile.address.country}}</span>{% endif %}
+              </div>
+            </div>
+            <div class="list-articles">Articles</div>
+          </div>
+          <div class="face back">
+            <ul class="articles"></ul>
+          </div>
+        </section>
+        <section class="map">
+          {% if profile.address.lat and profile.address.lon %}
+          <div itemprop="geo">
+            <img src="http://maps.google.com/maps/api/staticmap?center={{profile.address.lat}},{{profile.address.lon}}&markers=color:red|label:|{{profile.address.lat}},{{profile.address.lon}}&zoom=14&size=200x175&sensor=false"/>
+          </div>
+          {% endif %}
+        </section>
+      </article>
+
+      {% endfor %}
+
+    </div>
+  </article>
+  <script>
+  var div = $('<div>').load('/tutorials/ .sample', function() {
+    var authorLinks = div.find('[data-id]');
+    authorLinks.each(function(i, authorLink) {
+
+      var profileID = $(authorLink).attr('data-id')
+      var ul = $('#' + profileID + ' .articles')[0];
+
+      var sample = $(authorLink).closest('.sample').find('h2 a').clone();
+
+      $(ul).append('<li>' + sample[0].outerHTML + '</li>');
+
+    });
+  });
+  </script>
+  {% include "../templates/footer.html" %}
+{% endblock %}
+

@@ -28,7 +28,8 @@
       padding: 13px 10px;
       margin: 0 6px;
       background: -moz-linear-gradient(90deg, #eee, #fff, #eee);
-      background: -webkit-gradient(linear, left top, left bottom, from(#eee), color-stop(0.5, #fff), to(#eee));
+      background: -webkit-gradient(linear, left top, left bottom,
+                                   from(#eee), color-stop(0.5, #fff), to(#eee));
       border: 2px solid #e1e1e1;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
@@ -38,44 +39,39 @@
       -o-transition: all 0.10s ease-in-out;
       cursor: pointer;
     }
-    .feed-section div.feature {
-      border-width: 1px;
-    }
-    .feed-section div.feature a {
-      outline: 0;
-    }
-    #index div.app:hover, .feed-section div.app:hover {
+    #index div.app:hover,
+    #themes a:hover {
       border-color: #e1e1e1;
       -webkit-box-shadow: #666 0px 0px 6px;
       -moz-box-shadow: #666 0px 0px 6px;
       box-shadow: #666 0px 0px 6px;
-      background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+      background: -webkit-gradient(linear, left top, left bottom,
+                                   from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
       background: -moz-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
     }
-    .feed-section div.feature:hover {
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow:  none;
-    }
-    .feed-section div.app {
+    #themes div.app {
       display: inline-block;
-      width: 155px;
-      height: 32px;
+      width: auto;
+      height: 28px;
       margin: 3px;
-      padding: 0;
-      text-align: center;
+      padding: 5px;
+      text-align: left;
+      -moz-border-radius: 0;
+      -o-border-radius: 0;
+      border-radius: 0;
+      border-width: 1px;
+      vertical-align: middle;
+      font-weight: bold;
     }
-
-    .feed-section div.app a {
-      padding: 10px;
-      display:block;
-    } 
-    
-    .feed-section div.app a:hover {
-      text-decoration: none;
-      color: #1D3C7D;
+    #themes div.app img {
+      width: 28px;
+      height: 28px;
     }
-    
+    #themes h3 {
+      margin: 0;
+      display: inline;
+      cursor: pointer;
+    }
     .app h2 {
       text-transform: uppercase;
       padding: 0;
@@ -103,19 +99,34 @@
     .fr { float: right; }
     .clear { clear: both; }
     .feed-section { width: 50%; }
-    .feed-section > *,
     .info-section > *  {
       padding-left: 5px;
+    }
+    #themes a {
+      display: inline-block;
+      width: 155px;
+      cursor: pointer;
+    }
+    #themes a:hover {
+      text-decoration: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+    #themes a:hover .app {
+      border-color: transparent;
+      background: transparent;
     }
     .feed-section ul {
       list-style: none;
       margin-left: 0;
+      padding-left: 0;
       color: #666;
       line-height: 1.5em;
     }
     .feed-section h2,
     .info-section h2 {
-      padding: 24px 0 7px 5px;
+      padding: 24px 0 7px 0;
       color: #000;
       font-size: 15px;
       text-transform: uppercase;
@@ -194,36 +205,57 @@
       </div>
     </a>
   </section>
-  <section class="clear fl feed-section">
-    <h2>Learn by major HTML5 feature groups</h2>
-    <div class="app feature">
-      <a href="/features/offline">Offline</a>
-    </div>
-    <div class="app feature">
-      <a href="/features/file">File Access</a>
-    </div>
-    <div class="app feature">
-      <a href="/features/multimedia">Multimedia</a>
-    </div>
-    <div class="app feature">
-      <a href="/features/performance">Performance</a>
-    </div>
-    <div class="app feature">
-     <a href="/features/presentation">Presentation</a>
-    </div>
-    <div class="app feature">
-     <a href="/features/graphics">Graphics</a>
-    </div>
-    <div class="app feature">
-     <a href="/features/storage">Storage</a>
-    </div>
+  <section class="clear fl feed-section" id="themes">
+    <h2><img src="/static/images/identity/HTML5_Badge_32.png" width="16" height="16"> Learn by Major HTML5 Feature Groups</h2>
+    <a href="/features/offline">
+      <div class="app feature">
+        <img src="/static/images/identity/classes_32/HTML5_Offline_Storage_32.png">
+      </div>
+      <h3>Offline</h3>
+    </a>
+    <a href="/features/file">
+      <div class="app feature">
+        <img src="/static/images/identity/classes_32/HTML5_Offline_Storage_32.png">
+      </div>
+      <h3>File Access</h3>
+    </a>
+    <a href="/features/multimedia">
+      <div class="app feature">
+        <img src="/static/images/identity/classes_32/HTML5_MultiMedia_32.png">
+      </div>
+      <h3>Multimedia</h3>
+    </a>
+    <a href="/features/performance">
+      <div class="app feature">
+        <img src="/static/images/identity/classes_32/HTML5_Performance_32.png">
+      </div>
+      <h3>Performance</h3>
+    </a>
+    <a href="/features/presentation">
+      <div class="app feature">
+        <img src="/static/images/identity/classes_32/HTML5_Styling_32.png">
+      </div>
+      <h3>Presentation</h3>
+    </a>
+    <a href="/features/graphics">
+      <div class="app feature">
+        <img src="/static/images/identity/classes_32/HTML5_3D_Effects_32.png">
+      </div>
+      <h3>Graphics</h3>
+    </a>
+    <a href="/features/storage">
+      <div class="app feature">
+        <img src="/static/images/identity/classes_32/HTML5_Offline_Storage_32.png">
+      </div>
+      <h3>Storage</h3>
+    </a>
   </section>
   <section class="fr feed-section">
     <h2>Latest Tutorials <a href="http://feeds.feedburner.com/html5rocks"><img src="/static/images/feed_icon16x16.png" width="16" height="16" /></a></h2>
     <ul id="latest_articles_feed"><li><i>loading feed...</i></li></ul>
     <p><a href="/tutorials/">See more &rArr;</a></p>
   </section>
-  
+
   <section class="clear info-section">
     <h2>Contribute</h2>
     <p>This site, the HTML5 <a href="http://playground.html5rocks.com">Playground</a>, <a href="http://studio.html5rocks.com">Studio</a>,
@@ -264,5 +296,4 @@
     }
   </script>
   <script src="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&amp;num=6&amp;q={{host}}/tutorials/index.xml&amp;callback=processFeedResponse"></script>
-
 {% endblock %}

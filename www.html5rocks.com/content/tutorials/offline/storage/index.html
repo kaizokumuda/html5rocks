@@ -1,7 +1,7 @@
 {% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Michael Mahemoff{% endblock %}
-{% block pageauthor %}Michael Mahemoff{% endblock %}
+{% block pageauthor %}{% profilelinks mahemoff %}{% endblock %}
 
 {% block headtitle %}Client-Side Storage{% endblock %}
 {% block pagetitle %}Client-Side Storage{% endblock %}
@@ -10,6 +10,10 @@
 
 {% block browsersupport %}
 varies
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-storage.png" width="133" height="64" alt="This article is powered by HTML5 Offline &amp; Storage" title="This article is powered by HTML5 Offline &amp; Storage" />
 {% endblock %}
 
 {% block iscompatible %}{% endblock %}

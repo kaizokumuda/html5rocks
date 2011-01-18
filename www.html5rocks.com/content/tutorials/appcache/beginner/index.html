@@ -1,7 +1,7 @@
 {% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Eric Bidelman <e.bidelman@chromium.org>{% endblock %}
-{% block pageauthor %}Eric Bidelman{% endblock %}
+{% block pageauthor %}{% profilelinks ebidelman %}{% endblock %}
 {% block headtitle %}A Beginner's Guide to Using the Application Cache{% endblock %}
 {% block pagetitle %}A Beginner's Guide to Using the Application Cache{% endblock %}
 {% block pagebreadcrumb %}A Beginner's Guide to Using the Application Cache{% endblock %}
@@ -13,6 +13,10 @@
 <span class="safari supported"></span>
 <span class="ff supported"></span>
 <span class="chrome supported"></span>
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-performance-storage.png" width="165" height="64" alt="This article is powered by HTML5 Performance &amp; Integration, and Offline &amp; Storage" title="This article is powered by HTML5 Performance &amp; Integration, and Offline &amp; Storage" />
 {% endblock %}
 
 {% block iscompatible %}

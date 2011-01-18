@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2010 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +27,8 @@ import html5lib
 from html5lib import treebuilders, treewalkers, serializer
 from html5lib.filters import sanitizer
 
+import yaml
+
 # Google App Engine Imports
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
@@ -34,8 +37,9 @@ from google.appengine.api import memcache
 
 from django.utils import feedgenerator
 
-webapp.template.register_template_library('templatefilters')
+import common
 
+webapp.template.register_template_library('templatefilters')
 
 class ContentHandler(webapp.RequestHandler):
 
@@ -128,6 +132,8 @@ class ContentHandler(webapp.RequestHandler):
     if not 'category' in template_data:
       template_data['category'] = 'this feature'
 
+    # Add CORS support entire site.
+    self.response.headers.add_header('Access-Control-Allow-Origin', '*')
     self.response.headers.add_header('X-UA-Compatible', 'IE=Edge,chrome=1')
     self.response.out.write(
         webapp.template.render(template_path, template_data))
@@ -170,23 +176,30 @@ class ContentHandler(webapp.RequestHandler):
       path = os.path.join(basedir, 'content', relpath)
 
     # Render the .html page if it exists. Otherwise, check that the Atom feed
-    # the user is requesting jas a corresponding .html page that exists.
-    logging.info('path: ' + path)
-    if os.path.isfile(path):
-      self.render(template_path=path)
+    # the user is requesting has a corresponding .html page that exists.
+
+    if (relpath == 'profiles' or relpath == 'profiles/'):
+      # Setup caching layer for this file i/o.
+      profiles = common.get_profiles()
+      sorted_profiles = sorted(profiles.values(),
+                               key=lambda profile:profile['name']['family'])
+      self.render(data={'sorted_profiles': sorted_profiles},
+                  template_path='content/profiles.html')
+    elif os.path.isfile(path):
+      self.render(data={}, template_path=path)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
-      self.render(template_path=path[:path.rfind('.')] + '.html')
+      self.render(data={}, template_path=path[:path.rfind('.')] + '.html')
     elif os.path.isfile(path + '.html'):
-      self.render(data={'category': relpath.replace('features/','') }, template_path=path + '.html')
+      self.render(data={'category': relpath.replace('features/', '')},
+                  template_path=path + '.html')
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
-
 def main():
   application = webapp.WSGIApplication([
     ('/(.*)', ContentHandler)
-  ], debug=True)
+  ], debug=False)
   util.run_wsgi_app(application)
 
 if __name__ == '__main__':

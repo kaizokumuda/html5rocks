@@ -156,6 +156,34 @@ var tempJSON = [
     ]
   },
   {
+    "category":"JavaScript APIs-Web Workers",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/inline_workers.html",
+        "files": ["samples/css/html5/inline_workers.css", "samples/js/html5/inline_workers.js"],
+        "editor": "js",
+        "sampleName": "Inline Workers",
+        "tags": "",
+        "spec": "http://www.whatwg.org/specs/web-workers/current-work/",
+        "tutorial": "http://www.html5rocks.com/tutorials/workers/basics/#toc-inlineworkers"
+      }
+    ]
+  },
+  {
+    "category":"JavaScript APIs-Native Drag and Drop",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/dnd.html",
+        "files": ["samples/css/html5/dnd.css",  "samples/js/html5/dnd.js"],
+        "editor": "js",
+        "sampleName": "Drag and Drop",
+        "tags": "",
+        "spec": "http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html",
+        "tutorial": "http://www.html5rocks.com/tutorials/dnd/basics/"
+      }
+    ]
+  },  
+  {
     "category":"HTML",
     "samples":[
       {
@@ -221,13 +249,22 @@ var tempJSON = [
         "tags": "",
         "spec": "http://www.w3.org/TR/selectors-api2/"
       },
-      // {
-      //   "boilerplateLoc": "samples/boilerplateHTML/html5/svg.html",
-      //   "files": [],
-      //   "editor": "mixed",
-      //   "sampleName": "SVG",
-      //   "tags": ""
-      // },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/svg.html",
+        "files": ["samples/css/html5/svg.css"],
+        "editor": "mixed",
+        "sampleName": "Inline SVG",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/SVG/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/text_inside_svg.html",
+        "files": ["samples/css/html5/text_inside_svg.css"],
+        "editor": "mixed",
+        "sampleName": "Text inside SVG",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/SVG11/text.html"
+      },
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/microdata.html",
         "files": ["samples/js/html5/blank.js"],
@@ -336,6 +373,32 @@ var tempJSON = [
         "sampleName": "New Selectors",
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-selectors/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/flex_box_model.html",
+        "files": ["samples/css/html5/flex_box_model.css", "samples/js/html5/flex_box_model.js"],
+        "editor": "css",
+        "sampleName": "Flex Box Model",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-flexbox/",
+        "tutorial": "http://www.html5rocks.com/tutorials/flexbox/quick/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/complex_box_model.html",
+        "files": ["samples/css/html5/complex_box_model.css"],
+        "editor": "css",
+        "sampleName": "Flex Box Model - Complex",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-flexbox/",
+        "tutorial": "http://www.html5rocks.com/tutorials/flexbox/quick/"
+      },  
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/shadow.html",
+        "files": ["samples/css/html5/shadow.css"],
+        "editor": "css",
+        "sampleName": "Text and Box Shadow",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/2010/WD-css3-text-20101005/#text-shadow",
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"

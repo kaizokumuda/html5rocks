@@ -1,3 +1,6 @@
+figure {
+  margin: 0;
+}
 
 h2 {
   font-size: 28px;
@@ -11,7 +14,14 @@ h2 {
   border: 1px solid #eee; 
   padding: 2px;
   margin: 0 0 10px 10px;
-  height: 140px;
+  /*height: 140px;*/
+  -webkit-box-shadow: 1px 1px 10px #ccc inset;
+  -moz-box-shadow: 1px 1px 10px #ccc inset;
+  -o-box-shadow: 1px 1px 10px #ccc inset;
+  box-shadow: 1px 1px 10px #ccc inset;
+  -moz-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
 }
 hgroup {
   border-bottom: 1px solid #ddd;

@@ -1,8 +1,7 @@
 {% extends "../../../templates/base.html" %}
 
 {% block body %}
-  {% include "../../../templates/section.html" %}
-
+  {% include "../../../templates/header.html" %}
   <nav>
       <p class="breadcrumb">
         <a class="buttonlink" href="/">
@@ -18,7 +17,11 @@
       <h1>{% block pagetitle %}{% endblock %}</h1>
       <div>
         <span class="date">
-          {% block pageauthor %}{% endblock %}, <time pubdate>{% block date %}{% endblock %}</time>
+          {% block pageauthor %}{% endblock %}
+          <div>
+            <time pubdate>{% block date %}{% endblock %}</time>
+            <time class="updated">{% block updated %}{% endblock %}</time>
+          </div>
         </span>
         <span id="share_buttons">
           <ul>
@@ -40,17 +43,24 @@
         <p id="notcompatible" class="hidden">
           {% block notcompatible_text %}
           Your browser may not support all of
-          the functionality used in this sample.
+          the functionality used in this article.
           {% endblock %}
         </p>
         <p id="compatible" class="hidden">
           {% block compatible_text %}
           Your browser appears to support
-          all of the functionality used in this sample.
+          all of the functionality used in this article.
           {% endblock %}
         </p>
       </div>
     </section>
+    <aside id="html5badge">
+      <a href="http://www.w3.org/html/logo/">
+      {% block html5badge %}
+      <img src="/static/images/identity/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered" style="margin-right:17px" />
+      {% endblock %}
+      </a>
+    </aside>
     <nav>
       {% toc %}
     </nav>

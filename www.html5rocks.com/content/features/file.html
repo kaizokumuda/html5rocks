@@ -5,6 +5,7 @@
 {% block tuttags   %}file,dnd,filereader,filewriter,blob{% endblock %}
 
 {% block description %}
+<img src="/static/images/identity/classes_128/HTML5_Offline_Storage_128.png" width="128" height="128">
 <p>
 HTML5 provides (and in some cases, will soon provide) very powerful APIs to interact
 with binary data and a user's local file system. The File APIs give web applications the ability to
@@ -25,6 +26,7 @@ client-side logic to verify an upload's mimetype matches its file extension or r
 <!-- wrap any tuts content with LI's 
      these will be added to existing tutorials scraped from h5r.com -->
 {% block tuts %}
+<li><a href="http://www.thecssninja.com/javascript/filesystem">CSS Ninja: "I'll have the DOMFileSystem with a side of read/write access please..."</a></li>
 <li><a href="http://hacks.mozilla.org/2009/12/w3c-fileapi-in-firefox-3-6/">Mozilla Hacks: article on using the File API</a></li>
 <li><a href="https://developer.mozilla.org/en/Using_files_from_web_applications">MDC: Using files from web applications</a></li>
 <li><a href="http://www.thecssninja.com/javascript/gmail-dragout">Drag out files like Gmail</a></li>
@@ -68,6 +70,11 @@ client-side logic to verify an upload's mimetype matches its file extension or r
 <dl>
   <dt><a href="http://www.w3.org/TR/file-upload/">W3C Spec: File</a></dt>
   <dd>This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>.</dd>
+</dl>
+<dl>
+  <dt><a href="http://www.w3.org/TR/file-system-api/">W3C Spec: FileSystem APIs</a></dt>
+  <dd>This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing
+  files and directories in a sandboxed file system.</dd>
 </dl>
 <dl>
   <dt><a href="http://www.w3.org/TR/file-writer-api/">W3C Spec: FileWriter</a></dt>

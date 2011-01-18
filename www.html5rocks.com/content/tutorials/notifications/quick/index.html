@@ -1,7 +1,7 @@
 {% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Ernest Delgado{% endblock %}
-{% block pageauthor %}Ernest Delgado{% endblock %}
+{% block pageauthor %}{% profilelinks ernestd %}{% endblock %}
 {% block headtitle %}Using the Notifications API{% endblock %}
 {% block pagetitle %}Using the Notifications API{% endblock %}
 {% block pagebreadcrumb %}Using the Notifications API{% endblock %}
@@ -13,6 +13,10 @@
 <span class="safari"></span>
 <span class="ff"></span>
 <span class="chrome supported"></span>
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-performance.png" width="133" height="64" alt="This article is powered by HTML5 Performance &amp; Integration" title="This article is powered by HTML5 Performance &amp; Integration" />
 {% endblock %}
 
 {% block iscompatible %}

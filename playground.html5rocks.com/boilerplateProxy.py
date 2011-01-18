@@ -34,8 +34,7 @@ class Main(webapp.RequestHandler):
         key = APIKeys[i]
 
     self.template_values = {
-      "key": key,
-      "INSERT_JAVASCRIPT_HERE": 'INSERT_JAVASCRIPT_HERE'
+      "key": key
     }
 
     path = os.path.join(os.path.dirname(__file__), path)

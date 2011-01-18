@@ -1,7 +1,7 @@
 {% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Eric Bidelman <e.bidelman@chromium.org>{% endblock %}
-{% block pageauthor %}Eric Bidelman{% endblock %}
+{% block pageauthor %}{% profilelinks ebidelman %}{% endblock %}
 {% block headtitle %}Stream Updates with Server-Sent Events{% endblock %}
 {% block pagetitle %}Stream Updates with Server-Sent Events{% endblock %}
 {% block pagebreadcrumb %}Server-Sent Events{% endblock %}
@@ -17,6 +17,10 @@
 <span class="safari supported"></span>
 <span class="ff"></span>
 <span class="chrome supported"></span>
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-connectivity.png" width="133" height="64" alt="This article is powered by HTML5 Connectivity / Realtime" title="This article is powered by HTML5 Connectivity / Realtime" />
 {% endblock %}
 
 {% block iscompatible %}
@@ -325,7 +329,7 @@ source.addEventListener('message', function(e) {
   <h2 id="toc-demo">Demo</h2>
   
   <p>A <a href="http://googlecodesamples.com/html5/sse/sse.html">demo app</a> written
-  in PHP is available on googlecodesamples.com along with its <a href="http://code.google.com/p/html5rocks/source/browse/#hg/www.html5rocks.com/content/tutorials/sse/basics/demo">source</a>.</p>
+  in PHP is available on googlecodesamples.com along with its <a href="http://code.google.com/p/html5rocks/source/browse/www.html5rocks.com/#www.html5rocks.com%2Fcontent%2Ftutorials%2Feventsource%2Fbasics%2Fdemo">source</a>.</p>
 
   <h2 id="toc-references">References</h2>
   <ul>

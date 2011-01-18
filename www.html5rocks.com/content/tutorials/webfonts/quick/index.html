@@ -1,7 +1,7 @@
 {% extends "../../../../templates/sample.html" %}
 
 {% block headauthor %}Paul Irish{% endblock %}
-{% block pageauthor %}Paul Irish{% endblock %}
+{% block pageauthor %}{% profilelinks paulirish %}{% endblock %}
 {% block credits %}
  * Credits:
  * - Paul Irish (author)
@@ -20,10 +20,13 @@
 <span class="chrome supported"></span>
 {% endblock %}
 
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-css3.png" width="133" height="64" alt="This article is powered by HTML5 CSS3 / Styling" title="This article is powered by HTML5 CSS3 / Styling" />
+{% endblock %}
+
 {% block iscompatible %}
   return Modernizr.fontface;
 {% endblock %}
-
 
 {% block head %}
   <script src="http://www.google.com/jsapi"></script>
