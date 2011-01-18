@@ -30,7 +30,7 @@
       Copyright © 2009.
     </footer>
     <script>
-    {{ INSERT_JAVASCRIPT_HERE }}
+      INSERT_JAVASCRIPT_HERE
     </script>
   </body>
 </html>
