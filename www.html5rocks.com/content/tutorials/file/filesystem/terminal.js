@@ -229,11 +229,13 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           }
 
           open_(cmd, fileName, function(file) {
-            var blobURL = window.createObjectURL(file);
+            // TODO(ericbidelman): Make this work x-browser:
+            // window.URL.createObjectURL/window.createObjectURL
+            var blobURL = window.webkitURL.createObjectURL(file);
             var myWin = window.open(blobURL, 'mywin');
 
             // Immediately destroy blob URL reference after file is opened.
-            window.revokeObjectURL(blobURL);
+            window.webkitURL.revokeObjectURL(blobURL);
           });
 
           break;
