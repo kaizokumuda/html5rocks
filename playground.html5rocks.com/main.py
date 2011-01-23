@@ -332,15 +332,6 @@ class Save(webapp.RequestHandler):
     else:
       self.redirect('/' + cgiArgs + hashLink)
       
-class CacheCode(webapp.RequestHandler):
-  def post(self):
-    code = self.request.get('code')
-    unique_id = self.request.get('unique_id')
-    code = code.encode('utf-8')
-    query = urllib.urlencode({'code' : code, 'unique_id' : unique_id})
-    data = urlfetch.fetch('http://savedbythegoog.appspot.com/cache_code', query, "POST")
-    self.response.out.write(data.content)
-
 class GetTOC(webapp.RequestHandler):
   def getAllTOCs(self):
     the_response_script = ''
@@ -503,13 +494,11 @@ def main():
                                         ('/save', Save),
                                         ('/delete', Delete),
                                         ('/get', GetCode),
-                                        ('/cacheCode', CacheCode),
                                         ('/apis/ajax/playground/', Main),
                                         ('/apis/ajax/playground', RedirectToMain),
                                         ('/apis/ajax/playground/save', Save),
                                         ('/apis/ajax/playground/delete', Delete),
                                         ('/apis/ajax/playground/get', GetCode),
-                                        ('/apis/ajax/playground/cacheCode', CacheCode),
                                         ('/apis/ajax/playground/getTOC', GetTOC),
                                         ('/apis/ajax/playground/flush_memcache', FlushMemcache),
                                         ('/apis/ajax/playground/get_projects', GetProjects),
