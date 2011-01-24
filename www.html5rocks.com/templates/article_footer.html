@@ -1,9 +1,10 @@
 <p class="cc">
-    Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this
-    page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, <br>
-    and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
-  </p>
+  Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this
+  page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, <br>
+  and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
+</p>
 
+{% if not is_mobile %}
   <!-- Include the Google Friend Connect commenting widget. -->
   <script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>
   <div id="commentwidget" style="width:750px;border:1px solid #dddddd;"></div>
@@ -37,3 +38,4 @@
   </script>
   <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
   <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>
+{% endif %}

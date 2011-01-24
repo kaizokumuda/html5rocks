@@ -1,7 +1,6 @@
 {% extends "../../../../templates/base.html" %}
 
 {% block body %}
-  {% include "../../../../templates/header.html" %}
   <nav>
       <p class="breadcrumb">
         <a class="buttonlink" href="/">
@@ -23,6 +22,7 @@
             <time class="updated">{% block updated %}{% endblock %}</time>
           </div>
         </span>
+        {% if not is_mobile %}
         <span id="share_buttons">
           <ul>
             <li><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a></li>
@@ -32,6 +32,7 @@
             </li>
           </ul>
         </span>
+        {% endif %}
       </div>
       <span class="browser_support">
         <span>Supported browsers:</span>
@@ -69,6 +70,5 @@
     </section>
   </article>
   {% include "../../../../templates/article_footer.html" %}
-  {% include "../../../../templates/footer.html" %}
 
 {% endblock %}
