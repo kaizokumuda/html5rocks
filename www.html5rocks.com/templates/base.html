@@ -28,36 +28,15 @@
   <link rel="stylesheet" media="screen" href="/static/css/base.css" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <link rel="stylesheet" media="screen" href="/static/css/mobile.css" />
-  <!-- UNCOMMENT THESE AND REMOVE OUT THE LINE ABOVE FOR PRODUCTION
   <link rel="stylesheet" media="handheld, only screen and (max-device-width: 480px)" href="/static/css/mobile.css" />
   <link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/mobile.css" />
-  -->
-
-  <!--<link rel="stylesheet" media="screen and (-webkit-device-pixel-ratio: 1.0)" href="/static/css/mobile.css" />-->
-  <!--<link rel="stylesheet" media="handheld" href="/static/css/mobile.css" />-->
 
   <link rel="apple-touch-icon" href="/static/images/identity/HTML5_Badge_64.png" />
   <link rel="apple-touch-icon-precomposed" href="/static/images/identity/HTML5_Badge_64.png" />
 
-  {% if not is_mobile %}<link rel="stylesheet" href="/static/css/prettify.css" />{% endif %}
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
-  <script>
-    function isCompatible() {
-      {% block iscompatible %}
-      return null;
-      {% endblock %}
-    }
+  <link rel="stylesheet" media="all" href="/static/css/prettify.css" />
+  <link rel="stylesheet" media="all" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
 
-    // We want the compatibility DIV to show asap (e.g. before GFC loads).
-    window.addEventListener('DOMContentLoaded', function(e) {
-      if (isCompatible() === false) {
-        document.getElementById('notcompatible').className = '';
-      } else if (isCompatible() === true) {
-        document.getElementById('compatible').className = '';
-      }
-    }, false);
-  </script>
   {% block head %}{% endblock %}
 </head>
 <body onload="{% block onload %}{% endblock %}">
@@ -66,7 +45,7 @@
 
       <header>
         <h1 id="title">
-          <a href="/"><span class="normal">HTML</span><img src="/static/images/identity/HTML5_Badge_64.png"><span class="rocks">Rocks</span></a>
+          <a href="/" title="HTML5 Rocks Logo" alt="HTML5 Rocks Logo"><span class="normal">HTML</span><img src="/static/images/identity/HTML5_Badge_64.png"><span class="rocks">Rocks</span></a>
         </h1>
         <nav>
           <ul>
@@ -76,15 +55,15 @@
             <li><a href="/tutorials/" {% ifequal current 'tutorials' %}class="current"{% endifequal %}>Tutorials</a></li>
             <li><a href="/resources.html" {% ifequal current 'resources' %}class="current"{% endifequal %}>Resources</a></li>
           </ul>
-          <form action="/search" id="cse-search-box">
-            <div>
-              <input type="hidden" name="cx" value="007435387813601113811:ef_kuvvx6a8" />
-              <input type="hidden" name="cof" value="FORID:9" />
-              <input type="hidden" name="ie" value="UTF-8" />
-              <input type="search" name="q" id="q" autocomplete="off" placeholder="Search HTML5Rocks"/>
-            </div>
-          </form>
         </nav>
+        <form action="/search" id="cse-search-box">
+          <div>
+            <input type="hidden" name="cx" value="007435387813601113811:ef_kuvvx6a8" />
+            <input type="hidden" name="cof" value="FORID:9" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            <input type="search" name="q" id="q" autocomplete="off" placeholder="Search HTML5Rocks"/>
+          </div>
+        </form>
       </header>
 
       {% block body %}{% endblock %}
@@ -92,7 +71,7 @@
       <footer>
         <span>
           <a href="http://www.w3.org/html/logo/">
-            <img src="/static/images/identity/HTML5_Badge_64.png" align="left" width="64" height="64" title="HTML5 Logo" alt="HTML5 Logo"/>
+            <img src="/static/images/identity/HTML5_Badge_64.png" align="left" title="HTML5 Logo" alt="HTML5 Logo" class="footer-badge"/>
           </a>
           <a href="/tos.html" {% ifequal current 'tos' %}class="current"{% endifequal %}>Terms</a> -
           <a href="/privacy.html" {% ifequal current 'privacy' %}class="current"{% endifequal %}>Privacy</a> -
@@ -110,9 +89,21 @@
   </div>
   <script type="text/javascript" src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22search%22%2C%22version%22%3A%221%22%7D%5D%7D"></script>
   <script src="/static/js/modernizr-1.6.min.js"></script>
-  {% if not is_mobile %}<script src="/static/js/prettify.js"></script>{% endif %}
+  <script src="/static/js/prettify.js"></script>
   <script>
     (function() {
+      function isCompatible() {
+        {% block iscompatible %}
+        return null;
+        {% endblock %}
+      }
+
+      if (isCompatible() === false) {
+        document.getElementById('notcompatible').className = '';
+      } else if (isCompatible() === true) {
+        document.getElementById('compatible').className = '';
+      }
+
       var q = document.getElementById('q');
 
       google.search.CustomSearchControl.attachAutoCompletion(
@@ -131,7 +122,7 @@
             {}, '', document.location.href.replace(/\?utm_.*/, ''));
       }
 
-      {% if not is_mobile %}prettyPrint();{% endif %}
+      prettyPrint();
     })();
 
     var _gaq = _gaq || [];

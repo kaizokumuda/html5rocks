@@ -13,9 +13,6 @@ body a {
   color: #3D5C9D;
   text-decoration: none;
 }
-body a:hover {
-  text-decoration: underline;
-}
 #wrap {
   margin: 0;
   padding: 0;
@@ -83,6 +80,9 @@ figcaption {
 #cse-search-box:hover {
   opacity: 1;
 }
+#q {
+ width: 135px;
+}
 header nav a {
   font-family: 'Droid Sans', Arial;
 }
@@ -96,8 +96,7 @@ header nav ul li {
   float: left;
   padding: 0 3px 0 8px;
 }
-header nav ul li a:hover,
-a.current:hover {
+header nav ul li a:hover {
   text-decoration: none;
 }
 a.current {
@@ -111,9 +110,6 @@ a.current {
 .compatible-block {
   padding: 10px 0;
   text-align: center;
-}
-#controls {
-  padding: 5px;
 }
 #notcompatible,
 #compatible {
@@ -311,14 +307,16 @@ footer {
   border-top: 2px solid #222;
   display: inline-block;
 }
+footer .footer-badge {
+  width: 64px;
+  height: 64px;
+  margin-right: 5px;
+}
 footer > span {
   float: left;
 }
 footer > span:nth-child(1) {
   color: #bbb;
-  margin-right: 5px;
-}
-footer > span:nth-child(1) img {
   margin-right: 5px;
 }
 .madeby {

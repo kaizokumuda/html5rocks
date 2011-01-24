@@ -55,6 +55,7 @@
         </p>
       </div>
     </section>
+    {% if not is_mobile %}
     <aside id="html5badge">
       <a href="http://www.w3.org/html/logo/">
       {% block html5badge %}
@@ -62,6 +63,7 @@
       {% endblock %}
       </a>
     </aside>
+    {% endif %}
     <nav>
       {% toc %}
     </nav>
