@@ -8,8 +8,7 @@ document.body.appendChild(iframe);
 window.addEventListener("message", function(e){
   if (e.origin !== "http://apirocks.com" ) { // filter origin for security reasons
     document.getElementById("log").innerHTML = 'The domain you are trying to interact with is not a valid origin.';
-  } 
-  else {
+  } else {
     // you might as well do some filtering on e.data to be safe
     iframe.style.height = e.data['newHeight'] + 'px';
   }
@@ -20,7 +19,7 @@ window.addEventListener("message", function(e){
 /*
  If you want to play with the code on the other side of the communication
  just create a page in your domain with calls to
- window.parent.postMessage(e.target.id, "http://savedbythegoog.appspot.com");
+ window.parent.postMessage(e.target.id, "http://playground.html5rocks.com");
  Don't forget to adjust the e.origin checking and the iframe.src 
  on this side to make it work
 */

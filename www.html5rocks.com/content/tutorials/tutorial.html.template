@@ -1,0 +1,47 @@
+{% extends "../../../../templates/sample.html" %}
+
+{% block headauthor %}___FIRSTNAME___ ___LASTNAME___ <___EMAIL___>{% endblock %}
+{% block pageauthor %}{% profilelinks ___PROFILEID___ %}{% endblock %}
+{% block headtitle %}___ARTICLE_TITLE___{% endblock %}
+{% block pagetitle %}{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block pagebreadcrumb %}___ARTICLE_TITLE___{% endblock %}
+{% block date %}___ARTICLE_DATE___{% endblock %}
+{% block updated %}{% endblock %}
+{% block onload %}{% endblock %}
+
+{% block browsersupport %}
+___BROWSER_SUPPORT___
+{% endblock %}
+
+{% block iscompatible %}
+  return !!Modernizr.___COMPAT_TEST___
+{% endblock %}
+
+{% block content %}
+  <h2 id="toc-introduction">Introduction</h2>
+
+  <p>Ipsum Lorem.</p>
+
+  <h2 id="toc-topic">Heading</h2>
+
+  <p>Yada Yada:</p>
+
+  <pre class="prettyprint">
+// Example code snippet goes here.
+</pre>
+
+  <h3 id="toc-topic-subtopic">SubHeading</h3>
+
+  <p>Yada Yada:</p>
+
+  <h2 id="toc-references">References</h2>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+{% endblock %}

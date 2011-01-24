@@ -16,8 +16,12 @@
 <span class="chrome supported"></span>
 {% endblock %}
 
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-device.png" width="133" height="64" alt="This article is powered by HTML5 Device Access" title="This article is powered by HTML5 Device Access" />
+{% endblock %}
+
 {% block iscompatible %}
-  return (!!navigator.geolocation);
+  return Modernizr.geolocation;
 {% endblock %}
 
 {% block content %}

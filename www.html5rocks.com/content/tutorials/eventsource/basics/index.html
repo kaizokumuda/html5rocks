@@ -9,6 +9,7 @@
 <style>
 </style>
 {% endblock %}
+{% block updated %}January 19, 2011{% endblock %}
 {% block date %}November 30, 2010{% endblock %}
 
 {% block browsersupport %}
@@ -17,6 +18,10 @@
 <span class="safari supported"></span>
 <span class="ff"></span>
 <span class="chrome supported"></span>
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-connectivity.png" width="133" height="64" alt="This article is powered by HTML5 Connectivity / Realtime" title="This article is powered by HTML5 Connectivity / Realtime" />
 {% endblock %}
 
 {% block iscompatible %}
@@ -220,7 +225,9 @@ $serverTime = time();
 sendMsg($serverTime, 'server time: ' . date("h:i:s", time()));
 </pre>
 
-  <p>Here's an implementation using <a href="http://nodejs.org">Node JS</a>:</p>
+  <p><a href="demo/sse.php">Download the code</a></p>
+
+  <p>Here's a similiar implementation using <a href="http://nodejs.org">Node JS</a>:</p>
 
   <pre class="prettyprint">
 var http = require('http');
@@ -228,7 +235,7 @@ var sys = require('sys');
 var fs = require('fs');
 
 http.createServer(function(req, res) {
-  debugHeaders(req);
+  //debugHeaders(req);
 
   if (req.headers.accept && req.headers.accept == 'text/event-stream') {
     if (req.url == '/events') {
@@ -239,7 +246,7 @@ http.createServer(function(req, res) {
     }
   } else {
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(fs.readFileSync(__dirname + '/sse.html'));
+    res.write(fs.readFileSync(__dirname + '/sse-node.html'));
     res.end();
   }
 }).listen(8000);
@@ -247,10 +254,23 @@ http.createServer(function(req, res) {
 function sendSSE(req, res) {
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache'
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
   });
-  res.write('data: Server time is: ' + (new Date()) + '\n\n');
-  res.end();
+
+  var id = (new Date()).toLocaleTimeString();
+
+  // Sends a SSE every 5 seconds on a single connection.
+  setInterval(function() {
+    constructSSE(res, id, (new Date()).toLocaleTimeString());
+  }, 5000);
+
+  constructSSE(res, id, (new Date()).toLocaleTimeString());
+}
+
+function constructSSE(res, id, data) {
+  res.write('id: ' + id + '\n');
+  res.write("data: " + data + '\n\n');
 }
 
 function debugHeaders(req) {
@@ -262,7 +282,9 @@ function debugHeaders(req) {
 }
 </pre>
 
-  <h4>sse.html:</h4>
+  <p><a href="demo/node-sse.js">Download the code</a></p>
+
+  <h4>sse-node.html:</h4>
   <pre class="prettyprint">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -272,7 +294,7 @@ function debugHeaders(req) {
 &lt;body&gt;
   &lt;script&gt;
     var source = new EventSource('/events');
-    source.onmessage = function (e) {
+    source.onmessage = function(e) {
       document.body.innerHTML += e.data + '&lt;br&gt;';
     };
   &lt;/script&gt;

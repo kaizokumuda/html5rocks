@@ -1,3 +1,11 @@
+// todo
+
+// fluid height work
+// js cleanup
+// review words.
+// carousel shit.
+
+
 /*
  1. opens in TOC view.  - toc class
     transitions immediately fire to spin out the thumbnails
@@ -8,24 +16,197 @@
     b. need a fallback for no transition support
 */
 
-$(window).load(function () {
+
+window.UI = {
+    
+  /* each box: 160 x 166, padded size: 190 x 190 */
+  gridInitX : 30, 
+  gridInitY : 25,
+  boxWidth  : 190,
+  boxHeight : 190,
   
-  if (location.hash.length > 2) {
-    return;
+  lastDemo : undefined, // keeping track of last demo opened
+  boxes    : $('div.box'),
+  
+  onReady : function(){ 
+      // update the text to represent how many demos
+      $('#howmany').text(UI.numbers[UI.boxes.length]); 
+  },
+  
+  onLoad : function(){
+      UI.writeBoxStyles();
+
+      if (location.hash.length > 2) { return; }
+
+      setTimeout(function () {
+        $(document.body).addClass('go');
+      }, 500);
+  } // eo UI.onLoad
+  
+  
+};
+
+
+// css transition handling
+UI.trans = {
+    
+    // transition queue
+    fnQueue : [
+      function () {
+        $('#body').addClass('show')
+      }, function () {
+        $('#body').addClass('open');
+        $(UI.lastDemo).click()
+      }
+    ], // eo UI.trans.fnQueue[]
+    
+    onEnd : function f(e) {
+
+//console.log( $('body')[0].className, 'sup');
+
+      if ($('body').hasClass('toc') || $('#body').hasClass('open')) {
+        return;
+      }
+
+      f.boxes = f.boxes || UI.boxes.length;
+      // use the in progress one or make a shallow copy
+      f.fns = (f.fns && f.fns.length) ? f.fns : $.extend([], UI.trans.fnQueue);
+
+      f.boxes--;
+
+      // allow for forced progression (!csstransitions)
+      if (f.boxes === 0 || e === true) {
+        f.boxes = UI.boxes.length;
+        var fn = f.fns.shift();
+        fn && setTimeout(fn, 400);
+      }
+    } // eo UI.trans.onEnd()
+};
+
+
+
+// tooltip 
+UI.tip = {
+  over: function (e) {
+    
+    // hover over the invisible tooltip?
+    var srcElement = (e && e.srcElement && $(e.srcElement)) || [];
+    if (srcElement.length && srcElement.closest('.tooltip').length && srcElement.closest('.tooltip').is(':visible')){
+      return;
+    }
+    
+    var h3 = $('<h3>').text($(UI.lastDemo).find('a:first span').text());
+    var info = $(UI.lastDemo).find('p,ul').clone();
+    var support = $(UI.lastDemo).data('support');
+    var suphtml = $('<div class="support">').addClass( ('' + !!support) ).text(
+        'Your browser ' + (support ? ' appears to ' : ' may not fully ') + ' support these features.'
+      );
+      
+
+    $('.tooltip').find('h3,p,ul,.support').remove().end()
+     .append(h3).append(info).append(suphtml)
+     .appendTo("#info").addClass('popped');
+   },
+   out: function (e) {
+     $('.tooltip').removeClass('popped');
+   }
+};
+
+
+
+
+
+
+
+
+
+
+UI.tocToDemos = function (e) {
+
+  UI.lastDemo = this;
+
+  $(document.body).removeClass('go toc');
+  
+  // if we dont have transitionEnd events..
+  //if (!Modernizr.csstransitions){
+    
+  setTimeout(function(){
+    UI.trans.onEnd(true);
+    UI.trans.onEnd(true);
+  }, 700);
+};
+
+
+UI.hashChange = function(e, firstTime) {
+  
+  var text = location.hash.replace(/^#/,'');
+  
+  // An empty hash means he user went back to the start.
+  if (text === ''){
+    $('body')[0].className = 'go toc';
+       $.publish('return-to-grid');
+  } else {
+    firstTime && UI.tocToDemos();
+    $('#body').addClass('show open');
+    $('div.box')
+      .find('a:contains(' + text + ')')
+      .trigger('click', [true]);
   }
   
-  setTimeout(function () {
-    $(document.body).addClass('go');
-  }, 200);
-})
+};
+
+UI.scrollDemoContainer = function(){
+
+    var trigger = $(this);
+    
+    $('.controlbar').animate({'scrollTop': '+=' + UI.boxHeight }, function(){
+        // if we've scrolled up all the boxes so no more are invisble,
+        // kill the scroll trigger
+        if ($('div.box').last().offset().top - $('#container').height() + UI.boxHeight <= 0){
+            trigger.hide();
+        }
+    });
+    
+
+    return false;
+};
 
 
-// load iframe
-$('.show.open div.box').live('click', function f(e, forced) {
+UI.writeBoxStyles = function(){
 
-  tip.out();
+    // we position the boxes dynamically, so it scales with more. 
+    var rules = UI.boxes.map(function(i, elem){
+
+        return '' + 
+        '.go div.box:nth-child(' + (i+1) + ') { ' + 
+            'left : ' + ((i % 3) * UI.boxWidth + UI.gridInitX) + 'px;' +
+            'top  : ' + ((~~(i/3)) * UI.boxHeight + UI.gridInitY) + 'px;' +
+        '}';
+
+    }).get().join('') +
+        
+    // then in open mode, we gotta keep them all visible with overlap.
+    'body .show.open div.box { ' +
+        'margin-left: ' +  -(6.666*UI.boxes.length + 12) + 'px;' +
+    '}';
+    
+    $('<style>').text(rules).appendTo('head');
+};
+
+
+UI.returnToGrid = function (e) {
+  $('#stage iframe').hide().attr('src', 'about:blank');
+  $(document.body).addClass('go toc');
+  $('#body').removeClass('show open');
+};
+
+
+// load iframe and all that jazz
+UI.demoChosen = function(e, forced) {
+
+  UI.tip.out();
   
-  lastDemo = this;
+  UI.lastDemo = this;
    
   $(this).addClass('selected').siblings().removeClass('selected');
   var link = $(this).find('a:first');
@@ -33,7 +214,8 @@ $('.show.open div.box').live('click', function f(e, forced) {
   iframe.insertAfter('#stage iframe').show().prev().remove();
   
   
-  var hashtext = $(lastDemo).find('a').text().split(/\s+/).slice(-1);
+  // set the hash to be the chosen demo
+  var hashtext = $(UI.lastDemo).find('a').text().split(/\s+/).slice(-1);
   location.hash = hashtext;
   
   
@@ -47,80 +229,35 @@ $('.show.open div.box').live('click', function f(e, forced) {
     if (sessionStorage[key]) return;
     sessionStorage[key] = true;
   }
-  tip.over();
-  clearTimeout(f); // clear any stale timeouts
-  f = setTimeout(tip.out,10*1000);
+  
+  
+  UI.tip.over();
+  
+  clearTimeout(UI.demoChosen.t); // clear any stale timeouts
+  UI.demoChosen.t = setTimeout(UI.tip.out,10*1000);
   
 
-});
+};
 
 
-// return to grid
-$('#return').click(function (e) {
-  $('#stage iframe').hide().attr('src', 'about:blank');
-  $(document.body).addClass('go');
-  $('#body').addClass('toc open').removeClass('show open');
-
-});
 
 
-var lastDemo;
 
-function tocToDemos(e) {
+$('.show.open div.box').live('click', UI.demoChosen);
+$.subscribe('return-to-grid',UI.returnToGrid);
+$(document).bind('webkitTransitionEnd transitionend oTransitionEnd', UI.trans.onEnd);
+$(document).ready(UI.onReady);
+$(window).load(UI.onLoad);
 
-  lastDemo = this;
 
-  $(document.body).removeClass('go');
-  $('#body').removeClass('toc');
-  
-  // if we dont have transitionEnd events..
-  if (!Modernizr.csstransitions){
-    transitionEnd(true);
-    transitionEnd(true);
-  }
-}
 
 // when we click from TOC view, kick off the transition to showcase view
 $('#boxes')
-  .delegate('.toc .box', 'click', tocToDemos)
+  .delegate('.toc .box', 'click', UI.tocToDemos)
   .delegate('.box a', 'click', function(e) {
     e.preventDefault();
   });
 
-// transition queue action...
-var boxes = $('.box');
-var fnQueue = [
-  function () {
-    $('#body').addClass('show')
-  }, function () {
-    $('#body').addClass('open');
-    $(lastDemo).click()
-  }
-];
-
-var transitionEnd = function (e) {
-  
-  if ($('#body').hasClass('toc') || $('#body').hasClass('open')) {
-    $('#body').addClass('nofan'); // kill the fanned transition delay
-    return;
-  }
-
-  var f = transitionEnd;
-  f.boxes = f.boxes || boxes.length;
-  // use the in progress one or make a shallow copy
-  f.fns = (f.fns && f.fns.length) ? f.fns : $.extend([], fnQueue);
-
-  f.boxes--;
-  
-  // allow for forced progression (!csstransitions)
-  if (f.boxes === 0 || e === true) {
-    f.boxes = boxes.length;
-    var fn = f.fns.shift();
-    fn && setTimeout(fn, 400);
-  }
-};
-
-$(document).bind('webkitTransitionEnd transitionend oTransitionEnd', transitionEnd);
 
 
 $('#view_source').click(function () {
@@ -128,122 +265,28 @@ $('#view_source').click(function () {
 });
 
 
-// download.. 
 $('#download').click(function () {
   var path = $('iframe')[0].contentDocument.location.href.split('/');
   window.open( path.slice(0,-1).join('/') + '/' + path.slice(-2,-1)[0] + '.zip' );
 });
 
 
-// tooltip 
-var tip = {
-  over: function (e) {
-    
-    // hover over the invisible tooltip?
-    var srcElement = (e && e.srcElement && $(e.srcElement)) || [];
-    if (srcElement.length && srcElement.closest('.tooltip').length && srcElement.closest('.tooltip').is(':visible')){
-      return;
-    }
-    
-    var h3 = $('<h3>').text($(lastDemo).find('a:first span').text());
-    var info = $(lastDemo).find('p,ul').clone();
-    var support = $(lastDemo).data('support');
-    var suphtml = $('<div class="support">').addClass( ('' + !!support) ).text(
-        'Your browser ' + (support ? ' appears to ' : ' may not fully ') + ' support these features.'
-      );
-      
+$('a#boxtrigger').click(UI.scrollDemoContainer);
 
-    $('.tooltip').find('h3,p,ul,.support').remove().end()
-     .append(h3).append(info).append(suphtml)
-     .appendTo("#info").addClass('popped');
-   },
-   out: function (e) {
-     $('.tooltip').removeClass('popped');
-   }
-}
+$(window).bind('hashchange', UI.hashChange);
+
 
 $("#info").hoverIntent({
-  over: tip.over,
-  out: tip.out,
+  over: UI.tip.over,
+  out: UI.tip.out,
   timeout: 500
 });
 
 
 
-
-
-
-
-var tops = {
-  '#stage iframe': 'height',
-  '#container': 'height',
-  '.controlbar': 'top',
-  'footer': 'top'
-}
-
-var initialOffset;
-
-function setShowCaseSize() {
-  if (!setShowCaseSize.run) {
-    storeInitialTops(tops);
-    setShowCaseSize.run = true;
-  }
-
-  var offset = getOffset();
-
-  $.each(tops, function (sel, prop) {
-    var elem = $(sel);
-    var value = $.data(elem[0], 'initial');
-    //log(elem[0],prop,   value, offset)
-    elem.css(prop, parseFloat(value) + offset + 'px')
-  });
-
-}
-
-function storeInitialTops(tops) {
-  $.each(tops, function (sel, prop) {
-    var elem = $(sel); //log( elem.css(prop))
-    var value = elem.css(prop);
-    value = (value === 'auto' || !value) ? 491 : value; // fix for controlbar position
-    $.data(elem[0], 'initial', value);
-  });
-
-  var footer = $('footer');
-  initialOffset = footer.offset().top + footer.height();
-}
-
-function getOffset() {
-  // magic number 33 is a good looking amount of padding before bottom of window
-  var offset = $(window).height() - 33 - initialOffset;
-  // allow between 0 and 160 px of offset
-  return Math.min(160, Math.max(0, offset));
-}
-
-$(document).ready(setShowCaseSize);
-$(window).resize(setShowCaseSize);
-
-
-
-
-
-
-
-$(window).bind('hashchange', function(e, firstTime) {
-  
-  var text = location.hash.replace(/^#/,'');
-  
-  // An empty hash means he user went back to the start.
-  if (text === ''){
-    $('body')[0].className = 'go';
-    $('#body')[0].className = 'toc nofan';
-  } else {
-    firstTime && tocToDemos();
-    $('#body').addClass('show open');
-    $('div.box')
-      .find('a:contains(' + text + ')')
-      .trigger('click', [true]);
-  }
-  
-});
-
 $(window).trigger('hashchange', [true]);
+
+
+
+UI.numbers = {'9':'nine', '10':'ten', '11':'eleven', '12':'twelve', '13':'thirteen', '14':'fourteen', '15':'fifteen', '16':'sixteen', '17':'seventeen', '18':'eighteen'};
+

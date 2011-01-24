@@ -18,8 +18,6 @@
     return document.createElement(name);
   }
 
-  var savedByTheGoogAPIKey = "ABQIAAAA1XbMiDxx_BTCY2_FkPh06RRaGTYH6UMl8mADNa0YKuWNNa8VNxQEerTAUcfkyrr6OwBovxn7TDAH5Q";
-
   function InteractiveSample(){
     this.categories = [];
     this.subCategories = [];
@@ -353,7 +351,7 @@
         if (callback) {
           callback.call(this);
         }
-      }, savedByTheGoogAPIKey);
+      });
       return;
     }
     
@@ -425,7 +423,7 @@
    * This is where the code gets prefetched before running it
    * in the results frame
    */
-  InteractiveSample.prototype.getCodeAndRun = function(callbackFunc, opt_APIKey, code) {
+  InteractiveSample.prototype.getCodeAndRun = function(callbackFunc, code) {
     var curFilename = this.getCurFilename();
     // var sampleObj = this.sampleFileNameToObject(curFilename);
     var htmlUrl = this.htmlUrl;
@@ -441,7 +439,7 @@
     // js or css editors
     $.get(htmlUrl, function(data, success) {
       if (success) {
-        data = me.normalizeHTML(data, opt_APIKey)
+        data = me.normalizeHTML(data)
         callbackFunc(data);
       }
     });
@@ -452,7 +450,7 @@
    * it also replaces API key with a placeholder
    * @return data normalized HTML code
    */
-  InteractiveSample.prototype.normalizeHTML = function(data, opt_APIKey) {
+  InteractiveSample.prototype.normalizeHTML = function(data) {
     var me = this;
     var jsCode = me.getCode('js');
     var cssCode = me.getCode('css');
@@ -460,9 +458,6 @@
     cssCode = (cssCode.match(/\w/) !== null) ? me.indentCodeWithTheseSpaces(cssCode, me.findNumSpacesToIndentCode(data, 'css')) : '';
     data = me.insertJavascript(data, jsCode);
     data = me.insertCss(data, cssCode);
-
-    var key = opt_APIKey || "<<INSERT KEY>>";
-    data = data.replace(/key=.*"/, "key=" + key + "\"");
     return data;
   }
   
@@ -595,8 +590,7 @@
   };
 
   InteractiveSample.prototype.linkCode = function() {
-    var apiKey = savedByTheGoogAPIKey;
-    this.getCodeAndRun(this.sendCodeToServer, apiKey);
+    this.getCodeAndRun(this.sendCodeToServer);
   };
 
   InteractiveSample.prototype.loadCode = function(filename, opt_changeCodeMirror) {
@@ -1346,46 +1340,46 @@
     }
   };
 
-  RunBox.prototype.createIframeOrPopout = function(response) {
-    var url = 'http://savedbythegoog.appspot.com/retrieve_cache?unique_id=' + response;
-    if (!is.runBox.runBoxPoppedOut) {
-      window.is.runBox.createIframe(url);
-    } else {
-      // Run code in the popout window
-      var runbox = window.is.runBox.popoutWindow.document.getElementById('runbox');
-      runbox.innerHTML = '';
-      window.is.runBox.popoutWindow.addIframe(url);
-    }
-  };
-
-  RunBox.prototype.sendCodeToSavedByTheGoog = function(options) {
+  RunBox.prototype.createIframeForRuncode = function(options){
     var me = this;
     return function(code) {
-      var cacheCodeLoc = location.protocol + '//' + location.host + '/apis/ajax/playground/cacheCode';
-      var postVars = {};
-
       if (options && options.debugMode) {
         code = me.insertDebuggingTools(code);
       }
 
-      postVars.code = encodeSpecialChars(code);
-      $.post(cacheCodeLoc, postVars, window.is.runBox.createIframeOrPopout);
-    }
-  }
+      var url = 'about:blank';
+      if (!is.runBox.runBoxPoppedOut) {
+        window.is.runBox.createIframe(url);
+        var frm = $('iframe', me.runBoxDiv).get(0);
+        var doc = frm.contentWindow.document;
+        doc.open();
+        doc.write(code);
+        doc.close();
+      } else {
+        // Run code in the popout window
+        var runbox = window.is.runBox.popoutWindow.document.getElementById('runbox');
+        runbox.innerHTML = '';
+        window.is.runBox.popoutWindow.addIframe(url);
+        var doc = runbox.getElementsByTagName('iframe')[0].contentWindow.document;
+        doc.open();
+        doc.write(code);
+        doc.close();
+      }
+    };
+  };
+
 
   RunBox.prototype.runCode = function(options) {
     var code = this.is.getCode();
     if (this.is.currentEditor == window.mixedEditor) {
-      this.sendCodeToSavedByTheGoog(options)(code);
+      this.createIframeForRuncode(options)(code);
     } else {
-      var apiKey = savedByTheGoogAPIKey;
-
       if (options && options.debugMode) {
         var breakPoints = this.is.currentEditor.getBreakPoints();
         breakPoints = (breakPoints.length == 0) ? null : breakPoints;
         code = this.insertBreakPoints(code, breakPoints);
       }
-      this.is.getCodeAndRun(this.sendCodeToSavedByTheGoog(options), apiKey, code);
+      this.is.getCodeAndRun(this.createIframeForRuncode(options), code);
     }
   };
 

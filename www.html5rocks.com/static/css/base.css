@@ -309,25 +309,31 @@ article.sample .date {
 footer {
   clear: both;
   text-align: left;
-  padding: 20px 0;
+  padding: 20px 0 10px 0;
   font-size: 12px; 
   border-top: 2px solid #222;
+  display: inline-block;
 }
-footer .note {
+footer > span {
+  float: left;
+}
+footer > span:nth-child(1) {
   color: #bbb;
-  display: block;
-  margin-top: 10px;
+  margin-right: 5px;
+}
+footer > span:nth-child(1) img {
+  margin-right: 5px;
 }
 .madeby {
   float: right;
-  width: 25%;
-  margin: 0;
+  width: 200px;
+  margin-top: -2px;
   text-align: right;
 }
 .madeby img {
-  margin-bottom: -7px;
   width: 50px;
   height: 20px;
+  vertical-align: middle;
 }
 .cc {
   font-size: 80%;
@@ -352,4 +358,14 @@ a[rel='external'] {
   padding-right: 14px;
 }
 
-
+#html5badge {
+  float: right;
+  padding: 10px 0 5px 17px;
+  -webkit-box-shadow: 1px 1px 10px #ccc inset;
+  -moz-box-shadow: 1px 1px 10px #ccc inset;
+  -o-box-shadow: 1px 1px 10px #ccc inset;
+  box-shadow: 1px 1px 10px #ccc inset;
+  -moz-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
+}

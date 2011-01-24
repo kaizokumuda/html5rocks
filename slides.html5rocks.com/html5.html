@@ -122,7 +122,7 @@
               }
             </style>
             
-            <ul id="timeline" data-build>
+            <ul id="timeline">
               <li data-auto><span class="year">1991</span> <span class="html">HTML</span></li>
               <li data-auto><span class="year">1994</span> <span class="html">HTML 2</span></li>
               <li data-auto><span class="year">1996</span> <span class="css">CSS 1</span> + <span class="js">JavaScript</span></li>
@@ -1621,24 +1621,36 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
 
         <div class="slide" id="semantic-tags-2">
           <header><span class="html">HTML</span> <h1>Markup for applications</h1></header>
+          <style>
+            #cars-input {
+              width: 500px;
+            }
+            #semantic-tags-2 pre {
+              font-size: 90%;
+            }
+          </style>
           <section>
-         
             <pre>
 &lt;input <b>list</b>="cars"/&gt;
 &lt;<b>datalist</b> id="cars"&gt;
   &lt;option value="BMW"/&gt;
   &lt;option value="Ford"/&gt;
   &lt;option value="Volvo"/&gt;
-&lt;/datalist&gt;
-
+&lt;/<b>datalist</b>&gt;
+<input id="cars-input" placeholder="You should see an autocomplete menu as you type" list="cars" />
+<datalist id="cars">
+  <option value="BMW" />
+  <option value="Ford" />
+  <option value="Volvo" />
+</datalist>
 &lt;<b>menu</b>&gt;
-  &lt;<b>command</b> type="command"&gt;Click Me!&lt;/command&gt;
-&lt;/menu&gt;
+  &lt;<b>command</b> type="command"&gt;Save as...&lt;/<b>command</b>&gt;
+&lt;/<b>menu</b>&gt;
 
 &lt;<b>details</b>&gt;
-  &lt;<b>summary</b>&gt;HTML 5&lt;/summary&gt;
+  &lt;<b>summary</b>&gt;HTML 5&lt;/<b>summary</b>&gt;
   This slide deck teaches you everything you need to know about HTML 5.
-&lt;/details&gt;
+&lt;<b>/details</b>&gt;
 </pre>
 
 <pre>&lt;<b>meter</b> <b>min</b>="0" <b>max</b>="100" <b>low</b>="40" <b>high</b>="90" <b>optimum</b>="100" value="91"&gt;A+&lt;/<b>meter</b>&gt;

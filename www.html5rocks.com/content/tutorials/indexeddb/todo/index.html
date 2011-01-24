@@ -15,6 +15,10 @@
 <span class="chrome supported"></span>
 {% endblock %}
 
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-storage.png" width="133" height="64" alt="This article is powered by HTML5 Offline &amp; Storage" title="This article is powered by HTML5 Offline &amp; Storage" />
+{% endblock %}
+
 {% block iscompatible %}
   return ('webkitIndexedDB' in window || 'moz_indexedDB' in window);
 {% endblock %}

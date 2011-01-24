@@ -298,7 +298,7 @@ var tempJSON = [
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/rounded_corners.html",
         "files": ["samples/css/html5/rounded_corners.css"],
-        "editor": "mixed",
+        "editor": "css",
         "sampleName": "Rounded Corners",
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-background/#the-border-radius"
@@ -330,7 +330,7 @@ var tempJSON = [
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/html_css_js.html",
         "files": ["samples/css/html5/transitions.css", "samples/js/html5/transitions.js"],
-        "editor": "mixed",
+        "editor": "css",
         "sampleName": "Transitions",
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-transitions/"
@@ -369,7 +369,7 @@ var tempJSON = [
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/new_selectors.html",
         "files": ["samples/css/html5/new_selectors.css"],
-        "editor": "mixed",
+        "editor": "css",
         "sampleName": "New Selectors",
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-selectors/"
