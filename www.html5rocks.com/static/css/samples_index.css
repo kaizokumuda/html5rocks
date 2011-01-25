@@ -14,31 +14,29 @@ img.logo {
   width: 20%;
   margin: 25px auto;
   background-color: #f6f7fb;
+  border: 1px solid #aaa;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 3px;
 }
 #tags h3 {
-  -moz-border-radius-topleft: 4px;
-  -moz-border-radius-topright: 4px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
   padding: 5px 10px;
   background-color: #3D5C9D;
   color: #fff;
   margin: 0;
   font-weight: normal;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 #tags .tag {
   font-size: 100%;
   padding: 5px 10px;
-  border-left: 1px solid #aaa;
-  border-right: 1px solid #aaa;
 }
 #tags .tag:first-of-type {
-  padding-top: 10px;
+  padding-top: 5px;
 }
 #tags .tag:last-of-type {
-  border-bottom: 1px solid #aaa;
-  border-bottom: 1px solid #aaa;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 .tag {
   cursor: pointer;
@@ -115,4 +113,21 @@ h2 a:hover {
 }
 .sample:hover .browser_logos span {
   opacity: 0.25;
+}
+
+@media handheld, only screen and (max-device-width: 480px), only screen and (max-width: 640px) {
+  #tags {
+    float: none;
+    width: auto;
+    margin: 10px auto 5px;
+    text-align: center;
+  }
+  #tags .tag {
+    display: inline-block;
+    padding: 1px 2px;
+  }
+  #index {
+    width: auto;
+    margin-top: 0;
+  }
 }

@@ -4,11 +4,10 @@
 
 {% block head %}
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
-  <link rel="stylesheet" href="/static/css/samples_index.css" />
+  <link rel="stylesheet" media="screen" href="/static/css/samples_index.css" />
 {% endblock %}
 
 {% block body %}
-  {% include "../../templates/header.html" %}
   <section>
     <div id="filter" class="hidden">
       Currently filtering by tag <span id="filter_tag"></span>.
@@ -751,7 +750,5 @@
       }, false);
     }
   </script>
-
-  {% include "../../templates/footer.html" %}
 
 {% endblock %}

@@ -13,9 +13,6 @@ body a {
   color: #3D5C9D;
   text-decoration: none;
 }
-body a:hover {
-  text-decoration: underline;
-}
 #wrap {
   margin: 0;
   padding: 0;
@@ -46,41 +43,31 @@ figcaption {
   text-align: center;
   margin-top: 5px;
 }
-h1#title {
-  cursor: pointer;
+#title {
   font-size: 50px;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
   margin: 0;
   padding: 7px 0 0 1px;
   float: left;
   width: auto;
-}
-#title {
-  font-style: normal;
-  font-weight: bold;
-}
-#title .normal {
-  font-family: 'Droid Sans', Arial;
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: -0.09em;
-  padding-right: 4px;
 }
-#title .five {
-  color: #fff;
-  font-family: 'Droid Sans', Arial;
-  text-shadow: 1px 0px 1px #000, -1px 0px 1px #000;
+#title a {
+  color: inherit;
+  text-decoration: none;
 }
-.no-textshadow #title .five {
-  color: #bbb;
+#title img {
+  width: 45px;
+  height: 45px;
+  position: relative;
+  top: 5px;
+  left: 1px;
 }
-#title .rocks { 
-  font-family: 'Droid Sans', Arial;
+#title .rocks {
   color: #3D5C9D;
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: -0.09em;
-  margin-left: -12px;
+  margin-left: -2px;
 }
 #cse-search-box {
   float: right;
@@ -92,20 +79,29 @@ h1#title {
 #cse-search-box:hover {
   opacity: 1;
 }
+#q {
+ width: 135px;
+}
+header nav a {
+  font-family: 'Droid Sans', Arial;
+}
 header nav ul {
   padding-left: 0;
   list-style: none;
   float: right;
   margin-bottom: 5px;
-  /*padding-top: 30px;*/
 }
 header nav ul li {
   float: left;
   padding: 0 3px 0 8px;
 }
-header nav ul li a.current {
-  color: #222;
+header nav ul li a:hover {
+  text-decoration: none;
+}
+a.current {
+  color: #000;
   font-weight: bold;
+  border-bottom: 2px solid #3D5C9D;
 }
 .breadcrumb {
   font-size: 90%;
@@ -113,9 +109,6 @@ header nav ul li a.current {
 .compatible-block {
   padding: 10px 0;
   text-align: center;
-}
-#controls {
-  padding: 5px;
 }
 #notcompatible,
 #compatible {
@@ -146,11 +139,12 @@ a img {
   border: 0;
 }
 article section h1, article section h2, article section h3 {
-  font-family: Helvetica, 'Trebuchet MS', Arial;
   margin: 30px 0 10px 0;
   padding: 0;
 }
-
+h1, h2, h3 {
+  font-family: 'Droid Sans', Arial;
+}
 h1 {
   font-size: 200%;
 }
@@ -195,7 +189,6 @@ em {
   font-size: 90%;
   color: #bbb;
   font-style: italic;
-  float: left;
 }
 .date a {
   color: #bbb;
@@ -314,14 +307,16 @@ footer {
   border-top: 2px solid #222;
   display: inline-block;
 }
+footer .footer-badge {
+  width: 64px;
+  height: 64px;
+  margin-right: 5px;
+}
 footer > span {
   float: left;
 }
 footer > span:nth-child(1) {
   color: #bbb;
-  margin-right: 5px;
-}
-footer > span:nth-child(1) img {
   margin-right: 5px;
 }
 .madeby {
@@ -352,7 +347,7 @@ b, strong {
 .description a[href^='http']:not([href*='html5rocks.']),
 .feed-section a[href^='http']:not([href*='html5rocks']),
 .info-section a[href^='http']:not([href*='html5rocks.']),
-article section a[href^='http']:not([href*='html5rocks.']),
+article section a[href^='http']:not([href*='html5rocks']),
 a[rel='external'] {
   background: transparent url(data:image/png;base64,R0lGODlhCQAJAIABADNmzP///yH5BAEAAAEALAAAAAAJAAkAAAISDI5niRYPgYNP0pioVdFJVl0FADs=) no-repeat center right;
   padding-right: 14px;
