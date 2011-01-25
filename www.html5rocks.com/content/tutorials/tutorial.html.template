@@ -3,7 +3,7 @@
 {% block headauthor %}___FIRSTNAME___ ___LASTNAME___ <___EMAIL___>{% endblock %}
 {% block pageauthor %}{% profilelinks ___PROFILEID___ %}{% endblock %}
 {% block headtitle %}___ARTICLE_TITLE___{% endblock %}
-{% block pagetitle %}{% endblock %}
+{% block pagetitle %}___ARTICLE_TITLE___{% endblock %}
 {% block head %}
 
 {% endblock %}

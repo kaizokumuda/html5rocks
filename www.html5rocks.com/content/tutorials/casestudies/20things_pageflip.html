@@ -1,0 +1,326 @@
+{% extends "../../../templates/casestudy.html" %}
+
+{% block headauthor %}Hakim El Hattab <hakim.elhattab@gmail.com>{% endblock %}
+{% block pageauthor %}{% profilelinks hakimelhattab %}{% endblock %}
+{% block headtitle %}Case Study: Page Flip in "20 Things I Learned About Browsers and the Web"{% endblock %}
+{% block pagetitle %}Case Study: Page Flip in "20 Things I Learned About Browsers and the Web"{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block pagebreadcrumb %}Case Study: Page Flip in 20 Things I Learned ...{% endblock %}
+{% block date %}January 20, 2011{% endblock %}
+{% block updated %}{% endblock %}
+{% block onload %}{% endblock %}
+
+{% block browsersupport %}
+<span class="opera supported"></span>
+<span class="ie"></span>
+<span class="safari supported"></span>
+<span class="ff supported"></span>
+<span class="chrome supported"></span>
+{% endblock %}
+
+{% block iscompatible %}
+  return !!Modernizr.canvas
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-graphics.png" width="133" height="64" alt="This article is powered by HTML5 Graphics, 3D &amp; Effects" title="This article is powered by HTML5 Graphics, 3D &amp; Effects" />
+{% endblock %}
+
+{% block content %}
+
+<h2 id="toc-introduction">Introduction</h2>
+
+<p>For a long time, web developers leaned on plug-ins to bring truly immersive and
+rich interactive experiences to their users. HTML5  has begun to change all this
+by bringing some of the most crucial building blocks of these web augmentations
+to the open web.</p>
+
+<p>A while back, we (F-i.com) and the Google Chrome team collaborated on an
+HTML5-based educational web app called "20 Things I Learned about Browsers" and the
+Web (<a href="http://www.20thingsilearned.com" target="_new">www.20thingsilearned.com</a>).
+One of the key ideas behind this project was that it would best be presented in
+the context of a book. Since the contents of the book is very much about open
+web technologies we felt it was important to stay true to that by making the
+container itself an example of what these technologies allow us to accomplish today.</p>
+
+<figure class="center">
+  <img src="/static/images/screenshots/casestudies/20things/image8.png" width="500" height="370" title="Book cover and homepage of '20 Things I Learned About Browsers and the Web'" alt="Book cover and homepage of '20 Things I Learned About Browsers and the Web'" />
+  <figcaption>Book cover and homepage of "20 Things I Learned About Browsers and the Web"</figcaption>
+</figure>
+
+<p>We decided that the best way to achieve the feeling of a real world book is
+to simulate the good parts of the analogue reading experience while still leveraging
+the benefits of the digital realm in areas such as navigation. A lot of effort went
+into the graphical and interactive treatment of the reading flow - especially
+how the pages of the books flip from one page to another.</p>
+
+<p>This tutorial will take you through the process of creating your own page flip
+effect using the <code>&lt;canvas&gt;</code> element and plenty of JavaScript. Some of the rudimentary code,
+such as variable declarations and event listener subscription, has been left out of
+the snippets in this article so remember to reference the files on the CD for the complete code.</p>
+
+<h2 id="toc-markup">The Markup</h2>
+
+<p>It's always important to remember that what we draw on canvas can't be indexed
+by search engines, selected by a visitor or found by in-browser searches. For that reason,
+the content we will be working with is put directly in the DOM and then manipulated by
+JavaScript if it is available. The markup required for this is minimal:</p>
+
+<pre class="prettyprint">
+&lt;div id="book"&gt;
+  &lt;canvas id="pageflip-canvas"&gt;&lt;/canvas&gt;
+  &lt;div id="pages"&gt;
+    &lt;section&gt;
+      &lt;div&gt; &lt;!-- Any type of contents here --&gt; &lt;/div&gt;
+    &lt;/section&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>We have one main container element for the book, which in turn contains the
+different pages of our book and the <code>&lt;canvas&gt;</code> element that we will be drawing the
+flipping pages on. Inside of the <code>&lt;section&gt;</code> element there is a <code>&lt;div&gt;</code> wrapper for the
+content -- we need this to be able to change the width of the page without
+affecting the layout of its contents. The <code>&lt;div&gt;</code> has a fixed width and the section
+is set to hide its overflow, this results in the width of the <code>&lt;section&gt;</code> acting as
+a horizontal mask for the <code>&lt;div&gt;</code>.</p>
+
+<figure class="center">
+  <img src="/static/images/screenshots/casestudies/20things/image7.png" width="500" height="172" title="A background image containing the paper texture and brown book jacket is added to the book element." alt="A background image containing the paper texture and brown book jacket is added to the book element." />
+  <figcaption>A background image containing the paper texture and brown book jacket is added to the book element.</figcaption>
+</figure>
+
+<h2 id="toc-script">The Script</h2>
+
+<p>The code required to power the page flip is not very complex, but it is quite
+extensive since it involves a lot of procedurally generated graphics. Let's start
+by looking at the description of the constant values we'll be using throughout the code.</p>
+
+<pre class="prettyprint">
+var BOOK_WIDTH = 830;
+var BOOK_HEIGHT = 260;
+var PAGE_WIDTH = 400;
+var PAGE_HEIGHT = 250;
+var PAGE_Y = ( BOOK_HEIGHT - PAGE_HEIGHT ) / 2;
+var CANVAS_PADDING = 60;
+</pre>
+
+<p>The <code>CANVAS_PADDING</code> is added around the canvas so that we can have
+the paper extend outside of the book when flipping. Note that some the constants
+defined here are also set in CSS, so if you want to change the size of the book
+you will also need to update the values there.</p>
+
+<figure class="center">
+  <img src="/static/images/screenshots/casestudies/20things/image3.png" width="500" height="172" title="The constant values used throughout the code to track interaction and draw the page flip." alt="The constant values used throughout the code to track interaction and draw the page flip." />
+  <figcaption>The constant values used throughout the code to track interaction and draw the page flip.</figcaption>
+</figure>
+
+<p>Next we need to define a flip object for each page, these will constantly be
+updated as we interact to book to reflect the current level of progress in the flip.</p>
+
+<pre class="prettyprint">
+var book = document.getElementById( "book" );
+var pages = book.getElementsByTagName( "section" );
+for( var i = 0, len = pages.length; i &lt; len; i++ ) {
+  pages[i].style.zIndex = len - i;
+  flips.push({ progress: 1, target: 1, page: pages[i], dragging: false });
+}
+</pre>
+
+<p>First we need to make sure the pages are layered correctly by organizing the
+z-indexes of the section elements so that the first page is on top and the last
+page is in the bottom. The most important properties of the flip objects are the
+<em>progress</em> and <em>target</em> values. These are used to determine how far the page should
+currently be folded, <em>-1</em> means all the way to the left, <em>0</em> means the dead center
+of the book and <em>+1</em> means the right most edge of the book.</p>
+
+<figure class="center">
+  <img src="/static/images/screenshots/casestudies/20things/image4.png" width="500" height="172" title="The progress and target values of the flips are used to determine where the folding page should be drawn on a -1 to +1 scale." alt="The progress and target values of the flips are used to determine where the folding page should be drawn on a -1 to +1 scale." />
+  <figcaption>The progress and target values of the flips are used to determine where the folding page should be drawn on a -1 to +1 scale.</figcaption>
+</figure>
+
+<p>Now that we have a flip object defined for each page we need to start capturing
+and using the users input to update the state of the flip.</p>
+
+<pre class="prettyprint">
+function mouseMoveHandler( event ) {
+  // Offset mouse position so that the top of the spine is 0,0
+  mouse.x = event.clientX - book.offsetLeft - ( BOOK_WIDTH / 2 );
+  mouse.y = event.clientY - book.offsetTop;
+}
+
+function mouseDownHandler( event ) {
+  if (Math.abs(mouse.x) &lt; PAGE_WIDTH) {
+    if (mouse.x &lt; 0 &amp;&amp; page - 1 &gt;= 0) {
+      flips[page - 1].dragging = true;
+    } else if (mouse.x &gt; 0 &amp;&amp; page + 1 &lt; flips.length) {
+      flips[page].dragging = true;
+    }
+  }
+
+  // Prevents the text selection cursor from appearing when dragging
+  event.preventDefault();
+}
+
+function mouseUpHandler( event ) {
+  for ( var i = 0; i &lt; flips.length; i++ ) {
+    if ( flips[i].dragging ) {
+      flips[i].target = mouse.x &lt; 0 ? -1 : 1;
+      if ( flips[i].target === 1 ) {
+        page = page - 1 &gt;= 0 ? page - 1 : page;
+      } else {
+        page = page + 1 &lt; flips.length ? page + 1 : page;
+      }
+    }
+
+    flips[i].dragging = false;
+  }
+}
+</pre>
+
+<p>The <code>mouseMoveHandler</code> function updates the <em>mouse</em> object so that
+we are always working towards the most recent cursor location.</p>
+
+<p>In <code>mouseDownHandler</code> we start by checking if the mouse was pressed down on either the left or the
+right page so that we know which direction we want to start flipping towards.
+We also ensure that another page exists in that direction since we might be on
+the first or last page. If a valid flip option is available after these checks,
+we set the <code>dragging</code> flag of the corresponding flip object to <code>true</code>.</p>
+
+<p>Once we reach the <code>mouseUpHandler</code>  we go through all of the flips
+and check if any of them were flagged as <code>dragging</code> and should now be released.
+When a flip is released we set its <code>target</code> value to match the side it should flip
+to depending on the current mouse position. The <em>page</em> number is also update to
+reflect this navigation.</p>
+
+<p>The next block of code we are going to cover is inside of the <code>render</code>
+function, which is called 60 times per second to update and draw the current state of all active flips.</p>
+
+<pre class="prettyprint">
+if ( flip.dragging ) {
+  flip.target = Math.max( Math.min( mouse.x / PAGE_WIDTH, 1 ), -1 );
+}
+
+flip.progress += ( flip.target - flip.progress ) * 0.2;
+</pre>
+
+<p>If the flip is being <code>dragged</code> we update its <code>target</code> to match the mouse position
+but on a -1 to 1 scale rather than actual pixels. We also increment the <em>progress</em>
+by a fraction of the distance to the target, this will result in a smooth and
+animated progression of the flip since it updates on every frame.</p>
+
+<pre class="prettyprint">
+if ( flip.dragging || Math.abs( flip.progress ) &lt; 0.997 ) {
+  drawFlip( flip );
+}
+</pre>
+
+<p>Since we are going over all of the flips on every frame, we need to make sure
+we only redraw the ones that are active.  If a flip is not very close range of
+the book edge, or if it is flagged as <code>dragging</code>, it will be rendered.</p>
+
+<p>Now that all of the logic is in place, we need to draw the graphical
+representation of a flip depending on its current state. It's time to look at the
+first part of the <code>drawFlip(flip)</code> function.</p>
+
+<pre class="prettyprint">
+// Strength of the fold is strongest in the middle of the book.
+var strength = 1 - Math.abs( flip.progress );
+
+// Width of the folded paper.
+var foldWidth = ( PAGE_WIDTH * 0.5 ) * ( 1 - flip.progress );
+
+// X position of the folded paper.
+var foldX = PAGE_WIDTH * flip.progress + foldWidth;
+
+// How far outside of the book the paper is bent due to perspective
+var verticalOutdent = 20 * strength;
+
+// The maximum width of the left and right side shadows.
+var paperShadowWidth = (PAGE_WIDTH * 0.5) * Math.max(Math.min(1 - flip.progress, 0.5), 0);
+
+// Mask the page by setting its width to match the foldX.
+flip.page.style.width = Math.max(foldX, 0) + "px";
+</pre>
+
+<figure class="center">
+  <img src="/static/images/screenshots/casestudies/20things/image1.png" width="500" height="172" title="This is what the page fold looks like when the page is flipping or being dragged." alt="This is what the page fold looks like when the page is flipping or being dragged." />
+  <figcaption>This is what the page fold looks like when the page is flipping or being dragged.</figcaption>
+</figure>
+
+<p>This section of the code starts by calculating a number of visual variables that
+we need to draw the fold in a realistic manner. The <em>progress</em> value of the flip we
+are drawing plays a big part here, since that is where we want the page fold to appear.
+To add depth to the page flip effect we make the paper extend outside of the top and
+bottom edges of the book, this effect is at its peak when a flip is close to the book's spine.</p>
+
+<p>Now that all of the logic is set up, we just have to use the values we have gathered to draw the flip.</p>
+
+<pre class="prettyprint">
+context.save();
+context.translate( CANVAS_PADDING + ( BOOK_WIDTH / 2 ), PAGE_Y + CANVAS_PADDING );
+
+var foldGradient = context.createLinearGradient(foldX - paperShadowWidth, 0, foldX, 0);
+foldGradient.addColorStop(0.35, '#fafafa');
+foldGradient.addColorStop(0.73, '#eeeeee');
+foldGradient.addColorStop(0.9, '#fafafa');
+foldGradient.addColorStop(1.0, '#e2e2e2');
+context.fillStyle = foldGradient;
+context.strokeStyle = 'rgba(0,0,0,0.06)';
+context.lineWidth = 0.5;
+context.beginPath();
+context.moveTo(foldX, 0);
+context.lineTo(foldX, PAGE_HEIGHT);
+context.quadraticCurveTo(foldX, PAGE_HEIGHT + (verticalOutdent * 2),
+                         foldX - foldWidth, PAGE_HEIGHT + verticalOutdent);
+context.lineTo(foldX - foldWidth, -verticalOutdent);
+context.quadraticCurveTo(foldX, -verticalOutdent * 2, foldX, 0);
+context.fill();
+context.stroke();
+context.restore();
+</pre>
+
+<p>The canvas API's <code>translate(x,y)</code> method is used to offset the
+co-ordinate system so that we can draw our page flip with the top of the spine
+acting as the 0,0 position. Note that we also need to <code>save()</code> the
+current transformation matrix of the canvas and <code>restore()</code> to the
+identity matrix when we are done.</p>
+
+<figure class="center">
+  <img src="/static/images/screenshots/casestudies/20things/image2.png" width="500" height="172" title="This is the point from which we draw the page flip. The original 0,0 point is in the top left of the image but by changing that, via translate(x,y), we simplify the drawing logic." alt="This is the point from which we draw the page flip. The original 0,0 point is in the top left of the image but by changing that, via translate(x,y), we simplify the drawing logic." />
+  <figcaption>This is the point from which we draw the page flip. The original 0,0 point is in the top left of the image but by changing that, via translate(x,y), we simplify the drawing logic.</figcaption>
+</figure>
+
+<p>The <code>foldGradient</code> is what we will fill the shape of the folded
+paper with to give it realistic highlights and shadows. We also add a very thin
+line around the paper drawing so that the paper doesn't disappear when put
+against light backgrounds.</p>
+
+<p>All that remains now is drawing the shape of the folded paper using the
+properties we defined above. The left and right sides of our paper is drawn as
+straight lines and the top and bottom sides are curved to bring that bent
+feeling of a folding paper across. 
+</p>
+
+<p>That's it! You've now got a fully functional page flip navigation in place.
+You might notice that the drawing section of the code has some extra bits in the
+JavaScript file on the CD, those are shadows that were added as further graphical
+enhancements.</p>
+
+<h2 id="toc-conclusion">Conclusion</h2>
+
+<p>This is only one example of what can be accomplished by utilizing HTML5 features
+such as the canvas element. I recommend you have a look at the more refined book
+experience from which this technique is an excerpt at: <a href="http://www.20thingsilearned.com" target="_new">www.20thingsilearned.com</a>.
+There you will see how the page flips can be applied in a real application and
+how powerful it becomes when paired with other HTML5 features.</p>
+
+<figure class="center">
+  <img src="/static/images/screenshots/casestudies/20things/image9.png" width="500" height="347" title="The soft page flip in this tutorial becomes even more powerful when paired with other book-like features such as an interactive hard cover." alt="The soft page flip in this tutorial becomes even more powerful when paired with other book-like features such as an interactive hard cover." />
+  <figcaption>The soft page flip in this tutorial becomes even more powerful when paired with other book-like features such as an interactive hard cover.</figcaption>
+</figure>
+
+{% endblock %}

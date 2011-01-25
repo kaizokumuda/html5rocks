@@ -220,3 +220,23 @@ homepage: http://strd6.com
 google: 104138221626061560232
 twitter: STRd6
 email: yahivin@gmail.com
+
+---
+
+id: hakimelhattab
+name:
+ given: Hakim
+ family: El Hattab
+org:
+ name: Fi
+ unit: Senior Interactive Developer
+address:
+ locality: Stockholm
+ region: Stockholm
+ country: Sweden
+ lat:  59.333386
+ lon: 18.075834
+homepage: http://hakim.se/experiments
+google: hakim.elhattab
+twitter: hakimel
+email: hakim.elhattab@gmail.com
