@@ -1,19 +1,20 @@
 document.body.innerHTML = "<p>Parent window (gray background)";
 document.body.style.backgroundColor = '#ddd';
 var iframe = document.createElement('iframe');
-iframe.src = 'http://apirocks.com/html5/playground_helper/postMessage_origin.html';
+iframe.src = 'http://www.html5rocks.com/static/demos/postmessage_origin.html';
 document.body.appendChild(iframe);
 
 
 window.addEventListener("message", function(e){
-  if (e.origin !== "http://apirocks.com" ) { // filter origin for security reasons
+  if (e.origin !== "http://www.html5rocks.com" ) { // filter origin for security reasons
     document.getElementById("log").innerHTML = 'The domain you are trying to interact with is not a valid origin.';
   } else {
     // you might as well do some filtering on e.data to be safe
     iframe.style.height = e.data['newHeight'] + 'px';
   }
+
   // if you were the first time caller you would need to use iframe.contentWindow.postMessage instead
-  e.source.postMessage('Iframe resized from the parent to adjust content', 'http://apirocks.com')
+  e.source.postMessage('Iframe resized from the parent to adjust content', 'http://www.html5rocks.com')
 }, false);
 
 /*
