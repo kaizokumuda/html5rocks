@@ -25,16 +25,16 @@
   <meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,offline,audio,video,drag and drop,chrome" />
   <title>HTML5 Rocks - {% block headtitle %}{% endblock %}</title>
   <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="stylesheet" media="screen" href="/static/css/base.css" />
+  <link rel="stylesheet" media="screen" href="/static/css/base{% if prod %}.min{% endif %}.css" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <link rel="stylesheet" media="handheld, only screen and (max-device-width: 480px)" href="/static/css/mobile.css" />
-  <link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/mobile.css" />
+  <link rel="stylesheet" media="handheld, only screen and (max-device-width: 480px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />
+  <link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />
 
   <link rel="apple-touch-icon" href="/static/images/identity/HTML5_Badge_64.png" />
   <link rel="apple-touch-icon-precomposed" href="/static/images/identity/HTML5_Badge_64.png" />
 
-  <link rel="stylesheet" media="all" href="/static/css/prettify.css" />
+  <link rel="stylesheet" media="all" href="/static/css/prettify{% if prod %}.min{% endif %}.css" />
   <link rel="stylesheet" media="all" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
 
   {% block head %}{% endblock %}
@@ -90,7 +90,7 @@
   </div>
   <script type="text/javascript" src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22search%22%2C%22version%22%3A%221%22%7D%5D%7D"></script>
   <script src="/static/js/modernizr-1.6.min.js"></script>
-  <script src="/static/js/prettify.js"></script>
+  <script src="/static/js/prettify{% if prod %}.min{% endif %}.js"></script>
   <script>
     (function() {
       function isCompatible() {

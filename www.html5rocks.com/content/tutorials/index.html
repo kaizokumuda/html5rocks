@@ -4,7 +4,26 @@
 
 {% block head %}
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
-  <link rel="stylesheet" media="screen" href="/static/css/samples_index.css" />
+  <link rel="stylesheet" media="screen" href="/static/css/samples_index{% if prod %}.min{% endif %}.css" />
+  <style>
+    @media handheld, only screen and (max-device-width: 480px),
+           only screen and (max-width: 640px) {
+      #tags {
+        float: none;
+        width: auto;
+        margin: 10px auto 5px;
+        text-align: center;
+      }
+      #tags .tag {
+        display: inline-block;
+        padding: 1px 2px;
+      }
+      #index {
+        width: auto;
+        margin-top: 0;
+      }
+    }
+  </style>
 {% endblock %}
 
 {% block body %}

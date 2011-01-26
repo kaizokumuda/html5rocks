@@ -4,9 +4,9 @@
 
 {% block head %}
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
-  <link rel="stylesheet" media="screen" href="/static/css/index_page.css" />
-  <link rel="stylesheet" media="handheld, only screen and (max-device-width: 480px)" href="/static/css/index_page_mobile.css" />
-  <link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/index_page_mobile.css" />
+  <link rel="stylesheet" media="screen" href="/static/css/index_page{% if prod %}.min{% endif %}.css" />
+  <link rel="stylesheet" media="handheld, only screen and (max-device-width: 480px)" href="/static/css/index_page_mobile{% if prod %}.min{% endif %}.css" />
+  <link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/index_page_mobile{% if prod %}.min{% endif %}.css" />
 {% endblock %}
 
 {% block body %}

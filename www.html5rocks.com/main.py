@@ -136,7 +136,8 @@ class ContentHandler(webapp.RequestHandler):
       'self_url': self.request.url,
       'host': '%s://%s' % (self.request.scheme, self.request.host),
       'is_mobile': self.is_awesome_mobile_device(),
-      'current': current
+      'current': current,
+      'prod': common.PROD
     }
 
     # Request was for an Atom feed. Render one!

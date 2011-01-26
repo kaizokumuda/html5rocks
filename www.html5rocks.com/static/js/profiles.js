@@ -17,7 +17,7 @@ $(function() {
     $profile.find('.back').toggleClass('active');
     $profile.find('.front').toggleClass('active');
     return false;
-  }
+  };
 
   $('.profile .list-articles').click(function(e) {
     var $profile = $(this).closest('.profile');
@@ -45,7 +45,6 @@ $(function() {
     $(this).find('.back').removeClass('active');
     $(this).find('.front').removeClass('active');
     updateHash(e);
-    //onHashChange('#' + $(this).attr('id'));
     e.stopPropagation();
   });
 
