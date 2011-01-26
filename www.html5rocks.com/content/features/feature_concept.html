@@ -3,7 +3,7 @@
 {% block headtitle %}Feature{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="/static/css/feature.css">
+  <link rel="stylesheet" href="/static/css/feature{% if prod %}.min{% endif %}.css">
 {% endblock %}
 
 {% block body %}
