@@ -12,15 +12,10 @@ $(function() {
     }
   }
 
-  /*window.slideMap = function(el) {
-    $(el).toggleClass('active');
-  };*/
-
   window.showArticles = function(link) {
     var $profile = $(link).closest('.profile');
     $profile.find('.back').toggleClass('active');
     $profile.find('.front').toggleClass('active');
-    e.stopPropagation();
     return false;
   }
 
