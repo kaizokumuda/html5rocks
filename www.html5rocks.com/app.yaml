@@ -20,6 +20,11 @@ handlers:
   mime_type: text/cache-manifest
   upload: content/tutorials/(.*\.manifest)
 
+- url: /tutorials/(.*\.zip)
+  static_files: content/tutorials/\1
+  mime_type: application/zip
+  upload: content/tutorials/(.*\.zip)
+
 - url: /tutorials/(.*\.crx)
   static_files: content/tutorials/\1
   mime_type: application/x-chrome-extension
