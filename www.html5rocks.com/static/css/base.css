@@ -152,7 +152,7 @@ article section h1, article section h2, article section h3 {
 }
 
 h1 {
-  font-size: 200%;
+  font-size: 195%;
 }
 h2 {
   font-size: 150%;
@@ -368,4 +368,8 @@ a[rel='external'] {
   -moz-border-radius: 15px;
   -o-border-radius: 15px;
   border-radius: 15px;
+}
+
+figcaption samp { 
+  white-space: nowrap;
 }
