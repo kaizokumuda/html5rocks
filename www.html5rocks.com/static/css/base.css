@@ -306,22 +306,16 @@ footer {
   font-size: 12px; 
   border-top: 2px solid #222;
   display: inline-block;
+  width: 100%;
+  color: #bbb;
 }
 footer .footer-badge {
-  width: 64px;
-  height: 64px;
-  margin-right: 5px;
-}
-footer > span {
-  float: left;
-}
-footer > span:nth-child(1) {
-  color: #bbb;
+  width: 45px;
+  height: 45px;
   margin-right: 5px;
 }
 .madeby {
   float: right;
-  width: 200px;
   margin-top: -2px;
   text-align: right;
 }

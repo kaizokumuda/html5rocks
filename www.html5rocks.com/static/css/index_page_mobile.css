@@ -1,6 +1,5 @@
 #index {
   padding: 5px;
-  display: none;
 }
 #index a {
   float: none;
@@ -8,12 +7,15 @@
 }
 #index img {
   width: 70px;
-  padding-top: 0;
+  padding-top: 5px;
 }
 #index div.app {
   height: auto;
   width: auto;
   margin: 5px 0;
+}
+.app h2 span {
+  display: inline;
 }
 #themes {
   -webkit-box-ordinal-group: 2;

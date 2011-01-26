@@ -52,9 +52,6 @@ article nav ul {
 #content > nav {
   display: none;
 }
-footer span {
-  float: none;
-}
 footer .footer-badge {
   width: 32px;
   height: 32px;
@@ -63,14 +60,13 @@ footer span a:not(:first-of-type) {
   display: inline-block;
   margin-bottom: 2px;
 }
-footer span p {
-  clear: left;
-  text-align: center;
-}
 footer .madeby {
   display: block;
   width: auto;
-  margin-top: auto;
+  margin-top: 10px;
   text-align: center;
   float: none;
+}
+footer:last-child {
+  text-align: center;
 }
