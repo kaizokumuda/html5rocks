@@ -14,7 +14,7 @@
 </style>
 {% endblock %}
 {% block date %}July 26, 2010{% endblock %}
-{% block updated %}November 03, 2010{% endblock %}
+{% block updated %}January 26, 2011{% endblock %}
 
 {% block browsersupport %}
 <span class="opera supported"></span>
@@ -289,7 +289,8 @@ var bb = new BlobBuilder();
 bb.append("onmessage = function(e) { postMessage('msg from worker'); }");
 
 // Obtain a blob URL reference to our worker 'file'.
-var blobURL = window.createObjectURL(bb.getBlob());
+// Note: window.webkitURL.createObjectURL() in Chrome 10+.
+var blobURL = window.URL.createObjectURL(bb.getBlob());
 
 var worker = new Worker(blobURL);
 worker.onmessage = function(e) {
@@ -300,7 +301,7 @@ worker.postMessage(); // Start the worker.
 
   <h3 id="toc-inlineworkers-bloburis">Blob URIs</h3>
 
-  <p>The magic comes with the call to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-createObjectURL"><code>window.createObjectURL()</code></a>.
+  <p>The magic comes with the call to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-createObjectURL"><code>window.URL.createObjectURL()</code></a>.
   This method creates a simple URL string which can be used to reference data stored in a
   DOM <code>File</code> or <code>Blob</code> object. For example:</p>
 
@@ -308,9 +309,12 @@ worker.postMessage(); // Start the worker.
 
   <p>Blob URIs are unique and last for the lifetime of your application (e.g. until the <code>document</code>
   is unloaded). If you're creating many Blob URIs, it's a good idea to release references that are
-  no longer needed. You can explicitly release a Blob URIs by passing it to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-revokeObjectURL"><code>window.revokeObjectURL()</code></a>:</p>
+  no longer needed. You can explicitly release a Blob URIs by passing it to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-revokeObjectURL"><code>window.URL.revokeObjectURL()</code></a>:</p>
 
-  <pre class="prettyprint">window.revokeObjectURL(blobURL);</pre>
+  <pre class="prettyprint">
+// Note: window.webkitURL.createObjectURL() in Chrome 10+.
+window.URL.revokeObjectURL(blobURL);
+</pre>
 
   <h3 id="toc-inlineworkers-example">Full Example</h3>
 
@@ -349,7 +353,8 @@ worker.postMessage(); // Start the worker.
     var bb = new BlobBuilder();
     bb.append(document.querySelector('#worker1').textContent);
 
-    var worker = new Worker(window.createObjectURL(bb.getBlob()));
+    // Note: window.webkitURL.createObjectURL() in Chrome 10+.
+    var worker = new Worker(window.URL.createObjectURL(bb.getBlob()));
     worker.onmessage = function(e) {
       log("Received: " + e.data);
     }

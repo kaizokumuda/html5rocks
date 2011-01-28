@@ -30,17 +30,19 @@
 {% block content %}
   <h2 id="toc-introduction">Introduction</h2>
 
-  <p>A while back, we (<a href="http://www.f-i.com" target="_blank">F-i.com</a>) and the Google Chrome team collaborated on
-  an HTML5-based educational web app called 20 Things I Learned about
-  Browsers and the Web (<a href="http://www.20thingsilearned.com" target="_blank">www.20thingsilearned.com</a>). One of the key ideas
-  behind this project was that it would best be presented in the context
-  of a book. Since the contents of the book is very much about open web
+  <p>In 2010, <a href="http://www.f-i.com" target="_blank">F-i.com</a> and the
+  Google Chrome team collaborated on an HTML5-based educational web app called
+  20 Things I Learned about Browsers and the Web
+  (<a href="http://www.20thingsilearned.com" target="_blank">www.20thingsilearned.com</a>).
+  One of the key ideas behind this project was that it would best be presented
+  in the <a href="http://chrome.blogspot.com/2010/11/curious-guide-to-browsers-and-web.html">context of a book</a>.
+  Since the contents of the book is very much about open web
   technologies we felt it was important to stay true to that by making the
   container itself an example of what these technologies allow us to
   accomplish today.</p>
 
   <figure class="center">
-    <img src="/static/images/screenshots/casestudies/20things/image8.png" width="500" height="370" title="Book cover and homepage of '20 Things I Learned About Browsers and the Web'" alt="Book cover and homepage of '20 Things I Learned About Browsers and the Web'" />
+    <img src="/static/images/screenshots/casestudies/20things/image8.png" title="Book cover and homepage of '20 Things I Learned About Browsers and the Web'" alt="Book cover and homepage of '20 Things I Learned About Browsers and the Web'" />
     <figcaption>Book cover and homepage of "20 Things I Learned About Browsers and the Web" (<a href="http://www.20thingsilearned.com" target="_blank">www.20thingsilearned.com</a>)</figcaption>
   </figure>
 
@@ -59,11 +61,10 @@
   subscription, has been left out of the snippets in this article so remember
   to reference the working example.</p>
 
-  <p>Before we get started it&#39;s a good idea to <a
-	href="/tutorials/casestudies/20things_pageflip/example/" target="_blank">check 
-	out the demo</a> so that you know what we&#39;re aiming to build.</p>
+  <p>Before we get started it&#39;s a good idea to <a href="/tutorials/casestudies/20things_pageflip/example/" target="_blank">check 
+  out the demo</a> so that you know what we&#39;re aiming to build.</p>
 
-  <h2 id="toc-markup">Markup</h3>
+  <h2 id="toc-markup">Markup</h2>
 
   <p>It's always important to remember that what we draw on canvas can't be
   indexed by search engines, selected by a visitor or found by in-browser
@@ -96,7 +97,7 @@
     <figcaption>A background image containing the paper texture and brown book jacket is added to the book element.</figcaption>
   </figure>
 
-  <h2 id="toc-logic">Logic</h3>
+  <h2 id="toc-logic">Logic</h2>
 
   <p>The code required to power the page flip is not very complex, but it
   is quite extensive since it involves a lot of procedurally generated
@@ -118,7 +119,7 @@ var CANVAS_PADDING = 60;
   size of the book you will also need to update the values there.</p>
 
   <figure class="center">
-    <img src="/static/images/screenshots/casestudies/20things/image3.png" width="500" height="172" title="Constants" alt="Constants" />
+    <img src="/static/images/screenshots/casestudies/20things/image3.png" title="Constants" alt="Constants" />
     <figcaption>The constant values used throughout the code to track interaction and draw the page flip.</figcaption>
   </figure>
 
@@ -154,7 +155,7 @@ for( var i = 0, len = pages.length; i &lt; len; i++ ) {
   of the book and +1 means the right most edge of the book.</p>
 
   <figure class="center">
-    <img src="/static/images/screenshots/casestudies/20things/image4.png" width="500" height="172" title="Progress" alt="Progress" />
+    <img src="/static/images/screenshots/casestudies/20things/image4.png" title="Progress" alt="Progress" />
     <figcaption>The progress and target values of the flips are used
   to determine where the folding page should be drawn on a <samp>-1</samp> to <samp>+1</samp>
   scale.</figcaption>
@@ -224,7 +225,7 @@ function mouseUpHandler( event ) {
   the side it should flip to depending on the current mouse position.
   The page number is also update to reflect this navigation.</p>
 
-  <h2 id="toc-rendering">Rendering</h3>
+  <h2 id="toc-rendering">Rendering</h2>
 
   <p>Now that most of our logic is in place we&#39;ll go through how to
   render the folding paper onto the canvas element. Most of this happens
@@ -309,7 +310,7 @@ flip.page.style.width = Math.max(foldX, 0) + &quot;px&quot;;
   the book's spine.</p>
 
   <figure class="center">
-    <img src="/static/images/screenshots/casestudies/20things/image2.png" width="500" height="172" title="Flip" alt="Flip" />
+    <img src="/static/images/screenshots/casestudies/20things/image2.png" title="Flip" alt="Flip" />
     <figcaption>This is what the page fold looks like when the page is flipping or being dragged.</figcaption>
   </figure>
 
@@ -389,7 +390,7 @@ context.restore();
   when we are done drawing.</p>
 
   <figure class="center">
-    <img src="/static/images/screenshots/casestudies/20things/image2.png" width="500" height="172" title="Translate" alt="Translate" />
+    <img src="/static/images/screenshots/casestudies/20things/image2.png" title="Translate" alt="Translate" />
     <figcaption>This is the point from which we draw the page flip. The
   original 0,0 point is in the top left of the image but by changing that,
   via translate(x,y), we simplify the drawing logic.</figcaption>
@@ -409,7 +410,7 @@ context.restore();
   <p>That's it! You've now got a fully functional page flip navigation in
   place.</p>
 
-  <h2 id="toc-examples">Page Flip Demo</h3>
+  <h2 id="toc-examples">Page Flip Demo</h2>
 
   <p>The page flip effect is all about communicating the right interactive
   feel so looking at images of it doesn&#39;t exactly do it justice. Use the
@@ -421,7 +422,7 @@ context.restore();
   <h2 id="toc-next">Next Steps</h2>
 
   <figure class="center">
-    <img src="/static/images/screenshots/casestudies/20things/image9.png" width="500" height="347" title="Hard-flip" alt="Hrad-flip" />
+    <img src="/static/images/screenshots/casestudies/20things/image9.png" title="Hard-flip" alt="Hrad-flip" />
     <figcaption>The soft page flip in this tutorial becomes even more powerful
   when paired with other book-like features such as an interactive hard
   cover.</figcaption>
@@ -430,7 +431,7 @@ context.restore();
   <p>This is only one example of what can be accomplished by utilizing HTML5
   features such as the canvas element. I recommend you have a look at the more
   refined book experience from which this technique is an excerpt at:
-  <a href="http://www.20thingsileaned.com" target="_blank">www.20thingsileaned.com</a>. There
+  <a href="http://www.20thingsilearned.com" target="_blank">www.20thingsilearned.com</a>. There
   you will see how the page flips can be applied in a real application and how
   powerful it becomes when paired with other HTML5 features.</p>
 
