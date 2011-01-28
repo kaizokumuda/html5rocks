@@ -15,6 +15,13 @@
 {% endblock %}
 
 {% block body %}
+  <nav>
+    <p class="breadcrumb">
+      <a class="buttonlink" href="/">
+        <span>Home</span>
+      </a >&gt; {{ current.capitalize }}
+    </p>
+  </nav>
   <ul id="feature-list">
     <li><a href="/features/file">File Access</a></li>
     <li><a href="/features/graphics">Graphics</a></li>

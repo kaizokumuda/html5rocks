@@ -23,9 +23,6 @@ body a {
   max-width: 750px;
   margin: 0 auto;
   padding: 0 40px;
-  -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
-  -moz-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
-  box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
 }
 header {
   border-bottom: 2px solid #222;
@@ -81,6 +78,7 @@ figcaption {
 }
 #q {
  width: 135px;
+ outline: none;
 }
 header nav a {
   font-family: 'Droid Sans', Arial;
@@ -189,6 +187,7 @@ em {
   font-size: 90%;
   color: #bbb;
   font-style: italic;
+  float: left;
 }
 .date a {
   color: #bbb;
@@ -335,6 +334,14 @@ abbr, acronym {
 }
 b, strong { 
   font-weight: bold;
+}
+.section-header {
+  padding: 15px 0 7px 0;
+  margin-top: 0;
+  color: #000;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: normal;
 }
 
 .tutorials a[href^='http']:not([href*='html5rocks.']), 

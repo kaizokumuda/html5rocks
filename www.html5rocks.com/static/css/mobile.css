@@ -52,6 +52,12 @@ article nav ul {
 #content > nav {
   display: none;
 }
+#content figure {
+  padding: 0;
+}
+#content figure img {
+  width: 100%;
+}
 footer .footer-badge {
   width: 32px;
   height: 32px;

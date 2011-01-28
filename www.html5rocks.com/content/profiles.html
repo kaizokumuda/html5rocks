@@ -3,6 +3,21 @@
 {% block head %}
 <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Tangerine:regular,bold|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="/static/css/profiles{% if prod %}.min{% endif %}.css"/>
+<style>
+@media handheld, only screen and (max-device-width: 480px),
+       only screen and (max-width: 640px) {
+  .profile section:first-of-type {
+    width: 92%;
+  }
+  .photoZone, img[itemprop="photo"] {
+    width: 80px;
+    height: 80px;
+  }
+  .articles li {
+    font-size: 89%;
+  }
+}
+</style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollTo-min.js"></script>
 <script src="/static/js/profiles{% if prod %}.min{% endif %}.js"></script>
@@ -13,7 +28,7 @@
     <p class="breadcrumb">
       <a class="buttonlink" href="/">
         <span>Home</span>
-      </a>&gt; Profiles
+      </a >&gt; {{ current.capitalize }}
     </p>
   </nav>
   <article>
@@ -73,6 +88,7 @@
             <ul class="articles"></ul>
           </div>
         </section>
+        {% if not is_mobile %}
         <section class="map">
           {% if profile.address.lat and profile.address.lon %}
           <div itemprop="geo">
@@ -80,6 +96,7 @@
           </div>
           {% endif %}
         </section>
+        {% endif %}
       </article>
 
       {% endfor %}
