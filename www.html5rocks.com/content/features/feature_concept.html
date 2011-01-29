@@ -3,7 +3,29 @@
 {% block headtitle %}Feature{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="/static/css/feature{% if prod %}.min{% endif %}.css">
+<link rel="stylesheet" href="/static/css/feature{% if prod %}.min{% endif %}.css">
+<style>
+@media handheld, only screen and (max-device-width: 480px),
+     only screen and (max-width: 640px) {
+  .column {
+    float: none;
+    width: auto;
+  }
+  .column .in-the-wild,
+  .column .demos {
+    text-align: center;
+  }
+  hgroup {
+    border-top: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    background-color: #eee;
+  }
+  hgroup > h3 {
+    margin-top: 0;
+  }
+}
+</style>
 {% endblock %}
 
 {% block body %}
