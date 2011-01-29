@@ -106,6 +106,9 @@
   border-color: transparent;
   background: transparent;
 }
+.section-header {
+  padding-bottom: 0;
+}
 .feed-section ul {
   list-style: none;
   margin-left: 0;
