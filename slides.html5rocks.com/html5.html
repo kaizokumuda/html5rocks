@@ -422,8 +422,9 @@ idbRequest.onsuccess = function(event) {
                 }
 
                 var html = [];
-                var transaction = idb_.transaction([], IDBTransaction.READ_ONLY); // Ready is default.
-                var request = transaction.objectStore("myObjectStore").openCursor(); // Get all results.
+                var transaction = idb_.transaction([], IDBTransaction.READ_ONLY); // Read is default.
+                var request = transaction.objectStore('myObjectStore').openCursor(); // Get all results.
+
                 // This callback will continue to be called until we have no more results.
                 request.onsuccess = function(e) {
                   var cursor = e.result;
@@ -1371,6 +1372,8 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
   var g = event.<b>gamma</b>;
 }, false);
 </pre>
+          <p style="display:none">This sample requires FF3.6+ or Google Chrome
+          on a device with a built in accelerometer or iOS 4.2.</p>
           <div class="flex hbox boxcenter">
             <div id="orientationWrap" class="noflex vbox boxcenter">
               <div class="layer"><img src="src/orientation/chrome-layer-01.png"/></div>
@@ -1423,6 +1426,11 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
               window.addEventListener('MozOrientation', this.orientationListener, false);
             };
             var os = new OrientationSlide('#slide-orientation');
+
+            if (!!!('ondeviceorientation' in window) &&
+                !!!(window.onmozorientation)) {
+              document.querySelector('#slide-orientation p').style.display = 'block';
+            }
           </script>
           </section>
         </div>
