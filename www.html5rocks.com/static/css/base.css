@@ -26,6 +26,8 @@ body a:hover {
   max-width: 750px;
   margin: 0 auto;
   padding: 0 40px;
+  -moz-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
+  box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
 }
 header {
   border-bottom: 2px solid #222;
