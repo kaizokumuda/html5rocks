@@ -1,0 +1,74 @@
+#index {
+  padding: 5px;
+}
+#index a {
+  float: none;
+  padding: 0;
+}
+#index img {
+  width: 70px;
+  padding-top: 5px;
+}
+#index div.app {
+  height: auto;
+  width: auto;
+  margin: 5px 0;
+}
+.app h2 span {
+  display: inline;
+}
+#themes {
+  -webkit-box-ordinal-group: 2;
+}
+#themes div.app {
+  display: inline-block;
+  width: auto;
+  height: 28px;
+  margin: 3px;
+  padding: 5px;
+  text-align: left;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  border-width: 1px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+#themes a {
+  border: 1px solid #ddd;
+  -webkit-box-shadow: #666 0px 0px 6px;
+  -moz-box-shadow: #666 0px 0px 6px;
+  box-shadow: #666 0px 0px 6px;
+  background: -webkit-gradient(linear, left top, left bottom,
+                               from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+  background: -moz-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
+  width: 150px;
+  text-decoration: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin-bottom: 4px;
+}
+#themes a .app {
+  border-color: transparent;
+  background: transparent;
+}
+#components {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.feed-section {
+  width: auto;
+  float: none;
+  -webkit-box-ordinal-group: 1;
+}
+.feed-section h2 {
+  font-size: inherit;
+}
+
+.info-section {
+  -webkit-box-ordinal-group: 3;
+}
+.chrome-section {
+  -webkit-box-ordinal-group: 4;
+}

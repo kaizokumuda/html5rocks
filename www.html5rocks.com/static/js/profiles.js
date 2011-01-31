@@ -12,17 +12,12 @@ $(function() {
     }
   }
 
-  /*window.slideMap = function(el) {
-    $(el).toggleClass('active');
-  };*/
-
   window.showArticles = function(link) {
     var $profile = $(link).closest('.profile');
     $profile.find('.back').toggleClass('active');
     $profile.find('.front').toggleClass('active');
-    e.stopPropagation();
     return false;
-  }
+  };
 
   $('.profile .list-articles').click(function(e) {
     var $profile = $(this).closest('.profile');
@@ -50,7 +45,6 @@ $(function() {
     $(this).find('.back').removeClass('active');
     $(this).find('.front').removeClass('active');
     updateHash(e);
-    //onHashChange('#' + $(this).attr('id'));
     e.stopPropagation();
   });
 

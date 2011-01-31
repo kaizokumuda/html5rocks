@@ -15,15 +15,20 @@
 {% endblock %}
 
 {% block body %}
-  {% include "../../templates/header.html" %}
-    <ul id="feature-list">
-      <li><a href="/features/file">File Access</a></li>
-      <li><a href="/features/graphics">Graphics</a></li>
-      <li><a href="/features/multimedia">Multimedia</a></li>
-      <li><a href="/features/offline">Offline</a></li>
-      <li><a href="/features/performance">Performance</a></li>
-      <li><a href="/features/presentation">Presentation</a></li>
-      <li><a href="/features/storage">Storage</a></li>
-    </ul>
-  {% include "../../templates/footer.html" %}
+  <nav>
+    <p class="breadcrumb">
+      <a class="buttonlink" href="/">
+        <span>Home</span>
+      </a >&gt; {{ current.capitalize }}
+    </p>
+  </nav>
+  <ul id="feature-list">
+    <li><a href="/features/file">File Access</a></li>
+    <li><a href="/features/graphics">Graphics</a></li>
+    <li><a href="/features/multimedia">Multimedia</a></li>
+    <li><a href="/features/offline">Offline</a></li>
+    <li><a href="/features/performance">Performance</a></li>
+    <li><a href="/features/presentation">Presentation</a></li>
+    <li><a href="/features/storage">Storage</a></li>
+  </ul>
 {% endblock %}
