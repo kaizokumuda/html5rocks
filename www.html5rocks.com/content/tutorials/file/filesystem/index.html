@@ -60,7 +60,7 @@
   With the FileSystem API, a web app can create, read, navigate, and write to a
   sandboxed section of the user's local file system.</p>
 
-  <p>The the API is broken up into various themes:</p>
+  <p>The API is broken up into various themes:</p>
   <ul>
     <li>Reading and manipulating files:
       <code>File</code>/<code>Blob</code>, <code>FileList</code>, <code>FileReader</code></li>
@@ -272,7 +272,7 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
   <h3 id="toc-file-writing">Writing to a file</h3>
 
   <p>The following code creates an empty file called "log.txt" (if it doesn't exist)
-  and fills it with the text 'Ipsum Lorem'.</p>
+  and fills it with the text 'Lorem Ipsum'.</p>
 
   <pre class="prettyprint">
 function onInitFs(fs) {
@@ -292,7 +292,7 @@ function onInitFs(fs) {
 
       // Create a new Blob and write it to log.txt.
       var bb = new BlobBuilder();
-      bb.append('Ipsum Lorem');
+      bb.append('Lorem Ipsum');
       <b>fileWriter.write</b>(bb.getBlob('text/plain'));
 
     }, errorHandler);
