@@ -2,7 +2,7 @@
 <html{% block manifest %}{% endblock %}>
 <head>
   <meta charset="utf-8" />
-  <!-- Copyright (c) 2010 Google Inc.
+  <!-- Copyright (c) 2011 Google Inc.
    *
    * Licensed under the Apache License, Version 2.0 (the "License");
    * you may not use this file except in compliance with the License.
@@ -23,19 +23,30 @@
   -->
   <meta name="description" content="{% block meta_description %}A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.{% endblock %}" />
   <meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,offline,audio,video,drag and drop,chrome" />
-  <title>HTML5 Rocks - {% block headtitle %}{% endblock %}</title>
+  <title>HTML5 Rocks - {% block headtitle %}A resource for open web HTML5 developers{% endblock %}</title>
   <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="stylesheet" media="screen" href="/static/css/base{% if prod %}.min{% endif %}.css" />
+  <link rel="stylesheet" media="all" href="/static/css/base{% if prod %}.min{% endif %}.css" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <link rel="stylesheet" media="handheld, only screen and (max-device-width: 480px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />-->
+  <!--<link rel="stylesheet" media="handheld, only screen and (max-device-width: 480px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />-->
   <link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />
 
   <link rel="apple-touch-icon" href="/static/images/identity/HTML5_Badge_64.png" />
   <link rel="apple-touch-icon-precomposed" href="/static/images/identity/HTML5_Badge_64.png" />
 
-  <link rel="stylesheet" media="all" href="/static/css/prettify{% if prod %}.min{% endif %}.css" />
   <link rel="stylesheet" media="all" href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans:regular,bold" />
+
+  <!--<style>
+  /*@media only screen and (min-width: 421px) and (max-width: 768px) {*/
+  @media only screen and (min-width: 641px) and (max-width: 768px) {
+    #content {
+      width: auto;
+      max-width: 100%;
+      padding: 5px;
+    }
+  }
+  </style>-->
 
   {% block head %}{% endblock %}
 </head>
@@ -89,8 +100,6 @@
     </div>
   </div>
   <script type="text/javascript" src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22search%22%2C%22version%22%3A%221%22%7D%5D%7D"></script>
-  <script src="/static/js/modernizr-1.6.min.js"></script>
-  <script src="/static/js/prettify{% if prod %}.min{% endif %}.js"></script>
   <script>
     (function() {
       function isCompatible() {
@@ -122,8 +131,6 @@
         window.history.replaceState(
             {}, '', document.location.href.replace(/\?utm_.*/, ''));
       }
-
-      prettyPrint();
     })();
 
     var _gaq = _gaq || [];

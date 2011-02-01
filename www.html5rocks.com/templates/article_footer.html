@@ -4,6 +4,9 @@
   and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.
 </p>
 
+<link rel="stylesheet" media="all" href="/static/css/prettify{% if prod %}.min{% endif %}.css" />
+<script src="/static/js/modernizr-1.6.min.js"></script>
+<script src="/static/js/prettify{% if prod %}.min{% endif %}.js" onload="prettyPrint();"></script>
 {% if not is_mobile %}
   <!-- Include the Google Friend Connect commenting widget. -->
   <script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>
