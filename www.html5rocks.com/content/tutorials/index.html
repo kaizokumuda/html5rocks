@@ -4,11 +4,61 @@
 
 {% block head %}
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
-  <link rel="stylesheet" href="/static/css/samples_index.css" />
+  <link rel="stylesheet" media="screen" href="/static/css/samples_index{% if prod %}.min{% endif %}.css" />
+  <style>
+    @media handheld, only screen and (max-device-width: 480px),
+           only screen and (max-width: 640px) {
+      #tags {
+        float: none;
+        width: auto;
+        margin: 10px auto 5px;
+        text-align: center;
+      }
+      #tags .tag {
+        display: inline-block;
+        padding: 1px 2px;
+      }
+      #index {
+        width: auto;
+        margin-top: 0;
+      }
+      #filter {
+        font-size: 85%;
+      }
+      .sample .date {
+        float: none;
+        display: block;
+      }
+      .sample .browser_logos,
+      .sample .browser_logos .supported {
+        opacity: 1;
+      }
+      .sample .browser_logos span {
+        opacity: 0.25;
+      }
+    }
+  </style>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.tag').click(filterTag);
+      if (document.location.hash) {
+        // Hide all samples as soon as DOM is loaded to prevent flicker effect.
+        samples.addClass('hidden');
+        filterTag(document.location.hash.substring(1));
+      }
+    });
+  </script>
 {% endblock %}
 
 {% block body %}
-  {% include "../../templates/header.html" %}
+  <nav>
+    <p class="breadcrumb">
+      <a class="buttonlink" href="/">
+        <span>Home</span>
+      </a >&gt; {{ current.capitalize }}
+    </p>
+  </nav>
   <section>
     <div id="filter" class="hidden">
       Currently filtering by tag <span id="filter_tag"></span>.
@@ -738,36 +788,32 @@
     </article>
 
   </div>
-
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
   <script>
+    var samples = $('.sample'); // Cache DOM lookup.
+    var filter = $('#filter');
+
     function clearFilter() {
       $('.sample.hidden').removeClass('hidden');
-      $('#filter').addClass('hidden');
-      document.location.hash = '';
+      filter.addClass('hidden');
+      if (!!window.history) {
+        history.replaceState({}, document.title, '/tutorials');
+      } else {
+        document.location.hash = '';
+      }
     };
 
     function filterTag(opt_tag) {
       var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
       document.location.hash = tag;
       if (tag) {
-        $('.sample').addClass('hidden');
+        samples.addClass('hidden');
         $.each( tag.split(','), function(i, eachtag) {
-          $('.sample span.tag:contains("' + eachtag + '")').closest('.sample').removeClass('hidden');
+          samples.find('span.tag:contains("' + eachtag + '")').closest('.sample').removeClass('hidden');
         });
         $('#filter_tag').text(tag);
-        $('#filter').removeClass('hidden');
+        filter.removeClass('hidden');
       }
     };
-
-    $(document).ready(function() {
-      $('.tag').click(filterTag);
-      if (document.location.hash) {
-        // Hide all samples as soon as DOM is loaded to prevent flicker effect.
-        $('.sample').addClass('hidden');
-        filterTag(document.location.hash.substring(1));
-      }
-    });
 
     // Adds back button support.
     if (window.addEventListener) {
@@ -779,7 +825,5 @@
       }, false);
     }
   </script>
-
-  {% include "../../templates/footer.html" %}
 
 {% endblock %}

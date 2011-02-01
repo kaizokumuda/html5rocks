@@ -3,19 +3,38 @@
 {% block headtitle %}Feature{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="/static/css/feature.css">
+<link rel="stylesheet" href="/static/css/feature{% if prod %}.min{% endif %}.css">
+<style>
+@media handheld, only screen and (max-device-width: 480px),
+     only screen and (max-width: 640px) {
+  .column {
+    float: none;
+    width: auto;
+  }
+  .column .in-the-wild,
+  .column .demos {
+    text-align: center;
+  }
+  hgroup {
+    border-top: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    background-color: #eee;
+  }
+  hgroup > h3 {
+    margin-top: 0;
+  }
+}
+</style>
 {% endblock %}
 
 {% block body %}
-{% include "../../templates/header.html" %}
-
 <h2>{% block h2title %}Feature{% endblock %}</h2>
 <div class="description">{% block description %}{% endblock %}</div>
 
 {% block contents %}{% endblock %}
 
-{% include "../../templates/footer.html" %}
-
+<!-- TODO: jquery 1.4.4. throws an error -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script>
 var features = '{% block tuttags %}{% endblock %}';
