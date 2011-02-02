@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html{% block manifest %}{% endblock %}>
+<html{% block manifest %}{% if is_mobile %} manifest="/cache.manifest"{% endif %}{% endblock %}>
 <head>
   <meta charset="utf-8" />
   <!-- Copyright (c) 2011 Google Inc.
@@ -30,7 +30,8 @@
 
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-  <!--<link rel="stylesheet" media="handheld, only screen and (max-device-width: 480px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />-->
+  <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- iOS, run in full-screen mode -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> <!-- iOS, display status bar as translucent -->
   <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />
 
   <link rel="apple-touch-icon" href="/static/images/identity/HTML5_Badge_64.png" />
@@ -41,28 +42,9 @@
 <body onload="{% block onload %}{% endblock %}">
   <div id="wrap">
     <div id="content">
-
       <header>
         <h1 id="title">
-          <a href="/" title="HTML5 Rocks Logo" alt="HTML5 Rocks Logo"><span class="normal">HTML</span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
-bWFnZVJlYWR5ccllPAAAA7hJREFUeNrtm01rE0EYgPcn5Cfk1MRb8A+YgzcprhWtQbGp1JMeclEU
-RIoXFYSA2JsQehEvEvFYCrmoB0UCPVjEw1Jpmiap3fgRv3XdN4wSu5Pd+XhnZnfNC3Nqmt15Mjvv
-MzPvWtZIbE5PFf3mpbwVrXExATA9lf0PAGStsEg7ACsqdN9Qr5RX1rZsMQBNnQDend2nrFEANFkA
-NNICgHK9xgQAA4BqGgC4Z6gAqiwAFtMAYHcuT7ve4gQAAwAmG2ydO+RtXZiVau2LJW9wa066fbx2
-JACgdzLPZ4G8ADqPV7xeryfV+v2+hxE/Xj0LAiiJAygkDcD35iorgILFEiwAtu8txQbAl0d3AgDa
-R3P8FsgF4O7NVANwkgTgU+1yUINnAgAcHgCRNgizeFwAQCZAscAJAA4djgIAfzclQsIazGuDcQUg
-bIGYANo3KokGYDMB2HDGAoAsYQrAzikqAJsHgLQOmwQgrMGYADorD5ILgNkGHy6PB+DDMQVg+5iE
-BerUYQwPQNfgEQBuEgB8vn+dBYArAiDaBq8uGAeAboE6dTjuAGpJAPDh0sF/Ot9foAKoiQCItsHZ
-/cYBoFsgpg4nHUCZBYDqXeFvT+pjO/9zZxNfg3UXS0RJDeR5LbvBcQUAnTQFIMP6CIAQ0RrLklgG
-wNfV5cDnO8dztOtkLJGQ1WGW9UAkgDfr+jUYbT2w4UgDMLIO4LFBGOZhqU4lAJoFtg4jWCCmDssA
-AMszosEjAOqqd4fDAEAHw4J2Kky5Rl0GgLQOd1889dq3rwyP01kBQMfg+Q6bAJVaoDId9idF2CqD
-eaM1f+AvABjqsK6HU95fg/fmNZhXh0XXAruvXw51ViRoGvz2NBVAWQYAkw3CMNe9GFJqgbqqRZIA
-IBtXALBKVKrBvLXDMMuDFfLA4AUAvzpMlrT0h26BUsXTfmqEDVMoo+murwkDgIkOFjyDpfNM5wGq
-AEgXT0PKAxeAFDh6nrgXAKRASIVQ8bF3r09ZcbSJ2uHhEtofHe7a86HsgPTQtFZLbbDp4mnjxdGm
-S2fRqkLmkS0wCQDgDADsr3siR307BAtAJU4A4JcG4aHN+JRWwQBQNAkACp5gqxskh7LZIf6KHAeA
-AstJMSYAWNUNh/VMTua7XebaYA4QFeys8OdXhvJ2WmEDZ2uQe8TreMiWuU3qCR0pJ7ClOuyQe7Cl
-nV8SSJaQr6t8XMh318k+RdaKa5CJs4r0DmKTpOKilcQgj0uZ1Bu4jMO6Rv4nY6UtxkymeiYvSvwG
-kPNzDryubJUAAAAASUVORK5CYII="><span class="rocks">Rocks</span></a>
+          <a href="/" title="HTML5 Rocks Logo" alt="HTML5 Rocks Logo"><span class="normal">HTML</span><img src="/static/images/identity/HTML5_Badge_64.png"><span class="rocks">Rocks</span></a>
         </h1>
         <nav>
           <ul>
@@ -88,25 +70,7 @@ kPNzDryubJUAAAAASUVORK5CYII="><span class="rocks">Rocks</span></a>
       <footer>
         <span>
           <a href="http://www.w3.org/html/logo/">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
-bWFnZVJlYWR5ccllPAAAA7hJREFUeNrtm01rE0EYgPcn5Cfk1MRb8A+YgzcprhWtQbGp1JMeclEU
-RIoXFYSA2JsQehEvEvFYCrmoB0UCPVjEw1Jpmiap3fgRv3XdN4wSu5Pd+XhnZnfNC3Nqmt15Mjvv
-MzPvWtZIbE5PFf3mpbwVrXExATA9lf0PAGStsEg7ACsqdN9Qr5RX1rZsMQBNnQDend2nrFEANFkA
-NNICgHK9xgQAA4BqGgC4Z6gAqiwAFtMAYHcuT7ve4gQAAwAmG2ydO+RtXZiVau2LJW9wa066fbx2
-JACgdzLPZ4G8ADqPV7xeryfV+v2+hxE/Xj0LAiiJAygkDcD35iorgILFEiwAtu8txQbAl0d3AgDa
-R3P8FsgF4O7NVANwkgTgU+1yUINnAgAcHgCRNgizeFwAQCZAscAJAA4djgIAfzclQsIazGuDcQUg
-bIGYANo3KokGYDMB2HDGAoAsYQrAzikqAJsHgLQOmwQgrMGYADorD5ILgNkGHy6PB+DDMQVg+5iE
-BerUYQwPQNfgEQBuEgB8vn+dBYArAiDaBq8uGAeAboE6dTjuAGpJAPDh0sF/Ot9foAKoiQCItsHZ
-/cYBoFsgpg4nHUCZBYDqXeFvT+pjO/9zZxNfg3UXS0RJDeR5LbvBcQUAnTQFIMP6CIAQ0RrLklgG
-wNfV5cDnO8dztOtkLJGQ1WGW9UAkgDfr+jUYbT2w4UgDMLIO4LFBGOZhqU4lAJoFtg4jWCCmDssA
-AMszosEjAOqqd4fDAEAHw4J2Kky5Rl0GgLQOd1889dq3rwyP01kBQMfg+Q6bAJVaoDId9idF2CqD
-eaM1f+AvABjqsK6HU95fg/fmNZhXh0XXAruvXw51ViRoGvz2NBVAWQYAkw3CMNe9GFJqgbqqRZIA
-IBtXALBKVKrBvLXDMMuDFfLA4AUAvzpMlrT0h26BUsXTfmqEDVMoo+murwkDgIkOFjyDpfNM5wGq
-AEgXT0PKAxeAFDh6nrgXAKRASIVQ8bF3r09ZcbSJ2uHhEtofHe7a86HsgPTQtFZLbbDp4mnjxdGm
-S2fRqkLmkS0wCQDgDADsr3siR307BAtAJU4A4JcG4aHN+JRWwQBQNAkACp5gqxskh7LZIf6KHAeA
-AstJMSYAWNUNh/VMTua7XebaYA4QFeys8OdXhvJ2WmEDZ2uQe8TreMiWuU3qCR0pJ7ClOuyQe7Cl
-nV8SSJaQr6t8XMh318k+RdaKa5CJs4r0DmKTpOKilcQgj0uZ1Bu4jMO6Rv4nY6UtxkymeiYvSvwG
-kPNzDryubJUAAAAASUVORK5CYII=" align="left" title="HTML5 Logo" alt="HTML5 Logo" class="footer-badge"/>
+            <img src="/static/images/identity/HTML5_Badge_64.png" align="left" title="HTML5 Logo" alt="HTML5 Logo" class="footer-badge"/>
           </a>
         </span>
         <span>
@@ -117,47 +81,7 @@ kPNzDryubJUAAAAASUVORK5CYII=" align="left" title="HTML5 Logo" alt="HTML5 Logo" c
           <a href="http://twitter.com/ChromiumDev">Follow us on Twitter</a> -
           <a href="/profiles" {% ifequal current 'profiles' %}class="current"{% endifequal %}>About Authors</a>
         </span>
-        <span class="madeby">Made by Google | <img src="data:image/png;base64,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
-AD32RnkCMalRAAAAAElFTkSuQmCC" width="50" height="20" /></span>
+        <span class="madeby">Made by Google | <img src="/static/images/google_logo_small.png" width="50" height="20" /></span>
         <p>This site contains information on APIs that are not part of the W3C HTML5 specification.</p>
       </footer>
 
@@ -166,6 +90,14 @@ AD32RnkCMalRAAAAAElFTkSuQmCC" width="50" height="20" /></span>
   <script type="text/javascript" src="//www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22search%22%2C%22version%22%3A%221%22%7D%5D%7D"></script>
   <script>
     (function() {
+      // Check if new appcache is available.
+      window.applicationCache.addEventListener('updateready', function(e) {
+        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+          window.applicationCache.swapCache();
+          window.location.reload();
+        }
+      }, false);
+
       function isCompatible() {
         {% block iscompatible %}
         return null;

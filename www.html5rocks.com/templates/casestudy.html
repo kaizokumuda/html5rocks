@@ -22,6 +22,7 @@
             <time class="updated">{% block updated %}{% endblock %}</time>
           </div>
         </span>
+        {% if not is_mobile %}
         <span id="share_buttons">
           <ul>
             <li><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a></li>
@@ -31,6 +32,7 @@
             </li>
           </ul>
         </span>
+        {% endif %}
       </div>
       <span class="browser_support">
         <span>Supported browsers:</span>
@@ -53,6 +55,7 @@
         </p>
       </div>
     </section>
+    {% if not is_mobile %}
     <aside id="html5badge">
       <a href="http://www.w3.org/html/logo/">
       {% block html5badge %}
@@ -60,6 +63,7 @@
       {% endblock %}
       </a>
     </aside>
+    {% endif %}
     <nav>
       {% toc %}
     </nav>
