@@ -84,7 +84,7 @@ figcaption {
  outline: none;
 }
 header nav a {
-  font-family: 'Droid Sans', Arial;
+  font-family: 'Droid Sans', Arial, sans-serif;
 }
 header nav ul {
   padding-left: 0;
@@ -144,7 +144,7 @@ article section h1, article section h2, article section h3 {
   padding: 0;
 }
 h1, h2, h3 {
-  font-family: 'Droid Sans', Arial;
+  font-family: 'Droid Sans', Arial, sans-serif;
 }
 h1 {
   font-size: 195%;
