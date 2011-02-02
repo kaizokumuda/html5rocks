@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Copyright 2010 Google Inc.
+  Copyright 2011 Google Inc.
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
                  Alex Russell (slightlyoff@chromium.org)
                  Brad Neuberg
 -->
-<html>  
+<html>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
@@ -67,7 +67,7 @@
             </ul>
           </section>
         </div>
-                
+
         <div class="slide" id="title-slide">
           <style>
             #title-slide h1, #title-slide h2 {
@@ -132,11 +132,11 @@
               <li><span class="year"><em class="stroke">2002</em></span> <span class="css">Tableless Web Design</span></li>
               <li><span class="year"><em class="stroke">2005</em></span> <span class="js">AJAX</span></li>
               <li><span class="year"><em class="stroke">2009</em></span> <span class="html">HTML 5</span></li>
-            </ul>            
+            </ul>
           </section>
         </div>
 
-        
+
         <div class="slide" id="formula-intro-slide">
           <section class="middle formula" data-build>
             HTML5 ~=
@@ -149,109 +149,15 @@
         </div>
 
 
-        <div class="slide transitionSlide" id="nuts-bolts-title">
-          <section class="middle">
-            <h2>Nuts &amp; Bolts</h2>
-            <p>Improvements to the core platform</p>
-          </section>
-        </div>
-
-
-        <div class="slide" id="new-selectors">
-          <header><span class="js">JS</span> <h1>New Selectors</h1></header>
-
-          <section>
-
-            <h2>
-              Finding elements by class (DOM API)
-            </h2>
-
-            <pre>var el = document.getElementById('section1');
-el.focus();
-
-var els = document.getElementsByTagName('div');
-els[0].focus();
-
-var els = document.<b>getElementsByClassName</b>('section');
-els[0].focus();</pre>
-
-            <h2>
-              Finding elements by CSS syntax (Selectors API)
-            </h2>
-
-            <pre>var els = document.<b>querySelectorAll</b>("ul li:nth-child(odd)");
-var tds = document.<b>querySelectorAll</b>("table.test > tr > td");
-var el = document.<b>querySelector</b>("table.test > tr > td"); // el == tds[0]
-</pre>
-
-          </section>
-
-        </div>
-
-
-        <div class="slide" id="custom-data">
-          <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Custom data-* attributes</h1></header>
-
-          <section>
-
-            <h2>Define, store, and retrieve custom data on the DOM.</h2>
-
-            <pre>&lt;div id="out" <b>data-id</b>="good" <b>data-name</b>="joe" <b>data-screen-name</b>="user1"&gt;&lt;/div&gt;</pre>
-
-            <pre>
-// Add new data attributes via JS.
-var el = document.querySelector('#out');
-el.setAttribute('<em>data-foo</em>', 'bar');
-
-var html = [];
-for (var key in el.<b>dataset</b>) {
-  html.push(key, ': ', el.<b>dataset</b>[key], '&lt;br&gt;');
-}
-
-el.innerHTML = html.join('');
-</pre>
-
-<p>Output:</p>
-<pre>
-id: good
-name: joe
-screenName: user1
-foo: bar
-</pre>
-          </section>
-        </div>
-
-
-        <div class="slide" id="class-list">
-          <header><span class="js">JS</span> <h1>Element.classList</h1></header>
-          <section>
-            <pre>&lt;div id="main" class="shadow rounded"&gt;&lt;/div&gt;</pre>
-            <pre>
-var el = document.querySelector('#main').<b>classList</b>;
-el.<b>add</b>('highlight');
-el.<b>remove</b>('shadow');
-el.<b>toggle</b>('highlight');
-
-console.log(el.<b>contains</b>('highlight')); // false
-console.log(el.<b>contains</b>('shadow')); // false
-console.log(el.<b>classList</b>.toString() == el.className); // true
-</pre>
-<p>Output:</p>
-<pre>
-&lt;div id="main" class="rounded"&gt;&lt;/div&gt;
-</pre>
-          </section>
-        </div>
-
-
         <div class="slide transitionSlide" id="offline-storage-title">
           <section class="middle">
             <h2>Offline / Storage</h2>
             <p>Expect the unexpected</p>
+            <img src="http://www.html5rocks.com/static/images/identity/classes_64/HTML5_Offline_Storage_64.png" title="HTML5 Offline &amp; Storage" alt="HTML5 Offline &amp; Storage">
           </section>
         </div>
 
-        <div class="slide" id="web-storage">
+        <div class="slide offline-storage" id="web-storage">
           <style>
             #ta {
               width: 400px;
@@ -321,7 +227,7 @@ textarea.value = window.<b>localStorage</b>.<b>getItem</b>('value');
           </section>
         </div>
 
-        <div class="slide" id="web-sql-db">
+        <div class="slide offline-storage" id="web-sql-db">
           <style>
             #websqldb-example .record-list li:nth-child(odd) { background-color: #eee; }
             #websqldb-example .record-list li:nth-child(even) { background-color: #ddd; }
@@ -439,7 +345,7 @@ db.<b>transaction</b>(function(tx) {
         </section>
       </div>
 
-      <div class="slide" id="indexed-db">
+      <div class="slide offline-storage" id="indexed-db">
           <style>
             #indexeddb-example .record-list li:nth-child(odd) { background-color: #eee; }
             #indexeddb-example .record-list li:nth-child(even) { background-color: #ddd; }
@@ -517,8 +423,9 @@ idbRequest.onsuccess = function(event) {
                 }
 
                 var html = [];
-                var transaction = idb_.transaction([], IDBTransaction.READ_ONLY); // Ready is default.
-                var request = transaction.objectStore("myObjectStore").openCursor(); // Get all results.
+                var transaction = idb_.transaction([], IDBTransaction.READ_ONLY); // Read is default.
+                var request = transaction.objectStore('myObjectStore').openCursor(); // Get all results.
+
                 // This callback will continue to be called until we have no more results.
                 request.onsuccess = function(e) {
                   var cursor = e.result;
@@ -670,7 +577,7 @@ idbRequest.onsuccess = function(event) {
         </section>
       </div>
 
-        <div class="slide" id="app-cache">
+        <div class="slide offline-storage" id="app-cache">
           <style>
             #appcache-message {
               padding-top: 20px;
@@ -702,11 +609,12 @@ CACHE:
           <section class="middle">
             <h2>Realtime / Communication</h2>
             <p>Stay connected</p>
+            <img src="http://www.html5rocks.com/static/images/identity/classes_64/HTML5_Connectivity_64.png" title="HTML5 Realtime &amp; Communication" alt="HTML5 Realtime &amp; Communication">
           </section>
         </div>
 
 
-        <div class="slide" id="web-workers">
+        <div class="slide realtime-communication" id="web-workers">
           <style>
             #wmap {
               height: 200px;
@@ -880,7 +788,7 @@ self.<b>onmessage</b> = function(event) {
         </div>
 
 
-        <div class="slide" id="web-sockets">
+        <div class="slide realtime-communication" id="web-sockets">
           <style>
             #websockets-message {
               text-align: center;
@@ -1006,7 +914,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
 
-        <div class="slide" id="notifications-api">
+        <div class="slide realtime-communication" id="notifications-api">
           <style>
             #notifications-message {
               text-align: center;
@@ -1075,19 +983,20 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
 
-        <div class="slide transitionSlide" id="hardware-access-title">
+        <div class="slide transitionSlide performance" id="hardware-access-title">
           <section class="middle">
             <h2>File / Hardware Access</h2>
             <p>Deeper integration with the Operating System</p>
+            <img src="http://www.html5rocks.com/static/images/identity/classes_64/HTML5_Performance_64.png" title="HTML5 Performance &amp; Integration" alt="HTML5 Performance &amp; Integration">
           </section>
         </div>
 
 
-        <div class="slide" id="drag-and-drop">
+        <div class="slide performance" id="drag-and-drop">
           <style>
             #drag-zone {
               list-style: none;
-              float: left; 
+              float: left;
             }
             #drag-zone li * {
               border: 4px solid #888;
@@ -1226,7 +1135,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
         </div>
 
 
-        <div class="slide" id="drag-in">
+        <div class="slide performance" id="drag-in">
           <style>
             #dropzone {
               height: 150px;
@@ -1294,7 +1203,7 @@ document.querySelector('#dropzone').addEventListener('drop', function(e) {
         </div>
 
 
-        <div class="slide" id="drag-out">
+        <div class="slide performance" id="drag-out">
           <style>
             .dragout {
               background: #0687FF;
@@ -1347,13 +1256,14 @@ for (var i = 0, file; file = files[i]; ++i) {
         </div>
 
 
-        <div class="slide" id="geolocation">
+        <div class="slide performance" id="geolocation">
           <style>
             #see-position {
               margin-bottom: 10px;
             }
             #geo-map {
               height: 280px;
+              width: 640px;
             }
             #geo-log {
               background-color: red;
@@ -1433,7 +1343,7 @@ for (var i = 0, file; file = files[i]; ++i) {
         </div>
 
 
-        <div class="slide" id="slide-orientation" onload="os.onload();" onunload="os.onunload();">
+        <div class="slide performance" id="slide-orientation" onload="os.onload();" onunload="os.onunload();">
           <style>
             #slide-orientation section {
               height: 100%;
@@ -1442,6 +1352,10 @@ for (var i = 0, file; file = files[i]; ++i) {
               width: 300px;
               height: 300px;
               position: relative;
+            }
+            #slide-orientation p {
+              display: none;
+              text-align: center;
             }
             #orientationWrap .layer {
               position: absolute;
@@ -1464,6 +1378,8 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
   var g = event.<b>gamma</b>;
 }, false);
 </pre>
+          <p>This sample requires FF3.6+ or Google Chrome
+          on a device with a built in accelerometer or iOS 4.2.</p>
           <div class="flex hbox boxcenter">
             <div id="orientationWrap" class="noflex vbox boxcenter">
               <div class="layer"><img src="src/orientation/chrome-layer-01.png"/></div>
@@ -1516,11 +1432,16 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
               window.addEventListener('MozOrientation', this.orientationListener, false);
             };
             var os = new OrientationSlide('#slide-orientation');
+
+            if (!('ondeviceorientation' in window) &&
+                !(window.onmozorientation)) {
+              document.querySelector('#slide-orientation p').style.display = 'block';
+            }
           </script>
           </section>
         </div>
 
-        <div class="slide" id="speech-input">
+        <div class="slide performance" id="speech-input">
           <style>
             #speech-input-field {
               width: 400px;
@@ -1557,10 +1478,11 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           <section class="middle">
             <h2>Semantics &amp; Markup</h2>
             <p>More meaningful elements</p>
+            <img src="http://www.html5rocks.com/static/images/identity/classes_64/HTML5_Semantics_64.png" title="HTML5 Semantics &amp; Markup" alt="HTML5 Semantics &amp; Markup">
           </section>
         </div>
 
-        <div class="slide" id="semantic-tags-1">
+        <div class="slide semantics" id="semantic-tags-1">
           <header><span class="html">HTML</span> <h1>Better semantic tags</h1></header>
           <section>
             <style>
@@ -1617,7 +1539,7 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           </section>
         </div>
 
-        <div class="slide" id="semantic-tags-2">
+        <div class="slide semantics" id="semantic-tags-2">
           <header><span class="html">HTML</span> <h1>Markup for applications</h1></header>
           <style>
             #cars-input {
@@ -1662,7 +1584,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide" id="link-relations">
+        <div class="slide semantics" id="link-relations">
           <header><span class="html">HTML</span> <h1>Descriptive link relations</h1></header>
           <style>
             .underlined { text-decoration: underline; }
@@ -1685,7 +1607,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide" id="microdata">
+        <div class="slide semantics" id="microdata">
           <style>
             #microdata-screenshot {
               width: 84%;
@@ -1695,7 +1617,6 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
             }
             #microdata figure {
               display: block;
-              width: 100%;
               text-align: center;
             }
             #microdata figcaption {
@@ -1713,13 +1634,13 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
 </pre>
             <figure>
               <img id="microdata-screenshot" src="src/magpie.png" alt="Google Rich Snippets Tool screenshot" />
-              <figcaption>Rich Snippets Testing Tool (Beta) at http://www.google.com/webmasters/tools/richsnippets</figcaption>
+              <figcaption>Rich Snippets Testing Tool at <a href="http://www.google.com/webmasters/tools/richsnippets">http://www.google.com/webmasters/tools/richsnippet</a></figcaption>
             <figure>
           </section>
         </div>
-                
 
-        <div class="slide" id="aria-attributes">
+
+        <div class="slide semantics" id="aria-attributes">
           <header><span class="html">HTML</span> <h1>ARIA attributes</h1></header>
           <section>
             <pre>&lt;ul id="tree1"
@@ -1739,7 +1660,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide" id="new-form-types">
+        <div class="slide semantics" id="new-form-types">
           <header><span class="html">HTML</span> <h1>New form types</h1></header>
 
           <section>
@@ -1804,7 +1725,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
           </section>
         </div>
 
-        <div class="slide" id="form-types-mobile">
+        <div class="slide semantics" id="form-types-mobile">
           <header><span class="html">HTML</span> <h1>Form field types on mobile</h1></header>
           <section>
             <style type="text/css" media="screen">
@@ -1849,15 +1770,17 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
             </div>
           </section>
         </div>
-                
+
         <div class="slide transitionSlide" id="graphics-multimedia-title">
           <section class="middle">
             <h2>Graphics / Multimedia</h2>
             <p>2D &amp; 3D</p>
+            <img src="http://www.html5rocks.com/static/images/identity/classes_64/HTML5_3D_Effects_64.png" title="HTML5 3D &amp; Effects" alt="HTML5 3D &amp; Effects">
+            <img src="http://www.html5rocks.com/static/images/identity/classes_64/HTML5_Multimedia_64.png" title="HTML5 Multimedia" alt="HTML5 Multimedia">
           </section>
         </div>
 
-        <div class="slide" id="video-audio">
+        <div class="slide multimedia" id="video-audio">
           <style>
             #video-column {
               float: left;
@@ -1975,7 +1898,7 @@ document.getElementById("video").<b>play</b>();
           </script>
         </div>
 
-        <div class="slide" id="canvas-2d">
+        <div class="slide effects" id="canvas-2d">
           <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Canvas 2D</h1></header>
           <section>
             <style>
@@ -2017,7 +1940,7 @@ document.getElementById("video").<b>play</b>();
         </div>
 
 
-        <div class="slide" id="canvas-2d-example">
+        <div class="slide effects" id="canvas-2d-example">
           <style>
             #canvas-example {
               margin-left: 150px;
@@ -2044,7 +1967,7 @@ document.getElementById("video").<b>play</b>();
         </div>
 
 
-        <div class="slide" id="canvas-3d">
+        <div class="slide effects" id="canvas-3d">
           <style>
             #webgl-iframe {
               border: none;
@@ -2067,7 +1990,7 @@ document.getElementById("video").<b>play</b>();
         </div>
         
         
-        <div class="slide" id="inline-svg">
+        <div class="slide effects" id="inline-svg">
           <header><span class="html">HTML</span> <h1>Inline SVG</h1></header>
           <section>
             <style>
@@ -2136,7 +2059,7 @@ document.getElementById("video").<b>play</b>();
           </section>
         </div>
         
-        <div class="slide" id="svg-example-slide">
+        <div class="slide effects" id="svg-example-slide">
           <style>
             #svg-example {
               margin-left: 150px;
@@ -2160,10 +2083,11 @@ document.getElementById("video").<b>play</b>();
           <section class="middle">
             <h2>CSS3</h2>
             <p>Presentation &amp; Styling</p>
+            <img src="http://www.html5rocks.com/static/images/identity/classes_64/HTML5_Styling_64.png" title="HTML5 Styling" alt="HTML5 Styling">
           </section>
         </div>
 
-        <div class="slide" id="css-selectors">
+        <div class="slide styling" id="css-selectors">
           <style>
             .row {
               padding: 4px;
@@ -2222,7 +2146,7 @@ h2 <b>+</b> header { ... }
         </div>
 
 
-        <div class="slide" id="web-fonts">
+        <div class="slide styling" id="web-fonts">
           <style>
             #fontface-sample {
               text-align: center;
@@ -2255,7 +2179,7 @@ header {
         </div>
 
 
-        <div class="slide" id="text-wrapping">
+        <div class="slide styling" id="text-wrapping">
           <style>
             div#wrapping {width: 95%}
             #overflow-hidden { font-size: 25px; height: 1.1em; overflow: hidden; }
@@ -2294,7 +2218,7 @@ header {
 
 
 
-        <div class="slide" id="css-columns">
+        <div class="slide styling" id="css-columns">
           <style>
           #columns-no-example {
             -webkit-column-count: 2;
@@ -2371,7 +2295,7 @@ header {
         </div>
 
 
-        <div class="slide" id="css-stroke">
+        <div class="slide styling" id="css-stroke">
           <style>
             #text-stroke-example { 
               font-size: 85px;
@@ -2404,7 +2328,7 @@ header {
         </div>
 
 
-        <div class="slide" id="css-opacity">
+        <div class="slide styling" id="css-opacity">
           <header><span class="css">CSS</span> <h1>Opacity</h1></header>
           <section>
             <style>
@@ -2472,7 +2396,7 @@ header {
 
         </div>
 
-        <div class="slide" id="css-color">
+        <div class="slide styling" id="css-color">
           <style>
             #hsl-example {
               font-size: 75px;
@@ -2523,7 +2447,7 @@ header {
         </div>
 
 
-         <div class="slide" id="rounded-corners">
+         <div class="slide styling" id="rounded-corners">
           <style>
           #doraemon {
             height: 320px;
@@ -2567,7 +2491,7 @@ header {
         </div>
 
 
-        <div class="slide" id="css-gradients">
+        <div class="slide styling" id="css-gradients">
           <style>
             #gradients-linear-example {
               border: 0;
@@ -2609,7 +2533,7 @@ header {
           </section>
         </div>
 
-        <div class="slide" id="css-shadow">
+        <div class="slide styling" id="css-shadow">
           <style>
             #shadow-example {
               font-size: 75px;
@@ -2666,7 +2590,7 @@ header {
         </div>
 
 
-        <div class="slide" id="logo-demo">
+        <div class="slide styling" id="logo-demo">
           <style>
             #logo-container {
               font-size: 66px;
@@ -2728,7 +2652,7 @@ background:
         </div>
 
 
-        <div class="slide" id="css-background">
+        <div class="slide styling" id="css-background">
           <style>
             #background-textarea {
               background: white url(http://www.google.com/intl/en_ALL/images/logo.gif) center center no-repeat;
@@ -2781,7 +2705,7 @@ background:
           </section>
         </div>
 
-        <div class="slide" id="flex-box-1">
+        <div class="slide styling" id="flex-box-1">
           <style>
             #box-orient-example {
               height: 300px;
@@ -2841,7 +2765,7 @@ background:
         </div>
 
 
-        <div class="slide" id="flex-box-2">
+        <div class="slide styling" id="flex-box-2">
           <style>
             #box-orient-example-2 {
               height: 200px; 
@@ -2896,8 +2820,9 @@ background:
 
           </section> 
         </div>
-                
-        <div class="slide" id="css-transitions">
+
+
+        <div class="slide styling" id="css-transitions">
           <style>
             #transitions-box-2 {
               -webkit-transition: margin-left 1s ease-in-out;
@@ -2960,7 +2885,7 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
         </div>
 
 
-        <div class="slide" id="css-transforms">
+        <div class="slide styling" id="css-transforms">
           <style>
             #threed-example {
               margin: 50px 20px;
@@ -3008,7 +2933,7 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
         </div>
 
 
-        <div class="slide" id="css-animation">
+        <div class="slide styling" id="css-animation">
           <style>
             #animation-example {
               font-family: Arial;
@@ -3067,6 +2992,91 @@ div {
             <div id="animation-example" class="example">
               Pulse!
             </div>
+          </section>
+        </div>
+
+
+       <div class="slide transitionSlide" id="nuts-bolts-title">
+          <section class="middle">
+            <h2>Nuts &amp; Bolts</h2>
+            <p>Improvements to the core platform</p>
+            <img src="http://www.html5rocks.com/static/images/identity/classes_64/HTML5_Performance_64.png" title="HTML5 Performance &amp; Integration" alt="HTML5 Performance &amp; Integration">
+          </section>
+        </div>
+
+
+        <div class="slide performance" id="new-selectors">
+          <header><span class="js">JS</span> <h1>New Selectors</h1></header>
+          <section>
+            <h2>Finding elements by class (DOM API)</h2>
+
+            <pre>var el = document.getElementById('section1');
+el.focus();
+
+var els = document.getElementsByTagName('div');
+els[0].focus();
+
+var els = document.<b>getElementsByClassName</b>('section');
+els[0].focus();</pre>
+
+            <h2>Finding elements by CSS syntax (Selectors API)</h2>
+
+            <pre>var els = document.<b>querySelectorAll</b>("ul li:nth-child(odd)");
+var tds = document.<b>querySelectorAll</b>("table.test > tr > td");
+var el = document.<b>querySelector</b>("table.test > tr > td"); // el == tds[0]
+</pre>
+          </section>
+        </div>
+
+
+        <div class="slide performance" id="custom-data">
+          <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Custom data-* attributes</h1></header>
+          <section>
+            <h2>Define, store, and retrieve custom data on the DOM.</h2>
+            <pre>&lt;div id="out" <b>data-id</b>="good" <b>data-name</b>="joe" <b>data-screen-name</b>="user1"&gt;&lt;/div&gt;</pre>
+
+            <pre>
+// Add new data attributes via JS.
+var el = document.querySelector('#out');
+el.setAttribute('<em>data-foo</em>', 'bar');
+
+var html = [];
+for (var key in el.<b>dataset</b>) {
+  html.push(key, ': ', el.<b>dataset</b>[key], '&lt;br&gt;');
+}
+
+el.innerHTML = html.join('');
+</pre>
+
+<p>Output:</p>
+<pre>
+id: good
+name: joe
+screenName: user1
+foo: bar
+</pre>
+          </section>
+        </div>
+
+
+        <div class="slide performance" id="class-list">
+          <header><span class="js">JS</span> <h1>Element.classList</h1></header>
+          <section>
+            <pre>&lt;div id="main" class="shadow rounded"&gt;&lt;/div&gt;</pre>
+            <pre>
+var el = document.querySelector('#main').<b>classList</b>;
+el.<b>add</b>('highlight');
+el.<b>remove</b>('shadow');
+el.<b>toggle</b>('highlight');
+
+console.log(el.<b>contains</b>('highlight')); // false
+console.log(el.<b>contains</b>('shadow')); // false
+console.log(el.<b>classList</b>.toString() == el.className); // true
+</pre>
+<p>Output:</p>
+<pre>
+&lt;div id="main" class="rounded"&gt;&lt;/div&gt;
+</pre>
           </section>
         </div>
 
