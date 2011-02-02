@@ -3,10 +3,11 @@
   margin-bottom: 0;
   padding: 20px 3px;
   border-bottom: 1px solid #ddd;
+  text-align: center;
 }
-#index  a {
+#index a {
   text-decoration: none;
-  float: left;
+  display: inline-block;
   outline: 0;
 }
 #index img {
@@ -17,9 +18,8 @@
   font-family: Helvetica, sans-serif;
   height: 160px;
   width: 150px;
-  text-align: center;
   padding: 13px 10px;
-  margin: 0 6px;
+  margin: 0 4px;
   background: -moz-linear-gradient(90deg, #eee, #fff, #eee);
   background: -webkit-gradient(linear, left top, left bottom,
                                from(#eee), color-stop(0.5, #fff), to(#eee));
@@ -44,17 +44,19 @@
 }
 #themes div.app {
   display: inline-block;
-  width: auto;
   height: 28px;
+  width: 28px;
+  background: url(/static/images/identity/classes_32/badge-icon-sprite_32.png) no-repeat,
+              -webkit-gradient(linear, left top, left bottom,
+                               from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+  background-position: 6px 50%;
   margin: 3px;
   padding: 5px;
-  text-align: left;
   -moz-border-radius: 0;
   -o-border-radius: 0;
   border-radius: 0;
   border-width: 1px;
   vertical-align: middle;
-  font-weight: bold;
 }
 #themes h3 {
   margin: 0;
@@ -104,7 +106,6 @@
 }
 #themes a:hover .app {
   border-color: transparent;
-  background: transparent;
 }
 .section-header {
   padding-bottom: 0;

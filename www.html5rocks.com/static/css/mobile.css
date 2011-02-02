@@ -16,7 +16,7 @@ body {
 header nav ul {
   text-align: center;
   float: none;
-  margin: 0;
+  margin: 5px 0 0 0;
 }
 header nav ul li {
   float: none;
@@ -72,4 +72,7 @@ footer .madeby {
   margin-top: 10px;
   text-align: center;
   float: none;
+}
+footer > p:last-of-type {
+  text-align: center;
 }
