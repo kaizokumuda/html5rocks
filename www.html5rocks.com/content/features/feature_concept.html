@@ -16,7 +16,7 @@
 
 {% include "../../templates/footer.html" %}
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 <script>
 var features = '{% block tuttags %}{% endblock %}';
 
@@ -31,9 +31,8 @@ var div = $('<div>').load('/tutorials/ #index', function() {
   });
 
   $(matches)
-    .find('h2 a').clone()
-    .map(function() { return $(this).wrap('<li>').parent(); })
-    .prependTo(ul);
+     .find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
+     
 });
 </script>
 {% endblock %}
