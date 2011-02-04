@@ -176,6 +176,13 @@ VideoPhysicsController.prototype._onTilt = function(evt) {
   
   var x = Math.abs(evt.gamma) > 5 ? 200 * evt.gamma : 0;
   var y = Math.abs(evt.beta) > 10 ? 700 - (200 * -evt.beta) : 700;
+  
+  if (!this._physics){
+    window.removeEventListener('deviceorientation', this._onTilt.bind(this), false);
+    window.removeEventListener('MozOrientation', this._onTilt.bind(this), false);
+    return;
+  }
+  
   this._physics.setGravity(x, y);
 };
 
