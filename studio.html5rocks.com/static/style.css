@@ -469,7 +469,7 @@ a#boxtrigger { display:none;}
           border-radius: 10px;
                
               
-  margin-left: -92px;  /* magic number based on number of boxes, this will be overwritten by UI.writeBoxStyles() */
+  margin-left: -105px;  /* magic number based on number of boxes, this will be overwritten by UI.writeBoxStyles() */
                        /* -63 when its 9, -92 when it's 12, thus margin-left: -6.33*boxes.length - 24      */
 }
 
