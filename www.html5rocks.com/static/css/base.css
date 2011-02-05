@@ -30,6 +30,7 @@ body a {
 header {
   border-bottom: 2px solid #222;
   overflow: hidden;
+  padding-top: 7px;
 }
 article header {
   border: none;
@@ -49,9 +50,7 @@ figcaption {
   font-weight: bold;
   text-transform: uppercase;
   margin: 0;
-  padding: 7px 0 0 1px;
   float: left;
-  width: auto;
   letter-spacing: -0.09em;
 }
 #title a {
@@ -80,8 +79,11 @@ figcaption {
   opacity: 1;
 }
 #q {
- width: 135px;
+ width: 150px;
  outline: none;
+}
+header nav {
+  float: right;
 }
 header nav a {
   font-family: 'Droid Sans', Arial, sans-serif;
@@ -89,15 +91,11 @@ header nav a {
 header nav ul {
   padding-left: 0;
   list-style: none;
-  float: right;
-  margin-bottom: 5px;
+  margin: 8px 0 5px 0;
 }
 header nav ul li {
-  float: left;
-  padding: 0 3px 0 8px;
-}
-header nav ul li a:hover {
-  text-decoration: none;
+  display: inline;
+  margin-left: 10px;
 }
 a.current {
   color: #000;

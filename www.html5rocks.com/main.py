@@ -120,6 +120,8 @@ class ContentHandler(webapp.RequestHandler):
 
   def render(self, data={}, template_path=None, status=None, message=None, relpath=None):
     if status is not None and status != 200:
+      self.response.set_status(status, message)
+
       # Check if we have a customize error page (template) to display.
       if template_path is None:
         logging.error(message)

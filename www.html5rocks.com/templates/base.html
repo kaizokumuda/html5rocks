@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html{% block manifest %}{% if is_mobile %} manifest="/cache.manifest"{% endif %}{% endblock %}>
+<html{% block manifest %}{% if is_mobile and prod %} manifest="/cache.manifest"{% endif %}{% endblock %}>
 <head>
   <meta charset="utf-8" />
   <!-- Copyright (c) 2011 Google Inc.
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold" />
   <link rel="stylesheet" media="all" href="/static/css/base{% if prod %}.min{% endif %}.css" />
 
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
   <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- iOS, run in full-screen mode -->
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> <!-- iOS, display status bar as translucent -->
@@ -37,24 +37,55 @@
   <link rel="apple-touch-icon" href="/static/images/identity/HTML5_Badge_64.png" />
   <link rel="apple-touch-icon-precomposed" href="/static/images/identity/HTML5_Badge_64.png" />
 
+  <style>
+   @media only screen and (min-width: 641px) and (max-width: 800px) { /*iPad*/
+     #title {
+       font-size: 50px;
+       float: left;
+       margin-right: 10px;
+     }
+     #title img {
+       left: 1px;
+       top: 5px;
+       height: 45px;
+       width: 45px;
+     }
+     header > div:first-of-type {
+      width: 620px;
+     }
+     header nav {
+       width: auto;
+       margin-top: 20px;
+     }
+     header nav ul {
+       margin-top: 0;
+     }
+     #cse-search-box {
+       margin-top: 17px;
+     }
+  }
+  </style>
+
   {% block head %}{% endblock %}
 </head>
 <body onload="{% block onload %}{% endblock %}">
   <div id="wrap">
     <div id="content">
       <header>
-        <h1 id="title">
-          <a href="/" title="HTML5 Rocks Logo" alt="HTML5 Rocks Logo"><span class="normal">HTML</span><img src="/static/images/identity/HTML5_Badge_64.png"><span class="rocks">Rocks</span></a>
-        </h1>
-        <nav>
-          <ul>
-            <li><a href="http://slides.html5rocks.com" target="_blank">Presentation</a></li>
-            <li><a href="http://playground.html5rocks.com">Playground</a></li>
-            <li><a href="http://studio.html5rocks.com">Studio</a></li>
-            <li><a href="/tutorials/" {% ifequal current 'tutorials' %}class="current"{% endifequal %}>Tutorials</a></li>
-            <li><a href="/resources.html" {% ifequal current 'resources' %}class="current"{% endifequal %}>Resources</a></li>
-          </ul>
-        </nav>
+        <div>
+          <h1 id="title">
+            <a href="/" title="HTML5 Rocks Logo" alt="HTML5 Rocks Logo"><span class="normal">HTML</span><img src="/static/images/identity/HTML5_Badge_64.png"><span class="rocks">Rocks</span></a>
+          </h1>
+          <nav>
+            <ul>
+              <li><a href="http://slides.html5rocks.com" target="_blank">Presentation</a></li>
+              <li><a href="http://playground.html5rocks.com">Playground</a></li>
+              <li><a href="http://studio.html5rocks.com">Studio</a></li>
+              <li><a href="/tutorials/" {% ifequal current 'tutorials' %}class="current"{% endifequal %}>Tutorials</a></li>
+              <li><a href="/resources.html" {% ifequal current 'resources' %}class="current"{% endifequal %}>Resources</a></li>
+            </ul>
+          </nav>
+        </div>
         <form action="/search" id="cse-search-box">
           <div>
             <input type="hidden" name="cx" value="007435387813601113811:ef_kuvvx6a8" />
@@ -90,6 +121,13 @@
   <script type="text/javascript" src="//www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22search%22%2C%22version%22%3A%221%22%7D%5D%7D"></script>
   <script>
     (function() {
+      {% if is_mobile %}
+        // Hides mobile browser's address bar when page is done loading.
+        window.addEventListener('load', function(e) {
+          setTimeout(function() { window.scrollTo(0, 1); }, 1);
+        }, false);
+      {% endif %}
+
       // Check if new appcache is available.
       window.applicationCache.addEventListener('updateready', function(e) {
         if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
