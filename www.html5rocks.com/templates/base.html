@@ -27,12 +27,13 @@
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold" />
   <link rel="stylesheet" media="all" href="/static/css/base{% if prod %}.min{% endif %}.css" />
-
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-  <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- iOS, run in full-screen mode -->
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> <!-- iOS, display status bar as translucent -->
   <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+  <!-- iOS: run in full-screen mode and display upper status bar as translucent -->
+  <!--<meta name="apple-mobile-web-app-capable" content="yes" /> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />-->
 
   <link rel="apple-touch-icon" href="/static/images/identity/HTML5_Badge_64.png" />
   <link rel="apple-touch-icon-precomposed" href="/static/images/identity/HTML5_Badge_64.png" />
