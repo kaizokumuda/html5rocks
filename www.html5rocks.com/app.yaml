@@ -15,16 +15,16 @@ handlers:
   script: main.py
 
 # Server appropriate mimetype for certain static content.
-- url: /(.*\.manifest)
+- url: /(.*\.(appcache|manifest))
   static_files: \1
   mime_type: text/cache-manifest
-  upload: (.*\.manifest)
+  upload: (.*\.(appcache|manifest))
   expiration: "0s"
 
-- url: /tutorials/(.*\.manifest)
+- url: /tutorials/(.*\.(appcache|manifest))
   static_files: content/tutorials/\1
   mime_type: text/cache-manifest
-  upload: content/tutorials/(.*\.manifest)
+  upload: content/tutorials/(.*\.(appcache|manifest))
   expiration: "0s"
 
 - url: /tutorials/(.*\.zip)

@@ -24,5 +24,9 @@ CACHE:
 /static/images/identity/classes_32/badge-icon-sprite_32.png
 /static/images/identity/HTML5_Badge_64.png
 
+FALLBACK:
+/static/images/ /static/images/identity/HTML5_Badge_32.png
+
 NETWORK:
 *
+

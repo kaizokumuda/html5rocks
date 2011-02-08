@@ -8,5 +8,5 @@
 # Copyright 2011 Eric Bidelman <ericbidelman@chromium.org>
 
 ./compress_js_css.sh
-echo \# `date` >> ../cache.manifest
+echo \# `date` >> ../cache.appcache
 appcfg.py update ../
