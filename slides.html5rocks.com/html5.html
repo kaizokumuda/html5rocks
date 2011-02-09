@@ -19,7 +19,7 @@
                  Alex Russell (slightlyoff@chromium.org)
                  Brad Neuberg
 -->
-<html manifest="cache.appcache">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
@@ -580,16 +580,18 @@ idbRequest.onsuccess = function(event) {
         <div class="slide offline-storage" id="app-cache">
           <style>
             #appcache-message {
-              font-size: 100%;
               text-align: center;
             }
             #appcache-message img {
               vertical-align: middle;
               cursor: pointer;
             }
+            .appcache-examples pre {
+              font-size: 80%;
+            }
           </style>
           <header><span class="js">JS</span> <h1>Application Cache</h1></header>
-          <section>
+          <section class="appcache-examples">
 <pre>&lt;html <b>manifest="cache.appcache"</b>&gt;</pre>
 <pre>
 window.<b>applicationCache</b>.addEventListener('updateready', function(e) {
@@ -1300,7 +1302,7 @@ for (var i = 0, file; file = files[i]; ++i) {
 
 }, opt_errorHandler);
 </pre>
-            <p class="center" style="font-size:90%">( this feature currently requires Google Chrome 9+ )</p>
+            <p class="center" style="font-size:90%">( The FileSystem API is currently only implemented in Google Chrome 9+ )</p>
           </section>
         </div>
 
