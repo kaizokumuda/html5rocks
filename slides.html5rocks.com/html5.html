@@ -19,7 +19,7 @@
                  Alex Russell (slightlyoff@chromium.org)
                  Brad Neuberg
 -->
-<html>
+<html manifest="cache.appcache">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
@@ -580,29 +580,42 @@ idbRequest.onsuccess = function(event) {
         <div class="slide offline-storage" id="app-cache">
           <style>
             #appcache-message {
-              padding-top: 20px;
+              font-size: 100%;
               text-align: center;
+            }
+            #appcache-message img {
+              vertical-align: middle;
+              cursor: pointer;
             }
           </style>
           <header><span class="js">JS</span> <h1>Application Cache</h1></header>
           <section>
-<pre>&lt;html <b>manifest="cache.manifest"</b>&gt;
-window.<b>applicationCache</b>.addEventListener(<em>'checking'</em>, updateCacheStatus, false);
+<pre>&lt;html <b>manifest="cache.appcache"</b>&gt;</pre>
+<pre>
+window.<b>applicationCache</b>.addEventListener('updateready', function(e) {
+  if (window.<b>applicationCache</b>.<b>status</b> == window.<b>applicationCache</b>.<b>UPDATEREADY</b>) {
+    window.<b>applicationCache</b>.<b>swapCache()</b>;
+    if (confirm('A new version of this site is available. Load it?')) {
+      window.location.reload();
+    }
+  }
+}, false);
 </pre>
-cache.manifest:
+cache.appcache:
 <pre>CACHE MANIFEST
-
-# version 1
+# version 1.0.0
 
 CACHE:
-/html5/src/refresh.png
 /html5/src/logic.js
 /html5/src/style.css
 /html5/src/background.png
+
+NETWORK:
+*
 </pre>
 
-
-         <!--   <p id="appcache-message">Turn off your internet connection and refresh this page! <img src="src/refresh.png" style="vertical-align:top"/></p> -->
+           <p id="appcache-message">Turn off your internet connection and refresh this page!
+           <img src="src/refresh.png" onclick="window.location.reload();"/></p>
           </section>
         </div>
 
@@ -1254,6 +1267,40 @@ for (var i = 0, file; file = files[i]; ++i) {
                 }
               })();
             </script>
+          </section>
+        </div>
+
+
+        <div class="slide performance" id="filewriter">
+          <style>
+          </style>
+          <header><span class="js">JS</span> <h1>FileSystem APIs</h1></header>
+          <section>
+
+            <h3>Asynchronously write a file to a sandboxed file system using JavaScript:</h3>
+
+            <pre>
+<b>window.requestFileSystem</b>(<b>window.TEMPORARY</b>, 1024 * 1024, function(fs) {
+
+  // fs.root is a DirectoryEntry object.
+  <b>fs.root.getFile</b>('log.txt', {create: true}, function(fileEntry) {
+
+    <b>fileEntry.createWriter</b>(function(writer) {  // writer is a FileWriter object.
+
+        <b>writer.onwrite</b> = function(e) { ... };
+        <b>writer.onerror</b> = function(e) { ... };
+
+        var bb = new BlobBuilder();
+        bb.append('Hello World!');
+
+        <b>writer.write</b>(bb.getBlob('text/plain'));
+
+    }, opt_errorHandler);
+  }
+
+}, opt_errorHandler);
+</pre>
+            <p class="center" style="font-size:90%">( this feature currently requires Google Chrome 9+ )</p>
           </section>
         </div>
 
@@ -3596,8 +3643,19 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
 
     <script src="src/prettify/prettify.js" onload="prettyPrint();" defer></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-
     <script>
+      // Check if new appcache is available, load it, and reload page.
+      if (window.applicationCache) {
+        window.applicationCache.addEventListener('updateready', function(e) {
+          if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+            window.applicationCache.swapCache();
+            if (confirm('A new version of this site is available. Load it?')) {
+              window.location.reload();
+            }
+          }
+        }, false);
+      }
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-15028909-5']);
       _gaq.push(['_trackPageview']);
