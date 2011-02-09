@@ -187,7 +187,7 @@ UI.writeBoxStyles = function(){
         
     // then in open mode, we gotta keep them all visible with overlap.
     'body .show.open div.box { ' +
-        'margin-left: ' +  -(6.666*UI.boxes.length + 12) + 'px;' +
+        'margin-left: ' +  -Math.round(6.666*UI.boxes.length + 12) + 'px;' +
     '}';
     
     $('<style>').text(rules).appendTo('head');
