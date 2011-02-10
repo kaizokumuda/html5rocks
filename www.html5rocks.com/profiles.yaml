@@ -260,3 +260,43 @@ homepage: http://n2napps.com
 google: jeremy.chone
 twitter: jeremychone
 email: jeremy.chone@gmail.com
+
+---
+
+id: matthackett
+name:
+  given: Matt
+  family: Hackett
+org:
+  name: Lost Decade Games
+  unit: Programmer, Designer
+address:
+  locality: San Jose
+  region: California
+  country: USA
+  lat: 37.3394
+  lon: -121.893
+homepage: http://www.lostdecadegames.com/
+google: http://www.google.com/profiles/richtaur
+twitter: richtaur
+email: matt@lostdecadegames.com
+
+---
+
+id: geoffblair
+name:
+  given: Geoff
+  family: Blair
+org:
+  name: Lost Decade Games
+  unit: Programmer, Designer
+address:
+  locality: Sunnyvale
+  region: California
+  country: USA
+  lat: 37.402210
+  lon: -122.016089
+homepage: http://www.lostdecadegames.com
+google: http://www.google.com/profiles/gmblair
+twitter: geoffblair
+email: geoff@lostdecadegames.com
