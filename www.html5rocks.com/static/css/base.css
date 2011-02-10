@@ -368,6 +368,33 @@ a[rel='external'] {
   border-radius: 15px;
 }
 
-figcaption samp { 
+figcaption samp {
   white-space: nowrap;
+}
+
+@media only screen and (min-width: 641px) and (max-width: 800px) { /*iPad*/
+ #title {
+   font-size: 50px !important;
+   float: left !important;
+   margin-right: 10px !important;
+ }
+ #title img {
+   left: 1px !important;
+   top: 5px !important;
+   height: 45px !important;
+   width: 45px !important;
+ }
+ header > div:first-of-type {
+  width: 620px !important;
+ }
+ header nav {
+   width: auto !important;
+   margin-top: 20px !important;
+ }
+ header nav ul {
+   margin-top: 0 !important;
+ }
+ #cse-search-box {
+   margin-top: 17px !important;
+ }
 }

@@ -1,7 +1,6 @@
 figure {
   margin: 0;
 }
-
 h2 {
   font-size: 28px;
   font-family: 'Droid Sans', sans-serif;
@@ -11,10 +10,9 @@ h2 {
 }
 .description img {
   float: right;
-  border: 1px solid #eee; 
+  border: 1px solid #eee;
   padding: 2px;
   margin: 0 0 10px 10px;
-  /*height: 140px;*/
   -webkit-box-shadow: 1px 1px 10px #ccc inset;
   -moz-box-shadow: 1px 1px 10px #ccc inset;
   -o-box-shadow: 1px 1px 10px #ccc inset;
@@ -110,6 +108,26 @@ figcaption {
   zoom: 1; 
 }
 
-dd { 
+dd {
   margin: 2px 0 18px 5px;
+}
+
+@media only screen and (max-width: 640px) { /* Android, iPhone */
+  .column {
+    float: none;
+    width: auto;
+  }
+  .column .in-the-wild,
+  .column .demos {
+    text-align: center;
+  }
+  hgroup {
+    border-top: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    background-color: #eee;
+  }
+  hgroup > h3 {
+    margin-top: 0;
+  }
 }

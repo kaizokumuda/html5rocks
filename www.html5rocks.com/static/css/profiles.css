@@ -192,3 +192,21 @@ h2[itemprop="fn"] {
   opacity: 1;
   display: block;
 }
+
+@media only screen and (max-device-width: 480px),
+       only screen and (max-width: 640px) {
+  .profile section:first-of-type {
+    width: 92%;
+    -webkit-box-shadow: none;
+  }
+  article section h2 {
+    -webkit-box-shadow: none;
+  }
+  .photoZone, img[itemprop="photo"] {
+    width: 80px;
+    height: 80px;
+  }
+  .articles li {
+    font-size: 89%;
+  }
+}

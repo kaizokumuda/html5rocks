@@ -6,23 +6,6 @@
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
   <link rel="stylesheet" media="screen" href="/static/css/index_page{% if prod %}.min{% endif %}.css" />
   <link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/index_page_mobile{% if prod %}.min{% endif %}.css" />
-  <style>
-  @media only screen and (min-width: 641px) and (max-width: 800px) { /*iPad*/
-    #themes a {
-      border: 1px solid #ddd;
-      background: -webkit-gradient(linear, left top, left bottom,
-                                   from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
-      background: -moz-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none;
-      margin-bottom: 4px;
-    }
-    #themes a .app {
-      border-color: transparent;
-    }
-  }
-  </style>
 {% endblock %}
 
 {% block body %}

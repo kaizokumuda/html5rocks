@@ -9,6 +9,8 @@ JS_EXT=js
 CSSDIR='../static/css'
 JSDIR='../static/js'
 
+YUI_COMPRESSOR=yuicompressor-2.4.4.jar
+
 JS_FILES=("${JSDIR}/profiles.${JS_EXT}" "${JSDIR}/prettify.${JS_EXT}")
 
 #if [[ "$1" == "" ]]; then
@@ -25,7 +27,7 @@ for i in $CSSDIR/*.$CSS_EXT; do
   name=`basename ${filename%%.*}`
   ext=`basename ${filename##*.}`
   dir=`dirname $i`
-  java -jar yuicompressor-2.4.2.jar -v $i -o $dir/$name.min.$ext
+  java -jar ${YUI_COMPRESSOR} -v $i -o $dir/$name.min.$ext
 done
 
 for i in ${JS_FILES[*]}; do
@@ -33,5 +35,5 @@ for i in ${JS_FILES[*]}; do
   name=`basename ${filename%%.*}`
   ext=`basename ${filename##*.}`
   dir=`dirname $i`
-  java -jar yuicompressor-2.4.2.jar -v $i -o $dir/$name.min.$ext
+  java -jar ${YUI_COMPRESSOR} -v $i -o $dir/$name.min.$ext
 done
