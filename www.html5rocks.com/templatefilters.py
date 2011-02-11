@@ -64,7 +64,7 @@ class ProfileLink(django.template.Node):
             {'id': profile['id'], 'given': profile['name']['given'],
              'family': profile['name']['family'], 'role': profile['org']['unit'],
              'company': profile['org']['name']})
-    return ', '.join(names)
+    return ',<br> '.join(names)
 
 
 def do_profile_links(parser, token):
