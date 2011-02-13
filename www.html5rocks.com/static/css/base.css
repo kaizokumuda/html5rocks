@@ -258,49 +258,28 @@ article.sample .date {
   float: left;
   margin-right: 5px;
 }
-.browser_logos {
-  list-style: none;
-  overflow: hidden;
-  display: inline;
-}
-.browser_logos li {
+.browser_logos span {
   float: right;
   height: 17px;
+  width: 17px;
   background: transparent url('/static/images/browser_logos.png') no-repeat left top;
   opacity: 0.25;
   margin-top: -2px;
 }
 .browser_logos .chrome {
-  width: 17px;
   background-position: left top;
 }
 .browser_logos .ff {
-  width: 17px;
   background-position: -17px top;
 }
 .browser_logos .safari {
-  width: 17px;
   background-position: -35px top;
 }
 .browser_logos .ie {
-  width: 17px;
   background-position: -52px top;
-}
-.browser_logos .cf {
-  width: 26px;
-  background-position: -52px top;
-}
-.browser_logos .iphone {
-  width: 9px;
-  background-position: -93px top;
-}
-.browser_logos .android {
-  width: 14px;
-  background-position: -103px top;
 }
 .browser_logos .opera {
-  width: 17px;
-  background-position: -78px top;
+  background-position: -69px top;
 }
 .browser_logos .supported {
   opacity: 1;
