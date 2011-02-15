@@ -1,7 +1,13 @@
 import os
 import yaml
+import logging
 
 from google.appengine.api import memcache
+
+if 'SERVER_SOFTWARE' in os.environ:
+  PROD = not os.environ['SERVER_SOFTWARE'].startswith('Development')
+else:
+  PROD = True
 
 def get_profiles():
   profiles = memcache.get('profiles')

@@ -1,0 +1,34 @@
+CACHE MANIFEST
+
+CACHE:
+/favicon.ico
+
+/static/js/prettify.min.js
+/static/js/profiles.min.js
+/static/js/modernizr-1.7.min.js
+
+/static/css/base.min.css
+/static/css/prettify.min.css
+/static/css/mobile.min.css
+/static/css/index_page.min.css
+/static/css/index_page_mobile.min.css
+/static/css/samples_index.min.css
+
+/static/images/html5rocks-presentation.png
+/static/images/html5rocks-playground.png
+/static/images/html5rocks-studio.png
+/static/images/html5rocks-tutorials.png
+
+/static/images/google_logo_small.png
+/static/images/browser_logos.png
+/static/images/identity/classes_32/badge-icon-sprite_32.png
+/static/images/identity/HTML5_Badge_64.png
+
+FALLBACK:
+/static/images/ /static/images/identity/HTML5_Badge_32.png
+
+NETWORK:
+*
+
+# Wed Feb 9 23:59:59 PST 2011
+# Thu Feb 10 10:59:20 PST 2011
