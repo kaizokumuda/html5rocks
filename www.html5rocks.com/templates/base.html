@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html{% block manifest %}{% endblock %}>
+<html{% block manifest %}{% if is_mobile and prod %} manifest="/cache.appcache"{% endif %}{% endblock %}>
 <head>
   <meta charset="utf-8" />
-  <!-- Copyright (c) 2010 Google Inc.
+  <!-- Copyright (c) 2011 Google Inc.
    *
    * Licensed under the Apache License, Version 2.0 (the "License");
    * you may not use this file except in compliance with the License.
@@ -23,69 +23,122 @@
   -->
   <meta name="description" content="{% block meta_description %}A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.{% endblock %}" />
   <meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,offline,audio,video,drag and drop,chrome" />
-  <title>HTML5 Rocks - {% block headtitle %}{% endblock %}</title>
+  <title>HTML5 Rocks - {% block headtitle %}A resource for open web HTML5 developers{% endblock %}</title>
   <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="/static/css/base.css" />
-  <script defer>
-    function isCompatible() {
-      {% block iscompatible %}
-      return null;
-      {% endblock %}
-    }
-  </script>
+  <link rel="stylesheet" media="all" href="/static/css/base{% if prod %}.min{% endif %}.css" />
+  <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+  <!-- iOS: run in full-screen mode and display upper status bar as translucent -->
+  <!--<meta name="apple-mobile-web-app-capable" content="yes" /> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />-->
+
+  <link rel="apple-touch-icon" href="/static/images/identity/HTML5_Badge_64.png" />
+  <link rel="apple-touch-icon-precomposed" href="/static/images/identity/HTML5_Badge_64.png" />
   {% block head %}{% endblock %}
 </head>
 <body onload="{% block onload %}{% endblock %}">
   <div id="wrap">
     <div id="content">
+      <header>
+        <div>
+          <h1 id="title">
+            <a href="/" title="HTML5 Rocks Logo" alt="HTML5 Rocks Logo"><span class="normal">HTML</span><img src="/static/images/identity/HTML5_Badge_64.png"><span class="rocks">Rocks</span></a>
+          </h1>
+          <nav>
+            <ul>
+              <li><a href="http://slides.html5rocks.com" target="_blank">Presentation</a></li>
+              <li><a href="http://playground.html5rocks.com">Playground</a></li>
+              <li><a href="http://studio.html5rocks.com">Studio</a></li>
+              <li><a href="/tutorials/" {% ifequal current 'tutorials' %}class="current"{% endifequal %}>Tutorials</a></li>
+              <li><a href="/resources.html" {% ifequal current 'resources' %}class="current"{% endifequal %}>Resources</a></li>
+            </ul>
+          </nav>
+        </div>
+        <form action="/search" id="cse-search-box">
+          <div>
+            <input type="hidden" name="cx" value="007435387813601113811:ef_kuvvx6a8" />
+            <input type="hidden" name="cof" value="FORID:9" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            <input type="search" name="q" id="q" autocomplete="off" placeholder="Search HTML5Rocks"/>
+          </div>
+        </form>
+      </header>
+
       {% block body %}{% endblock %}
+
+      <footer>
+        <span>
+          <a href="http://www.w3.org/html/logo/">
+            <img src="/static/images/identity/HTML5_Badge_64.png" align="left" title="HTML5 Logo" alt="HTML5 Logo" class="footer-badge"/>
+          </a>
+        </span>
+        <span>
+          <a href="/tos.html" {% ifequal current 'tos' %}class="current"{% endifequal %}>Terms</a> -
+          <a href="/privacy.html" {% ifequal current 'privacy' %}class="current"{% endifequal %}>Privacy</a> -
+          <a href="http://goo.gl/mod/YmGX">Make a Suggestion</a> - 
+          <a href="http://code.google.com/p/html5rocks/issues/entry">Report Bug</a> - 
+          <a href="http://twitter.com/ChromiumDev">Follow us on Twitter</a> -
+          <a href="/profiles" {% ifequal current 'profiles' %}class="current"{% endifequal %}>About Authors</a>
+        </span>
+        <span class="madeby">Made by Google | <img src="/static/images/google_logo_small.png" width="50" height="20" /></span>
+        <p>This site contains information on APIs that are not part of the W3C HTML5 specification.</p>
+      </footer>
+
     </div>
   </div>
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-  <script src="/static/js/modernizr-1.7.min.js"></script>
-  <script src="/static/js/prettify.js"></script>
-  <script type="text/javascript">
+  <script type="text/javascript" src="//www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22search%22%2C%22version%22%3A%221%22%7D%5D%7D"></script>
+  <script>
     (function() {
-      google.load('search', '1');
-      google.setOnLoadCallback(function() {
-        google.search.CustomSearchControl.attachAutoCompletion(
-          '007435387813601113811:ef_kuvvx6a8',
-          document.getElementById('q'),
-          'cse-search-box');
-      });
+      {% if is_mobile %}
+        // Hides mobile browser's address bar when page is done loading.
+        window.addEventListener('load', function(e) {
+          setTimeout(function() { window.scrollTo(0, 1); }, 1);
+        }, false);
+      {% endif %}
 
-      document.getElementById('q').addEventListener('keydown', function(e) {
+      // Check if new appcache is available.
+      if (window.applicationCache) {
+        window.applicationCache.addEventListener('updateready', function(e) {
+          if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+            window.applicationCache.swapCache();
+            if (confirm('A new version of this site is available. Load it?')) {
+              window.location.reload();
+            }
+          }
+        }, false);
+     }
+
+      function isCompatible() {
+        {% block iscompatible %}
+        return null;
+        {% endblock %}
+      }
+
+      if (isCompatible() === false) {
+        document.getElementById('notcompatible').className = '';
+      } else if (isCompatible() === true) {
+        document.getElementById('compatible').className = '';
+      }
+
+      var q = document.getElementById('q');
+
+      google.search.CustomSearchControl.attachAutoCompletion(
+          '007435387813601113811:ef_kuvvx6a8', q, 'cse-search-box');
+
+      q.addEventListener('keydown', function(e) {
         if (e.keyCode == 13) { // enter key
           document.getElementById('cse-search-box').submit();
         }
       }, false);
 
-      var lis = document.querySelectorAll('header nav li');
-      var i = lis.length;
-      while (i--) {
-        var a = lis[i].querySelector('a');
-        var section = a.getAttribute("data-section");
-        if (new RegExp(section).test(document.location.href)) {
-          a.className = 'current';
-        }
-      }
-
-      if (isCompatible() === false) {
-        document.getElementById('notcompatible').className = "";
-      } else if (isCompatible() === true) {
-        document.getElementById('compatible').className = "";
-      }
-
-      window.addEventListener && document.querySelector('#title').addEventListener('click', function(e) {
-        window.location = '/';
-      }, false);
-
       // Kill feedburner and marketing tracking arguments cuz they're ugly.
-      if (/^\?utm_/.test(location.search) && history.replaceState) {
-        history.replaceState({}, '', location.href.replace(/\?utm_.*/, ''));
+      if (/^\?utm_/.test(document.location.search) &&
+          window.history.replaceState) {
+        window.history.replaceState(
+            {}, '', document.location.href.replace(/\?utm_.*/, ''));
       }
-
-      prettyPrint();
     })();
 
     var _gaq = _gaq || [];

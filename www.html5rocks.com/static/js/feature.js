@@ -1,32 +1,32 @@
-if (caniusefeatures[0] && caniusefeatures[0].length){
-   $('.support').show();
+if (caniusefeatures[0] && caniusefeatures[0].length) {
+  $('.support').show();
 
-   var ref = document.getElementsByTagName('script')[0],
-       myscript = document.createElement('script');
+  var myscript = document.createElement('script');
+  myscript.src = 'http://caniuse.com/jsonp.php?callback=caniusecallback';
 
-   myscript.src = 'http://caniuse.com/jsonp.php?callback=caniusecallback';
-   ref.parentNode.insertBefore(myscript, ref);
+  var ref = document.getElementsByTagName('script')[0];
+  ref.parentNode.insertBefore(myscript, ref);
 }
 
 
-window.caniusecallback = function(data){
+window.caniusecallback = function(data) {
 
- var dom = $('.support').detach();
+  var dom = $('.support').detach();
 
-  $.each(caniusefeatures, function(i, feature){
+  $.each(caniusefeatures, function(i, feature) {
 
-    var featurestats = data.data[feature],
-        localdom     = dom.clone();
+    var featurestats = data.data[feature];
+    var localdom = dom.clone();
 
     localdom.find('h4').text(featurestats.title + ' browser support');
 
-    $.each(featurestats.stats, function(browser, browserobj){
+    $.each(featurestats.stats, function(browser, browserobj) {
 
       var resulttext = '---';
 
-      $.each(browserobj, function(version, result){
+      $.each(browserobj, function(version, result) {
         if (result == 'y') {
-          if (resulttext != '---'){
+          if (resulttext != '---') {
             resulttext += '+';
             return false;
           }
@@ -37,9 +37,8 @@ window.caniusecallback = function(data){
       localdom.find('.' + browser).text(resulttext);
     });
 
-    localdom
-     .find('table').fadeIn().css('visibility','visible').end()
-     .insertAfter('div.description');
+    localdom.find('table').css('visibility', 'visible').end()
+            .insertAfter('div.description');
 
   }); // eo feature loop
 }; // eo caniusecallback()
@@ -51,11 +50,10 @@ var div = $('<div>').load('/tutorials/ #index', function() {
   var matches = $([]);
 
   $.each(features.split(','), function(i, eachtag) {
-    var elem = div.find('.sample span.tag:contains(' + eachtag + ')').closest('.sample');
+    var elem = div.find('.sample span.tag:contains(' + eachtag + ')')
+                  .closest('.sample');
     matches = matches.add(elem);
   });
 
-  $(matches)
-     .find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
-
+  $(matches).find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
 });
