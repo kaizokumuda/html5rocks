@@ -9,9 +9,9 @@
 
  
 <video style="display: none" onended="this.play()">
-  <source src="chrome_japan.webm" type='video/webm; codecs="vp8, vorbis"' />
-  <source src="chrome_japan.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-  <source src="chrome_japan.ogv" type='video/ogg; codecs="theora, vorbis"' />
+  <source src="http://studio.html5rocks.com/samples/orientation/chrome_japan.webm" type='video/webm; codecs="vp8, vorbis"' />
+  <source src="http://studio.html5rocks.com/samples/orientation/chrome_japan.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+  <source src="http://studio.html5rocks.com/samples/orientation/chrome_japan.ogv" type='video/ogg; codecs="theora, vorbis"' />
 </video> 
 <div class="content"></div> 
 
@@ -176,6 +176,13 @@ VideoPhysicsController.prototype._onTilt = function(evt) {
   
   var x = Math.abs(evt.gamma) > 5 ? 200 * evt.gamma : 0;
   var y = Math.abs(evt.beta) > 10 ? 700 - (200 * -evt.beta) : 700;
+  
+  if (!this._physics){
+    window.removeEventListener('deviceorientation', this._onTilt.bind(this), false);
+    window.removeEventListener('MozOrientation', this._onTilt.bind(this), false);
+    return;
+  }
+  
   this._physics.setGravity(x, y);
 };
 

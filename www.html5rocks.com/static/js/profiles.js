@@ -1,4 +1,16 @@
 $(function() {
+  var div = $('<div>').load('/tutorials/ .sample', function() {
+    var authorLinks = div.find('[data-id]');
+    authorLinks.each(function(i, authorLink) {
+      var profileID = $(authorLink).attr('data-id')
+      var ul = $('#' + profileID + ' .articles')[0];
+
+      var sample = $(authorLink).closest('.sample').find('h2 a');
+
+      $(ul).append('<li>' + sample[0].outerHTML + '</li>');
+    });
+  });
+
   function updateHash(e) {
     $activeProfile = $(".active");
     if ($activeProfile.length) {
@@ -12,17 +24,12 @@ $(function() {
     }
   }
 
-  /*window.slideMap = function(el) {
-    $(el).toggleClass('active');
-  };*/
-
   window.showArticles = function(link) {
     var $profile = $(link).closest('.profile');
     $profile.find('.back').toggleClass('active');
     $profile.find('.front').toggleClass('active');
-    e.stopPropagation();
     return false;
-  }
+  };
 
   $('.profile .list-articles').click(function(e) {
     var $profile = $(this).closest('.profile');
@@ -50,7 +57,6 @@ $(function() {
     $(this).find('.back').removeClass('active');
     $(this).find('.front').removeClass('active');
     updateHash(e);
-    //onHashChange('#' + $(this).attr('id'));
     e.stopPropagation();
   });
 

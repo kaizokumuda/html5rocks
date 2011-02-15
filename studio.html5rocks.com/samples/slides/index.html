@@ -17,7 +17,7 @@
   Original slides: Marcin Wichary (mwichary@google.com)
   Modifications: Chrome Developer Relations <chrome-devrel@googlegroups.com>
 -->
-<html manifest="cache.manifest">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
@@ -726,6 +726,10 @@
         SlideShow.prototype = {
           _slides: [],
           _update: function(dontPush) {
+            
+            // catch to set things right on the initial load. popstate fires on pageload.
+            if (this.current === null) return;
+            
             document.querySelector('#presentation-counter').innerText = this.current;
             if (history.pushState) {
               if (!dontPush) {

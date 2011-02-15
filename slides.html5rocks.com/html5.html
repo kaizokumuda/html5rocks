@@ -19,7 +19,7 @@
                  Alex Russell (slightlyoff@chromium.org)
                  Brad Neuberg
 -->
-<html>
+<html manifest="cache.appcache">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
@@ -173,7 +173,7 @@
 <pre>
 // use localStorage for persistent storage
 // use sessionStorage for per tab storage
-textarea.addEventListener('keyup', function () {
+saveButton.addEventListener('click', function () {
   window.<b>localStorage</b>.<b>setItem</b>('value', area.value);
   window.<b>localStorage</b>.<b>setItem</b>('timestamp', (new Date()).getTime());
 }, false);
@@ -580,28 +580,44 @@ idbRequest.onsuccess = function(event) {
         <div class="slide offline-storage" id="app-cache">
           <style>
             #appcache-message {
-              padding-top: 20px;
               text-align: center;
+            }
+            #appcache-message img {
+              vertical-align: middle;
+              cursor: pointer;
+            }
+            .appcache-examples pre {
+              font-size: 80%;
             }
           </style>
           <header><span class="js">JS</span> <h1>Application Cache</h1></header>
-          <section>
-<pre>&lt;html <b>manifest="cache.manifest"</b>&gt;
-window.<b>applicationCache</b>.addEventListener(<em>'checking'</em>, updateCacheStatus, false);
+          <section class="appcache-examples">
+<pre>&lt;html <b>manifest="cache.appcache"</b>&gt;</pre>
+<pre>
+window.<b>applicationCache</b>.addEventListener('updateready', function(e) {
+  if (window.<b>applicationCache</b>.<b>status</b> == window.<b>applicationCache</b>.<b>UPDATEREADY</b>) {
+    window.<b>applicationCache</b>.<b>swapCache()</b>;
+    if (confirm('A new version of this site is available. Load it?')) {
+      window.location.reload();
+    }
+  }
+}, false);
 </pre>
-cache.manifest:
+cache.appcache:
 <pre>CACHE MANIFEST
-
-# version 1
+# version 1.0.0
 
 CACHE:
-/html5/src/refresh.png
 /html5/src/logic.js
 /html5/src/style.css
 /html5/src/background.png
+
+NETWORK:
+*
 </pre>
 
-          <!-- <p id="appcache-message">Turn off your internet connection and refresh this page! <img src="src/refresh.png" style="vertical-align:top"/></p> -->
+           <p id="appcache-message">Turn off your internet connection and refresh this page!
+           <img src="src/refresh.png" onclick="window.location.reload();"/></p>
           </section>
         </div>
 
@@ -1252,6 +1268,40 @@ for (var i = 0, file; file = files[i]; ++i) {
                 }
               })();
             </script>
+          </section>
+        </div>
+
+
+        <div class="slide performance" id="filewriter">
+          <style>
+          </style>
+          <header><span class="js">JS</span> <h1>FileSystem APIs</h1></header>
+          <section>
+
+            <h3>Asynchronously write a file to a sandboxed file system using JavaScript:</h3>
+
+            <pre>
+<b>window.requestFileSystem</b>(<b>window.TEMPORARY</b>, 1024 * 1024, function(fs) {
+
+  // fs.root is a DirectoryEntry object.
+  <b>fs.root.getFile</b>('log.txt', {create: true}, function(fileEntry) {
+
+    <b>fileEntry.createWriter</b>(function(writer) {  // writer is a FileWriter object.
+
+        <b>writer.onwrite</b> = function(e) { ... };
+        <b>writer.onerror</b> = function(e) { ... };
+
+        var bb = new BlobBuilder();
+        bb.append('Hello World!');
+
+        <b>writer.write</b>(bb.getBlob('text/plain'));
+
+    }, opt_errorHandler);
+  }
+
+}, opt_errorHandler);
+</pre>
+            <p class="center" style="font-size:90%">( The FileSystem API is currently only implemented in Google Chrome 9+ )</p>
           </section>
         </div>
 
@@ -3080,6 +3130,25 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
           </section>
         </div>
 
+        <div class="slide performance" id="history-api">
+          <header><span class="js">JS</span> <h1>History API</h1></header>
+          <section>
+            <pre>
+link.addEventListener('click', function(event) {
+  // manually add a value to the history stack
+  // without making the browser load any new page
+  <b>history</b>.<b>pushState</b>('Contact Page Form', 'Contact Page', '/contact');
+});
+
+// capture navigation in case we want to change,
+// for instance, some content when it changes
+window.addEventListener('<em>popstate</em>', function(event) {
+  document.querySelector('h1').innerText = event.<b>state</b>; // 'Contact Page Form'
+});
+</pre>
+          </section>
+        </div>
+
 
         <div class="slide" id="browser-support">
           <header><h1>See it today?</h1></header>
@@ -3246,18 +3315,33 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
           }
         };
 
-        var ua = navigator.userAgent;
-        var isFF = parseFloat(ua.split('Firefox/')[1]) || undefined;
-        var isWK = parseFloat(ua.split('WebKit/')[1]) || undefined;
-        var isOpera = parseFloat(ua.split('Opera/')[1]) || undefined;
+        
+        // modernizr lite via https://gist.github.com/598008
+        var testStyle = function(style) {
 
-        var canTransition = (function() {
-          var ver = parseFloat(ua.split('Version/')[1]) || undefined;
-          // test to determine if this browser can handle CSS transitions.
-          var cachedCanTransition = 
-            (isWK || (isFF && isFF > 3.6 ) || (isOpera && ver >= 10.5));
-          return function() { return cachedCanTransition; }
-        })();
+          var elem = document.createElement('div');
+          var prefixes = ['Webkit', 'Moz', 'O', 'ms', 'Khtml'];
+          var bool;
+          var bump = function(all, letter) {
+                return letter.toUpperCase();
+              };
+          var prop;
+
+          bool = style in elem.style;
+          prop = style.replace(/^(.)/, bump).replace(/-([a-z])/ig, bump);
+
+          for (var len = prefixes.length; len--; ){
+            if (bool) { 
+              break; 
+            }
+            bool = prefixes[len] + prop in elem.style;
+          }
+
+          document.documentElement.className += ' ' + (bool ? '' : 'no-') + style.replace(/-/g, '');
+          return bool;
+        };
+
+        var canTransition = testStyle('transition');
 
         //
         // Slide class
@@ -3380,14 +3464,18 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
             });
             if (idx >= 0) {
               var elem = this._buildList.splice(idx, 1)[0];
-              var transitionEnd = isWK ? 'webkitTransitionEnd' : (isFF ? 'mozTransitionEnd' : 'oTransitionEnd');
+             
               var _t = this;
-              if (canTransition()) {
+              if (canTransition) {
                 var l = function(evt) {
-                  elem.parentNode.removeEventListener(transitionEnd, l, false);
+                  elem.parentNode.removeEventListener('webkitTransitionEnd', l, false);
+                  elem.parentNode.removeEventListener('transitionend', l, false);  // moz
+                  elem.parentNode.removeEventListener('oTransitionEnd', l, false);
                   _t._runAutos();
                 };
-                elem.parentNode.addEventListener(transitionEnd, l, false);
+                elem.parentNode.addEventListener('webkitTransitionEnd', l, false);
+                elem.parentNode.addEventListener('transitionend', l, false);
+                elem.parentNode.addEventListener('oTransitionEnd', l, false);
                 removeClass(elem, 'to-build');
               } else {
                 setTimeout(function() {
@@ -3594,8 +3682,19 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
 
     <script src="src/prettify/prettify.js" onload="prettyPrint();" defer></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-
     <script>
+      // Check if new appcache is available, load it, and reload page.
+      if (window.applicationCache) {
+        window.applicationCache.addEventListener('updateready', function(e) {
+          if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+            window.applicationCache.swapCache();
+            if (confirm('A new version of this site is available. Load it?')) {
+              window.location.reload();
+            }
+          }
+        }, false);
+      }
+
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-15028909-5']);
       _gaq.push(['_trackPageview']);

@@ -3,6 +3,7 @@
 {% block headtitle %}File Access{% endblock %}
 {% block h2title   %}File Access{% endblock %}
 {% block tuttags   %}file,dnd,filereader,filewriter,blob{% endblock %}
+{% block caniuse   %}fileapi{% endblock %}
 
 {% block description %}
 <img src="/static/images/identity/classes_128/HTML5_Offline_Storage_128.png" width="128" height="128">
@@ -16,12 +17,9 @@ or allow an app to save a file reference while the user is offline. Using the up
 your app could read an .mp3 file and display a visualization of the song as it plays. Additionally, you could use
 client-side logic to verify an upload's mimetype matches its file extension or restrict the size of an upload.
 </p>
-<p>
-  <h4>Browser support</h4>
-  <p>See: <a href="http://caniuse.com/#feat={{category}}">current browser support for {{category}}</a> on caniuse.com.
-  Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>
-</p>
 {% endblock %}
+
+
 
 <!-- wrap any tuts content with LI's 
      these will be added to existing tutorials scraped from h5r.com -->

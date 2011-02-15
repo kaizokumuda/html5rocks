@@ -1,4 +1,4 @@
-{% extends "../../../../templates/sample.html" %}
+{% extends "sample.html" %}
 
 {% block headauthor %}Paul Irish{% endblock %}
 {% block pageauthor %}{% profilelinks paulirish %}{% endblock %}
@@ -175,7 +175,7 @@ The <a href="http://www.fontsquirrel.com/fontface/generator">Font Squirrel gener
 <h2 id="toc-fout">Dealing with FOUT</h2>
 <p>The <a href="http://paulirish.com/2009/fighting-the-font-face-fout/">Flash of Unstyled Text</a> is a phenomenon in Firefox and Opera that few web designers are fond of. When you apply a custom typeface via @font-face, there is a brief moment, when loading the page, where the font hasn't been downloaded and applied yet, and the next font in the <code>font-family</code> stack is used. This causes a flash of a different (typically less good looking) font, before it gets upgraded.</p>
 
-<figure class="big"><img src="fout.png"><figcaption>The Flash of Unstyled Text happening to the <a href="http://slides.html5rocks.com">HTML5 Slide deck.</a></figure>
+<figure class="big"><img src="fout.png"><figcaption>The Flash of Unstyled Text happening to the <a href="http://slides.html5rocks.com">HTML5 Slide deck.</a></figcaption></figure>
 
 <p>Accompanying the Google Font API is the <a href="http://code.google.com/apis/webfonts/docs/webfont_loader.html">WebFont Loader</a>, a javascript library aiming to provide a number of event hooks giving you a lot of control over the loading. Let's take a look at how you can get other browsers to mimic WebKit's behavior of hiding the fallback text while the @font-face font loads.</p>
 

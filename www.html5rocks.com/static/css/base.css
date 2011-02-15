@@ -347,6 +347,30 @@ b, strong {
   font-weight: bold;
 }
 
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Droid Sans Bold'), local('DroidSans-Bold'), url('http://themes.googleusercontent.com/font?kit=EFpQQyG9GqCrobXxL-KRMcBaWKZ57bY3RXgXH6dOjZ0') format('truetype');
+}
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Droid Sans'), local('DroidSans'), url('http://themes.googleusercontent.com/font?kit=s-BiyweUPV0v-yRb-cjciMDdSZkkecOE1hvV7ZHvhyU') format('truetype');
+}
+@font-face {
+  font-family: 'Droid Serif';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Droid Serif'), local('DroidSerif'), url('http://themes.googleusercontent.com/font?kit=0AKsP294HTD-nvJgucYTaCwlidHJgAgmTjOEEzwu1L8') format('truetype');
+}
+
+/* originally from prettify.css */
+.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun{color:#660}.pln{color:#000}.tag{color:#008;text-decoration:none;font-size: inherit; padding:0;}.atn{color:#606}.atv{color:#080}.dec{color:#606}@media print{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun{color:#440}.pln{color:#000}.tag{color:#006;font-weight:bold;}.atn{color:#404}.atv{color:#060}}
+/* end prettify */
+
 .tutorials a[href^='http']:not([href*='html5rocks.']), 
 .description a[href^='http']:not([href*='html5rocks.']),
 .feed-section a[href^='http']:not([href*='html5rocks']),
@@ -372,3 +396,21 @@ a[rel='external'] {
 figcaption samp { 
   white-space: nowrap;
 }
+
+.support h4 { margin: 16px 0 4px;}
+.support table { width: 100%; text-align: center;}
+.support table td { border: 1px solid #bbb; background: #eee;  } 
+.support table th { border: 1px solid #aaa; background: #ddd; padding: 4px;}
+.support tfoot td { background: none; border: 0; text-align: right; font-size: 11px;}
+.support + .support table tfoot { display:none;  }
+
+.support th:nth-child(1), /*.chrome, */
+.support th:nth-child(2), /*.firefox, */
+.support th:nth-child(3), /*.safari, */
+.support th:nth-child(4), /*.opera, */
+.support th:nth-child(5) /*.ie  */{ width: 13%;  }
+
+.support th:nth-child(6), /*.ios_saf, */
+.support th:nth-child(7), /*.android, */
+.support th:nth-child(8), /*.op_mini, */
+.support th:nth-child(9) /*.op_mob  */{ width: 8.25%; font-size: 12px;}

@@ -1,12 +1,11 @@
-{% extends "../../../../templates/base.html" %}
-
+{% extends "base.html" %}
 {% block body %}
-  {% include "../../../../templates/header.html" %}
+  {% include "header.html" %}
   <nav>
       <p class="breadcrumb">
         <a class="buttonlink" href="/">
           <span>Home</span>
-        </a >&gt; 
+        </a >&gt;
         <a class="buttonlink" href="/tutorials/">
           <span>Tutorials</span>
         </a> &gt; {% block pagebreadcrumb %}{% endblock %}
@@ -39,7 +38,7 @@
       </span>
     </header>
     <section>
-      <div class="compatible-block"> 
+      <div class="compatible-block">
         <p id="notcompatible" class="hidden">
           {% block notcompatible_text %}
           Your browser may not support all of
@@ -68,7 +67,7 @@
     {% block content %}{% endblock %}
     </section>
   </article>
-  {% include "../../../../templates/article_footer.html" %}
-  {% include "../../../../templates/footer.html" %}
+  {% include "article_footer.html" %}
+  {% include "footer.html" %}
 
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "../../templates/base.html" %}
+{% extends "base.html" %}
 
 {% block headtitle %}Feature{% endblock %}
 
@@ -6,34 +6,65 @@
   <link rel="stylesheet" href="/static/css/feature.css">
 {% endblock %}
 
+
 {% block body %}
-{% include "../../templates/header.html" %}
+{% include "header.html" %}
 
 <h2>{% block h2title %}Feature{% endblock %}</h2>
 <div class="description">{% block description %}{% endblock %}</div>
 
+
+{% block support %}
+<div class="support" style="display:none;">
+  <h4>loading browser support....</h4>
+  <table style="visibility:hidden;">
+    <thead>
+      <tr>
+        <th>Chrome</th>
+        <th>Firefox</th>
+        <th>Safari</th>
+        <th>Opera</th>
+        <th>IE</th>
+        <th>iOS Safari</th>
+        <th>Android</th>
+        <th>Opera Mini</th>
+        <th>Opera Mobile</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="9">Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr>
+        <td class="chrome">---</td>
+        <td class="firefox">---</td>
+        <td class="safari">---</td>
+        <td class="opera">---</td>
+        <td class="ie">---</td>
+        <td class="ios_saf">---</td>
+        <td class="android">---</td>
+        <td class="op_mini">---</td>
+        <td class="op_mob">---</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
 {% block contents %}{% endblock %}
 
-{% include "../../templates/footer.html" %}
+{% include "footer.html" %}
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.js"></script>
+
 <script>
-var features = '{% block tuttags %}{% endblock %}';
 
-// Request associated tutorials and populate into this page.
-var div = $('<div>').load('/tutorials/ #index', function() {
-  var ul = $('section.tutorials ul');
-  var matches = $([]);
+ var caniusefeatures = '{% block caniuse %}{% endblock %}'.split(','),
+     features = '{% block tuttags %}{% endblock %}';
 
-  $.each(features.split(','), function(i, eachtag) {
-    var elem = div.find('.sample span.tag:contains(' + eachtag + ')').closest('.sample');
-    matches = matches.add(elem);
-  });
-
-  $(matches)
-    .find('h2 a').clone()
-    .map(function() { return $(this).wrap('<li>').parent(); })
-    .prependTo(ul);
-});
 </script>
+<script src="/static/js/feature.js"></script>
+
 {% endblock %}

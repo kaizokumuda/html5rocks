@@ -1,7 +1,9 @@
 application: html5slides
-version: 5-1
+version: 5-2
 runtime: python
 api_version: 1
+
+default_expiration: "30d"
 
 handlers:
 - url: /src
@@ -19,10 +21,11 @@ handlers:
   upload: favicon.ico
 
 # Server appropriate mimetype for certain static content.
-- url: /cache.manifest
-  static_files: cache.manifest
+- url: /(.*\.(appcache|manifest))
+  static_files: \1
   mime_type: text/cache-manifest
-  upload: cache.manifest
+  upload: (.*\.(appcache|manifest))
+  expiration: "0s"
 
 - url: /(.*\.mp4)
   static_files: /\1

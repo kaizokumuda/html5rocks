@@ -28,7 +28,8 @@ def dir_entries(dir_name):
   for root, currdir, file_list in files:
     # Filter out .svn directories.
     if not '.svn' in root:
-      l.extend('%s/%s' % (root, f)  for f in file_list if not f.startswith('.'))
+      # filter out video assets.
+      l.extend('%s/%s' % (root, f)  for f in file_list if not f.startswith('.') and not f.endswith(('.mp4', '.webm', '.ogv')))
   return l
 
 def zip_samples(samples_dir):
