@@ -8,4 +8,4 @@
 # Copyright 2010 Eric Bidelman <ericbidelman@chromium.org>
 
 python zip_samples.py
-appcfg.py --max_size 30485760 update .
+appcfg.py update .
