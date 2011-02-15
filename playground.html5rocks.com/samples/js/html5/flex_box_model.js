@@ -11,9 +11,7 @@ var flex_children = [
 /* Update the displayed size number of inner boxes */
 function updateDisplayInfo() {
   var hbox = toArray(document.querySelectorAll('.hbox > *'));
-  console.log(hbox);
   var vbox = toArray(document.querySelectorAll('.vbox > *'));
-  console.log(vbox);
 
   hbox.forEach( function(node) {
     node.innerHTML = 'w: ' + getComputedStyle(node, null).getPropertyValue('width');

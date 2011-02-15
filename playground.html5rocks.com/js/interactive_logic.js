@@ -34,10 +34,12 @@
 
     this.uiEffects = {};
     this.runBox = {};
+
+    this.heightOfRunFrame = 0;  //height of #runFrame
     this.autoCompleteData = [];
     this.insertJavascriptRegex;
   };
-
+  
   InteractiveSample.prototype.addDeleteIcon = function(li, id) {
     var deleteCodeImg = _cel('img');
     deleteCodeImg.src = 'images/trash.gif';
@@ -122,8 +124,7 @@
             if (match !== null) {
               jsContent.push(me.deIndentCode(match[1]));
             }
-          }
-          else if (/<style>/.test(content[i])) {
+          } else if (/<style>/.test(content[i])) {
             match = content[i].match(/<style>\n\s*?([\w\W]+?)\n\s*?<\/style>/);
             if (match !== null) {
               cssContent.push(me.deIndentCode(match[1]));
@@ -133,8 +134,7 @@
       }
       window['jsEditor'].setCode(decodeSpecialChars(jsContent.join('\n')));
       window['cssEditor'].setCode(decodeSpecialChars(cssContent.join('\n')));
-    }
-    else {
+    } else {
       // content will be passed to each editor individually on load time
       window[fileType + 'Editor'].setCode(decodeSpecialChars(content.replace(/\n$$/, '')));
       if (fileType == me.currentEditor.options.eid) {  
@@ -247,8 +247,7 @@
             // showSampleFn(item.sampleName).call(me) 
           }); //!
           $(textNode).bind('click', showSampleFn.call(this, item.sampleName)); //!          
-        }
-        else {
+        } else {
           textNode.style.color = '#ccc';
         }
         
@@ -261,6 +260,7 @@
         tags += ')<\/sup>';
         this.autoCompleteData.push(item.sampleName + tags);
         sampleList[i].samples[j]['li'] = li;
+
 
 
         if (i == 0 && j == 0 && window.location.hash.length <= 1) {
@@ -404,6 +404,7 @@
     return i;
   };
 
+
   InteractiveSample.prototype.getCookie = function(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -418,6 +419,7 @@
   InteractiveSample.prototype.getCurFilename = function() {
     return this.curI;
   };
+
 
   /*
    * This is where the code gets prefetched before running it
@@ -579,6 +581,82 @@
     this.loadCodesiteFeed();
   };
 
+  InteractiveSample.prototype.initForFramed = function(codeDiv, height_of_lower) {
+    this.currentEditor = window.jsEditor;
+    this.codeEditorFrames = {
+        'js':document.getElementById('editJS'),
+        'css':document.getElementById('editCSS'),
+        'mixed':document.getElementById('editMixed')
+    };
+    this.htmlUrl = '';
+    this.insertJavascriptRegex = /[ ]*INSERT_JAVASCRIPT_HERE/;
+    this.insertCssRegex = /[ ]*INSERT_CSS_HERE/;
+    this.ie = ($.browser.msie);
+    this.ie6 = (this.ie && $.browser.version < 7);
+    this.runBox = new RunBox();
+    this.runBox.init(this, !$.browser.msie);
+    this.codeDiv = codeDiv;
+    if (height_of_lower) this.heightOfRunFrame = parseInt(height_of_lower);
+    if (window.location.hash.length > 0) {
+      for (var i=0; i < sampleList.length; i++) {
+        for (var j=0; j < sampleList[i].samples.length; j++) {
+          var item = sampleList[i].samples[j];
+          var hashName = this.nameToHashName(item.sampleName);
+          if (window.location.hash.substring(1) == hashName) {
+            this.showSampleForFramed(item.sampleName);
+            break;
+          }
+        }
+      }
+    }
+    this.uiEffects = new UIEffects();
+    this.uiEffects.initForFramed(this);
+  };
+   
+  InteractiveSample.prototype.showSampleForFramed = function(sampleName, def) {
+    me = this;
+    var curFilename = me.getCurFilename() || null;
+    var sampleObj = me.sampleNameToObject(sampleName);
+    var files = sampleObj.files;
+    var thisLI = sampleObj.li;
+    var catSplit = sampleObj.category.split('-');
+    var categoryName = catSplit[0];
+
+    //var codeLIs = me.codeLIs;
+    var setAsJSEditor = true;
+    me.temporaryBoilerplate = sampleObj.boilerplateLoc;
+    me.htmlUrl = me.temporaryBoilerplate
+    if (sampleObj.boilerplateLoc != '') {
+      editorKey = sampleObj.editor || 'js';
+    }
+      
+    me.currentEditor = window[editorKey + 'Editor'];
+    me.runBox.iFrameLoaded = false;
+
+    // For linking purposes
+    if (!def) {
+      window.location.hash = me.nameToHashName(sampleName);
+    }
+
+    me.currentCode = {};
+
+    // add file names at top
+    // var tab_bar = $('#tab_bar');
+    // tab_bar.innerHTML = '';
+    for (i = 0; i < files.length; i++) {
+      var file = files[i];
+
+      // var tabClass = 'lb';
+      me.loadCode(file, true);
+    }
+
+    me.curI = sampleObj.sampleName;
+
+    if (editorKey == 'mixed') {
+      me.loadHTML(sampleName);
+    }
+  };
+
   InteractiveSample.prototype.insertJavascript = function(data, code) {
     data = data.replace(this.insertJavascriptRegex, code);
     return data;
@@ -706,6 +784,7 @@
     });
   };
 
+
   InteractiveSample.prototype.sendCodeToServer = function(code) {
     code = code.replace(/\n/g, '&#x000a;');
     $('#codeHolder').attr('value', code);
@@ -764,6 +843,7 @@
       // Make code selected designate this as selected
       thisLI.className = 'selected';
       me.currentCode = {};
+
 
 
       // add file names at top
@@ -903,6 +983,20 @@
     }, true);
   };
 
+/*  ********************* */
+  UIEffects.prototype.initForFramed = function(is) {
+        var me = this;
+        this.is = is;
+        this.numHTMLEditors = 0;
+
+        if (this.is.ie6) {
+            this.fixPNGs();
+        }
+
+        this.initDraggables();
+    };
+/*  ********************* */
+
   UIEffects.prototype.fixPNGs = function() {
     $.getScript('js/jquery.pngFix.pack.js', function() {
       $(document).pngFix();
@@ -1013,6 +1107,7 @@
           }
         });
   };
+
 
   UIEffects.prototype.resizeAndShowDialog = function(divId) {
     var windowWidth = $(document.body).width();
@@ -1228,7 +1323,7 @@
         var debugBar = document.createElement('div');
         debugBar.id = 'debugBar';
         debugBar.className = (window.doContinue) ? "debugBarRunning" : "debugBarPaused";
-        debugBar.innerHTML = '<div class="debugBarTop">\n</div>\n<div class="debugBarTile">\n<div class="debugBarContent">\n<a href="#" class="debugContinuePaused" onclick="window.setContinue(true);return false;"><img border=0 src="/images/debug-btn-continue.png"></a>\n<img class="debugContinueRunning" src="/images/debug-btn-continue.png">\n<a href="#" onclick="window.toggleFirebug();return false;"><img border=0 src="/images/debug-btn-firebug-lite.png"></a>\n<span id="debugBarText">\n' + ((window.doContinue) ? "Complete.":"Paused (Line:" + window.curBreakLineNum + ")") + '</span>\n</div>\n</div>\n<div class="debugBarBottom">\n</div>\n';
+        debugBar.innerHTML = '<div class="debugBarTop">\n</div>\n<div class="debugBarTile">\n<div class="debugBarContent">\n<a href="#" class="debugContinuePaused" onclick="window.setContinue(true);return false;"><img border=0 src="images/debug-btn-continue.png"></a>\n<img class="debugContinueRunning" src="images/debug-btn-continue.png">\n<a href="#" onclick="window.toggleFirebug();return false;"><img border=0 src="images/debug-btn-firebug-lite.png"></a>\n<span id="debugBarText">\n' + ((window.doContinue) ? "Complete.":"Paused (Line:" + window.curBreakLineNum + ")") + '</span>\n</div>\n</div>\n<div class="debugBarBottom">\n</div>\n';
         window.document.body.appendChild(debugBar);
         if (window.firebug.el && window.firebug.el.main && window.firebug.el.main.environment) {
           window.toggleFirebug();
@@ -1326,7 +1421,7 @@
     // ignoring that i'm passing in a NEW URL for htmlUrl.
     // If you load the iFrame first, THEN set the src, Safari likes it.
     // Lame.
-    var height = $('#runFrame').height() || '450';
+    var height = $('#runFrame').height() || this.is.heightOfRunFrame || 450;
     if ($.browser.safari) {
       var iFrame = $('<iframe id="runFrame" name="runFrame" class="pane-row-heighter" style="height: ' + height + 'px;" onload="is.runBox.iFrameLoaded = true;"><\/iframe>');
       $(this.runBoxDiv).empty().append(iFrame);
@@ -1350,6 +1445,7 @@
       var url = 'about:blank';
       if (!is.runBox.runBoxPoppedOut) {
         window.is.runBox.createIframe(url);
+        
         var frm = $('iframe', me.runBoxDiv).get(0);
         var doc = frm.contentWindow.document;
         doc.open();
@@ -1367,6 +1463,7 @@
       }
     };
   };
+
 
 
   RunBox.prototype.runCode = function(options) {
@@ -1396,9 +1493,11 @@
   };
 
 
+
   // Create and export the interactive sample instance to the global.
   window.is = new InteractiveSample();
 })();
+
 
 function encodeSpecialChars(b) {
 	var c= '';
