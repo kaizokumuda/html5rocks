@@ -1,4 +1,4 @@
-{% extends "../templates/base.html" %}
+{% extends "base.html" %}
 
 {% block headtitle %}Resources{% endblock %}
 
@@ -68,7 +68,7 @@
         <a href="http://www.findmebyip.com/litmus/"><img data-resource="http://www.findmebyip.com/litmus/" src="static/images/screenshots/findmebyip.png" /></a>
         <span class="buttonlink"><a href="http://www.findmebyip.com/litmus/">Web Designer's Checklist</a></span>
         : Detailed browser feature support reference.
-      </li> 
+      </li>
     <!--  <li>
         <a href="http://www.focus.com/images/view/11905/"><img data-resource="http://www.focus.com/images/view/11905/" src="static/images/screenshots/html5visual.png" /></a>
         <span class="buttonlink"><a href="http://www.focus.com/images/view/11905/">HTML5 Infographic</a></span>
@@ -85,6 +85,7 @@
         <span class="buttonlink"><a href="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(HTML5)">HTML5: Comparison of Layout Engines</a></span>
         : If the Wikipedia says it then it must be true.
       </li>
+
       <li>
         <a href="http://kangax.github.com/es5-compat-table/"><img data-resource="http://kangax.github.com/es5-compat-table/" src="static/images/screenshots/kangax.png" /></a>
         <span class="buttonlink"><a href="http://kangax.github.com/es5-compat-table/">ECMAScript 5 table</a></span>
@@ -95,43 +96,47 @@
         <span class="buttonlink"><a href="http://www.quirksmode.org/compatibility.html">Compatibility Tables</a></span>
         : Results of DOM and CSS properties tests in major browsers.
       </li>
+
       <li>
         <a href="http://html5demos.com"><img data-resource="http://html5demos.com" src="static/images/screenshots/html5demos.png" /></a>
         <span class="buttonlink"><a href="http://html5demos.com">HTML5 Demos</a></span>
       </li>
-    </ul>
-  </section>
-  <section>
-    <h2 class="section-header">Documentation</h2>
-    <ul class="resource-list">
-      <li>
-        <a href="http://dev.w3.org/html5/spec-author-view/"><img data-resource="http://dev.w3.org/html5/spec-author-view/" src="static/images/screenshots/w3devview.png" /></a>
-        <span class="buttonlink"><a href="http://dev.w3.org/html5/spec-author-view/">W3C HTML5 Web Author View</a></span>
-        : Lightweight version of the W3c spec, perfect for web developers.
-      </li>
-      <li>
-        <a href="http://diveintohtml5.org/"><img data-resource="http://diveintohtml5.org/" src="static/images/screenshots/diveinto.png" /></a>
-        <span class="buttonlink"><a href="http://diveintohtml5.org/">Dive into HTML5 by Mark Pilgrim</a></span>
-        : Learn HTML5 and have a laugh at the same time.
-      </li>
 
-      <li>
-        <a href="http://developer.apple.com/safari/"><img data-resource="http://developer.apple.com/safari/" src="static/images/screenshots/safaridocs.png" /></a>
-        <span class="buttonlink"><a href="http://developer.apple.com/safari/">Safari HTML5 Guides</a></span>
-        : Excellent WebKit-oriented development documentation.
-      </li>
-      <li>
-        <a href="https://developer.mozilla.org/en/HTML/HTML5"><img data-resource="https://developer.mozilla.org/en/HTML/HTML5" src="static/images/screenshots/mdc.png" /></a>
-        <span class="buttonlink"><a href="https://developer.mozilla.org/en/HTML/HTML5">Mozilla Development Center HTML5 Reference</a></span>
-        : Excellent documentation and guides.
-      </li>
-      <li>
-        <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/"><img data-resource="http://www.whatwg.org/specs/web-apps/current-work/multipage/" src="static/images/screenshots/wgfullspec.png" /></a>
-        <span class="buttonlink"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">WhatWG Web Apps Spec (HTML5 plus the kitchen sink)</a></span>
-        : Working draft spec of everything under the larger HTML5 umbrella.
-      </li>
     </ul>
   </section>
+
+  <h2 class="section-header">Documentation</h2>
+  <ul class="resource-list">
+    <li>
+      <a href="http://dev.w3.org/html5/spec-author-view/"><img data-resource="http://dev.w3.org/html5/spec-author-view/" src="static/images/screenshots/w3devview.png" /></a>
+      <span class="buttonlink"><a href="http://dev.w3.org/html5/spec-author-view/">W3C HTML5 Web Author View</a></span>
+      : Lightweight version of the W3c spec, perfect for web developers.
+    </li>
+
+    <li>
+      <a href="http://diveintohtml5.org/"><img data-resource="http://diveintohtml5.org/" src="static/images/screenshots/diveinto.png" /></a>
+      <span class="buttonlink"><a href="http://diveintohtml5.org/">Dive into HTML5 by Mark Pilgrim</a></span>
+      : Learn HTML5 and have a laugh at the same time.
+    </li>
+
+    <li>
+      <a href="http://developer.apple.com/safari/"><img data-resource="http://developer.apple.com/safari/" src="static/images/screenshots/safaridocs.png" /></a>
+      <span class="buttonlink"><a href="http://developer.apple.com/safari/">Safari HTML5 Guides</a></span>
+      : Excellent WebKit-oriented development documentation.
+    </li>
+    <li>
+      <a href="https://developer.mozilla.org/en/HTML/HTML5"><img data-resource="https://developer.mozilla.org/en/HTML/HTML5" src="static/images/screenshots/mdc.png" /></a>
+      <span class="buttonlink"><a href="https://developer.mozilla.org/en/HTML/HTML5">Mozilla Development Center HTML5 Reference</a></span>
+      : Excellent documentation and guides.
+    </li>
+    <li>
+      <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/"><img data-resource="http://www.whatwg.org/specs/web-apps/current-work/multipage/" src="static/images/screenshots/wgfullspec.png" /></a>
+      <span class="buttonlink"><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">WhatWG Web Apps Spec (HTML5 plus the kitchen sink)</a></span>
+      : Working draft spec of everything under the larger HTML5 umbrella.
+    </li>
+
+  </ul>
+
   <section>
     <h2 class="section-header">Tools</h2>
     <ul class="resource-list">
@@ -197,6 +202,7 @@
       </li>
     </ul>
   </section>
+
   <section>
     <h2 class="section-header">Community</h2>
     <ul class="resource-list">
@@ -240,10 +246,12 @@
         <a href="http://www.chromeexperiments.com/"><img data-resource="http://www.chromeexperiments.com/" src="static/images/screenshots/experiments.png" /></a>
         <span class="buttonlink"><a href="http://www.chromeexperiments.com/">Chrome Experiments</a></span>
       </li>
+
       <li>
         <a href="http://css3watch.com/"><img data-resource="http://css3watch.com/" src="static/images/screenshots/css3watch.png" /></a>
         <span class="buttonlink"><a href="http://css3watch.com/">CSS3 Watch</a></span>
       </li>
+
     </ul>
   </section>
   <section>
@@ -267,7 +275,7 @@
       </li>
       <li>
         <a href="http://www.amazon.com/HTML5-Now-Step-Step-Tutorial/dp/0321719913"><img data-resource="http://www.amazon.com/HTML5-Now-Step-Step-Tutorial/dp/0321719913" src="static/images/screenshots/book-tantek.png" /></a>
-        <span class="buttonlink"><a href="http://www.amazon.com/HTML5-Now-Step-Step-Tutorial/dp/0321719913">HTML5 Now [Tantek Çelik]</a></span>
+        <span class="buttonlink"><a href="http://www.amazon.com/HTML5-Now-Step-Step-Tutorial/dp/0321719913">HTML5 Now [Tantek Celik]</a></span>
       </li>
     </ul>
   </section>

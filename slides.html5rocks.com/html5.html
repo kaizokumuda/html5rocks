@@ -173,7 +173,7 @@
 <pre>
 // use localStorage for persistent storage
 // use sessionStorage for per tab storage
-textarea.addEventListener('keyup', function () {
+saveButton.addEventListener('click', function () {
   window.<b>localStorage</b>.<b>setItem</b>('value', area.value);
   window.<b>localStorage</b>.<b>setItem</b>('timestamp', (new Date()).getTime());
 }, false);
@@ -3131,6 +3131,25 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
           </section>
         </div>
 
+        <div class="slide performance" id="history-api">
+          <header><span class="js">JS</span> <h1>History API</h1></header>
+          <section>
+            <pre>
+link.addEventListener('click', function(event) {
+  // manually add a value to the history stack
+  // without making the browser load any new page
+  <b>history</b>.<b>pushState</b>('Contact Page Form', 'Contact Page', '/contact');
+});
+
+// capture navigation in case we want to change,
+// for instance, some content when it changes
+window.addEventListener('<em>popstate</em>', function(event) {
+  document.querySelector('h1').innerText = event.<b>state</b>; // 'Contact Page Form'
+});
+</pre>
+          </section>
+        </div>
+
 
         <div class="slide" id="browser-support">
           <header><h1>See it today?</h1></header>
@@ -3297,18 +3316,31 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
           }
         };
 
-        var ua = navigator.userAgent;
-        var isFF = parseFloat(ua.split('Firefox/')[1]) || undefined;
-        var isWK = parseFloat(ua.split('WebKit/')[1]) || undefined;
-        var isOpera = parseFloat(ua.split('Opera/')[1]) || undefined;
+        
+        // modernizr lite via https://gist.github.com/598008
+        function testStyle(style){
 
-        var canTransition = (function() {
-          var ver = parseFloat(ua.split('Version/')[1]) || undefined;
-          // test to determine if this browser can handle CSS transitions.
-          var cachedCanTransition = 
-            (isWK || (isFF && isFF > 3.6 ) || (isOpera && ver >= 10.5));
-          return function() { return cachedCanTransition; }
-        })();
+          var elem = document.createElement('div'),
+              prefixes = ['Webkit', 'Moz', 'O', 'ms', 'Khtml'],
+              bool,
+              bump = function(all, letter) {
+                return letter.toUpperCase();
+              },
+              prop;
+
+          bool = style in elem.style;
+          prop = style.replace(/^(.)/, bump).replace(/-([a-z])/ig, bump);
+
+          for (var len = prefixes.length; len--; ){
+            if (bool) break; 
+            bool = prefixes[len] + prop in elem.style;
+          }
+
+          document.documentElement.className += ' ' + (bool ? '' : 'no-') + style.replace(/-/g,'');
+          return bool;
+        };
+
+        var canTransition = testStyle('transition');
 
         //
         // Slide class
@@ -3431,14 +3463,18 @@ console.log(el.<b>classList</b>.toString() == el.className); // true
             });
             if (idx >= 0) {
               var elem = this._buildList.splice(idx, 1)[0];
-              var transitionEnd = isWK ? 'webkitTransitionEnd' : (isFF ? 'mozTransitionEnd' : 'oTransitionEnd');
+             
               var _t = this;
-              if (canTransition()) {
+              if (canTransition) {
                 var l = function(evt) {
-                  elem.parentNode.removeEventListener(transitionEnd, l, false);
+                  elem.parentNode.removeEventListener('webkitTransitionEnd', l, false);
+                  elem.parentNode.removeEventListener('transitionend', l, false);  // moz
+                  elem.parentNode.removeEventListener('oTransitionEnd', l, false);
                   _t._runAutos();
                 };
-                elem.parentNode.addEventListener(transitionEnd, l, false);
+                elem.parentNode.addEventListener('webkitTransitionEnd', l, false);
+                elem.parentNode.addEventListener('transitionend', l, false);
+                elem.parentNode.addEventListener('oTransitionEnd', l, false);
                 removeClass(elem, 'to-build');
               } else {
                 setTimeout(function() {

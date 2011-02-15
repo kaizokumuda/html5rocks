@@ -3,6 +3,7 @@
 {% block headtitle %}Multimedia{% endblock %}
 {% block h2title   %}Multimedia{% endblock %}
 {% block tuttags   %}multimedia,audio,video{% endblock %}
+{% block caniuse   %}audio,video{% endblock %}
 
 {% block description %}
 <img src="/static/images/identity/classes_128/HTML5_Multimedia_128.png" width="128" height="128">
@@ -18,11 +19,7 @@ with the other technologies of the web stack, be it Canvas, SVG, CSS or even Web
 <p>
 For instance, you can build a DJ mixer table app where you show several controls to fade and mix audio tracks. Canvas lets you read pixel data from videos so you could add a video visualizer with a scene selection feature and, on top of that, use SVG filters a la Photoshop to distort the movie while the videos are playing.
 </p>
-<p>
-  <h4>Browser support</h4>
-  <p>See: <a href="http://caniuse.com/#feat={{category}}">current browser support for {{category}}</a> on caniuse.com.
-  Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>
-</p>
+
 {% endblock %}
 
 <!-- wrap any tuts content with LI's 

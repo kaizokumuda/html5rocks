@@ -3,6 +3,7 @@
 {% block headtitle %}Storage{% endblock %}
 {% block h2title   %}Storage{% endblock %}
 {% block tuttags   %}storage,file,offline,webdatabase{% endblock %}
+{% block caniuse   %}sql-storage,indexeddb,namevalue-storage{% endblock %}
 
 {% block description %}
 <img src="/static/images/identity/classes_128/HTML5_Offline_Storage_128.png" width="128" height="128">
@@ -20,8 +21,7 @@
 <p>For a detailed comparison of client-side storage techniques with code demos, see our <a href="/tutorials/offline/storage/">Client-Side Storage</a> article.</p>
 
 <h4>Browser support</h4>
-<p>See: <a href="http://caniuse.com/#feat={{category}}">current browser support for {{category}}</a> on caniuse.com. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>
-<p>Web Storage is supported in all modern browsers (Chrome, Safari, Firefox, Opera, and IE8+). Web SQL Database is supported in Chrome, Safari, and Opera; with Firefox and IE unlikely to support it any time soon (Mozilla is <a href="http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/">philosophically opposed</a>.) Indexed Database has an early implementation in Firefox 4.0 Beta, and Chrome engineers are working towards another implementation. There's a good chance all browsers will support it in the future, but that's not yet clear. Chrome, Safari, and Firefox all have some degree of support for File APIs, but work is ongoing.</p>
+<p>While Web SQL Database is supported in Chrome, Safari &amp; Opera, Firefox and IE are unlikely to support it any time soon (Mozilla is <a href="http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/">philosophically opposed</a>). Indexed Database has an early implementation in Firefox 4.0 Beta and Chrome dev channel. There's a good chance all browsers will support it in the future, but that's not yet clear.</p>
 {% endblock %}
 
 {% block tuts %}
