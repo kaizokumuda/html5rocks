@@ -1,31 +1,29 @@
-
-
 if (caniusefeatures[0] && caniusefeatures[0].length){
    $('.support').show();
-   
+
    var ref = document.getElementsByTagName('script')[0],
        myscript = document.createElement('script');
 
    myscript.src = 'http://caniuse.com/jsonp.php?callback=caniusecallback';
    ref.parentNode.insertBefore(myscript, ref);
 }
-   
-   
+
+
 window.caniusecallback = function(data){
-  
+
  var dom = $('.support').detach();
 
   $.each(caniusefeatures, function(i, feature){
-    
+
     var featurestats = data.data[feature],
         localdom     = dom.clone();
 
     localdom.find('h4').text(featurestats.title + ' browser support');
-  
+
     $.each(featurestats.stats, function(browser, browserobj){
-    
+
       var resulttext = '---';
-    
+
       $.each(browserobj, function(version, result){
         if (result == 'y') {
           if (resulttext != '---'){
@@ -35,14 +33,14 @@ window.caniusecallback = function(data){
           resulttext = version;
         }
       });
-    
+
       localdom.find('.' + browser).text(resulttext);
     });
-  
+
     localdom
      .find('table').fadeIn().css('visibility','visible').end()
      .insertAfter('div.description');
-  
+
   }); // eo feature loop
 }; // eo caniusecallback()
 
@@ -59,5 +57,5 @@ var div = $('<div>').load('/tutorials/ #index', function() {
 
   $(matches)
      .find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
-     
+
 });

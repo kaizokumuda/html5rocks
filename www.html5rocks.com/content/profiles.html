@@ -1,4 +1,4 @@
-{% extends "../templates/base.html" %}
+{% extends "base.html" %}
 {% block headtitle %}Author Profiles{% endblock %}
 {% block head %}
 <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Tangerine:regular,bold|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic" rel="stylesheet" type="text/css" />
@@ -9,7 +9,7 @@
 {% endblock %}
 {% block onload %}scrollToProfile();{% endblock %}
 {% block body %}
-  {% include "../templates/header.html" %}
+  {% include "header.html" %}
   <nav>
     <p class="breadcrumb">
       <a class="buttonlink" href="/">
@@ -87,6 +87,6 @@
 
     </div>
   </article>
-  {% include "../templates/footer.html" %}
+  {% include "footer.html" %}
 {% endblock %}
 

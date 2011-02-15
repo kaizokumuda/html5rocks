@@ -12,14 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 import os
 import logging
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
-import django
-import django.template
 import common
+
+import django.template
 
 register = webapp.template.create_template_register()
 

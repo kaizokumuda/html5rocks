@@ -1,4 +1,4 @@
-{% extends "../../templates/base.html" %}
+{% extends "base.html" %}
 
 {% block headtitle %}Feature{% endblock %}
 
@@ -8,7 +8,7 @@
 
 
 {% block body %}
-{% include "../../templates/header.html" %}
+{% include "header.html" %}
 
 <h2>{% block h2title %}Feature{% endblock %}</h2>
 <div class="description">{% block description %}{% endblock %}</div>
@@ -33,7 +33,7 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan=9>Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a></td>
+        <td colspan="9">Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a></td>
       </tr>
     </tfoot>
     <tbody>
@@ -55,7 +55,7 @@
 
 {% block contents %}{% endblock %}
 
-{% include "../../templates/footer.html" %}
+{% include "footer.html" %}
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.js"></script>
 

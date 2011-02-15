@@ -1,4 +1,4 @@
-{% extends "../../templates/base.html" %}
+{% extends "base.html" %}
 
 {% block headtitle %}Tutorials{% endblock %}
 
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %}
-  {% include "../../templates/header.html" %}
+  {% include "header.html" %}
   <section>
     <div id="filter" class="hidden">
       Currently filtering by tag <span id="filter_tag"></span>.
@@ -835,6 +835,6 @@
     }
   </script>
 
-  {% include "../../templates/footer.html" %}
+  {% include "footer.html" %}
 
 {% endblock %}

@@ -17,36 +17,44 @@
 __author__ = ('kurrik@html5rocks.com (Arne Kurrik) ',
               'ericbidelman@html5rocks.com (Eric Bidelman)')
 
+
+from google.appengine.dist import use_library
+use_library('django', '1.2')
+
 # Standard Imports
 import datetime
 import logging
 import os
+import yaml
 
 # Libraries
 import html5lib
 from html5lib import treebuilders, treewalkers, serializer
 from html5lib.filters import sanitizer
 
-import yaml
+# Hack to fix templating issue in django 1.2.
+from django.conf import settings
+settings.configure(INSTALLED_APPS=('nothing',))
 
 # Google App Engine Imports
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
 from google.appengine.ext.webapp import template
+from google.appengine.ext.webapp.util import run_wsgi_app
+
 from google.appengine.api import memcache
 
 from django.utils import feedgenerator
 
 import common
 
-webapp.template.register_template_library('templatefilters')
+template.register_template_library('templatetags.templatefilters')
 
 class ContentHandler(webapp.RequestHandler):
 
   def get_toc(self, path):
     toc = memcache.get('toc|%s' % path)
     if toc is None or self.request.cache == False:
-      template_text = webapp.template.render(path, {});
+      template_text = template.render(path, {});
       parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("dom"))
       dom_tree = parser.parse(template_text)
       walker = treewalkers.getTreeWalker("dom")
@@ -73,7 +81,7 @@ class ContentHandler(webapp.RequestHandler):
   def get_feed(self, path):
     articles = memcache.get('feed|%s' % path)
     if articles is None or self.request.cache == False:
-      template_text = webapp.template.render(path, {});
+      template_text = template.render(path, {});
       parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("dom"))
       dom_tree = parser.parse(template_text)
       walker = treewalkers.getTreeWalker("dom")
@@ -137,7 +145,7 @@ class ContentHandler(webapp.RequestHandler):
     # Add CORS support entire site.
     self.response.headers.add_header('Access-Control-Allow-Origin', '*')
     self.response.headers.add_header('X-UA-Compatible', 'IE=Edge,chrome=1')
-    self.response.out.write(webapp.template.render(template_path, template_data).decode("utf-8"))
+    self.response.out.write(template.render(template_path, template_data))
 
   def render_atom_feed(self, template_path, data):
     prefix = '%s://%s' % (self.request.scheme, self.request.host)
@@ -201,7 +209,7 @@ def main():
   application = webapp.WSGIApplication([
     ('/(.*)', ContentHandler)
   ], debug=False)
-  util.run_wsgi_app(application)
+  run_wsgi_app(application)
 
 if __name__ == '__main__':
   main()

@@ -1,4 +1,4 @@
-{% extends "../../templates/base.html" %}
+{% extends "base.html" %}
 
 {% block headtitle %}Features{% endblock %}
 
@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block body %}
-  {% include "../../templates/header.html" %}
+  {% include "header.html" %}
     <ul id="feature-list">
       <li><a href="/features/file">File Access</a></li>
       <li><a href="/features/graphics">Graphics</a></li>
@@ -25,5 +25,5 @@
       <li><a href="/features/presentation">Presentation</a></li>
       <li><a href="/features/storage">Storage</a></li>
     </ul>
-  {% include "../../templates/footer.html" %}
+  {% include "footer.html" %}
 {% endblock %}
