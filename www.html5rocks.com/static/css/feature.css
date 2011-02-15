@@ -112,6 +112,24 @@ dd {
   margin: 2px 0 18px 5px;
 }
 
+.support h4 { margin: 16px 0 4px;}
+.support table { width: 100%; text-align: center;}
+.support table td { border: 1px solid #bbb; background: #eee;  } 
+.support table th { border: 1px solid #aaa; background: #ddd; padding: 4px;}
+.support tfoot td { background: none; border: 0; text-align: right; font-size: 11px;}
+.support + .support table tfoot { display:none;  }
+
+.support th:nth-child(1), /*.chrome, */
+.support th:nth-child(2), /*.firefox, */
+.support th:nth-child(3), /*.safari, */
+.support th:nth-child(4), /*.opera, */
+.support th:nth-child(5) /*.ie  */{ width: 13%;  }
+
+.support th:nth-child(6), /*.ios_saf, */
+.support th:nth-child(7), /*.android, */
+.support th:nth-child(8), /*.op_mini, */
+.support th:nth-child(9) /*.op_mob  */{ width: 8.25%; font-size: 12px;}
+
 @media only screen and (max-width: 640px) { /* Android, iPhone */
   .column {
     float: none;
