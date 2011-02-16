@@ -806,7 +806,7 @@
   // createCategories function so it runs for a specific sample
   // when on click action (with the fallback of the hash value)
   InteractiveSample.prototype.showSample = function(sampleName, def) {
-    me = this;
+    var me = this;
     return function() {
       var curFilename = me.getCurFilename() || null;
       var sampleObj = me.sampleNameToObject(sampleName);
