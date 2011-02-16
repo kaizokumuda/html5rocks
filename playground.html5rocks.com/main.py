@@ -182,8 +182,12 @@ class Main(webapp.RequestHandler):
     self.response.out.write('')
 
   def getFramed(self):
-    height_of_upper = self.request.get('hu')  # get height of 'edit' (the upper frame area)
-    height_of_lower = self.request.get('hl')  # get height of 'runFrame' (the lower frame area)
+    # get height of 'edit' (the upper frame area)
+    height_of_upper = self.request.get('hu')
+
+    # get height of 'runFrame' (the lower frame area)
+    height_of_lower = self.request.get('hl')
+
     self.template_values = {}
     sample_srcs = ['/apis/ajax/playground/getTOC']
     self.template_values['sample_srcs'] = sample_srcs
@@ -193,18 +197,13 @@ class Main(webapp.RequestHandler):
       self.template_values['height_of_lower'] = height_of_lower
     t = datetime.datetime.now()
     todayInSeconds = time.mktime(t.timetuple())
-#    tomorrowInSeconds =  todayInSeconds + 86400
-#    tomorrowFormatted = datetime.datetime.fromtimestamp(tomorrowInSeconds)
     todayFormatted = datetime.datetime.fromtimestamp(todayInSeconds)
-#    tomorrowFormatted = tomorrowFormatted.strftime("%a, %d %b %Y %I:%M:%S")
     todayFormatted = todayFormatted.strftime("%a, %d %b %Y %I:%M:%S")
 
-    # self.response.headers['Expires'] = todayFormatted + ' GMT'
     self.response.headers['Expires'] = "Fri, 01 Jan 1990 00:00:00 GMT"
     self.response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
 
     path = os.path.join(os.path.dirname(__file__), 'framedmirror.html')
-    #self.response.out.write(path)
     self.response.out.write(template.render(path, self.template_values)) 
     
   def get(self):
