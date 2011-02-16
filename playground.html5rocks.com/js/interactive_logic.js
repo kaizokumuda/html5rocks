@@ -616,7 +616,7 @@
   };
 
   InteractiveSample.prototype.showSampleForFramed = function(sampleName, def) {
-    me = this;
+    var me = this;
     var curFilename = me.getCurFilename() || null;
     var sampleObj = me.sampleNameToObject(sampleName);
     var files = sampleObj.files;
