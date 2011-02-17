@@ -100,6 +100,7 @@
 
   // parse and render code to any of the editors
   InteractiveSample.prototype.changeCodeMirror = function(content, fileType) {
+    var me = this;
     var match = null;
     var changeEditor = true;
     // this should be passed only on page load time
@@ -109,7 +110,7 @@
         console.error('Error: content shouldnt be an array at this point');
         return;
       }
-      content = this.normalizeHTML(content)
+      content = me.normalizeHTML(content);
     }
     fileType = fileType || 'mixed'; // used when toggling from js to html
     
@@ -138,19 +139,19 @@
       // content will be passed to each editor individually on load time
       window[fileType + 'Editor'].setCode(decodeSpecialChars(content.replace(/\n$$/, '')));
       if (fileType == me.currentEditor.options.eid) {  
-        this.runBox.runCode({defaultSample: true});
+        me.runBox.runCode({defaultSample: true});
       }
     }
     if (changeEditor) {
-      if (fileType == this.currentEditor.options.eid) {
-        this.uiEffects.enableUIButton(fileType);
+      if (fileType == me.currentEditor.options.eid) {
+        me.uiEffects.enableUIButton(fileType);
       }
 
-      this.useEditor(this.currentEditor.options.eid)
+      me.useEditor(me.currentEditor.options.eid);
 
-      // this.currentEditor.setCode(content);
-      $(this.currentEditor.frame.contentWindow.window.document.body).scrollTop(10);
-      $(this.currentEditor.frame.contentWindow.window.document.body).scrollTop(0);      
+      // me.currentEditor.setCode(content);
+      $(me.currentEditor.frame.contentWindow.window.document.body).scrollTop(10);
+      $(me.currentEditor.frame.contentWindow.window.document.body).scrollTop(0);      
     }
   };
 
@@ -441,7 +442,7 @@
     // js or css editors
     $.get(htmlUrl, function(data, success) {
       if (success) {
-        data = me.normalizeHTML(data)
+        data = me.normalizeHTML(data);
         callbackFunc(data);
       }
     });
