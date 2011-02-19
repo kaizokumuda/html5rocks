@@ -49,6 +49,8 @@
   background: url(/static/images/identity/classes_32/badge-icon-sprite_32.png) no-repeat,
               -webkit-gradient(linear, left top, left bottom,
                                from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+  background: url(/static/images/identity/classes_32/badge-icon-sprite_32.png) no-repeat,
+              -moz-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
   background-position: 6px 50%;
   margin: 3px;
   padding: 5px;
