@@ -5,9 +5,7 @@ $(function() {
       var profileID = $(authorLink).attr('data-id');
       var ul = $('#' + profileID + ' .articles')[0];
 
-      var sample = $(authorLink).closest('.sample').find('h2 a');
-
-      $(ul).append('<li>' + sample[0].outerHTML + '</li>');
+      $(authorLink).closest('.sample').find('h2 a').clone().wrap('<li>').parent().appendTo(ul);
     });
   });
 
