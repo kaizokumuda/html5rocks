@@ -113,7 +113,7 @@
       content = me.normalizeHTML(content);
     }
     fileType = fileType || 'mixed'; // used when toggling from js to html
-    
+
     // update both js and css editors when coming from html
     if (Object.prototype.toString.call(content) === '[object Array]') { // isArray
       var jsContent = [];
@@ -427,11 +427,10 @@
    * in the results frame
    */
   InteractiveSample.prototype.getCodeAndRun = function(callbackFunc, code) {
-    var curFilename = this.getCurFilename();
-    // var sampleObj = this.sampleFileNameToObject(curFilename);
-    var htmlUrl = this.htmlUrl;
     var me = this;
-    var code = code || this.getCode();
+    var curFilename = me.getCurFilename();
+    var htmlUrl = me.htmlUrl;
+    var code = code || me.getCode();
     
     // html editor
     if (htmlUrl == '') {
@@ -442,7 +441,11 @@
     // js or css editors
     $.get(htmlUrl, function(data, success) {
       if (success) {
-        data = me.normalizeHTML(data);
+        if (me.currentEditor == window.jsEditor) {
+          data = me.normalizeHTML(data, code);
+        } else {
+          data = me.normalizeHTML(data);
+        }
         callbackFunc(data);
       }
     });
@@ -453,9 +456,9 @@
    * it also replaces API key with a placeholder
    * @return data normalized HTML code
    */
-  InteractiveSample.prototype.normalizeHTML = function(data) {
+  InteractiveSample.prototype.normalizeHTML = function(data, code) {
     var me = this;
-    var jsCode = me.getCode('js');
+    var jsCode = code || me.getCode('js');
     var cssCode = me.getCode('css');
     jsCode = (jsCode.match(/\w/) !== null) ? me.indentCodeWithTheseSpaces(jsCode, me.findNumSpacesToIndentCode(data, 'js')) : '';
     cssCode = (cssCode.match(/\w/) !== null) ? me.indentCodeWithTheseSpaces(cssCode, me.findNumSpacesToIndentCode(data, 'css')) : '';
@@ -1293,8 +1296,7 @@
         var oldonload = window.onload;
         if (typeof window.onload != 'function') {
           window.onload = func;
-        }
-        else {
+        } else {
           window.onload = function() {
             oldonload();
             func();
@@ -1315,7 +1317,7 @@
           window.firebug.el.button.maximize.environment.addStyle({ "display":"none" });
           window.firebug.win.setHeight(firebug.env.height);
         }
-      }
+      };
       addLoadEvent(function() {
         var debugBar = document.createElement('div');
         debugBar.id = 'debugBar';
@@ -1385,7 +1387,7 @@
       var breakPointLine = breakPointsArray[i];
       var atLine = 0;
       var indexOfNewline = 0;
-      while(atLine + 1 != breakPointLine) {
+      while (atLine + 1 != breakPointLine) {
         indexOfNewline = code.indexOf('\n', indexOfNewline + 1);
         if (indexOfNewline == -1) {
           window.console.log('AddBreakPointCode failed.');
@@ -1461,8 +1463,6 @@
     };
   };
 
-
-
   RunBox.prototype.runCode = function(options) {
     var code = this.is.getCode();
     if (this.is.currentEditor == window.mixedEditor) {
@@ -1489,23 +1489,26 @@
     this.runCode();
   };
 
-
-
   // Create and export the interactive sample instance to the global.
   window.is = new InteractiveSample();
 })();
 
-
 function encodeSpecialChars(b) {
-	var c= '';
-	for(var i=0; i<b.length; i++){
-		if(b.charCodeAt(i)>127){ c += '&#' + b.charCodeAt(i) + ';'; }else{ c += b.charAt(i); }
+  var c = '';
+  for (var i = 0; i < b.length; i++) {
+    if (b.charCodeAt(i) > 127) {
+      c += '&#' + b.charCodeAt(i) + ';';
+    } else {
+      c += b.charAt(i);
+    }
   }
   return c;
 }
 
 function decodeSpecialChars(b) {
-	var c = b.replace(/&#(\d+);/g, function(c,d) { return String.fromCharCode(d) })
+  var c = b.replace(/&#(\d+);/g,
+                    function(c, d) { return String.fromCharCode(d); }
+                   );
   return c;
 }
 
