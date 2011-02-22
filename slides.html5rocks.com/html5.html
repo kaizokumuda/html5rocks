@@ -19,7 +19,7 @@
                  Alex Russell (slightlyoff@chromium.org)
                  Brad Neuberg
 -->
-<html>
+<html manifest="cache.appcache">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
@@ -3318,25 +3318,27 @@ window.addEventListener('<em>popstate</em>', function(event) {
 
         
         // modernizr lite via https://gist.github.com/598008
-        function testStyle(style){
+        var testStyle = function(style) {
 
-          var elem = document.createElement('div'),
-              prefixes = ['Webkit', 'Moz', 'O', 'ms', 'Khtml'],
-              bool,
-              bump = function(all, letter) {
+          var elem = document.createElement('div');
+          var prefixes = ['Webkit', 'Moz', 'O', 'ms', 'Khtml'];
+          var bool;
+          var bump = function(all, letter) {
                 return letter.toUpperCase();
-              },
-              prop;
+              };
+          var prop;
 
           bool = style in elem.style;
           prop = style.replace(/^(.)/, bump).replace(/-([a-z])/ig, bump);
 
           for (var len = prefixes.length; len--; ){
-            if (bool) break; 
+            if (bool) { 
+              break; 
+            }
             bool = prefixes[len] + prop in elem.style;
           }
 
-          document.documentElement.className += ' ' + (bool ? '' : 'no-') + style.replace(/-/g,'');
+          document.documentElement.className += ' ' + (bool ? '' : 'no-') + style.replace(/-/g, '');
           return bool;
         };
 
