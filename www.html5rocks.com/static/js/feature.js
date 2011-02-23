@@ -46,6 +46,8 @@ window.caniusecallback = function(data) {
 
 // Request associated tutorials and populate into this page.
 var div = $('<div>').load('/tutorials/ #index', function() {
+  var MAX_NUM_TUTS = 5;
+
   var ul = $('section.tutorials ul');
   var matches = $([]);
 
@@ -55,5 +57,9 @@ var div = $('<div>').load('/tutorials/ #index', function() {
     matches = matches.add(elem);
   });
 
+  matches = matches.splice(0, MAX_NUM_TUTS);
+
   $(matches).find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
+
 });
+
