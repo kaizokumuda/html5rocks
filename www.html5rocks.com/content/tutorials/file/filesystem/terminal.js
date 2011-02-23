@@ -18,6 +18,10 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
   var histpos_ = 0;
   var histtemp_ = 0;
 
+  window.addEventListener('click', function(e) {
+    cmdLine_.focus();
+  }, false);
+
   // Always force text cursor to end of input line.
   cmdLine_.addEventListener('click', inputTextClick_, false);
 
@@ -187,10 +191,18 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           var runAction = function(cmd, srcDirEntry, destDirEntry, opt_newName) {
             var newName = opt_newName || null;
             if (cmd == 'mv') {
-                srcDirEntry.moveTo(destDirEntry, newName);
-              } else {
-                srcDirEntry.copyTo(destDirEntry, newName);
-              }
+              srcDirEntry.moveTo(destDirEntry, newName, function(e) {
+                // UNIX doesn't display output on successful move.
+              }, function(e) {
+                errorHandler_(e);
+              });
+            } else {
+              srcDirEntry.copyTo(destDirEntry, newName, function(e) {
+                // UNIX doesn't display output on successful copy.
+              }, function(e) {
+                errorHandler_(e);
+              });
+            }
           };
 
           // Moving to a folder? (e.g. second arg ends in '/').
@@ -515,6 +527,9 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
       util.toArray(files).forEach(function(file, i) {
         cwd_.getFile(file.name, {create: true, exclusive: true}, function(fileEntry) {
           fileEntry.createWriter(function(fileWriter) {
+            fileWriter.onerror = function(e) {
+              errorHandler_(e.currentTarget.error);
+            };
             fileWriter.write(file);
           }, errorHandler_);
         }, errorHandler_);
