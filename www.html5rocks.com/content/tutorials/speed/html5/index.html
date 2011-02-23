@@ -54,13 +54,11 @@ varies
     <a name="h.620r5u-cjpzgn" id="h.620r5u-cjpzgn"></a><span class="c13">Introduction</span>
   </h1>
   <p>
-    HTML5 gives us great tools to enhance the visual appearance of web applications. This is especially true in the realm of animations. However, with this new power also come new challenges. Actually these challenges aren’t rea class="c3 c18"lly that new and it might sometimes make sense to ask your friendly desk neighbour, the Flash programmer how she has overcome similar things in the past.
+    HTML5 gives us great tools to enhance the visual appearance of web applications. This is especially true in the realm of animations. However, with this new power also come new challenges. Actually these challenges aren’t really that new and it might sometimes make sense to ask your friendly desk neighbor, the Flash programmer, how she has overcome similar things in the past.
   </p>
-  <p></p>
   <p>
     Anyway, when you work in animation it becomes hugely important that users perceive these animations to be smooth. What we need to realize is that smoothness in animations can’t really be created by simply increasing the frames per second beyond any cognitive threshold. Our brain is, unfortunately, smarter than that. What you will learn is that true 30 frames of animation per second (fps) is much better than 60 fps with just a few frames dropped in the middle. People hate jaggedness.
   </p>
-  <p></p>
   <p>
     This article will try to give you the tools and techniques to work on improving the experience of your own application.
   </p>
@@ -123,7 +121,7 @@ varies
     Currently most browsers only use GPU acceleration when they have a strong indication that an HTML element would benefit from it. The strongest indication is that a 3D transformation was applied to it. Now you might not really want to apply a 3D transformation, but still gain the benefits from GPU acceleration – no problem. Simply apply the <span class="c4 c30">identity transformation</span>:
   </p>
   <p>
-    <code>-webkit-transform: translate3d(0,0,0);</code><sup><a href="#cmnt3" name="cmnt_ref3" id="cmnt_ref3">[c]</a></sup>
+    <code>-webkit-transform: translateZ(0);</code><sup><a href="#cmnt3" name="cmnt_ref3" id="cmnt_ref3">[c]</a></sup>
   </p>
   <p>
     Please be warned that this applying this transformation does not guarantee to help your performance. It might simply crank up your GPU, use up more battery but deliver the same performance as before. So be careful with this technique and only use it if you experience a true performance win.
@@ -132,10 +130,7 @@ varies
     When you think about which element to apply the transformation, go for those that represent a good logical chunk of your page. Ideally this is the element that you are animating and it doesn’t contain other elements that you move around.
   </p>
   <p>
-    &nbsp;
-  </p>
-  <p>
-    <span>There are two useful command-line flags for Chrome to help debugging GPU accelleration:</span>
+    <span>There are two useful command-line flags for Chrome to help debugging GPU acceleration:</span>
   </p>
   <ol class="c0">
     <li>
@@ -152,69 +147,41 @@ varies
     CSS3 Transitions
   </h2>
   <p>
-    <span>CSS Transitions make style animation trivial for everyone, but they also are a smart performance feature. Because a CSS transition is managed by the browser, the fidelity of its animation can be greatly improved, and in my cases hardware accelerated. Currently Webkit (Chrome, Safari, iOS) have hardware acellerated css transforms, but its coming quickly to other browsers and platforms.</span>
+    CSS Transitions make style animation trivial for everyone, but they also are a smart performance feature. Because a CSS transition is managed by the browser, the fidelity of its animation can be greatly improved, and in my cases hardware accelerated. Currently Webkit (Chrome, Safari, iOS) have hardware acellerated css transforms, but its coming quickly to other browsers and platforms.
+  </p>
+  <p>You can use <a href="https://developer.mozilla.org/en/CSS/CSS_transitions">&quot;transitionEnd&quot;</a> events in order to script this into powerful combinations, though right now, capturing all supported transition end events means watching "webkitTransitionEnd transitionend oTransitionEnd".
   </p>
   <p>
-    <span>&nbsp;</span>
-  </p>
-  <p>
-    <span>You can use "transitionEnd" events in order to script this into powerful combinations, though right now, capturing all supported transition end events means watching "webkitTransitionEnd transitionend oTransitionEnd".</span>
-  </p>
-  <p>
-    <span>&nbsp;</span>
-  </p>
-  <p>
-    <span>Many libraries have now introduced animation APIs that leverage transitions if present and fall back to standard DOM style animation otherwise. scripty2, yui transition, jquery enahanced animate</span>
-  </p>
-  <p>
-    <span>&nbsp;</span>
-  </p>
-  <p>
-    <span class="c23">&nbsp;</span>
-  </p>
-  <h2 class="c16 c9">
-    CSS3 3D Transforms
-  </h2>
-  <p>
-    <span>anything to say?? &nbsp;</span>
-  </p>
-  <p>
-    <span>also earlier magic bullet shoudl be translateZ(0) i think</span>
-  </p>
-  <p>
-    <span class="c23">&nbsp;</span>
+    Many libraries have now introduced animation APIs that leverage transitions if present and fall back to standard DOM style animation otherwise. scripty2, yui transition, jquery enhanced animate
   </p>
   <h2 class="c16 c9">
     CSS3 Translate
   </h2>
   <p>
-    <span>I'm sure you've found yourself animating the x/y position of an element across the page before. You probably manipulated the inline style's left and top properties. With 2D transforms, we can use the translate() functionality to replicate this behavior.</span>
-  </p>
-  <p>
-    <span>&nbsp;</span>
+    I'm sure you've found yourself animating the x/y position of an element across the page before. You probably manipulated the inline style's left and top properties. With 2D transforms, we can use the translate() functionality to replicate this behavior.
   </p>
   <p>
     <span>We can combo this with DOM animation to use the best thing possible</span>
   </p>
 
   <pre class="prettyprint">
-    &lt;div style="width:100px; height: 200px; background:red;
-                       position:absolute; left: 20px; top: 30px; z-index: 100" id="box">&lt;/div>
+&lt;div style="width:100px; height: 200px; background:red;
+  position:absolute; left: 20px; top: 30px; z-index: 100" id="box">&lt;/div>
 
-           &lt;script>
-    document.querySelector('#box').addEventListener('click', moveIt, false);
+&lt;script>
+document.querySelector('#box').addEventListener('click', moveIt, false);
 
-    function moveIt(evt){
+function moveIt(evt){
 
-      var elem = evt.target;
-      if (Modernizr.csstransitions){
-        elem.style.transition 'left 3s ease-out';
-        elem.style.left = '700px';
-      } else {
-        jQuery(elem).animate({ 'left': '700px'}, 3000, 'easeOut');
-      }
-    }
-    &lt;/script>
+  var elem = evt.target;
+  if (Modernizr.csstransitions){
+    elem.style.transition 'left 3s ease-out';
+    elem.style.left = '700px';
+  } else {
+    jQuery(elem).animate({ 'left': '700px'}, 3000, 'easeOut');
+  }
+}
+&lt;/script>
   </pre>
 
   <h2 class="c16 c9">
@@ -242,7 +209,7 @@ varies
     The gross execution time of a function is the overall time it takes to execute it from top to bottom. The next execution time is the gross execution time minus the time it took to execute functions called from the function.
   </p>
   <p>
-    Some functions get called more often than others. Profilers usually give you the time it took for all invocations to run as well as the average and minimium and maximum execution time.<sup><a href="#cmnt5" name="cmnt_ref5" id="cmnt_ref5">[e]</a></sup>
+    Some functions get called more often than others. Profilers usually give you the time it took for all invocations to run as well as the average and minimum and maximum execution time.<sup><a href="#cmnt5" name="cmnt_ref5" id="cmnt_ref5">[e]</a></sup>
   </p>
   <p>
     <span class="c20"><a href="http://code.google.com/chrome/devtools/docs/profiles.html">More Info</a></span>
@@ -293,7 +260,7 @@ varies
     fn.displayName = ‘workOnStuff’;
   </pre>
   <p>
-    Unfortunately this does not work in Firebug. <span class="c20"><a href="http://code.google.com/p/fbug/issues/detail?id=1811">Let them know that you want the feature.</a></span>
+    Unfortunately this <a href="http://code.google.com/p/fbug/issues/detail?id=1811">does not work in Firebug.</a> 
   </p>
   <h4>
     <a name="h.uyd492-g2a6mn" id="h.uyd492-g2a6mn"></a><span class="c15">Named Self Calling Functions</span>
@@ -315,9 +282,6 @@ varies
       }</span>Don’t forget to remove these extra functions after profiling is done; or even use them as a starting point to refactor your code.
     </li>
   </ol>
-  <p>
-    &nbsp;
-  </p>
   <h2>
     <a name="h.4k7dlf-c3vjxi" id="h.4k7dlf-c3vjxi"></a>DOM Profiling<sup><a href="#cmnt8" name="cmnt_ref8" id="cmnt_ref8">[h]</a></sup>
   </h2>
@@ -336,9 +300,6 @@ varies
   <p>
     <span class="c20"><a href="http://code.google.com/chrome/devtools/docs/timeline.html">More info on the timeline view.</a></span> An alternative tool for profiling in Internet Explorer is <span class="c20"><a href="http://www.google.com/url?q=http%3A%2F%2Fajax.dynatrace.com%2Fajax%2Fen%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFXR0N-8Ja89DdI_cyTEA3vdPPP5w">DynaTrace Ajax Edition</a></span>.
   </p>
-  <p>
-    &nbsp;
-  </p>
   <h2>
     <a name="h.xl3oua-tedjm7" id="h.xl3oua-tedjm7"></a>Profiling Strategies
   </h2>
@@ -350,15 +311,12 @@ varies
   </p>
   <ol class="c0">
     <li>
-      Start up time (activate the profiler, reload application, wait until initialization is complete, stop the profiler<sup><a href="#cmnt9" name="cmnt_ref9" id="cmnt_ref9">[i]</a></sup> (use Chrome Dev Channel or Firebug for this))
+      Start up time (activate the profiler, reload application, wait until initialization is complete, stop the profiler.
     </li>
     <li>
-      Click a button and subsequent animation (start profiler, click button, wait until animation is complete, stop profiler)
+      Click a button and subsequent animation (start profiler, click button, wait until animation is complete, stop profiler).
     </li>
   </ol>
-  <p>
-    &nbsp;
-  </p>
   <p>
     <span class="c4 c21">Programatic Interface</span>
   </p>
@@ -378,9 +336,6 @@ varies
     <code>console.profileEnd()</code>
   </p>
   <p>
-    &nbsp;
-  </p>
-  <p>
     <span class="c4 c21">GUI Profiling</span>
   </p>
   <p>
@@ -390,7 +345,7 @@ varies
     <a name="h.1zy11v-pbazff" id="h.1zy11v-pbazff"></a>Repeatability
   </h3>
   <p>
-    When you do profiling make sure you can actually reproduce your results. Only then will you be able to tell whether your optimizations did actually improve things. Also function level profiling is done is the context of your whole computer. It is not an exact science. Individual profile runs might be influenced by many other things happening on your computer:
+    When you do profiling make sure you can actually reproduce your results. Only then will you be able to tell whether your optimizations did actually improve things. Also function level profiling is done in the context of your whole computer. It is not an exact science. Individual profile runs might be influenced by many other things happening on your computer:
   </p>
   <ol class="c0">
     <li>
@@ -416,7 +371,7 @@ varies
     <a name="h.kcdkfz-p4e2cr" id="h.kcdkfz-p4e2cr"></a>Measure, improve, measure
   </h3>
   <p>
-    When you identified a slow spot in your program, try to think of ways to improve the execution behaviour. After you changed your code, profile again. If you are satisfied with the result, move on, if you are not seeing an improvement you should probably roll back your change and not leave it in “because it can’t hurt”.
+    When you identified a slow spot in your program, try to think of ways to improve the execution behavior. After you changed your code, profile again. If you are satisfied with the result, move on, if you are not seeing an improvement you should probably roll back your change and not leave it in “because it can’t hurt”.
   </p>
   <h1>
     <a name="h.jk6bpo-mbjakn" id="h.jk6bpo-mbjakn"></a><span class="c13">Optimization Strategies</span>
@@ -436,7 +391,7 @@ varies
   <p>
     Before:
   </p>
-  <pre>
+  <pre class="prettyprint">
 function getElements() {
  return $('.my-class')
 }
@@ -444,7 +399,7 @@ function getElements() {
   <p>
     After:
   </p>
-<pre>
+<pre class="prettyprint">
 var cachedElements;
 function getElements() {
  if (cachedElements) {
@@ -463,7 +418,7 @@ function getElements() {
   <p>
     Before:
   </p>
-  <pre>
+  <pre class="prettyprint">
 setInterval(function() {
  var ele = $('#element');
  var left = parseInt(ele.css('left'), 10);
@@ -473,7 +428,7 @@ setInterval(function() {
 
 
   <p>After:</p>
-  <pre>
+  <pre class="prettyprint">
 var ele = $('#element');
 var left = parseInt(ele.css('left'), 10);
 setInterval(function() {
@@ -491,7 +446,7 @@ setInterval(function() {
   <p>
     Before:
   </p>
-  <pre>
+  <pre class="prettyprint">
 document.getElementById('target').innerHTML = '';
 for(var i = 0; i < array.length; i++) {
  var val = doSomething(array[i]);
@@ -501,7 +456,7 @@ for(var i = 0; i < array.length; i++) {
   <p>
     After:
   </p>
-  <pre>
+  <pre class="prettyprint">
 var stringBuilder = [];
 for(var i = 0; i < array.length; i++) {
  var val = doSomething(array[i]);
@@ -533,7 +488,7 @@ document.getElementById('target').innerHTML = stringBuilder.join('');<sup><a hre
   <p>
     Before:
   </p>
-  <pre>
+  <pre class="prettyprint">
 function paintSlow() {
  var left1 = $('#thing1').css('left');
  $('#otherThing1').css('left', left);
@@ -544,7 +499,7 @@ function paintSlow() {
   <p>
     After:
   </p>
-  <pre>
+  <pre class="prettyprint">
 function paintFast() {
  var left1 = $('#thing1').css('left');
  var left2 = $('#thing2').css('left');
@@ -556,19 +511,10 @@ function paintFast() {
     This advice should be considered for actions happening within one JavaScript execution context. (e.g. within an event handler, within an interval handler or when handling an ajax response.)
   </p>
   <p>
-    &nbsp;
-  </p>
-  <p>
-    <span class="c4 c21">Timeline View</span>
-  </p>
-  <p>
     Executing the function paintSlow() from above creates this image:
   </p>
   <p>
     <img height="212" src="images/image01.png" width="536">
-  </p>
-  <p>
-    &nbsp;
   </p>
   <p>
     Switching to the faster implementation yields this image:
@@ -576,12 +522,8 @@ function paintFast() {
   <p>
     <img height="173" src="images/image00.png" width="475">
   </p>
-  <p></p>
   <p>
     These images show that reordering the way your code accesses the DOM can greatly enhance render performance. In this case the original code has to recalculate styles and layout the page twice to create the same result. Similar optimization can be applied to basically all “real world” code and yield some really dramatic results.
-  </p>
-  <p>
-    &nbsp;
   </p>
   <p>
     Read more: <a href="http://calendar.perfplanet.com/2009/rendering-repaint-reflow-relayout-restyle/"><strong>Rendering: repaint, reflow/relayout, restyle</strong> by Stoyan Stefanov</a>
@@ -591,9 +533,6 @@ function paintFast() {
   </h3>
   <p>
     JavaScript execution in the browser follows an “Event Loop” model. By default the browser is in an “idle” state. This state can be interrupted by events from user interactions or such things as JavaScript timers or Ajax callbacks. Whenever a piece of JavaScript runs at such an interruption point, the browser will usually wait for it to finish until it repaints the screen (There might be exceptions for extremely long running JavaScripts or in cases such as alert-boxes which effectively interrupt the JavaScript execution).
-  </p>
-  <p>
-    &nbsp;
   </p>
   <p>
     <span class="c4 c21">Consequences</span>
@@ -609,85 +548,47 @@ function paintFast() {
     </li>
   </ol>
   <p>
-    &nbsp;
-  </p>
-  <p>
-    <span class="c4 c21">Timeline View</span>
-  </p>
-  <p>
     Regular version:
   </p>
-  <p>
-    <code>function paintFast() {</code>
-  </p>
-  <p>
-    <code>&nbsp;var height1 = $('#thing1').css('height');</code>
-  </p>
-  <p>
-    <code>&nbsp;var height2 = $('#thing2').css('height');</code>
-  </p>
-  <p>
-    <code>&nbsp;$('#otherThing1').css('height', '20px');</code>
-  </p>
-  <p>
-    <code>&nbsp;$('#otherThing2').css('height', '20px');</code>
-  </p>
-  <p>
-    <code>}</code>
-  </p>
+
+	<pre class="prettyprint">
+function paintFast() {</code>
+  var height1 = $('#thing1').css('height');
+  var height2 = $('#thing2').css('height');
+  $('#otherThing1').css('height', '20px');
+  $('#otherThing2').css('height', '20px');
+}
+ 	</pre>
   <p>
     <img height="173" src="images/image00.png" width="475">
   </p>
   <p>
-    &nbsp;
-  </p>
-  <p>
     Lets add some delay:
   </p>
-  <p>
-    <code>function paintALittleLater() {</code>
-  </p>
-  <p>
-    <code>&nbsp;var height1 = $('#thing1').css('height');</code>
-  </p>
-  <p>
-    <code>&nbsp;var height2 = $('#thing2').css('height');</code>
-  </p>
-  <p>
-    <code>&nbsp;$('#otherThing1').css('height', '20px');</code>
-  </p>
-  <p>
-    <code>&nbsp;setTimeout(function() {</code>
-  </p>
-  <p>
-    <code>&nbsp; &nbsp;$('#otherThing2').css('height', '20px');</code>
-  </p>
-  <p>
-    <code>&nbsp;}, 10)</code>
-  </p>
-  <p>
-    <code>}</code>
-  </p>
+  <pre class="prettyprint">
+function paintALittleLater() {
+  var height1 = $('#thing1').css('height');
+  var height2 = $('#thing2').css('height');
+  $('#otherThing1').css('height', '20px');
+  setTimeout(function() {
+    $('#otherThing2').css('height', '20px');
+  }, 10)
+}
+  </pre>
   <p>
     <img height="234" src="images/image02.png" width="360">
   </p>
   <p>
     The delayed version shows that the browser paints twice although the two changes to the page are only 1/100 of a second a part.
   </p>
-  <p>
-    &nbsp;
-  </p>
   <h2>
     <a name="h.uqvyvo-86t5wz" id="h.uqvyvo-86t5wz"></a>Lazy Initialization
   </h2>
   <p>
-    Users want web apps that load fast and that feel responsive. However, users have different thresholds into what they perceive as slow depending on the action that they do. E.g. an app should never do a lot of computation on a mouse over event because this might create a bad user experience while the user continues to move his mouse. However, users are used to accepting a little delay after they clicked on a button.
+    Users want web apps that load fast and that feel responsive. However, users have different thresholds into what they perceive as slow depending on the action that they do. E.g. an app should never do a lot of computation on a mouseover event because this might create a bad user experience while the user continues to move his mouse. However, users are used to accepting a little delay after they clicked on a button.
   </p>
   <p>
     Thus it might make sense to move your initialization code to be executed as late as possible (e.g. when the user clicks a button that activates a particular component of your application).
-  </p>
-  <p>
-    &nbsp;
   </p>
   <p>
     Before:
@@ -697,9 +598,6 @@ function paintFast() {
   </p>
   <p>
     <code>$('#button').click(function() { things.show() });</code>
-  </p>
-  <p>
-    &nbsp;
   </p>
   <p>
     After:
@@ -720,28 +618,25 @@ function paintFast() {
     In jQuery this can be easily expressed as:
   </p>
   <p>
-    $(‘#parentNode’).delegate(‘.button’, ‘click’, function() { ... })
-  </p>
-  <p>
-    &nbsp;
+    <code>$(‘#parentNode’).delegate(‘.button’, ‘click’, function() { ... })</code>
   </p>
   <p>
     <span class="c4 c21">When not to use event delegation</span>
   </p>
   <p>
-    Sometimes the opposite can be true: You are using event delegation and you’re having a performance problem. Basically event delegation allows contant complexity inatialization time. However, the price of checking if an event is of interest has to be paid for every invocation of that event. This might come in expensive, especiall for events that occur frequently like “mouseover” or even “mousemove”.
+    Sometimes the opposite can be true: You are using event delegation and you’re having a performance problem. Basically event delegation allows constant-complexity initialization time. However, the price of checking if an event is of interest has to be paid for every invocation of that event. This might come in expensive, especially for events that occur frequently like “mouseover” or even “mousemove”.
   </p>
   <h1>
     <span class="c13">Typical Problems and Solutions</span>
   </h1>
   <h2>
-    The stuff I do in $(document).ready takes a long time
+    The stuff I do in <code>$(document).ready</code> takes a long time
   </h2>
   <p>
     Malte’s personal advice: Never do anything in $(document).ready. Try to deliver your document in its final form. OK, you are allowed to register event listeners, but only using id-selector and/or using event delegation. For expensive events such as “mousemove”, delay the registration until they are needed (mouseover event on the relevant element).
   </p>
   <p>
-    And if you really need to do stuff, such as making an Ajax request to get actual data, then for god’s sake show a nice animation; and yes, you want to include the animation as a data URL if it is an animated GIF or the like.
+    And if you really need to do stuff, such as making an Ajax request to get actual data, then show a nice animation; you might want to include the animation as a data URI if it is an animated GIF or the like.
   </p>
   <h2>
     Since I added a Flash movie to the page everything is really slow
@@ -753,7 +648,7 @@ function paintFast() {
     I’m saving things to localStorage, now my application stutters
   </h2>
   <p>
-    Writing to localStorage is a synchronous operations that involves spinning up your hard disk. You never want to do “long running” synchronous operations while doing animations. Move the access to localStorage to a spot in your code where you are sure that the user is idle and no animations are going on.<sup><a href="#cmnt13" name="cmnt_ref13" id="cmnt_ref13">[m]</a></sup>
+    Writing to localStorage is a synchronous operations that involves spinning up your hard disk. You never want to do “long running” synchronous operations while doing animations. Move the access to localStorage to a spot in your code where you are sure that the user is idle and no animations are going on.
   </p>
   <h2>
     In Chrome I see a jerkiness some time after page load or a location change
@@ -780,19 +675,16 @@ function paintFast() {
     - &nbsp; &nbsp; &nbsp; …
   </p>
   <p class="c10 c9">
-    - &nbsp; &nbsp; &nbsp; If nothing help, think about rewriting things so you can use an id-selector
-  </p>
-  <p>
-    &lt;POINT TO lots of external ressources&gt;
+    - &nbsp; &nbsp; &nbsp; If nothing helps, think about rewriting things so you can use an id-selector
   </p>
   <h2>
     All these DOM manipulations take a long time<sup><a href="#cmnt14" name="cmnt_ref14" id="cmnt_ref14">[n]</a></sup>
   </h2>
   <p>
-    A bunch of DOM node inserts, removes and updates can be really slow. This can generally be optimized by generating a large string of html and the using domNode.innerHTML = newHTML to replace the old content. Note that this might be really bad for maintainability and might create memory links in IE so be careful.
+    A bunch of DOM node inserts, removes and updates can be really slow. This can generally be optimized by generating a large string of html and the using <code>domNode.innerHTML = newHTML</code> to replace the old content. Note that this might be really bad for maintainability and might create memory links in IE so be careful.
   </p>
   <p>
-    Another common problem is that your initialization code might create a lot of HTML. E.g. a jQuery plugin that transforms a select box into a bunch of divs because that is what the design people in ignorance of UX best practices. If you really want your page to be fast, never do that. Instead deliver all the markup from the server side in its final form. This again has many problems so think hard whether the speed is worth the tradeoff.
+    Another common problem is that your initialization code might create a lot of HTML. E.g. a jQuery plugin that transforms a select box into a bunch of divs because that is what the design people wanted in ignorance of UX best practices. If you really want your page to be fast, never do that. Instead deliver all the markup from the server side in its final form. This again has many problems so think hard whether the speed is worth the tradeoff.
   </p>
   <h1>
     <span class="c13">Tools</span>
