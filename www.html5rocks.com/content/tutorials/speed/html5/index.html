@@ -20,38 +20,8 @@ varies
 
 {% block content %}
 
-
- <h1>
-    <a></a><span>Todo</span>
-  </h1>
-  <ol>
-    <li>
-      CSS3
-    </li>
-    <li>
-      Document Fragments?
-    </li>
-    <li>
-      Talk about the event loop
-    </li>
-    <li>
-      Talk about the Chrome Screen shot after 500ms
-    </li>
-    <li>
-      Always add Raw JS?
-    </li>
-    <li>
-      Link to ressource about jQuery selector optimization
-    </li>
-    <li>
-      Finish tools section
-    </li>
-    <li>
-      <span>Add link to http://zetafleet.com/blog/google-chromes-heap-profiler-and-memory-timeline</span>
-    </li>
-  </ol>
   <h1>
-    <a></a><span>Introduction</span>
+    Introduction
   </h1>
   <p>
     HTML5 gives us great tools to enhance the visual appearance of web applications. This is especially true in the realm of animations. However, with this new power also come new challenges. Actually these challenges aren’t really that new and it might sometimes make sense to ask your friendly desk neighbor, the Flash programmer, how she has overcome similar things in the past.
@@ -63,7 +33,7 @@ varies
     This article will try to give you the tools and techniques to work on improving the experience of your own application.
   </p>
   <h1>
-    <a></a><span>The Strategy</span>
+    The Strategy
   </h1>
   <p>
     By no means do we want to discourage you from building awesome, stunningly visual apps with HTML5.
@@ -72,7 +42,7 @@ varies
     Then when you notice that performance could be a little better, come back here and read up on how you can improve the elements of your application. It can, of course, help to do some things right in the first place but never let that get in your way of being productive.
   </p>
   <h1>
-    <a></a><span>Visual fidelity++ with HTML5</span>
+    Visual fidelity++ with HTML5
   </h1>
   <h2>
     Hardware Acceleration
@@ -81,7 +51,7 @@ varies
     Hardware acceleration is an important milestone for overall render performance in the browser. The general scheme is to offload tasks that would otherwise be calculated by the main CPU to the graphics processing unit (GPU) in your computer’s graphics adapter. This can yield massive performance gains and can also reduce resource consumption on mobile devices.
   </p>
   <h2>
-    <a></a>These aspects of your document can be accelerated by the GPU:
+    These aspects of your document can be accelerated by the GPU:
   </h2>
   <ul>
     <li>General layout compositing</li>
@@ -91,34 +61,34 @@ varies
     <li>WebGL 3D Drawing</li>
   </ul>
   <p>
-    <a></a>While acceleration of &nbsp;canvas and WebGL are special purpose features that might not apply to your specific application the first three aspects can help pretty much every app to become faster.
+    While acceleration of canvas and WebGL are special purpose features that might not apply to your specific application the first three aspects can help pretty much every app to become faster.
   </p>
   <h3>
-    <a></a>What can be accelerated?
+    What can be accelerated?
   </h3>
   <p>
     GPU acceleration works by offloading well-defined and specific tasks to special purpose hardware. The general scheme is that your document is broken down into multiple “layers” which are invariant to the aspects of your page that are accelerated. These layers are rendered using the traditional render pipeline. The GPU is then used to composite the layers onto a single page applying the “effects” that can be accelerated on the fly. A possible outcome is that an object that is animated on the screen does not require a single “relayout” of the page while the animation happens.
   </p>
   <p>
-    <a></a>What you need to take away from that is that you need to make it easy for the rendering engine to identify when it can apply it’s GPU acceleration magic. Consider the following example:
+    What you need to take away from that is that you need to make it easy for the rendering engine to identify when it can apply it’s GPU acceleration magic. Consider the following example:
   </p>
   <blockquote>
-    <a></a>You want to animate an element in the browser from left to right. The traditional approach to is to set a JavaScript timer and then repeatedly setting the “left” property of the style object every N milliseconds.<sup><a href="#cmnt1" name="cmnt_ref1" id="cmnt_ref1">[a]</a></sup>
+    You want to animate an element in the browser from left to right. The traditional approach to is to set a JavaScript timer and then repeatedly setting the “left” property of the style object every N milliseconds.<sup><a href="#cmnt1" name="cmnt_ref1" id="cmnt_ref1">[a]</a></sup>
   </blockquote>
   <p>
-    <a></a>While this works, the browser doesn’t really know that you are performing something that is supposed to be perceived as smooth animation by a human being. Consider what happens when you achieve the same visual appearance using CSS3 transitions instead:
+    While this works, the browser doesn’t really know that you are performing something that is supposed to be perceived as smooth animation by a human being. Consider what happens when you achieve the same visual appearance using CSS3 transitions instead:
   </p>
   <blockquote>
-    <a></a>Now, you simply define the final position of the object and then tell the browser to perform an animation to the final destination over a certain period of time.<sup><a href="#cmnt2" name="cmnt_ref2" id="cmnt_ref2">[b]</a></sup>
+    Now, you simply define the final position of the object and then tell the browser to perform an animation to the final destination over a certain period of time.<sup><a href="#cmnt2" name="cmnt_ref2" id="cmnt_ref2">[b]</a></sup>
   </blockquote>
   <p>
-    <a></a>How the browser implements this animation is completely hidden from the developer. This in turn means that the browser is able to apply tricks such as GPU acceleration to achieve the defined goal.
+    How the browser implements this animation is completely hidden from the developer. This in turn means that the browser is able to apply tricks such as GPU acceleration to achieve the defined goal.
   </p>
   <h3>
-    <a></a>The magic CSS bullet
+    The magic CSS bullet
   </h3>
   <p>
-    Currently most browsers only use GPU acceleration when they have a strong indication that an HTML element would benefit from it. The strongest indication is that a 3D transformation was applied to it. Now you might not really want to apply a 3D transformation, but still gain the benefits from GPU acceleration – no problem. Simply apply the <span>identity transformation</span>:
+    Currently most browsers only use GPU acceleration when they have a strong indication that an HTML element would benefit from it. The strongest indication is that a 3D transformation was applied to it. Now you might not really want to apply a 3D transformation, but still gain the benefits from GPU acceleration – no problem. Simply apply the identity transformation:
   </p>
   <p>
     <code>-webkit-transform: translateZ(0);</code><sup><a href="#cmnt3" name="cmnt_ref3" id="cmnt_ref3">[c]</a></sup>
@@ -130,18 +100,18 @@ varies
     When you think about which element to apply the transformation, go for those that represent a good logical chunk of your page. Ideally this is the element that you are animating and it doesn’t contain other elements that you move around.
   </p>
   <p>
-    <span>There are two useful command-line flags for Chrome to help debugging GPU acceleration:</span>
+    There are two useful command-line flags for Chrome to help debugging GPU acceleration:
   </p>
   <ol>
     <li>
-      <code>--show-composited-layer-borders</code> <span>shows a red border around elements that are being manipulated at the GPU level. Good for confirming your manipulations occur within the GPU layer</span>
+      <code>--show-composited-layer-borders</code> shows a red border around elements that are being manipulated at the GPU level. Good for confirming your manipulations occur within the GPU layer
     </li>
     <li>
-      <code>--show-paint-rects</code> <span>all non-GPU changes are painted and this throws a light border around all areas that are repainted. You can see the browser optimizing paint areas in action</span>
+      <code>--show-paint-rects</code> all non-GPU changes are painted and this throws a light border around all areas that are repainted. You can see the browser optimizing paint areas in action
     </li>
   </ol>
   <p>
-    <span>Safari has similar runtime flags</span> <span><a href="http://www.google.com/url?q=http%3A%2F%2Fmir.aculo.us%2F2011%2F02%2F08%2Fvisualizing-webkits-hardware-acceleration%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGh34AaRqiQ43N24Tgri8AqiPT7rA">described here</a></span><span>.</span>
+    Safari has similar runtime flags <a href="http://www.google.com/url?q=http%3A%2F%2Fmir.aculo.us%2F2011%2F02%2F08%2Fvisualizing-webkits-hardware-acceleration%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGh34AaRqiQ43N24Tgri8AqiPT7rA">described here</a>.
   </p>
   <h2>
     CSS3 Transitions
@@ -161,7 +131,7 @@ varies
     I'm sure you've found yourself animating the x/y position of an element across the page before. You probably manipulated the inline style's left and top properties. With 2D transforms, we can use the translate() functionality to replicate this behavior.
   </p>
   <p>
-    <span>We can combo this with DOM animation to use the best thing possible</span>
+    We can combo this with DOM animation to use the best thing possible
   </p>
 
   <pre class="prettyprint">
@@ -185,22 +155,19 @@ function moveIt(evt){
   </pre>
 
   <h2>
-    <a></a><span>requestAnimationFrame</span>
+    requestAnimationFrame
   </h2>
   <p>
-    <span>use it.</span>
-  </p>
-  <p>
-    <span>&nbsp;</span>
+    use it.
   </p>
   <h1>
-    <a></a><span>Profiling</span>
+    Profiling
   </h1>
   <p>
     When you discover that the speed of your application can be improved, it is time to dig into profiling to find out where optimizations could yield the greatest benefit. Optimizations will often have negative impact on the maintainability of your source code and should thus only be applied if necessary. Profiling tells you which parts of your code would yield the greatest benefits when their performance would be improved.
   </p>
   <h2>
-    <a></a>JavaScript Profiling<sup><a href="#cmnt4" name="cmnt_ref4" id="cmnt_ref4">[d]</a></sup>
+    JavaScript Profiling<sup><a href="#cmnt4" name="cmnt_ref4" id="cmnt_ref4">[d]</a></sup>
   </h2>
   <p>
     JavaScript profilers give you an overview on the performance of your application on the JavaScript function level by measuring the time it takes to execute each individual function from its starts to its end.
@@ -212,10 +179,10 @@ function moveIt(evt){
     Some functions get called more often than others. Profilers usually give you the time it took for all invocations to run as well as the average and minimum and maximum execution time.<sup><a href="#cmnt5" name="cmnt_ref5" id="cmnt_ref5">[e]</a></sup>
   </p>
   <p>
-    <span><a href="http://code.google.com/chrome/devtools/docs/profiles.html">More Info</a></span>
+    <a href="http://code.google.com/chrome/devtools/docs/profiles.html">More Info</a>
   </p>
   <h3>
-    <a></a>The DOM
+    The DOM
   </h3>
   <p>
     The performance of JavaScript has a strong influence in to how fluid and responsive your application will feel. It is important to understand that, while JavaScript profilers measure the execution time of your JavaScript, they also indirectly measure time which is spend in doing DOM operations. These DOM operations are often at the heart of your performance issues.
@@ -231,10 +198,10 @@ function moveIt(evt){
     E.g. in the code above almost no time is spend doing actual JavaScript. It is still very likely that the drawArray-function will show up in your profiles because it is interacting with the DOM in a very wasteful fashion.
   </p>
   <h3>
-    <a></a>Tips and Tricks
+    Tips and Tricks
   </h3>
   <h4>
-    <a></a><span>Anonymous Functions</span>
+    Anonymous Functions
   </h4>
   <p>
     Anonymous functions are not easy to profile because they inherently don’t have a name under which they could show up in the profiler. There are two ways to work around this:
@@ -263,7 +230,7 @@ function moveIt(evt){
     Unfortunately this <a href="http://code.google.com/p/fbug/issues/detail?id=1811">does not work in Firebug.</a> 
   </p>
   <h4>
-    <a></a><span>Named Self Calling Functions</span>
+    Named Self Calling Functions
   </h4>
   <p>
     Imagine you have a long function and you suspect that a small part of it might be the reason for your performance problems. There are two ways to find out which part is the problem:
@@ -273,17 +240,17 @@ function moveIt(evt){
       The correct method: Refactor your code to not include any long functions.
     </li>
     <li>
-      The evil getting-things-done method<sup><a href="#cmnt7" name="cmnt_ref7" id="cmnt_ref7">[g]</a></sup>: add statements in the form of named self calling functions to your code. If you are a little careful this does not change the semantics and it makes parts of your function show up as individual functions in the profiler:<span>function myLongFunction() {<br>
+      The evil getting-things-done method<sup><a href="#cmnt7" name="cmnt_ref7" id="cmnt_ref7">[g]</a></sup>: add statements in the form of named self calling functions to your code. If you are a little careful this does not change the semantics and it makes parts of your function show up as individual functions in the profiler:function myLongFunction() {<br>
       &nbsp;…<br>
       &nbsp;(function doAPartOfTheWork() {<br>
       &nbsp; &nbsp;...<br>
       &nbsp;})();<br>
       &nbsp;…<br>
-      }</span>Don’t forget to remove these extra functions after profiling is done; or even use them as a starting point to refactor your code.
+      }Don’t forget to remove these extra functions after profiling is done; or even use them as a starting point to refactor your code.
     </li>
   </ol>
   <h2>
-    <a></a>DOM Profiling<sup><a href="#cmnt8" name="cmnt_ref8" id="cmnt_ref8">[h]</a></sup>
+    DOM Profiling<sup><a href="#cmnt8" name="cmnt_ref8" id="cmnt_ref8">[h]</a></sup>
   </h2>
   <p>
     The latest Chrome Web Inspector development tools contain the new “Timeline View” which shows a timeline of the low level actions performed by the browser. You can use this information to optimize your DOM operations. You should aim to reduce the number of “actions” the browser has to perform while your code executes.
@@ -298,13 +265,13 @@ function moveIt(evt){
     The image above shows the output of the timeline view for a very simple script. The left pane shows the operations performed by the browser in chronical order, while the timeline in the right pane shows the actual time consumed by an individual operation.
   </p>
   <p>
-    <span><a href="http://code.google.com/chrome/devtools/docs/timeline.html">More info on the timeline view.</a></span> An alternative tool for profiling in Internet Explorer is <span><a href="http://www.google.com/url?q=http%3A%2F%2Fajax.dynatrace.com%2Fajax%2Fen%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFXR0N-8Ja89DdI_cyTEA3vdPPP5w">DynaTrace Ajax Edition</a></span>.
+    <a href="http://code.google.com/chrome/devtools/docs/timeline.html">More info on the timeline view.</a> An alternative tool for profiling in Internet Explorer is <a href="http://www.google.com/url?q=http%3A%2F%2Fajax.dynatrace.com%2Fajax%2Fen%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFXR0N-8Ja89DdI_cyTEA3vdPPP5w">DynaTrace Ajax Edition</a>.
   </p>
   <h2>
-    <a></a>Profiling Strategies
+    Profiling Strategies
   </h2>
   <h3>
-    <a></a>Single out aspects
+    Single out aspects
   </h3>
   <p>
     When you want to profile your application, try to single out the aspects of its functionality that might trigger slowness as close as possible. Then try to do a profile run that only executes parts of your code that are relevant to these aspects of your application. This will make the profiling data easier to interpret because it is not intermixed with code paths that are not related to your actual problem. Good examples for individual aspects of your application might be:
@@ -318,7 +285,7 @@ function moveIt(evt){
     </li>
   </ol>
   <p>
-    <span>Programatic Interface</span>
+    Programatic Interface
   </p>
   <p>
     There is also a programatic interface to activate the debugger. This allows precise control over when profiling starts and when it ends.
@@ -336,13 +303,13 @@ function moveIt(evt){
     <code>console.profileEnd()</code>
   </p>
   <p>
-    <span>GUI Profiling</span>
+    GUI Profiling
   </p>
   <p>
     Executing only the right part of your application can be harder in a GUI program than when you optimize, say, the ray tracer of your 3D engine. When you, for example, want to profile the stuff that happens when you click a button, you might trigger unrelated mouseover events along the way that make your results less conclusive. Try to avoid that :)
   </p>
   <h3>
-    <a></a>Repeatability
+    Repeatability
   </h3>
   <p>
     When you do profiling make sure you can actually reproduce your results. Only then will you be able to tell whether your optimizations did actually improve things. Also function level profiling is done in the context of your whole computer. It is not an exact science. Individual profile runs might be influenced by many other things happening on your computer:
@@ -368,22 +335,22 @@ function moveIt(evt){
     It also makes sense to execute the same code path multiple times in one profiling session. This way you decrease the influence of above factors and the slow parts may stand out even more clearly.
   </p>
   <h3>
-    <a></a>Measure, improve, measure
+    Measure, improve, measure
   </h3>
   <p>
     When you identified a slow spot in your program, try to think of ways to improve the execution behavior. After you changed your code, profile again. If you are satisfied with the result, move on, if you are not seeing an improvement you should probably roll back your change and not leave it in “because it can’t hurt”.
   </p>
   <h1>
-    <a></a><span>Optimization Strategies</span>
+    Optimization Strategies
   </h1>
   <h2>
-    <a></a>Minimize DOM interaction
+    Minimize DOM interaction
   </h2>
   <p>
     A common theme for improving the speed of web client applications is to minimize DOM interaction. While the speed of JavaScript engines has increased by an order of magnitude, accessing the DOM has not gotten faster at the same rate. This is also for very practical reasons never going to happen (things like layouting and drawing stuff on a screen just take time).
   </p>
   <h3>
-    <a></a><span>Cache DOM Nodes</span>
+    Cache DOM Nodes
   </h3>
   <p>
     Whenever you retrieve a node or a list of nodes from the DOM, try to think about whether you might be able to reuse them in a later computation (or even just the next loop iteration). As long as you don’t actually add or delete nodes in the relevant area, this is often the case.
@@ -410,7 +377,7 @@ function getElements() {
 }
 </pre>
   <h3>
-    <a></a>Cache Attribute Values
+    Cache Attribute Values
   </h3>
   <p>
     The same way you can cache DOM nodes you can also cache the values of attributes. Imagine you are animating an attribute of a node’s style. If you know that you (as in that part of the code) are the only one that will ever touch that attribute you can cache the last value on every iteration so that you will not have to read it repeatedly.
@@ -438,7 +405,7 @@ setInterval(function() {
   </pre>
   
   <h3>
-    <a></a>Move DOM Manipulation Out of Loops
+    Move DOM Manipulation Out of Loops
   </h3>
   <p>
     Loops are often hot points for optimization. Try to think of ways to decouple actual number crunching to working with the DOM. It is often possible to do a calculation and then, after it is done, apply all the results in one go.
@@ -529,22 +496,22 @@ function paintFast() {
     Read more: <a href="http://calendar.perfplanet.com/2009/rendering-repaint-reflow-relayout-restyle/"><strong>Rendering: repaint, reflow/relayout, restyle</strong> by Stoyan Stefanov</a>
   </p>
   <h3>
-    <a></a>Redraws and the Event Loop
+    Redraws and the Event Loop
   </h3>
   <p>
     JavaScript execution in the browser follows an “Event Loop” model. By default the browser is in an “idle” state. This state can be interrupted by events from user interactions or such things as JavaScript timers or Ajax callbacks. Whenever a piece of JavaScript runs at such an interruption point, the browser will usually wait for it to finish until it repaints the screen (There might be exceptions for extremely long running JavaScripts or in cases such as alert-boxes which effectively interrupt the JavaScript execution).
   </p>
   <p>
-    <span>Consequences</span>
+    Consequences
   </p>
   <ol>
     <li>
       If your JavaScript animation cycles take longer than 1/30 seconds to execute, you will not be able to create smooth animations because the browser will not repaint during the JS execution. When you expect to also handle user events you need to be much faster.
     </li>
     <li>
-      <span>Sometimes it comes in handy to delay some JavaScript actions until just a little bit later.<br>
-      E.g.</span> <code>setTimeout(function() { … }, 0)</code><span><br>
-      This effectively tells the browser to execute the callback as soon as the event loop is idle again (effectively some browsers will wait at least 10ms). You need to be aware that this will create two JavaScript execution cycles which are very close together in time. Both might trigger a repaint of the screen which might double the overall time spent with painting. Whether this actually triggers two paints depends on heuristics in the browser.</span>
+      Sometimes it comes in handy to delay some JavaScript actions until just a little bit later.<br>
+      E.g. <code>setTimeout(function() { … }, 0)</code><br>
+      This effectively tells the browser to execute the callback as soon as the event loop is idle again (effectively some browsers will wait at least 10ms). You need to be aware that this will create two JavaScript execution cycles which are very close together in time. Both might trigger a repaint of the screen which might double the overall time spent with painting. Whether this actually triggers two paints depends on heuristics in the browser.
     </li>
   </ol>
   <p>
@@ -582,7 +549,7 @@ function paintALittleLater() {
     The delayed version shows that the browser paints twice although the two changes to the page are only 1/100 of a second a part.
   </p>
   <h2>
-    <a></a>Lazy Initialization
+    Lazy Initialization
   </h2>
   <p>
     Users want web apps that load fast and that feel responsive. However, users have different thresholds into what they perceive as slow depending on the action that they do. E.g. an app should never do a lot of computation on a mouseover event because this might create a bad user experience while the user continues to move his mouse. However, users are used to accepting a little delay after they clicked on a button.
@@ -606,7 +573,7 @@ function paintALittleLater() {
     <code>$('#button').click(function() { $('.ele &gt; .other * div.className').show()</code> <code>});</code><sup><a href="#cmnt12" name="cmnt_ref12" id="cmnt_ref12">[l]</a></sup>
   </p>
   <h2>
-    <a></a>Event Delegation
+    Event Delegation
   </h2>
   <p>
     Spreading event handlers across a page might take a relatively long time and can also be tedious once elements are dynamically replaced which then requires reattaching event handlers to the new elements.
@@ -621,13 +588,13 @@ function paintALittleLater() {
     <code>$(‘#parentNode’).delegate(‘.button’, ‘click’, function() { ... })</code>
   </p>
   <p>
-    <span>When not to use event delegation</span>
+    When not to use event delegation
   </p>
   <p>
     Sometimes the opposite can be true: You are using event delegation and you’re having a performance problem. Basically event delegation allows constant-complexity initialization time. However, the price of checking if an event is of interest has to be paid for every invocation of that event. This might come in expensive, especially for events that occur frequently like “mouseover” or even “mousemove”.
   </p>
   <h1>
-    <span>Typical Problems and Solutions</span>
+    Typical Problems and Solutions
   </h1>
   <h2>
     The stuff I do in <code>$(document).ready</code> takes a long time
@@ -642,7 +609,7 @@ function paintALittleLater() {
     Since I added a Flash movie to the page everything is really slow
   </h2>
   <p>
-    Adding Flash to a page will always slow down rendering a little because the final layout of the window has to be “negotiated” between the browser and the Flash plugin. When you cannot completely avoid putting Flash on your pages, make sure you set the “wmode” Flash-parameter to the value “window” (which is the default). This will disable the ability to composite HTML and Flash elements (You won’t be able to see an HTML element that lies above the Flash movie and your Flash movie cannot be transparent). This might be an inconvenience but it will dramatically improve your performance. For example check out the way that <span><a href="http://youtube.com">youtube.com</a></span> carefully avoids placing layers above the main movie player.
+    Adding Flash to a page will always slow down rendering a little because the final layout of the window has to be “negotiated” between the browser and the Flash plugin. When you cannot completely avoid putting Flash on your pages, make sure you set the “wmode” Flash-parameter to the value “window” (which is the default). This will disable the ability to composite HTML and Flash elements (You won’t be able to see an HTML element that lies above the Flash movie and your Flash movie cannot be transparent). This might be an inconvenience but it will dramatically improve your performance. For example check out the way that <a href="http://youtube.com">youtube.com</a> carefully avoids placing layers above the main movie player.
   </p>
   <h2>
     I’m saving things to localStorage, now my application stutters
@@ -687,7 +654,7 @@ function paintALittleLater() {
     Another common problem is that your initialization code might create a lot of HTML. E.g. a jQuery plugin that transforms a select box into a bunch of divs because that is what the design people wanted in ignorance of UX best practices. If you really want your page to be fast, never do that. Instead deliver all the markup from the server side in its final form. This again has many problems so think hard whether the speed is worth the tradeoff.
   </p>
   <h1>
-    <span>Tools</span>
+    Tools
   </h1>
   <ol>
     <li>
@@ -726,15 +693,8 @@ function paintALittleLater() {
       DynaTrace Ajax Edition
     </li>
   </ol>
-  <p></p>
-  <p>
-    &nbsp;
-  </p>
-  <p>
-    &nbsp;
-  </p>
   <h1>
-    <a></a><span>Outline</span>
+    Outline
   </h1>
   <ol>
     <li>
@@ -810,7 +770,7 @@ function paintALittleLater() {
   </ol>
   <ol>
     <li>
-      Give it a background: <span><a href="http://www.corp.google.com/~mwichary/public/UX/60fps/tips/background/">http://www.corp.google.com/~mwichary/public/UX/60fps/tips/background/</a></span>
+      Give it a background: <a href="http://www.corp.google.com/~mwichary/public/UX/60fps/tips/background/">http://www.corp.google.com/~mwichary/public/UX/60fps/tips/background/</a>
     </li>
     <li>
       Never do any work! :)
@@ -824,7 +784,7 @@ function paintALittleLater() {
   </ol>
   <ol>
     <li>
-      <span><a href="http://www.google.com/url?q=http%3A%2F%2Fwww.stubbornella.org%2Fcontent%2F2009%2F03%2F27%2Freflows-repaints-css-performance-making-your-javascript-slow%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG_RclX-wNu6_id9MONtKOmdR6SDg">http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/</a></span>
+      <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.stubbornella.org%2Fcontent%2F2009%2F03%2F27%2Freflows-repaints-css-performance-making-your-javascript-slow%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG_RclX-wNu6_id9MONtKOmdR6SDg">http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/</a>
     </li>
   </ol>
   <ol>
@@ -832,7 +792,7 @@ function paintALittleLater() {
       Be wary of position:fixed
     </li>
     <li>
-      requestAnimationFrame: <span>http://crbug.com/64848</span>
+      requestAnimationFrame: http://crbug.com/64848
     </li>
     <li>
       Decouple animations from other stuff
@@ -891,180 +851,180 @@ function paintALittleLater() {
   </ol>
   <ol>
     <li>
-      <span><a href="http://www.google.com/url?q=http%3A%2F%2Fjsperf.com&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFr5saQc6Jad0mYQDs5dXGwZs9uog">jsperf.com</a></span>
+      <a href="http://www.google.com/url?q=http%3A%2F%2Fjsperf.com&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFr5saQc6Jad0mYQDs5dXGwZs9uog">jsperf.com</a>
     </li>
     <li>
       Point to the Steve’s and Stoyan’s work?
     </li>
     <li>
-      <span><a href="http://code.google.com/speed/page-speed/docs/overview.html">http://code.google.com/speed/page-speed/docs/overview.html</a></span>
+      <a href="http://code.google.com/speed/page-speed/docs/overview.html">http://code.google.com/speed/page-speed/docs/overview.html</a>
     </li>
     <li>
-      <span><a href="http://www.google.com/url?q=http%3A%2F%2Fwiki.forum.nokia.com%2Findex.php%2FJavaScript_Performance_Best_Practices&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGXKdm8s0vF9anNJURwjZ1dhpZEQg">http://wiki.forum.nokia.com/index.php/JavaScript_Performance_Best_Practices</a></span>
+      <a href="http://www.google.com/url?q=http%3A%2F%2Fwiki.forum.nokia.com%2Findex.php%2FJavaScript_Performance_Best_Practices&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGXKdm8s0vF9anNJURwjZ1dhpZEQg">http://wiki.forum.nokia.com/index.php/JavaScript_Performance_Best_Practices</a>
     </li>
     <li>
-      <span><a href="http://www.google.com/url?q=http%3A%2F%2Fpaulirish.com%2F2009%2Fperf%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE8XK7tFQcqP7mzDmc0J7V06qFdZw">http://paulirish.com/2009/perf/</a></span>
+      <a href="http://www.google.com/url?q=http%3A%2F%2Fpaulirish.com%2F2009%2Fperf%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE8XK7tFQcqP7mzDmc0J7V06qFdZw">http://paulirish.com/2009/perf/</a>
     </li>
   </ol>
   <h1>
-    <a></a>
+    
   </h1>
   <p>
     &nbsp;
   </p>
   <div>
     <p>
-      <a href="#cmnt_ref1" name="cmnt1" id="cmnt1">[a]</a><span>code snippet —ericbidelman</span>
+      <a href="#cmnt_ref1" name="cmnt1" id="cmnt1">[a]</a>code snippet —ericbidelman
     </p>
     <hr>
     <p>
-      <span>&nbsp;</span>
+      &nbsp;
     </p>
     <p>
-      <span>yup. i’ll drop these in —paulirish</span>
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref2" name="cmnt2" id="cmnt2">[b]</a><span>ideal spot for a css code snippet / showing no js is needed —ericbidelman</span>
+      yup. i’ll drop these in —paulirish
     </p>
   </div>
   <div>
     <p>
-      <a href="#cmnt_ref3" name="cmnt3" id="cmnt3">[c]</a><span>Are the graphics guys cool with us makign suggestions like this? &nbsp;I wonder how much it’s going to back us into a corner long term. &nbsp;(Of course, this is already suggested by a lot of pages, so maybe the ship has sailed...) —jorlow</span>
+      <a href="#cmnt_ref2" name="cmnt2" id="cmnt2">[b]</a>ideal spot for a css code snippet / showing no js is needed —ericbidelman
+    </p>
+  </div>
+  <div>
+    <p>
+      <a href="#cmnt_ref3" name="cmnt3" id="cmnt3">[c]</a>Are the graphics guys cool with us makign suggestions like this? &nbsp;I wonder how much it’s going to back us into a corner long term. &nbsp;(Of course, this is already suggested by a lot of pages, so maybe the ship has sailed...) —jorlow
     </p>
     <hr>
     <p>
-      <span>&nbsp;</span>
+      &nbsp;
     </p>
     <p>
-      <span>I’m really scared about this myself. On the other hand it is a reality now that some layers with transparency effects (drop shadows, etc) perform much better in Safari and iOS at least, with this applied. —malteubl</span>
+      I’m really scared about this myself. On the other hand it is a reality now that some layers with transparency effects (drop shadows, etc) perform much better in Safari and iOS at least, with this applied. —malteubl
     </p>
   </div>
   <div>
     <p>
-      <a href="#cmnt_ref4" name="cmnt4" id="cmnt4">[d]</a><span>Are we going to cover window.performance? http://code.google.com/p/html5rocks/issues/detail?id=381 —ericbidelman</span>
+      <a href="#cmnt_ref4" name="cmnt4" id="cmnt4">[d]</a>Are we going to cover window.performance? http://code.google.com/p/html5rocks/issues/detail?id=381 —ericbidelman
     </p>
     <hr>
     <p>
-      <span>&nbsp;</span>
+      &nbsp;
     </p>
     <p>
-      <span>afaik all of window.performance data is surfaced inside chrome devtools. mostly on hover in Network panel —paulirish</span>
-    </p>
-    <hr>
-    <p>
-      <span>&nbsp;</span>
-    </p>
-    <p>
-      <span>Anyone have a good link for window.performance? —malteubl</span>
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref5" name="cmnt5" id="cmnt5">[e]</a><span>also a link to</span> <span><a href="http://code.google.com/chrome/devtools/docs/profiles.html">http://code.google.com/chrome/devtools/docs/profiles.html</a></span> <span>&nbsp;—paulirish</span>
+      afaik all of window.performance data is surfaced inside chrome devtools. mostly on hover in Network panel —paulirish
     </p>
     <hr>
     <p>
-      <span>&nbsp;</span>
+      &nbsp;
     </p>
     <p>
-      <span>Done —malteubl</span>
+      Anyone have a good link for window.performance? —malteubl
     </p>
   </div>
   <div>
     <p>
-      <a href="#cmnt_ref6" name="cmnt6" id="cmnt6">[f]</a><span>Does this work on older versions of IE? &nbsp;For some reason, I thought they didn’t support nested named functions. —jorlow</span>
+      <a href="#cmnt_ref5" name="cmnt5" id="cmnt5">[e]</a>also a link to <a href="http://code.google.com/chrome/devtools/docs/profiles.html">http://code.google.com/chrome/devtools/docs/profiles.html</a> &nbsp;—paulirish
     </p>
     <hr>
     <p>
-      <span>&nbsp;</span>
+      &nbsp;
     </p>
     <p>
-      <span>yup. it’s peachy in IE6+ —paulirish</span>
+      Done —malteubl
     </p>
   </div>
   <div>
     <p>
-      <a href="#cmnt_ref7" name="cmnt7" id="cmnt7">[g]</a><span>It might be worthwhile to note either that these extra bits of complexity should be removed after profiling, or that this complexity can be the first step towards the refactoring mentioned in #1. —mkwst</span>
+      <a href="#cmnt_ref6" name="cmnt6" id="cmnt6">[f]</a>Does this work on older versions of IE? &nbsp;For some reason, I thought they didn’t support nested named functions. —jorlow
     </p>
     <hr>
     <p>
-      <span>&nbsp;</span>
+      &nbsp;
     </p>
     <p>
-      <span>Done. Thanks. —malteubl</span>
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref8" name="cmnt8" id="cmnt8">[h]</a><span>Are there good docs for this? —malteubl</span>
+      yup. it’s peachy in IE6+ —paulirish
     </p>
   </div>
   <div>
     <p>
-      <a href="#cmnt_ref9" name="cmnt9" id="cmnt9">[i]</a><span>Is there a programatic mechanism for turning the profiler on and off? &nbsp;Does Chrome implement `console.profile`? —mkwst</span>
+      <a href="#cmnt_ref7" name="cmnt7" id="cmnt7">[g]</a>It might be worthwhile to note either that these extra bits of complexity should be removed after profiling, or that this complexity can be the first step towards the refactoring mentioned in #1. —mkwst
     </p>
     <hr>
     <p>
-      <span>&nbsp;</span>
+      &nbsp;
     </p>
     <p>
-      <span>yup. and .profileEnd(); —paulirish</span>
+      Done. Thanks. —malteubl
+    </p>
+  </div>
+  <div>
+    <p>
+      <a href="#cmnt_ref8" name="cmnt8" id="cmnt8">[h]</a>Are there good docs for this? —malteubl
+    </p>
+  </div>
+  <div>
+    <p>
+      <a href="#cmnt_ref9" name="cmnt9" id="cmnt9">[i]</a>Is there a programatic mechanism for turning the profiler on and off? &nbsp;Does Chrome implement `console.profile`? —mkwst
     </p>
     <hr>
     <p>
-      <span>&nbsp;</span>
+      &nbsp;
     </p>
     <p>
-      <span>Added, good point, thanks! —malteubl</span>
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref10" name="cmnt10" id="cmnt10">[j]</a><span>You should discuss document.createDocumentFragment() as another alternative for appending to the DOM. —ericbidelman</span>
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref11" name="cmnt11" id="cmnt11">[k]</a><span>I usually don't mind jquery, but should we stick to raw JS for these really fine points or are we just trying to cater to partners using jquery? —ericbidelman</span>
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref12" name="cmnt12" id="cmnt12">[l]</a><span>should discuss event delegation!!!! —ericbidelman</span>
+      yup. and .profileEnd(); —paulirish
     </p>
     <hr>
     <p>
-      <span>&nbsp;</span>
+      &nbsp;
     </p>
     <p>
-      <span>Done —malteubl</span>
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref13" name="cmnt13" id="cmnt13">[m]</a><span>And ideally switch to WebSQLDB or (soon) IndexedDB —jorlow</span>
-    </p>
-    <p>
-      <span>&nbsp;</span>
-    </p>
-    <p>
-      <span>Ew, WebSQL is not going anywhere. I know we support it but I don’t think we should be advocating it. --pilgrim</span>
-    </p>
-    <p>
-      <span>&nbsp;</span>
-    </p>
-    <p>
-      <span>Also interesting: In Safari localStorage is ultra fast. Does not seem to do fsync or delays writing until idle and or actual reading.</span>
+      Added, good point, thanks! —malteubl
     </p>
   </div>
   <div>
     <p>
-      <a href="#cmnt_ref14" name="cmnt14" id="cmnt14">[n]</a><span>Reference the DOM Monster</span>
+      <a href="#cmnt_ref10" name="cmnt10" id="cmnt10">[j]</a>You should discuss document.createDocumentFragment() as another alternative for appending to the DOM. —ericbidelman
+    </p>
+  </div>
+  <div>
+    <p>
+      <a href="#cmnt_ref11" name="cmnt11" id="cmnt11">[k]</a>I usually don't mind jquery, but should we stick to raw JS for these really fine points or are we just trying to cater to partners using jquery? —ericbidelman
+    </p>
+  </div>
+  <div>
+    <p>
+      <a href="#cmnt_ref12" name="cmnt12" id="cmnt12">[l]</a>should discuss event delegation!!!! —ericbidelman
+    </p>
+    <hr>
+    <p>
+      &nbsp;
     </p>
     <p>
-      <span>http://mir.aculo.us/2011/01/09/the-dom-monster-is-now-open-source/ —malteubl</span>
+      Done —malteubl
+    </p>
+  </div>
+  <div>
+    <p>
+      <a href="#cmnt_ref13" name="cmnt13" id="cmnt13">[m]</a>And ideally switch to WebSQLDB or (soon) IndexedDB —jorlow
+    </p>
+    <p>
+      &nbsp;
+    </p>
+    <p>
+      Ew, WebSQL is not going anywhere. I know we support it but I don’t think we should be advocating it. --pilgrim
+    </p>
+    <p>
+      &nbsp;
+    </p>
+    <p>
+      Also interesting: In Safari localStorage is ultra fast. Does not seem to do fsync or delays writing until idle and or actual reading.
+    </p>
+  </div>
+  <div>
+    <p>
+      <a href="#cmnt_ref14" name="cmnt14" id="cmnt14">[n]</a>Reference the DOM Monster
+    </p>
+    <p>
+      http://mir.aculo.us/2011/01/09/the-dom-monster-is-now-open-source/ —malteubl
     </p>
   </div>
 
