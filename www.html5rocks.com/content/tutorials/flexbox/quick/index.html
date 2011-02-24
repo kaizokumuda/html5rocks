@@ -280,20 +280,20 @@ The <code>box-flex</code> style property defines if a child of a flexbox should 
 Now we could also play with setting the <code>box-flex</code> of children 1, 2, and 3 to be <code>1</code>, <code>2</code>, <code>3</code> respectively and they would then absorb the extra space of their parent in that ratio. But instead, lets put this into action.
 
 <h2 id="toc-basic">A basic example</h2>
-
+{% if is_mobile %}
 <style>
 .box {
   width: 350px;
   height: 95px;
   font-size: 14px;
   border: 1px solid #555;
-  
+
   display: -webkit-box;
   -webkit-box-orient: horizontal;
- 
+
   display: -moz-box;
   -moz-box-orient: horizontal;
- 
+
   display: box;
   box-orient: horizontal;
 }
@@ -316,7 +316,6 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
 .box > div:hover { 
   width: 200px;
 }
-
 </style>
 
 <p>Hover over one of the boxes below to see the flexible box in action:</p>
@@ -366,6 +365,15 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
 }
   </pre>
 </div>
+{% else %}
+<p>Check the code and the result below:</p>
+
+<p>Hover over one of the boxes to see the flexible box in action.
+As your hover target expands, the remaining boxes shrink in size,
+but the total width always matches the size of the parent box.</p>
+
+<iframe src="http://playground.html5rocks.com/?mode=frame&hu=230&hl=150#flexible_box_model:_basic_example" style="border: none; width: 100%; height: 500px;"></iframe>
+{% endif %}
 
 <p>There are really only two styles in play here, the <code>display: box</code> kicks things into flexbox mode, and then <code>box-flex: 1</code> on the children makes them operate in flexible mode, taking up all extra space. The default orientation is horizontal, so in fact the <code>box-orient: horizontal</code> isn't necessary but it's wise to include for clarity and maintainability. The default <code>box-align</code> is stretch which is why these divs take up the full height of their parent box. Not too bad, eh? You can see this technique used for navigation in <a href="http://www.ie7nomore.com/fun/flexiblenav/">this flexiblenav demo by Raphael Goetter</a>.</p> 
 
@@ -376,11 +384,13 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
 
 <h2 id="toc-center">Center stage: positioning in the middle</h2>
 
-<p>Centering something horizontally and vertically has long been a challenge in CSS. The best CSS-only solution we have is <code>position:absolute; left: 50%; top: 50%;</code> paired with negative left/top margins that equal half of the width/height. And that only flies with explicitly sized elements. Ugh! With flexbox we can get there a touch easier:</p>
+<p>Centering something horizontally and vertically has long been a challenge in CSS.
+The best CSS-only solution we have is <code>position:absolute; left: 50%; top: 50%;</code>
+paired with negative left/top margins that equal half of the width/height.
+And that only flies with explicitly sized elements. Ugh! With flexbox we can get there a touch easier:</p>
 
-
+{% if is_mobile %}
 <style>
-
 .centerbox {
   width: 350px;
   height: 95px;
@@ -437,6 +447,12 @@ Now we could also play with setting the <code>box-flex</code> of children 1, 2, 
 }
   </pre>
 </div>
+
+{% else %}
+
+<iframe src="http://playground.html5rocks.com/?mode=frame&hu=180&hl=150#flexible_box_model:_center_stage" style="border: none; width: 100%; height: 450px;"></iframe>
+
+{% endif %}
  
 <p>We don't set <code>box-flex</code> on the child because we don't want it using extra space. We just want it to be in the middle, regardless of it's size. The huge advantage is here, that we don't need to have explicit dimensions in order to center it. We could be doing this with something that's typically block or inline. It just works.</p> 
  
