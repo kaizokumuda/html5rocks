@@ -73,13 +73,13 @@ varies
     What you need to take away from that is that you need to make it easy for the rendering engine to identify when it can apply it’s GPU acceleration magic. Consider the following example:
   </p>
   <blockquote>
-    You want to animate an element in the browser from left to right. The traditional approach to is to set a JavaScript timer and then repeatedly setting the “left” property of the style object every N milliseconds.<sup><a href="#cmnt1" name="cmnt_ref1" id="cmnt_ref1">[a]</a></sup>
+    You want to animate an element in the browser from left to right. The traditional approach to is to set a JavaScript timer and then repeatedly setting the “left” property of the style object every N milliseconds.
   </blockquote>
   <p>
     While this works, the browser doesn’t really know that you are performing something that is supposed to be perceived as smooth animation by a human being. Consider what happens when you achieve the same visual appearance using CSS3 transitions instead:
   </p>
   <blockquote>
-    Now, you simply define the final position of the object and then tell the browser to perform an animation to the final destination over a certain period of time.<sup><a href="#cmnt2" name="cmnt_ref2" id="cmnt_ref2">[b]</a></sup>
+    Now, you simply define the final position of the object and then tell the browser to perform an animation to the final destination over a certain period of time.
   </blockquote>
   <p>
     How the browser implements this animation is completely hidden from the developer. This in turn means that the browser is able to apply tricks such as GPU acceleration to achieve the defined goal.
@@ -91,7 +91,7 @@ varies
     Currently most browsers only use GPU acceleration when they have a strong indication that an HTML element would benefit from it. The strongest indication is that a 3D transformation was applied to it. Now you might not really want to apply a 3D transformation, but still gain the benefits from GPU acceleration – no problem. Simply apply the identity transformation:
   </p>
   <p>
-    <code>-webkit-transform: translateZ(0);</code><sup><a href="#cmnt3" name="cmnt_ref3" id="cmnt_ref3">[c]</a></sup>
+    <code>-webkit-transform: translateZ(0);</code>
   </p>
   <p>
     Please be warned that this applying this transformation does not guarantee to help your performance. It might simply crank up your GPU, use up more battery but deliver the same performance as before. So be careful with this technique and only use it if you experience a true performance win.
@@ -167,7 +167,7 @@ function moveIt(evt){
     When you discover that the speed of your application can be improved, it is time to dig into profiling to find out where optimizations could yield the greatest benefit. Optimizations will often have negative impact on the maintainability of your source code and should thus only be applied if necessary. Profiling tells you which parts of your code would yield the greatest benefits when their performance would be improved.
   </p>
   <h2>
-    JavaScript Profiling<sup><a href="#cmnt4" name="cmnt_ref4" id="cmnt_ref4">[d]</a></sup>
+    JavaScript Profiling
   </h2>
   <p>
     JavaScript profilers give you an overview on the performance of your application on the JavaScript function level by measuring the time it takes to execute each individual function from its starts to its end.
@@ -176,7 +176,7 @@ function moveIt(evt){
     The gross execution time of a function is the overall time it takes to execute it from top to bottom. The next execution time is the gross execution time minus the time it took to execute functions called from the function.
   </p>
   <p>
-    Some functions get called more often than others. Profilers usually give you the time it took for all invocations to run as well as the average and minimum and maximum execution time.<sup><a href="#cmnt5" name="cmnt_ref5" id="cmnt_ref5">[e]</a></sup>
+    Some functions get called more often than others. Profilers usually give you the time it took for all invocations to run as well as the average and minimum and maximum execution time.
   </p>
   <p>
     <a href="http://code.google.com/chrome/devtools/docs/profiles.html">More Info</a>
@@ -213,7 +213,7 @@ function moveIt(evt){
     rewrite to:
   </p>
   <pre class="prettyprint">
-    $(‘.stuff’).each(function workOnStuff() { ... });</code><sup><a href="#cmnt6" name="cmnt_ref6" id="cmnt_ref6">[f]</a></sup>
+    $(‘.stuff’).each(function workOnStuff() { ... });</code>
   </pre>
   <p>
     It is not commonly known that JavaScript supports naming function expressions. Doing this will make them show up perfectly in the profiler. There is one problem with this solution: The named expression actually puts the function name into the current lexical scope. This might clobber other symbols, so be careful.
@@ -240,7 +240,7 @@ function moveIt(evt){
       The correct method: Refactor your code to not include any long functions.
     </li>
     <li>
-      The evil getting-things-done method<sup><a href="#cmnt7" name="cmnt_ref7" id="cmnt_ref7">[g]</a></sup>: add statements in the form of named self calling functions to your code. If you are a little careful this does not change the semantics and it makes parts of your function show up as individual functions in the profiler:function myLongFunction() {<br>
+      The evil getting-things-done method: add statements in the form of named self calling functions to your code. If you are a little careful this does not change the semantics and it makes parts of your function show up as individual functions in the profiler:function myLongFunction() {<br>
       &nbsp;…<br>
       &nbsp;(function doAPartOfTheWork() {<br>
       &nbsp; &nbsp;...<br>
@@ -250,7 +250,7 @@ function moveIt(evt){
     </li>
   </ol>
   <h2>
-    DOM Profiling<sup><a href="#cmnt8" name="cmnt_ref8" id="cmnt_ref8">[h]</a></sup>
+    DOM Profiling
   </h2>
   <p>
     The latest Chrome Web Inspector development tools contain the new “Timeline View” which shows a timeline of the low level actions performed by the browser. You can use this information to optimize your DOM operations. You should aim to reduce the number of “actions” the browser has to perform while your code executes.
@@ -429,7 +429,7 @@ for(var i = 0; i < array.length; i++) {
  var val = doSomething(array[i]);
  stringBuilder.push(val);
 }
-document.getElementById('target').innerHTML = stringBuilder.join('');<sup><a href="#cmnt10" name="cmnt_ref10" id="cmnt_ref10">[j]</a></sup>
+document.getElementById('target').innerHTML = stringBuilder.join('');
   </pre>
   
   <h3>
@@ -570,7 +570,7 @@ function paintALittleLater() {
     After:
   </p>
   <p>
-    <code>$('#button').click(function() { $('.ele &gt; .other * div.className').show()</code> <code>});</code><sup><a href="#cmnt12" name="cmnt_ref12" id="cmnt_ref12">[l]</a></sup>
+    <code>$('#button').click(function() { $('.ele &gt; .other * div.className').show()</code> <code>});</code>
   </p>
   <h2>
     Event Delegation
@@ -632,20 +632,20 @@ function paintALittleLater() {
   <p>
     If this doesn’t help or if you also want to be fast in modern browsers, follow these guidelines
   </p>
-  <p>
-    - &nbsp; &nbsp; &nbsp; Be as specific on the right side of your selector as possible.
-  </p>
-  <p>
-    - &nbsp; &nbsp; &nbsp; Use a tag name that you don’t use often as the rightmost selector part.
-  </p>
-  <p>
-    - &nbsp; &nbsp; &nbsp; …
-  </p>
-  <p>
-    - &nbsp; &nbsp; &nbsp; If nothing helps, think about rewriting things so you can use an id-selector
-  </p>
+  <ul>
+    <li>
+      Be as specific on the right side of your selector as possible.
+    </li>
+    <li>
+      Use a tag name that you don’t use often as the rightmost selector part.
+    </li>
+    <li>
+      If nothing helps, think about rewriting things so you can use an id-selector
+    </li>
+  </ul>
+  
   <h2>
-    All these DOM manipulations take a long time<sup><a href="#cmnt14" name="cmnt_ref14" id="cmnt_ref14">[n]</a></sup>
+    All these DOM manipulations take a long time
   </h2>
   <p>
     A bunch of DOM node inserts, removes and updates can be really slow. This can generally be optimized by generating a large string of html and the using <code>domNode.innerHTML = newHTML</code> to replace the old content. Note that this might be really bad for maintainability and might create memory links in IE so be careful.
@@ -658,376 +658,36 @@ function paintALittleLater() {
   </h1>
   <ol>
     <li>
-      Firebug
+      <a href="http://jsperf.com">JSPerf - Benchmark little snippets of JavaScript</a>
+    </li>
+    <li>
+      <a href="http://getfirebug.com/">Firebug - For profiling in Firefox</a>
+    </li>
+    <li>
+      <a href="http://code.google.com/chrome/devtools/">Google Chrome Developer Tools</a> (Available as WebInspector in Safari)
+    </li>
+    <li>
+      <a href="http://mir.aculo.us/dom-monster/">DOM Monster - For optimizing DOM performance</a>
+    </li>
+    <li>
+      <a href="http://ajax.dynatrace.com/ajax/en/">DynaTrace Ajax Edition - For profiling and paint optimizations in Internet Explorer</a>
     </li>
   </ol>
-  <ol>
-    <li>
-      Profiler
-    </li>
-  </ol>
-  <ol>
-    <li value="2">
-      WebInspector
-    </li>
-  </ol>
-  <ol>
-    <li>
-      Profiler
-    </li>
-    <li>
-      TimelineView
-    </li>
-  </ol>
-  <ol>
-    <li value="3">
-      window.performance
-    </li>
-    <li>
-      DOM Monster
-    </li>
-    <li>
-      Speed Tracer
-    </li>
-    <li>
-      DynaTrace Ajax Edition
-    </li>
-  </ol>
-  <h1>
-    Outline
-  </h1>
-  <ol>
-    <li>
-      Scope
-    </li>
-  </ol>
-  <ol>
-    <li>
-      Assume jQuery? Yes.
-    </li>
-    <li>
-      Assume GPU compositing doesn’t suck anymore? Yeah...
-    </li>
-  </ol>
-  <ol>
-    <li value="2">
-      Profiling 101
-    </li>
-  </ol>
-  <ol>
-    <li>
-      Chrome Inspector
-    </li>
-    <li>
-      Firebug
-    </li>
-  </ol>
-  <ol>
-    <li value="3">
-      Profiling 201
-    </li>
-    <li>
-      THE LARGE PREMATURE OPTIMIZATION WARNING BANNER
-    </li>
-  </ol>
-  <ol>
-    <li>
-      i think we can avoid the common micro-js optimizations here so we probly dont need this.
-    </li>
-  </ol>
-  <ol>
-    <li value="5">
-      &nbsp;
-    </li>
-    <li>
-      transform: translate instead of absolute positioning
-    </li>
-    <li>
-      CSS Transitions
-    </li>
-  </ol>
-  <ol>
-    <li>
-      instead of animate()
-    </li>
-    <li>
-      Use CSS transitions, transforms, other CSS3 stuff but be careful
-    </li>
-  </ol>
-  <ol>
-    <li value="8">
-      translate3d(0,0,0)
-    </li>
-    <li>
-      &nbsp;
-    </li>
-    <li>
-      Tips and tricks to make things faster
-    </li>
-    <li>
-      Animation quality
-    </li>
-  </ol>
-  <ol>
-    <li>
-      Give it a background: <a href="http://www.corp.google.com/~mwichary/public/UX/60fps/tips/background/">http://www.corp.google.com/~mwichary/public/UX/60fps/tips/background/</a>
-    </li>
-    <li>
-      Never do any work! :)
-    </li>
-    <li>
-      Switch to the latest version of your favorite library
-    </li>
-    <li>
-      Avoid unnecessary DOM redraws/reflows
-    </li>
-  </ol>
-  <ol>
-    <li>
-      <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.stubbornella.org%2Fcontent%2F2009%2F03%2F27%2Freflows-repaints-css-performance-making-your-javascript-slow%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNG_RclX-wNu6_id9MONtKOmdR6SDg">http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/</a>
-    </li>
-  </ol>
-  <ol>
-    <li value="5">
-      Be wary of position:fixed
-    </li>
-    <li>
-      requestAnimationFrame: http://crbug.com/64848
-    </li>
-    <li>
-      Decouple animations from other stuff
-    </li>
-    <li>
-      Delay things until the user is idle: jQuery IdleTimer
-    </li>
-    <li>
-      Only act on user input once per time interval (e.g. avoid a redraw that might become unnecessary 10ms later)
-    </li>
-    <li>
-      Avoid flash
-    </li>
-  </ol>
-  <ol>
-    <li>
-      really avoid using wmode:transparent
-    </li>
-  </ol>
-  <ol>
-    <li value="12">
-      jQuery/JavaScript best practices
-    </li>
-  </ol>
-  <ol>
-    <li value="11">
-      Slow selectors (querySelectorAll, jQuery, etc.)
-    </li>
-  </ol>
-  <ol>
-    <li>
-      Element Caching
-    </li>
-    <li>
-      Reminder: Selectors that return zero elements still take time to execute!
-    </li>
-  </ol>
-  <ol>
-    <li value="12">
-      $(‘#element’)[0].innerHTML = ‘&lt;p&gt;Who cares about memory leaks in IE&lt;/p&gt;’
-    </li>
-    <li>
-      When to use event delegation, when not to use it
-    </li>
-    <li>
-      Make critical CSS rules simpler
-    </li>
-    <li>
-      &nbsp;
-    </li>
-  </ol>
-  <ol>
-    <li value="13">
-      Ressources
-    </li>
-  </ol>
-  <ol>
-    <li>
-      <a href="http://www.google.com/url?q=http%3A%2F%2Fjsperf.com&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFr5saQc6Jad0mYQDs5dXGwZs9uog">jsperf.com</a>
-    </li>
-    <li>
-      Point to the Steve’s and Stoyan’s work?
-    </li>
-    <li>
-      <a href="http://code.google.com/speed/page-speed/docs/overview.html">http://code.google.com/speed/page-speed/docs/overview.html</a>
-    </li>
-    <li>
-      <a href="http://www.google.com/url?q=http%3A%2F%2Fwiki.forum.nokia.com%2Findex.php%2FJavaScript_Performance_Best_Practices&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGXKdm8s0vF9anNJURwjZ1dhpZEQg">http://wiki.forum.nokia.com/index.php/JavaScript_Performance_Best_Practices</a>
-    </li>
-    <li>
-      <a href="http://www.google.com/url?q=http%3A%2F%2Fpaulirish.com%2F2009%2Fperf%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNE8XK7tFQcqP7mzDmc0J7V06qFdZw">http://paulirish.com/2009/perf/</a>
-    </li>
-  </ol>
-  <h1>
-    
-  </h1>
-  <p>
-    &nbsp;
-  </p>
-  <div>
-    <p>
-      <a href="#cmnt_ref1" name="cmnt1" id="cmnt1">[a]</a>code snippet —ericbidelman
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      yup. i’ll drop these in —paulirish
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref2" name="cmnt2" id="cmnt2">[b]</a>ideal spot for a css code snippet / showing no js is needed —ericbidelman
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref3" name="cmnt3" id="cmnt3">[c]</a>Are the graphics guys cool with us makign suggestions like this? &nbsp;I wonder how much it’s going to back us into a corner long term. &nbsp;(Of course, this is already suggested by a lot of pages, so maybe the ship has sailed...) —jorlow
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      I’m really scared about this myself. On the other hand it is a reality now that some layers with transparency effects (drop shadows, etc) perform much better in Safari and iOS at least, with this applied. —malteubl
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref4" name="cmnt4" id="cmnt4">[d]</a>Are we going to cover window.performance? http://code.google.com/p/html5rocks/issues/detail?id=381 —ericbidelman
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      afaik all of window.performance data is surfaced inside chrome devtools. mostly on hover in Network panel —paulirish
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      Anyone have a good link for window.performance? —malteubl
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref5" name="cmnt5" id="cmnt5">[e]</a>also a link to <a href="http://code.google.com/chrome/devtools/docs/profiles.html">http://code.google.com/chrome/devtools/docs/profiles.html</a> &nbsp;—paulirish
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      Done —malteubl
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref6" name="cmnt6" id="cmnt6">[f]</a>Does this work on older versions of IE? &nbsp;For some reason, I thought they didn’t support nested named functions. —jorlow
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      yup. it’s peachy in IE6+ —paulirish
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref7" name="cmnt7" id="cmnt7">[g]</a>It might be worthwhile to note either that these extra bits of complexity should be removed after profiling, or that this complexity can be the first step towards the refactoring mentioned in #1. —mkwst
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      Done. Thanks. —malteubl
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref8" name="cmnt8" id="cmnt8">[h]</a>Are there good docs for this? —malteubl
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref9" name="cmnt9" id="cmnt9">[i]</a>Is there a programatic mechanism for turning the profiler on and off? &nbsp;Does Chrome implement `console.profile`? —mkwst
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      yup. and .profileEnd(); —paulirish
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      Added, good point, thanks! —malteubl
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref10" name="cmnt10" id="cmnt10">[j]</a>You should discuss document.createDocumentFragment() as another alternative for appending to the DOM. —ericbidelman
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref11" name="cmnt11" id="cmnt11">[k]</a>I usually don't mind jquery, but should we stick to raw JS for these really fine points or are we just trying to cater to partners using jquery? —ericbidelman
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref12" name="cmnt12" id="cmnt12">[l]</a>should discuss event delegation!!!! —ericbidelman
-    </p>
-    <hr>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      Done —malteubl
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref13" name="cmnt13" id="cmnt13">[m]</a>And ideally switch to WebSQLDB or (soon) IndexedDB —jorlow
-    </p>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      Ew, WebSQL is not going anywhere. I know we support it but I don’t think we should be advocating it. --pilgrim
-    </p>
-    <p>
-      &nbsp;
-    </p>
-    <p>
-      Also interesting: In Safari localStorage is ultra fast. Does not seem to do fsync or delays writing until idle and or actual reading.
-    </p>
-  </div>
-  <div>
-    <p>
-      <a href="#cmnt_ref14" name="cmnt14" id="cmnt14">[n]</a>Reference the DOM Monster
-    </p>
-    <p>
-      http://mir.aculo.us/2011/01/09/the-dom-monster-is-now-open-source/ —malteubl
-    </p>
-  </div>
 
-
+  <h1>Further reading</h1>
+  <ol>
+    <li>
+      <a href="http://code.google.com/speed/">Google Speed</a>
+    </li>
+    <li>
+      <a href="http://wiki.forum.nokia.com/index.php/JavaScript_Performance_Best_Practices">http://wiki.forum.nokia.com/index.php/JavaScript_Performance_Best_Practices</a>
+    </li>
+    <li>
+      <a href="http://paulirish.com/2009/perf/">Paul Irish on Performance</a>
+    </li>
+    <li>
+      <a href="http://www.slideshare.net/madrobby/extreme-javascript-performance">Extreme JavaScript Performance (Slide Deck)</a>
+    </li>
+  </ol>
 
 {% endblock %}
