@@ -100,6 +100,7 @@
 
   // parse and render code to any of the editors
   InteractiveSample.prototype.changeCodeMirror = function(content, fileType) {
+    var me = this;
     var match = null;
     var changeEditor = true;
     // this should be passed only on page load time
@@ -109,10 +110,10 @@
         console.error('Error: content shouldnt be an array at this point');
         return;
       }
-      content = this.normalizeHTML(content)
+      content = me.normalizeHTML(content);
     }
     fileType = fileType || 'mixed'; // used when toggling from js to html
-    
+
     // update both js and css editors when coming from html
     if (Object.prototype.toString.call(content) === '[object Array]') { // isArray
       var jsContent = [];
@@ -138,19 +139,19 @@
       // content will be passed to each editor individually on load time
       window[fileType + 'Editor'].setCode(decodeSpecialChars(content.replace(/\n$$/, '')));
       if (fileType == me.currentEditor.options.eid) {  
-        this.runBox.runCode({defaultSample: true});
+        me.runBox.runCode({defaultSample: true});
       }
     }
     if (changeEditor) {
-      if (fileType == this.currentEditor.options.eid) {
-        this.uiEffects.enableUIButton(fileType);
+      if (fileType == me.currentEditor.options.eid) {
+        me.uiEffects.enableUIButton(fileType);
       }
 
-      this.useEditor(this.currentEditor.options.eid)
+      me.useEditor(me.currentEditor.options.eid);
 
-      // this.currentEditor.setCode(content);
-      $(this.currentEditor.frame.contentWindow.window.document.body).scrollTop(10);
-      $(this.currentEditor.frame.contentWindow.window.document.body).scrollTop(0);      
+      // me.currentEditor.setCode(content);
+      $(me.currentEditor.frame.contentWindow.window.document.body).scrollTop(10);
+      $(me.currentEditor.frame.contentWindow.window.document.body).scrollTop(0);      
     }
   };
 
@@ -236,7 +237,7 @@
       for (var j=0; j < sampleList[i].samples.length; j++) {
         var item = sampleList[i].samples[j];
         var li = _cel('li');
-        var me = this
+        var me = this;
         var textNode = document.createElement('span');
         textNode.innerHTML = item.sampleName;
         if (item.files.length != 0) {
@@ -426,11 +427,10 @@
    * in the results frame
    */
   InteractiveSample.prototype.getCodeAndRun = function(callbackFunc, code) {
-    var curFilename = this.getCurFilename();
-    // var sampleObj = this.sampleFileNameToObject(curFilename);
-    var htmlUrl = this.htmlUrl;
     var me = this;
-    var code = code || this.getCode();
+    var curFilename = me.getCurFilename();
+    var htmlUrl = me.htmlUrl;
+    var code = code || me.getCode();
     
     // html editor
     if (htmlUrl == '') {
@@ -441,7 +441,11 @@
     // js or css editors
     $.get(htmlUrl, function(data, success) {
       if (success) {
-        data = me.normalizeHTML(data)
+        if (me.currentEditor == window.jsEditor) {
+          data = me.normalizeHTML(data, code);
+        } else {
+          data = me.normalizeHTML(data);
+        }
         callbackFunc(data);
       }
     });
@@ -452,9 +456,9 @@
    * it also replaces API key with a placeholder
    * @return data normalized HTML code
    */
-  InteractiveSample.prototype.normalizeHTML = function(data) {
+  InteractiveSample.prototype.normalizeHTML = function(data, code) {
     var me = this;
-    var jsCode = me.getCode('js');
+    var jsCode = code || me.getCode('js');
     var cssCode = me.getCode('css');
     jsCode = (jsCode.match(/\w/) !== null) ? me.indentCodeWithTheseSpaces(jsCode, me.findNumSpacesToIndentCode(data, 'js')) : '';
     cssCode = (cssCode.match(/\w/) !== null) ? me.indentCodeWithTheseSpaces(cssCode, me.findNumSpacesToIndentCode(data, 'css')) : '';
@@ -531,11 +535,11 @@
       i += 1;
       firstLine = firstLine.substring(1);
     }
-    
+
     // go through each line and remove indentation
     var newLine = code.indexOf('\n');
-    var start = code.slice(0, newLine); 
-    var prev = '';   
+    var start = code.slice(0, newLine);
+    var prev = '';
     var oldstartlen = 0;
     var endbound = '';
     var end = '';
@@ -584,9 +588,9 @@
   InteractiveSample.prototype.initForFramed = function(codeDiv, height_of_lower) {
     this.currentEditor = window.jsEditor;
     this.codeEditorFrames = {
-        'js':document.getElementById('editJS'),
-        'css':document.getElementById('editCSS'),
-        'mixed':document.getElementById('editMixed')
+        'js': document.getElementById('editJS'),
+        'css': document.getElementById('editCSS'),
+        'mixed': document.getElementById('editMixed')
     };
     this.htmlUrl = '';
     this.insertJavascriptRegex = /[ ]*INSERT_JAVASCRIPT_HERE/;
@@ -596,10 +600,12 @@
     this.runBox = new RunBox();
     this.runBox.init(this, !$.browser.msie);
     this.codeDiv = codeDiv;
-    if (height_of_lower) this.heightOfRunFrame = parseInt(height_of_lower);
+    if (height_of_lower) {
+      this.heightOfRunFrame = parseInt(height_of_lower);
+    }
     if (window.location.hash.length > 0) {
-      for (var i=0; i < sampleList.length; i++) {
-        for (var j=0; j < sampleList[i].samples.length; j++) {
+      for (var i = 0; i < sampleList.length; i++) {
+        for (var j = 0; j < sampleList[i].samples.length; j++) {
           var item = sampleList[i].samples[j];
           var hashName = this.nameToHashName(item.sampleName);
           if (window.location.hash.substring(1) == hashName) {
@@ -612,9 +618,9 @@
     this.uiEffects = new UIEffects();
     this.uiEffects.initForFramed(this);
   };
-   
+
   InteractiveSample.prototype.showSampleForFramed = function(sampleName, def) {
-    me = this;
+    var me = this;
     var curFilename = me.getCurFilename() || null;
     var sampleObj = me.sampleNameToObject(sampleName);
     var files = sampleObj.files;
@@ -622,14 +628,13 @@
     var catSplit = sampleObj.category.split('-');
     var categoryName = catSplit[0];
 
-    //var codeLIs = me.codeLIs;
     var setAsJSEditor = true;
     me.temporaryBoilerplate = sampleObj.boilerplateLoc;
-    me.htmlUrl = me.temporaryBoilerplate
+    me.htmlUrl = me.temporaryBoilerplate;
     if (sampleObj.boilerplateLoc != '') {
       editorKey = sampleObj.editor || 'js';
     }
-      
+
     me.currentEditor = window[editorKey + 'Editor'];
     me.runBox.iFrameLoaded = false;
 
@@ -640,13 +645,8 @@
 
     me.currentCode = {};
 
-    // add file names at top
-    // var tab_bar = $('#tab_bar');
-    // tab_bar.innerHTML = '';
-    for (i = 0; i < files.length; i++) {
+    for (var i = 0; i < files.length; i++) {
       var file = files[i];
-
-      // var tabClass = 'lb';
       me.loadCode(file, true);
     }
 
@@ -810,7 +810,7 @@
   // createCategories function so it runs for a specific sample
   // when on click action (with the fallback of the hash value)
   InteractiveSample.prototype.showSample = function(sampleName, def) {
-    me = this;
+    var me = this;
     return function() {
       var curFilename = me.getCurFilename() || null;
       var sampleObj = me.sampleNameToObject(sampleName);
@@ -1296,8 +1296,7 @@
         var oldonload = window.onload;
         if (typeof window.onload != 'function') {
           window.onload = func;
-        }
-        else {
+        } else {
           window.onload = function() {
             oldonload();
             func();
@@ -1318,7 +1317,7 @@
           window.firebug.el.button.maximize.environment.addStyle({ "display":"none" });
           window.firebug.win.setHeight(firebug.env.height);
         }
-      }
+      };
       addLoadEvent(function() {
         var debugBar = document.createElement('div');
         debugBar.id = 'debugBar';
@@ -1388,7 +1387,7 @@
       var breakPointLine = breakPointsArray[i];
       var atLine = 0;
       var indexOfNewline = 0;
-      while(atLine + 1 != breakPointLine) {
+      while (atLine + 1 != breakPointLine) {
         indexOfNewline = code.indexOf('\n', indexOfNewline + 1);
         if (indexOfNewline == -1) {
           window.console.log('AddBreakPointCode failed.');
@@ -1464,8 +1463,6 @@
     };
   };
 
-
-
   RunBox.prototype.runCode = function(options) {
     var code = this.is.getCode();
     if (this.is.currentEditor == window.mixedEditor) {
@@ -1492,23 +1489,26 @@
     this.runCode();
   };
 
-
-
   // Create and export the interactive sample instance to the global.
   window.is = new InteractiveSample();
 })();
 
-
 function encodeSpecialChars(b) {
-	var c= '';
-	for(var i=0; i<b.length; i++){
-		if(b.charCodeAt(i)>127){ c += '&#' + b.charCodeAt(i) + ';'; }else{ c += b.charAt(i); }
+  var c = '';
+  for (var i = 0; i < b.length; i++) {
+    if (b.charCodeAt(i) > 127) {
+      c += '&#' + b.charCodeAt(i) + ';';
+    } else {
+      c += b.charAt(i);
+    }
   }
   return c;
 }
 
 function decodeSpecialChars(b) {
-	var c = b.replace(/&#(\d+);/g, function(c,d) { return String.fromCharCode(d) })
+  var c = b.replace(/&#(\d+);/g,
+                    function(c, d) { return String.fromCharCode(d); }
+                   );
   return c;
 }
 
