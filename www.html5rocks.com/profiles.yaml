@@ -300,3 +300,23 @@ homepage: http://www.lostdecadegames.com
 google: http://www.google.com/profiles/gmblair
 twitter: geoffblair
 email: geoff@lostdecadegames.com
+
+---
+
+id: mdeal
+name:
+  given: Michael
+  family: Deal
+org:
+  name: Orange Honey
+  unit: New Product Development
+address:
+  locality: Portland
+  region: Oregon
+  country: USA
+  lat: 45.524381
+  lon: -122.683466
+homepage: http://mudcu.be/
+google: MUDCUBE
+twitter: mudcube
+email: mudcube@gmail.com
