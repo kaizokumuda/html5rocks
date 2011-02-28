@@ -18,7 +18,7 @@ body a {
   padding: 0;
 }
 #content {
-  background-color: white;
+  background-color: #fff;
   /*width: 73.074em;*/
   max-width: 750px;
   margin: 0 auto;
@@ -26,6 +26,12 @@ body a {
   -webkit-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
   -moz-box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
   box-shadow: #ccc 4px 0px 10px, #ccc -4px 0px 10px, #aaa 0px 38px 36px -24px;
+}
+#content article figure img {
+  max-width: 100%;
+}
+#content article dd {
+  margin-left: 15px;
 }
 header {
   border-bottom: 2px solid #222;
