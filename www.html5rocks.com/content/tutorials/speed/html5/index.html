@@ -18,9 +18,9 @@ varies
 
 
 {% block content %}
-<h2 id="toc-introduction">Introduction</h2>
+<h2>Introduction</h2>
 <p>
-  HTML5 gives us great tools to enhance the visual appearance of web applications. This is especially true in the realm of animations. However, with this new power also come new challenges. Actually these challenges aren’t really that new and it might sometimes make sense to ask your friendly desk neighbor, the Flash programmer, how she has overcome similar things in the past.
+HTML5 gives us great tools to enhance the visual appearance of web applications. This is especially true in the realm of animations. However, with this new power also come new challenges. Actually these challenges aren’t really that new and it might sometimes make sense to ask your friendly desk neighbor, the Flash programmer, how she has overcome similar things in the past.
 </p>
 <p>
   Anyway, when you work in animation it becomes hugely important that users perceive these animations to be smooth. What we need to realize is that smoothness in animations can’t really be created by simply increasing the frames per second beyond any cognitive threshold. Our brain is, unfortunately, smarter than that. What you will learn is that true 30 frames of animation per second (fps) is much better than 60 fps with just a few frames dropped in the middle. People hate jaggedness.
@@ -28,21 +28,21 @@ varies
 <p>
   This article will try to give you the tools and techniques to work on improving the experience of your own application.
 </p>
-<h2 id="toc-strategy">The Strategy</h2>
+<h2>The Strategy</h2>
 <p>
   By no means do we want to discourage you from building awesome, stunningly visual apps with HTML5.
 </p>
 <p>
   Then when you notice that performance could be a little better, come back here and read up on how you can improve the elements of your application. It can, of course, help to do some things right in the first place but never let that get in your way of being productive.
 </p>
-<h2 id="toc-visual-fidelity">Visual fidelity++ with HTML5</h2>
-<h2>
+<h2>Visual fidelity++ with HTML5</h2>
+<h3>
   Hardware Acceleration
-</h2>
+</h3>
 <p>
   Hardware acceleration is an important milestone for overall render performance in the browser. The general scheme is to offload tasks that would otherwise be calculated by the main CPU to the graphics processing unit (GPU) in your computer’s graphics adapter. This can yield massive performance gains and can also reduce resource consumption on mobile devices.
 </p>
-<h3>These aspects of your document can be accelerated by the GPU:</h3>
+<h4>These aspects of your document can be accelerated by the GPU:</h4>
 <ul>
   <li>General layout compositing</li>
   <li>CSS3 transitions</li>
@@ -131,15 +131,15 @@ position:absolute; left: 20px; top: 30px; z-index: 100" id="box">&lt;/div>
 &lt;script>
 document.querySelector('#box').addEventListener('click', moveIt, false);
 
-function moveIt(evt){
+function moveIt(evt) {
 
-var elem = evt.target;
-if (Modernizr.csstransitions){
-  elem.style.transition 'left 3s ease-out';
-  elem.style.left = '700px';
-} else {
-  jQuery(elem).animate({ 'left': '700px'}, 3000, 'easeOut');
-}
+  var elem = evt.target;
+  if (Modernizr.csstransitions){
+    elem.style.transition 'left 3s ease-out';
+    elem.style.left = '700px';
+  } else {
+    jQuery(elem).animate({ 'left': '700px'}, 3000, 'easeOut');
+  }
 }
 &lt;/script>
 </pre>
@@ -150,7 +150,7 @@ if (Modernizr.csstransitions){
 <p>
   use it.
 </p>
-<h2 id="toc-profiling">
+<h2>
   Profiling
 </h2>
 <p>
@@ -163,7 +163,7 @@ if (Modernizr.csstransitions){
   JavaScript profilers give you an overview on the performance of your application on the JavaScript function level by measuring the time it takes to execute each individual function from its starts to its end.
 </p>
 <p>
-  The gross execution time of a function is the overall time it takes to execute it from top to bottom. The next execution time is the gross execution time minus the time it took to execute functions called from the function.
+  The gross execution time of a function is the overall time it takes to execute it from top to bottom. The net execution time is the gross execution time minus the time it took to execute functions called from the function.
 </p>
 <p>
   Some functions get called more often than others. Profilers usually give you the time it took for all invocations to run as well as the average and minimum and maximum execution time.
@@ -179,7 +179,7 @@ if (Modernizr.csstransitions){
 </p>
 <pre class="prettyprint">
   function drawArray(array) {
-   for(var i = 0; i < array.length; i++) {
+   for(var i = 0; i &lt; array.length; i++) {
      document.getElementById(‘test’).innerHTML += array[i]
    }
   }
@@ -220,7 +220,7 @@ if (Modernizr.csstransitions){
   Unfortunately this <a href="http://code.google.com/p/fbug/issues/detail?id=1811">does not work in Firebug.</a> 
 </p>
 <h5>
-  Named Self Calling Functions
+  Profiling long functions
 </h5>
 <p>
   Imagine you have a long function and you suspect that a small part of it might be the reason for your performance problems. There are two ways to find out which part is the problem:
@@ -230,13 +230,17 @@ if (Modernizr.csstransitions){
     The correct method: Refactor your code to not include any long functions.
   </li>
   <li>
-    The evil getting-things-done method: add statements in the form of named self calling functions to your code. If you are a little careful this does not change the semantics and it makes parts of your function show up as individual functions in the profiler:function myLongFunction() {<br>
-    &nbsp;…<br>
-    &nbsp;(function doAPartOfTheWork() {<br>
-    &nbsp; &nbsp;...<br>
-    &nbsp;})();<br>
-    &nbsp;…<br>
-    }Don’t forget to remove these extra functions after profiling is done; or even use them as a starting point to refactor your code.
+    The evil getting-things-done method: add statements in the form of named self calling functions to your code. If you are a little careful this does not change the semantics and it makes parts of your function show up as individual functions in the profiler:
+    <pre class="prettyprint">
+    function myLongFunction() {
+      ...
+      (function doAPartOfTheWork() {
+        ...
+      })();
+      ...
+    }
+    </pre>
+    Don’t forget to remove these extra functions after profiling is done; or even use them as a starting point to refactor your code.
   </li>
 </ol>
 <h3>
@@ -330,7 +334,7 @@ if (Modernizr.csstransitions){
 <p>
   When you identified a slow spot in your program, try to think of ways to improve the execution behavior. After you changed your code, profile again. If you are satisfied with the result, move on, if you are not seeing an improvement you should probably roll back your change and not leave it in “because it can’t hurt”.
 </p>
-<h2 id="toc-optimization-strategies">
+<h2>
   Optimization Strategies
 </h2>
 <h3>
@@ -583,7 +587,7 @@ function paintALittleLater() {
 <p>
   Sometimes the opposite can be true: You are using event delegation and you’re having a performance problem. Basically event delegation allows constant-complexity initialization time. However, the price of checking if an event is of interest has to be paid for every invocation of that event. This might come in expensive, especially for events that occur frequently like “mouseover” or even “mousemove”.
 </p>
-<h2 id="toc-typical-problems">
+<h2>
   Typical Problems and Solutions
 </h2>
 <h3>
@@ -643,7 +647,7 @@ function paintALittleLater() {
 <p>
   Another common problem is that your initialization code might create a lot of HTML. E.g. a jQuery plugin that transforms a select box into a bunch of divs because that is what the design people wanted in ignorance of UX best practices. If you really want your page to be fast, never do that. Instead deliver all the markup from the server side in its final form. This again has many problems so think hard whether the speed is worth the tradeoff.
 </p>
-<h2 id="toc-tools">
+<h2>
   Tools
 </h2>
 <ol>
@@ -668,9 +672,6 @@ function paintALittleLater() {
 <ol>
   <li>
     <a href="http://code.google.com/speed/">Google Speed</a>
-  </li>
-  <li>
-    <a href="http://wiki.forum.nokia.com/index.php/JavaScript_Performance_Best_Practices">http://wiki.forum.nokia.com/index.php/JavaScript_Performance_Best_Practices</a>
   </li>
   <li>
     <a href="http://paulirish.com/2009/perf/">Paul Irish on Performance</a>
