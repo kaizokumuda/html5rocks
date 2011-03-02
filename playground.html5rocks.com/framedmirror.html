@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html manifest="samples/html5_misc/offline.manifest">
 <!-- copyright (c) 2011 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -58,17 +57,16 @@
 <div id="container">
   <div class="pane-row" id="codeRow">
     <div class="pane" id="codeContainer">
-      <div class="pane-header">
+      <div class="pane-header" title="Change the code below and click the &#34;Run Code&#34; button to see the result!">
         <h2>Sample Code</h2>
-        <div id="demoTitle"></div>
         <div class="pane-buttons">
-          <button id="js-button" class="editor-button" onclick="is.toggleEditor('js');" title="Toggle between Javascript and HTML editing.">
+          <button id="js-button" class="editor-button" onclick="is.toggleEditor('js');" title="Toggle between Javascript, CSS and HTML editing.">
             <span>JavaScript</span>
           </button>
-          <button id="css-button" class="editor-button" onclick="is.toggleEditor('css');" title="Toggle between Javascript and HTML editing.">
+          <button id="css-button" class="editor-button" onclick="is.toggleEditor('css');" title="Toggle between Javascript, CSS and HTML editing.">
             <span>CSS</span>
           </button>
-          <button id="mixed-button" class="editor-button" style="margin-right: 4px" onclick="is.toggleEditor('mixed');" title="Toggle between Javascript and HTML editing.">
+          <button id="mixed-button" class="editor-button" style="margin-right: 4px" onclick="is.toggleEditor('mixed');" title="Toggle between Javascript, CSS and HTML editing.">
             <span class="html-icon icon-text">HTML File</span>
           </button>
         </div>
@@ -87,7 +85,7 @@
 
   <div class="pane-row" id="outputRow">
     <div class="pane" id="outputContainer">
-      <div class="pane-header">
+      <div class="pane-header" title="Change the code above and click the &#34;Run Code&#34; button to see the result!">
         <h2>Output</h2>
         <div class="pane-buttons">
           <button onClick="is.runBox.runCode();" title="Run this sample.">
