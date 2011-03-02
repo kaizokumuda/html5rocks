@@ -57,7 +57,7 @@ var div = $('<div>').load('/tutorials/ #index', function() {
     matches = matches.add(elem);
   });
 
-  matches = matches.splice(0, MAX_NUM_TUTS);
+  matches.splice(MAX_NUM_TUTS);
 
   $(matches).find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
 
