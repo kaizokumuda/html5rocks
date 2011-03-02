@@ -42,6 +42,7 @@ article header {
   border: none;
 }
 figure {
+  text-align: center;
   padding: 10px;
 }
 figcaption {

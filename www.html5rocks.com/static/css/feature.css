@@ -123,7 +123,7 @@ dd {
 .support th:nth-child(2), /*.firefox, */
 .support th:nth-child(3), /*.safari, */
 .support th:nth-child(4), /*.opera, */
-.support th:nth-child(5) /*.ie  */{ width: 13%;  }
+.support th:nth-child(5) /*.ie  */{ width: 13%; }
 
 .support th:nth-child(6), /*.ios_saf, */
 .support th:nth-child(7), /*.android, */
@@ -139,6 +139,11 @@ dd {
   .column .demos {
     text-align: center;
   }
+  .description img {
+    height: 100px;
+    width: 100px;
+    margin: 0 0 5px 5px;
+  }
   hgroup {
     border-top: 1px solid #ddd;
     padding: 5px;
@@ -147,5 +152,9 @@ dd {
   }
   hgroup > h3 {
     margin-top: 0;
+  }
+  .support table {
+    -webkit-transform: scale(0.67);
+    -webkit-transform-origin: 0 0;
   }
 }
