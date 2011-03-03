@@ -8,7 +8,6 @@ CACHE:
 /static/js/modernizr-1.7.min.js
 
 /static/css/base.min.css
-/static/css/prettify.min.css
 /static/css/mobile.min.css
 /static/css/index_page.min.css
 /static/css/index_page_mobile.min.css
@@ -29,5 +28,3 @@ FALLBACK:
 
 NETWORK:
 *
-
-# Mon Feb 28 11:53:23 PST 2011
