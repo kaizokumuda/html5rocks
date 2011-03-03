@@ -60,20 +60,21 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
   GPU acceleration works by offloading well-defined and specific tasks to special purpose hardware. The general scheme is that your document is broken down into multiple "layers" which are invariant to the aspects of your page that are accelerated. These layers are rendered using the traditional render pipeline. The GPU is then used to composite the layers onto a single page applying the "effects" that can be accelerated on the fly. A possible outcome is that an object that is animated on the screen does not require a single "relayout" of the page while the animation happens.
 </p>
 <p>
-  What you need to take away from that is that you need to make it easy for the rendering engine to identify when it can apply it's GPU acceleration magic. Consider the following example:
+  What you need to take away from that is that you need to make it easy for the rendering engine to identify when it can apply it's GPU acceleration magic. </p>
+<p>Consider the following example:
 </p>
 <blockquote>
   You want to animate an element in the browser from left to right. The traditional approach to is to set a JavaScript timer and then repeatedly setting the "left" property of the style object every N milliseconds.
 </blockquote>
 <div>
-<div id="domanim" style="border: 2px solid red;  width: 466px; position:relative; cursor: pointer;">
+<div id="domanim" style="border: 2px solid red;  width: 340px; position:relative; cursor: pointer;">
   <script style="display:block;">
   var elem = document.getElementById('domanim'), 
       left = 0;
   function move(){
-    left += 2;
+    left += 4;
     elem.style.left = left + 'px';
-    return left < 300;
+    return left < 430;
   }
   elem.addEventListener('click', function loop(){
     move() && setTimeout(loop, 1000 / 60);
@@ -89,7 +90,7 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
   Now, you simply define the final position of the object and then tell the browser to perform an animation to the final destination over a certain period of time.
 </blockquote>
 
-<div id="transanim" style="border: 2px solid red; width: 466px; position:relative; cursor: pointer;">
+<div id="transanim" style="border: 2px solid red; width: 340px; position:relative; cursor: pointer;">
   <style style="display:block;">
   #transanim { 
      -moz-transition: all 2s ease-out;  
@@ -101,7 +102,7 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
   var elem2 = document.getElementById('transanim');
   
   elem2.addEventListener('click', function loop(){
-    elem2.style.left = '300px';
+    elem2.style.left = '430px';
   }, false);
   </script>
 </div>
@@ -136,7 +137,7 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
   </li>
 </ol>
 <p>
-  Safari has similar runtime flags <a href="http://www.google.com/url?q=http%3A%2F%2Fmir.aculo.us%2F2011%2F02%2F08%2Fvisualizing-webkits-hardware-acceleration%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGh34AaRqiQ43N24Tgri8AqiPT7rA">described here</a>.
+  Safari has similar runtime flags <a href="http://mir.aculo.us/2011/02/08/visualizing-webkits-hardware-acceleration/">described here</a>.
 </p>
 <h3 id="toc-css3-transitions">
   CSS3 Transitions
@@ -144,10 +145,10 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
 <p>
   CSS Transitions make style animation trivial for everyone, but they also are a smart performance feature. Because a CSS transition is managed by the browser, the fidelity of its animation can be greatly improved, and in my cases hardware accelerated. Currently Webkit (Chrome, Safari, iOS) have hardware acellerated css transforms, but its coming quickly to other browsers and platforms.
 </p>
-<p>You can use <a href="https://developer.mozilla.org/en/CSS/CSS_transitions">&quot;transitionEnd&quot;</a> events in order to script this into powerful combinations, though right now, capturing all supported transition end events means watching "webkitTransitionEnd transitionend oTransitionEnd".
+<p>You can use <a href="https://developer.mozilla.org/en/CSS/CSS_transitions">&quot;transitionEnd&quot;</a> events in order to script this into powerful combinations, though right now, capturing all supported transition end events means watching <code>"webkitTransitionEnd transitionend oTransitionEnd"</code>.
 </p>
 <p>
-  Many libraries have now introduced animation APIs that leverage transitions if present and fall back to standard DOM style animation otherwise. scripty2, yui transition, jquery enhanced animate
+  Many libraries have now introduced animation APIs that leverage transitions if present and fall back to standard DOM style animation otherwise. <a href="http://scripty2.com/">scripty2</a>, <a href="http://developer.yahoo.com/yui/3/transition/">YUI transition</a>, <a href="http://playground.benbarnett.net/jquery-animate-enhanced/">jQuery animate enhanced</a>.
 </p>
 <h3 id="toc-css3-translate">
   CSS3 Translate
@@ -172,13 +173,15 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
 document.querySelector('#box').addEventListener('click', moveIt, false);
 
 function moveIt(evt) {
-
   var elem = evt.target;
+  
   if (Modernizr.csstransforms && Modernizr.csstransitions){
     // vendor prefixes omitted here for brevity
     elem.style.transition = 'all 3s ease-out';
     elem.style.transform = 'translateX(600px)';
+    
   } else {
+    // if an older browser, fall back to jQuery animate
     jQuery(elem).animate({ 'left': '600px'}, 3000);
   }
 }
@@ -244,7 +247,7 @@ function moveIt(evt) {
   Some functions get called more often than others. Profilers usually give you the time it took for all invocations to run as well as the average and minimum and maximum execution time.
 </p>
 <p>
-  <a href="http://code.google.com/chrome/devtools/docs/profiles.html">More Info</a>
+  For more details, check out the <a href="http://code.google.com/chrome/devtools/docs/profiles.html">Chrome Dev Tools docs on profiling</a>.
 </p>
 <h4>
   The DOM
@@ -749,7 +752,7 @@ function paintALittleLater() {
     <a href="http://code.google.com/speed/">Google Speed</a>
   </li>
   <li>
-    <a href="http://paulirish.com/2009/perf/">Paul Irish on Performance</a>
+    <a href="http://paulirish.com/2009/perf/">Paul Irish on jQuery Performance</a>
   </li>
   <li>
     <a href="http://www.slideshare.net/madrobby/extreme-javascript-performance">Extreme JavaScript Performance (Slide Deck)</a>

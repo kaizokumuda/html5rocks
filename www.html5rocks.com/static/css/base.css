@@ -177,7 +177,7 @@ code {
 }
 script, style {
   white-space: pre;
-  font: 13px Monaco, monospace;
+  font: 10px Monaco, monospace;
   color: #060;
 }
 b code {
