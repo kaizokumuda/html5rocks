@@ -1,4 +1,4 @@
-{% extends "../../../../templates/sample.html" %}
+{% extends "sample.html" %}
 
 {% block headauthor %}Eric Bidelman <e.bidelman@chromium.org>{% endblock %}
 {% block pageauthor %}{% profilelinks ebidelman %}{% endblock %}
@@ -128,7 +128,7 @@ function onInitFs(fs) {
 <b>window.requestFileSystem</b>(<b>window.PERSISTENT</b>, 5*1024*1024 /*5MB*/, onInitFs, errorHandler);
 </pre>
 
-  <p>The FileSystem specification also defines a synchronous API, <code><a href="http://dev.w3.org/2009/dap/file-system/file-dir-sys.html#using-localfilesystemsync">LocalFileSystemSync</code></a>
+  <p>The FileSystem specification also defines a synchronous API, <code><a href="http://dev.w3.org/2009/dap/file-system/file-dir-sys.html#using-localfilesystemsync">LocalFileSystemSync</a></code>
   interface that is intended to be used in <a href="/tutorials/#workers">Web Workers</a>.
   However, this tutorial will not cover the synchronous API.</p>
 
@@ -831,7 +831,9 @@ function initFS() {
   }, false);
 })();
 
-initFS();  // Initiate filesystem on page load.
+if (window.requestFileSystem) {
+  initFS();  // Initiate filesystem on page load.
+}
 </script>
 
 {% endblock %}

@@ -38,7 +38,7 @@ var tempJSON = [
         "spec": "http://dev.w3.org/html5/webstorage/#the-sessionstorage-attribute"
       }
     ]
-  },  
+  },
   {
     "category":"JavaScript APIs-Web SQL Database",
     "samples":[
@@ -182,7 +182,7 @@ var tempJSON = [
         "tutorial": "http://www.html5rocks.com/tutorials/dnd/basics/"
       }
     ]
-  },  
+  },
   {
     "category":"HTML",
     "samples":[
@@ -391,7 +391,7 @@ var tempJSON = [
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-flexbox/",
         "tutorial": "http://www.html5rocks.com/tutorials/flexbox/quick/"
-      },  
+      },
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/shadow.html",
         "files": ["samples/css/html5/shadow.css"],
@@ -399,6 +399,30 @@ var tempJSON = [
         "sampleName": "Text and Box Shadow",
         "tags": "",
         "spec": "http://www.w3.org/TR/2010/WD-css3-text-20101005/#text-shadow",
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-Quick hits with the Flexible Box Model",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/flexbox_basic.html",
+        "files": ["samples/css/tutorials/flexbox_basic.css"],
+        "editor": "css",
+        "sampleName": "Flexible Box Model: Basic Example",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-flexbox/",
+        "tutorial": "http://www.html5rocks.com/tutorials/flexbox/quick/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/flexbox_center_stage.html",
+        "files": ["samples/css/tutorials/flexbox_center_stage.css"],
+        "editor": "css",
+        "sampleName": "Flexible Box Model: Center Stage",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-flexbox/",
+        "tutorial": "http://www.html5rocks.com/tutorials/flexbox/quick/"
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"

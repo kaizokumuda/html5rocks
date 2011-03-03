@@ -2,12 +2,10 @@ $(function() {
   var div = $('<div>').load('/tutorials/ .sample', function() {
     var authorLinks = div.find('[data-id]');
     authorLinks.each(function(i, authorLink) {
-      var profileID = $(authorLink).attr('data-id')
+      var profileID = $(authorLink).attr('data-id');
       var ul = $('#' + profileID + ' .articles')[0];
 
-      var sample = $(authorLink).closest('.sample').find('h2 a');
-
-      $(ul).append('<li>' + sample[0].outerHTML + '</li>');
+      $(authorLink).closest('.sample').find('h2 a').clone().wrap('<li>').parent().appendTo(ul);
     });
   });
 

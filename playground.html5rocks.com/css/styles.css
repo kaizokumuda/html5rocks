@@ -77,35 +77,6 @@ button.negative:hover {
   margin:0 auto;
 }
 
-#whiteTopBar {
-  background-color: #fff;
-  border-bottom: 1px solid #427bd6;
-  font-size: 1em;
-  margin: 0;
-  padding: 16px 16px 4px 16px;
-  white-space: nowrap;
-}
-
-#loggedInBar {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 4px 8px 0 0;
-  font-family: arial, sans-serif;
-  font-size: 10pt;
-  font-weight: bold;
-  text-align: right;
-}
-
-#loggedInBar a {
-  font-weight: normal;
-}
-
-#googleCodeLogo {
-  vertical-align: middle;
-  display: inline-block;
-}
-
 h1 {
   vertical-align: middle;
   display: inline-block;
@@ -321,16 +292,6 @@ iframe {
   font-family: arial, sans-serif;
 }
 
-#header {
-  height: 40px;
-  padding-left: 15px;
-  margin: 0;
-  display: inline;
-  font-size: 20pt;
-  font-family: arial, sans-serif;
-  font-weight: bold;
-}
-
 .allowDebugCode {
   cursor: pointer;
   opacity: 1.0;
@@ -397,12 +358,6 @@ img.expand:hover {
   background-image: url(../images/pressed_plus.png); /* The filled Plus */
 }
 
-#footer {
-  margin: 24px 16px 24px 16px;
-  font-size: 12px;
-  text-align: center;
-}
-
 span.category div {
   margin-left: 15px;
   margin-left: expression('10px');
@@ -439,24 +394,6 @@ span.categoryClosed div, span.categoryClosed ul {
   height: 100%;
 }
 
-#outputDiv {
-  height: 100%;
-  background-color: white;
-}
-
-.codeMenuTD {
-  color: #4D4D4D;
-  font-size: 80%;
-  font-weight:normal;
-  width: 265px;
-}
-
-.greyLinks a {
-  color: #4D4D4D;
-  cursor: pointer;
-  font-weight:normal;
-  text-decoration: none;
-}
 
 /* ------ Autocomplete ------- */
 
@@ -592,10 +529,6 @@ li.ui-autocomplete-odd > a > strong, li.ui-autocomplete-even > a > strong {
   color: #fff;
 }
 
-.expanded {
-  display: block;
-}
-
 .pane-row-sizer + .pane-row {
   margin-top: 0;
 }
@@ -679,4 +612,10 @@ button.button-on, button.button-on:hover { background-image: none; background-co
 .inlineEl { display: inline; }
 .hidden { display: none; }
 
-#xbrowser_link { font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif; background-color: InfoBackground; border: 1px solid yellow; text-align: center; padding: 10px; }
+#xbrowser_link {
+  font: 75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+  background-color: InfoBackground;
+  border: 1px solid yellow;
+  text-align: center;
+  padding: 10px;
+}

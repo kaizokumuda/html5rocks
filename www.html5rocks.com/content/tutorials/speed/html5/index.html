@@ -1,11 +1,13 @@
-{% extends "../../../../templates/sample.html" %}
+{% extends "sample.html" %}
 
 {% block headauthor %}Malte Ubl <malteubl@google.com>{% endblock %}
 {% block pageauthor %}{% profilelinks malteubl %}{% endblock %}
 {% block headtitle %}Improving the Performance of your HTML5 App{% endblock %}
 {% block pagetitle %}Improving the Performance of your HTML5 App{% endblock %}
 {% block head %}
-
+<style>
+.hwaccel {  -webkit-transform: translateZ(0); -o-transform: translateZ(0); -moz-transform: translateZ(0); } /* our favorite trick */
+</style>
 {% endblock %}
 {% block pagebreadcrumb %}Improving the Performance of your HTML5 App{% endblock %}
 {% block date %}February 14, 2011{% endblock %}
@@ -67,7 +69,7 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
   You want to animate an element in the browser from left to right. The traditional approach to is to set a JavaScript timer and then repeatedly setting the "left" property of the style object every N milliseconds.
 </blockquote>
 <div>
-<div id="domanim" style="border: 2px solid red;  width: 340px; position:relative; cursor: pointer;">
+<div id="domanim" style="border: 2px solid red; width: 340px; position:relative; cursor: pointer;">
   <script style="display:block;">
   var elem = document.getElementById('domanim'), 
       left = 0;
@@ -161,10 +163,9 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
 </p>
 
 <pre class="prettyprint">
+&lt;div style="position:relative; height:120px;" class="hwaccel">
 
-&lt;div style="position:relative; height: 120px;" class="hwaccel">
-
-  &lt;div style="width:100px; height: 100px; background:papayaWhip; 
+  &lt;div style="padding:5px; width:100px; height:100px; background:papayaWhip;
               position:absolute;" id="box">
   &lt;/div>
 &lt;/div>
@@ -175,7 +176,7 @@ document.querySelector('#box').addEventListener('click', moveIt, false);
 function moveIt(evt) {
   var elem = evt.target;
   
-  if (Modernizr.csstransforms && Modernizr.csstransitions){
+  if (Modernizr.csstransforms && Modernizr.csstransitions) {
     // vendor prefixes omitted here for brevity
     elem.style.transition = 'all 3s ease-out';
     elem.style.transform = 'translateX(600px)';
@@ -188,29 +189,22 @@ function moveIt(evt) {
 &lt;/script>
 </pre>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
-
 <div style="position:relative; height: 120px;" class="hwaccel">
-
-  <div style="width:100px; height: 100px; background:papayaWhip; position:absolute;" id="translatebox">Click me to move me to the right</div>
-
+  <div style="padding:5px;width:100px; height: 100px; background:papayaWhip; position:absolute;" id="translatebox">Click me to move me to the right</div>
 </div>
 <script>
-
-document.querySelector('#translatebox').addEventListener('click', moveIt, false);
-
-
 function moveIt(evt) {
-
   var elem = evt.target;
-  if (Modernizr.csstransforms && Modernizr.csstransitions){
+
+  if (Modernizr.csstransforms && Modernizr.csstransitions) {
     elem.style.transition = elem.style.msTransition = elem.style.OTransition = elem.style.MozTransition = elem.style.WebkitTransition = 'all 3s ease-out';
     elem.style.transform = elem.style.msTransform = elem.style.OTransform = elem.style.MozTransform = elem.style.WebkitTransform = 'translateX(600px)';
   } else {
     jQuery(elem).animate({ 'left': '600px'}, 3000 );
   }
-  
 }
+
+document.querySelector('#translatebox').addEventListener('click', moveIt, false);
 </script>
 
 
@@ -220,13 +214,13 @@ function moveIt(evt) {
 
 
 <h3 id="toc-request-ani-frame">
-  requestAnimationFrame
+  window.requestAnimationFrame
 </h3>
 <p>
-  requestAnimationFrame was introduced by Mozilla and iterated on by Webkit with the goal of providing you a native API for running animations, whether they be DOM/CSS-based or on <code>&lt;canvas></code> or WebGL. The browser can optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. For example, JS-based animations synchronized with CSS transitions or SVG SMIL. Plus, <strong>if you&#039;re running the animation loop in a tab that&#039;s not visible, the browser won&#039;t keep it running</strong>, which means less CPU, GPU, and memory usage, leading to much longer battery life. 
+  <code>requestAnimationFrame</code> was introduced by Mozilla and iterated on by WebKit with the goal of providing you a native API for running animations, whether they be DOM/CSS-based or on <code>&lt;canvas></code> or WebGL. The browser can optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. For example, JS-based animations synchronized with CSS transitions or SVG SMIL. Plus, <strong>if you&#039;re running the animation loop in a tab that&#039;s not visible, the browser won&#039;t keep it running</strong>, which means less CPU, GPU, and memory usage, leading to much longer battery life. 
 </p>
 
-<p>For more details on how and why to use requestAnimationFrame, view Paul Irish's article <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/">requestAnimationFrame for smart animating</a>.</p>
+<p>For more details on how and why to use <code>requestAnimationFrame</code>, view Paul Irish's article <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/">requestAnimationFrame for smart animating</a>.</p>
 
 <h2 id="toc-profiling">
   Profiling
@@ -256,14 +250,14 @@ function moveIt(evt) {
   The performance of JavaScript has a strong influence in to how fluid and responsive your application will feel. It is important to understand that, while JavaScript profilers measure the execution time of your JavaScript, they also indirectly measure time which is spend in doing DOM operations. These DOM operations are often at the heart of your performance issues.
 </p>
 <pre class="prettyprint">
-  function drawArray(array) {
-   for(var i = 0; i &lt; array.length; i++) {
-     document.getElementById('test').innerHTML += array[i]
-   }
+function drawArray(array) {
+  for(var i = 0; i &lt; array.length; i++) {
+    document.getElementById('test').innerHTML += array[i]; // Wrong.
   }
+}
 </pre>
 <p>
-  E.g. in the code above almost no time is spend doing actual JavaScript. It is still very likely that the drawArray-function will show up in your profiles because it is interacting with the DOM in a very wasteful fashion.
+  E.g. in the code above almost no time is spent executing actual JavaScript. It is still very likely that the drawArray-function will show up in your profiles because it is interacting with the DOM in a very wasteful fashion.
 </p>
 <h4>
   Tips and Tricks
@@ -275,13 +269,13 @@ function moveIt(evt) {
   Anonymous functions are not easy to profile because they inherently don't have a name under which they could show up in the profiler. There are two ways to work around this:
 </p>
 <pre class="prettyprint">
-  $('.stuff').each(function() { ... });
+$('.stuff').each(function() { ... });
 </pre>
 <p>
   rewrite to:
 </p>
 <pre class="prettyprint">
-  $('.stuff').each(function workOnStuff() { ... });</code>
+$('.stuff').each(function workOnStuff() { ... });</code>
 </pre>
 <p>
   It is not commonly known that JavaScript supports naming function expressions. Doing this will make them show up perfectly in the profiler. There is one problem with this solution: The named expression actually puts the function name into the current lexical scope. This might clobber other symbols, so be careful.
@@ -290,9 +284,9 @@ function moveIt(evt) {
   WebKit based browsers also support the following way to name a function:
 </p>
 <pre class="prettyprint">
-  var fn = function() { ... };
-  $('.stuff').each(fn);
-  fn.displayName = 'workOnStuff';
+var fn = function() { ... };
+$('.stuff').each(fn);
+fn.displayName = 'workOnStuff';
 </pre>
 <p>
   Unfortunately this <a href="http://code.google.com/p/fbug/issues/detail?id=1811">does not work in Firebug.</a> 
@@ -310,14 +304,14 @@ function moveIt(evt) {
   <li>
     The evil getting-things-done method: add statements in the form of named self calling functions to your code. If you are a little careful this does not change the semantics and it makes parts of your function show up as individual functions in the profiler:
     <pre class="prettyprint">
-    function myLongFunction() {
-      ...
-      (function doAPartOfTheWork() {
-        ...
-      })();
-      ...
-    }
-    </pre>
+function myLongFunction() {
+  ...
+  (function doAPartOfTheWork() {
+    ...
+  })();
+  ...
+}
+</pre>
     Don't forget to remove these extra functions after profiling is done; or even use them as a starting point to refactor your code.
   </li>
 </ol>
@@ -330,9 +324,9 @@ function moveIt(evt) {
 <p>
   The timeline view can create an immense amount of information. You should thus try to create minimal test cases that you can execute independently.
 </p>
-<p>
+<figure>
   <img height="212" src="images/image01.png" width="536">
-</p>
+</figure>
 <p>
   The image above shows the output of the timeline view for a very simple script. The left pane shows the operations performed by the browser in chronical order, while the timeline in the right pane shows the actual time consumed by an individual operation.
 </p>
@@ -552,15 +546,15 @@ function paintFast() {
 <p>
   Executing the function paintSlow() from above creates this image:
 </p>
-<p>
+<figure>
   <img height="212" src="images/image01.png" width="536">
-</p>
+</figure>
 <p>
   Switching to the faster implementation yields this image:
 </p>
-<p>
+<figure>
   <img height="173" src="images/image00.png" width="475">
-</p>
+</figure>
 <p>
   These images show that reordering the way your code accesses the DOM can greatly enhance render performance. In this case the original code has to recalculate styles and layout the page twice to create the same result. Similar optimization can be applied to basically all "real world" code and yield some really dramatic results.
 </p>
@@ -597,10 +591,10 @@ function paintFast() {</code>
   $('#otherThing1').css('height', '20px');
   $('#otherThing2').css('height', '20px');
 }
-	</pre>
-<p>
+</pre>
+<figure>
   <img height="173" src="images/image00.png" width="475">
-</p>
+</figure>
 <p>
   Lets add some delay:
 </p>
@@ -614,9 +608,9 @@ function paintALittleLater() {
   }, 10)
 }
 </pre>
-<p>
+<figure>
   <img height="234" src="images/image02.png" width="360">
-</p>
+</figure>
 <p>
   The delayed version shows that the browser paints twice although the two changes to the page are only 1/100 of a second a part.
 </p>
@@ -759,4 +753,5 @@ function paintALittleLater() {
   </li>
 </ol>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
 {% endblock %}

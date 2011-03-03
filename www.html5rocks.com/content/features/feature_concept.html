@@ -1,23 +1,20 @@
-{% extends "../../templates/base.html" %}
+{% extends "base.html" %}
 
 {% block headtitle %}Feature{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="/static/css/feature.css">
+<link rel="stylesheet" href="/static/css/feature{% if prod %}.min{% endif %}.css">
 {% endblock %}
 
 
 {% block body %}
-{% include "../../templates/header.html" %}
-
 <h2>{% block h2title %}Feature{% endblock %}</h2>
 <div class="description">{% block description %}{% endblock %}</div>
 
-
 {% block support %}
-<div class="support" style="display:none;">
-  <h4>loading browser support....</h4>
-  <table style="visibility:hidden;">
+<div class="support" style="display:none">
+  <h4><i>loading browser support data...</i></h4>
+  <table>
     <thead>
       <tr>
         <th>Chrome</th>
@@ -33,7 +30,8 @@
     </thead>
     <tfoot>
       <tr>
-        <td colspan=9>Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a></td>
+        <td colspan="9">Data courtesy of <a href="http://caniuse.com/">caniuse.com</a>
+        and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a></td>
       </tr>
     </tfoot>
     <tbody>
@@ -55,16 +53,10 @@
 
 {% block contents %}{% endblock %}
 
-{% include "../../templates/footer.html" %}
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.js"></script>
-
 <script>
-
- var caniusefeatures = '{% block caniuse %}{% endblock %}'.split(','),
-     features = '{% block tuttags %}{% endblock %}';
-
+ var caniusefeatures = '{% block caniuse %}{% endblock %}'.split(',');
+ var features = '{% block tuttags %}{% endblock %}';
 </script>
-<script src="/static/js/feature.js"></script>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script src="/static/js/feature{% if prod %}.min{% endif %}.js"></script>
 {% endblock %}

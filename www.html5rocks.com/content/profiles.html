@@ -1,20 +1,19 @@
-{% extends "../templates/base.html" %}
+{% extends "base.html" %}
 {% block headtitle %}Author Profiles{% endblock %}
 {% block head %}
-<link href="http://fonts.googleapis.com/css?family=Droid+Sans|Tangerine:regular,bold|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic" rel="stylesheet" type="text/css" />
-<link type="text/css" rel="stylesheet" href="/static/css/profiles.css"/>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Tangerine:regular,bold|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="/static/css/profiles{% if prod %}.min{% endif %}.css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script src="/static/js/profiles{% if prod %}.min{% endif %}.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollTo-min.js"></script>
-<script src="/static/js/profiles.js"></script>
 {% endblock %}
 {% block onload %}scrollToProfile();{% endblock %}
 {% block body %}
-  {% include "../templates/header.html" %}
   <nav>
     <p class="breadcrumb">
       <a class="buttonlink" href="/">
         <span>Home</span>
-      </a>&gt; Profiles
+      </a >&gt; {{ current.capitalize }}
     </p>
   </nav>
   <article>
@@ -74,6 +73,7 @@
             <ul class="articles"></ul>
           </div>
         </section>
+        {% if not is_mobile %}
         <section class="map">
           {% if profile.address.lat and profile.address.lon %}
           <div itemprop="geo">
@@ -81,12 +81,12 @@
           </div>
           {% endif %}
         </section>
+        {% endif %}
       </article>
 
       {% endfor %}
 
     </div>
   </article>
-  {% include "../templates/footer.html" %}
 {% endblock %}
 

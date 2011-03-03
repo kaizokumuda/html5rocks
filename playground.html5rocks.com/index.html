@@ -39,7 +39,7 @@
   <script>
     {% if usersSamplesJSON %}
 
-      var userJSON = {{ usersSamplesJSON }};
+    var userJSON = {{ usersSamplesJSON }};
     if (typeof userJSON != 'undefined' && userJSON.length) {
       codeArray = userJSON.concat(codeArray);
     }
@@ -60,7 +60,7 @@
     }, false);
   </script>
   <style type="text/css" media="screen">
-    section, article, header, footer {
+    header, footer {
       display: block;
     }
     header {
@@ -74,9 +74,6 @@
       padding: 20px 0;
       font-size: 12px;
       text-align: center;
-    }
-    article header {
-      border: none;
     }
     h1#title {
       cursor: pointer;
@@ -168,22 +165,22 @@
 <body>
 <div id="container">
   <header id="section-header"> 
-    <h1 id="title"><span class="normal">HTML</span><span class="five">5</span><span class="rocks">Rocks</span></h1> 
-    <nav> 
-      <ul id="user-info"> 
+    <h1 id="title"><span class="normal">HTML</span><span class="five">5</span><span class="rocks">Rocks</span></h1>
+    <nav>
+      <ul id="user-info">
         <li>{% if userEmail %} {{ userEmail }} | <a href="{{ logoutUrl }}">Sign out</a> {% else %} <a href="{{ loginUrl }}">Sign in</a> {% endif %}</li>
-      </ul> 
+      </ul>
       
-      <ul> 
+      <ul>
         <li><a data-section="presentation" href="http://slides.html5rocks.com">Presentation</a></li>
         <li><a data-section="playground" class="current" href="/">Playground</a></li>
         <li><a data-section="studio" href="http://studio.html5rocks.com">Studio</a></li>
         <li><a data-section="tutorials" href="http://www.html5rocks.com/tutorials/">Tutorials</a></li>
         <li><a data-section="resources" href="http://www.html5rocks.com/resources.html">Resources</a></li>
-      </ul> 
-    </nav> 
+      </ul>
+    </nav>
   </header>
-  
+
   <div class="pane-row" id="codeRow">
     <div class="pane" id="selectCodeContainer">
       <div class="pane-header">
@@ -194,19 +191,19 @@
         <div id="selectCode" class="pane-row-heighter"></div>
       </div>
     </div>
-  
+
     <div class="pane" id="codeContainer">
       <div class="pane-header">
         <h2>Edit Code</h2>
         <div id="demoTitle"></div>
         <div class="pane-buttons">
-          <button id="js-button" class="editor-button" onclick="is.toggleEditor('js');" title="Toggle between Javascript and HTML editing.">
+          <button id="js-button" class="editor-button" onclick="is.toggleEditor('js');" title="Toggle between Javascript, CSS and HTML editing.">
             <span>JavaScript</span>
           </button>
-          <button id="css-button" class="editor-button" onclick="is.toggleEditor('css');" title="Toggle between Javascript and HTML editing.">
+          <button id="css-button" class="editor-button" onclick="is.toggleEditor('css');" title="Toggle between Javascript, CSS and HTML editing.">
             <span>CSS</span>
           </button>
-          <button id="mixed-button" class="editor-button" style="margin-right: 4px" onclick="is.toggleEditor('mixed');" title="Toggle between Javascript and HTML editing.">
+          <button id="mixed-button" class="editor-button" style="margin-right: 4px" onclick="is.toggleEditor('mixed');" title="Toggle between Javascript, CSS and HTML editing.">
             <span class="html-icon icon-text">HTML File</span>
           </button>
           <button id="linksMenuButton" class="dropdown" title="View the documentation for this sample.">
@@ -355,7 +352,7 @@ iFrame fixes it.
 <![endif]-->
 
 <script>
-  var options = {}
+  var options = {};
   if (!location.host.match(/localhost/) && !location.href.match(/\/\/172/)) {
     options.defaultSample = true;
   }
@@ -395,7 +392,7 @@ iFrame fixes it.
     content: '',
     textWrapping: false,
     lineNumbers: true,
-    breakPoints: true,
+    breakPoints: false,
     onLoad: function() {}
   });
 

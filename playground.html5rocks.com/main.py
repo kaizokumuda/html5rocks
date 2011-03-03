@@ -180,7 +180,37 @@ class Main(webapp.RequestHandler):
 
   def head(self):
     self.response.out.write('')
+
+  def getFramed(self):
+    # get height of 'edit' (the upper frame area)
+    height_of_upper = self.request.get('hu')
+
+    # get height of 'runFrame' (the lower frame area)
+    height_of_lower = self.request.get('hl')
+
+    self.template_values = {}
+    sample_srcs = ['/apis/ajax/playground/getTOC']
+    self.template_values['sample_srcs'] = sample_srcs
+    if height_of_upper and height_of_upper.isdigit() and int(height_of_upper) > 0:
+      self.template_values['height_of_upper'] = height_of_upper
+    if height_of_lower and height_of_lower.isdigit():
+      self.template_values['height_of_lower'] = height_of_lower
+    t = datetime.datetime.now()
+    todayInSeconds = time.mktime(t.timetuple())
+    todayFormatted = datetime.datetime.fromtimestamp(todayInSeconds)
+    todayFormatted = todayFormatted.strftime("%a, %d %b %Y %I:%M:%S")
+
+    self.response.headers['Expires'] = "Fri, 01 Jan 1990 00:00:00 GMT"
+    self.response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+
+    path = os.path.join(os.path.dirname(__file__), 'framedmirror.html')
+    self.response.out.write(template.render(path, self.template_values)) 
+    
   def get(self):
+    mode = self.request.get('mode')
+    if mode == 'frame':
+      return self.getFramed()
+
     apiTypes = getTypes(self)
     expanded = getExpanded(self)
     cgiArgsDict = {}
