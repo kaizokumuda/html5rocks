@@ -6,7 +6,7 @@
 {% block pagetitle %}Improving the Performance of your HTML5 App{% endblock %}
 {% block head %}
 <style>
-.hwaccel {  -webkit-transform: translateZ(0); -o-transform: translateZ(0); -moz-transform: translateZ(0); } /* our favorite trick */
+.hwaccel {  -webkit-transform: translateZ(0); -o-transform: translateZ(0); -moz-transform: translateZ(0); transform: translateZ(0); } /* our favorite trick */
 </style>
 {% endblock %}
 {% block pagebreadcrumb %}Improving the Performance of your HTML5 App{% endblock %}
@@ -198,6 +198,7 @@ function moveIt(evt) {
 
   if (Modernizr.csstransforms && Modernizr.csstransitions) {
     elem.style.transition = elem.style.msTransition = elem.style.OTransition = elem.style.MozTransition = elem.style.WebkitTransition = 'all 3s ease-out';
+    document.body.clientWidth; // Opera needs a reflow forced. Reported as DSK-330035
     elem.style.transform = elem.style.msTransform = elem.style.OTransform = elem.style.MozTransform = elem.style.WebkitTransform = 'translateX(600px)';
   } else {
     jQuery(elem).animate({ 'left': '600px'}, 3000 );
@@ -206,7 +207,6 @@ function moveIt(evt) {
 
 document.querySelector('#translatebox').addEventListener('click', moveIt, false);
 </script>
-
 
 <p>We use Modernizr to feature test for CSS 2D Transforms and CSS Transitions, if so we're going to use translate to shift the position. If this is animated using a transition there is a good chance the browser can hardware accellerate it. To give the browser another push in the right direction we'll use the "magic CSS bullet" from above.</p>
 
