@@ -175,6 +175,11 @@ code {
   font: 13px Monaco, monospace;
   color: #060;
 }
+script, style {
+  white-space: pre;
+  font: 13px Monaco, monospace;
+  color: #060;
+}
 b code {
   font: bold 13px Monaco, monospace;
   color: #060;
@@ -390,3 +395,8 @@ figcaption samp {
 .support th:nth-child(7), /*.android, */
 .support th:nth-child(8), /*.op_mini, */
 .support th:nth-child(9) /*.op_mob  */{ width: 8.25%; font-size: 12px;}
+
+/* our favorite trick */
+.hwaccel {  -webkit-transform: translateZ(0); }
+
+

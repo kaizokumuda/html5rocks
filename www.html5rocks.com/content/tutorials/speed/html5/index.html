@@ -65,12 +65,47 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
 <blockquote>
   You want to animate an element in the browser from left to right. The traditional approach to is to set a JavaScript timer and then repeatedly setting the "left" property of the style object every N milliseconds.
 </blockquote>
+<div>
+<div id="domanim" style="border: 2px solid red;  width: 466px; position:relative; cursor: pointer;">
+  <script style="display:block;">
+  var elem = document.getElementById('domanim'), 
+      left = 0;
+  function move(){
+    left += 2;
+    elem.style.left = left + 'px';
+    return left < 300;
+  }
+  elem.addEventListener('click', function loop(){
+    move() && setTimeout(loop, 1000 / 60);
+  }, false);
+  </script>
+</div>
+
+</div>
 <p>
   While this works, the browser doesn't really know that you are performing something that is supposed to be perceived as smooth animation by a human being. Consider what happens when you achieve the same visual appearance using CSS3 transitions instead:
 </p>
 <blockquote>
   Now, you simply define the final position of the object and then tell the browser to perform an animation to the final destination over a certain period of time.
 </blockquote>
+
+<div id="transanim" style="border: 2px solid red; width: 466px; position:relative; cursor: pointer;">
+  <style style="display:block;">
+  #transanim { 
+     -moz-transition: all 2s ease-out;  
+       -o-transition: all 2s ease-out;  
+  -webkit-transition: all 2s ease-out;  
+          transition: all 2s ease-out;  
+  }</style>
+  <script style="display:block;">
+  var elem2 = document.getElementById('transanim');
+  
+  elem2.addEventListener('click', function loop(){
+    elem2.style.left = '300px';
+  }, false);
+  </script>
+</div>
+
 <p>
   How the browser implements this animation is completely hidden from the developer. This in turn means that the browser is able to apply tricks such as GPU acceleration to achieve the defined goal.
 </p>
@@ -125,8 +160,13 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
 </p>
 
 <pre class="prettyprint">
-&lt;div style="width:100px; height: 200px; background:red;
-position:absolute; left: 20px; top: 30px; z-index: 100" id="box">&lt;/div>
+
+&lt;div style="position:relative; height: 120px;" class="hwaccel">
+
+  &lt;div style="width:100px; height: 100px; background:papayaWhip; 
+              position:absolute;" id="box">
+  &lt;/div>
+&lt;/div>
 
 &lt;script>
 document.querySelector('#box').addEventListener('click', moveIt, false);
@@ -134,22 +174,57 @@ document.querySelector('#box').addEventListener('click', moveIt, false);
 function moveIt(evt) {
 
   var elem = evt.target;
-  if (Modernizr.csstransitions){
-    elem.style.transition 'left 3s ease-out';
-    elem.style.left = '700px';
+  if (Modernizr.csstransforms && Modernizr.csstransitions){
+    // vendor prefixes omitted here for brevity
+    elem.style.transition = 'all 3s ease-out';
+    elem.style.transform = 'translateX(600px)';
   } else {
-    jQuery(elem).animate({ 'left': '700px'}, 3000, 'easeOut');
+    jQuery(elem).animate({ 'left': '600px'}, 3000);
   }
 }
 &lt;/script>
 </pre>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+
+<div style="position:relative; height: 120px;" class="hwaccel">
+
+  <div style="width:100px; height: 100px; background:papayaWhip; position:absolute;" id="translatebox">Click me to move me to the right</div>
+
+</div>
+<script>
+
+document.querySelector('#translatebox').addEventListener('click', moveIt, false);
+
+
+function moveIt(evt) {
+
+  var elem = evt.target;
+  if (Modernizr.csstransforms && Modernizr.csstransitions){
+    elem.style.transition = elem.style.msTransition = elem.style.OTransition = elem.style.MozTransition = elem.style.WebkitTransition = 'all 3s ease-out';
+    elem.style.transform = elem.style.msTransform = elem.style.OTransform = elem.style.MozTransform = elem.style.WebkitTransform = 'translateX(600px)';
+  } else {
+    jQuery(elem).animate({ 'left': '600px'}, 3000 );
+  }
+  
+}
+</script>
+
+
+<p>We use Modernizr to feature test for CSS 2D Transforms and CSS Transitions, if so we're going to use translate to shift the position. If this is animated using a transition there is a good chance the browser can hardware accellerate it. To give the browser another push in the right direction we'll use the "magic CSS bullet" from above.</p>
+
+<p>If our browser is less capable, we'll use jQuery normally to move our element. You can pick up the <a href="http://lrbabe.github.com/jquery.transform.js/index.html">jQuery Transform polyfill plugin</a> by Louis-R&eacute;mi Bab&eacute; to make this whole thing automatic.</p>
+
+
 <h3 id="toc-request-ani-frame">
   requestAnimationFrame
 </h3>
 <p>
-  use it.
+  requestAnimationFrame was introduced by Mozilla and iterated on by Webkit with the goal of providing you a native API for running animations, whether they be DOM/CSS-based or on <code>&lt;canvas></code> or WebGL. The browser can optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. For example, JS-based animations synchronized with CSS transitions or SVG SMIL. Plus, <strong>if you&#039;re running the animation loop in a tab that&#039;s not visible, the browser won&#039;t keep it running</strong>, which means less CPU, GPU, and memory usage, leading to much longer battery life. 
 </p>
+
+<p>For more details on how and why to use requestAnimationFrame, view Paul Irish's article <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/">requestAnimationFrame for smart animating</a>.</p>
+
 <h2 id="toc-profiling">
   Profiling
 </h2>
