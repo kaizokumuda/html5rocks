@@ -1,20 +1,18 @@
-{% extends "../templates/base.html" %}
+{% extends "base.html" %}
 
-{% block headtitle %}Home{% endblock %}
+{% block headtitle %}Resources{% endblock %}
 
 {% block head %}
-  <style type="text/css" media="screen">
+  <style media="screen">
     .resource-list {
       list-style: none;
       padding-left: 0;
       overflow: hidden;
     }
-    .resource-list li {
+    .resource-list li { 
       padding-top: 10px;
-      padding-bottom: 0;
       width: 30%;
       float: left;
-      border-bottom: none;
       height: 190px;
       margin: -10px 10px 10px 0;
     }
@@ -30,25 +28,26 @@
       width: auto;
       height: 133px;
     }
-    .resource-category {
-      font-size: 20px;
-      font-weight: bold;
-      font-family: 'Droid Sans';
-      clear: both;
-      color: black;
-      display: block;
+    .section-header {
       border-bottom: 1px solid #ddd;
-      padding: 34px 0px 17px 0;
-      text-transform: uppercase;
+    }
+
+    @media only screen and (max-width: 640px) { /*iPhone, Android*/
+      .resource-list li {
+        float: none;
+        margin: 10px auto;
+        padding-top: 0;
+        width: auto;
+        height: auto;
+      }
     }
   </style>
 {% endblock %}
 
 {% block body %}
-{% include "../templates/header.html" %}
 <div>
   <section>
-    <h2 class="resource-category">Reference</h2>
+    <h2 class="section-header">Reference</h2>
     <ul class="resource-list">
       <li>
         <a href="http://html5readiness.com"><img data-resource="http://html5readiness.com" src="static/images/screenshots/html5readiness.png" /></a>
@@ -81,7 +80,6 @@
         <span class="buttonlink"><a href="http://dev.chromium.org/developers/web-platform-status">Chrome Implementation Status</a></span>
         : Follow the engineering effort for cutting edge support from the Chrome team.
       </li>
-
       <li>
         <a href="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(HTML5)"><img data-resource="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(HTML5)" src="static/images/screenshots/wikipedia.png" /></a>
         <span class="buttonlink"><a href="http://en.wikipedia.org/wiki/Comparison_of_layout_engines_(HTML5)">HTML5: Comparison of Layout Engines</a></span>
@@ -107,7 +105,7 @@
     </ul>
   </section>
 
-  <h2 class="resource-category">Documentation</h2>
+  <h2 class="section-header">Documentation</h2>
   <ul class="resource-list">
     <li>
       <a href="http://dev.w3.org/html5/spec-author-view/"><img data-resource="http://dev.w3.org/html5/spec-author-view/" src="static/images/screenshots/w3devview.png" /></a>
@@ -139,9 +137,8 @@
 
   </ul>
 
-
   <section>
-    <h2 class="resource-category">Tools</h2>
+    <h2 class="section-header">Tools</h2>
     <ul class="resource-list">
       <li>
         <a href="http://www.modernizr.com/"><img data-resource="http://www.modernizr.com/" src="static/images/screenshots/modernizr.png" /></a>
@@ -153,22 +150,16 @@
         <span class="buttonlink"><a href="http://code.google.com/p/html5shiv/">html5 shiv</a></span>
         : Javascript patch to make IE support, and print, the new tag elements.
       </li>
-
-
-        <li>
-          <a href="http://html5boilerplate.com/"><img data-resource="http://html5boilerplate.com/" src="static/images/screenshots/html5boilerplate.png" /></a>
-          <span class="buttonlink"><a href="http://html5boilerplate.com/">HTML5 Boilerplate</a></span>
-          : An set of HTML/CSS/JS templates with best practices for HTML5 and front-end dev built in.
-        </li>
-
-
-        <li>
-          <a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills"><img data-resource="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills" src="static/images/screenshots/polyfills.png" /></a>
-          <span class="buttonlink"><a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills">HTML5 Cross-browser Polyfills</a></span>
-          : The collection of scripts that enable HTML5 features in all browsers.
-        </li>
-
-
+      <li>
+        <a href="http://html5boilerplate.com/"><img data-resource="http://html5boilerplate.com/" src="static/images/screenshots/html5boilerplate.png" /></a>
+        <span class="buttonlink"><a href="http://html5boilerplate.com/">HTML5 Boilerplate</a></span>
+        : An set of HTML/CSS/JS templates with best practices for HTML5 and front-end dev built in.
+      </li>
+      <li>
+        <a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills"><img data-resource="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills" src="static/images/screenshots/polyfills.png" /></a>
+        <span class="buttonlink"><a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills">HTML5 Cross-browser Polyfills</a></span>
+        : The collection of scripts that enable HTML5 features in all browsers.
+      </li>
       <li>
         <a href="http://css-tricks.com/examples/ButtonMaker/"><img data-resource="http://css-tricks.com/examples/ButtonMaker/" src="static/images/screenshots/buttongen.png" /></a>
         <span class="buttonlink"><a href="http://css-tricks.com/examples/ButtonMaker/">CSS Button Maker</a></span>
@@ -213,13 +204,12 @@
   </section>
 
   <section>
-    <h2 class="resource-category">Community</h2>
+    <h2 class="section-header">Community</h2>
     <ul class="resource-list">
-    <!--  <li>
+      <!--<li>
         <a href="http://html5watch.tumblr.com/"><img data-resource="http://html5watch.tumblr.com/" src="static/images/screenshots/html5watch.png" /></a>
         <span class="buttonlink"><a href="http://html5watch.tumblr.com/">HTML5 Watch</a></span>
-      </li>  -->
-
+      </li>-->
       <li>
         <a href="http://html5doctor.com/"><img data-resource="http://html5doctor.com/" src="static/images/screenshots/doctor.png" /></a>
         <span class="buttonlink"><a href="http://html5doctor.com/">HTML5 Doctor</a></span>
@@ -228,7 +218,6 @@
         <a href="http://blog.whatwg.org"><img data-resource="http://blog.whatwg.org" src="static/images/screenshots/whatwgblog.png" /></a>
         <span class="buttonlink"><a href="http://blog.whatwg.org">WhatWG Blog</a></span>
       </li>
-
       <li>
         <a href="http://ajaxian.com/"><img data-resource="http://ajaxian.com/" src="static/images/screenshots/ajaxian.png" /></a>
         <span class="buttonlink"><a href="http://ajaxian.com/">Ajaxian</a></span>
@@ -266,7 +255,7 @@
     </ul>
   </section>
   <section>
-    <h2 class="resource-category">Books</h2>
+    <h2 class="section-header">Books</h2>
     <ul class="resource-list book-list">
       <li>
         <a href="http://www.amazon.com/HTML5-Up-Running-Mark-Pilgrim/dp/0596806027"><img data-resource="http://www.amazon.com/HTML5-Up-Running-Mark-Pilgrim/dp/0596806027" src="static/images/screenshots/book-pilgrim.png" /></a>
@@ -291,6 +280,4 @@
     </ul>
   </section>
 </div>
-
-  {% include "../templates/footer.html" %}
 {% endblock %}

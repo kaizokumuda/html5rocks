@@ -4,11 +4,17 @@
 
 {% block head %}
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
-  <link rel="stylesheet" href="/static/css/samples_index.css" />
+  <link rel="stylesheet" media="screen" href="/static/css/samples_index{% if prod %}.min{% endif %}.css" />
 {% endblock %}
 
 {% block body %}
-  {% include "header.html" %}
+  <nav>
+    <p class="breadcrumb">
+      <a class="buttonlink" href="/">
+        <span>Home</span>
+      </a >&gt; {{ current.capitalize }}
+    </p>
+  </nav>
   <section>
     <div id="filter" class="hidden">
       Currently filtering by tag <span id="filter_tag"></span>.
@@ -34,6 +40,7 @@
     <div class="tag">geolocation</div>
     <div class="tag">graphics</div>
     <div class="tag">indexeddb</div>
+    <div class="tag">mobile</div>
     <div class="tag">multimedia</div>
     <div class="tag">notifications</div>
     <div class="tag">offline</div>
@@ -48,14 +55,111 @@
     <div class="tag">websockets</div>
     <div class="tag">workers</div>
     <!-- ___H5R_FILTERS___ -->
+<div class="tag">performance</div>
+<div class="tag">canvas</div>
+<div class="tag">css</div>
+<div class="tag">presentation</div>
   </aside>
 
   <div id="index">
     <a href="http://feeds.feedburner.com/html5rocks">
-      <img src="/static/images/feed_icon16x16.png" width="16" height="16" />
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0
+U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJpSURBVDjLfVNJT1NRGL0/wY0/wonaEesO
+AxoTF4bEpY1GFGGBqEUhggjYaCVIcIKC1TiHiCEBiXEhVdm4EDaaKI2WofTRlqbYR8sbOhzfd5v3
+tEK8i5d3F+fcM3wf+3x065bZc9t6F5rNCLeYsXTJgkibBUK7FcsdVkS7bIh57Ihfs2PFa0fihgOx
+6w4QhrCMfmKXnYi4y7DcbEK8zYxEhwVJjxW/vDaIPXak+xxYv1MOqX8PlEEn1PtOKP4KTsLoZQLH
+vQeRfjeAzPsBiE9O/Rec9e+F7HMiqiljJJteXvXX4O9TkEUon4awPlS5KThzq5xbY+SZZCf7DkGa
+8kH9Mo58SvjDpKwh+/biBnCq245opw2MAtvMszxah0IiaPDkPl4tASc9Nh40ow+B089ruexceBrq
+VC/kB5Vcdj44YZDIr5sM8Eq71larBYyqopczw6dLMuDSR11cdm52wshltaeCg6MtVLtGQD3rsqVH
+h6FOdqEgCgaJOuLisvVcMgEfBwtuExYvmMEoyQ1VPd5vSC9oQPH2PqRHzhfvksjB4YYyLLh3g9GE
+6eD83AcUhBkemPKwylCSHrvCZROYTtR7BPP1uzB3ViOg8SSwOl5v2M9HprlsOXCz6ORbgMuWvk7y
+e/KlF6GTOxE6YwKj2SbZ2eFq7pmOOvOCp732tJbfs8J3Ljv1pr9IMHYXP47vwM8GjYAWQx8S5Vk1
+pFd1JVUlB2uQuHeCe15qPQCh+xjmm6oQdG1HqFGzQAtBi/HvkOhV6YGRZ5JNLxN4sbG4kUxfZ1oM
+aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height="16" />
     </a>
 
-      <!-- ___H5R_NEW_SAMPLE___ -->
+    <!-- ___H5R_NEW_SAMPLE___ -->
+
+      <article class="sample">
+        <h2 id="mobilizing-site" data-pubdate="2011-03-03">
+          <a href="/mobile/mobifying.html">"Mobifying" Your HTML5 Site</a>
+        </h2>
+        <div>
+          <span class="date">March 3, 2011 &nbsp; By: {% simpleprofilelink ebidelman %}</span>
+          <span class="tag">mobile</span>
+        </div>
+        <div class="summary">
+          A guide on how to create a mobile version of an existing HTML5 website. This study
+          looks at what was required to make html5rocks.com friendly to mobile users.
+        </div>
+        <div class="footer_links">
+          <span class="buttonlink">
+            <a href="/mobile/mobifying.html">View tutorial</a> &rArr;
+          </span>
+          <span class="browser_logos">
+            <span class="opera supported"></span>
+            <span class="ie supported"></span>
+            <span class="safari supported"></span>
+            <span class="ff supported"></span>
+            <span class="chrome supported"></span>
+          </span>
+        </div>
+      </article>
+
+      <article class="sample">
+        <h2 id="html5-canvas-text-effects" data-pubdate="2011-03-01">
+          <a href="/tutorials/canvas/texteffects/">Typographic effects in canvas</a>
+        </h2>
+        <div>
+          <span class="date">March 1, 2011 &nbsp; By: {% simpleprofilelink mdeal %}</span>
+          <span class="tag">canvas</span>
+          <span class="tag">webfonts</span>
+          <span class="tag">graphics</span>
+        </div>
+        <div class="summary">
+          Effects in &lt;canvas&gt;; inner/outer shadows, neon-glows, reflections, space-age, pattern/gradient overlays, stereoscopic imaging, and other text/vector-effects&hellip;
+        </div>
+        <div class="footer_links">
+          <span class="buttonlink">
+            <a href="/tutorials/canvas/texteffects/">View tutorial</a> &rArr;
+          </span>
+          <span class="browser_logos">
+            <span class="opera supported"></span>
+            <span class="ie"></span>
+            <span class="safari supported"></span>
+            <span class="ff supported"></span>
+            <span class="chrome supported"></span>
+          </span>
+        </div>
+      </article>
+
+      <article class="sample">
+        <h2 id="improving-the-performance-of-your-html5-app" data-pubdate="2011-02-14">
+          <a href="/tutorials/speed/html5/">Improving the Performance of your HTML5 App</a>
+        </h2>
+        <div>
+          <span class="date">February 14, 2011 &nbsp; By: {% simpleprofilelink malteubl %}</span>
+          <span class="tag">performance</span>
+          <span class="tag">canvas</span>
+          <span class="tag">css</span>
+          <span class="tag">presentation</span>
+        </div>
+        <div class="summary">
+          Optimization strategies and techniques for HTML5 applications.
+        </div>
+        <div class="footer_links">
+          <span class="buttonlink">
+            <a href="/tutorials/speed/html5/">View tutorial</a> &rArr;
+          </span>
+          <span class="browser_logos">
+            <span class="opera supported"></span>
+            <span class="ie supported"></span>
+            <span class="safari supported"></span>
+            <span class="ff supported"></span>
+            <span class="chrome supported"></span>
+          </span>
+        </div>
+      </article>
 
       <article class="sample">
         <h2 id="onslaught-arena" data-pubdate="2011-02-10">
@@ -793,36 +897,42 @@
     </article>
 
   </div>
-
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
   <script>
+    $(document).ready(function() {
+      $('.tag').click(filterTag);
+      if (document.location.hash) {
+        // Hide all samples as soon as DOM is loaded to prevent flicker effect.
+        samples.addClass('hidden');
+        filterTag(document.location.hash.substring(1));
+      }
+    });
+
+    var samples = $('.sample'); // Cache DOM lookup.
+    var filter = $('#filter');
+
     function clearFilter() {
       $('.sample.hidden').removeClass('hidden');
-      $('#filter').addClass('hidden');
-      document.location.hash = '';
+      filter.addClass('hidden');
+      if (!!window.history) {
+        history.replaceState({}, document.title, '/tutorials');
+      } else {
+        document.location.hash = '';
+      }
     };
 
     function filterTag(opt_tag) {
       var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
       document.location.hash = tag;
       if (tag) {
-        $('.sample').addClass('hidden');
+        samples.addClass('hidden');
         $.each( tag.split(','), function(i, eachtag) {
-          $('.sample span.tag:contains("' + eachtag + '")').closest('.sample').removeClass('hidden');
+          samples.find('span.tag:contains("' + eachtag + '")').closest('.sample').removeClass('hidden');
         });
         $('#filter_tag').text(tag);
-        $('#filter').removeClass('hidden');
+        filter.removeClass('hidden');
       }
     };
-
-    $(document).ready(function() {
-      $('.tag').click(filterTag);
-      if (document.location.hash) {
-        // Hide all samples as soon as DOM is loaded to prevent flicker effect.
-        $('.sample').addClass('hidden');
-        filterTag(document.location.hash.substring(1));
-      }
-    });
 
     // Adds back button support.
     if (window.addEventListener) {
@@ -834,7 +944,4 @@
       }, false);
     }
   </script>
-
-  {% include "footer.html" %}
-
 {% endblock %}

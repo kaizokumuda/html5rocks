@@ -51,6 +51,13 @@ template.register_template_library('templatetags.templatefilters')
 
 class ContentHandler(webapp.RequestHandler):
 
+  def browser(self):
+    return str(self.request.headers['User-Agent'])
+
+  def is_awesome_mobile_device(self):
+    browser = self.browser()
+    return browser.find('Android') != -1 or browser.find('iPhone') != -1
+
   def get_toc(self, path):
     toc = memcache.get('toc|%s' % path)
     if toc is None or self.request.cache == False:
@@ -76,6 +83,7 @@ class ContentHandler(webapp.RequestHandler):
           toc.append(current)
           current = None
       memcache.set('toc|%s' % path, toc, 3600)
+
     return toc
 
   def get_feed(self, path):
@@ -112,11 +120,13 @@ class ContentHandler(webapp.RequestHandler):
         elif element['type'] == 'EndTag' and article is not None:
           articles.append(article)
           article = None
+
       logging.info(articles)
       memcache.set('feed|%s' % path, articles, 3600)
+
     return articles
 
-  def render(self, data={}, template_path=None, status=None, message=None):
+  def render(self, data={}, template_path=None, status=None, message=None, relpath=None):
     if status is not None and status != 200:
       self.response.set_status(status, message)
 
@@ -127,10 +137,17 @@ class ContentHandler(webapp.RequestHandler):
         self.response.out.write(message)
         return
 
+    current = ''
+    if relpath is not None:
+      current = relpath.split('/')[0].split('.')[0]
+
     template_data = {
       'toc' : self.get_toc(template_path),
       'self_url': self.request.url,
-      'host': '%s://%s' % (self.request.scheme, self.request.host)
+      'host': '%s://%s' % (self.request.scheme, self.request.host),
+      'is_mobile': self.is_awesome_mobile_device(),
+      'current': current,
+      'prod': common.PROD
     }
 
     # Request was for an Atom feed. Render one!
@@ -177,9 +194,9 @@ class ContentHandler(webapp.RequestHandler):
 
     logging.info('relpath: ' + relpath)
 
+    # Landing page or /tutorials|features|mobile\/?
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
-       (relpath == 'tutorials' and relpath[-1] != '/') or   # Accept /tutorials\/?
-       (relpath == 'features' and relpath[-1] != '/')):      # Accept /features\/?
+       (relpath in ['mobile', 'tutorials', 'features'] and relpath[-1] != '/')):
       path = os.path.join(basedir, 'content', relpath, 'index.html')
     else:
       path = os.path.join(basedir, 'content', relpath)
@@ -193,17 +210,19 @@ class ContentHandler(webapp.RequestHandler):
       sorted_profiles = sorted(profiles.values(),
                                key=lambda profile:profile['name']['family'])
       self.render(data={'sorted_profiles': sorted_profiles},
-                  template_path='content/profiles.html')
+                  template_path='content/profiles.html', relpath=relpath)
     elif os.path.isfile(path):
-      self.render(data={}, template_path=path)
+      self.render(data={}, template_path=path, relpath=relpath)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
-      self.render(data={}, template_path=path[:path.rfind('.')] + '.html')
+      self.render(data={}, template_path=path[:path.rfind('.')] + '.html',
+                  relpath=relpath)
     elif os.path.isfile(path + '.html'):
       self.render(data={'category': relpath.replace('features/', '')},
-                  template_path=path + '.html')
+                  template_path=path + '.html', relpath=relpath)
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
+
 
 def main():
   application = webapp.WSGIApplication([

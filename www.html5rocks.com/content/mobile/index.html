@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block headtitle %}Mobile{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" media="screen" href="/static/css/feature{% if prod %}.min{% endif %}.css" />
+{% endblock %}
+
+{% block body %}
+
+<div>
+  <div class="column">
+    <section class="tutorials">
+      <hgroup>
+        <h3>Tutorials</h3>
+        <h4>Learn how to leverage HTML5 in mobile</h4>
+      </hgroup>
+      <div>
+        <ul>
+          <li><a href="http://code.google.com/speed/articles/mobile.html">Make the mobile web faster</a></li>
+        </ul>
+        <p>View all <a href="/tutorials#mobile">HTML5Rocks mobile tutorials</a> &rArr;</p>
+      </div>
+    </section>
+    <section class="demos">
+      <hgroup>
+        <h3>Tools</h3>
+      </hgroup>
+      <div>
+        <li><a href="http://stevesouders.com/mobileperf/">Mobile Performance Bookmarklets by Steve Souders</a></li>
+        <li style="margin-left:15px"><a href="http://www.stevesouders.com/blog/2011/02/16/jdrop-json-in-the-cloud/">Jdrop</a></li>
+        <li><a href="http://developer.android.com/guide/developing/tools/emulator.html">Android's Browser Emulator</a></li>
+        <li><a href="http://developer.apple.com/devcenter/ios/index.action">iOS SDK &amp; Simulator</a></li>
+        <li><a href="http://caniuse.com">caniuse.com</a></li>
+        <li><a href="https://github.com/shichuan/mobile-html5-boilerplate">Mobile HTML5 Boilerplate</a></li>
+      </div>
+    </section>
+  </div>
+  <div class="column">
+    <section class="resources">
+      <hgroup>
+        <h3>Additional Resources</h3>
+        <h4>A collection of useful references</h4>
+      </hgroup>
+      <div>
+        <ul>
+          <li><a href="http://code.google.com/mobile/">Google Mobile Developer Products</a></li>
+          <li><a href="http://mobile.yahoo.com/developers">Yahoo! Mobile Developers Home</a></li>
+          <li><a href="https://developer.mozilla.org/En/Mobile">Mozilla Mobile Docs</a></li>
+          <li><a href="http://www.w3.org/TR/mobile-bp/">W3C Mobile Best Practices</a></li>
+          <li><a href="http://developer.android.com/guide/webapps/index.html">Android Web Apps Overview</a></li>
+          <li><a href="http://www.mobileawesomeness.com/">mobileawesomeness.com</a> - Get inspired</li>
+          <li><a href="http://mobile-patterns.com/">mobile-patterns.com</a> - Examples of mobile UI patterns</li>
+          <li><a href="http://www.mobilexweb.com/emulators">List of Mobile Browser Emulators</a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+<script>
+ var caniusefeatures = [];
+ var features = 'mobile';
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script src="/static/js/feature{% if prod %}.min{% endif %}.js"></script>
+
+{% endblock %}
