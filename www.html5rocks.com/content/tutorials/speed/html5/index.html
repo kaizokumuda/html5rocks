@@ -71,14 +71,14 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
 <div>
 <div id="domanim" style="border: 2px solid red; width: 340px; position:relative; cursor: pointer;">
   <script style="display:block;">
-  var elem = document.getElementById('domanim'), 
+  var elem = document.getElementById('domanim'),
       left = 0;
-  function move(){
+  function move() {
     left += 4;
     elem.style.left = left + 'px';
     return left < 430;
   }
-  elem.addEventListener('click', function loop(){
+  elem.addEventListener('click', function loop() {
     move() && setTimeout(loop, 1000 / 60);
   }, false);
   </script>
@@ -94,16 +94,16 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
 
 <div id="transanim" style="border: 2px solid red; width: 340px; position:relative; cursor: pointer;">
   <style style="display:block;">
-  #transanim { 
-     -moz-transition: all 2s ease-out;  
-       -o-transition: all 2s ease-out;  
-  -webkit-transition: all 2s ease-out;  
-          transition: all 2s ease-out;  
+  #transanim {
+     -moz-transition: all 2s ease-out;
+       -o-transition: all 2s ease-out;
+  -webkit-transition: all 2s ease-out;
+          transition: all 2s ease-out;
   }</style>
   <script style="display:block;">
   var elem2 = document.getElementById('transanim');
-  
-  elem2.addEventListener('click', function loop(){
+
+  elem2.addEventListener('click', function loop() {
     elem2.style.left = '430px';
   }, false);
   </script>
@@ -132,10 +132,12 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
 </p>
 <ol>
   <li>
-    <code>--show-composited-layer-borders</code> shows a red border around elements that are being manipulated at the GPU level. Good for confirming your manipulations occur within the GPU layer
+    <code>--show-composited-layer-borders</code> shows a red border around elements that are
+    being manipulated at the GPU level. Good for confirming your manipulations occur within the GPU layer.
   </li>
   <li>
-    <code>--show-paint-rects</code> all non-GPU changes are painted and this throws a light border around all areas that are repainted. You can see the browser optimizing paint areas in action
+    <code>--show-paint-rects</code> all non-GPU changes are painted and this throws
+    a light border around all areas that are repainted. You can see the browser optimizing paint areas in action.
   </li>
 </ol>
 <p>
@@ -145,7 +147,7 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
   CSS3 Transitions
 </h3>
 <p>
-  CSS Transitions make style animation trivial for everyone, but they also are a smart performance feature. Because a CSS transition is managed by the browser, the fidelity of its animation can be greatly improved, and in my cases hardware accelerated. Currently Webkit (Chrome, Safari, iOS) have hardware acellerated css transforms, but its coming quickly to other browsers and platforms.
+  CSS Transitions make style animation trivial for everyone, but they also are a smart performance feature. Because a CSS transition is managed by the browser, the fidelity of its animation can be greatly improved, and in my cases hardware accelerated. Currently WebKit (Chrome, Safari, iOS) have hardware accelerated CSS transforms, but it's coming quickly to other browsers and platforms.
 </p>
 <p>You can use <a href="https://developer.mozilla.org/en/CSS/CSS_transitions">&quot;transitionEnd&quot;</a> events in order to script this into powerful combinations, though right now, capturing all supported transition end events means watching <code>"webkitTransitionEnd transitionend oTransitionEnd"</code>.
 </p>
@@ -156,7 +158,7 @@ HTML5 gives us great tools to enhance the visual appearance of web applications.
   CSS3 Translate
 </h3>
 <p>
-  I'm sure you've found yourself animating the x/y position of an element across the page before. You probably manipulated the inline style's left and top properties. With 2D transforms, we can use the translate() functionality to replicate this behavior.
+  I'm sure you've found yourself animating the x/y position of an element across the page before. You probably manipulated the inline style's left and top properties. With 2D transforms, we can use the <code>translate()</code> functionality to replicate this behavior.
 </p>
 <p>
   We can combo this with DOM animation to use the best thing possible
@@ -175,12 +177,12 @@ document.querySelector('#box').addEventListener('click', moveIt, false);
 
 function moveIt(evt) {
   var elem = evt.target;
-  
+
   if (Modernizr.csstransforms && Modernizr.csstransitions) {
     // vendor prefixes omitted here for brevity
     elem.style.transition = 'all 3s ease-out';
     elem.style.transform = 'translateX(600px)';
-    
+
   } else {
     // if an older browser, fall back to jQuery animate
     jQuery(elem).animate({ 'left': '600px'}, 3000);
@@ -208,16 +210,16 @@ function moveIt(evt) {
 document.querySelector('#translatebox').addEventListener('click', moveIt, false);
 </script>
 
-<p>We use Modernizr to feature test for CSS 2D Transforms and CSS Transitions, if so we're going to use translate to shift the position. If this is animated using a transition there is a good chance the browser can hardware accellerate it. To give the browser another push in the right direction we'll use the "magic CSS bullet" from above.</p>
+<p>We use Modernizr to feature test for CSS 2D Transforms and CSS Transitions, if so we're going to use translate to shift the position. If this is animated using a transition there is a good chance the browser can hardware accelerate it. To give the browser another push in the right direction we'll use the "magic CSS bullet" from above.</p>
 
-<p>If our browser is less capable, we'll use jQuery normally to move our element. You can pick up the <a href="http://lrbabe.github.com/jquery.transform.js/index.html">jQuery Transform polyfill plugin</a> by Louis-R&eacute;mi Bab&eacute; to make this whole thing automatic.</p>
+<p>If our browser is less capable, we'll fallback to jQuery to move our element. You can pick up the <a href="http://lrbabe.github.com/jquery.transform.js/index.html">jQuery Transform polyfill plugin</a> by Louis-R&eacute;mi Bab&eacute; to make this whole thing automatic.</p>
 
 
 <h3 id="toc-request-ani-frame">
   window.requestAnimationFrame
 </h3>
 <p>
-  <code>requestAnimationFrame</code> was introduced by Mozilla and iterated on by WebKit with the goal of providing you a native API for running animations, whether they be DOM/CSS-based or on <code>&lt;canvas></code> or WebGL. The browser can optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. For example, JS-based animations synchronized with CSS transitions or SVG SMIL. Plus, <strong>if you&#039;re running the animation loop in a tab that&#039;s not visible, the browser won&#039;t keep it running</strong>, which means less CPU, GPU, and memory usage, leading to much longer battery life. 
+  <code>requestAnimationFrame</code> was introduced by Mozilla and iterated on by WebKit with the goal of providing you a native API for running animations, whether they be DOM/CSS-based or on <code>&lt;canvas></code> or WebGL. The browser can optimize concurrent animations together into a single reflow and repaint cycle, leading to higher fidelity animation. For example, JS-based animations synchronized with CSS transitions or SVG SMIL. Plus, <strong>if you&#039;re running the animation loop in a tab that&#039;s not visible, the browser won&#039;t keep it running</strong>, which means less CPU, GPU, and memory usage, leading to much longer battery life.
 </p>
 
 <p>For more details on how and why to use <code>requestAnimationFrame</code>, view Paul Irish's article <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/">requestAnimationFrame for smart animating</a>.</p>
@@ -247,12 +249,12 @@ document.querySelector('#translatebox').addEventListener('click', moveIt, false)
   The DOM
 </h4>
 <p>
-  The performance of JavaScript has a strong influence in to how fluid and responsive your application will feel. It is important to understand that, while JavaScript profilers measure the execution time of your JavaScript, they also indirectly measure time which is spend in doing DOM operations. These DOM operations are often at the heart of your performance issues.
+  The performance of JavaScript has a strong influence in to how fluid and responsive your application will feel. It is important to understand that, while JavaScript profilers measure the execution time of your JavaScript, they also indirectly measure the time spent doing DOM operations. These DOM operations are often at the heart of your performance issues.
 </p>
 <pre class="prettyprint">
 function drawArray(array) {
   for(var i = 0; i &lt; array.length; i++) {
-    document.getElementById('test').innerHTML += array[i]; // Wrong.
+    document.getElementById('test').innerHTML += array[i]; // No good :(
   }
 }
 </pre>
@@ -289,7 +291,7 @@ $('.stuff').each(fn);
 fn.displayName = 'workOnStuff';
 </pre>
 <p>
-  Unfortunately this <a href="http://code.google.com/p/fbug/issues/detail?id=1811">does not work in Firebug.</a> 
+  Unfortunately this <a href="http://code.google.com/p/fbug/issues/detail?id=1811">does not work in Firebug.</a>
 </p>
 <h5>
   Profiling long functions
@@ -502,7 +504,7 @@ document.getElementById('target').innerHTML = stringBuilder.join('');
   Redraws and Reflows
 </h4>
 <p>
-  As discussed earlier accessing the DOM is relatively slow. It becomes very slow when your code is reading a value which has to be recalculated because your code recently modified something related in the DOM. Thus it should be avoided to intermix reading and writing access to the DOM. Ideally your code should always be grouped in two phases:
+  As discussed earlier accessing the DOM is relatively slow. It becomes very slow when your code is reading a value which has to be recalculated because your code recently modified something related in the DOM. Thus, it should be avoided to intermix reading and writing access to the DOM. Ideally your code should always be grouped in two phases:
 </p>
 <ul>
   <li>Phase 1: Read DOM values necessary for your code</li>
@@ -618,25 +620,18 @@ function paintALittleLater() {
   Lazy Initialization
 </h3>
 <p>
-  Users want web apps that load fast and that feel responsive. However, users have different thresholds into what they perceive as slow depending on the action that they do. E.g. an app should never do a lot of computation on a mouseover event because this might create a bad user experience while the user continues to move his mouse. However, users are used to accepting a little delay after they clicked on a button.
+  Users want web apps that load fast and feel responsive. However, users have different thresholds into what they perceive as slow depending on the action that they do. E.g. an app should never do a lot of computation on a mouseover event because this might create a bad user experience while the user continues to move his mouse. However, users are used to accepting a little delay after they clicked on a button.
 </p>
 <p>
   Thus it might make sense to move your initialization code to be executed as late as possible (e.g. when the user clicks a button that activates a particular component of your application).
 </p>
-<p>
-  Before:
-</p>
-<p>
-  <code>var things = $('.ele &gt; .other * div.className');</code>
-</p>
-<p>
-  <code>$('#button').click(function() { things.show() });</code>
-</p>
-<p>
-  After:
-</p>
-<p>
-  <code>$('#button').click(function() { $('.ele &gt; .other * div.className').show()</code> <code>});</code>
+<p>Before:</p>
+<pre class="prettyprint">
+var things = $('.ele &gt; .other * div.className');
+$('#button').click(function() { things.show() });
+</pre>
+<p>After:</p>
+<pre class="prettyprint">$('#button').click(function() { $('.ele &gt; .other * div.className').show() });</pre>
 </p>
 <h3 id="toc-event-delegation">
   Event Delegation
@@ -650,9 +645,7 @@ function paintALittleLater() {
 <p>
   In jQuery this can be easily expressed as:
 </p>
-<p>
-  <code>$('#parentNode').delegate('.button', 'click', function() { ... })</code>
-</p>
+<pre class="prettyprint">$('#parentNode').delegate('.button', 'click', function() { ... });</pre>
 <h4>
   When not to use event delegation:
 </h4>
@@ -696,7 +689,7 @@ function paintALittleLater() {
   First you want to make sure that your selector can be run through <a href="https://developer.mozilla.org/En/DOM/Document.querySelectorAll">document.querySelectorAll</a>. You can test that in the JavaScript console. If there is an exception rewrite your selector to not use any special extension of your JavaScript framework. This will speed up your selector in modern browsers by an order of magnitude.
 </p>
 <p>
-  If this doesn't help or if you also want to be fast in modern browsers, follow these guidelines
+  If this doesn't help or if you also want to be fast in modern browsers, follow these guidelines:
 </p>
 <ul>
   <li>
