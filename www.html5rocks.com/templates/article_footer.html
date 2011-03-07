@@ -7,37 +7,22 @@
 <script src="/static/js/modernizr-1.7.min.js"></script>
 <script src="/static/js/prettify{% if prod %}.min{% endif %}.js" onload="prettyPrint();"></script>
 {% if not is_mobile %}
-  <!-- Include the Google Friend Connect commenting widget. -->
-  <script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>
-  <div id="commentwidget" style="width:750px;border:1px solid #dddddd;"></div>
-  <script>
-    var skin = {
-      'BORDER_COLOR': '#bbbbbb',
-      'ENDCAP_BG_COLOR': '#ffffff',
-      'ENDCAP_TEXT_COLOR': '#333333',
-      'ENDCAP_LINK_COLOR': '#3D5C9D',
-      'ALTERNATE_BG_COLOR': '#ffffff',
-      'CONTENT_BG_COLOR': '#ffffff',
-      'CONTENT_LINK_COLOR': '#3D5C9D',
-      'CONTENT_TEXT_COLOR': '#333333',
-      'CONTENT_SECONDARY_LINK_COLOR': '#7777cc',
-      'CONTENT_SECONDARY_TEXT_COLOR': '#666666',
-      'CONTENT_HEADLINE_COLOR': '#333333',
-      'DEFAULT_COMMENT_TEXT': '- add your comment here -',
-      'HEADER_TEXT': 'Comments',
-      'POSTS_PER_PAGE': '10'
-    };
-    google.friendconnect.container.setParentUrl('/' /* location of rpc_relay.html and canvas.html */);
-    google.friendconnect.container.renderWallGadget({ 
-      id: 'commentwidget',
-      site: '15108112428066739004',
-       'view-params': {
-         "disableMinMax":"false",
-         "scope":"PAGE",
-         "startMaximized":"false"
-        }
-     }, skin);
-  </script>
-  <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-  <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'html5rocks'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    // var disqus_identifier = 'unique_dynamic_id_1234';
+    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 {% endif %}
