@@ -1,5 +1,3 @@
-/*http://yui.yahooapis.com/2.8.0/build/reset/reset-min.css*/
-
 body {
   overflow-x: hidden;
 }
@@ -67,6 +65,9 @@ article nav ul {
 }
 #content article figure img {
   max-width: 100%;
+}
+#content article section > p {
+  text-align: justify;
 }
 footer .footer-badge {
   width: 32px;
