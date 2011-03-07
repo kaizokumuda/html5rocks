@@ -29,6 +29,10 @@ header nav ul li {
   margin: 0 2px;
   letter-spacing: -1px;
 }
+article header h1 {
+  font-size: 175%;
+  letter-spacing: -2px;
+}
 #cse-search-box {
   -webkit-transition: none;
   -moz-transition: none;

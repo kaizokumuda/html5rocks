@@ -3,19 +3,50 @@
 {% block headtitle %}404 - Page Not Found{% endblock %}
 
 {% block head %}
-  <style>
-    #oops {
-      text-align: center;
-      margin-top: 1.5em;
-    }
-    #oops img {
-      -moz-border-radius: 20px;
-      border-radius: 20px;
-    }
-    #oops h4 {
-      margin: 1.5em auto;
-    }
-  </style>
+<style>
+@-webkit-keyframes spin {
+ 0% {
+   -webkit-transform: rotateY(0deg);
+ }
+ 25% {
+   -webkit-transform: rotateY(90deg) skewX(30deg);
+ }
+ 50% {
+   -webkit-transform: rotateY(180deg);
+ }
+ 75% {
+   -webkit-transform: rotateY(270deg) skewX(-30deg);
+ }
+ 100% {
+   -webkit-transform: rotateY(360deg);
+ }
+}
+#oops {
+  text-align: center;
+  margin-top: 1.5em;
+}
+#oops img {
+  /*-webkit-transition: -webkit-transform 0.8s ease-in-out, opacity 0.2s ease-in-out;
+  -webkit-transition-delay: 0.5s, 0s;*/
+  /*-webkit-box-reflect: below 5px -webkit-linear-gradient(top, transparent, transparent 50%, rgba(255, 255, 255, 0.3));*/
+}
+#oops:hover img {
+  /*opacity: 0.3;
+  -webkit-transform: rotateY(180deg) skewX(30deg);
+  -webkit-backface-visibility: visibility;*/
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-perspective: 500px;
+  -webkit-transform-style: preserves-3d;
+  -webkit-animation-timing-function: linear;
+  /*-webkit-transform-origin: 0 50%;*/
+  /*-webkit-animation-direction: alternate;*/
+}
+#oops h4 {
+  margin: 1.5em auto;
+}
+</style>
 {% endblock %}
 
 {% block body %}

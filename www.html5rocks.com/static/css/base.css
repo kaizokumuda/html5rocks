@@ -259,7 +259,7 @@ article.sample .date {
   font-size: 90%;
   color: #bbb;
   clear: both;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 .browser_support > span:first-child {
   float: left;
@@ -298,11 +298,17 @@ article.sample .date {
   margin: 0;
   padding: 0;
   list-style: none;
-  margin-left: 1em;
 }
 #share_buttons li {
-  float: left;
+  display: inline-block;
   margin-left: 5px;
+  vertical-align: top;
+}
+#share_buttons li:first-of-type {
+  margin-left: 0;
+}
+#share_buttons a[href="#disqus_thread"] {
+  font-size: 80%;
 }
 .footer {
   font-size: 80%;
@@ -421,7 +427,7 @@ figcaption samp {
    width: 45px !important;
  }
  header > div:first-of-type {
-  width: 620px !important;
+  width: 620px;
  }
  header nav {
    width: auto !important;
@@ -432,5 +438,8 @@ figcaption samp {
  }
  #cse-search-box {
    margin-top: 17px !important;
+ }
+ article header > div:first-of-type {
+   width: 100%;
  }
 }

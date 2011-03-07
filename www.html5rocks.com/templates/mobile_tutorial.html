@@ -28,16 +28,18 @@
         {% if not is_mobile %}
         <span id="share_buttons">
           <ul>
-            <li><a href="#disqus_thread">Comments</a></li>
             <li><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a></li>
-            <li><iframe src="http://www.facebook.com/plugins/like.php?href={{self_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
-            <li>
-              <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="ChromiumDev">Tweet</a>
-            </li>
+            <li><iframe src="http://www.facebook.com/plugins/like.php?href={{self_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
+            <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="ChromiumDev">Tweet</a></li>
           </ul>
+          <a href="#disqus_thread" class="disqus_comments">Leave a comment</a>
         </span>
         {% endif %}
       </div>
+      <span class="browser_support">
+        <span>Supported mobile browsers:</span>
+        <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
+      </span>
     </header>
     <nav>
       {% toc %}

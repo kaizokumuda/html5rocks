@@ -6,24 +6,28 @@
 
 <script src="/static/js/modernizr-1.7.min.js"></script>
 <script src="/static/js/prettify{% if prod %}.min{% endif %}.js" onload="prettyPrint();"></script>
+
 {% if not is_mobile %}
 <div id="disqus_thread"></div>
-<script>
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'html5rocks'; // required: replace example with your forum shortname
-
-    // The following are highly recommended additional parameters. Remove the slashes in front to use.
-    // var disqus_identifier = 'unique_dynamic_id_1234';
-    // var disqus_url = 'http://example.com/permalink-to-page.html';
-    // var disqus_developer = 1; // uncomment to test on localhost
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<script>
+  var disqus_shortname = 'html5rocks';
+  // var disqus_identifier = 'unique_dynamic_id_1234';
+  // var disqus_url = 'http://example.com/permalink-to-page.html';
+  var disqus_developer = {% if not prod %}1{% else %}0{% endif %};
+
+  (function () {
+    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+
+    var el = document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0];
+    el.appendChild(s);
+    el.appendChild(dsq);
+  }());
+</script>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>
 {% endif %}
