@@ -138,6 +138,21 @@
         }
       }, false);
 
+
+      (function poll(){
+        if (document.body.id.toLowerCase() == 'googleio'){
+          var ref = document.getElementsByTagName('script')[0];
+          var script = document.createElement('script');
+          // thx a bunch erkie!  github.com/erkie/erkie.github.com
+          script.src = '/static/js/boom/asteroids.js';
+          ref.parentNode.insertBefore(script, ref);
+          return;
+        } else {
+          setTimeout(poll, 500);
+        }
+      })();
+
+
       // Kill feedburner and marketing tracking arguments cuz they're ugly.
       if (/^\?utm_/.test(document.location.search) &&
           window.history.replaceState) {
