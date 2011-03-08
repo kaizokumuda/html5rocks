@@ -582,11 +582,14 @@ function Asteroids() {
 		}
 	} else {
 		if ( ! this.canvas.getContext ) {
-			alert('This program does not yet support your browser. Please join me at http://github.com/erkie/erkie.github.com if you think you can help');
+			alert('Sorry, your browser doesn\'t support canvas. Use Chrome!');
 		}
 	}
 	
 	addEvent(this.canvas, 'mousedown', function(e) {
+	    
+	    return; // we don't really want to enable this click message
+	    
 		e = e || window.event;
 		var message = document.createElement('span');
 		message.style.position = 'absolute';
