@@ -40,7 +40,8 @@ if __name__ == '__main__':
 
   # Update manifest's version timestamp on every run to force the cache update.
   f.write('#%s\n\n' % str(datetime.datetime.now()))
-  f.writelines(produce_manifest_entries('src'))
+  for d in ['src', 'css']:
+    f.writelines(produce_manifest_entries(d))
   f.write('\nNETWORK:\n*\n')
 
   f.close()
