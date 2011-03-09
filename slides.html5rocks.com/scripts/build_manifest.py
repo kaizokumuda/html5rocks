@@ -20,7 +20,7 @@ __author__ = 'ericbidelman@chromium.org (Eric Bidelman)'
 import os
 import datetime
 
-manifest = 'cache.appcache'
+MANIFEST = 'cache.appcache'
 
 def produce_manifest_entries(dir):
   files = os.walk(dir)
@@ -35,12 +35,17 @@ def produce_manifest_entries(dir):
   return l
 
 if __name__ == '__main__':
-  f = open(manifest, 'w')
+
+  if os.getcwd().rfind('/scripts') != -1:
+    os.chdir('../')
+
+  f = open(MANIFEST, 'w')
   f.write('CACHE MANIFEST\n')
 
   # Update manifest's version timestamp on every run to force the cache update.
   f.write('#%s\n\n' % str(datetime.datetime.now()))
-  f.writelines(produce_manifest_entries('src'))
+  for d in ['src', 'css']:
+    f.writelines(produce_manifest_entries(d))
   f.write('\nNETWORK:\n*\n')
 
   f.close()

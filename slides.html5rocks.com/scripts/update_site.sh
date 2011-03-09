@@ -5,7 +5,7 @@
 # Note: This script should be used in place of using appcfg.py update directly
 # to update the application on App Engine.
 #
-# Copyright 2010 Eric Bidelman <ericbidelman@chromium.org>
+# Copyright 2011 Eric Bidelman <ericbidelman@chromium.org>
 
 python build_manifest.py
-appcfg.py update . --no_cookies
+appcfg.py update ../ --no_cookies
