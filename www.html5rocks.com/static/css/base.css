@@ -443,3 +443,12 @@ figcaption samp {
    width: 100%;
  }
 }
+
+
+@media only screen and (max-device-width: 1024px) { /* iPad and smaller */
+  #content {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+}
