@@ -139,6 +139,21 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
       }
       container.innerHTML = html.join('');
     }
+
+    {% if not is_mobile %}
+      (function poll(){
+        if (document.body.id.toLowerCase() == 'googleio'){
+          var ref = document.getElementsByTagName('script')[0];
+          var script = document.createElement('script');
+          // thx a bunch erkie!  github.com/erkie/erkie.github.com
+          script.src = '/static/js/boom/asteroids.min.js';
+          ref.parentNode.insertBefore(script, ref);
+          return;
+        } else {
+          setTimeout(poll, 500);
+        }
+      })();
+    {% endif %}
   </script>
   <script src="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&amp;num=6&amp;q={{host}}/tutorials/index.xml&amp;callback=processFeedResponse"></script>
 {% endblock %}
