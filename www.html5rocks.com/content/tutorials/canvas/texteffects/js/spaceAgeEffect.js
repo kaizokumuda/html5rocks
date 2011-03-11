@@ -6,7 +6,7 @@ window.requestAnimFrame = (function(){
 		  window.oRequestAnimationFrame      || 
 		  window.msRequestAnimationFrame     || 
 		  function(/* function */ callback, /* DOMElement */ element){
-			window.requestAnimFrame(animate, ctx.canvas);
+			window.setTimeout(animate, 1000 / 60);
 		  };
 })();
 
@@ -28,6 +28,24 @@ var spaceAgeEffect = function(props) {
 	var sinmult = props.sinB || 1;
 	var size = props.size || 100;
 	var hue = color;
+	var uniqueID = 0;
+	var n = 0;
+	animate = function() {
+		if (ctx.canvas.uniqueID != uniqueID) return;
+		var i = 42; while(i--) {
+			if (n > endpos) return;
+			n += definition;
+			ctx.globalAlpha = (0.5 - (n + startpos) / endpos) * alpha;
+			if (doColorCycle) {
+				hue = n + color;
+				ctx.strokeStyle = "hsl(" + (hue % 360) + ",99%,50%)"; // iterate hue
+			}
+			var x = cos(n / cosdiv) * n * cosmult; // cosine
+			var y = sin(n / sindiv) * n * sinmult; // sin
+			ctx.strokeText(text, x + xoffset, y + yoffset); // draw rainbow text
+		}
+		window.requestAnimFrame(animate, ctx.canvas);
+	};
 	/// handle drawing
 	function draw() {
 		/// setup properties
@@ -37,26 +55,15 @@ var spaceAgeEffect = function(props) {
 		ctx.font = size + "px arial";
 		ctx.globalAlpha = alpha;
 		/// runLoop through spectrum
-		var n = startpos;
+		n = startpos;
 		if (!doColorCycle) {
 			ctx.strokeStyle = "hsl(" + (color % 360) + ",99%,50%)"; // iterate hue
 		}
-		(function animate() {
-			var i = 50; while(i--) {
-				if (n > endpos) return;
-				n += definition;
-				ctx.globalAlpha = (0.5 - (n + startpos) / endpos) * alpha;
-				if (doColorCycle) {
-					hue = n + color;
-					ctx.strokeStyle = "hsl(" + (hue % 360) + ",99%,50%)"; // iterate hue
-				}
-				var x = cos(n / cosdiv) * n * cosmult; // cosine
-				var y = sin(n / sindiv) * n * sinmult; // sin
-				ctx.strokeText(text, x + xoffset, y + yoffset); // draw rainbow text
-			}
-			window.requestAnimFrame(animate, ctx.canvas);
-		})();
+		uniqueID = (new Date()).getTime();
+		ctx.canvas.uniqueID = uniqueID;
+		animate();
 	};
+	
 	/// handle mouse-movements
 	window.onmousedown = function(e) {
 		var n = 0;
