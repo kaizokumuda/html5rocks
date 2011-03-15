@@ -1641,7 +1641,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
             .underlined { text-decoration: underline; }
           </style>
           <section>
-            <pre>&lt;link rel="alternate" type="application/rss+xml" href="http://myblog.com/feed"/&gt;
+            <pre>&lt;link <b>rel="alternate"</b> type="application/rss+xml" href="http://myblog.com/feed"/&gt;
 &lt;link <b>rel="icon"</b> href="/favicon.ico"/&gt;
 &lt;link <b>rel="pingback"</b> href="http://myblog.com/xmlrpc.php"/&gt;
 &lt;link <b>rel="prefetch"</b> href="http://myblog.com/main.php"/&gt;
@@ -1728,13 +1728,6 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
               box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset;
               padding: 3px 5px;
             }
-            input:invalid {
-              border-color: #e88;
-              -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
-              -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
-              -o-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
-              box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
-            }
             input[required] {
               border-color: #88a;
               -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
@@ -1742,16 +1735,23 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
               -o-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
               box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
             }
+            input:invalid {
+              border-color: #e88;
+              -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+              -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+              -o-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+              box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+            }
             </style>
             <pre>
 &lt;style&gt;
-  :invalid { 
-    border-color: #e88;
-    -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
-  }
   [required] {
     border-color: #88a;
     -webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+  }
+  :invalid {
+    border-color: #e88;
+    -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
   }
 &lt;/style&gt;
 </pre>
@@ -2716,7 +2716,7 @@ background:
               margin-left: 10px;
               padding-left: 28px;
               background: url(src/zippy-plus.png) 10px center no-repeat,
-                          url(src/gray_lines_bg.png) 10px center repeat-x;
+                          url(src/gray_lines_bg.png) 0 center repeat-x;
             }
             #resize-message {
               float: left;
@@ -2743,7 +2743,7 @@ background:
             <h2>Multiple backgrounds</h2>
             <pre>div {
   background: url(src/zippy-plus.png) 10px center no-repeat, 
-              url(src/gray_lines_bg.png) 10px center repeat-x;
+              url(src/gray_lines_bg.png) 0 center repeat-x;
 }
             </pre>
 
@@ -2759,7 +2759,7 @@ background:
         <div class="slide styling" id="flex-box-1">
           <style>
             #box-orient-example {
-              height: 300px;
+              height: 260px;
               display: -webkit-box; -webkit-box-orient: horizontal;
               display: -moz-box; -moz-box-orient: horizontal;
             }
