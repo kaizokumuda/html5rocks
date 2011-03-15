@@ -11,7 +11,8 @@ JSDIR='../static/js'
 
 YUI_COMPRESSOR=yuicompressor-2.4.4.jar
 
-JS_FILES=("${JSDIR}/profiles.${JS_EXT}" "${JSDIR}/prettify.${JS_EXT}" "${JSDIR}/feature.${JS_EXT}")
+JS_FILES=("${JSDIR}/profiles.${JS_EXT}" "${JSDIR}/prettify.${JS_EXT}"
+          "${JSDIR}/feature.${JS_EXT}" "${JSDIR}/boom/asteroids.${JS_EXT}")
 
 #if [[ "$1" == "" ]]; then
 #  echo 'Usage '$0' <inputfile.js|css>' >&2
