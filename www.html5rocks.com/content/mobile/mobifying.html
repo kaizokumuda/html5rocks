@@ -293,6 +293,35 @@ JS/CSS compression, gzipping (comes from free on App Engine), and minimizing DOM
 are <a href="http://code.google.com/speed/page-speed/docs/rules_intro.html">common best practices</a>
 but are occasionally overlooked when rushing a site out the door.</p>
 
+<h3 id="toc-optimizations-scrolling">Auto-hide address bar</h3>
+
+<p>Mobile browsering lacks the screen real estate of its desktop counterpart.
+To make things worst, on different platforms, you sometimes end up with a big ol'
+address bar at the top of the screen...even after the page is done loading.</p>
+
+<p>One easy way to deal with it is to scroll the page using JavaScript.
+Even doing so by one pixel will take care of the pesky address bar.
+To force-hide the address bar on html5rocks, I attached an <code>onload</code>
+event handler to the <code>window</code> object and scrolled the page vertically
+by one pixel:</p>
+
+<figure>
+  <a href="/tutorials"><img src="/static/images/screenshots/mobifying/address-bar-mobile.png" width="202" height="300" alt="Address bar" title="Address bar"></a>
+  <figcaption>Ugly address bar takes up screen real estate.</figcaption>
+</figure>
+
+<pre class="prettyprint">
+{% if is_mobile % }
+  // Hides mobile browser's address bar when page is done loading.
+  window.addEventListener('load', function(e) {
+    setTimeout(function() { window.scrollTo(0, 1); }, 1);
+  }, false);
+{% endif % }
+</pre>
+
+<p>We also wrapped this listener is our <code>is_mobile</code> template variable
+since it's not needed on the desktop.</p>
+
 <h3 id="toc-optimizations-requests">Reduce network requests, save bandwidth</h3>
 
 <p>It's a known fact that reducing the number of HTTP requests
