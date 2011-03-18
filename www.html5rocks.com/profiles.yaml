@@ -320,3 +320,43 @@ homepage: http://mudcu.be/
 google: MUDCUBE
 twitter: mudcube
 email: mudcube@gmail.com
+
+---
+
+id: adammark
+name:
+  given: Adam
+  family: Mark
+org:
+  name: Pagoda Software
+  unit: Programmer, Designer
+address:
+  locality: Bethesda
+  region: Maryland
+  country: USA
+  lat: 38.982097
+  lon: -77.095227
+homepage: http://www.adammark.net
+google:
+twitter:
+email: adam.mark@pagodagames.com
+
+---
+
+id: adriangould
+name:
+  given: Adrian
+  family: Gould
+org:
+  name: Pagoda Software
+  unit: Programmer, Designer
+address:
+  locality: Reston
+  region: Virginia
+  country: USA
+  lat: 38.968721
+  lon: -77.341096
+homepage: http://pagodagames.com
+google:
+twitter:
+email: adrian.gould@pagodagames.com
