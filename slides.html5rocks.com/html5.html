@@ -417,7 +417,7 @@ idbRequest.onsuccess = function(event) {
               }
 
               function idbShow_(event) {
-                if (!idb_.objectStoreNames.contains('myObjectStore')) {
+                if (!idb_.objectStores.contains('myObjectStore')) {
                   idbLog_.innerHTML = "<p>Object store not yet created.</p>";
                   return;
                 }
@@ -455,7 +455,7 @@ idbRequest.onsuccess = function(event) {
                 var request = idb_.setVersion('the new version string');
                 request.onerror = idbError_;
                 request.onsuccess = function(e) {
-                  if (!idb_.objectStoreNames.contains('myObjectStore')) {
+                  if (!idb_.objectStores.contains('myObjectStore')) {
                     try {
                       var objectStore = idb_.createObjectStore('myObjectStore', null); // FF is requiring the 2nd keyPath arg. It can be optional :(
                       idbLog_.innerHTML = "<p>Object store created.</p>";
@@ -476,7 +476,7 @@ idbRequest.onsuccess = function(event) {
                   return;
                 }
 
-                if (!idb_.objectStoreNames.contains('myObjectStore')) {
+                if (!idb_.objectStores.contains('myObjectStore')) {
                   idbLog_.innerHTML = "<p class=\"error\">Object store doesn't exist.</p>";
                   return;
                 }
