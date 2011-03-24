@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+{% block headtitle %}Home{% endblock %}
+
+{% block head %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> 
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script> 
+ /*!
+  * noSelect jQuery Plugin
+  * @link http://github.com/mathiasbynens/noSelect-jQuery-Plugin
+  * @author Mathias Bynens <http://mathiasbynens.be/>
+  */
+ (function(a){a.fn.noSelect=function(){function b(){return !1}return a(this).each(function(){this.onselectstart=this.ondragstart=b;a(this).mousedown(b).css({MozUserSelect:'none',WebkitUserSelect:'none',userSelect:'none'})})}})(jQuery);
+
+ $(function() {
+
+  // Execute the fallback only if there’s no native `details` support
+  if (!('open' in document.createElement('details'))) {
+
+   // Loop through all `details` elements
+   $('details').each(function() {
+    // Store a reference to the current `details` element in a variable
+    var $details = $(this),
+        // Store a reference to the `summary` element of the current `details` element (if any) in a variable
+        $detailsSummary = $('summary', $details),
+        // Do the same for the info within the `details` element
+        $detailsNotSummary = $details.children(':not(summary)'),
+        // This will be used later to look for direct child text nodes
+        $detailsNotSummaryContents = $details.contents(':not(summary)');
+
+    // If there is no `summary` in the current `details` element…
+    if (!$detailsSummary.length) {
+     // …create one with default text
+     $detailsSummary = $(document.createElement('summary')).text('Details').prependTo($details);
+    }
+
+    // Look for direct child text nodes
+    if ($detailsNotSummary.length !== $detailsNotSummaryContents.length) {
+     // Wrap child text nodes in a `span` element
+     $detailsNotSummaryContents.filter(function() {
+      // Only keep the node in the collection if it’s a text node containing more than only whitespace
+      return (this.nodeType === 3) && (/[^\t\n\r ]/.test(this.data));
+     }).wrap('<span>');
+     // There are now no direct child text nodes anymore — they’re wrapped in `span` elements
+     $detailsNotSummary = $details.children(':not(summary)');
+    }
+
+    // Hide content unless there’s an `open` attribute
+    if (typeof $details.attr('open') !== 'undefined') {
+     $details.addClass('open');
+     $detailsNotSummary.show();
+    } else {
+     $detailsNotSummary.hide();
+    }
+
+    // Set the `tabindex` attribute of the `summary` element to 0 to make it keyboard accessible
+    $detailsSummary.attr('tabindex', 0).click(function() {
+     // Focus on the `summary` element
+     $detailsSummary.focus();
+     // Toggle the `open` attribute of the `details` element
+     typeof $details.attr('open') !== 'undefined' ? $details.removeAttr('open') : $details.attr('open', 'open');
+     // Toggle the additional information in the `details` element
+     $detailsNotSummary.toggle(0);
+     $details.toggleClass('open');
+    }).keyup(function(event) {
+     if (13 === event.keyCode || 32 === event.keyCode) {
+      // Enter or Space is pressed — trigger the `click` event on the `summary` element
+      // Opera already seems to trigger the `click` event when Enter is pressed
+      if (!($.browser.opera && 13 === event.keyCode)) {
+       event.preventDefault();
+       $detailsSummary.click();
+      }
+     }
+    });
+   });
+
+  }
+
+ });
+</script>
+<style> 
+  details, summary { display: block; }
+  .no-details summary:hover, .no-details summary:focus { background: #ddd; }
+  /* The following styles are not really needed, since the jQuery script takes care of hiding/displaying the elements. */
+  /* However, we’re still gonna use CSS as well to prevent FOUC in browsers that understand these selectors. */
+  /* Remember: by default (and probably most of the time), the contents of the <details> element are hidden. */
+
+  .no-details details > * { display: none; }
+  /* This doesn’t work very well in Firefox 3.6.x */
+  /* .no-details details[open] > * { display: block; } */
+  /* The following doesn’t toggle correctly in Webkit:
+  .no-details details summary:before { content: '► '; }
+  .no-details details[open] summary:before { content: '▼ '; }
+  */
+  /* And yes, it should really be ::before, but that doesn’t work in IE8 */
+  .no-details details summary:before { float: left; width: 20px; content: '► '; }
+  .no-details details.open summary:before { content: '▼ '; }
+  /* For IE6 and IE7, who don’t support generated content, you could use padding-left + a background image instead */
+  /* I really couldn’t be bothered though. */
+  /*
+  .no-details details summary { padding-left: 20px; background: url(img/arrow-sprite.png) no-repeat 0 0; }
+  .no-details details.open summary { background-position: 0 -20px; }
+  */
+  .no-details details summary { display: block; cursor: pointer; border-bottom: 1px solid #ddd; padding: 10px 0; }
+  
+  summary img { width: 20px; }
+
+ </style>
+ <script>if(!('open' in document.createElement('details')))document.documentElement.className+=' no-details'</script> 
+{% endblock %}
+
+{% block body %}
+{% include "header.html" %}
+<style>
+h1 {
+  font-family: 'Droid Sans';
+}
+.resource-category {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Droid Sans';
+  color: black;
+  padding: 0;
+  text-transform: uppercase;
+}
+iframe {
+  width: 100%;
+  border: 1px solid #000;
+}
+</style>
+<h1>Community</h1>
+<p>The HTML5 community is getting bigger and bigger. Here you will find some resources to be up to date about the latest HTML5 news as well as to be able to discuss with developers and engineers the experimental features and proposals around the standards and browser implementations.</p>
+
+<div>
+  <section>
+    <details> 
+        <summary><img src="http://www.mthoodmiata.org/images/SocialMedia/google-groups-32.png" />
+          <span class="resource-category">Forum</span></summary> 
+        <iframe id="forum_embed"
+                src="javascript:void(0)"
+                scrolling="no"
+                frameborder="0"
+                width="900"
+                height="700">
+        </iframe>
+
+    </details>
+    
+
+    <script type="text/javascript">
+      document.getElementById("forum_embed").src =
+          "https://groups.google.com/a/chromium.org/forum/embed/#!forum/chromium-html5";
+          // "&showsearch=true&showpopout=true&parenturl=" +
+          // encodeURIComponent(window.location.href);
+    </script>  </section>
+  <section>
+    <details> 
+        <summary><img src="http://fpb.case.edu/images/calendar_icon.jpg" />
+          <span class="resource-category">Events</span></summary>
+        <div id="events-list"></div>
+    </details>
+  </section>
+  <section>
+    <details> 
+        <summary><img src="http://pods.dasnr.okstate.edu/docushare/images/large/group.png" />
+          <span class="resource-category">IRC Channel</span></summary>
+        <iframe src="http://webchat.freenode.net?channels=html5&uio=d4" height="400"></iframe>
+    </details>
+  </section>
+
+  <section>
+    <details> 
+        <summary><img src="http://my.biotechlife.net/images/twitter_48.png" />
+          <span class="resource-category">Twitter</span></summary>
+          <div id="twitter-widget"></div>
+    </details>
+  </section>
+  
+  <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+
+  <!-- Dynamic Feed Control and Stylesheet -->
+  <script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js"
+          type="text/javascript"></script>
+  <style type="text/css">
+    @import url("http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.css");
+  </style>
+      
+  <script>
+    google.load('feeds', '1');
+
+    function OnLoad() {
+      var feeds = [
+        {
+          title: 'HTML5 conferences (Lanyrd)',
+          url: 'http://lanyrd.com/topics/html5-1/feed/'
+        },
+        {
+          title: 'HTML5 Meetup Groups',
+          url: 'http://html5.meetup.com/newest/rss/New+HTML5+Groups'
+        },
+        {
+          title: 'Google Developer Events Calendar',
+          url: 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/basic'
+        }
+      ];
+
+      var options = {
+        stacked : true,
+        horizontal : false,
+        title : "HTML5 Events"
+      };
+
+      new GFdynamicFeedControl(feeds, 'events-list', options);
+      // document.getElementById('events-list').style.width = "500px";
+    }
+    google.setOnLoadCallback(OnLoad);
+  </script>
+  <script>
+    // var init = function() {
+    //   var forumEmbed = document.getElementById('forum_embed');
+    //   var adjust = function() {
+    //     var height =
+    //         document.all ? document.body.offsetHeight : window.innerHeight;
+    //     forumEmbed.height = Math.max(height - 150, 390);
+    //   };
+    // 
+    //   var groupUrl =
+    //     'http://groups.google.com/forum/embed/?place=forum/chromium-html5' +
+    //     '&showsearch=true&showpopout=true&parenturl=' +
+    //     encodeURIComponent(window.location.href);
+    //   alert(groupUrl)
+    //   forumEmbed.src = groupUrl;
+    //   adjust();
+    //   window.onresize = adjust;
+    // }();
+  </script>
+  <script>
+    window.addEventListener('load', function() {
+      new TWTR.Widget({
+        version: 2,
+        type: 'profile',
+        rpp: 6,
+        interval: 6000,
+        width: 'auto',
+        id: 'twitter-widget',
+        height: 300,
+        theme: {
+          shell: {
+            background: '#346fa3',
+            color: '#ffffff'
+          },
+          tweets: {
+            background: '#ffffff',
+            color: '#000000',
+            links: '#2ba0d6'
+          }
+        },
+        features: {
+          scrollbar: false,
+          loop: false,
+          live: true,
+          hashtags: true,
+          timestamp: true,
+          avatars: false,
+          behavior: 'all'
+        }
+      }).render().setUser('edr').start();
+      
+    }, false);
+  </script>
+
+</div>
+
+  {% include "footer.html" %}
+{% endblock %}
