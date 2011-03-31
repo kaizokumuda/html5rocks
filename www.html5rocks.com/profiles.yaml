@@ -360,3 +360,22 @@ homepage: http://pagodagames.com
 google:
 twitter:
 email: adrian.gould@pagodagames.com
+
+---
+
+id: luigimontanez
+name:
+  given: Luigi
+  family: Montanez
+org:
+  name: Sunlight Labs
+  unit: Software Developer
+address:
+  locality: Washington
+  region: DC
+  lat: 38.907245
+  lon: -77.042317
+homepage: http://sunlightlabs.com/
+google: luigi.montanez
+twitter: LuigiMontanez
+email: luigi.montanez@gmail.com
