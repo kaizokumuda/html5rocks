@@ -209,12 +209,23 @@ class ContentHandler(webapp.RequestHandler):
     else:
       self.request.cache = True
 
-    basedir = os.path.dirname(__file__)
+    redirect_from_locale = self.request.get('redirect_from_locale', '')
+    if not re.match('[a-zA-Z]{2,3}$', redirect_from_locale):
+      redirect_from_locale = False
+    else:
+      translation.activate(redirect_from_locale)
+      redirect_from_locale = {
+        'lang': redirect_from_locale,
+        'msg': _("Sorry, this article isn't available in your native language; we've redirected you to the English version.")
+      }
+      translation.activate(locale);
 
-    logging.info('relpath: ' + relpath)
+    basedir = os.path.dirname(__file__)
 
     # Strip off leading `/[en|de|fr|...]/`
     relpath = re.sub( '^/?\w{2,3}/?', '', relpath )
+
+    logging.info('relpath: ' + relpath)
 
     # Landing page or /tutorials|features|mobile\/?
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
@@ -234,7 +245,7 @@ class ContentHandler(webapp.RequestHandler):
       self.render(data={'sorted_profiles': sorted_profiles},
                   template_path='content/profiles.html', relpath=relpath)
 
-    if (relpath == 'tutorials' or relpath == 'tutorials'):
+    elif (re.search('tutorials/?', relpath)):
       # Tutorials look like this on the filesystem:
       #
       #   .../tutorials +
@@ -251,7 +262,8 @@ class ContentHandler(webapp.RequestHandler):
       logging.info('Building request for `%s` in locale `%s`', path, locale)
       (dir, filename) = os.path.split(path)
       if os.path.isfile( os.path.join( dir, locale, filename ) ):
-        self.render(template_path=os.path.join( dir, locale, filename ))
+        self.render(template_path=os.path.join( dir, locale, filename ),
+                    data={'redirect_from_locale': redirect_from_locale})
 
       # If the localized file doesn't exist, and the locale isn't English, look
       # for an english version of the file, and redirect the user there if

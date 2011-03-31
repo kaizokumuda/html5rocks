@@ -254,6 +254,12 @@ article.sample .date {
   font-weight: bold;
   color: #060;
 }
+.redirect_notification {
+  background: #FF9;
+  border: 2px solid #FC0;
+  padding: 10px;
+  margin-bottom: 1.4em;
+}
 .browser_support {
   float: left;
   font-size: 90%;

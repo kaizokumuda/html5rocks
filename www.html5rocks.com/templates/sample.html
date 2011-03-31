@@ -15,6 +15,9 @@
   <article>
     <header>
       <h1>{% block pagetitle %}{% endblock %}</h1>
+      {% if redirect_from_locale %}
+      <p class="redirect_notification" lang="{{ redirect_from_locale.lang }}">{{ redirect_from_locale.msg }}</p>
+      {% endif %}
       <div>
         <span class="date">
           {% block pageauthor %}{% endblock %}

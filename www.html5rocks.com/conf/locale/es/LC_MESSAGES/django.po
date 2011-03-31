@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-30 18:18-0700\n"
+"POT-Creation-Date: 2011-03-31 12:12-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: main.py:219
+msgid ""
+"Sorry, this article isn't available in your native language; we've "
+"redirected you to the English version."
+msgstr ""
 
 #: content/index.html:4 templates/base.html:29
 msgid "A resource for open web HTML5 developers"
@@ -166,52 +172,24 @@ msgstr ""
 msgid "Resources"
 msgstr ""
 
-#: content/resources.html:51
-msgid "Reference"
-msgstr ""
-
-#: content/resources.html:55
-msgid "HTML5 Readiness"
-msgstr ""
-
 #: content/resources.html:56
 msgid "Visual timeline of HTML5 feature support."
-msgstr ""
-
-#: content/resources.html:60
-msgid "When Can I Use..."
 msgstr ""
 
 #: content/resources.html:61
 msgid "Up to date HTML5 feature browser support reference."
 msgstr ""
 
-#: content/resources.html:65
-msgid "HTML5 Test"
-msgstr ""
-
 #: content/resources.html:66
 msgid "Series of browser tests to evaluate feature support."
-msgstr ""
-
-#: content/resources.html:70
-msgid "Web Designer's Checklist"
 msgstr ""
 
 #: content/resources.html:71
 msgid "Detailed browser feature support reference."
 msgstr ""
 
-#: content/resources.html:75
-msgid "HTML5 Infographic"
-msgstr ""
-
 #: content/resources.html:76
 msgid "A quick overview of scope and support."
-msgstr ""
-
-#: content/resources.html:81
-msgid "Chrome Implementation Status"
 msgstr ""
 
 #: content/resources.html:82
@@ -219,80 +197,36 @@ msgid ""
 "Follow the engineering effort for cutting edge support from the Chrome team."
 msgstr ""
 
-#: content/resources.html:86
-msgid "HTML5: Comparison of Layout Engines"
-msgstr ""
-
 #: content/resources.html:87
 msgid "If the Wikipedia says it then it must be true."
-msgstr ""
-
-#: content/resources.html:92
-msgid "ECMAScript 5 table"
 msgstr ""
 
 #: content/resources.html:93
 msgid "Detailed table of ES5 support across browsers."
 msgstr ""
 
-#: content/resources.html:97
-msgid "Compatibility Tables"
-msgstr ""
-
 #: content/resources.html:98
 msgid "Results of DOM and CSS properties tests in major browsers."
-msgstr ""
-
-#: content/resources.html:103
-msgid "HTML5 Demos"
-msgstr ""
-
-#: content/resources.html:109
-msgid "Documentation"
-msgstr ""
-
-#: content/resources.html:113
-msgid "W3C HTML5 Web Author View"
 msgstr ""
 
 #: content/resources.html:114
 msgid "Lightweight version of the W3c spec, perfect for web developers."
 msgstr ""
 
-#: content/resources.html:119
-msgid "Dive into HTML5 by Mark Pilgrim"
-msgstr ""
-
 #: content/resources.html:120
 msgid "Learn HTML5 and have a laugh at the same time."
-msgstr ""
-
-#: content/resources.html:125
-msgid "Safari HTML5 Guides"
 msgstr ""
 
 #: content/resources.html:126
 msgid "Excellent WebKit-oriented development documentation."
 msgstr ""
 
-#: content/resources.html:130
-msgid "Mozilla Development Center HTML5 Reference"
-msgstr ""
-
 #: content/resources.html:131
 msgid "Excellent documentation and guides."
 msgstr ""
 
-#: content/resources.html:135
-msgid "WhatWG Web Apps Spec (HTML5 plus the kitchen sink)"
-msgstr ""
-
 #: content/resources.html:136
 msgid "Working draft spec of everything under the larger HTML5 umbrella."
-msgstr ""
-
-#: content/resources.html:146
-msgid "Modernizr"
 msgstr ""
 
 #: content/resources.html:147
@@ -300,16 +234,8 @@ msgid ""
 "Javascript library for feature detection and control fallback cases of HTML5."
 msgstr ""
 
-#: content/resources.html:151
-msgid "html5 shiv"
-msgstr ""
-
 #: content/resources.html:152
 msgid "Javascript patch to make IE support, and print, the new tag elements."
-msgstr ""
-
-#: content/resources.html:156
-msgid "HTML5 Boilerplate"
 msgstr ""
 
 #: content/resources.html:157
@@ -318,140 +244,36 @@ msgid ""
 "dev built in."
 msgstr ""
 
-#: content/resources.html:161
-msgid "HTML5 Cross-browser Polyfills"
-msgstr ""
-
 #: content/resources.html:162
 msgid "The collection of scripts that enable HTML5 features in all browsers."
-msgstr ""
-
-#: content/resources.html:166
-msgid "CSS Button Maker"
 msgstr ""
 
 #: content/resources.html:167 content/resources.html.py:172
 msgid "Preview CSS buttons with a fancy interface to play with the parameters."
 msgstr ""
 
-#: content/resources.html:171
-msgid "CSS3 Generator"
-msgstr ""
-
-#: content/resources.html:176
-msgid "CSS3 Sandbox"
-msgstr ""
-
 #: content/resources.html:177
 msgid "Test and get the code of the fanciest CSS features."
-msgstr ""
-
-#: content/resources.html:181
-msgid "CSS3 Gradient Generator"
 msgstr ""
 
 #: content/resources.html:182
 msgid "Generate CSS code for gradients on the fly."
 msgstr ""
 
-#: content/resources.html:186
-msgid "CSS3 Please"
-msgstr ""
-
 #: content/resources.html:187
 msgid "Use CSS3 without having to worry about xbrowser differences."
-msgstr ""
-
-#: content/resources.html:191
-msgid "Font Dragr"
 msgstr ""
 
 #: content/resources.html:192
 msgid "Test your fonts using drag and drop."
 msgstr ""
 
-#: content/resources.html:196
-msgid "Font Squirrel Generator"
-msgstr ""
-
 #: content/resources.html:197
 msgid "Most complete tool to generate code for you font-face support."
 msgstr ""
 
-#: content/resources.html:201
-msgid "Let's make the web faster"
-msgstr ""
-
 #: content/resources.html:202
 msgid "Complete list of tools related to web performance."
-msgstr ""
-
-#: content/resources.html:208
-msgid "Community"
-msgstr ""
-
-#: content/resources.html:212
-msgid "HTML5 Watch"
-msgstr ""
-
-#: content/resources.html:216
-msgid "HTML5 Doctor"
-msgstr ""
-
-#: content/resources.html:220
-msgid "WhatWG Blog"
-msgstr ""
-
-#: content/resources.html:224
-msgid "Ajaxian"
-msgstr ""
-
-#: content/resources.html:228
-msgid "Chromium HTML5 Discussion Group"
-msgstr ""
-
-#: content/resources.html:232
-msgid "Mozilla Hacks"
-msgstr ""
-
-#: content/resources.html:236
-msgid "Safari HTML5 Demos"
-msgstr ""
-
-#: content/resources.html:240
-msgid "Test Drive IE9 Demos"
-msgstr ""
-
-#: content/resources.html:244
-msgid "Open Web - Opera Developer Community"
-msgstr ""
-
-#: content/resources.html:248
-msgid "Chrome Experiments"
-msgstr ""
-
-#: content/resources.html:253
-msgid "CSS3 Watch"
-msgstr ""
-
-#: content/resources.html:263
-msgid "HTML5 [Mark Pilgrim]"
-msgstr ""
-
-#: content/resources.html:267
-msgid "Pro HTML5 Programming [Peter Lubbers, Brian Albers, Frank Salim]"
-msgstr ""
-
-#: content/resources.html:271
-msgid "Introducing HTML5 [Bruce Lawson, Remy Sharp]"
-msgstr ""
-
-#: content/resources.html:275
-msgid "HTML5 For Web Designers [Jeremy Keith]"
-msgstr ""
-
-#: content/resources.html:279
-msgid "HTML5 Now [Tantek Celik]"
 msgstr ""
 
 #: content/search.html:4
@@ -1225,36 +1047,36 @@ msgid "Case Studies"
 msgstr ""
 
 #: templates/casestudy.html:29 templates/mobile_tutorial.html:32
-#: templates/sample.html:29
+#: templates/sample.html:32
 msgid "Post to Google Buzz"
 msgstr ""
 
 #: templates/casestudy.html:31 templates/mobile_tutorial.html:34
-#: templates/sample.html:31
+#: templates/sample.html:34
 msgid "Tweet"
 msgstr ""
 
 #: templates/casestudy.html:33 templates/mobile_tutorial.html:36
-#: templates/sample.html:33
+#: templates/sample.html:36
 msgid "Leave a comment"
 msgstr ""
 
-#: templates/casestudy.html:38 templates/sample.html:38
+#: templates/casestudy.html:38 templates/sample.html:41
 msgid "Supported browsers:"
 msgstr ""
 
-#: templates/casestudy.html:46 templates/sample.html:46
+#: templates/casestudy.html:46 templates/sample.html:49
 msgid ""
 "Your browser may not support all of the functionality used in this article."
 msgstr ""
 
-#: templates/casestudy.html:51 templates/sample.html:51
+#: templates/casestudy.html:51 templates/sample.html:54
 msgid ""
 "Your browser appears to support all of the functionality used in this "
 "article."
 msgstr ""
 
-#: templates/casestudy.html:60
+#: templates/casestudy.html:60 templates/sample.html:63
 msgid "HTML5 Powered"
 msgstr ""
 
