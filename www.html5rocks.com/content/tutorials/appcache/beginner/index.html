@@ -106,7 +106,6 @@ scripts/main.js
     <li>If the manifest file or a resource specified in it fails to download,
     the entire cache update process fails. The browser will keep using the old
     application cache in the event of failure.</li>
-    <li>File listed under the manifest must follow the same origin policy</li>
   </ul>
 
   <p>Lets take a look at a more complex example:</p>
@@ -114,8 +113,7 @@ scripts/main.js
 CACHE MANIFEST
 # 2010-06-18:v2
 
-# Explicitly cached 'master entries'. These entries
-# (i.e. everything under a CACHE heading) must follow the same origin policy.
+# Explicitly cached 'master entries'.
 CACHE:
 /favicon.ico
 index.html
