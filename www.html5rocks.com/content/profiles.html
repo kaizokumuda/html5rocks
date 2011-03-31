@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block headtitle %}Author Profiles{% endblock %}
+{% load i18n %}
+{% block headtitle %}{% trans "Author Profiles" %}{% endblock %}
 {% block head %}
 <link href="http://fonts.googleapis.com/css?family=Tangerine:regular,bold|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="/static/css/profiles{% if prod %}.min{% endif %}.css"/>
@@ -12,7 +13,7 @@
   <nav>
     <p class="breadcrumb">
       <a class="buttonlink" href="/">
-        <span>Home</span>
+        <span>{% trans "Home" %}</span>
       </a >&gt; {{ current.capitalize }}
     </p>
   </nav>
@@ -67,7 +68,7 @@
                 {% if profile.address.country %}<span itemprop="country-name">{{profile.address.country}}</span>{% endif %}
               </div>
             </div>
-            <div class="list-articles">Articles</div>
+            <div class="list-articles">{% trans "Articles" %}</div>
           </div>
           <div class="face back">
             <ul class="articles"></ul>

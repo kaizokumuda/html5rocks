@@ -25,6 +25,7 @@ use_library('django', '1.2')
 import datetime
 import logging
 import os
+import re
 import yaml
 
 # Libraries
@@ -35,6 +36,16 @@ from html5lib.filters import sanitizer
 # Hack to fix templating issue in django 1.2.
 from django.conf import settings
 settings.configure(INSTALLED_APPS=('nothing',))
+
+# i18n Configuration
+from django.utils import translation
+from django.utils.translation import ugettext as _
+settings.LANGUAGE_CODE = 'en'
+settings.USE_I18N = True
+settings.ROOT_DIR = os.path.abspath( os.path.dirname( __file__ ) )
+settings.LOCALE_PATHS = ( 
+  os.path.join( settings.ROOT_DIR, 'conf', 'locale' ),
+)
 
 # Google App Engine Imports
 from google.appengine.ext import webapp
@@ -50,6 +61,12 @@ import common
 template.register_template_library('templatetags.templatefilters')
 
 class ContentHandler(webapp.RequestHandler):
+  def get_language(self):
+    lang_match = re.match( "^/(\w{2,3})(?:/|$)", self.request.path )
+    self.locale = lang_match.group(1) if lang_match else settings.LANGUAGE_CODE
+    logging.info( "Set Language as %s" % self.locale )
+    translation.activate( self.locale )
+    return self.locale
 
   def browser(self):
     return str(self.request.headers['User-Agent'])
@@ -185,6 +202,8 @@ class ContentHandler(webapp.RequestHandler):
     self.response.out.write(feed.writeString('utf-8'))
 
   def get(self, relpath):
+    locale = self.get_language()
+
     if self.request.get('cache', '1') == '0':
       self.request.cache = False
     else:
@@ -193,6 +212,9 @@ class ContentHandler(webapp.RequestHandler):
     basedir = os.path.dirname(__file__)
 
     logging.info('relpath: ' + relpath)
+
+    # Strip off leading `/[en|de|fr|...]/`
+    relpath = re.sub( '^/?\w{2,3}/?', '', relpath )
 
     # Landing page or /tutorials|features|mobile\/?
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
@@ -211,6 +233,31 @@ class ContentHandler(webapp.RequestHandler):
                                key=lambda profile:profile['name']['family'])
       self.render(data={'sorted_profiles': sorted_profiles},
                   template_path='content/profiles.html', relpath=relpath)
+
+    if (relpath == 'tutorials' or relpath == 'tutorials'):
+      # Tutorials look like this on the filesystem:
+      #
+      #   .../tutorials +
+      #                 |
+      #                 +-- article-slug  +
+      #                 |                 |
+      #                 |                 +-- en  +
+      #                 |                 |       |
+      #                 |                 |       +-- index.html
+      #                 ...
+      #
+      # So, to determine if an HTML page exists for the requested language
+      # `split` the file's path, add in the locale, and check existance:
+      logging.info('Building request for `%s` in locale `%s`', path, locale)
+      (dir, filename) = os.path.split(path)
+      if os.path.isfile( os.path.join( dir, locale, filename ) ):
+        self.render(template_path=os.path.join( dir, locale, filename ))
+
+      # If the localized file doesn't exist, and the locale isn't English, look
+      # for an english version of the file, and redirect the user there if
+      # it's found:
+      elif os.path.isfile( os.path.join( dir, "en", filename ) ):
+        self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
     elif os.path.isfile(path):
       self.render(data={}, template_path=path, relpath=relpath)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):

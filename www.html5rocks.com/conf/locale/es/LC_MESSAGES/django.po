@@ -1,0 +1,1267 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-30 18:18-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: content/index.html:4 templates/base.html:29
+msgid "A resource for open web HTML5 developers"
+msgstr ""
+
+#: content/index.html:7
+msgid "HTML5Rocks"
+msgstr ""
+
+#: content/index.html:19
+msgid "<span>Interactive</span> Presentation"
+msgstr ""
+
+#: content/index.html:21
+msgid "Watch the slideshow that lets you play with HTML5 features."
+msgstr ""
+
+#: content/index.html:28
+msgid "<span>Code</span> Playground"
+msgstr ""
+
+#: content/index.html:30
+msgid "Jump headfirst into HTML5 by experimenting with each API."
+msgstr ""
+
+#: content/index.html:37
+msgid "<span>Samples</span> Studio"
+msgstr ""
+
+#: content/index.html:39
+msgid "A showroom of content that you can reuse in your own site."
+msgstr ""
+
+#: content/index.html:46
+msgid "<span>Step by Step</span> Tutorials"
+msgstr ""
+
+#: content/index.html:48
+msgid "Take a guided tour through code that uses HTML5 features."
+msgstr ""
+
+#: content/index.html:56
+msgid "Learn by Major HTML5 Feature Groups"
+msgstr ""
+
+#: content/index.html:59
+msgid "Offline"
+msgstr ""
+
+#: content/index.html:63
+msgid "File Access"
+msgstr ""
+
+#: content/index.html:67
+msgid "Multimedia"
+msgstr ""
+
+#: content/index.html:71
+msgid "Performance"
+msgstr ""
+
+#: content/index.html:75 templates/base.html:59
+msgid "Presentation"
+msgstr ""
+
+#: content/index.html:79
+msgid "Graphics"
+msgstr ""
+
+#: content/index.html:83
+msgid "Storage"
+msgstr ""
+
+#: content/index.html:88
+msgid "Latest Tutorials"
+msgstr ""
+
+#: content/index.html:100
+msgid "RSS"
+msgstr ""
+
+#: content/index.html:101
+msgid "loading feed..."
+msgstr ""
+
+#: content/index.html:102
+msgid "See more &rArr;"
+msgstr ""
+
+#: content/index.html:106
+msgid "Contribute"
+msgstr ""
+
+#: content/index.html:107
+msgid ""
+"\n"
+"      <p>This site, the HTML5 <a href=\"http://playground.html5rocks.com"
+"\">Playground</a>, <a href=\"http://studio.html5rocks.com\">Studio</a>,\n"
+"      and <a href=\"http://slides.html5rocks.com\">Presentation</a> slides "
+"are all <a href=\"http://code.google.com/p/html5rocks/\">open source "
+"projects</a>.\n"
+"      Tweak the code or <a href=\"http://code.google.com/p/html5rocks/wiki/"
+"ContributorsGuide\">contribute</a> new guides!</p>\n"
+"      "
+msgstr ""
+
+#: content/index.html:115
+msgid ""
+"\n"
+"      <p>Ready to develop in HTML5 but worried about supporting older "
+"versions of Internet Explorer?\n"
+"      Learn how <a href=\"http://code.google.com/chrome/chromeframe/"
+"\">Google Chrome Frame</a> can help. It's easy to include\n"
+"      on your site:</p>\n"
+"      "
+msgstr ""
+
+#: content/privacy.html:4
+msgid "Privacy Policy"
+msgstr ""
+
+#: content/privacy.html:12
+msgid ""
+"\n"
+"      <p>The HTML5ROCKS website (the \"Website\") is hosted by Google and, "
+"as such, for the purposes of personal information,\n"
+"        the Website operates as any other Google service. Google's Privacy "
+"Policy is available at\n"
+"        <a href=\"http://www.google.com/privacy.html\">http://www.google.com/"
+"privacy.html</a>.</p>\n"
+"      "
+msgstr ""
+
+#: content/profiles.html:3
+msgid "Author Profiles"
+msgstr ""
+
+#: content/profiles.html:16 templates/casestudy.html:8
+#: templates/mobile_tutorial.html:8 templates/sample.html:8
+msgid "Home"
+msgstr ""
+
+#: content/profiles.html:71
+msgid "Articles"
+msgstr ""
+
+#: content/resources.html:4 templates/base.html:63
+msgid "Resources"
+msgstr ""
+
+#: content/resources.html:51
+msgid "Reference"
+msgstr ""
+
+#: content/resources.html:55
+msgid "HTML5 Readiness"
+msgstr ""
+
+#: content/resources.html:56
+msgid "Visual timeline of HTML5 feature support."
+msgstr ""
+
+#: content/resources.html:60
+msgid "When Can I Use..."
+msgstr ""
+
+#: content/resources.html:61
+msgid "Up to date HTML5 feature browser support reference."
+msgstr ""
+
+#: content/resources.html:65
+msgid "HTML5 Test"
+msgstr ""
+
+#: content/resources.html:66
+msgid "Series of browser tests to evaluate feature support."
+msgstr ""
+
+#: content/resources.html:70
+msgid "Web Designer's Checklist"
+msgstr ""
+
+#: content/resources.html:71
+msgid "Detailed browser feature support reference."
+msgstr ""
+
+#: content/resources.html:75
+msgid "HTML5 Infographic"
+msgstr ""
+
+#: content/resources.html:76
+msgid "A quick overview of scope and support."
+msgstr ""
+
+#: content/resources.html:81
+msgid "Chrome Implementation Status"
+msgstr ""
+
+#: content/resources.html:82
+msgid ""
+"Follow the engineering effort for cutting edge support from the Chrome team."
+msgstr ""
+
+#: content/resources.html:86
+msgid "HTML5: Comparison of Layout Engines"
+msgstr ""
+
+#: content/resources.html:87
+msgid "If the Wikipedia says it then it must be true."
+msgstr ""
+
+#: content/resources.html:92
+msgid "ECMAScript 5 table"
+msgstr ""
+
+#: content/resources.html:93
+msgid "Detailed table of ES5 support across browsers."
+msgstr ""
+
+#: content/resources.html:97
+msgid "Compatibility Tables"
+msgstr ""
+
+#: content/resources.html:98
+msgid "Results of DOM and CSS properties tests in major browsers."
+msgstr ""
+
+#: content/resources.html:103
+msgid "HTML5 Demos"
+msgstr ""
+
+#: content/resources.html:109
+msgid "Documentation"
+msgstr ""
+
+#: content/resources.html:113
+msgid "W3C HTML5 Web Author View"
+msgstr ""
+
+#: content/resources.html:114
+msgid "Lightweight version of the W3c spec, perfect for web developers."
+msgstr ""
+
+#: content/resources.html:119
+msgid "Dive into HTML5 by Mark Pilgrim"
+msgstr ""
+
+#: content/resources.html:120
+msgid "Learn HTML5 and have a laugh at the same time."
+msgstr ""
+
+#: content/resources.html:125
+msgid "Safari HTML5 Guides"
+msgstr ""
+
+#: content/resources.html:126
+msgid "Excellent WebKit-oriented development documentation."
+msgstr ""
+
+#: content/resources.html:130
+msgid "Mozilla Development Center HTML5 Reference"
+msgstr ""
+
+#: content/resources.html:131
+msgid "Excellent documentation and guides."
+msgstr ""
+
+#: content/resources.html:135
+msgid "WhatWG Web Apps Spec (HTML5 plus the kitchen sink)"
+msgstr ""
+
+#: content/resources.html:136
+msgid "Working draft spec of everything under the larger HTML5 umbrella."
+msgstr ""
+
+#: content/resources.html:146
+msgid "Modernizr"
+msgstr ""
+
+#: content/resources.html:147
+msgid ""
+"Javascript library for feature detection and control fallback cases of HTML5."
+msgstr ""
+
+#: content/resources.html:151
+msgid "html5 shiv"
+msgstr ""
+
+#: content/resources.html:152
+msgid "Javascript patch to make IE support, and print, the new tag elements."
+msgstr ""
+
+#: content/resources.html:156
+msgid "HTML5 Boilerplate"
+msgstr ""
+
+#: content/resources.html:157
+msgid ""
+"An set of HTML/CSS/JS templates with best practices for HTML5 and front-end "
+"dev built in."
+msgstr ""
+
+#: content/resources.html:161
+msgid "HTML5 Cross-browser Polyfills"
+msgstr ""
+
+#: content/resources.html:162
+msgid "The collection of scripts that enable HTML5 features in all browsers."
+msgstr ""
+
+#: content/resources.html:166
+msgid "CSS Button Maker"
+msgstr ""
+
+#: content/resources.html:167 content/resources.html.py:172
+msgid "Preview CSS buttons with a fancy interface to play with the parameters."
+msgstr ""
+
+#: content/resources.html:171
+msgid "CSS3 Generator"
+msgstr ""
+
+#: content/resources.html:176
+msgid "CSS3 Sandbox"
+msgstr ""
+
+#: content/resources.html:177
+msgid "Test and get the code of the fanciest CSS features."
+msgstr ""
+
+#: content/resources.html:181
+msgid "CSS3 Gradient Generator"
+msgstr ""
+
+#: content/resources.html:182
+msgid "Generate CSS code for gradients on the fly."
+msgstr ""
+
+#: content/resources.html:186
+msgid "CSS3 Please"
+msgstr ""
+
+#: content/resources.html:187
+msgid "Use CSS3 without having to worry about xbrowser differences."
+msgstr ""
+
+#: content/resources.html:191
+msgid "Font Dragr"
+msgstr ""
+
+#: content/resources.html:192
+msgid "Test your fonts using drag and drop."
+msgstr ""
+
+#: content/resources.html:196
+msgid "Font Squirrel Generator"
+msgstr ""
+
+#: content/resources.html:197
+msgid "Most complete tool to generate code for you font-face support."
+msgstr ""
+
+#: content/resources.html:201
+msgid "Let's make the web faster"
+msgstr ""
+
+#: content/resources.html:202
+msgid "Complete list of tools related to web performance."
+msgstr ""
+
+#: content/resources.html:208
+msgid "Community"
+msgstr ""
+
+#: content/resources.html:212
+msgid "HTML5 Watch"
+msgstr ""
+
+#: content/resources.html:216
+msgid "HTML5 Doctor"
+msgstr ""
+
+#: content/resources.html:220
+msgid "WhatWG Blog"
+msgstr ""
+
+#: content/resources.html:224
+msgid "Ajaxian"
+msgstr ""
+
+#: content/resources.html:228
+msgid "Chromium HTML5 Discussion Group"
+msgstr ""
+
+#: content/resources.html:232
+msgid "Mozilla Hacks"
+msgstr ""
+
+#: content/resources.html:236
+msgid "Safari HTML5 Demos"
+msgstr ""
+
+#: content/resources.html:240
+msgid "Test Drive IE9 Demos"
+msgstr ""
+
+#: content/resources.html:244
+msgid "Open Web - Opera Developer Community"
+msgstr ""
+
+#: content/resources.html:248
+msgid "Chrome Experiments"
+msgstr ""
+
+#: content/resources.html:253
+msgid "CSS3 Watch"
+msgstr ""
+
+#: content/resources.html:263
+msgid "HTML5 [Mark Pilgrim]"
+msgstr ""
+
+#: content/resources.html:267
+msgid "Pro HTML5 Programming [Peter Lubbers, Brian Albers, Frank Salim]"
+msgstr ""
+
+#: content/resources.html:271
+msgid "Introducing HTML5 [Bruce Lawson, Remy Sharp]"
+msgstr ""
+
+#: content/resources.html:275
+msgid "HTML5 For Web Designers [Jeremy Keith]"
+msgstr ""
+
+#: content/resources.html:279
+msgid "HTML5 Now [Tantek Celik]"
+msgstr ""
+
+#: content/search.html:4
+msgid "Search Results"
+msgstr ""
+
+#: content/tos.html:4
+msgid "Terms of Service"
+msgstr ""
+
+#: content/tos.html:12
+msgid ""
+"\n"
+"      <p>The HTML5ROCKS website (the \"Website\") is hosted by Google. By "
+"using and/or visiting the Website, you consent\n"
+"      to be bound by these terms of service as well as Google's general <a "
+"href=\"http://www.google.com/accounts/TOS\">Terms of Service</a> and "
+"Google's general <a href=\"http://www.google.com/privacy.html\">Privacy "
+"Policy</a>.</p>\n"
+"      "
+msgstr ""
+
+#: html5lib/constants.py:15
+msgid "Null character in input stream, replaced with U+FFFD."
+msgstr ""
+
+#: html5lib/constants.py:17
+msgid "Invalid codepoint in stream."
+msgstr ""
+
+#: html5lib/constants.py:19
+msgid "Solidus (/) incorrectly placed in tag."
+msgstr ""
+
+#: html5lib/constants.py:21
+msgid "Incorrect CR newline entity, replaced with LF."
+msgstr ""
+
+#: html5lib/constants.py:23
+msgid "Entity used with illegal number (windows-1252 reference)."
+msgstr ""
+
+#: html5lib/constants.py:25
+#, python-format
+msgid ""
+"Numeric entity couldn't be converted to character (codepoint U+"
+"%(charAsInt)08x)."
+msgstr ""
+
+#: html5lib/constants.py:28
+#, python-format
+msgid "Numeric entity represents an illegal codepoint: U+%(charAsInt)08x."
+msgstr ""
+
+#: html5lib/constants.py:31
+msgid "Numeric entity didn't end with ';'."
+msgstr ""
+
+#: html5lib/constants.py:33
+msgid "Numeric entity expected. Got end of file instead."
+msgstr ""
+
+#: html5lib/constants.py:35
+msgid "Numeric entity expected but none found."
+msgstr ""
+
+#: html5lib/constants.py:37
+msgid "Named entity didn't end with ';'."
+msgstr ""
+
+#: html5lib/constants.py:39
+msgid "Named entity expected. Got none."
+msgstr ""
+
+#: html5lib/constants.py:41
+msgid "End tag contains unexpected attributes."
+msgstr ""
+
+#: html5lib/constants.py:43
+msgid "Expected tag name. Got '>' instead."
+msgstr ""
+
+#: html5lib/constants.py:45
+msgid ""
+"Expected tag name. Got '?' instead. (HTML doesn't support processing "
+"instructions.)"
+msgstr ""
+
+#: html5lib/constants.py:48
+msgid "Expected tag name. Got something else instead"
+msgstr ""
+
+#: html5lib/constants.py:50
+msgid "Expected closing tag. Got '>' instead. Ignoring '</>'."
+msgstr ""
+
+#: html5lib/constants.py:52
+msgid "Expected closing tag. Unexpected end of file."
+msgstr ""
+
+#: html5lib/constants.py:54
+#, python-format
+msgid "Expected closing tag. Unexpected character '%(data)s' found."
+msgstr ""
+
+#: html5lib/constants.py:56
+msgid "Unexpected end of file in the tag name."
+msgstr ""
+
+#: html5lib/constants.py:58
+msgid "Unexpected end of file. Expected attribute name instead."
+msgstr ""
+
+#: html5lib/constants.py:60
+msgid "Unexpected end of file in attribute name."
+msgstr ""
+
+#: html5lib/constants.py:62
+msgid "Invalid chracter in attribute name"
+msgstr ""
+
+#: html5lib/constants.py:64
+msgid "Dropped duplicate attribute on tag."
+msgstr ""
+
+#: html5lib/constants.py:66
+msgid "Unexpected end of file. Expected = or end of tag."
+msgstr ""
+
+#: html5lib/constants.py:68
+msgid "Unexpected end of file. Expected attribute value."
+msgstr ""
+
+#: html5lib/constants.py:70
+msgid "Expected attribute value. Got '>' instead."
+msgstr ""
+
+#: html5lib/constants.py:72
+msgid "Unexpected end of file in attribute value (\")."
+msgstr ""
+
+#: html5lib/constants.py:74
+msgid "Unexpected end of file in attribute value (')."
+msgstr ""
+
+#: html5lib/constants.py:76
+msgid "Unexpected end of file in attribute value."
+msgstr ""
+
+#: html5lib/constants.py:78
+msgid "Unexpected end of file in tag. Expected >"
+msgstr ""
+
+#: html5lib/constants.py:80
+msgid "Unexpected character after / in tag. Expected >"
+msgstr ""
+
+#: html5lib/constants.py:82
+msgid "Expected '--' or 'DOCTYPE'. Not found."
+msgstr ""
+
+#: html5lib/constants.py:84
+msgid "Incorrect comment."
+msgstr ""
+
+#: html5lib/constants.py:86
+msgid "Unexpected end of file in comment."
+msgstr ""
+
+#: html5lib/constants.py:88
+msgid "Unexpected end of file in comment (-)"
+msgstr ""
+
+#: html5lib/constants.py:90
+msgid "Unexpected '-' after '--' found in comment."
+msgstr ""
+
+#: html5lib/constants.py:92
+msgid "Unexpected end of file in comment (--)."
+msgstr ""
+
+#: html5lib/constants.py:94
+msgid "Unexpected character in comment found."
+msgstr ""
+
+#: html5lib/constants.py:96
+msgid "No space after literal string 'DOCTYPE'."
+msgstr ""
+
+#: html5lib/constants.py:98
+msgid "Unexpected > character. Expected DOCTYPE name."
+msgstr ""
+
+#: html5lib/constants.py:100
+msgid "Unexpected end of file. Expected DOCTYPE name."
+msgstr ""
+
+#: html5lib/constants.py:102
+msgid "Unexpected end of file in DOCTYPE name."
+msgstr ""
+
+#: html5lib/constants.py:104
+msgid "Unexpected end of file in DOCTYPE."
+msgstr ""
+
+#: html5lib/constants.py:106
+#, python-format
+msgid "Expected space or '>'. Got '%(data)s'"
+msgstr ""
+
+#: html5lib/constants.py:108
+msgid "Unexpected end of DOCTYPE."
+msgstr ""
+
+#: html5lib/constants.py:110
+msgid "Unexpected character in DOCTYPE."
+msgstr ""
+
+#: html5lib/constants.py:112
+msgid "XXX innerHTML EOF"
+msgstr ""
+
+#: html5lib/constants.py:114
+msgid "Unexpected DOCTYPE. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:116
+msgid "html needs to be the first start tag."
+msgstr ""
+
+#: html5lib/constants.py:118
+msgid "Unexpected End of file. Expected DOCTYPE."
+msgstr ""
+
+#: html5lib/constants.py:120
+msgid "Erroneous DOCTYPE."
+msgstr ""
+
+#: html5lib/constants.py:122
+msgid "Unexpected non-space characters. Expected DOCTYPE."
+msgstr ""
+
+#: html5lib/constants.py:124
+#, python-format
+msgid "Unexpected start tag (%(name)s). Expected DOCTYPE."
+msgstr ""
+
+#: html5lib/constants.py:126
+#, python-format
+msgid "Unexpected end tag (%(name)s). Expected DOCTYPE."
+msgstr ""
+
+#: html5lib/constants.py:128
+#, python-format
+msgid "Unexpected end tag (%(name)s) after the (implied) root element."
+msgstr ""
+
+#: html5lib/constants.py:130
+#, python-format
+msgid "Unexpected end of file. Expected end tag (%(name)s)."
+msgstr ""
+
+#: html5lib/constants.py:132
+msgid "Unexpected start tag head in existing head. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:134
+#, python-format
+msgid "Unexpected end tag (%(name)s). Ignored."
+msgstr ""
+
+#: html5lib/constants.py:136
+#, python-format
+msgid "Unexpected start tag (%(name)s) that can be in head. Moved."
+msgstr ""
+
+#: html5lib/constants.py:138
+#, python-format
+msgid "Unexpected start tag (%(name)s)."
+msgstr ""
+
+#: html5lib/constants.py:140
+#, python-format
+msgid "Missing end tag (%(name)s)."
+msgstr ""
+
+#: html5lib/constants.py:142
+#, python-format
+msgid "Missing end tags (%(name)s)."
+msgstr ""
+
+#: html5lib/constants.py:144
+#, python-format
+msgid "Unexpected start tag (%(startName)s) implies end tag (%(endName)s)."
+msgstr ""
+
+#: html5lib/constants.py:147
+#, python-format
+msgid "Unexpected start tag (%(originalName)s). Treated as %(newName)s."
+msgstr ""
+
+#: html5lib/constants.py:149
+#, python-format
+msgid "Unexpected start tag %(name)s. Don't use it!"
+msgstr ""
+
+#: html5lib/constants.py:151
+#, python-format
+msgid "Unexpected start tag %(name)s. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:153
+#, python-format
+msgid "Unexpected end tag (%(gotName)s). Missing end tag (%(expectedName)s)."
+msgstr ""
+
+#: html5lib/constants.py:156
+#, python-format
+msgid "End tag (%(name)s) seen too early. Expected other end tag."
+msgstr ""
+
+#: html5lib/constants.py:158
+#, python-format
+msgid "Unexpected end tag (%(gotName)s). Expected end tag (%(expectedName)s)."
+msgstr ""
+
+#: html5lib/constants.py:160
+#, python-format
+msgid "End tag (%(name)s) seen too early. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:162
+#, python-format
+msgid ""
+"End tag (%(name)s) violates step 1, paragraph 1 of the adoption agency "
+"algorithm."
+msgstr ""
+
+#: html5lib/constants.py:165
+#, python-format
+msgid ""
+"End tag (%(name)s) violates step 1, paragraph 2 of the adoption agency "
+"algorithm."
+msgstr ""
+
+#: html5lib/constants.py:168
+#, python-format
+msgid ""
+"End tag (%(name)s) violates step 1, paragraph 3 of the adoption agency "
+"algorithm."
+msgstr ""
+
+#: html5lib/constants.py:171
+#, python-format
+msgid "Unexpected end tag (%(originalName)s). Treated as %(newName)s."
+msgstr ""
+
+#: html5lib/constants.py:173
+#, python-format
+msgid "This element (%(name)s) has no end tag."
+msgstr ""
+
+#: html5lib/constants.py:175
+#, python-format
+msgid "Unexpected implied end tag (%(name)s) in the table phase."
+msgstr ""
+
+#: html5lib/constants.py:177
+#, python-format
+msgid "Unexpected implied end tag (%(name)s) in the table body phase."
+msgstr ""
+
+#: html5lib/constants.py:179
+msgid "Unexpected non-space characters in table context caused voodoo mode."
+msgstr ""
+
+#: html5lib/constants.py:182
+msgid "Unexpected input with type hidden in table context."
+msgstr ""
+
+#: html5lib/constants.py:184
+msgid "Unexpected form in table context."
+msgstr ""
+
+#: html5lib/constants.py:186
+#, python-format
+msgid "Unexpected start tag (%(name)s) in table context caused voodoo mode."
+msgstr ""
+
+#: html5lib/constants.py:189
+#, python-format
+msgid "Unexpected end tag (%(name)s) in table context caused voodoo mode."
+msgstr ""
+
+#: html5lib/constants.py:192
+#, python-format
+msgid "Unexpected table cell start tag (%(name)s) in the table body phase."
+msgstr ""
+
+#: html5lib/constants.py:195
+#, python-format
+msgid "Got table cell end tag (%(name)s) while required end tags are missing."
+msgstr ""
+
+#: html5lib/constants.py:198
+#, python-format
+msgid "Unexpected end tag (%(name)s) in the table body phase. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:200
+#, python-format
+msgid "Unexpected implied end tag (%(name)s) in the table row phase."
+msgstr ""
+
+#: html5lib/constants.py:202
+#, python-format
+msgid "Unexpected end tag (%(name)s) in the table row phase. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:204
+msgid ""
+"Unexpected select start tag in the select phase treated as select end tag."
+msgstr ""
+
+#: html5lib/constants.py:207
+msgid "Unexpected input start tag in the select phase."
+msgstr ""
+
+#: html5lib/constants.py:209
+#, python-format
+msgid "Unexpected start tag token (%(name)s in the select phase. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:212
+#, python-format
+msgid "Unexpected end tag (%(name)s) in the select phase. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:214
+#, python-format
+msgid ""
+"Unexpected table element start tag (%(name)s) in the select in table phase."
+msgstr ""
+
+#: html5lib/constants.py:216
+#, python-format
+msgid ""
+"Unexpected table element end tag (%(name)s) in the select in table phase."
+msgstr ""
+
+#: html5lib/constants.py:218
+msgid "Unexpected non-space characters in the after body phase."
+msgstr ""
+
+#: html5lib/constants.py:220
+#, python-format
+msgid "Unexpected start tag token (%(name)s) in the after body phase."
+msgstr ""
+
+#: html5lib/constants.py:223
+#, python-format
+msgid "Unexpected end tag token (%(name)s) in the after body phase."
+msgstr ""
+
+#: html5lib/constants.py:226
+msgid "Unepxected characters in the frameset phase. Characters ignored."
+msgstr ""
+
+#: html5lib/constants.py:228
+#, python-format
+msgid "Unexpected start tag token (%(name)s) in the frameset phase. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:231
+msgid "Unexpected end tag token (frameset) in the frameset phase (innerHTML)."
+msgstr ""
+
+#: html5lib/constants.py:234
+#, python-format
+msgid "Unexpected end tag token (%(name)s) in the frameset phase. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:237
+msgid "Unexpected non-space characters in the after frameset phase. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:240
+#, python-format
+msgid "Unexpected start tag (%(name)s) in the after frameset phase. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:243
+#, python-format
+msgid "Unexpected end tag (%(name)s) in the after frameset phase. Ignored."
+msgstr ""
+
+#: html5lib/constants.py:246
+msgid "Unexpected end tag after body(innerHtml)"
+msgstr ""
+
+#: html5lib/constants.py:248
+msgid "Unexpected non-space characters. Expected end of file."
+msgstr ""
+
+#: html5lib/constants.py:250
+#, python-format
+msgid "Unexpected start tag (%(name)s). Expected end of file."
+msgstr ""
+
+#: html5lib/constants.py:253
+#, python-format
+msgid "Unexpected end tag (%(name)s). Expected end of file."
+msgstr ""
+
+#: html5lib/constants.py:256
+msgid "Unexpected end of file. Expected table content."
+msgstr ""
+
+#: html5lib/constants.py:258
+msgid "Unexpected end of file. Expected select content."
+msgstr ""
+
+#: html5lib/constants.py:260
+msgid "Unexpected end of file. Expected frameset content."
+msgstr ""
+
+#: html5lib/constants.py:262
+msgid "Unexpected end of file. Expected script content."
+msgstr ""
+
+#: html5lib/constants.py:264
+#, python-format
+msgid "Trailing solidus not allowed on element %(name)s"
+msgstr ""
+
+#: html5lib/constants.py:266
+#, python-format
+msgid "Element %(name)s not allowed in a non-html context"
+msgstr ""
+
+#: html5lib/constants.py:268
+#, python-format
+msgid "Unexpected end tag (%(name)s) before html."
+msgstr ""
+
+#: html5lib/filters/lint.py:21
+#, python-format
+msgid "StartTag not in PCDATA content model flag: %(tag)s"
+msgstr ""
+
+#: html5lib/filters/lint.py:23 html5lib/filters/lint.py:49
+#: html5lib/filters/lint.py:79
+#, python-format
+msgid "Tag name is not a string: %(tag)r"
+msgstr ""
+
+#: html5lib/filters/lint.py:25 html5lib/filters/lint.py:51
+msgid "Empty tag name"
+msgstr ""
+
+#: html5lib/filters/lint.py:27
+#, python-format
+msgid "Void element reported as StartTag token: %(tag)s"
+msgstr ""
+
+#: html5lib/filters/lint.py:29
+#, python-format
+msgid "Non-void element reported as EmptyTag token: %(tag)s"
+msgstr ""
+
+#: html5lib/filters/lint.py:34 html5lib/filters/lint.py:66
+#, python-format
+msgid "Attribute name is not a string: %(name)r"
+msgstr ""
+
+#: html5lib/filters/lint.py:36
+msgid "Empty attribute name"
+msgstr ""
+
+#: html5lib/filters/lint.py:38
+#, python-format
+msgid "Attribute value is not a string: %(value)r"
+msgstr ""
+
+#: html5lib/filters/lint.py:53
+#, python-format
+msgid "Void element reported as EndTag token: %(tag)s"
+msgstr ""
+
+#: html5lib/filters/lint.py:56
+#, python-format
+msgid "EndTag (%(end)s) does not match StartTag (%(start)s)"
+msgstr ""
+
+#: html5lib/filters/lint.py:61
+msgid "Comment not in PCDATA content model flag"
+msgstr ""
+
+#: html5lib/filters/lint.py:68
+#, python-format
+msgid "%(type)s token with empty data"
+msgstr ""
+
+#: html5lib/filters/lint.py:72
+#, python-format
+msgid "Non-space character(s) found in SpaceCharacters token: %(token)r"
+msgstr ""
+
+#: html5lib/filters/lint.py:77
+#, python-format
+msgid "Doctype not in PCDATA content model flag: %(name)s"
+msgstr ""
+
+#: html5lib/filters/lint.py:86
+#, python-format
+msgid "Unknown token type: %(type)s"
+msgstr ""
+
+#: html5lib/serializer/htmlserializer.py:115
+msgid "System identifer contains both single and double quote characters"
+msgstr ""
+
+#: html5lib/serializer/htmlserializer.py:131
+msgid "Unexpected </ in CDATA"
+msgstr ""
+
+#: html5lib/serializer/htmlserializer.py:146
+#: html5lib/serializer/htmlserializer.py:202
+msgid "Unexpected child element of a CDATA element"
+msgstr ""
+
+#: html5lib/serializer/htmlserializer.py:211
+msgid "Comment contains --"
+msgstr ""
+
+#: html5lib/treewalkers/_base.py:29
+msgid "Void element has children"
+msgstr ""
+
+#: html5lib/treewalkers/_base.py:68
+msgid "Unknown node type: "
+msgstr ""
+
+#: html5lib/treewalkers/lxmletree.py:114 html5lib/treewalkers/lxmletree.py:154
+#: html5lib/treewalkers/lxmletree.py:170
+#, python-format
+msgid "Text nodes are text or tail, found %s"
+msgstr ""
+
+#: html5lib/treewalkers/lxmletree.py:143
+msgid "Text nodes have no children"
+msgstr ""
+
+#: templates/404.html:4
+msgid "404 - Page Not Found"
+msgstr ""
+
+#: templates/404.html:59 templates/404.html.py:60
+msgid "I pity da foo who doesn't use HTML5!"
+msgstr ""
+
+#: templates/404.html:61
+msgid "Oops!! We didn't find any HTML<sub>5</sub> resources here."
+msgstr ""
+
+#: templates/article_footer.html:3
+msgid ""
+"\n"
+"  Except as otherwise <a href=\"http://code.google.com/policies."
+"html#restrictions\">noted</a>, the content of this\n"
+"  page is licensed under the <a href=\"http://creativecommons.org/licenses/"
+"by/3.0/\">Creative Commons Attribution 3.0 License</a>, <br>\n"
+"  and code samples are licensed under the <a href=\"http://www.apache.org/"
+"licenses/LICENSE-2.0\">Apache 2.0 License</a>.\n"
+msgstr ""
+
+#: templates/article_footer.html:15
+msgid "Please enable JavaScript to view the <a href="
+msgstr ""
+
+#: templates/base.html:27
+msgid ""
+"A resource for developers looking to put HTML5 to use today, including "
+"information on specific features and when to use them in your apps."
+msgstr ""
+
+#: templates/base.html:28
+msgid ""
+"html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,"
+"geolocation,web workers,apppcache,file api,filereader,offline,audio,video,"
+"drag and drop,chrome"
+msgstr ""
+
+#: templates/base.html:29
+msgid "HTML5 Rocks"
+msgstr ""
+
+#: templates/base.html:55
+msgid "HTML5 Rocks Logo"
+msgstr ""
+
+#: templates/base.html:55
+msgid "HTML"
+msgstr ""
+
+#: templates/base.html:55
+msgid "Rocks"
+msgstr ""
+
+#: templates/base.html:60
+msgid "Playground"
+msgstr ""
+
+#: templates/base.html:61
+msgid "Studio"
+msgstr ""
+
+#: templates/base.html:62 templates/mobile_tutorial.html:14
+#: templates/sample.html:11
+msgid "Tutorials"
+msgstr ""
+
+#: templates/base.html:72
+msgid "Search HTML5Rocks"
+msgstr ""
+
+#: templates/base.html:82
+msgid "HTML5 Logo"
+msgstr ""
+
+#: templates/base.html:86
+msgid "Terms"
+msgstr ""
+
+#: templates/base.html:87
+msgid "Privacy"
+msgstr ""
+
+#: templates/base.html:88
+msgid "Make a Suggestion"
+msgstr ""
+
+#: templates/base.html:89
+msgid "Report Bug"
+msgstr ""
+
+#: templates/base.html:90
+msgid "Follow us on Twitter"
+msgstr ""
+
+#: templates/base.html:91
+msgid "About Authors"
+msgstr ""
+
+#: templates/base.html:93
+msgid "Made by Google"
+msgstr ""
+
+#: templates/base.html:94
+msgid ""
+"This site contains information on APIs that are not part of the W3C HTML5 "
+"specification."
+msgstr ""
+
+#: templates/base.html:114
+msgid "A new version of this site is available. Load it?"
+msgstr ""
+
+#: templates/casestudy.html:11
+msgid "Case Studies"
+msgstr ""
+
+#: templates/casestudy.html:29 templates/mobile_tutorial.html:32
+#: templates/sample.html:29
+msgid "Post to Google Buzz"
+msgstr ""
+
+#: templates/casestudy.html:31 templates/mobile_tutorial.html:34
+#: templates/sample.html:31
+msgid "Tweet"
+msgstr ""
+
+#: templates/casestudy.html:33 templates/mobile_tutorial.html:36
+#: templates/sample.html:33
+msgid "Leave a comment"
+msgstr ""
+
+#: templates/casestudy.html:38 templates/sample.html:38
+msgid "Supported browsers:"
+msgstr ""
+
+#: templates/casestudy.html:46 templates/sample.html:46
+msgid ""
+"Your browser may not support all of the functionality used in this article."
+msgstr ""
+
+#: templates/casestudy.html:51 templates/sample.html:51
+msgid ""
+"Your browser appears to support all of the functionality used in this "
+"article."
+msgstr ""
+
+#: templates/casestudy.html:60
+msgid "HTML5 Powered"
+msgstr ""
+
+#: templates/mobile_tutorial.html:11
+msgid "Mobile"
+msgstr ""
+
+#: templates/mobile_tutorial.html:41
+msgid "Supported mobile browsers:"
+msgstr ""
