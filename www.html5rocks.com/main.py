@@ -66,7 +66,7 @@ class ContentHandler(webapp.RequestHandler):
     self.locale = lang_match.group(1) if lang_match else settings.LANGUAGE_CODE
     logging.info( "Set Language as %s" % self.locale )
     translation.activate( self.locale )
-    return self.locale
+    return self.locale if lang_match else None
 
   def browser(self):
     return str(self.request.headers['User-Agent'])
@@ -205,7 +205,10 @@ class ContentHandler(webapp.RequestHandler):
     self.response.out.write(feed.writeString('utf-8'))
 
   def get(self, relpath):
+    # Get the locale: if it's "None", redirect to English
     locale = self.get_language()
+    if not locale:
+      return self.redirect( "/en/%s" % relpath, permanent=True)
 
     if self.request.get('cache', '1') == '0':
       self.request.cache = False
@@ -215,7 +218,7 @@ class ContentHandler(webapp.RequestHandler):
     basedir = os.path.dirname(__file__)
 
     # Strip off leading `/[en|de|fr|...]/`
-    relpath = re.sub( '^/?\w{2,3}/?', '', relpath )
+    relpath = re.sub( '^/?\w{2,3}/', '', relpath )
 
     logging.info('relpath: ' + relpath)
 
