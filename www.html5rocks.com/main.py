@@ -248,7 +248,40 @@ class ContentHandler(webapp.RequestHandler):
       self.render(data={'sorted_profiles': sorted_profiles},
                   template_path='content/profiles.html', relpath=relpath)
 
-    elif (re.search('tutorials/', relpath)):
+    elif (re.search('tutorials/casestudies', relpath)):
+      # Case Studies look like this on the filesystem:
+      #
+      #   .../tutorials +
+      #                 |
+      #                 +-- casestudies   +
+      #                 |                 |
+      #                 |                 +-- en  +
+      #                 |                 |       |
+      #                 |                 |       +-- case_study_name.html
+      #                 ...
+      #
+      # So, to determine if an HTML page exists for the requested language
+      # `split` the file's path, add in the locale, and check existance:
+      logging.info('Building request for casestudy `%s` in locale `%s`', path, locale)
+      potentialfile = re.sub('tutorials/casestudies',
+                             'tutorials/casestudies/%s' % locale,
+                             path)
+      englishfile   = re.sub('tutorials/casestudies',
+                             'tutorials/casestudies/%s' % 'en',
+                             path)
+      logging.info(potentialfile)
+      if os.path.isfile( potentialfile ):
+        self.render(template_path=potentialfile,
+                    data={'redirect_from_locale': redirect_from_locale})
+
+      # If the localized file doesn't exist, and the locale isn't English, look
+      # for an english version of the file, and redirect the user there if
+      # it's found:
+      elif os.path.isfile( englishfile ):
+        self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
+
+
+    elif (re.search('tutorials/.+', relpath)):
       # Tutorials look like this on the filesystem:
       #
       #   .../tutorials +
