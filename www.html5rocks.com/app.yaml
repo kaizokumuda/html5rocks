@@ -11,35 +11,40 @@ handlers:
   static_files: static/google75906d613a2a09ba.html
   upload: static/google75906d613a2a09ba.html
 
-- url: /(w{2,3})/tutorials.*(\.html|/)
-  script: main.py
-
 # Server appropriate mimetype for certain static content.
 
-- url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.zip)
-  static_files: content/\2\3/\1/\4\5
-  mime_type: application/zip
-  upload: content/tutorials/(.*\.zip)
-
-- url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.crx)
-  static_files: content/\2\3/\1/\4\5
-  mime_type: application/x-chrome-extension
-  upload: content/tutorials/(.*\.crx)
-
-- url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.mp4)
-  static_files: content/\2\3/\1/\4\5
-  mime_type: video/mp4
-  upload: content/tutorials/(.*\.mp4)
-
-- url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.webm)
-  static_files: content/\2\3/\1/\4\5
-  mime_type: video/webm
+#
+# Video Formats
+#
+- url: /(\w{2,3})/(tutorials/casestudies)/(.+\.webm)
+  mime_type: audio/webm
+  static_files: content/\2/static/\3
   upload: content/tutorials/(.*\.webm)
 
-- url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.ogv)
-  static_files: content/\2\3/\1/\4\5
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.webm)
+  mime_type: video/webm
+  static_files: content/\2/static/\3
+  upload: content/tutorials/(.*\.webm)
+
+- url: /(\w{2,3})/(tutorials/casestudies)/(.+\.ogv)
   mime_type: video/ogg
+  static_files: content/\2/static/\3
   upload: content/tutorials/(.*\.ogv)
+
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.ogv)
+  mime_type: video/ogg
+  static_files: content/\2/static/\3
+  upload: content/tutorials/(.*\.ogv)
+
+- url: /(\w{2,3})/(tutorials/casestudies)/(.+\.mp4)
+  mime_type: audio/mp4
+  static_files: content/\2/static/\3
+  upload: content/tutorials/(.*\.mp4)
+
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.mp4)
+  mime_type: video/mp4
+  static_files: content/\2/static/\3
+  upload: content/tutorials/(.*\.mp4)
 
 #
 # Audio Formats
@@ -82,13 +87,13 @@ handlers:
 #
 # Everything else
 #
-- url: /(\w{2,3})/(tutorials/casestudies)/(.+\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
+- url: /(\w{2,3})/(tutorials/casestudies)/(.+\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla|zip))
   static_files: content/\2/static/\3
-  upload: content/tutorials/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
+  upload: content/tutorials/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla|zip))
 
-- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.(html|gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.(html|gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla|zip))
   static_files: content/\2/static/\3
-  upload: content/tutorials/(.*?/(?!index)[^/]*\.(html|gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
+  upload: content/tutorials/(.*?/(?!index)[^/]*\.(html|gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla|zip))
 
 # Anything under /static will automatically be considered static.
 - url: /static

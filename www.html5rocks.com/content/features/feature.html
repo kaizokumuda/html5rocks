@@ -15,7 +15,7 @@
         <ul>
           {% block tuts %}{% endblock %}
         </ul>
-        <p>{% blocktrans %}View all <a href="/tutorials/#{% block tuttags %}{% endblock %}">related HTML5Rocks tutorials</a> &rArr;{% endblocktrans %}</p>
+        <p><a href="/tutorials/#{% block tuttags %}{% endblock %}">{% trans "View all related HTML5Rocks tutorials</a> &rArr;" %}</p>
       </div>
     </section>
     <section class="demos">

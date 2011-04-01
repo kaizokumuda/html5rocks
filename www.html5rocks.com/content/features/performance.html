@@ -39,14 +39,14 @@ Web app optimization cross cuts all aspects of development, from the server to t
 
 {% block themes %}
 <dl>
-  <dt>Store locally." %}</dt>
-  <dd>Data stored on the client is quicker to access than data stored on the server.  Also, data stored closer to the calculation is quicker to access." %}</dd>
-  <dt>Process in the background." %}</dt>
-  <dd>Anything that doesn't help the user see a response to their action should be performed in the background." %}</dd>
-  <dt>Minimize connections." %}</dt>
-  <dd>Each connection requires work for setup and teardown." %}</dd>
-  <dt>Decrease bandwidth." %}</dt>
-  <dd>Less bandwidth means a faster response." %}</dd>
+  <dt>{% trans "Store locally." %}</dt>
+  <dd>{% trans "Data stored on the client is quicker to access than data stored on the server.  Also, data stored closer to the calculation is quicker to access." %}</dd>
+  <dt>{% trans "Process in the background." %}</dt>
+  <dd>{% trans "Anything that doesn't help the user see a response to their action should be performed in the background." %}</dd>
+  <dt>{% trans "Minimize connections." %}</dt>
+  <dd>{% trans "Each connection requires work for setup and teardown." %}</dd>
+  <dt>{% trans "Decrease bandwidth." %}</dt>
+  <dd>{% trans "Less bandwidth means a faster response." %}</dd>
 </dl>
 {% endblock %}
 
@@ -56,7 +56,7 @@ Web app optimization cross cuts all aspects of development, from the server to t
   <dt><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html">{% trans "HTTP caching" %}</a></dt>
   <dd>{% trans "Allow clients and servers to reduce connections and bandwidth." %}</dd>
   <dt>{% trans "HTTP caching servers" %}</dt>
-  <dd>{% blocktrans %}Servers like <a href="http://www.varnish-cache.org/">Varnish</a> and <a href="http://www.squid-cache.org/">Squid</a> can cache your content.{% blocktrans %}</dd>
+  <dd>{% blocktrans %}Servers like <a href="http://www.varnish-cache.org/">Varnish</a> and <a href="http://www.squid-cache.org/">Squid</a> can cache your content.{% endblocktrans %}</dd>
   <dt><a href="http://memcached.org/">{% trans "Memcache" %}</a></dt>
   <dd>{% trans "Efficient server side storage and retrieval of key/value data" %}</dd>
   <dt><a href="http://www.whatwg.org/specs/web-workers/current-work/">{% trans "Web workers" %}</a></dt>

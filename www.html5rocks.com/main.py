@@ -76,6 +76,9 @@ class ContentHandler(webapp.RequestHandler):
     return browser.find('Android') != -1 or browser.find('iPhone') != -1
 
   def get_toc(self, path):
+    if not re.search('tutorials', path):
+      return ''
+
     toc = memcache.get('toc|%s' % path)
     if toc is None or self.request.cache == False:
       template_text = template.render(path, {});
@@ -322,7 +325,7 @@ class ContentHandler(webapp.RequestHandler):
 def main():
   application = webapp.WSGIApplication([
     ('/(.*)', ContentHandler)
-  ], debug=False)
+  ], debug=True)
   run_wsgi_app(application)
 
 if __name__ == '__main__':
