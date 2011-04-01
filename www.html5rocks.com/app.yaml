@@ -15,17 +15,6 @@ handlers:
   script: main.py
 
 # Server appropriate mimetype for certain static content.
-- url: /(.*\.(appcache|manifest))
-  static_files: \1
-  mime_type: text/cache-manifest
-  upload: (.*\.(appcache|manifest))
-  expiration: "0s"
-
-- url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.(appcache|manifest))
-  static_files: content/\2\3/\1/\4\5
-  mime_type: text/cache-manifest
-  upload: content/tutorials/(.*\.(appcache|manifest))
-  expiration: "0s"
 
 - url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.zip)
   static_files: content/\2\3/\1/\4\5
@@ -52,19 +41,54 @@ handlers:
   mime_type: video/ogg
   upload: content/tutorials/(.*\.ogv)
 
-- url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.(ogg|oga))
-  static_files: content/\2\3/\1/\4\5
+#
+# Audio Formats
+#
+- url: /(\w{2,3})/(tutorials/casestudies)/(.+\.(ogg|oga))
   mime_type: audio/ogg
+  static_files: content/\2/static/\3
   upload: content/tutorials/(.*\.(ogg|oga))
 
-- url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.mp3)
-  static_files: content/\2\3/\1/\4\5
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.(ogg|oga))
   mime_type: audio/ogg
+  static_files: content/\2/static/\3
+  upload: content/tutorials/(.*\.(ogg|oga))
+
+- url: /(\w{2,3})/(tutorials/casestudies)/(.+\.mp3)
+  mime_type: audio/mp3
+  static_files: content/\2/static/\3
   upload: content/tutorials/(.*\.mp3)
 
-- url: /(\w{2,3})/(tutorials/)(casestudies/)?(.*?/)([^/]*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
-  static_files: content/\2\3/\1/\4\5
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.mp3)
+  mime_type: audio/mp3
+  static_files: content/\2/static/\3
+  upload: content/tutorials/(.*\.mp3)
+
+#
+# Cache Manifests
+#
+- url: /(\w{2,3})/(tutorials/casestudies)/(.+\.(appcache|manifest))
+  expiration: "0s"
+  mime_type: text/cache-manifest
+  static_files: content/\2/static/\3
+  upload: content/tutorials/(.*\.(appcache|manifest))
+
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.(appcache|manifest))
+  expiration: "0s"
+  mime_type: text/cache-manifest
+  static_files: content/\2/static/\3
+  upload: content/tutorials/(.*\.(appcache|manifest))
+
+#
+# Everything else
+#
+- url: /(\w{2,3})/(tutorials/casestudies)/(.+\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
+  static_files: content/\2/static/\3
   upload: content/tutorials/(.*\.(gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
+
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.(html|gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
+  static_files: content/\2/static/\3
+  upload: content/tutorials/(.*?/(?!index)[^/]*\.(html|gif|swf|mp3|css|js|png|jpeg|jpg|svg|ogm|fla))
 
 # Anything under /static will automatically be considered static.
 - url: /static
