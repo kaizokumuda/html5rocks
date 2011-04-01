@@ -278,8 +278,10 @@ class ContentHandler(webapp.RequestHandler):
       englishfile   = re.sub('tutorials/casestudies',
                              'tutorials/casestudies/%s' % 'en',
                              path)
-      logging.info(potentialfile)
+      logging.info(englishfile)
       if os.path.isfile( potentialfile ):
+        logging.info('Rendering in native: %s' % potentialfile)
+
         self.render(template_path=potentialfile,
                     data={'redirect_from_locale': redirect_from_locale})
 
@@ -287,7 +289,7 @@ class ContentHandler(webapp.RequestHandler):
       # for an english version of the file, and redirect the user there if
       # it's found:
       elif os.path.isfile( englishfile ):
-        self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
+        return self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
 
 
     elif re.search('tutorials/.+', relpath) and not is_feed:
@@ -314,7 +316,7 @@ class ContentHandler(webapp.RequestHandler):
       # for an english version of the file, and redirect the user there if
       # it's found:
       elif os.path.isfile( os.path.join( dir, "en", filename ) ):
-        self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
+        return self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
     elif os.path.isfile(path):
       self.render(data={}, template_path=path, relpath=relpath)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
