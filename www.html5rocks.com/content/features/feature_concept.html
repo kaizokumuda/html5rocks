@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block headtitle %}Feature{% endblock %}
+{% block headtitle %}{% trans "Feature" %}{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="/static/css/feature{% if prod %}.min{% endif %}.css">
@@ -8,30 +10,30 @@
 
 
 {% block body %}
-<h2>{% block h2title %}Feature{% endblock %}</h2>
+<h2>{% block h2title %}{% trans "Feature" %}{% endblock %}</h2>
 <div class="description">{% block description %}{% endblock %}</div>
 
 {% block support %}
 <div class="support" style="display:none">
-  <h4><i>loading browser support data...</i></h4>
+  <h4><i>{% trans "loading browser support data..." %}</i></h4>
   <table>
     <thead>
       <tr>
-        <th>Chrome</th>
-        <th>Firefox</th>
-        <th>Safari</th>
-        <th>Opera</th>
-        <th>IE</th>
-        <th>iOS Safari</th>
-        <th>Android</th>
-        <th>Opera Mini</th>
-        <th>Opera Mobile</th>
+        <th>{% trans "Chrome" %}</th>
+        <th>{% trans "Firefox" %}</th>
+        <th>{% trans "Safari" %}</th>
+        <th>{% trans "Opera" %}</th>
+        <th>{% trans "IE" %}</th>
+        <th>{% trans "iOS Safari" %}</th>
+        <th>{% trans "Android" %}</th>
+        <th>{% trans "Opera Mini" %}</th>
+        <th>{% trans "Opera Mobile" %}</th>
       </tr>
     </thead>
     <tfoot>
       <tr>
-        <td colspan="9">Data courtesy of <a href="http://caniuse.com/">caniuse.com</a>
-        and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a></td>
+        <td colspan="9">{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a>
+          and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>{% endblocktrans %}</td>
       </tr>
     </tfoot>
     <tbody>

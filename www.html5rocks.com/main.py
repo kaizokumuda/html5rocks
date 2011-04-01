@@ -209,6 +209,16 @@ class ContentHandler(webapp.RequestHandler):
     else:
       self.request.cache = True
 
+    basedir = os.path.dirname(__file__)
+
+    # Strip off leading `/[en|de|fr|...]/`
+    relpath = re.sub( '^/?\w{2,3}/?', '', relpath )
+
+    logging.info('relpath: ' + relpath)
+
+    # Setup handling of redirected article URLs: If a user tries to access an
+    # article from a non-supported language, we'll redirect them to the English
+    # version (assuming it exists), with a `redirect_from_locale` GET param.
     redirect_from_locale = self.request.get('redirect_from_locale', '')
     if not re.match('[a-zA-Z]{2,3}$', redirect_from_locale):
       redirect_from_locale = False
@@ -219,13 +229,6 @@ class ContentHandler(webapp.RequestHandler):
         'msg': _("Sorry, this article isn't available in your native language; we've redirected you to the English version.")
       }
       translation.activate(locale);
-
-    basedir = os.path.dirname(__file__)
-
-    # Strip off leading `/[en|de|fr|...]/`
-    relpath = re.sub( '^/?\w{2,3}/?', '', relpath )
-
-    logging.info('relpath: ' + relpath)
 
     # Landing page or /tutorials|features|mobile\/?
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
@@ -245,7 +248,7 @@ class ContentHandler(webapp.RequestHandler):
       self.render(data={'sorted_profiles': sorted_profiles},
                   template_path='content/profiles.html', relpath=relpath)
 
-    elif (re.search('tutorials/?', relpath)):
+    elif (re.search('tutorials/', relpath)):
       # Tutorials look like this on the filesystem:
       #
       #   .../tutorials +

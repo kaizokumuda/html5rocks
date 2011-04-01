@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block body %}
   <nav>
       <p class="breadcrumb">
-        <a class="buttonlink" href="/">
+        <a class="buttonlink" href="/{{LANGUAGE_CODE}}/">
           <span>{% trans "Home" %}</span>
         </a >&gt;
-        <a class="buttonlink" href="/tutorials/">
+        <a class="buttonlink" href="/{{LANGUAGE_CODE}}/tutorials/">
           <span>{% trans "Tutorials" %}</span>
         </a> &gt; {% block pagebreadcrumb %}{% endblock %}
      </p>
@@ -31,7 +32,7 @@
           <ul>
             <li><a title="{% trans "Post to Google Buzz" %}" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a></li>
             <li><iframe src="http://www.facebook.com/plugins/like.php?href={{self_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
-            <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="ChromiumDev">{% trans "Tweet" %}</a></li>
+            <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="ChromiumDev" data-lang="{{LANGUAGE_CODE}}">{% trans "Tweet" %}</a></li>
           </ul>
           <a href="#disqus_thread" class="disqus_comments">{% trans "Leave a comment" %}</a>
         </span>

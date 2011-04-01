@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block headtitle %}{% trans "A resource for open web HTML5 developers" %}{% endblock %}
 
@@ -40,7 +41,7 @@
         </div>
       </div>
     </a>
-    <a href="/tutorials/">
+    <a href="/{{LANGUAGE_CODE}}/tutorials/">
       <div class="app">
         <div class="appcontent">
           <h2>{% trans "<span>Step by Step</span> Tutorials" %}</h2>
@@ -54,31 +55,31 @@
   <article id="components">
     <section class="clear fl feed-section" id="themes">
       <h2 class="section-header">{% trans "Learn by Major HTML5 Feature Groups" %}</h2>
-      <a href="/features/offline">
+      <a href="/{{LANGUAGE_CODE}}/features/offline">
         <div class="app feature" style="background-position: -28px 50%;"></div>
         <h3>{% trans "Offline" %}</h3>
       </a>
-      <a href="/features/file">
+      <a href="/{{LANGUAGE_CODE}}/features/file">
         <div class="app feature" style="background-position: -28px 50%;"></div>
         <h3>{% trans "File Access" %}</h3>
       </a>
-      <a href="/features/multimedia">
+      <a href="/{{LANGUAGE_CODE}}/features/multimedia">
         <div class="app feature" style="background-position: -239px 50%;"></div>
         <h3>{% trans "Multimedia" %}</h3>
       </a>
-      <a href="/features/performance">
+      <a href="/{{LANGUAGE_CODE}}/features/performance">
         <div class="app feature" style="background-position: -204px 50%;"></div>
         <h3>{% trans "Performance" %}</h3>
       </a>
-      <a href="/features/presentation">
+      <a href="/{{LANGUAGE_CODE}}/features/presentation">
         <div class="app feature" style="background-position: -99px 50%;"></div>
         <h3>{% trans "Presentation" %}</h3>
       </a>
-      <a href="/features/graphics">
+      <a href="/{{LANGUAGE_CODE}}/features/graphics">
         <div class="app feature" style="background-position: 7px 50%;"></div>
         <h3>{% trans "Graphics" %}</h3>
       </a>
-      <a href="/features/storage">
+      <a href="/{{LANGUAGE_CODE}}/features/storage">
         <div class="app feature" style="background-position: -28px 50%;"></div>
         <h3>{% trans "Storage" %}</h3>
       </a>
@@ -99,7 +100,7 @@ e/KlF6GTOxE6YwKj2SbZ2eFq7pmOOvOCp732tJbfs8J3Ljv1pr9IMHYXP47vwM8GjYAWQx8S5Vk1
 pFd1JVUlB2uQuHeCe15qPQCh+xjmm6oQdG1HqFGzQAtBi/HvkOhV6YGRZ5JNLxN4sbG4kUxfZ1oM
 aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height="16" alt="{% trans "RSS" %}" /></a></h2>
       <ul id="latest_articles_feed"><li><i>{% trans "loading feed..." %}</i></li></ul>
-      <p><a href="/tutorials/">{% trans "See more &rArr;" %}</a></p>
+      <p><a href="/{{LANGUAGE_CODE}}/tutorials/">{% trans "See more &rArr;" %}</a></p>
     </section>
 
     <section class="clear info-section">

@@ -1,4 +1,6 @@
 {% extends "feature_concept.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block contents %}
 
@@ -6,20 +8,20 @@
   <div class="column">
     <section class="tutorials">
       <hgroup>
-        <h3>Tutorials</h3>
-        <h4>learn how to use {{category}}.</h4>
+        <h3>{% trans "Tutorials" %}</h3>
+        <h4>{% blocktrans %}learn how to use {{category}}.{% endblocktrans %}</h4>
       </hgroup>
       <div>
         <ul>
           {% block tuts %}{% endblock %}
         </ul>
-        <p>View all <a href="/tutorials/#{% block tuttags %}{% endblock %}">related HTML5Rocks tutorials</a> &rArr;</p>
+        <p>{% blocktrans %}View all <a href="/tutorials/#{% block tuttags %}{% endblock %}">related HTML5Rocks tutorials</a> &rArr;{% endblocktrans %}</p>
       </div>
     </section>
     <section class="demos">
       <hgroup>
-        <h3>Demos</h3>
-        <h4>see {{category}} in action</h4>
+        <h3>{% trans "Demos" %}</h3>
+        <h4>{% blocktrans %}see {{category}} in action{% endblocktrans %}</h4>
       </hgroup>
       <div>
         {% block demos %}{% endblock %}
@@ -29,8 +31,8 @@
   <div class="column">
     <section class="in-the-wild">
       <hgroup>
-        <h3>In the Wild</h3>
-        <h4>who is using {{category}}?</h4>
+        <h3>{% trans "In the Wild" %}</h3>
+        <h4>{% blocktrans %}who is using {{category}}?{% endblocktrans %}</h4>
       </hgroup>
       <div>
         {% block inthewild %}{% endblock %}
@@ -38,8 +40,8 @@
     </section>
     <section class="resources">
       <hgroup>
-        <h3>Additional Resources</h3>
-        <h4>learn from the best, explore the potential</h4>
+        <h3>{% trans "Additional Resources" %}</h3>
+        <h4>{% trans "learn from the best, explore the potential" %}</h4>
       </hgroup>
       <div>
         {% block resources %}{% endblock %}
