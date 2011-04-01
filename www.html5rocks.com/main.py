@@ -220,6 +220,9 @@ class ContentHandler(webapp.RequestHandler):
     # Strip off leading `/[en|de|fr|...]/`
     relpath = re.sub( '^/?\w{2,3}/', '', relpath )
 
+    # Are we looking for a feed?
+    is_feed = self.request.path.endswith('.xml')
+
     logging.info('relpath: ' + relpath)
 
     # Setup handling of redirected article URLs: If a user tries to access an
@@ -254,7 +257,7 @@ class ContentHandler(webapp.RequestHandler):
       self.render(data={'sorted_profiles': sorted_profiles},
                   template_path='content/profiles.html', relpath=relpath)
 
-    elif (re.search('tutorials/casestudies', relpath)):
+    elif re.search('tutorials/casestudies', relpath) and not is_feed:
       # Case Studies look like this on the filesystem:
       #
       #   .../tutorials +
@@ -287,7 +290,7 @@ class ContentHandler(webapp.RequestHandler):
         self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
 
 
-    elif (re.search('tutorials/.+', relpath)):
+    elif re.search('tutorials/.+', relpath) and not is_feed:
       # Tutorials look like this on the filesystem:
       #
       #   .../tutorials +
