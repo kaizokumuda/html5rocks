@@ -20,8 +20,13 @@
 <span class="chrome supported"></span>
 {% endblock %}
 
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-connectivity.png" width="133" height="64" alt="This article is powered by HTML5 Connectivity / Realtime" title="This article is powered by HTML5 Connectivity / Realtime" /> 
+{% endblock %}
+
 {% block iscompatible %}
-  return !!Modernizr.___COMPAT_TEST___
+  return Modernizr.canvas && Modernizr.websockets;
 {% endblock %}
 
 {% block content %}
@@ -34,10 +39,12 @@
 
   <p>The WebSockets spec has gotten quite a bit of attention for what it enables: a stable, bi-directional <a href="http://www.csc.villanova.edu/~mdamian/Sockets/TcpSockets.htm">TCP socket</a> between the browser and server. There is no data format imposed on the TCP socket; the developer is free to define  a messaging protocol. In practice, passing JSON objects around as strings is most convenient. The client-side JavaScript code to listen for live updates is clean and simple:</p>
 
-  <pre><code>var liveSocket = new WebSocket("ws://streamcongress.com:8080/live");
-  liveSocket.onmessage = function(payload) {
-      addToStream(JSON.parse(payload.data).reverse());
-  };</code></pre>
+  <pre class="prettyprint">
+var liveSocket = new WebSocket("ws://streamcongress.com:8080/live");
+liveSocket.onmessage = function(payload) {
+  addToStream(JSON.parse(payload.data).reverse());
+};
+</pre>
 
   <p>While browser support for WebSockets is straightforward, server-side support is still in the formative stage. <a href="http://socket.io/">Socket.IO</a> on Node.js provides one of the most mature and robust server-side solutions. An event-driven server like Node.js is the right fit for WebSockets. For alternative implementations, Python developers can use <a href="http://twistedmatrix.com/trac/">Twisted</a> and <a href="http://www.tornadoweb.org/">Tornado</a>, while Ruby developers have <a href="http://rubyeventmachine.com/">EventMachine</a>.</p>
 
@@ -45,32 +52,33 @@
 
   <p><a href="https://github.com/lifo/cramp">Cramp</a> is an asynchronous Ruby web framework that runs on top of EventMachine. It&#8217;s written by <a href="http://m.onkey.org/">Pratik Naik</a>, a member of the Ruby on Rails core team. Providing a simple domain specific language (DSL) for real-time web apps, Cramp is an ideal choice for Ruby web developers. Those familiar with writing controllers in Ruby on Rails will recognize Cramp's style:</p>
 
-  <pre class="prettyprint"><code>
-  require "rubygems"
-  require "bundler"
-  Bundler.require
-  require 'cramp'
-  require 'http_router'
-  require 'active_support/json'
-  require 'thin'
+  <pre class="prettyprint">
+require "rubygems"
+require "bundler"
+Bundler.require
+require 'cramp'
+require 'http_router'
+require 'active_support/json'
+require 'thin'
 
-  Cramp::Websocket.backend = :thin
+Cramp::Websocket.backend = :thin
 
-  class LiveSocket &lt; Cramp::Websocket
-     periodic_timer :check_activities, :every =&gt; 15
+class LiveSocket &lt; Cramp::Websocket
+   periodic_timer :check_activities, :every =&gt; 15
 
-     def check_activities
-       @latest_activity ||= nil
-       new_activities = find_activities_since(@latest_activity)
-       @latest_activity = new_activities.first unless new_activities.empty?
-       render new_activities.to_json
-     end
+   def check_activities
+     @latest_activity ||= nil
+     new_activities = find_activities_since(@latest_activity)
+     @latest_activity = new_activities.first unless new_activities.empty?
+     render new_activities.to_json
    end
+ end
 
-  routes = HttpRouter.new do
-    add('/live').to(LiveSocket)
-  end
-  run routes</code></pre>
+routes = HttpRouter.new do
+  add('/live').to(LiveSocket)
+end
+run routes
+</pre>
 
   <p>Because Cramp sits on top of the non-blocking EventMachine, there are several considerations to keep in mind:</p>
 
@@ -88,13 +96,14 @@
 
   <p>The decision was made to move away from WebSockets and back to &#8220;old-school&#8221; AJAX polling. While much less efficient from a disk and network I/O perspective, AJAX polling simplified the technical implementation of Stream Congress. Most significantly, the need for a separate Cramp app was eliminated. The AJAX endpoint was instead provided by the Rails app. The client-side code was modified to support jQuery AJAX polling:</p>
 
-  <pre class="prettyprint"><code>
-  var fillStream = function(mostRecentActivity) {
-    $.getJSON(requestURL, function(data) {
-      addToStream(data.reverse());
-      setTimeout(function() {fillStream(recentActivities.last());}, 15000);
-    });
-  };</code></pre>
+  <pre class="prettyprint">
+var fillStream = function(mostRecentActivity) {
+  $.getJSON(requestURL, function(data) {
+    addToStream(data.reverse());
+    setTimeout(function() {fillStream(recentActivities.last());}, 15000);
+  });
+};
+</pre>
 
   <p>AJAX polling, though, is not without its downsides. Relying on the HTTP request/response cycle means that the server sees constant load even when there aren&#8217;t any new updates. And of course, AJAX polling doesn&#8217;t take advantage of what HTML5 has to offer.</p>
 
@@ -116,51 +125,53 @@
 
   <p>In recent months, Cramp has added support for EventSource. The code is very similar to the WebSockets implementation:</p>
 
-  <pre class="prettyprint"><code>
-  class LiveEvents &lt; Cramp::Action
-    self.transport = :sse
+  <pre class="prettyprint">
+class LiveEvents &lt; Cramp::Action
+  self.transport = :sse
 
-    periodic_timer :latest, :every =&gt; 15
+  periodic_timer :latest, :every =&gt; 15
 
-    def latest
-      @latest_activity ||= nil
-      new_activities = find_activities_since(@latest_activity)
-      @latest_activity = new_activities.first unless new_activities.empty?
-      render new_activities.to_json
-    end
+  def latest
+    @latest_activity ||= nil
+    new_activities = find_activities_since(@latest_activity)
+    @latest_activity = new_activities.first unless new_activities.empty?
+    render new_activities.to_json
   end
+end
 
-  routes = HttpRouter.new do
-    add('/').to(LiveEvents)
-  end
-  run routes</code></pre>
+routes = HttpRouter.new do
+  add('/').to(LiveEvents)
+end
+run routes
+</pre>
 
   <p>A significant issue to keep in mind with EventSource is that cross-domain connections are not allowed. This means that the Cramp app must be served from the same streamcongress.com domain as the main Rails app. This can be accomplished with proxying at the web server. Assuming the Cramp app is powered by Thin and running on port 8000, the Apache configuration looks like so:</p>
 
-  <pre class="prettyprint"><code>
-  LoadModule  proxy_module         /usr/lib/apache2/modules/mod_proxy.so
-  LoadModule  proxy_http_module    /usr/lib/apache2/modules/mod_proxy_http.so
-  LoadModule  proxy_balancer_module    /usr/lib/apache2/modules/mod_proxy_balancer.so
+  <pre class="prettyprint">
+LoadModule  proxy_module         /usr/lib/apache2/modules/mod_proxy.so
+LoadModule  proxy_http_module    /usr/lib/apache2/modules/mod_proxy_http.so
+LoadModule  proxy_balancer_module    /usr/lib/apache2/modules/mod_proxy_balancer.so
 
-  &lt;VirtualHost *:80&gt;
-    ServerName streamcongress.com
-    DocumentRoot /projects/streamcongress/www/current/public
-    RailsEnv production
-    RackEnv production
-    &lt;Directory /projects/streamcongress/www/current/public&gt;
-      Order allow,deny
-      Allow from all
-      Options -MultiViews
-    &lt;/Directory&gt;
+&lt;VirtualHost *:80&gt;
+  ServerName streamcongress.com
+  DocumentRoot /projects/streamcongress/www/current/public
+  RailsEnv production
+  RackEnv production
+  &lt;Directory /projects/streamcongress/www/current/public&gt;
+    Order allow,deny
+    Allow from all
+    Options -MultiViews
+  &lt;/Directory&gt;
 
-    &lt;Proxy balancer://thin&gt;
-      BalancerMember http://localhost:8000
-    &lt;/Proxy&gt;
-    ProxyPass /live balancer://thin/
-    ProxyPassReverse /live balancer://thin/
-    ProxyPreserveHost on
+  &lt;Proxy balancer://thin&gt;
+    BalancerMember http://localhost:8000
+  &lt;/Proxy&gt;
+  ProxyPass /live balancer://thin/
+  ProxyPassReverse /live balancer://thin/
+  ProxyPreserveHost on
 
-  &lt;/VirtualHost&gt;</code></pre>
+&lt;/VirtualHost&gt;
+</pre>
 
   <p>This configuration sets an EventSource endpoint  at <code>streamcongress.com/live</code>.</p>
 
