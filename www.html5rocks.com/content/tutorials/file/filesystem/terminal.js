@@ -267,7 +267,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
             cwd_.getFile(fileName, {}, function(fileEntry) {
               fileEntry.remove(null, errorHandler_);
             }, function(e) {
-              if (recursive && e.code == FileError.INVALID_STATE_ERR) {
+              if (recursive && e.code == FileError.TYPE_MISMATCH_ERR) {
                 cwd_.getDirectory(fileName, {}, function(dirEntry) {
                   dirEntry.removeRecursively(null, errorHandler_);
                 }, errorHandler_);
