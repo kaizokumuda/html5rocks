@@ -15,7 +15,7 @@
     <script id="worker-script" type="text/plain">
       INSERT_JAVASCRIPT_HERE
     </script>
-    <script>
+    <script type="text/javascript">
       function sayHI() {
         worker.postMessage({'cmd': 'start', 'msg': 'Hi'});
       }

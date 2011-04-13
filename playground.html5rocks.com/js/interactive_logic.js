@@ -331,8 +331,28 @@
     if (me.currentEditor == window.mixedEditor) {
       if (confirm("Saving features are not enabled yet. Any changes made to the HTML markup will be lost.")) {
         content = [];
-        content = content.concat(window['mixedEditor'].getCode().match(/(<script>[\w\W]+?<\/script>)/g));
-        content = content.concat(window['mixedEditor'].getCode().match(/(<style>[\w\W]+?<\/style>)/g));
+
+        // try to match "<script type="text/plain">...</script>" first
+        var matches = window['mixedEditor'].getCode().match(
+              /<script[^>]*type="text\/plain"[^>]*>[\w\W]+?<\/script>/g
+            );
+        if (matches) {
+          $(matches).each(function(index, matched_item) {
+            matches[index] = matched_item.replace(/<script[^>]*>/, '<script>');
+          });
+          content = content.concat(matches);
+        } else {
+          // try to match "<script>...</script>" if there's nothing matched
+          // "<script type="text/plain">...</script>"
+          content = content.concat(window['mixedEditor'].getCode().match(
+            /(<script>[\w\W]+?<\/script>)/g
+          ));
+        }
+
+        // try to match "<style>...</style>" for css editor
+        content = content.concat(window['mixedEditor'].getCode().match(
+          /(<style>[\w\W]+?<\/style>)/g
+        ));
         me.currentEditor = window[editorType + 'Editor'];
         me.changeCodeMirror(content, editorType);
         if (curFilename) {
