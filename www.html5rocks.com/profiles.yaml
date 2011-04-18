@@ -379,3 +379,23 @@ homepage: http://sunlightlabs.com/
 google: luigi.montanez
 twitter: LuigiMontanez
 email: luigi.montanez@gmail.com
+
+---
+
+id: smus
+name:
+  given: Boris
+  family: Smus
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
+homepage: http://borismus.com
+google: boris.smus
+twitter: borismus
+email: smus@google.com
