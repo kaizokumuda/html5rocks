@@ -26,9 +26,19 @@
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Vollkorn|Droid+Serif|Droid+Sans:regular,bold"> 
   <!-- JavaScript -->
   <script src="codemirror/js/prod_codemirrorz_237dc27be9961d049c38dd9ba4c126c3.js" type="text/javascript" charset="utf-8"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/jquery-1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" >
+    jQuery.ajaxSetup({
+      converters: {
+        "text script": function( text ) {
+          // Must comment the line below to prevent auto-eval fetched script
+          // jQuery.globalEval( text );
+          return text;
+        }
+      }
+    });
+  </script>
   <script src="js/jquery-ui-packed.js" type="text/javascript" charset="utf-8"></script>
-
   {% for i in sample_srcs %}
     <script src="{{ i }}"></script>
   {% endfor %}

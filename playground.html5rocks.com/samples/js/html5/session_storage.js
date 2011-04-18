@@ -1,7 +1,6 @@
 if (!sessionStorage['counter']) {
   sessionStorage['counter'] = 0;
-}
-else {
+} else {
   sessionStorage['counter']++;
 }
 
