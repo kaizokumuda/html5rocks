@@ -209,11 +209,12 @@ timer = setInterval(function() {
 }, 15);
 </pre>
 
-<p>Aside: setInterval is not great for animations, since it doesn't take into
+<p>Note: setInterval is not great for animations, since it doesn't take into
 account the browser's own rendering loop. Modern desktop browsers provide <a
 href="/tutorials/speed/html5/#toc-request-ani-frame">requestAnimationFrame</a>,
-which is a much better pattern. Once supported in mobile browsers, this will
-be the preferred way of doing things.</p>
+which is a much better option for performance and battery life reasons. Once
+supported in mobile browsers, this will be the preferred way of doing
+things.</p>
 
 <h3>Make use of targetTouches and changedTouches</h3>
 
