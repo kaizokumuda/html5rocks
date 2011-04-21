@@ -12,10 +12,13 @@
     <button onclick="stop()">Stop worker</button>
     <br />
     <textarea id="result"></textarea>
-    <script id="worker-script" type="text/plain">
+    <script id="worker-script" type="javascript/worker">
       INSERT_JAVASCRIPT_HERE
     </script>
     <script type="text/javascript">
+      window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder;
+      window.URL = window.URL || window.webkitURL;
+
       function sayHI() {
         worker.postMessage({'cmd': 'start', 'msg': 'Hi'});
       }
@@ -29,10 +32,10 @@
         worker.postMessage({'cmd': 'foobard', 'msg': '???'});
       }
 
-      var blobBuilder = new BlobBuilder();
-      blobBuilder.append(document.getElementById('worker-script').textContent);
+      var bb = new BlobBuilder();
+      bb.append(document.querySelector('[type="javascript/worker"]').textContent);
 
-      var worker = new Worker(window.createObjectURL(blobBuilder.getBlob()));
+      var worker = new Worker(window.URL.createObjectURL(bb.getBlob()));
 
       worker.addEventListener('message', function(e) {
         document.getElementById('result').textContent = e.data;
