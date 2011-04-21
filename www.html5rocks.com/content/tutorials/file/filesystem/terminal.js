@@ -4,6 +4,10 @@ util.toArray = function(list) {
 };
 
 var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
+  window.URL = window.URL || window.webkitURL;
+  window.requestFileSystem = window.requestFileSystem ||
+                             window.webkitRequestFileSystem;
+
   var cmdLine_ = document.querySelector(cmdLineContainer);
   var output_ = document.querySelector(outputContainer);
   const VERSION_ = '0.0.1';
@@ -240,14 +244,8 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
             break;
           }
 
-          open_(cmd, fileName, function(file) {
-            // TODO(ericbidelman): Make this work x-browser:
-            // window.URL.createObjectURL/window.createObjectURL
-            var blobURL = window.webkitURL.createObjectURL(file);
-            var myWin = window.open(blobURL, 'mywin');
-
-            // Immediately destroy blob URL reference after file is opened.
-            window.webkitURL.revokeObjectURL(blobURL);
+          open_(cmd, fileName, function(fileEntry) {
+            var myWin = window.open(fileEntry.toURL(), 'mywin');
           });
 
           break;
@@ -398,11 +396,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
       return;
     }
 
-    cwd_.getFile(path, {}, function(fileEntry) {
-      fileEntry.file(function(file) {
-        successCallback(file);
-      }, errorHandler_);
-    }, function(e) {
+    cwd_.getFile(path, {}, successCallback, function(e) {
       if (e.code == FileError.NOT_FOUND_ERR) {
         output(cmd + ': ' + path + ': No such file or directory<br>');
       }
