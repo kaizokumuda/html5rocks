@@ -285,6 +285,7 @@ importScripts('script1.js', 'script2.js');
   interface, you can "inline" your worker in the same HTML file as your main logic by creating a
   <code>BlobBuilder</code> and appending the worker code as a string:</p>
 <pre class="prettyprint">
+// Note: Google Chrome 12 has a prefix: window.WebKitBlobBuilder
 var bb = new BlobBuilder();
 bb.append("onmessage = function(e) { postMessage('msg from worker'); }");
 

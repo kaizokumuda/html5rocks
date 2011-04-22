@@ -371,7 +371,7 @@ db.<b>transaction</b>(function(tx) {
           <section>
 <pre>var idbRequest = window.<b>indexedDB</b>.<b>open</b>('Database Name');
 idbRequest.onsuccess = function(event) {
-  <b>var db = event.result</b>;
+  <b>var db = event.srcElement.result</b>;
   var transaction = db.<b>transaction</b>([], <b>IDBTransaction.READ_ONLY</b>);
   var curRequest = transaction.<b>objectStore</b>('ObjectStore Name').<b>openCursor</b>();
   curRequest.<b>onsuccess</b> = ...;
@@ -406,7 +406,7 @@ idbRequest.onsuccess = function(event) {
                 idbRequest_ = window.indexedDB.open("Test", "A test object store.");
                 idbRequest_.onerror = idbError_;
                 idbRequest_.addEventListener('success', function(event) {
-                  idb_ = event.result;
+                  idb_ = event.srcElement.result;
                   idbShow_(event);
                 }, false);
               }
@@ -417,7 +417,7 @@ idbRequest.onsuccess = function(event) {
               }
 
               function idbShow_(event) {
-                if (!idb_.objectStores.contains('myObjectStore')) {
+                if (!idb_.objectStoreNames.contains('myObjectStore')) {
                   idbLog_.innerHTML = "<p>Object store not yet created.</p>";
                   return;
                 }
@@ -428,7 +428,7 @@ idbRequest.onsuccess = function(event) {
 
                 // This callback will continue to be called until we have no more results.
                 request.onsuccess = function(e) {
-                  var cursor = e.result;
+                  var cursor = e.srcElement.result;
                   if (!cursor) {
                     idResultsWrapper_.innerHTML = '<ul class="record-list" id="idb-results">' + html.join('') + '</ul>';
                     return;
@@ -455,7 +455,7 @@ idbRequest.onsuccess = function(event) {
                 var request = idb_.setVersion('the new version string');
                 request.onerror = idbError_;
                 request.onsuccess = function(e) {
-                  if (!idb_.objectStores.contains('myObjectStore')) {
+                  if (!idb_.objectStoreNames.contains('myObjectStore')) {
                     try {
                       var objectStore = idb_.createObjectStore('myObjectStore', null); // FF is requiring the 2nd keyPath arg. It can be optional :(
                       idbLog_.innerHTML = "<p>Object store created.</p>";
@@ -476,7 +476,7 @@ idbRequest.onsuccess = function(event) {
                   return;
                 }
 
-                if (!idb_.objectStores.contains('myObjectStore')) {
+                if (!idb_.objectStoreNames.contains('myObjectStore')) {
                   idbLog_.innerHTML = "<p class=\"error\">Object store doesn't exist.</p>";
                   return;
                 }
@@ -498,7 +498,7 @@ idbRequest.onsuccess = function(event) {
                 var request = objectStore.get(key);
                 request.onerror = idbError_;
                 request.onsuccess = function(event) {
-                  var value = event.result;
+                  var value = event.srcElement.result;
                   if (objectStore.delete) {
                     var request = objectStore.delete(key);
                   } else {
