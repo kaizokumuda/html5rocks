@@ -45,7 +45,7 @@ events specification</a>.</p>
 
 <p>In this article I’ll dive into the touch events API provided by iOS and
 Android devices, explore what sorts of applications you can build, present some
-best practices and cover useful techniques that make it easier to develop
+best practices, and cover useful techniques that make it easier to develop
 touch-enabled applications.</p>
 
 
@@ -82,13 +82,15 @@ that approximates finger shape.</li>
 </ul>
 
 
-<h2 id="toc-playground">Building touch-enabled apps</h2>
+<h2 id="toc-playground">Touch-enabled apps</h2>
 
-<p>The <strong>touchstart</strong>, <strong>touchmove</strong> and
+<p>The <strong>touchstart</strong>, <strong>touchmove</strong>, and
 <strong>touchend</strong> events provide a rich enough feature set to support
-virtually any kind of touch based interaction. You can certainly implement all
-of the usual multi-touch gestures like pinch-zoom, rotation, and beyond.
-This snippet lets you drag a DOM element around using single-finger touch:</p>
+virtually any kind of touch-based interaction – including all of the usual
+multi-touch gestures like pinch-zoom, rotation, and so on. </p>
+
+<p>This snippet lets you drag a DOM element around using single-finger
+touch:</p>
 
 <pre class="prettyprint">
 var obj = document.getElementById('id');
@@ -209,7 +211,7 @@ timer = setInterval(function() {
 }, 15);
 </pre>
 
-<p>Note: setInterval is not great for animations, since it doesn't take into
+<p><strong>Tip:</strong> setInterval is not great for animations, since it doesn't take into
 account the browser's own rendering loop. Modern desktop browsers provide <a
 href="/tutorials/speed/html5/#toc-request-ani-frame">requestAnimationFrame</a>,
 which is a much better option for performance and battery life reasons. Once
@@ -220,12 +222,12 @@ things.</p>
 
 <p>Remember that event.touches is an array of <strong>ALL</strong>
 fingers in contact with the screen, not just the ones on the DOM element's
-target. You may find it much more useful to use event.targetTouches or
+target. You might find it much more useful to use event.targetTouches or
 event.changedTouches instead.</p>
 
 <p>Finally, since you are developing for mobile, you should be aware of 
 general mobile best practices, which are covered in <a
-href="/mobile/mobifying.html">Eric's article</a>, as well as this <a
+href="/mobile/mobifying.html">Eric Bidelman's article</a>, as well as this <a
 href="http://www.w3.org/TR/mwabp/">W3C document</a>.
 
 <h2 id="toc-device">Device support</h2>
@@ -239,7 +241,7 @@ resolution. I tested Android 2.3.3 on Nexus One and Nexus S hardware, Android
 3.0.1 on Xoom, and iOS 4.2 on iPad and iPhone.</p>
 
 <p>In a nutshell, all tested browsers support the <strong>touchstart</strong>, 
-<strong>touchend</strong> and <strong>touchmove</strong> events.</p> 
+<strong>touchend</strong>, and <strong>touchmove</strong> events.</p> 
 
 <p>The spec provides three additional touch events, but no tested browsers
 support them:</p> 
@@ -303,7 +305,7 @@ for (var i = 0; i &lt; objs.length; i++) {
 <p>iOS devices fully support multi-touch, are capable of tracking quite a few
 fingers and provide a very responsive touch experience in the browser.</p>
 
-<h2 id="toc-touchdev">Multi-touch Developer Tools</h2>
+<h2 id="toc-touchdev">Developer tools</h2>
 
 <p>In mobile development, it's often easier to start prototyping on the desktop
 and then tackle the mobile-specific parts on the devices you intend to support.
@@ -349,7 +351,7 @@ the server.</li>
 simulate spec-compatible touch events based on npTuioClient callbacks.</li>
 
 <li>Include the magictouch.js script and npTuioClient plugin in your
-application:</li>
+application as follows:</li>
 </ol>
 
 <pre class="prettyprint">
@@ -366,28 +368,23 @@ application:</li>
 &lt;/body&gt;
 </pre>
 
-<p>This approach may already work or may involve only small tweaks to work in
-other modern browsers. </p>
+<p>I tested this approach only with Chrome 10, but it should work on other
+modern browsers with only minor tweaks.</p>
 
-<p>If your computer does not have a multi-touch input, you can use any other
-TUIO tracker. For more information, see the <a
-  href="http://www.tuio.org/">TUIO project page</a>.</p>
+<p>If your computer does not have multi-touch input, you can simulate touch
+events using other TUIO trackers, such as the 
+<a href="http://reactivision.sourceforge.net/">reacTIVision</a>. For
+more information, see the 
+<a href="http://www.tuio.org/">TUIO project page</a>.</p>
 
-<p>Note that your gestures may be identical to OS-level multi-touch gestures. 
-On OS X, you can configure system-wide events by going to the Trackpad 
+<p>Note that your gestures might be identical to OS-level multi-touch gestures.
+On OS X, you can configure system-wide events by going to the Trackpad
 preference pane in System Preferences.</p>
 
-<h2 id="toc-wrapup">Wrap-up</h2>
-
-<p>I've gone through touch events supported on iOS and Android mobile browsers,
-explored some sample code, and suggested best practices for developing
-multi-touch web applications. Finally, I showed you how to use touch events on
-your laptop’s trackpad to simulate touch interactions on your mobile, while
-retaining access to all of the excellent developer tools that modern browsers
-provide.</p>
-
-<p>As multi-touch features become more widely supported across the mobile
-browser space, and I'm very excited to see new web applications fully take
-advantage of this rich and exciting API.</p>
+<p>
+As multi-touch features become more widely supported across mobile browsers,
+I'm very excited to see new web applications take full advantage of this rich
+API.
+</p>
 
 {% endblock %}
