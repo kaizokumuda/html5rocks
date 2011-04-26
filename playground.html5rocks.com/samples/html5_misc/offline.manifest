@@ -1,11 +1,11 @@
 CACHE MANIFEST
 
-#2011-02-15 22:00
+#2011-04-20 14:00
 
 CACHE:
 /css/yui-reset.css
 /css/styles.css
-http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js
+http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js
 /js/jquery-ui-packed.js
 /js/jquery.pngFix.pack.js
 /apis/ajax/playground/getTOC
