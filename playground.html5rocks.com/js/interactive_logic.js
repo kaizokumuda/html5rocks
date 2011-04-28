@@ -14,6 +14,12 @@
     'php' : 'php'
   };
 
+  var matchingScriptTagPriorityList = [
+    /<script[^>]*type="javascript\/worker"[^>]*>[\w\W]+?<\/script>/g,
+    /<script[^>]*type="text\/plain"[^>]*>[\w\W]+?<\/script>/g,
+    /(<script>[\w\W]+?<\/script>)/g
+  ];
+
   function _cel(name) {
     return document.createElement(name);
   }
@@ -332,27 +338,29 @@
       if (confirm("Saving features are not enabled yet. Any changes made to the HTML markup will be lost.")) {
         content = [];
 
-        // try to match "<script type="text/plain">...</script>" first
-        var matches = window['mixedEditor'].getCode().match(
-              /<script[^>]*type="text\/plain"[^>]*>[\w\W]+?<\/script>/g
-            );
-        if (matches) {
-          $(matches).each(function(index, matched_item) {
-            matches[index] = matched_item.replace(/<script[^>]*>/, '<script>');
-          });
-          content = content.concat(matches);
-        } else {
-          // try to match "<script>...</script>" if there's nothing matched
-          // "<script type="text/plain">...</script>"
-          content = content.concat(window['mixedEditor'].getCode().match(
-            /(<script>[\w\W]+?<\/script>)/g
-          ));
+        // try to match script tags according to matchingScriptTagPriorityList
+        var len = matchingScriptTagPriorityList.length;
+        var matches;
+        for (var i = 0; i < len; i++) {
+          matches = window['mixedEditor'].getCode().match(
+            matchingScriptTagPriorityList[i]
+          );
+          if (matches) {
+           if (i < len - 1) {
+            $(matches).each(function(index, matched_item) {
+              matches[index] = matched_item.replace(/<script[^>]*>/, '<script>');
+            });
+           }
+           content = content.concat(matches);
+           break;
+          }
         }
 
         // try to match "<style>...</style>" for css editor
         content = content.concat(window['mixedEditor'].getCode().match(
           /(<style>[\w\W]+?<\/style>)/g
         ));
+
         me.currentEditor = window[editorType + 'Editor'];
         me.changeCodeMirror(content, editorType);
         if (curFilename) {
