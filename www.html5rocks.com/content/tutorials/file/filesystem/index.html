@@ -646,6 +646,34 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
 }, errorHandler);
 </pre>
 
+  <h2 id="toc-filesystemurls">filesystem: URLs</h2>
+
+  <p>The FileSystem API exposes a new URL scheme, <code>filesystem:</code>,
+  that can be used to fill <code>src</code> or <code>href</code> attributes.
+  For example, if you wanted to display an image and have its
+  <a href="http://dev.w3.org/2009/dap/file-system/pub/FileSystem/#the-fileentry-interface"><code>fileEntry</code></a>,
+  calling <code>toURL()</code> would give you the file's <code>filesystem:</code> URL:</p>
+
+<pre class="prettyprint">
+var img = document.createElement('img');
+img.src = <b>fileEntry.toURL</b>(); // filesystem:http://example.com/temporary/myfile.png
+document.body.appendChild(img);
+</pre>
+
+  <p>Alternatively, if you already have a <code>filesystem:</code> URL,
+  <code>resolveLocalFileSystemURL()</code> will get you back the
+  <a href="http://dev.w3.org/2009/dap/file-system/pub/FileSystem/#the-fileentry-interface"><code>fileEntry</code></a>:</p>
+
+<pre class="prettyprint">
+window.resolveLocalFileSystemURL = window.resolveLocalFileSystemURL ||
+                                   window.webkitResolveLocalFileSystemURL;
+
+var url = 'filesystem:http://example.com/temporary/myfile.png';
+<b>window.resolveLocalFileSystemURL</b>(url, function(fileEntry) {
+  ...
+});
+</pre>
+
   <h2 id="toc-dir-fullexample">Putting it all together</h2>
 
   <h3 id="toc-samples-basic">Basic example</h3>
@@ -655,8 +683,8 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
     <ul id="example-list-fs-ul"></ul>
   </div>
 
-  <h3 id="toc-samples-terminal">Terminal emulator</h3>
-  <p>This emulator replicates some of the common operations in a UNIX filesystem
+  <h3 id="toc-samples-terminal">HTML5 Terminal</h3>
+  <p>This shell replicates some of the common operations in a UNIX filesystem
   (such as <code>cd</code>, <code>mkdir</code>, <code>rm</code>, <code>open</code>,
   and <code>cat</code>) by abstracting the FileSystem API. To add files, drag
   and drop them from your desktop onto the terminal below.</p>
