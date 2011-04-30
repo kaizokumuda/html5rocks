@@ -399,3 +399,23 @@ homepage: http://smus.com
 google: boris.smus
 twitter: borismus
 email: smus@google.com
+
+---
+
+id: petele
+name:
+  given: Pete
+  family: LePage
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
+homepage: http://petelepage.com
+google:
+twitter: petele
+email: petele@google.com
