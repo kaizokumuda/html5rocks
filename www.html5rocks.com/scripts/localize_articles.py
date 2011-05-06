@@ -1,6 +1,6 @@
 #!/usr/bin/python2.4
+# Copyright 2011 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
-# Copyright 2011 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,18 +14,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+"""Generates HTML from Django, and Django from HTML for localization."""
+
 from __future__ import with_statement
 
 __author__ = ('mkwst@google.com (Mike West)')
 
+import optparse
 import os
 import re
-from optparse import OptionParser
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
+
 class Article(object):
-  """Represents an article, and maps back and forth between Django and HTML
+  """Represents an article, and maps back and forth between Django and HTML.
 
   Attributes:
     DJANGO_ROOT: The root directory in which Django templates are found.
@@ -38,23 +42,23 @@ class Article(object):
   HTML_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..', '_to_localize'))
 
   def __init__(self, django=None, html=None):
-    """Creates an Article object
+    """Creates an Article object.
 
     Args:
       django: The path to a Django file (optional)
       html: The path to an HTML file (optional)
     """
-    self.django_ = os.path.abspath(django) if django else ""
-    self.html_ = os.path.abspath(html) if html else ""
-    self.NormalizePaths_()
+    self.django_ = os.path.abspath(django) if django else ''
+    self.html_ = os.path.abspath(html) if html else ''
+    self._NormalizePaths()
 
-  def NormalizePaths_(self):
-    """Ensures that both the Django and HTML paths exist and are absolute"""
+  def _NormalizePaths(self):
+    """Ensures that both the Django and HTML paths exist and are absolute."""
 
     if not self.django_:
       self.django_ = re.sub(r'^%s' % Article.HTML_ROOT,
                             Article.DJANGO_ROOT,
-                            self.html_) 
+                            self.html_)
     if not self.html_:
       self.html_ = re.sub(r'^%s' % Article.DJANGO_ROOT,
                           Article.HTML_ROOT,
@@ -63,8 +67,8 @@ class Article(object):
     self.django_ = os.path.abspath(self.django_)
 
   def GenerateHTML(self):
-    """Generates a localizable HTML file from a Django template
-    
+    """Generates a localizable HTML file from a Django template.
+
     Implemented trivially by converting Django tags to comments in the form:
     `<!--DJANGO>...</DJANGO-->`. This function will also create the HTML file's
     directory if it doesn't already exist.
@@ -82,8 +86,8 @@ class Article(object):
                                line))
 
   def GenerateDjango(self):
-    """Generates a Django template from a localized HTML file
-    
+    """Generates a Django template from a localized HTML file.
+
     Implemented trivially by stripping comments in the form:
     `<!--DJANGO>...</DJANGO-->`. This function will also create the Django
     template's directory if it doesn't already exist.
@@ -96,15 +100,16 @@ class Article(object):
       with open(self.django_, 'w') as outfile:
         for line in infile:
           outfile.write(re.sub(r'<!--DJANGO>({%.+?%}</DJANGO-->',
-                        r'\1',
-                        line))
+                               r'\1',
+                               line))
 
   def __str__(self):
-    """String representation of an Article"""
+    """String representation of an Article."""
 
-    return ("Article:\n"
-            "- HTML Path:   `%s`\n"
-            "- Django Path: `%s`\n") % (self.html_, self.django_)
+    return ('Article:\n'
+            '- HTML Path:   `%s`\n'
+            '- Django Path: `%s`\n') % (self.html_, self.django_)
+
 
 class Localizer(object):
   """Implements the HTML5Rocks article localization workflow.
@@ -142,7 +147,7 @@ class Localizer(object):
         list of Article objects
     """
     self.articles_ = []
-    for root, dirs, files in os.walk(Article.DJANGO_ROOT):
+    for root, _, files in os.walk(Article.DJANGO_ROOT):
       for name in files:
         if not name == '.DS_Store' and re.search(r'\/en$', root):
           self.articles_.append(Article(django=os.path.join(root,
@@ -150,21 +155,22 @@ class Localizer(object):
     return self.articles_
 
   def Htmlize(self):
-    """Generates localizable HTML from Django templates"""
+    """Generates localizable HTML from Django templates."""
 
-    print ("Generating Localizable HTML\n"
-           "===========================\n")
+    print ('Generating Localizable HTML\n'
+           '===========================\n')
     for article in self.articles_:
       article.GenerateHTML()
 
   def Djangoize(self):
-    """Generates Django templates from localized HTML"""
+    """Generates Django templates from localized HTML."""
 
     # TODO(mkwst): I should implement this function. :)
     print 'Not finished (read: started) yet. Come back later.'
 
+
 def main():
-  parser = OptionParser()
+  parser = optparse.OptionParser()
   parser.add_option('--generate_html', dest='generate_html',
                     default=False, action='store_true',
                     help='Generate HTML from Django templated articles.')
@@ -173,7 +179,7 @@ def main():
                     help=('Generate Django templates from localized '
                           'HTML articles.'))
 
-  (options, args) = parser.parse_args()
+  options = parser.parse_args()[0]
   if not options.generate_html or options.generate_django:
     parser.error('You must specify either `--generate_html`'
                  'or `--generate_django`.')
@@ -185,5 +191,5 @@ def main():
   if options.generate_django:
     l10n.Djangoize()
 
-if (__name__ == '__main__'):
+if __name__ == '__main__':
   main()
