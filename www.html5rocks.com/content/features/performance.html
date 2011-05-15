@@ -1,7 +1,9 @@
 {% extends "concept.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block headtitle %}Performance{% endblock %}
-{% block h2title   %}Performance{% endblock %}
+{% block headtitle %}{% trans "Performance" %}{% endblock %}
+{% block h2title   %}{% trans "Performance" %}{% endblock %}
 {% block tuttags   %}performance{% endblock %}
 
 {% block description %}
@@ -11,19 +13,19 @@ dt {
 }
 </style>
 <img src="/static/images/identity/classes_128/HTML5_Performance_128.png" width="128" height="128">
-<p>
+<p>{% blocktrans %}
 Web apps are now able to rival performance of native and desktop applications.
 By using a variety of techniques and technologies, your sites and apps can feel
 more responsive and your users will get more done.  Performance is important, it's
 a constant theme across all aspects of your development and product.
-</p>
-<p>
+{% endblocktrans %}</p>
+<p>{% blocktrans %}
 Writing fast and responsive apps isn't just important for your users, it's
 important for your bottom line.  For example,<a href="http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html">Google now incorporates site speed in page ranking</a>.  <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Amazon has found that every 100 ms increase in page load time decreased sales by 1%</a>. Also, <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Microsoft found that slowing a page by 2 seconds decreased ad clicks by 4%</a>.
-</p>
-<p>
+{% endblocktrans %}</p>
+<p>{% blocktrans %}
 Web app optimization cross cuts all aspects of development, from the server to the network to the client. Focusing on performance is critical to success.
-</p>
+{% endblocktrans %}</p>
 {% endblock %}
 
 
@@ -37,114 +39,114 @@ Web app optimization cross cuts all aspects of development, from the server to t
 
 {% block themes %}
 <dl>
-  <dt>Store locally.</dt>
-  <dd>Data stored on the client is quicker to access than data stored on the server.  Also, data stored closer to the calculation is quicker to access.</dd>
-  <dt>Process in the background.</dt>
-  <dd>Anything that doesn't help the user see a response to their action should be performed in the background.</dd>
-  <dt>Minimize connections.</dt>
-  <dd>Each connection requires work for setup and teardown.</dd>
-  <dt>Decrease bandwidth.</dt>
-  <dd>Less bandwidth means a faster response.</dd>
+  <dt>{% trans "Store locally." %}</dt>
+  <dd>{% trans "Data stored on the client is quicker to access than data stored on the server.  Also, data stored closer to the calculation is quicker to access." %}</dd>
+  <dt>{% trans "Process in the background." %}</dt>
+  <dd>{% trans "Anything that doesn't help the user see a response to their action should be performed in the background." %}</dd>
+  <dt>{% trans "Minimize connections." %}</dt>
+  <dd>{% trans "Each connection requires work for setup and teardown." %}</dd>
+  <dt>{% trans "Decrease bandwidth." %}</dt>
+  <dd>{% trans "Less bandwidth means a faster response." %}</dd>
 </dl>
 {% endblock %}
 
 
 {% block technologies %} 
 <dl>
-  <dt><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html">HTTP caching</a></dt>
-  <dd>Allow clients and servers to reduce connections and bandwidth.</dd>
-  <dt>HTTP caching servers</dt>
-  <dd>Servers like <a href="http://www.varnish-cache.org/">Varnish</a> and <a href="http://www.squid-cache.org/">Squid</a> can cache your content.</dd>
-  <dt><a href="http://memcached.org/">Memcache</a></dt>
-  <dd>Efficient server side storage and retrieval of key/value data</dd>
-  <dt><a href="http://www.whatwg.org/specs/web-workers/current-work/">Web workers</a></dt>
-  <dd>Run JavaScript in the background, in parallel with the main window</dd>
-  <dt><a href="http://dev.w3.org/html5/websockets/">Web sockets</a></dt>
-  <dd>Efficient bi-directional streaming communication</dd>
-  <dt><a href="http://dev.w3.org/html5/webstorage/">Local storage</a></dt>
-  <dd>Client side key/value data storage</dd>
-  <dt><a href="http://www.w3.org/TR/IndexedDB/">Indexed database</a></dt>
-  <dd>Client side simple object storage</dd>
-  <dt><a href="http://dev.w3.org/html5/spec/offline.html#offline">App cache</a></dt>
-  <dd>Caching web app assets locally for offline use</dd>
-  <dt><a href="http://dev.w3.org/csswg/css3-transitions/">CSS3 transitions and animations</a></dt>
-  <dd>Native (and possibly hardware accelerated) property changes for elements</dd>
-  <dt><a href="http://css-tricks.com/css-sprites/">CSS sprites</a></dt>
-  <dd>Combining many small images into one image, reduce downloads</dd>
-  <dt><a href="http://www.whatwg.org/specs/web-apps/current-work/#link-type-prefetch">Link prefetching</a></dt>
-  <dd>Ask the browser to download other pages in the background</dd>
-  <dt><a href="http://code.google.com/p/nativeclient/">Native client</a></dt>
-  <dd>Run native code (C/C++) in a browser sandbox</dd>
-  <dt><a href="http://tools.ietf.org/html/rfc2616#section-8.1">HTTP persistent connections</a></dt>
-  <dd>send multiple resources over the same connection</dd>
-  <dt><a href="http://code.google.com/apis/webfonts/">Web fonts</a></dt>
-  <dd>natively render text instead of download images</dd>
-  <dt><a href="http://en.wikipedia.org/wiki/Data_URI_scheme">Data URI</a></dt>
-  <dd>Embed binary data such as images into HTML, reducing HTTP requests</dd>
+  <dt><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html">{% trans "HTTP caching" %}</a></dt>
+  <dd>{% trans "Allow clients and servers to reduce connections and bandwidth." %}</dd>
+  <dt>{% trans "HTTP caching servers" %}</dt>
+  <dd>{% blocktrans %}Servers like <a href="http://www.varnish-cache.org/">Varnish</a> and <a href="http://www.squid-cache.org/">Squid</a> can cache your content.{% endblocktrans %}</dd>
+  <dt><a href="http://memcached.org/">{% trans "Memcache" %}</a></dt>
+  <dd>{% trans "Efficient server side storage and retrieval of key/value data" %}</dd>
+  <dt><a href="http://www.whatwg.org/specs/web-workers/current-work/">{% trans "Web workers" %}</a></dt>
+  <dd>{% trans "Run JavaScript in the background, in parallel with the main window" %}</dd>
+  <dt><a href="http://dev.w3.org/html5/websockets/">{% trans "Web sockets" %}</a></dt>
+  <dd>{% trans "Efficient bi-directional streaming communication" %}</dd>
+  <dt><a href="http://dev.w3.org/html5/webstorage/">{% trans "Local storage" %}</a></dt>
+  <dd>{% trans "Client side key/value data storage" %}</dd>
+  <dt><a href="http://www.w3.org/TR/IndexedDB/">{% trans "Indexed database" %}</a></dt>
+  <dd>{% trans "Client side simple object storage" %}</dd>
+  <dt><a href="http://dev.w3.org/html5/spec/offline.html#offline">{% trans "App cache" %}</a></dt>
+  <dd>{% trans "Caching web app assets locally for offline use" %}</dd>
+  <dt><a href="http://dev.w3.org/csswg/css3-transitions/">{% trans "CSS3 transitions and animations" %}</a></dt>
+  <dd>{% trans "Native (and possibly hardware accelerated) property changes for elements" %}</dd>
+  <dt><a href="http://css-tricks.com/css-sprites/">{% trans "CSS sprites" %}</a></dt>
+  <dd>{% trans "Combining many small images into one image, reduce downloads" %}</dd>
+  <dt><a href="http://www.whatwg.org/specs/web-apps/current-work/#link-type-prefetch">{% trans "Link prefetching" %}</a></dt>
+  <dd>{% trans "Ask the browser to download other pages in the background" %}</dd>
+  <dt><a href="http://code.google.com/p/nativeclient/">{% trans "Native client" %}</a></dt>
+  <dd>{% trans "Run native code (C/C++) in a browser sandbox" %}</dd>
+  <dt><a href="http://tools.ietf.org/html/rfc2616#section-8.1">{% trans "HTTP persistent connections" %}</a></dt>
+  <dd>{% trans "send multiple resources over the same connection" %}</dd>
+  <dt><a href="http://code.google.com/apis/webfonts/">{% trans "Web fonts" %}</a></dt>
+  <dd>{% trans "natively render text instead of download images" %}</dd>
+  <dt><a href="http://en.wikipedia.org/wiki/Data_URI_scheme">{% trans "Data URI" %}</a></dt>
+  <dd>{% trans "Embed binary data such as images into HTML, reducing HTTP requests" %}</dd>
 </dl>
 {% endblock %}
 
 {% block techniques %}
 <dl>
-<dt>HTTP Caching</dt>
-<dd>Use If-Modified-Since and ETags to reduce content over the wire.</dd>
-<dt>Data caching</dt>
-<dd>Use systems like Memcache for frequently accessed data.</dd>
-<dt>Local data caching</dt>
-<dd>Put data on the client for faster access.</dd>
-<dt>Content delivery networks</dt>
-<dd>Place the content closer to the client with a CDN.</dd>
-<dt>Efficient data retrieval</dt>
-<dd>Minimize SQL calls, reduce joins, retrieve via an index.</dd>
-<dt>Pre-calculating results</dt>
-<dd>Denormalize or pre-calculate frequently retrieved data.</dd>
-<dt>Minification</dt>
-<dd>Shrink your JavaScript, CSS, and even HTML files.</dd>
-<dt>Compression</dt>
-<dd>Compress your assets via HTTP's Accept-Encoding.</dd>
-<dt>Asynchronous callbacks</dt>
-<dd>Defer the work, get notified when it’s done.</dd>
-<dt>Hardware acceleration</dt>
-<dd>Browsers are now using the GPU for things like canvas and transforms.</dd>
-<dt>Moving calculations close to data</dt>
-<dd>Data is bigger than algorithms, move code and not data.</dd>
-<dt>Profiling</dt>
-<dd>Use tools to understand and collect real life data. Measure, don’t guess.</dd>
-<dt>Sprites</dt>
-<dd>Place many images into one file, minimizing HTTP requests.</dd>
-<dt>Image optimization</dt>
-<dd>Compress your images, pick the right format for the job.</dd>
-<dt>Specify image width and heights</dt>
-<dd>Tell the browser how to render around images before they are downloaded.</dd>
-<dt>Place JavaScript at the bottom of your HTML</dt>
-<dd>Let the page download and begin rendering.</dd>
-<dt>Rendering on the client</dt>
-<dd>Use canvas to draw images, or web fonts to render text, instead of downloading assets.</dd>
-<dt>Read "High Performance Web Sites" and "Even Faster Web Sites"</dt>
-<dd>Covers web app performance in great detail</dd>
+<dt>{% trans "HTTP Caching" %}</dt>
+<dd>{% trans "Use If-Modified-Since and ETags to reduce content over the wire." %}</dd>
+<dt>{% trans "Data caching" %}</dt>
+<dd>{% trans "Use systems like Memcache for frequently accessed data." %}</dd>
+<dt>{% trans "Local data caching" %}</dt>
+<dd>{% trans "Put data on the client for faster access." %}</dd>
+<dt>{% trans "Content delivery networks" %}</dt>
+<dd>{% trans "Place the content closer to the client with a CDN." %}</dd>
+<dt>{% trans "Efficient data retrieval" %}</dt>
+<dd>{% trans "Minimize SQL calls, reduce joins, retrieve via an index." %}</dd>
+<dt>{% trans "Pre-calculating results" %}</dt>
+<dd>{% trans "Denormalize or pre-calculate frequently retrieved data." %}</dd>
+<dt>{% trans "Minification" %}</dt>
+<dd>{% trans "Shrink your JavaScript, CSS, and even HTML files." %}</dd>
+<dt>{% trans "Compression" %}</dt>
+<dd>{% trans "Compress your assets via HTTP's Accept-Encoding." %}</dd>
+<dt>{% trans "Asynchronous callbacks" %}</dt>
+<dd>{% trans "Defer the work, get notified when it’s done." %}</dd>
+<dt>{% trans "Hardware acceleration" %}</dt>
+<dd>{% trans "Browsers are now using the GPU for things like canvas and transforms." %}</dd>
+<dt>{% trans "Moving calculations close to data" %}</dt>
+<dd>{% trans "Data is bigger than algorithms, move code and not data." %}</dd>
+<dt>{% trans "Profiling" %}</dt>
+<dd>{% trans "Use tools to understand and collect real life data. Measure, don’t guess." %}</dd>
+<dt>{% trans "Sprites" %}</dt>
+<dd>{% trans "Place many images into one file, minimizing HTTP requests." %}</dd>
+<dt>{% trans "Image optimization" %}</dt>
+<dd>{% trans "Compress your images, pick the right format for the job." %}</dd>
+<dt>{% trans "Specify image width and heights" %}</dt>
+<dd>{% trans "Tell the browser how to render around images before they are downloaded." %}</dd>
+<dt>{% trans "Place JavaScript at the bottom of your HTML" %}</dt>
+<dd>{% trans "Let the page download and begin rendering." %}</dd>
+<dt>{% trans "Rendering on the client" %}</dt>
+<dd>{% trans "Use canvas to draw images, or web fonts to render text, instead of downloading assets." %}</dd>
+<dt>{% trans "Read 'High Performance Web Sites' and 'Even Faster Web Sites'" %}</dt>
+<dd>{% trans "Covers web app performance in great detail" %}</dd>
 </dl>
 {% endblock %}
 
 {% block tools %} 
 <dl>
-  <dt>Developer tools for <a href="http://www.chromium.org/devtools">Chrome</a> and <a href="http://developer.apple.com/technologies/safari/developer-tools.html">Safari</a></dt>
-  <dd>Peer into requests, walk the DOM, set JavaScript breakpoints, get behind the scenes</dd>
-  <dt><a href="http://www.opera.com/dragonfly/">Dragonfly</a> for Opera</dt>
-  <dd>Similar to Webkit Developer Tools, but for Opera</dd>
-  <dt><a href="http://getfirebug.com/">Firebug</a> for Firefox</dt>
-  <dd>Similar to Opera Dragonfly, but for Firefox.</dd>
-  <dt><a href="http://www.html5rocks.com/tutorials/developertools/auditpanel/">Audit panel</a> in the Developer tools</dt>
-  <dd>Get suggestions for speeding up your web app</dd>
-  <dt><a href="http://code.google.com/webtoolkit/speedtracer/">Speedtracer</a> - not just for GWT, check out the <a href="http://www.igvita.com/2010/07/19/speed-tracer-server-side-tracing-with-rack/">Ruby plugin</a></dt>
-  <dd>Identify and fix performance problems in your web app</dd>
-  <dt><a href="http://developer.yahoo.com/yslow/">YSlow</a> for Firebug</dt>
-  <dd>Like the Developer Tools' Audit Panel, but for Firefox</dd>
-  <dt><a href="http://code.google.com/closure/compiler/">Closure JavaScript compiler</a></dt>
-  <dd>Minify, reduce, and obfuscate your JavaScript</dd>
-  <dt><a href="http://developer.yahoo.com/yui/compressor/">YUI Compressor</a></dt>
-  <dd>Minify and obfuscate your JavaScript and CSS</dd>
-  <dt><a href="http://www.webpagetest.org/">WebPageTest</a></dt>
-  <dd>An industry collaboration providing the testing infrastructure for testing from around the globe</dd>
+  <dt>{% blocktrans %}Developer tools for <a href="http://www.chromium.org/devtools">Chrome</a> and <a href="http://developer.apple.com/technologies/safari/developer-tools.html">Safari</a>{% endblocktrans %}</dt>
+  <dd>{% trans "Peer into requests, walk the DOM, set JavaScript breakpoints, get behind the scenes" %}</dd>
+  <dt>{% blocktrans %}<a href="http://www.opera.com/dragonfly/">Dragonfly</a> for Opera{% endblocktrans %}</dt>
+  <dd>{% trans "Similar to Webkit Developer Tools, but for Opera" %}</dd>
+  <dt>{% blocktrans %}<a href="http://getfirebug.com/">Firebug</a> for Firefox{% endblocktrans %}</dt>
+  <dd>{% trans "Similar to Opera Dragonfly, but for Firefox." %}</dd>
+  <dt>{% blocktrans %}<a href="http://www.html5rocks.com/tutorials/developertools/auditpanel/">Audit panel</a> in the Developer tools{% endblocktrans %}</dt>
+  <dd>{% trans "Get suggestions for speeding up your web app" %}</dd>
+  <dt>{% blocktrans %}<a href="http://code.google.com/webtoolkit/speedtracer/">Speedtracer</a> - not just for GWT, check out the <a href="http://www.igvita.com/2010/07/19/speed-tracer-server-side-tracing-with-rack/">Ruby plugin</a>{% endblocktrans %}</dt>
+  <dd>{% trans "Identify and fix performance problems in your web app" %}</dd>
+  <dt>{% blocktrans %}<a href="http://developer.yahoo.com/yslow/">YSlow</a> for Firebug{% endblocktrans %}</dt>
+  <dd>{% trans "Like the Developer Tools' Audit Panel, but for Firefox" %}</dd>
+  <dt>{% blocktrans %}<a href="http://code.google.com/closure/compiler/">Closure JavaScript compiler</a>{% endblocktrans %}</dt>
+  <dd>{% trans "Minify, reduce, and obfuscate your JavaScript" %}</dd>
+  <dt>{% blocktrans %}<a href="http://developer.yahoo.com/yui/compressor/">YUI Compressor</a>{% endblocktrans %}</dt>
+  <dd>{% trans "Minify and obfuscate your JavaScript and CSS" %}</dd>
+  <dt>{% blocktrans %}<a href="http://www.webpagetest.org/">WebPageTest</a>{% endblocktrans %}</dt>
+  <dd>{% trans "An industry collaboration providing the testing infrastructure for testing from around the globe" %}</dd>
 </dl>
 {% endblock %}
 

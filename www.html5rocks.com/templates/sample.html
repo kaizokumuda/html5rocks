@@ -1,19 +1,24 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block body %}
   <nav>
       <p class="breadcrumb">
-        <a class="buttonlink" href="/">
-          <span>Home</span>
+        <a class="buttonlink" href="/{{LANGUAGE_CODE}}/">
+          <span>{% trans "Home" %}</span>
         </a >&gt;
-        <a class="buttonlink" href="/tutorials/">
-          <span>Tutorials</span>
+        <a class="buttonlink" href="/{{LANGUAGE_CODE}}/tutorials/">
+          <span>{% trans "Tutorials" %}</span>
         </a> &gt; {% block pagebreadcrumb %}{% endblock %}
      </p>
   </nav>
   <article>
     <header>
       <h1>{% block pagetitle %}{% endblock %}</h1>
+      {% if redirect_from_locale %}
+      <p class="redirect_notification" lang="{{ redirect_from_locale.lang }}">{{ redirect_from_locale.msg }}</p>
+      {% endif %}
       <div>
         <span class="date">
           {% block pageauthor %}{% endblock %}
@@ -25,16 +30,16 @@
         {% if not is_mobile %}
         <span id="share_buttons">
           <ul>
-            <li><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a></li>
+            <li><a title="{% trans "Post to Google Buzz" %}" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a></li>
             <li><iframe src="http://www.facebook.com/plugins/like.php?href={{self_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
-            <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="ChromiumDev">Tweet</a></li>
+            <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="ChromiumDev" data-lang="{{LANGUAGE_CODE}}">{% trans "Tweet" %}</a></li>
           </ul>
-          <a href="#disqus_thread" class="disqus_comments">Leave a comment</a>
+          <a href="#disqus_thread" class="disqus_comments">{% trans "Leave a comment" %}</a>
         </span>
         {% endif %}
       </div>
       <span class="browser_support">
-        <span>Supported browsers:</span>
+        <span>{% trans "Supported browsers:" %}</span>
         <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
       </span>
     </header>
@@ -42,14 +47,12 @@
       <div class="compatible-block">
         <p id="notcompatible" class="hidden">
           {% block notcompatible_text %}
-          Your browser may not support all of
-          the functionality used in this article.
+          {% trans "Your browser may not support all of the functionality used in this article." %}
           {% endblock %}
         </p>
         <p id="compatible" class="hidden">
           {% block compatible_text %}
-          Your browser appears to support
-          all of the functionality used in this article.
+          {% trans "Your browser appears to support all of the functionality used in this article." %}
           {% endblock %}
         </p>
       </div>
@@ -58,7 +61,7 @@
     <aside id="html5badge">
       <a href="http://www.w3.org/html/logo/">
       {% block html5badge %}
-      <img src="/static/images/identity/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered" style="margin-right:17px" />
+      <img src="/static/images/identity/html5-badge-h-solo.png" width="63" height="64" alt="{% trans "HTML5 Powered" %}" title="{% trans "HTML5 Powered" %}" style="margin-right:17px" />
       {% endblock %}
       </a>
     </aside>

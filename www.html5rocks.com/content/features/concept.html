@@ -1,4 +1,6 @@
 {% extends 'feature_concept.html' %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block contents %}
 
@@ -7,19 +9,19 @@
   <div class="column">
     <section class="tutorials">
       <hgroup>
-        <h3>Tutorials</h3>
-        <h4>learn more about {{category}}.</h4>
+        <h3>{% trans "Tutorials" %}</h3>
+        <h4>{% blocktrans %}learn more about {{category}}.{% endblocktrans %}</h4>
       </hgroup>
       <div>
         <ul>
           {% block tuts %}{% endblock %}
         </ul>
-        <p>View all <a href="/tutorials/#{% block tuttags %}{% endblock %}">related HTML5Rocks tutorials</a>' &rArr;</p>
+        <p><a href="/{{LANGUAGE_CODE}}/tutorials/#{% block tuttags %}{% endblock %}">{% trans "View all related HTML5Rocks tutorials" %}</a>' &rArr;</p>
       </div>
     </section>
     <section class="themes">
       <hgroup>
-        <h3>Themes</h3>
+      <h3>{% trans "Themes" %}</h3>
       </hgroup>
       <div>
         {% block themes %}{% endblock %}
@@ -27,7 +29,7 @@
     </section>
     <section class="technologies">
       <hgroup>
-        <h3>Technologies</h3>
+        <h3>{% trans "Technologies" %}</h3>
       </hgroup>
       <div>
         {% block technologies %}{% endblock %}
@@ -35,8 +37,8 @@
     </section>
     <section class="text">
       <hgroup>
-        <h3>Text</h3>
-        <h4>read more about {{category}}.</h4>
+        <h3>{% trans "Text" %}</h3>
+        <h4>{% blocktrans %}read more about {{category}}.{% endblocktrans %}</h4>
       </hgroup>
       <div>
         {% block text %}{% endblock %}
@@ -47,7 +49,7 @@
   <div class="column">
     <section class="techniques">
       <hgroup>
-        <h3>Techniques</h3>
+        <h3>{% trans "Techniques" %}</h3>
       </hgroup>
       <div>
         {% block techniques %}{% endblock %}
@@ -55,7 +57,7 @@
     </section>
     <section class="tools">
       <hgroup>
-        <h3>Tools</h3>
+      <h3>{% trans "Tools" %}</h3>
       </hgroup>
       <div>
         {% block tools %}{% endblock %}

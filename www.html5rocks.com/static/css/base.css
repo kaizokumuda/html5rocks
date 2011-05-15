@@ -254,6 +254,12 @@ article.sample .date {
   font-weight: bold;
   color: #060;
 }
+.redirect_notification {
+  background: #FF9;
+  border: 2px solid #FC0;
+  padding: 10px;
+  margin-bottom: 1.4em;
+}
 .browser_support {
   float: left;
   font-size: 90%;
@@ -442,15 +448,6 @@ figcaption samp {
  article header > div:first-of-type {
    width: 100%;
  }
-}
-
-
-@media only screen and (max-device-width: 1024px) { /* iPad and smaller */
-  #content {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
 }
 
 

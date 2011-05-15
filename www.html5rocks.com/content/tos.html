@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block headtitle %}Terms of Service{% endblock %}
+{% block headtitle %}{% trans "Terms of Service" %}{% endblock %}
 
 {% block body %}
   <article>
@@ -8,8 +10,10 @@
       <h1>{% block pagetitle %}{% endblock %}</h1>
     </header>
     <section>
+      {% blocktrans %}
       <p>The HTML5ROCKS website (the "Website") is hosted by Google. By using and/or visiting the Website, you consent
       to be bound by these terms of service as well as Google's general <a href="http://www.google.com/accounts/TOS">Terms of Service</a> and Google's general <a href="http://www.google.com/privacy.html">Privacy Policy</a>.</p>
+      {% endblocktrans %}
     </section>
   </article>
 {% endblock %}

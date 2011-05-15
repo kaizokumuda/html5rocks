@@ -1,20 +1,23 @@
 {% extends "feature.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block headtitle %}Presentation{% endblock %}
-{% block h2title   %}Presentation{% endblock %}
+{% block headtitle %}{% trans "Presentation" %}{% endblock %}
+{% block h2title   %}{% trans "Presentation" %}{% endblock %}
 {% block tuttags   %}presentation,css,3D,webfonts{% endblock %}
 
 {% block description %}
 <img src="/static/images/identity/classes_128/HTML5_3D_effects_128.png" width="128" height="128">
-<p>With the introduction of CSS3 it has never been easier to create rich and
+<p>{% blocktrans %}
+  With the introduction of CSS3 it has never been easier to create rich and
   beautiful sites and applications in HTML. There are many new technologies and
   extensions to CSS3 including: <a href="http://www.w3.org/TR/css3-2d-transforms">2D Transformations</a>,
   <a href="http://www.w3.org/TR/css3-transistion">Transitions</a>,
   <a href="http://www.w3.org/TR/css3-3d-transforms">3D Transforms</a> and
   <a href="http://www.w3.org/TR/css3-webfonts">WebFonts</a> to name just a few.
-</p>
+{% endblocktrans %}</p>
 
-<p>You can create rich user experiences with no coding effort required, just simply apply a little CSS to your existing applications.</p>
+<p>{% blocktrans %}You can create rich user experiences with no coding effort required, just simply apply a little CSS to your existing applications.{% endblocktrans %}</p>
 <style>
 
 #pre1 {
@@ -39,11 +42,11 @@
   -webkit-transform: rotate3d(1,1,0, 45deg);
 }
 </style>
-<p>CSS3 Transformations allow you to apply rotations, scales, skews and translations to any DOM element with simple styles.</p>
+<p>{% blocktrans %}CSS3 Transformations allow you to apply rotations, scales, skews and translations to any DOM element with simple styles.{% endblocktrans %}</p>
 <pre class="prettyprint" id="pre1">pre {
   transform: rotate(-1deg) skewX(5deg);
 }</pre> 
-<p>Transitions allow you to specify how the style on a DOM element will animate between transformed states.  For example, you can animate the background color when the user hovers over an element.</p>
+<p>{% blocktrans %}Transitions allow you to specify how the style on a DOM element will animate between transformed states.  For example, you can animate the background color when the user hovers over an element.{% endblocktrans %}</p>
 <pre class="prettyprint" id="pre2">pre {
   transition: all 1s ease-inout;
 }
@@ -53,14 +56,14 @@ pre:hover {
   border-color: black;
 }</pre>
 
-<p>Applying 3D transforms is simple too.  Just specify the transformation in 3d co-ordinates and you are ready.</p>
+<p>{% blocktrans %}Applying 3D transforms is simple too.  Just specify the transformation in 3d co-ordinates and you are ready.{% endblocktrans %}</p>
 <div id="pre3container">
 <pre class="prettyprint" id="pre3">div {
   transform: rotate3d(1,1,0, 45deg);
 }</pre>
 </div>
-<h4>Browser support</h4>
-<p>Not every browser supports transforms, transitions and 3d transforms.  Check <a href="http://caniuse.com/#feat=css3">current browser support for CSS3 on caniuse.com</a>. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.</p>{% endblock %}
+<h4>{% trans "Browser support" %}</h4>
+<p>{% blocktrans %}Not every browser supports transforms, transitions and 3d transforms.  Check <a href="http://caniuse.com/#feat=css3">current browser support for CSS3 on caniuse.com</a>. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.{% endblocktrans %}</p>{% endblock %}
 
 <!-- wrap any tuts content with LI's 
      these will be added to existing tutorials scraped from h5r.com -->
@@ -109,23 +112,23 @@ pre:hover {
 {% block resources %} 
 <dl>
   <dt><a href="http://www.w3.org/Style/CSS/current-work">CSS3 Spec status</a></dt>
-   <dd>A list of the current status of the CSS3 specifications.</dd>
+  <dd>{% trans "A list of the current status of the CSS3 specifications." %}</dd>
   <dt><a href="http://www.w3.org/TR/css3-selectors/">W3C Spec: CSS3 Selectors</a></dt>
-  <dd>This W3C specification defines the new selectors available to developers.</dd>
+  <dd>{% trans "This W3C specification defines the new selectors available to developers." %}</dd>
 </dl>
 <dl>
   <dt><a href="http://www.w3.org/TR/css3-2d-transforms">W3C Draft CSS3 2d Transform module</a></dt>
-  <dd>This W3C specification defines how rotations, transformations, skews and scaling should be applied to DOM elements in 2 dimensions.</dd>
+  <dd>{% trans "This W3C specification defines how rotations, transformations, skews and scaling should be applied to DOM elements in 2 dimensions." %}</dd>
 </dl>
 <dl>
   <dt><a href="http://www.w3.org/TR/css3-3d-transforms">W3C Draft CSS3 3d Transform module</a></dt>
-  <dd>This W3C specification defines how 3d transformations should be applied to DOM elements.</dd>
+  <dd>{% trans "This W3C specification defines how 3d transformations should be applied to DOM elements." %}</dd>
 </dl>
 <dl>
   <dt><a href="http://www.w3.org/TR/css3-transitions">W3C Draft CSS3 Transition Module</a></dt>
-  <dd>This W3C specification defines how properties should be animated between states.</dd>
+  <dd>{% trans "This W3C specification defines how properties should be animated between states." %}</dd>
   <dt><a href="http://www.w3.org/TR/css3-animations">W3C Draft CSS3 Animation Module</a></dt>
-   <dd>This W3C specification defines the new animation properties available.</dd>
+  <dd>{% trans "This W3C specification defines the new animation properties available." %}</dd>
 </dl>
 {% endblock %}
 

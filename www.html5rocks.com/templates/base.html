@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html{% block manifest %}{% if is_mobile and prod %} manifest="/cache.appcache"{% endif %}{% endblock %}>
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html{% block manifest %}{% if is_mobile and prod %} manifest="/cache.appcache"{% endif %}{% endblock %} lang="{{LANGUAGE_CODE}}" dir="{{LANGUAGE_BIDI|yesno:"rtl,ltr"}}">
 <head>
   <meta charset="utf-8" />
   <!-- Copyright (c) 2011 Google Inc.
@@ -21,9 +24,9 @@
    * {% block credits %}{% endblock %}
    *
   -->
-  <meta name="description" content="{% block meta_description %}A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.{% endblock %}" />
-  <meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,offline,audio,video,drag and drop,chrome" />
-  <title>HTML5 Rocks - {% block headtitle %}A resource for open web HTML5 developers{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{% trans "A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps." %}{% endblock %}" />
+  <meta name="keywords" content="{% trans "html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,offline,audio,video,drag and drop,chrome" %}" />
+  <title>{% trans "HTML5 Rocks" %} - {% block headtitle %}{% trans "A resource for open web HTML5 developers" %}{% endblock %}</title>
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="stylesheet" media="all" href="/static/css/base{% if prod %}.min{% endif %}.css" />
   <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css" />
@@ -49,15 +52,15 @@
       <header>
         <div>
           <h1 id="title">
-            <a href="/" title="HTML5 Rocks Logo" alt="HTML5 Rocks Logo"><span class="normal">HTML</span><img src="/static/images/identity/HTML5_Badge_64.png"><span class="rocks">Rocks</span></a>
+            <a href="/{{LANGUAGE_CODE}}/" title="{% trans "HTML5 Rocks Logo" %}"><span class="normal">{% trans "HTML" %}</span><img src="/static/images/identity/HTML5_Badge_64.png" alt=""><span class="rocks">{% trans "Rocks" %}</span></a>
           </h1>
           <nav>
             <ul>
-              <li><a href="http://slides.html5rocks.com" target="_blank">Presentation</a></li>
-              <li><a href="http://playground.html5rocks.com">Playground</a></li>
-              <li><a href="http://studio.html5rocks.com">Studio</a></li>
-              <li><a href="/tutorials/" {% ifequal current 'tutorials' %}class="current"{% endifequal %}>Tutorials</a></li>
-              <li><a href="/resources.html" {% ifequal current 'resources' %}class="current"{% endifequal %}>Resources</a></li>
+              <li><a href="http://slides.html5rocks.com" target="_blank">{% trans "Presentation" %}</a></li>
+              <li><a href="http://playground.html5rocks.com">{% trans "Playground" %}</a></li>
+              <li><a href="http://studio.html5rocks.com">{% trans "Studio" %}</a></li>
+              <li><a href="/{{LANGUAGE_CODE}}/tutorials/" {% ifequal current 'tutorials' %}class="current"{% endifequal %}>{% trans "Tutorials" %}</a></li>
+              <li><a href="/{{LANGUAGE_CODE}}/resources.html" {% ifequal current 'resources' %}class="current"{% endifequal %}>{% trans "Resources" %}</a></li>
             </ul>
           </nav>
         </div>
@@ -66,7 +69,8 @@
             <input type="hidden" name="cx" value="007435387813601113811:ef_kuvvx6a8" />
             <input type="hidden" name="cof" value="FORID:9" />
             <input type="hidden" name="ie" value="UTF-8" />
-            <input type="search" name="q" id="q" autocomplete="off" placeholder="Search HTML5Rocks"/>
+            <input type="hidden" name="hl" value="{{LANGUAGE_CODE}}" />
+            <input type="search" name="q" id="q" autocomplete="off" placeholder="{% trans "Search HTML5Rocks" %}"/>
           </div>
         </form>
       </header>
@@ -76,19 +80,19 @@
       <footer>
         <span>
           <a href="http://www.w3.org/html/logo/">
-            <img src="/static/images/identity/HTML5_Badge_64.png" align="left" title="HTML5 Logo" alt="HTML5 Logo" class="footer-badge"/>
+            <img src="/static/images/identity/HTML5_Badge_64.png" align="left" title="{% trans "HTML5 Logo" %}" alt="{% trans "HTML5 Logo" %}" class="footer-badge"/>
           </a>
         </span>
         <span>
-          <a href="/tos.html" {% ifequal current 'tos' %}class="current"{% endifequal %}>Terms</a> -
-          <a href="/privacy.html" {% ifequal current 'privacy' %}class="current"{% endifequal %}>Privacy</a> -
-          <a href="http://goo.gl/mod/YmGX">Make a Suggestion</a> - 
-          <a href="http://code.google.com/p/html5rocks/issues/entry">Report Bug</a> - 
-          <a href="http://twitter.com/ChromiumDev">Follow us on Twitter</a> -
-          <a href="/profiles" {% ifequal current 'profiles' %}class="current"{% endifequal %}>About Authors</a>
+          <a href="/{{LANGUAGE_CODE}}/tos.html" {% ifequal current 'tos' %}class="current"{% endifequal %}>{% trans "Terms" %}</a> -
+          <a href="/{{LANGUAGE_CODE}}/privacy.html" {% ifequal current 'privacy' %}class="current"{% endifequal %}>{% trans "Privacy" %}</a> -
+          <a href="http://goo.gl/mod/YmGX">{% trans "Make a Suggestion" %}</a> - 
+          <a href="http://code.google.com/p/html5rocks/issues/entry">{% trans "Report Bug" %}</a> - 
+          <a href="http://twitter.com/ChromiumDev">{% trans "Follow us on Twitter" %}</a> -
+          <a href="/{{LANGUAGE_CODE}}/profiles" {% ifequal current 'profiles' %}class="current"{% endifequal %}>{% trans "About Authors" %}</a>
         </span>
-        <span class="madeby">Made by Google | <img src="/static/images/google_logo_small.png" width="50" height="20" /></span>
-        <p>This site contains information on APIs that are not part of the W3C HTML5 specification.</p>
+        <span class="madeby">{% trans "Made by Google" %}| <img src="/static/images/google_logo_small.png" width="50" height="20" alt="" /></span>
+        <p>{% trans "This site contains information on APIs that are not part of the W3C HTML5 specification." %}</p>
       </footer>
 
     </div>
@@ -108,7 +112,7 @@
         window.applicationCache.addEventListener('updateready', function(e) {
           if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
             window.applicationCache.swapCache();
-            if (confirm('A new version of this site is available. Load it?')) {
+            if (confirm('{% trans "A new version of this site is available. Load it?" %}')) {
               window.location.reload();
             }
           }

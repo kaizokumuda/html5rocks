@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block headtitle %}404 - Page Not Found{% endblock %}
+{% block headtitle %}{% trans "404 - Page Not Found" %}{% endblock %}
 
 {% block head %}
 <style>
@@ -51,7 +52,12 @@
 
 {% block body %}
 <div id="oops">
-  <img src="/static/images/identity/HTML5_Badge_256.png" width="256" height="256" title="I pity da foo who doesn't use HTML5!" alt="I pity da foo who doesn't use HTML5!"/>
-  <h4>Oops!! We didn't find any HTML<sub>5</sub> resources here.</h4>
+  <img
+    src="/static/images/identity/HTML5_Badge_256.png"
+    width="256"
+    height="256"
+    title="{% trans "I pity da foo who doesn't use HTML5!" %}"
+    alt="{% trans "I pity da foo who doesn't use HTML5!" %}"/>
+  <h4>{% trans "Oops!! We didn't find any HTML<sub>5</sub> resources here." %}</h4>
 </div>
 {% endblock %}

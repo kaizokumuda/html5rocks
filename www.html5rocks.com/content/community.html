@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block headtitle %}Home{% endblock %}
 
@@ -129,14 +131,14 @@ iframe {
   border: 1px solid #000;
 }
 </style>
-<h1>Community</h1>
-<p>The HTML5 community is getting bigger and bigger. Here you will find some resources to be up to date about the latest HTML5 news as well as to be able to discuss with developers and engineers the experimental features and proposals around the standards and browser implementations.</p>
+<h1>{% trans "Community" %}</h1>
+<p>{% trans "The HTML5 community is getting bigger and bigger. Here you will find some resources to be up to date about the latest HTML5 news as well as to be able to discuss with developers and engineers the experimental features and proposals around the standards and browser implementations." %}</p>
 
 <div>
   <section>
     <details> 
         <summary><img src="http://www.mthoodmiata.org/images/SocialMedia/google-groups-32.png" />
-          <span class="resource-category">Forum</span></summary> 
+        <span class="resource-category">{% trans "Forum" %}</span></summary> 
         <iframe id="forum_embed"
                 src="javascript:void(0)"
                 scrolling="no"
@@ -153,18 +155,19 @@ iframe {
           "https://groups.google.com/a/chromium.org/forum/embed/#!forum/chromium-html5";
           // "&showsearch=true&showpopout=true&parenturl=" +
           // encodeURIComponent(window.location.href);
-    </script>  </section>
+    </script>
+  </section>
   <section>
     <details> 
         <summary><img src="http://fpb.case.edu/images/calendar_icon.jpg" />
-          <span class="resource-category">Events</span></summary>
+        <span class="resource-category">{% trans "Events" %}</span></summary>
         <div id="events-list"></div>
     </details>
   </section>
   <section>
     <details> 
         <summary><img src="http://pods.dasnr.okstate.edu/docushare/images/large/group.png" />
-          <span class="resource-category">IRC Channel</span></summary>
+        <span class="resource-category">{% trans "IRC Channel" %}</span></summary>
         <iframe src="http://webchat.freenode.net?channels=html5&uio=d4" height="400"></iframe>
     </details>
   </section>
@@ -172,7 +175,7 @@ iframe {
   <section>
     <details> 
         <summary><img src="http://my.biotechlife.net/images/twitter_48.png" />
-          <span class="resource-category">Twitter</span></summary>
+          <span class="resource-category">{% trans "Twitter" %}</span></summary>
           <div id="twitter-widget"></div>
     </details>
   </section>
@@ -192,15 +195,15 @@ iframe {
     function OnLoad() {
       var feeds = [
         {
-          title: 'HTML5 conferences (Lanyrd)',
+          title: '{% trans "HTML5 conferences (Lanyrd)" %}',
           url: 'http://lanyrd.com/topics/html5-1/feed/'
         },
         {
-          title: 'HTML5 Meetup Groups',
+          title: '{% trans "HTML5 Meetup Groups" %}',
           url: 'http://html5.meetup.com/newest/rss/New+HTML5+Groups'
         },
         {
-          title: 'Google Developer Events Calendar',
+          title: '{% trans "Google Developer Events Calendar" %}',
           url: 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/basic'
         }
       ];
@@ -208,7 +211,7 @@ iframe {
       var options = {
         stacked : true,
         horizontal : false,
-        title : "HTML5 Events"
+        title : "{% trans "HTML5 Events" %}"
       };
 
       new GFdynamicFeedControl(feeds, 'events-list', options);
