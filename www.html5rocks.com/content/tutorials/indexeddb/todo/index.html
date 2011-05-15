@@ -20,14 +20,14 @@
 {% endblock %}
 
 {% block iscompatible %}
-  return ('webkitIndexedDB' in window || 'moz_indexedDB' in window);
+  return ('indexedDB' in window || 'webkitIndexedDB' in window || 'mozIndexedDB' in window);
 {% endblock %}
 
 {% block head %}
   <script>  
     var html5rocks = {};
     var indexedDB = window.indexedDB || window.webkitIndexedDB ||
-      window.moz_indexedDB;
+      window.mozIndexedDB;
       
     if ('webkitIndexedDB' in window) {
       window.IDBTransaction = window.webkitIDBTransaction;
@@ -46,7 +46,7 @@
       
       request.onsuccess = function(e) {
         var v = "1.98";
-        html5rocks.indexedDB.db = e.result;
+        html5rocks.indexedDB.db = e.target.result;
         var db = html5rocks.indexedDB.db;
         // We can only create Object stores in a setVersion transaction;
         if(v!= db.version) {
@@ -86,11 +86,11 @@
       var request = store.put(data);
         
       request.onsuccess = function(e) {
-        console.log(e);
+        html5rocks.indexedDB.getAllTodoItems();
       };
       
       request.onerror = function(e) {
-        console.log(e);
+        console.log("Error Adding: ", e);
       };
     };
     
@@ -119,15 +119,16 @@
       var store = trans.objectStore("todo");
       
       // Get everything in the store;
-      var keyRange = IDBKeyRange.lowerBound("");
+      var keyRange = IDBKeyRange.lowerBound(0);
       var cursorRequest = store.openCursor(keyRange);
       
       cursorRequest.onsuccess = function(e) {
-        if(!e.result) 
+        var result = e.target.result;
+        if(!!result == false) 
           return;
         
-        renderTodo(e.result.value);
-        e.result.continue();
+        renderTodo(result.value);
+        result.continue();
       };
       
       cursorRequest.onerror = html5rocks.indexedDB.onerror;
@@ -137,9 +138,7 @@
       var todos = document.getElementById("todoItems");
       var li = document.createElement("li");
       var a = document.createElement("a");
-      var t = document.createTextNode();
-      
-      t.data = row.text;
+      var t = document.createTextNode(row.text);
       
       a.addEventListener("click", function() {
         html5rocks.indexedDB.deleteTodo(row.timeStamp);
@@ -154,7 +153,6 @@
     function addTodo() {
       var todo = document.getElementById("todo"); 
       html5rocks.indexedDB.addTodo(todo.value);
-      html5rocks.indexedDB.getAllTodoItems();
       todo.value = "";
     }
     
@@ -267,8 +265,7 @@ html5rocks.indexedDB.open = function() {
   var request = indexedDB.open("todos");
 
   request.onsuccess = function(e) {   
-    html5rocks.indexedDB.db = e.result;
-    
+    html5rocks.indexedDB.db = e.target.result;
     // Do some more stuff in a minute
   };
 
@@ -289,7 +286,7 @@ html5rocks.indexedDB.open = function() {
   
   request.onsuccess = function(e) {
     var v = "1.0";
-    html5rocks.indexedDB.db = e.result;
+    html5rocks.indexedDB.db = e.target.result;
     var db = html5rocks.indexedDB.db;
     // We can only create Object stores in a setVersion transaction;
     if(v!= db.version) {
@@ -357,10 +354,11 @@ html5rocks.indexedDB.open = function() {
   var request = store.put({
     "text": todoText, 
     "timeStamp" : new Date().getTime() 
-    });
+  });
     
   request.onsuccess = function(e) {
-    console.log(e.value);
+    // Re-render all the todo's
+    html5rocks.indexedDB.getAllTodoItems();
   };
   
   request.onerror = function(e) {
@@ -376,7 +374,10 @@ html5rocks.indexedDB.open = function() {
   <p>
     Now that the application has access to the Object Store, we can issue a 
     simple <code>put</code> command with a basic JSON object. Notice that there
-    is a <code>timeStamp</code> property, that is our unique key for the object.
+    is a <code>timeStamp</code> property, that is our unique key for the object 
+    and is used as the "keyPath". When the call to put is successful, our 
+    onsuccess event is triggered and we are able to render the contents to the
+    screen.
   </p>
 
   <h2 id="toc-step4">Step 4. Querying the data in a store.</h2>
@@ -393,13 +394,16 @@ html5rocks.indexedDB.open = function() {
   var store = trans.objectStore("todo");
   
   // Get everything in the store;
-  var cursorRequest = store.openCursor();
-  
+  var keyRange = IDBKeyRange.lowerBound(0);
+  var cursorRequest = store.openCursor(keyRange);
+      
   cursorRequest.onsuccess = function(e) {
-    if(e.result == null) return;
-    
-    renderTodo(e.result.value); // Defined a little later.
-    e.result.continue();
+    var result = e.target.result;
+    if(!!result == false) 
+      return;
+        
+    renderTodo(result.value);
+    result.continue();
   };
   
   cursorRequest.onerror = html5rocks.indexedDB.onerror;
@@ -407,8 +411,26 @@ html5rocks.indexedDB.open = function() {
   <p>
     Note that all of these commands used in this sample
     are asynchronous and as such the data is not returned from inside the 
-    transaction. The results are passed through to the success callback on the 
-    cursor.
+    transaction. 
+  </p>
+  <p>
+    The code makes a transaction and instantiates a keyRange search 
+    over the data. The keyRange defines a simple subset of the data we
+    want to query from the store. Given that the keyPath for the store is
+    the numeric timestamp, we set the lowest value of the search to be 0
+    (anything since the epoch) which just so happens to return all of
+    our data.
+  </p>
+  <p>
+    There is now a transaction, a reference to the store we want to query
+    and a range that we wish to iterate over. All that remains is to open
+    the cursor and attach an "onsuccess" event.  
+  </p>
+  <p>
+    The results are passed through to the success callback on the 
+    cursor, where we render the result.  The callback is only fired once
+    per result, so to ensure you keep iterating across the data you need
+    to ensure you call "continue" on your result object.
   </p>
   <h2>Step 4a. Rendering data from an Object Store</h2>
   <p>
