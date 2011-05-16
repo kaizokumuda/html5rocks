@@ -1,4 +1,5 @@
 {% load i18n %}
+
 <p class="cc">
 {% blocktrans %}
   Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>, the content of this
@@ -12,7 +13,11 @@
 
 {% if not is_mobile %}
 <div id="disqus_thread"></div>
-<noscript>{% trans "Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>" %}</noscript>
+<noscript>
+{% blocktrans %}
+  <p class="center"><strong>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></strong></p>
+{% endblocktrans %}
+</noscript>
 <script>
   var disqus_shortname = 'html5rocks';
   // var disqus_identifier = 'unique_dynamic_id_1234';

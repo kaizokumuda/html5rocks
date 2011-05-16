@@ -18,9 +18,6 @@ __author__ = ('kurrik@html5rocks.com (Arne Kurrik) ',
               'ericbidelman@html5rocks.com (Eric Bidelman)')
 
 
-from google.appengine.dist import use_library
-use_library('django', '1.2')
-
 # Standard Imports
 import datetime
 import logging
@@ -33,28 +30,22 @@ import html5lib
 from html5lib import treebuilders, treewalkers, serializer
 from html5lib.filters import sanitizer
 
-# Hack to fix templating issue in django 1.2.
-from django.conf import settings
-settings.configure(INSTALLED_APPS=('nothing',))
+# Use Django 1.2.
+from google.appengine.dist import use_library
+use_library('django', '1.2')
 
-# i18n Configuration
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_settings'
+
+from django.conf import settings
+from django.utils import feedgenerator
 from django.utils import translation
 from django.utils.translation import ugettext as _
-settings.LANGUAGE_CODE = 'en'
-settings.USE_I18N = True
-settings.ROOT_DIR = os.path.abspath( os.path.dirname( __file__ ) )
-settings.LOCALE_PATHS = ( 
-  os.path.join( settings.ROOT_DIR, 'conf', 'locale' ),
-)
 
 # Google App Engine Imports
+from google.appengine.api import memcache
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
-
-from google.appengine.api import memcache
-
-from django.utils import feedgenerator
 
 import common
 
@@ -62,9 +53,9 @@ template.register_template_library('templatetags.templatefilters')
 
 class ContentHandler(webapp.RequestHandler):
   def get_language(self):
-    lang_match = re.match( "^/(\w{2,3})(?:/|$)", self.request.path )
+    lang_match = re.match("^/(\w{2,3})(?:/|$)", self.request.path)
     self.locale = lang_match.group(1) if lang_match else settings.LANGUAGE_CODE
-    logging.info( "Set Language as %s" % self.locale )
+    logging.info("Set Language as %s" % self.locale)
     translation.activate( self.locale )
     return self.locale if lang_match else None
 
@@ -218,7 +209,7 @@ class ContentHandler(webapp.RequestHandler):
     basedir = os.path.dirname(__file__)
 
     # Strip off leading `/[en|de|fr|...]/`
-    relpath = re.sub( '^/?\w{2,3}/', '', relpath )
+    relpath = re.sub('^/?\w{2,3}/', '', relpath)
 
     # Are we looking for a feed?
     is_feed = self.request.path.endswith('.xml')
