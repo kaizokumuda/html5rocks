@@ -1,6 +1,7 @@
 (function() {
   var doc = document;
   var disableBuilds = false;
+  var disableNotes = false;
 
   var ctr = 0;
   var spaces = /\s+/, a1 = [''];
@@ -128,6 +129,8 @@
   //
   var Slide = function(node, idx) {
     this._node = node;
+    var note = query('.note > section', node);
+    this._speakerNote = note ? note.innerHTML : '';
     if (idx >= 0) {
       this._count = idx + 1;
     }
@@ -265,6 +268,9 @@
         }
       }
     },
+    getSpeakerNote: function() {
+      return this._speakerNote;
+    },
     buildNext: function() {
       if (!this._buildList.length) {
         return false;
@@ -309,6 +315,7 @@
 
   SlideShow.prototype = {
     _presentationCounter: query('#presentation-counter'),
+    _speakerNote: query('#speaker-note'),
     _slides: [],
     _getCurrentIndex: function() {
       var me = this;
@@ -329,11 +336,12 @@
       var elem = document.elementFromPoint( docElem.clientWidth / 2, docElem.clientHeight / 2);
       var currentIndex = this._getCurrentIndex();
       if (elem && elem.className != 'presentation') {
-          this._presentationCounter.textContent = currentIndex;
+        this._presentationCounter.textContent = currentIndex;
       }
       if (history.pushState) {
         if (!dontPush) {
           history.replaceState(this.current, 'Slide ' + this.current, '#' + this.current);
+          this._speakerNote.innerHTML = this._slides[currentIndex - 1].getSpeakerNote();
         }
       } else {
         window.location.hash = this.current;
@@ -365,10 +373,12 @@
 
     _notesOn: false,
     showNotes: function() {
+      if (disableNotes) {
+        return;
+      }
       var isOn = this._notesOn = !this._notesOn;
-      queryAll('.notes').forEach(function(el) {
-        el.style.display = (notesOn) ? 'block' : 'none';
-      });
+      document.getElementById('speaker-note').style.display = "block";
+      document.getElementById('speaker-note').classList.toggle('invisible');
     },
     switch3D: function() {
       toggleClass(document.body, 'three-d');
@@ -401,12 +411,12 @@
         case 39: // right arrow
         case 32: // space
           this.next(); break;
-        case 50: // 2
-          this.showNotes(); break;
         case 51: // 3
           this.switch3D(); break;
         case 72: // H
           this.toggleHightlight(); break;
+        case 78: // N
+          this.showNotes(); break;
         case 84: // T
           this.changeTheme(); break;
       }
@@ -448,5 +458,4 @@
   queryAll('pre').forEach(function(el) {
     addClass(el, 'prettyprint');
   });
-
 })();
