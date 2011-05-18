@@ -29,6 +29,10 @@
   background: -webkit-gradient(linear, left top, left bottom,
                                from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
   background: -moz-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
+  background: -webkit-linear-gradient(#e1e1e1, #fff, #e1e1e1);
+  background: -ms-linear-gradient(#e1e1e1, #fff, #e1e1e1);
+  background: -o-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
+  background: linear-gradient(#eee, #fff, #eee);
   width: 147px;
   margin-bottom: 4px;
 }
