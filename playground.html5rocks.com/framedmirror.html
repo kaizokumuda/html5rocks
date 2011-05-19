@@ -52,6 +52,17 @@
       height: {% if height_of_upper %}{{ height_of_upper }}px{% else %}200px{% endif %};
     }
   </style>
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15028909-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
 </head>
 <body>
 <div id="container">
@@ -88,7 +99,7 @@
       <div class="pane-header" title="Change the code above and click the &#34;Run Code&#34; button to see the result!">
         <h2>Output</h2>
         <div class="pane-buttons">
-          <button onClick="is.runBox.runCode();" title="Run this sample.">
+          <button onClick="runDemoCode();" title="Run this sample.">
             <span class="run-icon icon-text">Run Code</span>
           </button>
         </div>
@@ -120,6 +131,18 @@ iFrame fixes it.
 <![endif]-->
 
 <script>
+  function runDemoCode() {
+    var topWindow = window.top.location.hostname;
+    var matchResult = topWindow.match(/^(.*)\.html5rocks\.com$/i);
+    if (matchResult && matchResult.length > 1) {
+      topWindow = matchResult[1];
+    }
+    console.log(['_trackEvent', 'button', 'click', 'in_' + topWindow]);
+    _gaq.push(['_trackEvent', 'button', 'click', 'in_' + topWindow]);
+
+    is.runBox.runCode();
+  }
+
   var options = {};
   if (!location.host.match(/localhost/) && !location.href.match(/\/\/172/)) {
     options.defaultSample = true;
