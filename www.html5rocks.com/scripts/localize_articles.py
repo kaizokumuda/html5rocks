@@ -37,9 +37,18 @@ class Article(object):
     django_: The absolute path to a specific Django template.
     html_: The absolute path to a specific HTML file.
   """
-  DJANGO_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..', 'content',
-                                             'tutorials'))
+  DJANGO_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..', 'content'))
   HTML_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..', '_to_localize'))
+
+  UNTRANSLATABLE_LABEL = r'<!--DO_NOT_TRANSLATE_BLOCK>'
+  UNTRANSLATABLE_END_LABEL = r'</DO_NOT_TRANSLATE_BLOCK-->'
+
+  CONTENT_LABEL = """
+<!--CONTENT_BLOCK ***********************************************************-->
+"""
+  CONTENT_LABEL_END = """
+<!--/END_CONTENT_BLOCK ******************************************************-->
+"""
 
   def __init__(self, django=None, html=None):
     """Creates an Article object.
@@ -69,9 +78,8 @@ class Article(object):
   def GenerateHTML(self):
     """Generates a localizable HTML file from a Django template.
 
-    Implemented trivially by converting Django tags to comments in the form:
-    `<!--DJANGO>...</DJANGO-->`. This function will also create the HTML file's
-    directory if it doesn't already exist.
+    This function will also create the HTML file's directory if it doesn't
+    already exist.
     """
     try:
       os.makedirs(os.path.dirname(self.html_))
@@ -80,10 +88,51 @@ class Article(object):
     print '* Generating `%s`' % self.html_
     with open(self.html_, 'w') as outfile:
       with open(self.django_, 'r') as infile:
+        in_content = False
         for line in infile:
-          outfile.write(re.sub(r'({%.+?%})',
-                               r'<!--DJANGO>\1</DJANGO-->',
-                               line))
+          (line, in_content) = self._HtmlizeLine(line, in_content)
+          outfile.write(line)
+
+  def _HtmlizeLine(self, line, in_content):
+    """Given a line of a Django template, returns the corresponding HTML line
+
+    * Replaces Django tags with comments in the form:
+        <!--DO_NOT_TRANSLATE_BLOCK-->{DJANGO_TAG}<!--/DO_NOT_TRANSLATE_BLOCK-->
+
+    * Replaces script/style/pre tags with comments in the form:
+        <TAG_GOES_HERE><!--DO_NOT_TRANSLATE_BLOCK-->
+        ...
+        <!--/DO_NOT_TRANSLATE_BLOCK--></TAG_GOES_HERE>
+    """
+
+    UNESCAPED_DJANGO = r'(?P<tag>{%.+?%})'
+    ESCAPED_DJANGO = r'%s\g<tag>%s' % (Article.UNTRANSLATABLE_LABEL,
+                                       Article.UNTRANSLATABLE_END_LABEL,)
+
+    UNESCAPED_UNTRANSLATABLE = r'(?P<tag><(?:pre|script|style)[^>]*?>)'
+    ESCAPED_UNTRANSLATABLE = r'\g<tag>%s' % Article.UNTRANSLATABLE_LABEL
+
+    UNESCAPED_UNTRANSLATABLE_END = r'(?P<tag></(?:pre|script|style)[^>]*?>)'
+    ESCAPED_UNTRANSLATABLE_END = r'%s\g<tag>' % Article.UNTRANSLATABLE_END_LABEL
+
+    UNESCAPED_CONTENT = r'{% block content %}'
+    UNESCAPED_CONTENT_END = r'{% endblock %}'
+
+    # Preprocess Django tags
+    line = re.sub(UNESCAPED_DJANGO, ESCAPED_DJANGO, line)
+    # Preprocess script/pre/style blocks
+    line = re.sub(UNESCAPED_UNTRANSLATABLE, ESCAPED_UNTRANSLATABLE, line)
+    line = re.sub(UNESCAPED_UNTRANSLATABLE_END,
+                  ESCAPED_UNTRANSLATABLE_END,
+                  line)
+    # Preprocess content block
+    if not in_content and re.search(UNESCAPED_CONTENT, line):
+      line = Article.CONTENT_LABEL
+      in_content = True
+    if in_content and re.search(UNESCAPED_CONTENT_END, line):
+      line = Article.CONTENT_LABEL_END
+      in_content = False
+    return (line, in_content)
 
   def GenerateDjango(self):
     """Generates a Django template from a localized HTML file.
@@ -99,9 +148,18 @@ class Article(object):
     with open(self.html_, 'r') as infile:
       with open(self.django_, 'w') as outfile:
         for line in infile:
-          outfile.write(re.sub(r'<!--DJANGO>({%.+?%}</DJANGO-->',
-                               r'\1',
-                               line))
+          # Preprocess Django tags
+          line = re.sub(Article.ESCAPED_DJANGO, Article.UNESCAPED_DJANGO, line)
+          # Preprocess script blocks
+          line = line.replace(Article.ESCAPED_SCRIPT, Article.UNESCAPED_SCRIPT)
+          line = line.replace(Article.ESCAPED_SCRIPT_END,
+                              Article.UNESCAPED_SCRIPT_END)
+          # Preprocess style blocks
+          line = line.replace(Article.ESCAPED_STYLE, Article.UNESCAPED_STYLE)
+          line = line.replace(Article.ESCAPED_STYLE_END,
+                              Article.UNESCAPED_STYLE_END)
+          outfile.write(line)
+
 
   def __str__(self):
     """String representation of an Article."""
