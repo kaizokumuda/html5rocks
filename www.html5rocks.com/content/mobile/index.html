@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block headtitle %}Mobile{% endblock %}
 
@@ -12,19 +14,19 @@
   <div class="column">
     <section class="tutorials">
       <hgroup>
-        <h3>Tutorials</h3>
-        <h4>Learn how to leverage HTML5 in mobile</h4>
+        <h3>{% trans "Tutorials" %}</h3>
+        <h4>{% trans "Learn how to leverage HTML5 in mobile" %}</h4>
       </hgroup>
       <div>
         <ul>
           <li><a href="http://code.google.com/speed/articles/mobile.html">Make the mobile web faster</a></li>
         </ul>
-        <p>View all <a href="/tutorials#mobile">HTML5Rocks mobile tutorials</a> &rArr;</p>
+        <p><a href="/{{LANGUAGE_CODE}}/tutorials#mobile">{% trans "View all HTML5Rocks mobile tutorials" %}</a> &rArr;</p>
       </div>
     </section>
     <section class="demos">
       <hgroup>
-        <h3>Tools</h3>
+        <h3>{% trans "Tools" %}</h3>
       </hgroup>
       <div>
         <li><a href="http://stevesouders.com/mobileperf/">Mobile Performance Bookmarklets by Steve Souders</a></li>
@@ -40,8 +42,8 @@
   <div class="column">
     <section class="resources">
       <hgroup>
-        <h3>Additional Resources</h3>
-        <h4>A collection of useful references</h4>
+        <h3>{% trans "Additional Resources" %}</h3>
+        <h4>{% trans "A collection of useful references" %}</h4>
       </hgroup>
       <div>
         <ul>
