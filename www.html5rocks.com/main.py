@@ -283,7 +283,8 @@ class ContentHandler(webapp.RequestHandler):
         return self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
 
 
-    elif re.search('tutorials/.+', relpath) and not is_feed:
+    elif (re.search('tutorials/.+', relpath) or re.search('mobile/.+', relpath)
+         and not is_feed):
       # Tutorials look like this on the filesystem:
       #
       #   .../tutorials +
