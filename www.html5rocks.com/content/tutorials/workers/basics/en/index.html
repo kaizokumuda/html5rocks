@@ -14,7 +14,7 @@
 </style>
 {% endblock %}
 {% block date %}July 26, 2010{% endblock %}
-{% block updated %}January 26, 2011{% endblock %}
+{% block updated %}May 24, 2011{% endblock %}
 
 {% block browsersupport %}
 <span class="opera supported"></span>
@@ -285,7 +285,7 @@ importScripts('script1.js', 'script2.js');
   interface, you can "inline" your worker in the same HTML file as your main logic by creating a
   <code>BlobBuilder</code> and appending the worker code as a string:</p>
 <pre class="prettyprint">
-// Note: Google Chrome 12 has a prefix: window.WebKitBlobBuilder
+// Prefixed in Webkit, Chrome 12, and FF6: window.WebKitBlobBuilder, window.MozBlobBuilder
 var bb = new BlobBuilder();
 bb.append("onmessage = function(e) { postMessage('msg from worker'); }");
 
@@ -300,7 +300,7 @@ worker.onmessage = function(e) {
 worker.postMessage(); // Start the worker.
 </pre>
 
-  <h3 id="toc-inlineworkers-bloburis">Blob URIs</h3>
+  <h3 id="toc-inlineworkers-bloburis">Blob URLs</h3>
 
   <p>The magic comes with the call to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-createObjectURL"><code>window.URL.createObjectURL()</code></a>.
   This method creates a simple URL string which can be used to reference data stored in a
@@ -308,14 +308,15 @@ worker.postMessage(); // Start the worker.
 
   <pre class="prettyprint">blob:http://localhost/c745ef73-ece9-46da-8f66-ebes574789b1</pre>
 
-  <p>Blob URIs are unique and last for the lifetime of your application (e.g. until the <code>document</code>
-  is unloaded). If you're creating many Blob URIs, it's a good idea to release references that are
-  no longer needed. You can explicitly release a Blob URIs by passing it to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-revokeObjectURL"><code>window.URL.revokeObjectURL()</code></a>:</p>
+  <p>Blob URLs are unique and last for the lifetime of your application (e.g. until the <code>document</code>
+  is unloaded). If you're creating many Blob URLs, it's a good idea to release references that are
+  no longer needed. You can explicitly release a Blob URLs by passing it to <a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-revokeObjectURL"><code>window.URL.revokeObjectURL()</code></a>:</p>
 
   <pre class="prettyprint">
-// Note: window.webkitURL.createObjectURL() in Chrome 10+.
-window.URL.revokeObjectURL(blobURL);
+window.URL.revokeObjectURL(blobURL); // window.webkitURL.createObjectURL() in Chrome 10+.
 </pre>
+
+  <p>In Chrome, there's a nice page to view all of the created blob URLs: <code>chrome://blob-internals/</code>.</p>
 
   <h3 id="toc-inlineworkers-example">Full Example</h3>
 
@@ -333,8 +334,8 @@ window.URL.revokeObjectURL(blobURL);
 
   &lt;div id="log"&gt;&lt;/div&gt;
 
-  &lt;script id="worker1" type="text/plain"&gt;
-    // This script won't be interpreted by the JS engine because its type is text/plain.
+  &lt;script id="worker1" type="javascript/worker"&gt;
+    // This script won't be parsed by JS engines because its type is javascript/worker.
     self.onmessage = function(e) {
       self.postMessage('msg from worker');
     };
@@ -367,7 +368,7 @@ window.URL.revokeObjectURL(blobURL);
 
   <p>In my opinion, this new approach is a bit cleaner and more legible.
   It defines a script tag with <var>id="worker1"</var> and
-  <var>type='text/html'</var> (so the browser doesn't parse the JS). That code is extracted as a
+  <var>type='javascript/worker'</var> (so the browser doesn't parse the JS). That code is extracted as a
   string using <code>document.querySelector('#worker1').textContent</code> and passed to
   <code>BlobBuilder.append()</code>.</p>
 
@@ -379,6 +380,34 @@ window.URL.revokeObjectURL(blobURL);
   error. The reason being: the worker (now created from a blob URL) will be resolved with a
   <code>blob:</code> prefix, while your app will be running from a different (presumably <code>http://</code>)
   scheme. Hence, the failure will be due to cross origin restrictions.</p>
+
+  <p>One way to utilize <code>importScripts()</code> in an inline worker is to
+  "inject" the current url of your main script is running from by passing it
+  to the inline worker and constructing the absolute URL manually. This
+  will insure the external script is imported from the same origin. Assuming your
+  main app is running from http://example.com/index.html:</p>
+    <pre class="prettyprint">
+...
+&lt;script id="worker2" type="javascript/worker"&gt;
+self.onmessage = function(e) {
+  var data = e.data;
+
+  if (data.url) {
+    var url = data.url.href;
+    var index = url.indexOf('index.html');
+    if (index != -1) {
+      url = url.substring(0, index);
+    }
+    importScripts(url + 'engine.js');
+  }
+  ...
+};
+&lt;/script&gt;
+&lt;script&gt;
+  var worker = new Worker(window.URL.createObjectURL(bb.getBlob()));
+  worker.postMessage(<b>{url: document.location}</b>);
+&lt;/script&gt;
+</pre>
 
   <h2 id="toc-errors">Handling Errors</h2>
 
