@@ -1,0 +1,484 @@
+{% extends "sample.html" %}
+
+{% block headauthor %}Ilmari Heikkinen <ilmari@google.com>{% endblock %}
+{% block pageauthor %}{% profilelinks ilmariheikkinen %}{% endblock %}
+{% block headtitle %}Image filters with Canvas{% endblock %}
+{% block pagetitle %}Image filters with Canvas{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block pagebreadcrumb %}Image filters with Canvas{% endblock %}
+{% block date %}May 25, 2011{% endblock %}
+{% block updated %}{% endblock %}
+{% block onload %}{% endblock %}
+
+{% block browsersupport %}
+<span class="opera supported"></span>
+<span class="ie supported"></span>
+<span class="safari supported"></span>
+<span class="ff supported"></span>
+<span class="chrome supported"></span>
+{% endblock %}
+
+{% block iscompatible %}
+  return !!Modernizr.canvas
+{% endblock %}
+
+{% block content %}
+  <section>
+    <h2 id="toc-introduction">Introduction</h2>
+    <p>
+      The HTML5 Canvas element can be used to write image filters. What you
+      need to do is draw an image onto a canvas, read back the canvas pixels
+      and run your filter on them. You can then write the result onto a new
+      canvas (or heck, just reuse the old one.)
+    </p>
+    <p>
+      Sounds simple? Good. Let's get cracking!
+    </p>
+    <figure>
+      <img id="orig" src="demo_small.png">
+      <figcaption>The original test image</figcaption>
+    </figure>
+
+  </section>
+  <section>
+
+    <h2 id="toc-setup">Setup</h2>
+
+    <p>
+      First, retrieve the image pixels:
+    </p>
+    <pre class="prettyprint collapsible">
+      Filters = {};
+      Filters.getCanvas = function(w,h) {
+        var c = document.createElement('canvas');
+        c.width = w;
+        c.height = h;
+        return c;
+      };
+
+      Filters.getPixels = function(img) {
+        var c = this.getCanvas(img.width, img.height);
+        var ctx = c.getContext('2d');
+        ctx.drawImage(img);
+        return ctx.getImageData(0,0,c.width,c.height);
+      };
+    </pre>
+    <p>
+      Next we need a way to filter images. How about a <code>filterImage</code>
+      method that takes a filter and an image and returns the filtered pixels?
+    </p>
+    <pre class="prettyprint collapsible">
+      Filters.filterImage = function(filter, image, args) {
+        return filter(this.getPixels(image), args);
+      };
+    </pre>
+
+  </section>
+  <section>
+
+    <h2 id="toc-simplefilters">Simple filters</h2>
+    <p>
+      And some simple filters. Converting the image to grayscale is easy enough:
+    </p>
+    <pre class="prettyprint collapsible">
+      Filters.grayscale = function(pixels, args) {
+        var d = pixels.data;
+        for (var i=0; i&lt;d.length; i+=4) {
+          var r = d[i];
+          var g = d[i+1];
+          var b = d[i+2];
+          // CIE luminance for the RGB
+          var v = 0.2126*r + 0.7152*g + 0.0722*b;
+          d[i] = d[i+1] = d[i+2] = v
+        }
+        return pixels;
+      };
+    </pre>
+    <figure>
+      <canvas id="grayscale"></canvas>
+      <button onclick="grayscale()">Grayscale the image</button>
+    </figure>
+
+    <p>
+      Adjusting brightness can be done by adding a fixed value to the
+      pixels:
+    </p>
+    <pre class="prettyprint collapsible">
+      Filters.brightness = function(pixels, adjustment) {
+        var d = pixels.data;
+        for (var i=0; i&lt;d.length; i+=4) {
+          d[i] += adjustment;
+          d[i+1] += adjustment;
+          d[i+2] += adjustment;
+        }
+        return pixels;
+      };
+    </pre>
+    <figure>
+      <canvas id="brightness"></canvas>
+      <button onclick="brightness()">Brighten the image</button>
+    </figure>
+
+    <p>
+      Thresholding an image is also really simple. You just compare the
+      pixel's grayscale value to the threshold and set the color based on that:
+    </p>
+    <pre class="prettyprint collapsible">
+      Filters.threshold = function(pixels, threshold) {
+        var d = pixels.data;
+        for (var i=0; i&lt;d.length; i+=4) {
+          var r = d[i];
+          var g = d[i+1];
+          var b = d[i+2];
+          var v = (0.2126*r + 0.7152*g + 0.0722*b >= threshold) ? 255 : 0;
+          d[i] = d[i+1] = d[i+2] = v
+        }
+        return pixels;
+      };
+    </pre>
+    <figure>
+      <canvas id="threshold"></canvas>
+      <button onclick="threshold()">Threshold the image</button>
+    </figure>
+
+  </section>
+  <section>
+
+    <h2 id="toc-convolution">Convolution</h2>
+    <p>
+      Convolution filters are easy to implement and really useful. You can
+      use them for blurring, sharpening, embossing and edge detection. And
+      a whole bunch of other things. The idea is that the value of an
+      output pixel is the sum of a weighed rectangle of pixels from the source image.
+    </p>
+    <pre class="prettyprint collapsible">
+      Filters.tmpCanvas = document.createElement('canvas');
+      Filters.tmpCtx = Filters.tmpCanvas.getContext('2d');
+
+      Filters.createImageData = function(w,h) {
+        return this.tmpCtx.createImageData(w,h);
+      };
+
+      Filters.convolute = function(pixels, weights, opaque) {
+        var side = Math.round(Math.sqrt(weights.length));
+        var halfSide = Math.floor(side/2);
+        var src = pixels.data;
+        var sw = pixels.width;
+        var sh = pixels.height;
+        // pad output by the convolution matrix
+        var output = Filters.createImageData(sw+2*halfSide, sh+2*halfSide);
+        var dst = output.data;
+        var w = output.width;
+        var h = output.height;
+        // go through the destination image pixels
+        for (var y=0; y&lt;h; y++) {
+          for (var x=0; x&lt;w; x++) {
+            var sy = y-halfSide;
+            var sx = x-halfSide;
+            var dstOff = (y*w+x)*4;
+            // calculate the weighed sum of the source image pixels that
+            // fall under the convolution matrix
+            var r=0, g=0, b=0, a=0;
+            for (var cy=0; cy&lt;side; cy++) {
+              for (var cx=0; cx&lt;side; cx++) {
+                var scy = sy + cy - halfSide;
+                var scx = sx + cx - halfSide;
+                if (scy >= 0 && scy &lt; sh && scx >= 0 && scx &lt; sw) {
+                  var srcOff = (scy*sw+scx)*4;
+                  var wt = weights[cy*side+cx];
+                  r += src[srcOff] * wt;
+                  g += src[srcOff+1] * wt;
+                  b += src[srcOff+2] * wt;
+                  a += src[srcOff+3] * wt;
+                }
+              }
+            }
+            dst[dstOff] = r;
+            dst[dstOff+1] = g;
+            dst[dstOff+2] = b;
+            dst[dstOff+3] = opaque ? 255 : a;
+          }
+        }
+        return output;
+      };
+    </pre>
+    <p>
+      Here's a 3x3 sharpen filter. See how it focuses the weight on the center pixel.
+      To maintain the brightness of the image, the sum of the matrix values should
+      be one.
+    </p>
+    <pre>
+      Filters.filterImage(Filters.convolute, image,
+        [  0, -1,  0,
+          -1,  5, -1,
+           0, -1,  0 ]
+      );
+    </pre>
+    <figure>
+      <canvas id="sharpen"></canvas>
+      <button onclick="sharpen()">Sharpen the image</button>
+    </figure>
+
+    <p>
+      And a 3x3 box blur filter. Now we're spreading out the weights to make a
+      pixel's color depend on the colors of its neighbours.
+    </p>
+    <pre>
+      Filters.filterImage(Filters.convolute, image,
+        [ 1/9, 1/9, 1/9,
+          1/9, 1/9, 1/9,
+          1/9, 1/9, 1/9 ]
+      );
+    </pre>
+    <figure>
+      <canvas id="blurC"></canvas>
+      <button onclick="blurC()">Blur the image</button>
+    </figure>
+
+    <p>
+      And a 3x3 Sobel filter.
+    </p>
+    <pre>
+      Filters.filterImage(Filters.convolute, image,
+        [ -1, 0, 1,
+          -2, 0, 2,
+          -1, 0, 1 ],
+        true // set alpha to 255
+      );
+    </pre>
+    <figure>
+      <canvas id="sobel"></canvas>
+      <button onclick="sobel()">Run a Sobel filter on the image</button>
+    </figure>
+
+    <p>
+      And there's a whole bunch of other useful convolution filters that
+      I'm not going to go to here. As homework, try searching for a Laplace filter and
+      implement that yourself.
+    </p>
+
+  </section>
+  <section>
+
+    <h2 id="toc-conclusion">Conclusion</h2>
+
+    <p>
+      I hope this small article was useful in introducing the basic concepts
+      of writing image filters in JavaScript using the HTML Canvas tag. I
+      encourage you to go and implement some more image filters, it's quite
+      fun!
+    </p>
+
+    <p>
+      If you need better performance from your filters, you can quite easily
+      port them to use WebGL fragment shaders. With shaders, you can run
+      most simple filters in real-time, which allows you to use them for
+      post-processing video and animations.
+    </p>
+
+  </section>
+
+
+  <script>
+    window.addEventListener('load', function() {
+    /*
+      var toggleCollapse = function(ev) {
+        this.collapsed = !this.collapsed;
+        if (this.collapsed) {
+          this.style.height = '80px';
+        } else {
+          this.style.height = this.origHeight+40+'px';
+        }
+        if (ev) {
+          this.scrollIntoViewIfNeeded();
+          ev.preventDefault();
+        }
+      };
+      var collapsible = document.getElementsByClassName('collapsible');
+      for (var i=0; i<collapsible.length; i++) {
+        var c = collapsible[i];
+        if (c.offsetHeight > 80) {
+          var fade = document.createElement('div');
+          fade.className = 'collapsible-fade';
+          fade.style.opacity = '1';
+          c.origHeight = c.offsetHeight;
+          c.style.height = c.origHeight+40+'px';
+          c.parentNode.insertBefore(fade, c.nextSibling);
+          c.fadeElement = fade;
+          c.onclick = toggleCollapse;
+          c.onclick();
+        }
+      }
+    */
+      var img = document.getElementById('orig');
+
+      var canvases = document.getElementsByTagName('canvas');
+      for (var i=0; i<canvases.length; i++) {
+        var c = canvases[i];
+        c.parentNode.insertBefore(img.cloneNode(), c);
+        c.style.display = 'none';
+      }
+
+      function runFilter(id, filter, arg1, arg2, arg3) {
+        var c = document.getElementById(id);
+        var s = c.previousSibling.style;
+        var b = c.parentNode.getElementsByTagName('button')[0];
+        if (b.originalText == null) {
+          b.originalText = b.textContent;
+        }
+        if (s.display == 'none') {
+          s.display = 'inline';
+          c.style.display = 'none';
+          b.textContent = b.originalText;
+        } else {
+          var idata = Filters.filterImage(filter, img, arg1, arg2, arg3);
+          c.width = idata.width;
+          c.height = idata.height;
+          var ctx = c.getContext('2d');
+          ctx.putImageData(idata, 0, 0);
+          s.display = 'none';
+          c.style.display = 'inline';
+          b.textContent = 'Restore original image';
+        }
+      }
+
+      grayscale = function() {
+        runFilter('grayscale', Filters.grayscale);
+      }
+
+      brightness = function() {
+        runFilter('brightness', Filters.brightness, 40);
+      }
+
+      threshold = function() {
+        runFilter('threshold', Filters.threshold, 128);
+      }
+
+      sharpen = function() {
+        runFilter('sharpen', Filters.convolute,
+          [ 0, -1,  0,
+           -1,  5, -1,
+            0, -1,  0]);
+      }
+
+      blurC = function() {
+        runFilter('blurC', Filters.convolute,
+          [ 1/9, 1/9, 1/9,
+            1/9, 1/9, 1/9,
+            1/9, 1/9, 1/9 ]);
+      }
+
+      sobel = function() {
+        runFilter('sobel', Filters.convolute,
+          [ -1, 0, 1,
+            -2, 0, 2,
+            -1, 0, 1 ], true);
+      }
+
+    }, false);
+  </script>
+  <script type="text/javascript">
+        Filters = {};
+        Filters.getCanvas = function(w,h) {
+          var c = document.createElement('canvas');
+          c.width = w;
+          c.height = h;
+          return c;
+        };
+
+        Filters.getPixels = function(img) {
+          var c = this.getCanvas(img.width, img.height);
+          var ctx = c.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          return ctx.getImageData(0,0,c.width,c.height);
+        };
+
+        Filters.filterImage = function(filter, image, arg1, arg2, arg3) {
+          return filter(this.getPixels(image), arg1, arg2, arg3);
+        };
+
+        Filters.grayscale = function(pixels, args) {
+          var d = pixels.data;
+          for (var i=0; i<d.length; i+=4) {
+            var r = d[i];
+            var g = d[i+1];
+            var b = d[i+2];
+            // CIE luminance for the RGB
+            var v = 0.2126*r + 0.7152*g + 0.0722*b;
+            d[i] = d[i+1] = d[i+2] = v
+          }
+          return pixels;
+        };
+
+        Filters.brightness = function(pixels, adjustment) {
+          var d = pixels.data;
+          for (var i=0; i<d.length; i+=4) {
+            d[i] += adjustment;
+            d[i+1] += adjustment;
+            d[i+2] += adjustment;
+          }
+          return pixels;
+        };
+
+        Filters.threshold = function(pixels, threshold) {
+          var d = pixels.data;
+          for (var i=0; i<d.length; i+=4) {
+            var r = d[i];
+            var g = d[i+1];
+            var b = d[i+2];
+            var v = (0.2126*r + 0.7152*g + 0.0722*b >= threshold) ? 255 : 0;
+            d[i] = d[i+1] = d[i+2] = v
+          }
+          return pixels;
+        };
+
+        Filters.tmpCanvas = document.createElement('canvas');
+        Filters.tmpCtx = Filters.tmpCanvas.getContext('2d');
+
+        Filters.createImageData = function(w,h) {
+          return this.tmpCtx.createImageData(w,h);
+        };
+
+        Filters.convolute = function(pixels, weights, opaque) {
+          var side = Math.round(Math.sqrt(weights.length));
+          var halfSide = Math.floor(side/2);
+          var src = pixels.data;
+          var sw = pixels.width;
+          var sh = pixels.height;
+          // pad output by the convolution matrix
+          var output = Filters.createImageData(sw+2*halfSide, sh+2*halfSide);
+          var dst = output.data;
+          var w = output.width;
+          var h = output.height;
+          for (var y=0; y<h; y++) {
+            for (var x=0; x<w; x++) {
+              var sy = y-halfSide;
+              var sx = x-halfSide;
+              var dstOff = (y*w+x)*4;
+              var r=0, g=0, b=0, a=0;
+              for (var cy=0; cy<side; cy++) {
+                for (var cx=0; cx<side; cx++) {
+                  var scy = sy + cy - halfSide;
+                  var scx = sx + cx - halfSide;
+                  if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
+                    var srcOff = (scy*sw+scx)*4;
+                    var wt = weights[cy*side+cx];
+                    r += src[srcOff] * wt;
+                    g += src[srcOff+1] * wt;
+                    b += src[srcOff+2] * wt;
+                    a += src[srcOff+3] * wt;
+                  }
+                }
+              }
+              dst[dstOff] = r;
+              dst[dstOff+1] = g;
+              dst[dstOff+2] = b;
+              dst[dstOff+3] = opaque ? 255 : a;
+            }
+          }
+          return output;
+        };
+  </script>
+{% endblock %}
