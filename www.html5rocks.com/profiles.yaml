@@ -419,3 +419,23 @@ homepage: http://petelepage.com
 google:
 twitter: petele
 email: petele@google.com
+
+---
+
+id: ilmari
+name:
+  given: Ilmari
+  family: Heikkinen
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: London
+  region: London
+  country: UK
+  lat: 51.50722
+  lon: -0.1275
+homepage: http://fhtr.org
+google: ilmari
+twitter: ilmarihei
+email: ilmari@google.com
