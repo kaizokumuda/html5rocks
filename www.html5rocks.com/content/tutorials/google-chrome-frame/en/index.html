@@ -8,6 +8,7 @@
 {% block head %}
 {% endblock %}
 {% block date %}May 30, 2011{% endblock %}
+{% block updated %}{% endblock %}
 
 {% block browsersupport %}
 <span class="opera"></span>
@@ -17,7 +18,12 @@
 <span class="chrome"></span>
 {% endblock %}
 
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-performance.png" width="133" height="64" alt="This article is powered by HTML5 Performance &amp; Integration" title="This article is powered by HTML5 Performance &amp; Integration" />
+{% endblock %}
+
 {% block content %}
+  <h2 id="toc-intro">Introduction</h2>
   <p>HTML5 adds a multitude of new awesome tools to the web developer toolbox. We get 
     <ul>
       <li>new, more powerful JavaScript APIs,
