@@ -111,5 +111,8 @@ handlers:
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
 
+- url: /echoserver
+  script: echo.py
+
 - url: .*
   script: main.py
