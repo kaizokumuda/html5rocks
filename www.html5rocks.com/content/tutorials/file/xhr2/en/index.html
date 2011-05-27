@@ -67,7 +67,7 @@ figure img {
 </style>
 {% endblock %}
 {% block pagebreadcrumb %}New Tricks in XHR2{% endblock %}
-{% block date %}May 30, 2011{% endblock %}
+{% block date %}May 27, 2011{% endblock %}
 {% block updated %}{% endblock %}
 {% block onload %}{% endblock %}
 
@@ -441,7 +441,7 @@ function sendArrayBuffer() {
   It's dead simple to enable on a server. The best part is that to enable this
   feature, it only requires a single header to be set.</p>
 
-  <h2 id="toc-enable-cors">Enabling CORS requests</h2>
+  <h3 id="toc-enable-cors">Enabling CORS requests</h3>
 
   <p>Lets say your application lives on <code>example.com</code> and you
   want to pull data from <code>www.example2.com</code>. Normally if you
@@ -470,26 +470,33 @@ Access-Control-Allow-Origin: <b>*</b>
     <figcaption><code>Access-Control-Allow-Origin</code> header on html5rocks.com</figcaption>
   </figure>
 
-  <p>The last step is for <code>example.com</code> to make to request to
+  <p>Since this is so easy, please, please, please <a href="http://enable-cors.org/">enable CORS</a>!</p>
+
+  <h3 id="toc-request-cors">Making a cross-domain request</h3>
+
+  <p>If the server endpoint has enabled CORS, making the cross-origin request
+  is no different than a normal <code>XMLHttpRequest</code> request. For example,
+  here is a request <code>example.com</code> can now make to
   <code>www.example2.com</code>:</p>
 
 <pre class="prettyprint">
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://www.example2.com/hello.html');
-  xhr.onload = function(e) { ... }
-  xhr.send()
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://www.example2.com/hello.json');
+xhr.onload = function(e) {
+  var data = JSON.parse(<b>this.response</b>)
+}
+xhr.send()
 </pre>
 
-  <p>Finally, please, please, please <a href="http://enable-cors.org/">enable CORS</a>!</p>
 
-   <h2 id="toc-examples">Practical examples</h2>
+  <h2 id="toc-examples">Practical examples</h2>
 
-   <h3 id="toc-example-savingimages">Download + save files to the HTML5 file system</h3>
+  <h3 id="toc-example-savingimages">Download + save files to the HTML5 file system</h3>
 
-   <p>Lets say you have an image gallery application and want to fetch a bunch
-   of images and save them locally using the <a href="/tutorials/file/filesystem/">HTML5 File System</a>.
-   One way to accomplish this would be to request images as <code>ArrayBuffer</code>s,
-   build a <code>Blob</code> from the data, and write the blob using <code>FileWriter</code>:</p>
+  <p>Lets say you have an image gallery application and want to fetch a bunch
+  of images and save them locally using the <a href="/tutorials/file/filesystem/">HTML5 File System</a>.
+  One way to accomplish this would be to request images as <code>ArrayBuffer</code>s,
+  build a <code>Blob</code> from the data, and write the blob using <code>FileWriter</code>:</p>
 
 <pre class="prettyprint">
 window.requestFileSystem  = window.requestFileSystem || window.webkiRequestFileSystem;
