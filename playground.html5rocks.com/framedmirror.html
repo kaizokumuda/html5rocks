@@ -132,13 +132,22 @@ iFrame fixes it.
 
 <script>
   function runDemoCode() {
-    var topWindow = window.top.location.hostname;
-    var matchResult = topWindow.match(/^(.*)\.html5rocks\.com$/i);
-    if (matchResult && matchResult.length > 1) {
-      topWindow = matchResult[1];
+    var referrer = document.referrer;
+    var parentHost;
+    if (referrer) {
+      parentHost = referrer.split('/')[2];
+      if (parentHost) {
+        parentHost = parentHost.split(':')[0];
+        var matchResult = parentHost.match(/^(.*)\.html5rocks\.com$/i);
+        if (matchResult && matchResult.length > 1) {
+          parentHost = matchResult[1];
+        }
+      }
+    } else  {
+      parentHost = 'null';
     }
-    console.log(['_trackEvent', 'button', 'click', 'in_' + topWindow]);
-    _gaq.push(['_trackEvent', 'button', 'click', 'in_' + topWindow]);
+    console.log(['_trackEvent', 'button', 'click', 'in_' + parentHost]);
+    _gaq.push(['_trackEvent', 'button', 'click', 'in_' + parentHost]);
 
     is.runBox.runCode();
   }
