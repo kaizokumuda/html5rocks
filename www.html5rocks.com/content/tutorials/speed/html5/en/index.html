@@ -282,17 +282,6 @@ $('.stuff').each(function workOnStuff() { ... });</code>
 <p>
   It is not commonly known that JavaScript supports naming function expressions. Doing this will make them show up perfectly in the profiler. There is one problem with this solution: The named expression actually puts the function name into the current lexical scope. This might clobber other symbols, so be careful.
 </p>
-<p>
-  WebKit based browsers also support the following way to name a function:
-</p>
-<pre class="prettyprint">
-var fn = function() { ... };
-$('.stuff').each(fn);
-fn.displayName = 'workOnStuff';
-</pre>
-<p>
-  Unfortunately this <a href="http://code.google.com/p/fbug/issues/detail?id=1811">does not work in Firebug.</a>
-</p>
 <h5>
   Profiling long functions
 </h5>

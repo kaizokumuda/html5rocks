@@ -1,177 +1,175 @@
 {% extends "sample.html" %}
 
 {% block headauthor %}Ilmari Heikkinen <ilmari@google.com>{% endblock %}
-{% block pageauthor %}{% profilelinks ilmariheikkinen %}{% endblock %}
+{% block pageauthor %}{% profilelinks ilmari %}{% endblock %}
 {% block headtitle %}Chrome Experiments Demo Harness{% endblock %}
 {% block pagetitle %}Chrome Experiments Demo Harness{% endblock %}
-{% block head %}
-
-<style type="text/css">
-
-      .example {
-        position: relative;
-        width: 100%;
-        margin-top: 20px;
-        margin-bottom: 30px;
-        text-align: center;
-      }
-
-      #demoMenu {
-        font-family: sans-serif;
-        z-index: 100;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        color: white;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-        vertical-align: top;
-        background-color: rgba(0,0,0,0);
-        -webkit-transform-origin: 50% 0;
-        -webkit-transition-duration: 0.5s;
-        -webkit-transition-timing-function: ease-in-out;
-        -webkit-perspective: 600px;
-        -webkit-perspective-origin: 50% 0;
-        -moz-transform-origin: 50% 0;
-        -moz-transition-duration: 0.5s;
-        -moz-transition-timing-function: ease-in-out;
-        -moz-perspective: 600px;
-        -moz-perspective-origin: 50% 0;
-      }
-
-      #demoMenu > div:hover {
-        opacity: 0;
-        -webkit-transform: rotateX(90deg);
-        -moz-transform: rotateX(90deg);
-      }
-
-      #demoMenu > div {
-        vertical-align: top;
-        display: inline-block;
-        font-size: 13px;
-        width: 180px;
-        height: 208px;
-        padding: 0px;
-        margin: 10px;
-        background-color: rgba(0,0,0,0.8);
-        -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
-        -webkit-transform-origin: 50% 50%;
-        -webkit-transition-duration: 0.5s;
-        -webkit-transition-timing-function: ease-in-out;
-        -moz-box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
-        -moz-transform-origin: 50% 50%;
-        -moz-transition-duration: 0.5s;
-        -moz-transition-timing-function: ease-in-out;
-      }
-
-      #demoMenu .image {
-        width: 180px;
-        height: 120px;
-        overflow: hidden;
-        cursor: pointer;
-      }
-
-      #demoMenu .image img {
-        width: 180px;
-      }
-
-      #demoMenu a {
-        color: black;
-        display: block;
-        font-size: 14px;
-        font-weight: bold;
-        text-decoration: none;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        margin-bottom: 4px;
-        background-color: #30dfff;
-        border-bottom: 1px solid black;
-        text-shadow: 0px 1px 1px rgba(255,235,215,0.5);
-        background: #ffa84c;
-        background: -moz-linear-gradient(top, #ffa84c 0%, #df5b0d 100%);
-        background: -o-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffa84c), color-stop(100%,#df5b0d));
-      }
-
-      .author {
-        display: block;
-        font-size: 14px;
-      }
-
-      .info {
-        margin-top: 4px;
-        display: block;
-        color: #ddd;
-        font-size: 12px;
-        margin-left: 4px;
-        margin-right: 4px;
-      }
-
-      #container {
-        background-color: white;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-        -webkit-transform-origin: 50% 0;
-        -moz-transform-origin: 50% 0;
-        overflow:hidden;
-      }
-
-      #container h1 {
-        margin: 8px;
-      }
-
-      #demoFrameContainer {
-        z-index: 1000000;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.8);
-        color: white;
-        -webkit-transition-duration: 0.8s;
-        -moz-transition-duration: 0.8s;
-        opacity: 1;
-      }
-
-      .demoFrame {
-        border: 0px;
-        -webkit-box-shadow: 0px 0px 20px #000;
-        position: absolute;
-        top: 30px;
-        left: 40px;
-        width: 670px;
-        height: 180px;
-        background-color: #444;
-        overflow:hidden;
-        -webkit-transition-property: opacity;
-        -webkit-transition-duration: 1s;
-        -webkit-transition-timing-function: ease-in-out;
-        -moz-transition-property: opacity;
-        -moz-transition-duration: 1s;
-        -moz-transition-timing-function: ease-in-out;
-      }
-
-      #demoClose {
-        width: 40px;
-        font-size: 40px;
-        position: absolute;
-        text-align: center;
-        right: 0px;
-        top: 19px;
-        cursor: pointer;
-      }
-</style>
-
-{% endblock %}
 {% block pagebreadcrumb %}Chrome Experiments Demo Harness{% endblock %}
 {% block date %}May 25, 2011{% endblock %}
 {% block updated %}{% endblock %}
 {% block onload %}{% endblock %}
+
+{% block head %}
+<style>
+.example {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#demoMenu {
+  font-family: sans-serif;
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: white;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  background-color: rgba(0,0,0,0);
+  -webkit-transform-origin: 50% 0;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-perspective: 600px;
+  -webkit-perspective-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
+  -moz-transition-duration: 0.5s;
+  -moz-transition-timing-function: ease-in-out;
+  -moz-perspective: 600px;
+  -moz-perspective-origin: 50% 0;
+}
+
+#demoMenu > div:hover {
+  opacity: 0;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+}
+
+#demoMenu > div {
+  vertical-align: top;
+  display: inline-block;
+  font-size: 13px;
+  width: 180px;
+  height: 208px;
+  padding: 0px;
+  margin: 10px;
+  background-color: rgba(0,0,0,0.8);
+  -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
+  -webkit-transform-origin: 50% 50%;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
+  -moz-transform-origin: 50% 50%;
+  -moz-transition-duration: 0.5s;
+  -moz-transition-timing-function: ease-in-out;
+}
+
+#demoMenu .image {
+  width: 180px;
+  height: 120px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#demoMenu .image img {
+  width: 180px;
+}
+
+#demoMenu a {
+  color: black;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  background-color: #30dfff;
+  border-bottom: 1px solid black;
+  text-shadow: 0px 1px 1px rgba(255,235,215,0.5);
+  background: #ffa84c;
+  background: -moz-linear-gradient(top, #ffa84c 0%, #df5b0d 100%);
+  background: -o-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffa84c), color-stop(100%,#df5b0d));
+}
+
+.author {
+  display: block;
+  font-size: 14px;
+}
+
+.info {
+  margin-top: 4px;
+  display: block;
+  color: #ddd;
+  font-size: 12px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+#container {
+  background-color: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
+  overflow:hidden;
+}
+
+#container h1 {
+  margin: 8px;
+}
+
+#demoFrameContainer {
+  z-index: 1000000;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  -webkit-transition-duration: 0.8s;
+  -moz-transition-duration: 0.8s;
+  opacity: 1;
+}
+
+.demoFrame {
+  border: 0px;
+  -webkit-box-shadow: 0px 0px 20px #000;
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  width: 670px;
+  height: 180px;
+  background-color: #444;
+  overflow:hidden;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-property: opacity;
+  -moz-transition-duration: 1s;
+  -moz-transition-timing-function: ease-in-out;
+}
+
+#demoClose {
+  width: 40px;
+  font-size: 40px;
+  position: absolute;
+  text-align: center;
+  right: 0px;
+  top: 19px;
+  cursor: pointer;
+}
+</style>
+{% endblock %}
 
 {% block browsersupport %}
 <span class="opera"></span>
@@ -183,6 +181,10 @@
 
 {% block iscompatible %}
   return !!Modernizr.csstransforms3d
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-graphics.png" width="133" height="64" alt="This article is powered by HTML5 Graphics, 3D &amp; Effects" title="This article is powered by HTML5 Graphics, 3D &amp; Effects" />
 {% endblock %}
 
 {% block content %}
@@ -307,115 +309,115 @@
   </div>
 
   <p>The HTML for the menu item is nothing complicated. The demo thumbnail image is inside a div to clip it.</p>
-  <pre class="prettyprint collapsible">
-    &lt;div id="demoMenu">
-      &lt;div>
-        &lt;div class="image">
-          &lt;img src="thumbs/thumb.png">
-        &lt;/div>
-        &lt;a href="#">Demo Name&lt;/a>
-        &lt;span class="author">
-          Author Name
-        &lt;/span>
-        &lt;span class="info">
-          Technologies Used
-        &lt;/span>
-      &lt;/div>
+<pre class="prettyprint collapsible">
+&lt;div id="demoMenu">
+  &lt;div>
+    &lt;div class="image">
+      &lt;img src="thumbs/thumb.png">
     &lt;/div>
-  </pre>
+    &lt;a href="#">Demo Name&lt;/a>
+    &lt;span class="author">
+      Author Name
+    &lt;/span>
+    &lt;span class="info">
+      Technologies Used
+    &lt;/span>
+  &lt;/div>
+&lt;/div>
+</pre>
 
   <p>The stylesheet for the menu items is way more complex though.</p>
   <pre class="prettyprint collapsible">
-    #demoMenu {
-      z-index: 100;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      color: white;
-      text-align: center;
-      width: 100%;
-      height: 100%;
-      vertical-align: top;
-      background-color: rgba(0,0,0,0);
-      -webkit-transform-origin: 50% 0;
-      -webkit-transition-duration: 0.5s;
-      -webkit-transition-timing-function: ease-in-out;
-      -webkit-perspective: 1920px;
-      -webkit-perspective-origin: 50% 0;
-    }
+#demoMenu {
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: white;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  background-color: rgba(0,0,0,0);
+  -webkit-transform-origin: 50% 0;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-perspective: 1920px;
+  -webkit-perspective-origin: 50% 0;
+}
 
-    #demoMenu > div {
-      vertical-align: top;
-      display: inline-block;
-      font-size: 13px;
-      width: 180px;
-      height: 208px;
-      padding: 0px;
-      margin: 10px;
-      background-color: rgba(0,0,0,0.8);
-      -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
-      -webkit-transform-origin: 50% 50%;
-      -webkit-transition-duration: 0.5s;
-      -webkit-transition-timing-function: ease-in-out;
-    }
+#demoMenu > div {
+  vertical-align: top;
+  display: inline-block;
+  font-size: 13px;
+  width: 180px;
+  height: 208px;
+  padding: 0px;
+  margin: 10px;
+  background-color: rgba(0,0,0,0.8);
+  -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
+  -webkit-transform-origin: 50% 50%;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+}
 
-    #demoMenu .image {
-      width: 180px;
-      height: 120px;
-      overflow: hidden;
-      cursor: pointer;
-    }
+#demoMenu .image {
+  width: 180px;
+  height: 120px;
+  overflow: hidden;
+  cursor: pointer;
+}
 
-    #demoMenu .image img {
-      width: 180px;
-    }
+#demoMenu .image img {
+  width: 180px;
+}
 
-    #demoMenu a {
-      color: black;
-      display: block;
-      font-size: 14px;
-      font-weight: bold;
-      text-decoration: none;
-      padding-top: 4px;
-      padding-bottom: 4px;
-      margin-bottom: 4px;
-      background-color: #30dfff;
-      border-bottom: 1px solid black;
-      text-shadow: 0px 1px 1px rgba(255,235,215,0.5);
-      background: #ffa84c;
-      background: -moz-linear-gradient(top, #ffa84c 0%, #df5b0d 100%);
-      background: -o-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
-      background: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0%,#ffa84c),
-        color-stop(100%,#df5b0d)
-      );
-    }
+#demoMenu a {
+  color: black;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  background-color: #30dfff;
+  border-bottom: 1px solid black;
+  text-shadow: 0px 1px 1px rgba(255,235,215,0.5);
+  background: #ffa84c;
+  background: -moz-linear-gradient(top, #ffa84c 0%, #df5b0d 100%);
+  background: -o-linear-gradient(top, #ffa84c 0%,#ff7b0d 100%);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%,#ffa84c),
+    color-stop(100%,#df5b0d)
+  );
+}
 
-    .author {
-      display: block;
-      font-size: 14px;
-    }
+.author {
+  display: block;
+  font-size: 14px;
+}
 
-    .info {
-      margin-top: 4px;
-      display: block;
-      color: #ddd;
-      font-size: 12px;
-      margin-left: 4px;
-      margin-right: 4px;
-    }
-  </pre>
+.info {
+  margin-top: 4px;
+  display: block;
+  color: #ddd;
+  font-size: 12px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+</pre>
 
   <p>And here's the bit of hover magic used to demo the menu item fade effect.</p>
-  <pre class="prettyprint collapsible">
-    #demoMenu > div:hover {
-      opacity: 0;
-      -webkit-transform: rotateX(90deg);
-    }
-  </pre>
+<pre class="prettyprint collapsible">
+#demoMenu > div:hover {
+  opacity: 0;
+  -webkit-transform: rotateX(90deg);
+}
+</pre>
 
   <p>
     The menu itself has a 80% opacity white background, and it’s faded in using a
@@ -462,53 +464,53 @@
   </div>
 
   <p>The iframe HTML is very simple:</p>
-  <pre class="prettyprint collapsible">
-    &lt;div id="demoFrameContainer">
-      &lt;iframe class="demoFrame">&lt;/iframe>
-      &lt;div id="demoClose">⊗&lt;/div>
-    &lt;/div>
-  </pre>
+<pre class="prettyprint collapsible">
+&lt;div id="demoFrameContainer">
+  &lt;iframe class="demoFrame">&lt;/iframe>
+  &lt;div id="demoClose">⊗&lt;/div>
+&lt;/div>
+</pre>
 
   <p>All the fancy stuff is in the CSS:</p>
   <pre class="prettyprint collapsible">
-    #demoFrameContainer {
-      z-index: 100;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      color: white;
-      -webkit-transition-duration: 0.8s;
-      opacity: 1;
-    }
+#demoFrameContainer {
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+  -webkit-transition-duration: 0.8s;
+  opacity: 1;
+}
 
-    .demoFrame {
-      border: 0px;
-      -webkit-box-shadow: 0px 0px 20px #000;
-      position: absolute;
-      top: 30px;
-      left: 40px;
-      width: 520px;
-      height: 180px;
-      background-color: #444;
-      overflow:hidden;
-      -webkit-transition-property: opacity;
-      -webkit-transition-duration: 1s;
-      -webkit-transition-timing-function: ease-in-out;
-    }
+.demoFrame {
+  border: 0px;
+  -webkit-box-shadow: 0px 0px 20px #000;
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  width: 520px;
+  height: 180px;
+  background-color: #444;
+  overflow:hidden;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 1s;
+  -webkit-transition-timing-function: ease-in-out;
+}
 
-    #demoClose {
-      width: 40px;
-      font-size: 40px;
-      position: absolute;
-      text-align: center;
-      right: 0px;
-      top: 19px;
-      cursor: pointer;
-    }
-  </pre>
+#demoClose {
+  width: 40px;
+  font-size: 40px;
+  position: absolute;
+  text-align: center;
+  right: 0px;
+  top: 19px;
+  cursor: pointer;
+}
+</pre>
 
 
 </section>
@@ -554,27 +556,27 @@
     Here's a tween function if you're wondering how to make one.
     It defaults to a sine curve ease-in-out tween:
   </p>
-  <pre class="prettyprint collapsible">
-    Tween = {};
+<pre class="prettyprint collapsible">
+Tween = {};
 
-    Tween.linear = function(t) { return t; };
-    Tween.easeInOut = function(t) { return 0.5-0.5*Math.cos(Math.PI*2*t); };
-    Tween.easeIn = function(t) { return 1-Math.cos(Math.PI*t); };
-    Tween.easeOut = function(t) { return Math.sin(Math.PI*t); };
+Tween.linear = function(t) { return t; };
+Tween.easeInOut = function(t) { return 0.5-0.5*Math.cos(Math.PI*2*t); };
+Tween.easeIn = function(t) { return 1-Math.cos(Math.PI*t); };
+Tween.easeOut = function(t) { return Math.sin(Math.PI*t); };
 
-    Tween.tween = function(a, b, t, tweenFunc, dst) {
-      if (!tweenFunc)
-        tweenFunc = this.easeInOut;
-      if (!dst)
-        dst = [];
-      var f = tweenFunc(t);
-      var fc = 1-f;
-      for (var i=0; i&lt;a.length; i++) {
-        dst[i] = a[i]*fc + b[i]*f;
-      }
-      return dst;
-    }
-  </pre>
+Tween.tween = function(a, b, t, tweenFunc, dst) {
+  if (!tweenFunc)
+    tweenFunc = this.easeInOut;
+  if (!dst)
+    dst = [];
+  var f = tweenFunc(t);
+  var fc = 1-f;
+  for (var i=0; i&lt;a.length; i++) {
+    dst[i] = a[i]*fc + b[i]*f;
+  }
+  return dst;
+}
+</pre>
 
   <p>
     The ribbons are cubic
@@ -610,27 +612,27 @@
   </p>
 
   <p>Here's a code snippet to evaluate a cubic Bézier curve:</p>
-  <pre class="prettyprint collapsible">
-    Bezier = {};
+<pre class="prettyprint collapsible">
+Bezier = {};
 
-    Bezier.cubicCoord = function(a, b, c, d, t) {
-      var a3 = a*3, b3 = b*3, c3 = c*3;
-      return a + t*(b3 - a3 + t*(a3-2*b3+c3 + t*(b3-a-c3+d)));
-    };
+Bezier.cubicCoord = function(a, b, c, d, t) {
+  var a3 = a*3, b3 = b*3, c3 = c*3;
+  return a + t*(b3 - a3 + t*(a3-2*b3+c3 + t*(b3-a-c3+d)));
+};
 
-    Bezier.cubicPoint3 = function(a,b,c,d, t, dest) {
-      if (dest == null)
-        dest = vec3();
-      dest[0] = this.cubicCoord(a[0], b[0], c[0], d[0], t);
-      dest[1] = this.cubicCoord(a[1], b[1], c[1], d[1], t);
-      dest[2] = this.cubicCoord(a[2], b[2], c[2], d[2], t);
-      return dest;
-    };
+Bezier.cubicPoint3 = function(a,b,c,d, t, dest) {
+  if (dest == null)
+    dest = vec3();
+  dest[0] = this.cubicCoord(a[0], b[0], c[0], d[0], t);
+  dest[1] = this.cubicCoord(a[1], b[1], c[1], d[1], t);
+  dest[2] = this.cubicCoord(a[2], b[2], c[2], d[2], t);
+  return dest;
+};
 
-    Bezier.cubicPoint3v = function(p, t, dest) {
-      this.cubicPoint3(p[0], p[1], p[2], p[3], t, dest);
-    };
-  </pre>
+Bezier.cubicPoint3v = function(p, t, dest) {
+  this.cubicPoint3(p[0], p[1], p[2], p[3], t, dest);
+};
+</pre>
 
   <p>
     To sweep a polygon along the Bezier curve, I'm evaluating 500 points from
@@ -639,61 +641,61 @@
   </p>
 
   <pre class="prettyprint collapsible">
-    SweepGeo = {};
+SweepGeo = {};
 
-    SweepGeo.translatePoly = function(polygon, offset) {
-      var a = [];
-      for (var i=0; i&lt;polygon.length; i++) {
-        var p = polygon[i];
-        a.push(vec3(p[0]+offset[0], p[1]+offset[1], p[2]+offset[2]));
-      }
-      return a;
-    };
+SweepGeo.translatePoly = function(polygon, offset) {
+  var a = [];
+  for (var i=0; i&lt;polygon.length; i++) {
+    var p = polygon[i];
+    a.push(vec3(p[0]+offset[0], p[1]+offset[1], p[2]+offset[2]));
+  }
+  return a;
+};
 
-    SweepGeo.createFromBezier = function(path, polygon, count) {
-      var triangles = new Float32Array(polygon.length*3*count);
-      var triIndex = -1;
-      var prev = Bezier.cubicPoint3v(path, 0);
-      var prevPoly = this.translatePoly(polygon, prev);
+SweepGeo.createFromBezier = function(path, polygon, count) {
+  var triangles = new Float32Array(polygon.length*3*count);
+  var triIndex = -1;
+  var prev = Bezier.cubicPoint3v(path, 0);
+  var prevPoly = this.translatePoly(polygon, prev);
 
-      // go through the path
-      for (var i=1; i&lt;count; i++) {
-        var t = i/(count-1);
-        var next = Bezier.cubicPoint3v(path, t);
-        var nextPoly = this.translatePoly(polygon, next);
+  // go through the path
+  for (var i=1; i&lt;count; i++) {
+    var t = i/(count-1);
+    var next = Bezier.cubicPoint3v(path, t);
+    var nextPoly = this.translatePoly(polygon, next);
 
-        // add the triangles connecting prevPoly and nextPoly
-        for (var i=0; i&lt;polygon.length; i++) {
-          var j = i > polygon.length-1 ? 0 : i;
+    // add the triangles connecting prevPoly and nextPoly
+    for (var i=0; i&lt;polygon.length; i++) {
+      var j = i > polygon.length-1 ? 0 : i;
 
-          // /|
-          triangles[++triIndex] = prevPoly[i][0];
-            triangles[++triIndex] = prevPoly[i][1];
-            triangles[++triIndex] = prevPoly[i][2];
-          triangles[++triIndex] = nextPoly[j][0];
-            triangles[++triIndex] = nextPoly[j][1];
-            triangles[++triIndex] = nextPoly[j][2];
-          triangles[++triIndex] = nextPoly[i][0];
-            triangles[++triIndex] = nextPoly[i][1];
-            triangles[++triIndex] = nextPoly[i][2];
+      // /|
+      triangles[++triIndex] = prevPoly[i][0];
+        triangles[++triIndex] = prevPoly[i][1];
+        triangles[++triIndex] = prevPoly[i][2];
+      triangles[++triIndex] = nextPoly[j][0];
+        triangles[++triIndex] = nextPoly[j][1];
+        triangles[++triIndex] = nextPoly[j][2];
+      triangles[++triIndex] = nextPoly[i][0];
+        triangles[++triIndex] = nextPoly[i][1];
+        triangles[++triIndex] = nextPoly[i][2];
 
-          // |‾
-          triangles[++triIndex] = prevPoly[i][0];
-            triangles[++triIndex] = prevPoly[i][1];
-            triangles[++triIndex] = prevPoly[i][2];
-          triangles[++triIndex] = prevPoly[j][0];
-            triangles[++triIndex] = prevPoly[j][1];
-            triangles[++triIndex] = prevPoly[j][2];
-          triangles[++triIndex] = nextPoly[j][0];
-            triangles[++triIndex] = nextPoly[j][1];
-            triangles[++triIndex] = nextPoly[j][2];
-        }
-        prev = next;
-        prevPoly = nextPoly;
-      }
-      return triangles;
-    };
-  </pre>
+      // |‾
+      triangles[++triIndex] = prevPoly[i][0];
+        triangles[++triIndex] = prevPoly[i][1];
+        triangles[++triIndex] = prevPoly[i][2];
+      triangles[++triIndex] = prevPoly[j][0];
+        triangles[++triIndex] = prevPoly[j][1];
+        triangles[++triIndex] = prevPoly[j][2];
+      triangles[++triIndex] = nextPoly[j][0];
+        triangles[++triIndex] = nextPoly[j][1];
+        triangles[++triIndex] = nextPoly[j][2];
+    }
+    prev = next;
+    prevPoly = nextPoly;
+  }
+  return triangles;
+};
+</pre>
 
   <p>
     The camera zoom uses a similar tween as the demo info elements. The camera

@@ -1,7 +1,7 @@
 {% extends "sample.html" %}
 
 {% block headauthor %}Ilmari Heikkinen <ilmari@google.com>{% endblock %}
-{% block pageauthor %}{% profilelinks ilmariheikkinen %}{% endblock %}
+{% block pageauthor %}{% profilelinks ilmari %}{% endblock %}
 {% block headtitle %}Making Image Filters with Canvas{% endblock %}
 {% block pagetitle %}Making Image Filters with Canvas{% endblock %}
 {% block head %}
@@ -26,6 +26,10 @@
 
 {% block iscompatible %}
   return !!Modernizr.canvas
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-graphics.png" width="133" height="64" alt="This article is powered by HTML5 Graphics, 3D &amp; Effects" title="This article is powered by HTML5 Graphics, 3D &amp; Effects" />
 {% endblock %}
 
 {% block content %}
@@ -115,17 +119,17 @@
       Adjusting brightness can be done by adding a fixed value to the
       pixels:
     </p>
-    <pre class="prettyprint collapsible">
-      Filters.brightness = function(pixels, adjustment) {
-        var d = pixels.data;
-        for (var i=0; i&lt;d.length; i+=4) {
-          d[i] += adjustment;
-          d[i+1] += adjustment;
-          d[i+2] += adjustment;
-        }
-        return pixels;
-      };
-    </pre>
+<pre class="prettyprint collapsible">
+Filters.brightness = function(pixels, adjustment) {
+  var d = pixels.data;
+  for (var i=0; i&lt;d.length; i+=4) {
+    d[i] += adjustment;
+    d[i+1] += adjustment;
+    d[i+2] += adjustment;
+  }
+  return pixels;
+};
+</pre>
     <figure>
       <canvas id="brightness" width="600" height="337"></canvas>
       <button onclick="brightness()">Brighten the image</button>
@@ -135,19 +139,19 @@
       Thresholding an image is also quite simple. You just compare the grayscale
       value of a  pixel to the threshold value and set the color based on that:
     </p>
-    <pre class="prettyprint collapsible">
-      Filters.threshold = function(pixels, threshold) {
-        var d = pixels.data;
-        for (var i=0; i&lt;d.length; i+=4) {
-          var r = d[i];
-          var g = d[i+1];
-          var b = d[i+2];
-          var v = (0.2126*r + 0.7152*g + 0.0722*b >= threshold) ? 255 : 0;
-          d[i] = d[i+1] = d[i+2] = v
-        }
-        return pixels;
-      };
-    </pre>
+<pre class="prettyprint collapsible">
+Filters.threshold = function(pixels, threshold) {
+  var d = pixels.data;
+  for (var i=0; i&lt;d.length; i+=4) {
+    var r = d[i];
+    var g = d[i+1];
+    var b = d[i+2];
+    var v = (0.2126*r + 0.7152*g + 0.0722*b >= threshold) ? 255 : 0;
+    d[i] = d[i+1] = d[i+2] = v
+  }
+  return pixels;
+};
+</pre>
     <figure>
       <canvas id="threshold" width="600" height="337"></canvas>
       <button onclick="threshold()">Threshold the image</button>
@@ -213,21 +217,28 @@
             dst[dstOff+3] = a + alphaFac*(255-a);
           }
         }
-        return output;
-      };
-    </pre>
+      }
+      dst[dstOff] = r;
+      dst[dstOff+1] = g;
+      dst[dstOff+2] = b;
+      dst[dstOff+3] = a + alphaFac*(255-a);
+    }
+  }
+  return output;
+};
+</pre>
     <p>
       Here's a 3x3 sharpen filter. See how it focuses the weight on the center pixel.
       To maintain the brightness of the image, the sum of the matrix values should
       be one.
     </p>
-    <pre>
-      Filters.filterImage(Filters.convolute, image,
-        [  0, -1,  0,
-          -1,  5, -1,
-           0, -1,  0 ]
-      );
-    </pre>
+<pre>
+Filters.filterImage(Filters.convolute, image,
+  [  0, -1,  0,
+    -1,  5, -1,
+     0, -1,  0 ]
+);
+</pre>
     <figure>
       <canvas id="sharpen" width="600" height="337"></canvas>
       <button onclick="sharpen()">Sharpen the image</button>
@@ -241,13 +252,13 @@
       matrix contributes an equal amount to the output image and the sum of the
       weights is one.
     </p>
-    <pre>
-      Filters.filterImage(Filters.convolute, image,
-        [ 1/9, 1/9, 1/9,
-          1/9, 1/9, 1/9,
-          1/9, 1/9, 1/9 ]
-      );
-    </pre>
+<pre>
+Filters.filterImage(Filters.convolute, image,
+  [ 1/9, 1/9, 1/9,
+    1/9, 1/9, 1/9,
+    1/9, 1/9, 1/9 ]
+);
+</pre>
     <figure>
       <canvas id="blurC" width="600" height="337"></canvas>
       <button onclick="blurC()">Blur the image</button>
