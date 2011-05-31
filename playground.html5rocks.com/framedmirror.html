@@ -142,6 +142,8 @@ iFrame fixes it.
         if (matchResult && matchResult.length > 1) {
           parentHost = matchResult[1];
         }
+      } else {
+        parentHost = referrer;
       }
     } else  {
       parentHost = 'null';
