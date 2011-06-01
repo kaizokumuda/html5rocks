@@ -162,7 +162,7 @@ Filters.threshold = function(pixels, threshold) {
 
     <h2 id="toc-convolution">Convolving images</h2>
     <p>
-      <a href="http://en.wikipedia.org/wiki/Convolution">Convolution filters</a> are one of the Swiss Army knifes of image processing.
+      <a href="http://en.wikipedia.org/wiki/Convolution">Convolution filters</a> are very useful generic filters for image processing.
       The basic idea is that you take the weighed sum of a
       rectangle of pixels from the source image and use that as the output value.
       Convolution filters can be used for blurring, sharpening, embossing,
@@ -261,10 +261,10 @@ Filters.filterImage(Filters.convolute, image,
       We can make more complex image filters by combining existing filters. For
       example, let's write a <a href="http://en.wikipedia.org/wiki/Sobel_filter">Sobel filter</a>. A Sobel filter computes the vertical
       and horizontal gradients of the image and combines the computed images to
-      do edge detection.
-      The way we implement the Sobel filter is by first grayscaling the image,
-      then taking the horizontal and vertical gradients and finally iterating over
-      them to combine them into the final image.
+      find edges in the image.
+      The way we implement the Sobel filter here is by first grayscaling the image,
+      then taking the horizontal and vertical gradients and finally
+      combining the gradient images to make up the final image.
     </p>
     <p>
       Regarding terminology, "gradient" here means the change
