@@ -2,10 +2,11 @@
 {% block headauthor %}Paul Kinlan{% endblock %}
 {% block pageauthor %}{% profilelinks paulkinlan %}{% endblock %}
 
-{% block headtitle %}Working off the grid with HTML5 Offline{% endblock %}
-{% block pagetitle %}Working off the grid with HTML5 Offline{% endblock %}
-{% block pagebreadcrumb %}Working off the grid with HTML5 Offline{% endblock %}
+{% block headtitle %}Working Off the Grid with HTML5 Offline{% endblock %}
+{% block pagetitle %}Working Off the Grid with HTML5 Offline{% endblock %}
+{% block pagebreadcrumb %}Working Off the Grid with HTML5 Offline{% endblock %}
 {% block date %}June 1, 2011{% endblock %}
+{% block updated %}{% endblock %}
 
 {% block browsersupport %}
 varies
@@ -25,27 +26,27 @@ varies
 {% block content %}
 <h2 id="introduction">Introduction</h2>
 
-<p>When your web browser was tied to your desktop there was never really a time that you couldn’t get an Internet connection whenever you wanted to.</p>
+<p>When your web browser was tied to your desktop there was never really a time that you couldn't get an Internet connection whenever you wanted to.</p>
 
 <p>With the significant increase in the ability to access the web on mobile devices; first on Laptops, then Phones and now Tablet devices; it is now easier to access your data and your apps whereever you go.  Or is it?</p>
 
-<p>This article was written on a train from London to Liverpool.  The train has WIFI, I have a 3G data card, yet I am still never fully connected - and many online tools today can’t handle this intermediate state of connectivity properly.</p>
+<p>This article was written on a train from London to Liverpool.  The train has Wifi, I have a 3G data card, yet I am still never fully connected - and many online tools today can't handle this intermediate state of connectivity properly.</p>
 
 <p>So how do we solve this problem?  It is not simple, but there are steps that you can take today that will let your users use your app where ever they are.  Some of these steps have direct solutions implement in HTML, some will require you to implement some logic, all will help you build a better app.</p>
 
 <h2 id="toc-cache-assets">Cache your assets</h2>
 
-<p>Users are conditioned to not enter a URL when they are not online because they know they will get an error page.  But it doesn’t have to be this way.  It is possible to build applications that will load even when there is no Internet connection.</p>
+<p>Users are conditioned to not enter a URL when they are not online because they know they will get an error page.  But it doesn't have to be this way.  It is possible to build applications that will load even when there is no Internet connection.</p>
 
 <p>You should build your application to present a consistent UI to your users so that even if they are offline they can still see and use some of your application.  This will allow you to detect presence of a network connection and inform the user of the connection requirements of your application in a graceful, friendly manner.</p>
 
 <p>Following our <a href="http://www.html5rocks.com/tutorials/appcache/beginner/">AppCache tutorial</a> you will see that it is pretty to get this into existing apps. Your application will include a link to a manifest file, and that manifest file will contain all the files that encompass your application.</p>
 
-<pre class="prettyprint"><code>CACHE:
+<pre class="prettyprint">CACHE:
 /js/logic.js
 /js/options.js
 /images/loading.png
-/css/main.css</code></pre>
+/css/main.css</pre>
 
 <p>The browser will then ensure that these assets are cached offline until the next time that the manifest file is updated.</p>
 
@@ -57,24 +58,23 @@ varies
 
 <p>It is simple to check if you are online.  Simply query: window.navigator.onLine</p>
 
-<pre class="prettyprint"><code>if(navigator.onLine == "online") {
+<pre class="prettyprint">if (navigator.onLine) {
   alert('online')
-}
-else {
+} else {
   alert('offline');
-}</code></pre>
+}</pre>
 
 <p>You can also be told when there is a change in the network state.  Just listen for the for the events on window.onOnline and window.onOffline</p>
 
-<pre class="prettyprint"><code>window.addEventListener("offline", function () {
+<pre class="prettyprint">window.addEventListener("offline", function(e) {
   alert("offline");
 }, false);
 
-window.addEventListener("online", function () {
+window.addEventListener("online", function(e) {
   alert("online");
-}, false);</code></pre>
+}, false);</pre>
 
-<p>The API is straightforward, how do you get it to work if the API isn’t implemented in the browser?</p>
+<p>The API is straightforward, how do you get it to work if the API isn't implemented in the browser?</p>
 
 <p>It is possible to use a couple more signals to detect if you are offline including side-effects of the AppCache and listening to the responses from XMLHttpRequest.</p>
 
@@ -82,15 +82,15 @@ window.addEventListener("online", function () {
 
 <p>The AppCache system always makes an attempt to request the manifest to check to see if it needs to update its list of assets.  If that requests fails it is normally one of two things, the manifest file is no longer being used (i.e, it is not hosted) or the system is unable to access the network to fetch the file.</p>
 
-<pre class="prettyprint"><code>window.applicationCache.addEventListener("error", function(e) {
+<pre class="prettyprint">window.applicationCache.addEventListener("error", function(e) {
   alert("Error fetching manifest: a good chance we are offline");
-});</code></pre>
+});</pre>
 
 <p>Detecting this request failure is a good indication of whether you have a network connection or not.</p>
 
-<h3 id="toc-xml-http-request">XML Http Request</h3>
+<h3 id="toc-xml-http-request">XMLHttpRequest</h3>
 
-<p>Network connections can fail during the use of your application, so how do you decect this?</p>
+<p>Network connections can fail during the use of your application, so how do you detect this?</p>
 
 <p>A large number of applications built today use XMLHttpRequest to fetch data from the server whilst keeping the user inside the page. XMLHttpRequest defines an event for when an error occurs on the network.  You can use this to determine if you have a network connection.</p>
 
@@ -98,12 +98,12 @@ window.addEventListener("online", function () {
 
 <p>The following code is a great example of a "fetch" function that is able to respond to network failures.</p>
 
-<pre class="prettyprint"><code>var fetch = function(url, callback) {
+<pre class="prettyprint">var fetch = function(url, callback) {
   var xhr = new XMLHttpRequest();
 
   var noResponseTimer = setTimeout(function() {
     xhr.abort();
-    if(!!localStorage[url]) {
+    if (!!localStorage[url]) {
       // We have some data cached, return that to the callback.
       callback(localStorage[url]);
       return;
@@ -111,11 +111,11 @@ window.addEventListener("online", function () {
   }, maxWaitTime);
 
   xhr.onreadystatechange = function() {
-    if(xhr.readyState != 4) {
+    if (xhr.readyState != 4) {
       return;
     }
 
-    if(xhr.status == 200) {
+    if (xhr.status == 200) {
       clearTimeout(noResponseTimer);
       // Save the data to local storage
       localStorage[url] = xhr.responseText;
@@ -124,7 +124,7 @@ window.addEventListener("online", function () {
     }
     else {
       // There is an error of some kind, use our cached copy (if available).
-      if(!!localStorage[url]) {
+      if (!!localStorage[url]) {
         // We have some data cached, return that to the callback.
         callback(localStorage[url]);
         return;
@@ -133,49 +133,48 @@ window.addEventListener("online", function () {
   };
   xhr.open("GET", url); 
   xhr.send();
-};</code></pre>
+};</pre>
 
 <p>Watching for this error event is pretty easy, but what do you do with it? You can pass the result out as a return value, but that becomes quickly cubmersome. Luckily the HTML DOM has a rich event mechanism that you can hook in to, to create a custom "offline/online" event.</p>
 
-<pre class="prettyprint"><code>var fireEvent = function(name, data) {
+<pre class="prettyprint">var fireEvent = function(name, data) {
   var e = document.createEvent("Event");
   e.initEvent(name, true, true);
   e.data = data;
   window.dispatchEvent(e);
-};</code></pre>
+};</pre>
 
 <p>Integrating the "fireEvent" method into our "fetch" function, allows us to respond to events based on the network connectivity and gives us the freedom to build applications that are not tied to monitoring the returned data from a method. </p>
 
-<pre class="prettyprint"><code>var fetch = function(url, callback) {
+<pre class="prettyprint">var fetch = function(url, callback) {
   var xhr = new XMLHttpRequest();
  
   var noResponseTimer = setTimeout(function() {
     xhr.abort();
     <b>fireEvent("connectiontimeout", {});</b>
-    if(!!localStorage[url]) {
+    if (!!localStorage[url]) {
       // We have some data cached, return that to the callback.
       callback(localStorage[url]);
       return;
     }
   }, maxWaitTime);
 
-  xhr.onreadystatechange = function() {
-    if(xhr.readyState != 4) {
+  xhr.onreadystatechange = function(e) {
+    if (xhr.readyState != 4) {
       return;
     }
 
-    if(xhr.status == 200) {
+    if (xhr.status == 200) {
       <b>fireEvent("goodconnection", {});</b>
       clearTimeout(noResponseTimer);
       // Save the data to local storage
       localStorage[url] = xhr.responseText;
       // call the handler
       callback(xhr.responseText);
-    }
-    else {
+    } else {
       <b>fireEvent("connectionerror", {});</b>
       // There is an error of some kind, use our cached copy (if available).
-      if(!!localStorage[url]) {
+      if (!!localStorage[url]) {
         // We have some data cached, return that to the callback.
         callback(localStorage[url]);
         return;
@@ -184,19 +183,19 @@ window.addEventListener("online", function () {
   };
   xhr.open("GET", url); 
   xhr.send();
-};</code></pre>
+};</pre>
 
 <p>We can now build applications that are notified when there is a failure somewhere in the network.</p>
 
-<pre class="prettyprint"><code>window.addEventListener("connectionerror", function() {
+<pre class="prettyprint">window.addEventListener("connectionerror", function(e) {
   alert("There is a connection error"); 
-});</code></pre>
+});</pre>
 
 <h3 id="toc-keep-alive">The Keep-Alive</h3>
 
 <p>Using the exact same structure that we in the XML Http Request example, it is possible to periodically check a file on the network to see if there is a network connection.</p>
 
-<pre class="prettyprint"><code>setTimeout(function() { fetch("favicon.ico"); } , 30000);</code></pre>
+<pre class="prettyprint">setTimeout(function() { fetch("favicon.ico"); } , 30000);</pre>
 
 <p>Use this sparingly. If your service is popular this can produce an increased amount of traffic.</p>
 
@@ -206,8 +205,8 @@ window.addEventListener("online", function () {
 
 <p>Lets have a look at a simple example:</p>
 
-<pre class="prettyprint"><code>-- index.html --
-&lt;html manifest=”cache.manifest”&gt;
+<pre class="prettyprint">-- index.html --
+&lt;html manifest="cache.manifest"&gt;
 
 -- cache.manifest -- 
 CACHE:
@@ -217,7 +216,7 @@ CACHE:
 /css/main.css
 
 NETWORK:
-*</code></pre>
+*</pre>
 
 <p>It is very similar to the AppCache example in the first chapter, but note the inclusion of the “NETWORK:” section. Every request for data that is not in the CACHE section will be allowed out on to the network.</p>
 
@@ -228,11 +227,11 @@ NETWORK:
 <p>Integrating a script loader into your projects can be pretty easy especially when combining it with our tests for offline support.  Below is an example using the <a href="http://yepnopejs.com">YepNope</a> Javascript framework.</p>
 
 
-<pre class="prettyprint"><code>yepnope({
+<pre class="prettyprint">yepnope({
   <b>test : isOnline,</b>
   yep  : ['normal.js', 'controller.js', 'assets.js'],
   nope : 'errors.js' 
-});</pre></code>
+});</pre>
 
 <p>The above example is sligthly contrived, but you can see how given knowledge of the connection state you can easily start to load more of your application in at run-time, and if offline load a different set of scripts that can handle the failure cases.</p>
 
@@ -244,7 +243,7 @@ NETWORK:
 
 <p>Every single request made by the XMLHttpRequest framework can either succeed or fail.  If it is succesful we store the results of the response against the URL.  If there is a failure we check localStorage for the presence of the requested URL and if there is data we return that.</p>
 
-<pre class="prettyprint"><code>if(xhr.status == 200) {
+<pre class="prettyprint">if (xhr.status == 200) {
   clearTimeout(noResponseTimer);
   // Save the data to local storage
   localStorage[url] = xhr.responseText;
@@ -253,16 +252,15 @@ NETWORK:
 }
 else {
   // There is an error of some kind, use our cached copy (if available).
-  if(!!localStorage[url]) {
+  if (!!localStorage[url]) {
     // We have some data cached, return that to the callback.
     callback(localStorage[url]);
     return;
   }
-}</code></pre>
+}</pre>
 
 <h2 id="toc-further">Further Reading</h2>
 
-<a href="http://html5rocks.com">HTML5Rocks</a> has resources on offline technologies in the <a href="http://www.html5rocks.com/tutorials/">tutorials section</a>, where you can get hands-on with code examples.
-<!-- TODO link to "offline" tag once http://code.google.com/p/html5rocks/issues/detail?id=45 is resolved -->
+<p><a href="http://html5rocks.com">HTML5Rocks</a> has many <a href="http://www.html5rocks.com/tutorials/#offline">tutorials on offline technologies</a>, where you can get hands-on with code examples.</p>
 
 {% endblock %}
