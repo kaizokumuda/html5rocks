@@ -266,6 +266,45 @@
     filled with loading bars and incomplete content.
   </p>
 
+  <p>
+    The code for the iframe swapping looks something like this:
+  </p>
+
+<pre style="prettyprint">
+this.currentIframe = getCurrentDemoIframe();
+this.currentIframe.style.display = 'block';
+var self = this;
+setTimeout(function() {
+  if (self.previousIframe && self.previousIframe != self.currentIframe) {
+    self.previousIframe.style.display = 'none';
+    if (self.previousIframe.contentWindow)
+      self.previousIframe.contentWindow.postMessage('pause','*');
+  }
+}, 0);
+this.onTransitionComplete = function() {
+  if (self.currentIframe.contentWindow)
+    self.currentIframe.contentWindow.postMessage('pause','*');
+};
+this.startTransitionAnimation();
+</pre>
+
+  <p>
+    With this bit hooked up to the demo iframe's animation tick function:
+  </p>
+
+<pre style="prettyprint">
+var paused = false;
+window.addEventListener('message', function(ev){
+ paused = (ev.data == 'pause');
+}, false);
+var animloop = function() {
+  if (!paused)
+    tick();
+  requestAnimFrame(animloop, canvas);
+};
+requestAnimFrame(animloop, canvas);
+</pre>
+
 </section>
 
 <section>
@@ -697,6 +736,13 @@ SweepGeo.createFromBezier = function(path, polygon, count) {
 };
 </pre>
 
+  <p>Here's a live version with a visualization of the ribbon wireframe. Drag to rotate, scroll to zoom.</p>
+  <div class="example" style="height: 400px;">
+    <div id="ribbonContainer">
+    </div>
+  </div>
+
+
   <p>
     The camera zoom uses a similar tween as the demo info elements. The camera
     moves towards the target point while the canvas element is faded out using
@@ -712,7 +758,8 @@ SweepGeo.createFromBezier = function(path, polygon, count) {
   </p>
 
 </section>
-
+<script src="demoloop/magi.js"></script>
+<script src="demoloop/sweepGeo.js"></script>
 <script>
   closeButtonOnclick = function(ev) {
     var cont = this.parentNode;
@@ -728,8 +775,138 @@ SweepGeo.createFromBezier = function(path, polygon, count) {
     }, 1200);
     ev.preventDefault();
   };
-  window.addEventListener('load', function() {
+
+  Ribbons = function(canvas) {
+    this.canvas = canvas;
+    this.display = new Magi.Scene(this.canvas);
+    this.display.useDefaultCameraControls();
+    this.display.bg = [1,1,1,1];
+    vec3.setLeft(this.display.camera.position, [0,0,5]);
+  };
+
+  Ribbons.prototype = {
+    createRibbon : function(path, rot, rot2, color, offset, time_offset) {
+      var pl = createPolyLineFromCubicBezierPath(
+        path,
+        120
+      );
+      var g = createSweepGeo(
+        pl,
+        [vec3(-0.1,0,0), vec3(0.1,0,0), vec3(0.1,0.01,0), vec3(-0.1,0.01,0)]
+      );
+      var vbo = new Magi.VBO(this.display.gl,
+        {size:3, data:g.flatVertices},
+        {size:3, data:g.flatNormals}
+      );
+      vbo.init();
+      var m = new Magi.Node(vbo);
+      m.rtime = 0;
+      m.addFrameListener(function(t,dt) {
+        this.rtime += Math.min(dt, 60);
+        if (this.rtime-time_offset >= 2500) {
+          var offset = Math.floor(Math.max((this.rtime-time_offset)-2500, 0)*3);
+          this.model.length = Math.max(0, g.flatVertices.length/3 - offset);
+          this.model.offset = offset;
+        } else {
+          this.model.offset = 0;
+          this.model.length = Math.min(
+            g.flatVertices.length/3,
+            Math.floor(Math.max(this.rtime-time_offset, 0)*3)
+          );
+        }
+        if (this.rtime > 4000)
+          this.rtime = 0;
+      });
+      m.setAngle(0.5 + rot2);
+      m.setAxis(0,0,1);
+      m.setScale(4);
+      m.material = Magi.DefaultMaterial.get();
+      m.material.floats.LightPos[0] = -1.5;
+      m.material.floats.LightPos[1] = 2.8;
+      m.material.floats.MaterialDiffuse =
+        m.material.floats.MaterialSpecular = color;
+      m.material.floats.LightAmbient = vec4(0.15,0.1,0.05,0.1);
+
+      var vbo2 = new Magi.VBO(this.display.gl,
+        {size:3, data:g.flatVertices},
+        {size:3, data:g.flatNormals}
+      );
+      vbo2.init();
+      vbo2.type = 'LINES';
+      var m2 = new Magi.Node(vbo2);
+      m2.setAngle(0.5 + rot2);
+      m2.setAxis(0,0,1);
+      m2.setScale(4);
+      m2.material = Magi.DefaultMaterial.get();
+      m2.material.floats.LightPos[0] = -1.5;
+      m2.material.floats.LightPos[1] = 2.8;
+      m2.material.floats.MaterialDiffuse =
+        m2.material.floats.MaterialSpecular = vec4(0.5, 0.5, 0.5, 0.1);
+      m2.material.floats.LightAmbient = vec4(0,0,0,0);
+
+      var pivot = new Magi.Node();
+      pivot.setAngle(rot);
+      pivot.position = offset;
+      pivot.appendChild(m);
+      pivot.appendChild(m2);
+      return pivot;
+    },
+
+    ribbonIn : function() {
+      if (this.ribbons != null) {
+        this.ribbons.childNodes.forEach(function(c){
+          c.childNodes[0].rtime = 0;
+        });
+        return;
+      }
+      var pivot = new Magi.Node();
+      this.ribbons = pivot;
+      pivot.setPosition(-4,-3.2,-5);
+      pivot.appendChild(this.createRibbon(
+        [vec3(0,0,0), vec3(0,0,0.5), vec3(0,1,1), vec3(0,1,2.5)],
+        1.0, 0.0, vec4(1,1,0.1,1),
+        vec3(0,-0.25,0), 100
+      ));
+      pivot.appendChild(this.createRibbon(
+        [vec3(0,0,0), vec3(0,0,0.5), vec3(0,0.8,1), vec3(0,0.8,2.5)],
+        1.0, -0.1, vec4(0.1,1,0.1,1),
+        vec3(0,-0.0,0.5), 400
+      ));
+      pivot.appendChild(this.createRibbon(
+        [vec3(0,0,0), vec3(0,0,0.5), vec3(0,1.05,1), vec3(0,1.05,2.5)],
+        1.1, 0.1, vec4(0.1,0.1,1,1),
+        vec3(0.2,0.65,0), 0
+      ));
+      pivot.appendChild(this.createRibbon(
+        [vec3(0,0,0), vec3(0,0,0.5), vec3(0,1,1), vec3(0,1,2.5)],
+        1.1, 0.0, vec4(1,0.1,0.1,1),
+        vec3(0,0.4,0.3), 200
+      ));
+
+      this.display.scene.appendChild(pivot);
+      this.ribbons.childNodes.forEach(function(c){
+        c.childNodes[0].rtime = 0;
+      });
+    }
+  };
+  (function() {
     document.getElementById('demoClose').onclick = closeButtonOnclick;
-  }, false);
+    var ribbonContainer = document.getElementById('ribbonContainer');
+    var ribbonCanvas = document.createElement('canvas');
+    ribbonCanvas.width = 600;
+    ribbonCanvas.height = 400;
+    ribbonContainer.appendChild(ribbonCanvas);
+    var ribbons = new Ribbons(ribbonCanvas);
+    ribbons.ribbonIn();
+    ribbons.display.paused = true;
+    var timeout = 0;
+    window.onscroll = function() {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(function() {
+        ribbons.display.paused = (ribbonContainer.parentNode.offsetTop > window.scrollY+window.innerHeight);
+      }, 30);
+    };
+    window.onscroll();
+  })();
 </script>
 {% endblock %}
