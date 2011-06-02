@@ -439,3 +439,23 @@ homepage: http://fhtr.org
 google: ilmari
 twitter: ilmarihei
 email: ilmari@google.com
+
+---
+
+id: jankleinert
+name:
+  given: Jan
+  family: Kleinert
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: New York
+  region: New York
+  country: USA
+  lat: 40.740914
+  lon: -74.002032
+homepage: http://jankleinert.com
+google: jankleinert
+twitter: jankleinert
+email: jkleinert@google.com
