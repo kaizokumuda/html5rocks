@@ -30,7 +30,11 @@
     var html5rocks = {};
     var indexedDB = window.indexedDB || window.webkitIndexedDB ||
       window.mozIndexedDB;
+<<<<<<< local
 
+=======
+      
+>>>>>>> other
     if ('webkitIndexedDB' in window) {
       window.IDBTransaction = window.webkitIDBTransaction;
       window.IDBKeyRange = window.webkitIDBKeyRange;
@@ -108,7 +112,7 @@
       };
 
       request.onerror = function(e) {
-        console.log(e);
+        console.log("Error Adding: ", e);
       };
     };
 
@@ -132,7 +136,37 @@
         renderTodo(result.value);
         result.continue();
       };
+<<<<<<< local
 
+=======
+      
+      request.onerror = function(e) {
+        console.log(e);
+      };
+    };
+    
+    html5rocks.indexedDB.getAllTodoItems = function() {
+      var todos = document.getElementById("todoItems");
+      todos.innerHTML = "";
+      
+      var db = html5rocks.indexedDB.db;
+      var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE, 0); 
+      var store = trans.objectStore("todo");
+      
+      // Get everything in the store;
+      var keyRange = IDBKeyRange.lowerBound(0);
+      var cursorRequest = store.openCursor(keyRange);
+      
+      cursorRequest.onsuccess = function(e) {
+        var result = e.target.result;
+        if(!!result == false) 
+          return;
+        
+        renderTodo(result.value);
+        result.continue();
+      };
+      
+>>>>>>> other
       cursorRequest.onerror = html5rocks.indexedDB.onerror;
     };
 
@@ -141,7 +175,11 @@
       var li = document.createElement("li");
       var a = document.createElement("a");
       var t = document.createTextNode(row.text);
+<<<<<<< local
 
+=======
+      
+>>>>>>> other
       a.addEventListener("click", function() {
         html5rocks.indexedDB.deleteTodo(row.timeStamp);
       }, false);
@@ -269,7 +307,11 @@ html5rocks.indexedDB.db = null;
 html5rocks.indexedDB.open = function() {
   var request = indexedDB.open("todos");
 
+<<<<<<< local
   request.onsuccess = function(e) {
+=======
+  request.onsuccess = function(e) {   
+>>>>>>> other
     html5rocks.indexedDB.db = e.target.result;
     // Do some more stuff in a minute
   };
@@ -359,10 +401,19 @@ html5rocks.indexedDB.addTodo = function(todoText) {
   var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE, 0);
   var store = trans.objectStore("todo");
   var request = store.put({
+<<<<<<< local
     "text": todoText,
     "timeStamp" : new Date().getTime()
+=======
+    "text": todoText, 
+    "timeStamp" : new Date().getTime() 
+>>>>>>> other
   });
+<<<<<<< local
 
+=======
+    
+>>>>>>> other
   request.onsuccess = function(e) {
     // Re-render all the todo's
     html5rocks.indexedDB.getAllTodoItems();
@@ -381,8 +432,13 @@ html5rocks.indexedDB.addTodo = function(todoText) {
   <p>
     Now that the application has access to the Object Store, we can issue a
     simple <code>put</code> command with a basic JSON object. Notice that there
+<<<<<<< local
     is a <code>timeStamp</code> property, that is our unique key for the object
     and is used as the "keyPath". When the call to put is successful, our
+=======
+    is a <code>timeStamp</code> property, that is our unique key for the object 
+    and is used as the "keyPath". When the call to put is successful, our 
+>>>>>>> other
     onsuccess event is triggered and we are able to render the contents to the
     screen.
   </p>
@@ -404,12 +460,24 @@ html5rocks.indexedDB.getAllTodoItems = function() {
   // Get everything in the store;
   var keyRange = IDBKeyRange.lowerBound(0);
   var cursorRequest = store.openCursor(keyRange);
+<<<<<<< local
 
+=======
+      
+>>>>>>> other
   cursorRequest.onsuccess = function(e) {
     var result = e.target.result;
+<<<<<<< local
     if(!!result == false)
+=======
+    if(!!result == false) 
+>>>>>>> other
       return;
+<<<<<<< local
 
+=======
+        
+>>>>>>> other
     renderTodo(result.value);
     result.continue();
   };
@@ -418,11 +486,20 @@ html5rocks.indexedDB.getAllTodoItems = function() {
 };</pre>
   <p>
     Note that all of these commands used in this sample
+<<<<<<< local
     are asynchronous and as such the data is not returned from inside the
     transaction.
+=======
+    are asynchronous and as such the data is not returned from inside the 
+    transaction. 
+>>>>>>> other
   </p>
   <p>
+<<<<<<< local
     The code makes a transaction and instantiates a keyRange search
+=======
+    The code makes a transaction and instantiates a keyRange search 
+>>>>>>> other
     over the data. The keyRange defines a simple subset of the data we
     want to query from the store. Given that the keyPath for the store is
     the numeric timestamp, we set the lowest value of the search to be 0
@@ -432,10 +509,18 @@ html5rocks.indexedDB.getAllTodoItems = function() {
   <p>
     There is now a transaction, a reference to the store we want to query
     and a range that we wish to iterate over. All that remains is to open
+<<<<<<< local
     the cursor and attach an "onsuccess" event.
+=======
+    the cursor and attach an "onsuccess" event.  
+>>>>>>> other
   </p>
   <p>
+<<<<<<< local
     The results are passed through to the success callback on the
+=======
+    The results are passed through to the success callback on the 
+>>>>>>> other
     cursor, where we render the result.  The callback is only fired once
     per result, so to ensure you keep iterating across the data you need
     to ensure you call "continue" on your result object.
