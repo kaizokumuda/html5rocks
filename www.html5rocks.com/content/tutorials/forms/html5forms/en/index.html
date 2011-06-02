@@ -6,54 +6,66 @@
 {% block pagetitle %}Making Forms Fabulous with HTML5{% endblock %}
 {% block head %}
 <style>
-  :invalid { 
+  article > section :invalid { 
     border-color: #e88;
     -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
-	  -moz-box-shadow:0 0 5px rbba(255, 0, 0, .8);
-	  box-shadow:0 0 5px rgba(255, 0, 0, .8);
+    -moz-box-shadow:0 0 5px rbba(255, 0, 0, .8);
+    -o-box-shadow:0 0 5px rbba(255, 0, 0, .8);
+    -ms-box-shadow:0 0 5px rbba(255, 0, 0, .8);
+    box-shadow:0 0 5px rgba(255, 0, 0, .8);
   }
 
-  :required {
+  article > section :required {
     border-color: #88a;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
     -moz-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+    -o-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+    -ms-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
     box-shadow: 0 0 5px rgba(0, 0, 255, .5);
   }
 
-	form {
-		width:300px;
-		margin: 20px auto;
-	}
+  article > section form {
+    width:300px;
+    margin: 20px auto;
+  }
 
-	input {
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		border:1px solid #ccc;
-		font-size:20px;
-		width:300px;
-		min-height:30px;
-		display:block;
-		margin-bottom:15px;
-		margin-top:5px;
+  article > section input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border:1px solid #ccc;
+    font-size:20px;
+    width:300px;
+    min-height:30px;
+    display:block;
+    margin-bottom:15px;
+    margin-top:5px;
+    outline: none;
 
-		-webkit-border-radius:5px;
-		-moz-border-radius:5px;
-		border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -o-border-radius:5px;
+    -ms-border-radius:5px;
+    border-radius:5px;
 
-		-webkit-transition: all 0.5s ease-in-out;
-		-moz-transition: all 0.5s ease-in-out;
-		transition: all 0.5s ease-in-out;
-	}
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
 
-	input:focus {
-		-webkit-transform: scale(1.05);
-		-moz-transform: scale(1.05);
-		transform: scale(1.05);
-	}
+  /* Transforms cause validation popups to disappear
+  article > section input:focus {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }*/
 
-	input[type=submit] {
-		padding:10px;
+  article > section input[type=submit] {
+    padding:10px;
     background:none;
-	}
+  }
 </style>
 {% endblock %}
 {% block pagebreadcrumb %}Making Forms Fabulous with HTML5{% endblock %}
@@ -213,13 +225,13 @@ varies
     attribute is helpful for doing browser-based validation without using 
     JavaScript.</p></li>
 
-	  <li><p>The <code>autocomplete</code> attribute is useful if you don't want a 
+    <li><p>The <code>autocomplete</code> attribute is useful if you don't want a 
     particular field, such as a credit card number or one-time password, to 
     autocomplete or be pre-filled by the browser based on a user's past entries. 
     By default, <code>autocomplete</code> is in the <code>on</code> state, so if 
     you want to disable it, set it to <code>off</code>.</p></li>
 
-	  <li><p>The <code>pattern</code> attribute specifies a regular expression 
+    <li><p>The <code>pattern</code> attribute specifies a regular expression 
     against which the element's value is checked. When using a <code>pattern</code>, 
     you should also specify a <code>title</code> value to give the user a 
     description of the pattern that's expected.</p></li>
@@ -261,7 +273,7 @@ varies
   ensure that the field has a value and that the value is a valid email address, 
   as defined <a href="http://dev.w3.org/html5/spec/Overview.html#valid-e-mail-address" 
   target="_blank">here</a>.<br>
-  <pre class="prettyprint">&lt;input type="email" id="email_addr" name="email_addr" required="true"/&gt;</pre>
+  <pre class="prettyprint">&lt;input type="email" id="email_addr" name="email_addr" required /&gt;</pre>
   </p>
 
   <p>This next example represents a required text input field for a part number. 
@@ -270,7 +282,7 @@ varies
   and <code>pattern</code> ensure that the field has a value and that the value 
   matches the correct format for a part number. If the user hovers over the 
   field, the message in the title attribute is displayed.<br>
-  <pre class="prettyprint">&lt;input type="text" id="part" name="part" required="true" pattern="[A-Z]{3}[0-9]{4}"
+  <pre class="prettyprint">&lt;input type="text" id="part" name="part" required pattern="[A-Z]{3}[0-9]{4}"
        title="Part numbers consist of 3 uppercase letters followed by 4 digits."/&gt;</pre>
   </p>
 
@@ -282,9 +294,8 @@ varies
   border: 2px solid #ff0000;
 }</pre>
 
-  
-
   <h2 id="toc-example-form">Putting it all together</h2>
+
   <p>Here's an example for a reservation request form that pulls together 
   different input types, form validation, and CSS selectors and styling.</p>
   <form>
@@ -299,14 +310,14 @@ varies
     <input type="date" id="arrival_dt" name="arrival_dt" required>
     
     <label>Number of nights:</label>
-    <input type="number" id="num_nights" name="num_nights" value=1 min=1 max=30 
+    <input type="number" id="num_nights" name="num_nights" value="1" min="1" max="30" 
     required>
 
     <label>Promo code:</label>
     <input type="text" id="promo" name="promo" pattern="[A-Za-z0-9]{6}" 
     title="Promo codes consist of 6 alphanumeric characters.">
 
-  	<input type="submit" value="Request Reservation" /> 
+    <input type="submit" value="Request Reservation" /> 
   </form>
 
   <p>This is the code for the form:</p>
@@ -321,7 +332,7 @@ varies
   &lt;input type="date" id="arrival_dt" name="arrival_dt" required&gt;
   
   &lt;label>Number of nights:&lt;/label&gt;
-  &lt;input type="number" id="num_nights" name="num_nights" value=1 min=1 max=30 required&gt;
+  &lt;input type="number" id="num_nights" name="num_nights" value="1" min="1" max="30" required&gt;
 
   &lt;label&gt;Promo code:&lt;/label&gt;
   &lt;input type="text" id="promo" name="promo" pattern="[A-Za-z0-9]{6}" 
@@ -367,12 +378,6 @@ input {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-}
-
-input:focus {
-  -webkit-transform: scale(1.05);
-  -moz-transform: scale(1.05);
-  transform: scale(1.05);
 }
 
 input[type=submit] {
