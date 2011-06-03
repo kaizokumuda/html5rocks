@@ -45,27 +45,30 @@
     -o-border-radius:5px;
     -ms-border-radius:5px;
     border-radius:5px;
-
-    -webkit-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
   }
-
-  /* Transforms cause validation popups to disappear
-  article > section input:focus {
-    -webkit-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -o-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05);
-  }*/
 
   article > section input[type=submit] {
     padding:10px;
     background:none;
   }
+
+  table.alternating {
+    table-layout: fixed;
+    width: 100%; 
+    text-align: left;
+    border-collapse: collapse;
+    border: 1px solid #eee;
+  }
+
+  table.alternating tr:nth-child(even) {
+    background-color: #eee;
+  }
+
+  table.alternating thead {
+    background-color: #eee;
+  }
+
+    
 </style>
 {% endblock %}
 {% block pagebreadcrumb %}Making Forms Fabulous with HTML5{% endblock %}
@@ -96,7 +99,7 @@
   <p>Not many people get excited about forms, but HTML5 brings some big
   improvements, both for the developers creating them and for the users 
   filling them out. New form elements, attributes, input types, browser-based 
-  validation, and CSS3 styling techniques will make it easier and hopefully more 
+  validation, and CSS3 styling techniques make it easier and hopefully more 
   enjoyable to create forms.</p>
 
   <h3 id="toc-intro-support">Browser support</h3>
@@ -114,150 +117,256 @@
   <h3 id="toc-inputs-attributes-elements">New elements</h3>
 
   <p>HTML5 introduces 5 new elements related to input and forms. 
-  <ul>
-    <li><p>The <code><a href="http://dev.w3.org/html5/spec/Overview.html#the-progress-element" 
-    target="_blank">progress</a></code> element represents completion of a task, 
-    for example the progress for a file being uploaded or the how close a 
-    complex calculation is to completion.</p></li>
-
-    <li><p>The <code><a href="http://dev.w3.org/html5/spec/Overview.html#the-meter-element" 
-    target="_blank">meter</a></code> element is different from <code>progress</code>, 
-    in that it represents a scalar measurement within a known range. You could 
-    use meter for something like a temperature or weight measurement.</p></li>
-
-    <li><p>The <code><a href="http://dev.w3.org/html5/spec/Overview.html#the-datalist-element" 
-    target="_blank">datalist</a></code> element represents a set of <code>option</code> 
-    elements that can be used in combination with the new <code>list</code> 
-    attribute for input to make dropdown menus. When the input with the 
-    associated datalist gets focus, the dropdown menu appears and contains the 
-    values from the <code>datalist</code>.</p></li>
-
-    <li><p><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-keygen-element" 
-    target="_blank">keygen</a></code> is a control for key pair generation. When 
-    the form is submitted, the private key gets stored in the local keystore, 
-    and the public key is sent to the server.</p></li>
-
-    <li><p>The <code><a href="http://dev.w3.org/html5/spec/Overview.html#the-output-element" 
-    target="_blank">output</a></code> element displays the results of a 
-    calculation. For example, it could display the sum of the values of two 
-    input elements.</p></li>
-  </ul>
+  <table class="alternating">
+	  <thead>
+		  <tr>
+			  <th scope="col">Element</th>
+			  <th scope="col">Purpose</th>
+			  <th scope="col">Notes</th>
+		  </tr>
+	  </thead>
+	  <tbody>
+		  <tr>
+			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-progress-element" 
+        target="_blank">progress</a></code></td>
+			  <td>represents completion of a task</td>
+			  <td>The <code>progress</code> element could represent the progress of a
+        file being uploaded.</td>
+		  </tr>
+		  <tr>
+			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-meter-element" 
+        target="_blank">meter</a></code></td>
+			  <td>represents a scalar measurement within a known range</td>
+			  <td>The <code>meter</code> element could be used to represent something
+        like a temperature or weight measurement.</td>
+		  </tr>
+		  <tr>
+			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-datalist-element" 
+        target="_blank">datalist</a></code></td>
+			  <td>represents a set of <code>option</code> elements that can be used in
+        combination with the new <code>list</code> attribute for input to make
+        dropdown menus</td>
+			  <td>When the input with the associated datalist gets focus, a dropdown 
+        menu appears and contains the values from the <code>datalist</code>.
+        </td>
+		  </tr>
+		  <tr>
+			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-keygen-element" 
+        target="_blank">keygen</a></code></td>
+			  <td>a control for key-pair generation</td>
+			  <td>When the form is submitted, the private key gets stored in the local 
+        keystore, and the public key is sent to the server.</td>
+		  </tr>
+		  <tr>
+			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-output-element" 
+        target="_blank">output</a></code></td>
+			  <td>displays the results of a calculation</td>
+        <td>An example use of the <code>output</code> element could be to 
+        display the sum of the values of two input elements</code>.</td>
+		  </tr>
+    </tbody>
+  </table>
   </p>
 
   <h3 id="toc-inputs-attributes-types">New input types</h3>
 
   <p>HTML5 introduces 13 new input types. When viewed in a browser that doesn't 
-  support them, these input types will fall back to text input.
-  <ul>
-    <li><p>The <code>tel</code> input type is used for entering a telephone 
-    number. It does not enforce a particular syntax, so if you want to ensure a 
-    particular format, you can use <code>pattern</code> or <code>setCustomValidity()</code> 
-    to do additional validation.</p></li>
+  support them, these input types fall back to text input.
 
-    <li><p>The <code>search</code> input type is used to prompt users to enter 
-    text that they want to search for. The difference between <code>search</code> 
-    and <code>text</code> is primarily stylistic. Using an input type of 
-    <code>search</code> may result in the input field being styled in a way that 
-    is consistent with that platform's search fields.</p></li>
-
-    <li><p>The <code>url</code> input type is used for entering a single URL. 
-    It's intended for entering a single, <a href="http://www.w3.org/TR/html5/urls.html#absolute-url" target="_blank">
-    absolute URL</a>, which represents a pretty wide range of values.</p></li>
-
-    <li><p>The <code>email</code> input type is used for entering either a 
-    single email address or a list of email addresses. If the <code>multiple</code> 
-    attribute is specified, then multiple email addresses can be entered, 
-    separated by commas.</p></li>
-
-    <li><p>The <code>datetime</code> input type is used to enter a date and time 
-    with the time zone set to UTC.</p></li>
-
-    <li><p>The <code>date</code> input type is used to enter a date with no time 
-    zone.</p></li>
-
-    <li><p>The <code>month</code> input type is used to enter a date with a year 
-    and a month, but no time zone.</p></li>
-
-    <li><p>The <code>week</code> input type is used to enter a date that 
-    consists of a week-year number and a week number, but no time zone. An 
-    example of this format is 2011-W05.</p></li>
-
-    <li><p>The <code>time</code> input type is used to enter a time value with 
-    hour, minute, seconds, and fractional seconds, but no time zone.</p></li>
-
-    <li><p>The <code>datetime-local</code> input type is used to enter a date 
-    and time with no time zone.</p></li>
-
-    <li><p>The <code>number</code> input type is used for numerical input. Valid 
-    values are <a href="http://www.w3.org/TR/html5/common-microsyntaxes.html#valid-floating-point-number" 
-    target="_blank">floating point numbers</a>.</p></li>
-
-    <li><p>The <code>range</code> input type is also used for numerical input, 
-    but unlike the <code>number</code> input type, the actual value is not 
-    important. The implementation of the range control is a slider in most 
-    browsers that support it.</p></li>
-
-    <li><p>The <code>color</code> input type is used for choosing color through 
-    a color well control. The value must be a 
-    <a href="http://www.w3.org/TR/html5/common-microsyntaxes.html#valid-lowercase-simple-color" 
-    target="_blank">valid lowercase simple color</a> such as #ffffff.</p></li>
-  </ul>
+  <table class="alternating">
+	  <thead>
+		  <tr>
+			  <th scope="col">Input Type</th>
+			  <th scope="col">Purpose</th>
+			  <th scope="col">Notes</th>
+		  </tr>
+	  </thead>
+	  <tbody>
+		  <tr>
+			  <td><code>tel</code></td>
+			  <td>for entering a telephone number</td>
+			  <td><code>tel</code> does not enforce a particular syntax, so if you 
+        want to ensure a particular format, you can use <code>pattern</code> or 
+        <code>setCustomValidity()</code> to do additional validation.</td>
+		  </tr>
+		  <tr>
+			  <td><code>search</code></td>
+			  <td>to prompt users to enter text that they want to search for</td>
+			  <td>The difference between <code>search</code> and <code>text</code> is 
+        primarily stylistic. Using an input type of <code>search</code> might 
+        result in the input field being styled in a way that is consistent with 
+        that platform's search fields.</td>
+		  </tr>
+		  <tr>
+			  <td><code>url</code></td>
+			  <td>for entering a single URL</td>
+			  <td><code>url</code> is intended for entering a single, <a href="http://www.w3.org/TR/html5/urls.html#absolute-url" target="_blank">
+        absolute URL</a>, which represents a pretty wide range of values.</td>
+		  </tr>
+		  <tr>
+			  <td><code>email</code></td>
+			  <td>for entering either a single email address or a list of email 
+        addresses</td>
+			  <td>If the <code>multiple</code> attribute is specified, then multiple 
+        email addresses can be entered, separated by commas.</td>
+		  </tr>
+		  <tr>
+			  <td><code>datetime</code></td>
+			  <td>for entering a date and time with the time zone set to UTC.</td>
+			  <td></td>
+		  </tr>
+		  <tr>
+			  <td><code>date</code></td>
+			  <td>for entering a date with no time zone</td>
+			  <td></td>
+		  </tr>
+		  <tr>
+			  <td><code>month</code></td>
+			  <td>for entering a date with a year and a month, but no time zone</td>
+			  <td></td>
+		  </tr>
+		  <tr>
+			  <td><code>week</code></td>
+			  <td>for entering a date that consists of a week-year number and a week 
+        number, but no time zone</td>
+			  <td>An example of this format is 2011-W05.</td>
+		  </tr>
+		  <tr>
+			  <td><code>time</code></td>
+			  <td>for entering a time value with hour, minute, seconds, and fractional
+        seconds, but no time zone</td>
+			  <td></td>
+		  </tr>
+		  <tr>
+			  <td><code>datetime-local</code></td>
+			  <td>for entering a date and time with no time zone</td>
+			  <td></td>
+		  </tr>
+		  <tr>
+			  <td><code>number</code></td>
+			  <td>for numerical input</td>
+			  <td>Valid values are <a href="http://www.w3.org/TR/html5/common-microsyntaxes.html#valid-floating-point-number" 
+        target="_blank">floating point numbers</a>.</td>
+		  </tr>
+		  <tr>
+			  <td><code>range</code></td>
+			  <td>for numerical input, but unlike <code>number</code>, the actual 
+        is not important</td>
+			  <td>The implementation of the range control is a slider in most 
+        browsers that support it.</td>
+		  </tr>
+		  <tr>
+			  <td><code>color</code></td>
+			  <td>for choosing color through a color well control</td>
+			  <td>The value must be a 
+        <a href="http://www.w3.org/TR/html5/common-microsyntaxes.html#valid-lowercase-simple-color" 
+        target="_blank">valid lowercase simple color</a> such as #ffffff.</td>
+		  </tr>
+	  </tbody>
+  </table>
   </p>
 
   <h3 id="toc-inputs-attributes-attributes">New input attributes</h3>
 
   <p>HTML5 also introduces several new attributes for the input and form 
-  elements. 
-  <ul>
-    <li><p><code>autofocus</code> can be applied to input, select, textarea, and 
-    button. As you might expect, the autofocus attribute focuses the input on 
-    the element when the page is loaded. Instead of using JavaScript to handle 
-    this, now you can use the single autofocus attribute.</p></li>
-
-    <li><p>The <code>placeholder</code> attribute can be specified on input and 
-    textarea, and it is an easy way to give the user a hint about what sort of 
-    data they should enter. The placeholder value is displayed in light text 
-    until the element gets focus and the user enters some data.</p></li>
-
-    <li><p>The <code>form</code> attribute specifies one or more forms to which 
-    the input element belongs. This means that the input elements could be 
-    placed anywhere on the page, not just within the form element. Also, a 
-    single input element can be associated with more than one form.</p></li>
-
-    <li><p>The <code>required</code> attribute is a boolean attribute, and when 
-    it's specified, it means that the element is required. The <code>required</code> 
-    attribute is helpful for doing browser-based validation without using 
-    JavaScript.</p></li>
-
-    <li><p>The <code>autocomplete</code> attribute is useful if you don't want a 
-    particular field, such as a credit card number or one-time password, to 
-    autocomplete or be pre-filled by the browser based on a user's past entries. 
-    By default, <code>autocomplete</code> is in the <code>on</code> state, so if 
-    you want to disable it, set it to <code>off</code>.</p></li>
-
-    <li><p>The <code>pattern</code> attribute specifies a regular expression 
-    against which the element's value is checked. When using a <code>pattern</code>, 
-    you should also specify a <code>title</code> value to give the user a 
-    description of the pattern that's expected.</p></li>
-
-    <li><p>The <code>dirname</code> attribute for <code>input</code> and 
-    <code>textarea</code> elements makes it possible to submit the 
-    directionality of the control to be submitted with the form. For example, if 
-    the user entered text data with right-to-left directionality and the input 
-    element contained the <code>dirname</code> attribute, then an indication of 
-    the right-to-left directionality would be submitted along with the input 
-    value.</p></li>
-
-    <li><p>The <code>novalidate</code> attribute disables form submission 
-    validation when specified on a form element.</p></li>
-
-    <li><p>The <code>input</code> and <code>button</code> elements support: 
-    <code>formaction</code>, <code>formenctype</code>, <code>formmethod</code>, 
-    <code>formnovalidate</code>, and <code>formtarget</code> as new attributes. 
-    If present, they override the <code>action</code>, <code>enctype</code>, 
-    <code>method</code>, <code>novalidate</code>, and <code>target</code> 
-    attributes on the form element.</p></li>
-  </ul>
+  elements.
+  <table class="alternating">
+	  <thead>
+		  <tr>
+			  <th scope="col">Attribute</th>
+			  <th scope="col">Purpose</th>
+			  <th scope="col">Notes</th>
+		  </tr>
+	  </thead>
+	  <tbody>
+		  <tr>
+			  <td><code>autofocus</code></td>
+			  <td>focuses the input on the element when the page is loaded</td>
+			  <td><code>autofocus</code> can be applied to input, select, textarea, 
+        and button.</td>
+		  </tr>
+		  <tr>
+			  <td><code>placeholder</code></td>
+			  <td>gives the user a hint about what sort of data they should enter</td>
+			  <td>The placeholder value is displayed in light text 
+        until the element gets focus and the user enters some data. It can be 
+        specified on input and textarea.</td>
+		  </tr>
+		  <tr>
+			  <td><code>form</code></td>
+			  <td>specifies one or more forms to which the input element belongs</td>
+			  <td>By using the <code>form</code> attribute, the input elements can be 
+        placed anywhere on the page, not just within the form element. Also, a 
+        single input element can be associated with more than one form.</td>
+		  </tr>
+		  <tr>
+			  <td><code>required</code></td>
+			  <td>a boolean attribute that means the element is required</td>
+			  <td>The <code>required</code> attribute is helpful for doing 
+        browser-based validation without using custom JavaScript.</td>
+		  </tr>
+		  <tr>
+			  <td><code>autocomplete</code></td>
+			  <td>for specifying that a field should not autocomplete or be pre-filled
+        by the browser based on a user's past entries.</td>
+			  <td>The <code>autocomplete</code> attribute for fields like a credit 
+        card number or one-time password, which you don't want autocomplete. By 
+        default, <code>autocomplete</code> is in the <code>on</code> state, so 
+        if you want to disable it, set it to <code>off</code>.</td>
+		  </tr>
+		  <tr>
+			  <td><code>pattern</code></td>
+			  <td>for validating an element's value against a regular expression</td>
+			  <td>When using a <code>pattern</code>, you should also specify a 
+        <code>title</code> value to give the user a description of the pattern 
+        that's expected.</td>
+		  </tr>
+		  <tr>
+			  <td><code>dirname</code></td>
+			  <td>for submitting the directionality of the control with the form</td>
+			  <td>For example, if the user entered text data with right-to-left 
+        directionality and the input element contained the <code>dirname</code> 
+        attribute, then an indication of the right-to-left directionality would 
+        be submitted along with the input value.</td>
+		  </tr>
+		  <tr>
+			  <td><code>novalidate</code></td>
+			  <td>for disabling form submission validation when specified on a form
+        element</td>
+			  <td></td>
+		  </tr>
+		  <tr>
+			  <td><code>formaction</code></td>
+			  <td>for overriding the action attribute on the form element</td>
+			  <td>This attribute is supported on <code>input</code> and 
+        <code>button</code> elements.</td>
+		  </tr>
+		  <tr>
+			  <td><code>formenctype</code></td>
+			  <td>for overriding the enctype attribute on the form element</td>
+			  <td>This attribute is supported on <code>input</code> and 
+        <code>button</code> elements.</td>
+		  </tr>
+		  <tr>
+			  <td><code>formmethod</code></td>
+			  <td>for overriding the method attribute on the form element</td>
+			  <td>This attribute is supported on <code>input</code> and 
+        <code>button</code> elements.</td>
+		  </tr>
+		  <tr>
+			  <td><code>formnovalidate</code></td>
+			  <td>for overriding the novalidate attribute on the form element</td>
+			  <td>This attribute is supported on <code>input</code> and 
+        <code>button</code> elements.</td>
+		  </tr>
+		  <tr>
+			  <td><code>formtarget</code></td>
+			  <td>for overriding the target attribute on the form element</td>
+			  <td>This attribute is supported on <code>input</code> and 
+        <code>button</code> elements.</td>
+		  </tr>
+	  </tbody>
+  </table> 
   </p>
   
 
@@ -271,32 +380,82 @@
 
   <p>New input attributes like <code>required</code> and <code>pattern</code> 
   used in combination with CSS pseudo-class selectors make it easier to write 
-  the checks and display feedback to the user.</p>
+  the checks and display feedback to the user. There are other advanced 
+  validation techniques that allow you to use JavaScript to set custom validity 
+  rules and messages or to determine if an element is invalid and the reason
+  why.</p>
 
-  <p>Here's an example of an input field for a required email address that will 
-  ensure that the field has a value and that the value is a valid email address, 
-  as defined <a href="http://dev.w3.org/html5/spec/Overview.html#valid-e-mail-address" 
+  <h3 id="toc-required">The required attribute</h3>
+
+  <p>If the <code>required</code> attribute is present, then the field must contain a value 
+  when the form is submitted. Here's an example of an input field for a required 
+  email address that ensures that the field has a value and that the value 
+  is a valid email address, as defined <a href="http://dev.w3.org/html5/spec/Overview.html#valid-e-mail-address" 
   target="_blank">here</a>.<br>
   <pre class="prettyprint">&lt;input type="email" id="email_addr" name="email_addr" required /&gt;</pre>
   </p>
 
-  <p>This next example represents a required text input field for a part number. 
-  For the purpose of the example, let's say a part number consists of three 
-  uppercase letters followed by four digits. The use of <code>required</code> 
-  and <code>pattern</code> ensure that the field has a value and that the value 
-  matches the correct format for a part number. If the user hovers over the 
-  field, the message in the title attribute is displayed.<br>
+  <h3 id="toc-pattern">The pattern attribute</h3>
+
+  <p>The <code>pattern</code> attribute specified a regular expression used to 
+  validate an input field. This example represents a required text input 
+  field for a part number. For the purpose of the example, let's say a part 
+  number consists of three uppercase letters followed by four digits. The use of 
+  <code>required</code> and <code>pattern</code> ensure that the field has a 
+  value and that the value matches the correct format for a part number. If the 
+  user hovers over the field, the message in the title attribute is displayed.
+  <br>
   <pre class="prettyprint">&lt;input type="text" id="part" name="part" required pattern="[A-Z]{3}[0-9]{4}"
        title="Part numbers consist of 3 uppercase letters followed by 4 digits."/&gt;</pre>
   </p>
 
-  <p>Building on the previous example, I can also outline the input field in 
-  red if an invalid part number is entered. To do that, I would add this CSS to 
+  <p>Building on the previous example, you can also outline the input field in 
+  red if an invalid part number is entered. To do that, add this CSS to 
   put a red border around the input field if the value is invalid.
   <br>
   <pre class="prettyprint">:invalid {
   border: 2px solid #ff0000;
 }</pre>
+
+  <h3 id="toc-formnovalidate">The formnovalidate attribute</h3>
+  <p>The <code>formnovalidate</code> attribute can be applied to <code>input</code>
+  or <code>button</code> elements. If it's present, then form submission 
+  validation is disabled. Here's an example where submitting a form via the 
+  Submit button requires valid input, but submitting via the Save button does 
+  not.
+  <br>
+  <pre class="prettyprint">&lt;input type="text" id="part" name="part" required pattern="[A-Z]{3}[0-9]{4}"
+       title="Part numbers consist of 3 uppercase letters followed by 4 digits."/&gt;
+&lt;input type="submit" formnovalidate value="Save"&gt;
+&lt;input type="submit" value="Submit"&gt;</pre>
+  </p>
+
+  <h3 id="toc-constraint-validation">The constraint validation API</h3>
+
+  <p>The <a href="http://dev.w3.org/html5/spec/association-of-controls-and-forms.html#the-constraint-validation-api" 
+  target="_blank">constraint validation API</a> gives you powerful tools for 
+  handling custom validation. The API allows you to do things like set a custom 
+  error, check whether an element is valid, and determine the reason that an 
+  element is invalid. Here's an example that displays a custom error if the 
+  values in two fields do not match.
+  <br>
+  <pre class="prettyprint">&lt;label&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email_addr" name="email_addr"&gt;
+
+&lt;label&gt;Repeat Email Address:&lt;/label&gt;
+&lt;input type="email" id="email_addr_repeat" name="email_addr_repeat" oninput="check(this)"&gt;
+
+&lt;script&gt;
+function check(input) {
+  if (input.value != document.getElementById('email_addr').value) {
+    input.setCustomValidity('The two email addresses must match.');
+  } else {
+    // input is valid -- reset the error message
+    input.setCustomValidity('');
+  }
+}
+&lt;/script&gt;</pre>
+  </p>
 
   <h2 id="toc-example-form">Putting it all together</h2>
 
@@ -309,6 +468,10 @@
 
     <label>Email:</label>
     <input type="email" id="email_addr" name="email_addr" required>
+
+    <label>Repeat Email Address:</label>
+    <input type="email" id="email_addr_repeat" name="email_addr_repeat" required
+    oninput="check(this)">
 
     <label>Arrival date:</label>
     <input type="date" id="arrival_dt" name="arrival_dt" required>
@@ -324,7 +487,18 @@
     <input type="submit" value="Request Reservation" /> 
   </form>
 
-  <p>This is the code for the form:</p>
+  <script>
+  function check(input) {
+    if (input.value != document.getElementById('email_addr').value) {
+      input.setCustomValidity('The two email addresses must match.');
+    } else {
+      // input is valid -- reset the error message
+      input.setCustomValidity('');
+    }
+  }
+  </script>
+
+  <p>This is the HTML and JavaScript for the form:</p>
   <pre class="prettyprint">&lt;form&gt;
   &lt;label&gt;Full name:&lt;/label&gt;
   &lt;input type="text" id="full_name" name="full_name" placeholder="Jane Doe" required&gt;
@@ -332,24 +506,41 @@
   &lt;label&gt;Email:&lt;/label&gt;
   &lt;input type="email" id="email_addr" name="email_addr" required&gt;
 
+  &lt;label&gt;Repeat Email Address:&lt;/label&gt;
+  &lt;input type="email" id="email_addr_repeat" name="email_addr_repeat" required&gt;
+
   &lt;label&gt;Arrival date:&lt;/label&gt;
   &lt;input type="date" id="arrival_dt" name="arrival_dt" required&gt;
   
   &lt;label>Number of nights:&lt;/label&gt;
-  &lt;input type="number" id="num_nights" name="num_nights" value="1" min="1" max="30" required&gt;
+  &lt;input type="number" id="nights" name="nights" value="1" min="1" max="30" required&gt;
 
   &lt;label&gt;Promo code:&lt;/label&gt;
   &lt;input type="text" id="promo" name="promo" pattern="[A-Za-z0-9]{6}" 
   title="Promo codes consist of 6 alphanumeric characters."&gt;
 
   &lt;input type="submit" value="Request Reservation" /&gt; 
-&lt;/form&gt;</pre>
+&lt;/form&gt;
+
+&lt;script&gt;
+function check(input) {
+  if (input.value != document.getElementById('email_addr').value) {
+    input.setCustomValidity('The two email addresses must match.');
+  } else {
+    // input is valid -- reset the error message
+    input.setCustomValidity('');
+  }
+}
+&lt;/script&gt;
+</pre>
 
   <p>This is the CSS that goes with the form code:</p>
   <pre class="prettyprint">:invalid { 
   border-color: #e88;
   -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
-  -moz-box-shadow:0 0 5px rbba(255, 0, 0, .8);
+  -moz-box-shadow: 0 0 5px rbba(255, 0, 0, .8);
+  -o-box-shadow: 0 0 5px rbba(255, 0, 0, .8);
+  -ms-box-shadow: 0 0 5px rbba(255, 0, 0, .8);
   box-shadow:0 0 5px rgba(255, 0, 0, .8);
 }
 
@@ -357,6 +548,8 @@
   border-color: #88a;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
   -moz-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+  -o-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
+  -ms-box-shadow: 0 0 5px rgba(0, 0, 255, .5);
   box-shadow: 0 0 5px rgba(0, 0, 255, .5);
 }
 
@@ -374,14 +567,13 @@ input {
   display:block;
   margin-bottom:15px;
   margin-top:5px;
+  outline: none;
 
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
+  -o-border-radius:5px;
+  -ms-border-radius:5px;
   border-radius:5px;
-
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
 }
 
 input[type=submit] {
