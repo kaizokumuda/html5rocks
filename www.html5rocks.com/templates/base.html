@@ -135,11 +135,13 @@
       google.search.CustomSearchControl.attachAutoCompletion(
           '007435387813601113811:ef_kuvvx6a8', q, 'cse-search-box');
 
-      q.addEventListener('keydown', function(e) {
-        if (e.keyCode == 13) { // enter key
-          document.getElementById('cse-search-box').submit();
-        }
-      }, false);
+      if(q.addEventListener) {
+        q.addEventListener('keydown', function(e) {
+          if (e.keyCode == 13) { // enter key
+            document.getElementById('cse-search-box').submit();
+          }
+        }, false);
+      }
 
       // Kill feedburner and marketing tracking arguments cuz they're ugly.
       if (/^\?utm_/.test(document.location.search) &&
