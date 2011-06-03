@@ -27,7 +27,7 @@
 
 {% block content %}
 
-		<h2>Introduction</h2>
+		<h2 id="toc-intro">Introduction</h2>
 		<p>I've previously given you <a title="Getting Started with Three.js" href="/tutorials/three/intro/">an introduction to Three.js</a>. If you've
 		not read that you might want to as it's the foundation on which I will
 		be building during this article.</p>
@@ -46,7 +46,7 @@
 		we will get into slightly more advanced territory. The reason for this is that
 		shaders are unusual at first sight and take a bit of explaining.</p>
 		
-		<h2>1. Our Two Shaders</h2>
+		<h2 id="toc-1">1. Our Two Shaders</h2>
 		<p>WebGL does not offer the use of the Fixed
 		Pipeline, which is a shorthand way of saying that it doesn't give you any means
 		of rendering your stuff out of the box. What it <em>does</em> offer, however, is
@@ -66,7 +66,7 @@
 		A modern GPU is heavily optimised for the functions that shaders require so it's great
 		to be able to use it.</p>
 		
-		<h2>2. Vertex Shaders</h2>
+		<h2 id="toc-2">2. Vertex Shaders</h2>
 		<p>Take a standard primitive shape, like a sphere. It's made up of vertices, right?
 		A vertex shader is given every single one of these vertices in turn and can mess around with them.
 		It's up to the vertex shader
@@ -79,7 +79,7 @@
 		<strong>gl_Position</strong> without things getting too heavy.
 		</p>
 		
-		<h2>3. Fragment Shaders</h2>
+		<h2 id="toc-3">3. Fragment Shaders</h2>
 		<p>So we have our object with its vertices, and we've projected them to the 2D screen,
 		but what about the colours we use? What about texturing and lighting? That's exactly
 		what the fragment shader is there for.</p>
@@ -90,7 +90,7 @@
 		Because of this the fragments receive interpolated values from their constituent vertices. If one vertex is coloured red, and
 		its neighbour is blue we would see the colour values interpolate from red, through purple, to blue.</p>
 		
-		<h2>4. Shader Variables</h2>
+		<h2 id="toc-4">4. Shader Variables</h2>
 		<p>When talking about variables there are three declarations you can make: <strong>Uniforms</strong>,
 		<strong>Attributes</strong> and <strong>Varyings</strong>. When I first heard of those three I was very confused since they don't match anything else
 		I'd ever worked with. But here's how you can think of them: 
@@ -116,7 +116,7 @@
 		of variables they deal with, it's now worth looking at the simplest shaders
 		we can create.</p>
 	
-		<h2>5. Bonjourno World</h2>
+		<h2 id="toc-5">5. Bonjourno World</h2>
 		<p>Here, then, is the Hello World of vertex shaders:
 		
 		<pre class=prettyprint>
@@ -169,7 +169,7 @@ void main() {
 		this without Three.js you would have to create and set all those uniforms
 		and attributes yourself. True story.</p>
 		
-		<h2>6. Using a MeshShaderMaterial</h2>
+		<h2 id="toc-6">6. Using a MeshShaderMaterial</h2>
 		<p>OK, so we have a shader set up, but how do we use it with Three.js? It
 		turns out that it's terribly easy. It's rather like this:
 		<pre class=prettyprint>
@@ -196,7 +196,7 @@ var shaderMaterial = new THREE.MeshShaderMaterial({
 		between the number of values in the attributes array and the number of vertices
 		in the mesh.</p>
 		
-		<h2>7. Next Steps</h2>
+		<h2 id="toc-7">7. Next Steps</h2>
 		<p>Now we are going to spend a bit of time adding in an animation loop,
 		vertex attributes and a uniform. We'll also add in a varying variable
 		so that the vertex shader can send some data to the fragment shader.
@@ -206,7 +206,7 @@ var shaderMaterial = new THREE.MeshShaderMaterial({
 		you to a good understanding of the three variable types as well as how they
 		relate to each other and the underlying geometry.</p>
 		
-		<h2>8. A Fake Light</h2>
+		<h2 id="toc-8">8. A Fake Light</h2>
 		<p>Let's update the colouring so it's not a flat coloured object. We could take a look at
 		how Three.js handles lighting, but as I'm sure you can appreciate
 		it's more complex than we need right now, so we're going to fake it. You should
@@ -282,7 +282,7 @@ void main() {
 		try messing with some vertex positions.
 		</p>
 		
-		<h2>9. Attributes</h2>
+		<h2 id="toc-9">9. Attributes</h2>
 		<p>What I'd like us to do now is attach a random number to each vertex
 		via an attribute. We'll use this number to push the vertex out along
 		its normal. The net result will be some kind of weird spike ball that
@@ -332,7 +332,7 @@ void main() {
 		original attribute, like all attributes, is read only.
 		</p>
 	
-		<h2>10. Updating the MeshShaderMaterial</h2>
+		<h2 id="toc-10">10. Updating the MeshShaderMaterial</h2>
 		<p>
 		Let's hop straight into updating our MeshShaderMaterial
 		with the attribute needed to power our displacement. A reminder:
@@ -376,7 +376,7 @@ for(var v = 0; v < vertices.length; v++) {
 		thing is that all the displacement is happening on the GPU.
 		</p>
 		
-		<h2>11. Animating That Sucker</h2>
+		<h2 id="toc-11">11. Animating That Sucker</h2>
 		<p>We should totally make this animate. How do we do it? Well there
 		are two things we need to get in place:</p>
 		<ol>
@@ -464,7 +464,7 @@ requestAnimFrame(update);
 		</pre>
 		</p>
 		
-		<h2>12. Conclusion</h2>
+		<h2 id="toc-12">12. Conclusion</h2>
 		<p>And that's it! You can now see it's animating
 		in a strange (and slightly trippy) pulsating manner.</p>
 		

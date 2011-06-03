@@ -27,7 +27,7 @@
 
 {% block content %}
 
-		<h2>Introduction</h2>
+		<h2 id="toc-intro">Introduction</h2>
 		<p>I have used <a target="_blank" href="https://github.com/mrdoob/three.js/" title="Three.js on GitHub">Three.js</a> for some of <a href="http://aerotwist.com/lab/" target="_blank">my experiments</a>, and it does a really great job of
 		abstracting away the headaches of getting going with 3D in the browser.
 		With it you can create cameras, objects, lights, materials and more, and
@@ -44,7 +44,7 @@
 		have to as questions, by the way, I've found <a target="_blank" href="http://mrdoob.com/" title="Mr. doob">Mr. doob</a> and <a target="_blank" href="http://alteredqualia.com/" title="AlteredQualia">AlteredQualia</a> are
 		extremely helpful!</p>
 		
-		<h2>1. The basics</h2>
+		<h2 id="toc-1">1. The basics</h2>
 		<p>I will assume that you have at
 		least a passing knowledge of 3D, and reasonable proficiency with
 		JavaScript. If you don't it may be worth learning a bit before you try
@@ -62,7 +62,7 @@
 		<p>You can, of course, do some crazy things, and my hope is that you will
 		go on to do that and start to experiment with 3D in your browser.</p>
 		
-		<h2>2. Support</h2>
+		<h2 id="toc-2">2. Support</h2>
 		<p>Just a quick note on support in the browsers. Google's Chrome browser is, in my experience,
 		the best browser to work with in terms of which renderers are supported, and
 		the speed of the underlying JavaScript engine. Chrome supports
@@ -73,7 +73,7 @@
 		Internet Explorer (version 9+) support canvas rendering only, and I've not heard
 		anything of Microsoft planning to add WebGL capabilities.</p>
 		
-		<h2>3. Set the Scene</h2>
+		<h2 id="toc-3">3. Set the Scene</h2>
 		<p>I'll assume you've chosen a browser that supports all the rendering technologies,
 		and that you want to render with canvas or WebGL, since they're the more standard
 		choices. Canvas is more widely supported than WebGL, but it's worth noting that
@@ -125,7 +125,7 @@ $container.append(renderer.domElement);
 		Not too tricky, really!
 		</p>
 		
-		<h2>4. Making a Mesh</h2>
+		<h2 id="toc-4">4. Making a Mesh</h2>
 		<p>
 		So we have a scene, a camera and a renderer (I opted for a WebGL one in my sample
 		code) but we have nothing to actually draw. Three.js actually comes with support
@@ -152,7 +152,7 @@ scene.addChild(sphere);
 		to talk about materials in a bit more detail.
 		</p>
 	
-		<h2>5. Materials</h2>
+		<h2 id="toc-5">5. Materials</h2>
 		<p>Without doubt this is one of the most useful parts of Three.js. It provides
 		for you a number of common (and very handy) materials to apply to your meshes:</p>
 		<ol>
@@ -188,7 +188,7 @@ var sphereMaterial = new THREE.MeshLambertMaterial(
 		the materials and, in fact, any object that the engine provides for you. Also <a href="http://threejs.org/">threejs.org</a> recently sprung up, which offers a more attractive view of the API.
 		</p>
 		
-		<h2>6. Lights!</h2>
+		<h2 id="toc-6">6. Lights!</h2>
 		<p>If you were to render the scene right now you'd see a red circle. Even
 		though we have a Lambert material applied there's no light in the scene so
 		by default Three.js will revert to a full ambient light, which is the same
@@ -207,7 +207,7 @@ scene.addLight(pointLight);
 		</pre>
 		</p>
 		
-		<h2>7. Render</h2>
+		<h2 id="toc-7">7. Render</h2>
 		<p>
 		We now actually have everything set up to render, remarkably. But we actually
 		need to go ahead and do just that: 
@@ -232,7 +232,7 @@ renderer.render(scene, camera);
 		Paul Irish's shim</a>.
 		</p>
 		
-		<h2>8. Common Object Properties</h2>
+		<h2 id="toc-8">8. Common Object Properties</h2>
 		<p>If you take time to look through the code for Three.js you'll see a lot
 		of objects &quot;inherit&quot; from Object3D. This is a base object which contains some very useful
 		properties, such as the <strong>position</strong>, <strong>rotation</strong> and <strong>scale</strong> information. In particular
@@ -256,7 +256,7 @@ sphere.scale // ... same
 		</pre>
 		</p>
 		
-		<h2>9. Dirty Little Secrets</h2>
+		<h2 id="toc-9">9. Dirty Little Secrets</h2>
 		<p>I just wanted to quickly point out a quick gotcha for Three.js, which is that
 		if you modify, for example, the vertices of a mesh, you will notice in your render
 		loop that nothing changes. Why? Well because Three.js (as far as I can tell) caches
@@ -274,7 +274,7 @@ sphere.geometry.__dirtyNormals = true;
 		only flag the things that have changed to avoid unnecessary calculations.
 		</p>
 		
-		<h2>Conclusion</h2>
+		<h2 id="toc-conclusion">Conclusion</h2>
 		<p>Well I hope you've found this brief introduction to Three.js helpful. There's
 		nothing quite like actually getting your hands dirty and trying something, and
 		I can't recommend it highly enough. 3D running natively in the browser
