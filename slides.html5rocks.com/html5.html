@@ -1234,7 +1234,7 @@ document.querySelector('#dropzone').addEventListener('drop', function(e) {
     document.querySelector('img').src = evt.target.<b>result</b>;
   };
 
-  reader.<b>readAsDataURL</b>(evt.<b>dataTransfer.files[0]</b>);
+  reader.<b>readAsDataURL</b>(e.<b>dataTransfer.files[0]</b>);
 }, false);
 </pre>
             <div class="example">
