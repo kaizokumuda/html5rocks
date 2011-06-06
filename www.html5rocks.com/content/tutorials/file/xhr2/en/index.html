@@ -149,7 +149,7 @@ xhr.send();
 
   <p>In the previous example, we downloaded the image as a binary "file"
   by overriding the server's mime type and processing the response text as a binary string.
-  Instead, lets leverage <code>XMLHttpRequest</code>'s new
+  Instead, let's leverage <code>XMLHttpRequest</code>'s new
   <code>responseType</code> and <code>response</code> properties to inform
   the browser what format we want the data returned as.</p>
 
@@ -166,8 +166,8 @@ xhr.send();
     <code>responseType</code>.)</dd>
   </dl>
 
-  <p>With this new awesomeness, lets rework the previous example. This
-  time however, lets fetch the image as an <code>ArrayBuffer</code> and use the
+  <p>With this new awesomeness, we can rework the previous example. This
+  time however, let's fetch the image as an <code>ArrayBuffer</code> and use the
   <code>BlobBuilder</code> API to create a <code>Blob</code> from that data:</p>
 
   <pre class="prettyprint">
@@ -221,7 +221,7 @@ xhr.send();
 
   <h4 id="toc-reponseTypeBlob">Blob responses</h4>
 
-  <p>If you want to work directly with a <code>Blob</code> and/or
+  <p>If you want to work directly with a <a href="https://developer.mozilla.org/en/DOM/Blob"><code>Blob</code></a> and/or
   don't need to manipulate any of the file's bytes, use <code>xhr.responseType='blob'</code>
   (currently unimplemented in Chrome (<a href="http://crbug.com/52486">crbug.com/52486</a>):</p>
 
@@ -261,7 +261,7 @@ in this example.</p>
   <code>XMLHttpRequest</code> has limited us to sending <code>DOMString</code>
   or <code>Document</code> (XML) data for some time. Not anymore! A revamped <code>send()</code>
   method has been overridden to accept any of the following types:
-  <code>DOMString</code>, <code>DOMString</code>, <code>FormData</code>, <code>Blob</code>,
+  <code>DOMString</code>, <code>Document</code>, <code>FormData</code>, <code>Blob</code>,
   <code>File</code>, <code>ArrayBuffer</code>. The examples in the rest of this
   section demonstrate sending data using each type.</p>
 
@@ -443,7 +443,7 @@ function sendArrayBuffer() {
 
   <h3 id="toc-enable-cors">Enabling CORS requests</h3>
 
-  <p>Lets say your application lives on <code>example.com</code> and you
+  <p>Let's say your application lives on <code>example.com</code> and you
   want to pull data from <code>www.example2.com</code>. Normally if you
   tried to make such an AJAX call, the request would fail and the browser
   would throw an origin mismatch error. With CORS, <code>www.example2.com</code>
@@ -470,7 +470,8 @@ Access-Control-Allow-Origin: <b>*</b>
     <figcaption><code>Access-Control-Allow-Origin</code> header on html5rocks.com</figcaption>
   </figure>
 
-  <p>Since this is so easy, please, please, please <a href="http://enable-cors.org/">enable CORS</a>!</p>
+  <p>Since enabling cross-origin requests is so easy, please, please, please
+  <a href="http://enable-cors.org/">enable CORS</a> if you have public data!</p>
 
   <h3 id="toc-request-cors">Making a cross-domain request</h3>
 
@@ -493,7 +494,7 @@ xhr.send()
 
   <h3 id="toc-example-savingimages">Download + save files to the HTML5 file system</h3>
 
-  <p>Lets say you have an image gallery application and want to fetch a bunch
+  <p>Let's say you have an image gallery application and want to fetch a bunch
   of images and save them locally using the <a href="/tutorials/file/filesystem/">HTML5 File System</a>.
   One way to accomplish this would be to request images as <code>ArrayBuffer</code>s,
   build a <code>Blob</code> from the data, and write the blob using <code>FileWriter</code>:</p>
