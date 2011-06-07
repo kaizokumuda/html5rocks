@@ -327,28 +327,43 @@
       });
       return slideCount + 1;
     },
-    _update: function(dontPush) {
+    _update: function(targetId, dontPush) {
       // in order to delay the time where the counter shows the slide number we check if
       // the slides are already loaded (so we show the loading... instead)
       // the technique to test visibility is taken from here
       // http://stackoverflow.com/questions/704758/how-to-check-if-an-element-is-really-visible-with-javascript
+      var currentIndex = this._getCurrentIndex();
+
+      if (targetId) {
+        var savedIndex = currentIndex;
+        this.current = targetId;
+        currentIndex = this._getCurrentIndex();
+        if (Math.abs(savedIndex - currentIndex) > 1) {
+          // if the current switch is not "prev" or "next", we need clear
+          // the state setting near the original slide
+          for (var x = savedIndex; x < savedIndex + 7; x++) {
+            if (this._slides[x-4]) {
+              this._slides[x-4].setState(0);
+            }
+          }
+        }
+      }
       var docElem = document.documentElement;
       var elem = document.elementFromPoint( docElem.clientWidth / 2, docElem.clientHeight / 2);
-      var currentIndex = this._getCurrentIndex();
       if (elem && elem.className != 'presentation') {
         this._presentationCounter.textContent = currentIndex;
       }
+      this._speakerNote.innerHTML = this._slides[currentIndex - 1].getSpeakerNote();
       if (history.pushState) {
         if (!dontPush) {
           history.replaceState(this.current, 'Slide ' + this.current, '#' + this.current);
-          this._speakerNote.innerHTML = this._slides[currentIndex - 1].getSpeakerNote();
         }
       } else {
         window.location.hash = this.current;
       }
-      for (var x = currentIndex-1; x < currentIndex + 7; x++) {
+      for (var x = currentIndex; x < currentIndex + 7; x++) {
         if (this._slides[x-4]) {
-          this._slides[x-4].setState(Math.max(0, x-currentIndex));
+          this._slides[x-4].setState(x-currentIndex);
         }
       }
     },
@@ -357,18 +372,18 @@
     next: function() {
       if (!this._slides[this._getCurrentIndex() - 1].buildNext()) {
         var next = query('#' + this.current + ' + .slide');
-        this.current = (next) ? next.id : this.current;
-        this._update();
+        //this.current = (next) ? next.id : this.current;
+        this._update((next) ? next.id : this.current);
       }
     },
     prev: function() {
       var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')');
-      this.current = (prev) ? prev.id : this.current;
-      this._update();
+      //this.current = (prev) ? prev.id : this.current;
+      this._update((prev) ? prev.id : this.current);
     },
     go: function(slideId, dontPush) {
-      this.current = slideId;
-      this._update(dontPush);
+      //this.current = slideId;
+      this._update(slideId, dontPush);
     },
 
     _notesOn: false,
