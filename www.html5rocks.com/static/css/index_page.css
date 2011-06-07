@@ -33,9 +33,12 @@
   -o-transition: all 0.10s ease-in-out;
   cursor: pointer;
 }
-#index div.app:hover,
+#index div.app:hover {
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 0, 0, 0.2) inset;
+}
 #themes a:hover {
-  border-color: #e1e1e1;
   -webkit-box-shadow: #666 0px 0px 6px;
   -moz-box-shadow: #666 0px 0px 6px;
   box-shadow: #666 0px 0px 6px;
@@ -63,12 +66,15 @@
   background: url(/static/images/identity/classes_32/badge-icon-sprite_32.png) no-repeat,
               linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
   background-position: 6px 50%;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
   margin: 3px;
   padding: 5px;
   -moz-border-radius: 0;
   -o-border-radius: 0;
   border-radius: 0;
-  border-width: 1px;
+  border: 1px solid #e1e1e1;
   vertical-align: middle;
 }
 #themes h3 {
