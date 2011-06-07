@@ -99,8 +99,8 @@
   <p>Not many people get excited about forms, but HTML5 brings some big
   improvements, both for the developers creating them and for the users 
   filling them out. New form elements, attributes, input types, browser-based 
-  validation, and CSS3 styling techniques make it easier and hopefully more 
-  enjoyable to create forms.</p>
+  validation, CSS3 styling techniques, and the FormData object make it easier 
+  and hopefully more enjoyable to create forms.</p>
 
   <h3 id="toc-intro-support">Browser support</h3>
 
@@ -370,6 +370,39 @@
   </table> 
   </p>
   
+  <h3 id="toc-form-data-object">The FormData object</h3>
+
+  <p>One of the enhancements to <code><a href="http://dev.w3.org/2006/webapi/XMLHttpRequest-2" 
+  target="_blank">XMLHttpRequest</a></code> is the introduction of the <code>
+  <a href="http://dev.w3.org/2006/webapi/XMLHttpRequest-2/#the-formdata-interface" 
+  target="_blank">FormData</a></code> object. With the 
+  <code>FormData</code> object, you can create and send a set of key/value 
+  pairs and, optionally, files using <code>XMLHttpRequest</code>. When using 
+  this technique, the data is sent in the same format as if you'd submitted 
+  it via the form's <code>submit()</code> method with the encoding type of 
+  <code>multipart/form-data</code>.</p>
+
+  <p><code>FormData</code> gives you a way to create HTML forms on-the-fly
+  using JavaScript, and then submit them using <code>XMLHttpRequest.send()</code>.
+  Here's a simple example:</p>
+  <pre class="prettyprint">var formData = new FormData();
+formData.append("part_num", "123ABC"); 
+formData.append("part_price", 7.95);
+formData.append("part_image", somefile)
+
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "http://some.url/");  
+xhr.send(formData);</pre>
+
+  <p>You can also use <code>FormData</code> to add additional data to an 
+  existing form before submitting it.</p>
+  <pre class="prettyprint">var formElement = document.getElementById("someFormElement");
+var formData = new FormData(formElement);
+formData.append("part_description", "The best part ever!");
+
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "http://some.url/");
+xhr.send(formData);</pre>
 
   <h2 id="toc-validation">Browser-based validation</h2>
 
