@@ -20,18 +20,14 @@
   width: 150px;
   padding: 13px 10px;
   margin: 0 4px;
-  background: -moz-linear-gradient(90deg, #eee, #fff, #eee);
-  background: -webkit-gradient(linear, left top, left bottom,
-                               from(#eee), color-stop(0.5, #fff), to(#eee));
-  background: -ms-linear-gradient(#eee, #fff, #eee);
-  background: -webkit-linear-gradient(#eee, #fff, #eee);
-  background: -ms-linear-gradient(#eee, #fff, #eee);
-  background: -o-linear-gradient(90deg, #eee, #fff, #eee);
-  background: linear-gradient(#eee, #fff, #eee);
-  border: 2px solid #e1e1e1;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 15px;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  background-color: white;
+  border: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
   -webkit-transition: -webkit-box-shadow 0.10s ease-in-out;
   -moz-transition: all 0.10s ease-in-out;
   -o-transition: all 0.10s ease-in-out;
