@@ -98,10 +98,10 @@ figure img {
   goodies because it plays such an integral part in today's complex web apps.</p>
 
   <p>Turns out our old friend got a huge makeover but many folks
-  I talk to are unaware of its new features. <a href="http://dev.w3.org/2006/webapi/XMLHttpRequest-2/">XMLHttpRequest Level 2</a>
-  introduces a slew of new capabilities which promise to end crazy hacks in our web apps. Level 2
-  adds things like cross-origin requests, uploading progress events,
-  and support for uploading/downloading binary data. These allow <code>XMLHttpRequest</code>
+  are unaware of its new features. <a href="http://dev.w3.org/2006/webapi/XMLHttpRequest-2/">XMLHttpRequest Level 2</a>
+  introduces a slew of new capabilities which put an end to crazy hacks in our web apps;
+  things like cross-origin requests, uploading progress events,
+  and support for uploading/downloading binary data. These allow AJAX
   to work in concert with many of the bleeding edge HTML5 APIs such as <a href="/tutorials/file/filesystem/">File System API</a>,
   <a href="http://chromium.googlecode.com/svn/trunk/samples/audio/specification/specification.html">Web Audio API</a>,
   and WebGL.</p>
@@ -166,9 +166,9 @@ xhr.send();
     <code>responseType</code>.)</dd>
   </dl>
 
-  <p>With this new awesomeness, we can rework the previous example. This
-  time however, let's fetch the image as an <code>ArrayBuffer</code> and use the
-  <code>BlobBuilder</code> API to create a <code>Blob</code> from that data:</p>
+  <p>With this new awesomeness, we can rework the previous example, but this time,
+  fetch the image as an <code>ArrayBuffer</code> instead of a string. Handing the
+  buffer over to the <code>BlobBuilder</code> API creates a <code>Blob</code>:</p>
 
   <pre class="prettyprint">
 BlobBuilder = window.MozBlobBuilder || window.WebKitBlobBuilder || window.BlobBuilder;
@@ -190,7 +190,7 @@ xhr.open('GET', '/path/to/image.png', true);
 xhr.send();
 </pre>
 
-    <p>Ah, much nicer!</p>
+    <p>Much nicer!</p>
 
     <h4 id="toc-reponseTypeArrayBuffer">ArrayBuffer responses</h4>
 
@@ -200,10 +200,11 @@ xhr.send();
     you can create "views" of the underlying data using <a href="https://developer.mozilla.org/en/JavaScript_typed_arrays">JavaScript typed arrays</a>.
     In fact, multiple views can be created from a single <code>ArrayBuffer</code> source.
     For example, you could create an 8-bit integer array that shares the same <code>ArrayBuffer</code>
-    as an existing 32-bit integer array from the same data.</p>
+    as an existing 32-bit integer array from the same data. The underlying data
+    remains the same, we just create different representations of it.</p>
 
-    <p>As an example, the following fetches our same image, as an <code>ArrayBuffer</code>,
-    and creates an unsigned 8-bit integer array from that data buffer:</p>
+    <p>As an example, the following fetches our same image as an <code>ArrayBuffer</code>,
+    but this time, creates an unsigned 8-bit integer array from that data buffer:</p>
 
     <pre class="prettyprint">
 var xhr = new XMLHttpRequest();
@@ -256,10 +257,10 @@ in this example.</p>
 
   <h2 id="toc-sending">Sending data</h2>
 
-  <p>Being able to <a href="#toc-response">download data in different formats</a> is great, but it doesn't help
-  much if we can't send these rich formats back to home base (the server).
+  <p>Being able to <a href="#toc-response">download data in different formats</a> is great, but it doesn't
+  get us anywhere if we can't send these rich formats back to home base (the server).
   <code>XMLHttpRequest</code> has limited us to sending <code>DOMString</code>
-  or <code>Document</code> (XML) data for some time. Not anymore! A revamped <code>send()</code>
+  or <code>Document</code> (XML) data for some time. Not anymore. A revamped <code>send()</code>
   method has been overridden to accept any of the following types:
   <code>DOMString</code>, <code>Document</code>, <code>FormData</code>, <code>Blob</code>,
   <code>File</code>, <code>ArrayBuffer</code>. The examples in the rest of this
@@ -284,7 +285,7 @@ sendText(<b>'test string'</b>);
 </pre>
 
 <pre class="prettyprint"  style="display:inline-block">
-function sendText2(txt) {
+function sendTextNew(txt) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/server', true);
   <b>xhr.responseType = 'text';</b>
@@ -299,9 +300,9 @@ function sendText2(txt) {
 sendText2(<b>'test string'</b>);
 </pre>
 
-  <p>There's nothing new here. The right snippet sets
-  the response type to 'text' for comparison. Note, omitting that line
-  yields the same result.</p>
+  <p>There's nothing new here, though the right snippet is slightly different.
+  It sets <code>responseType='text'</code> for comparison. Again, omitting that line
+  yields the same results.</p>
 
   <h3 id="toc-send-formdata">Submitting forms: xhr.send(FormData)</h3>
 
@@ -326,7 +327,7 @@ function sendForm() {
 </pre>
 
   <p>Essentially, we're just dynamically creating a <code>&lt;form&gt;</code> and tacking on
-  <code>&lt;input&gt;</code>s values to it by calling the append method.</p>
+  <code>&lt;input&gt;</code> values to it by calling the append method.</p>
 
   <p>Of course, you don't need to create a <code>&lt;form&gt;</code> from scratch.
   <code>FormData</code> objects can be initialized from and existing <code>HTMLFormElement</code>
@@ -355,8 +356,8 @@ function sendForm(form) {
 }
 </pre>
 
-  <p>Since an HTML form can include file uploads (e.g. <code>&lt;input type="file"&gt;</code>),
-  <code>FormData</code> can handle file data too. Simply append the file(s) and the browser will
+  <p>An HTML form can include file uploads (e.g. <code>&lt;input type="file"&gt;</code>)
+  and  <code>FormData</code> can handle that too. Simply append the file(s) and the browser will
   construct a <code>multipart/form-data</code> request when <code>send()</code> is called:</p>
 
 <pre class="prettyprint">
@@ -389,7 +390,7 @@ document.querySelector('input[type="file"]').addEventListener('change', function
   to inform the user of the upload's progress:</p>
 
 <pre class="prettyprint">
-&lt;progress min="0" max="100">&lt;/progress>
+&lt;progress min="0" max="100" value="0">0% complete&lt;/progress>
 </pre>
 <pre class="prettyprint">
 function upload(blobOrFile) {
@@ -438,14 +439,13 @@ function sendArrayBuffer() {
 
   <p><a href="http://dev.w3.org/2006/waf/access-control/">CORS</a> allows web applications
   on one domain to make cross domain AJAX requests to another domain.
-  It's dead simple to enable on a server. The best part is that to enable this
-  feature, it only requires a single header to be set.</p>
+  It's dead simple to enable, only requiring a single response header to be sent by the server.</p>
 
   <h3 id="toc-enable-cors">Enabling CORS requests</h3>
 
   <p>Let's say your application lives on <code>example.com</code> and you
   want to pull data from <code>www.example2.com</code>. Normally if you
-  tried to make such an AJAX call, the request would fail and the browser
+  tried to make this type of AJAX call, the request would fail and the browser
   would throw an origin mismatch error. With CORS, <code>www.example2.com</code>
   can choose to allow requests from <code>example.com</code> by simply adding a header:</p>
 
@@ -453,7 +453,7 @@ function sendArrayBuffer() {
 Access-Control-Allow-Origin: http://example.com
 </pre>
 
-  <p>You can add <code>Access-Control-Allow-Origin</code> to a single resource
+  <p><code>Access-Control-Allow-Origin</code> can be added to a single resource
   under a site or across the entire domain. To allow <i>any</i> domain to make
   a request to you, set:
 
@@ -470,8 +470,8 @@ Access-Control-Allow-Origin: <b>*</b>
     <figcaption><code>Access-Control-Allow-Origin</code> header on html5rocks.com</figcaption>
   </figure>
 
-  <p>Since enabling cross-origin requests is so easy, please, please, please
-  <a href="http://enable-cors.org/">enable CORS</a> if you have public data!</p>
+  <p>Enabling cross-origin requests is easy, so please, please, please
+  <a href="http://enable-cors.org/">enable CORS</a> if your data is public!</p>
 
   <h3 id="toc-request-cors">Making a cross-domain request</h3>
 
@@ -484,9 +484,10 @@ Access-Control-Allow-Origin: <b>*</b>
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://www.example2.com/hello.json');
 xhr.onload = function(e) {
-  var data = JSON.parse(<b>this.response</b>)
+  var data = JSON.parse(<b>this.response</b>);
+  ...
 }
-xhr.send()
+xhr.send();
 </pre>
 
 
@@ -494,8 +495,8 @@ xhr.send()
 
   <h3 id="toc-example-savingimages">Download + save files to the HTML5 file system</h3>
 
-  <p>Let's say you have an image gallery application and want to fetch a bunch
-  of images and save them locally using the <a href="/tutorials/file/filesystem/">HTML5 File System</a>.
+  <p>Let's say you have an image gallery and want to fetch a bunch
+  of images then save them locally using the <a href="/tutorials/file/filesystem/">HTML5 File System</a>.
   One way to accomplish this would be to request images as <code>ArrayBuffer</code>s,
   build a <code>Blob</code> from the data, and write the blob using <code>FileWriter</code>:</p>
 
