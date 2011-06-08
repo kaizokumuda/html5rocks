@@ -356,7 +356,7 @@
       this._speakerNote.innerHTML = this._slides[currentIndex - 1].getSpeakerNote();
       if (history.pushState) {
         if (!dontPush) {
-          history.replaceState(this.current, 'Slide ' + this.current, '#' + this.current);
+          history.pushState(this.current, 'Slide ' + this.current, '#' + this.current);
         }
       } else {
         window.location.hash = this.current;
