@@ -152,6 +152,10 @@ class ContentHandler(webapp.RequestHandler):
     if relpath is not None:
       current = relpath.split('/')[0].split('.')[0]
 
+    # Strip out language code from path. Urls changed for i18n work and correct
+    # disqus comment thread won't load with the changed urls.
+    path_no_lang = re.sub('^\/\w{2,3}\/', '', self.request.path, 1)
+
     template_data = {
       'toc' : self.get_toc(template_path),
       'self_url': self.request.url,
@@ -160,6 +164,8 @@ class ContentHandler(webapp.RequestHandler):
       'current': current,
       'prod': common.PROD
     }
+
+    template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
 
     # Request was for an Atom feed. Render one!
     if self.request.path.endswith('.xml'):
@@ -266,15 +272,16 @@ class ContentHandler(webapp.RequestHandler):
       potentialfile = re.sub('tutorials/casestudies',
                              'tutorials/casestudies/%s' % locale,
                              path)
-      englishfile   = re.sub('tutorials/casestudies',
-                             'tutorials/casestudies/%s' % 'en',
-                             path)
+      englishfile = re.sub('tutorials/casestudies',
+                           'tutorials/casestudies/%s' % 'en',
+                           path)
       logging.info(englishfile)
-      if os.path.isfile( potentialfile ):
+      if os.path.isfile(potentialfile):
         logging.info('Rendering in native: %s' % potentialfile)
 
         self.render(template_path=potentialfile,
-                    data={'redirect_from_locale': redirect_from_locale})
+                    data={'redirect_from_locale': redirect_from_locale},
+                    relpath=relpath)
 
       # If the localized file doesn't exist, and the locale isn't English, look
       # for an english version of the file, and redirect the user there if
@@ -283,8 +290,8 @@ class ContentHandler(webapp.RequestHandler):
         return self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
 
 
-    elif (re.search('tutorials/.+', relpath) or re.search('mobile/.+', relpath)
-         and not is_feed):
+    elif ((re.search('tutorials/.+', relpath) or re.search('mobile/.+', relpath))
+          and not is_feed):
       # Tutorials look like this on the filesystem:
       #
       #   .../tutorials +
@@ -302,7 +309,8 @@ class ContentHandler(webapp.RequestHandler):
       (dir, filename) = os.path.split(path)
       if os.path.isfile( os.path.join( dir, locale, filename ) ):
         self.render(template_path=os.path.join( dir, locale, filename ),
-                    data={'redirect_from_locale': redirect_from_locale})
+                    data={'redirect_from_locale': redirect_from_locale},
+                    relpath=relpath)
 
       # If the localized file doesn't exist, and the locale isn't English, look
       # for an english version of the file, and redirect the user there if
