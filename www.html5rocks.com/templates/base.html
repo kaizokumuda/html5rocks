@@ -58,9 +58,9 @@
             <ul>
               <li><a href="http://slides.html5rocks.com" target="_blank">{% trans "Presentation" %}</a></li>
               <li><a href="http://playground.html5rocks.com">{% trans "Playground" %}</a></li>
-              <li><a href="http://studio.html5rocks.com">{% trans "Studio" %}</a></li>
-              <li><a href="/{{LANGUAGE_CODE}}/tutorials/" {% ifequal current 'tutorials' %}class="current"{% endifequal %}>{% trans "Tutorials" %}</a></li>
-              <li><a href="/{{LANGUAGE_CODE}}/resources.html" {% ifequal current 'resources' %}class="current"{% endifequal %}>{% trans "Resources" %}</a></li>
+              <li><a href="http://studio.html5rocks.com">{% trans "Studio" %}</a></li>{{current}}
+              <li><a href="/{{LANGUAGE_CODE}}/tutorials/" {% if current == 'tutorials' or current == 'mobile' %}class="current"{% endif %}>{% trans "Tutorials" %}</a></li>
+              <li><a href="/{{LANGUAGE_CODE}}/resources.html" {% if current == 'resources' %}class="current"{% endif %}>{% trans "Resources" %}</a></li>
             </ul>
           </nav>
         </div>
