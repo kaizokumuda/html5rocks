@@ -84,6 +84,11 @@ handlers:
   static_files: content/\2/static/\3
   upload: content/tutorials/(.*\.(appcache|manifest))
 
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.crx)
+  static_files: content/tutorials/\1
+  mime_type: application/x-chrome-extension
+  upload: content/tutorials/(.*\.crx)
+
 #
 # Everything else
 #
