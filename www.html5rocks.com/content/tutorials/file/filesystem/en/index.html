@@ -191,7 +191,7 @@ fileEntry.remove(successCallback, opt_errorCallback);
 fileEntry.moveTo(dirEntry, opt_newName, opt_successCallback, opt_errorCallback);
 fileEntry.copyTo(dirEntry, opt_newName, opt_successCallback, opt_errorCallback);
 fileEntry.getParent(successCallback, opt_errorCallback);
-fileEntry.toURI(opt_mimeType);  // Currently not implemented in Google Chrome 9.
+fileEntry.toURL(opt_mimeType);
 
 fileEntry.file(successCallback, opt_errorCallback);
 fileEntry.createWriter(successCallback, opt_errorCallback);
@@ -770,6 +770,7 @@ var url = 'filesystem:http://example.com/temporary/myfile.png';
   </ul>
 
 <script>
+window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 var fs = null;
 
 function errorHandler(e) {
