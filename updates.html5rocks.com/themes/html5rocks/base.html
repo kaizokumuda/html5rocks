@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load i18n %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta charset="utf-8" /> 
+    <meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps." /> 
+    <meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,offline,audio,video,drag and drop,chrome" /> 
+    <title>{% block title %}HTML5 Rocks - A resource for open web HTML5 developers{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{config.url_prefix}}/static/{{config.theme}}/css/index_page.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{config.url_prefix}}/static/{{config.theme}}/css/base.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{config.url_prefix}}/static/{{config.theme}}/css/screen.css" />
+    <link rel="alternate" type="application/atom+xml" href="/feeds/atom.xml" />
+    <link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+
+<div id="wrap">
+  <div id="content">
+
+  <header>
+    <div>
+      <h1 id="title">
+        <a href="http://html5rocks.com" title="{% trans "HTML5 Rocks Logo" %}"><span class="normal">{% trans "HTML" %}</span><img src="/static/html5rocks/images/HTML5_Badge_64.png" alt=""><span class="rocks">{% trans "Rocks" %}</span></a>
+      </h1>
+      <h2 id="subtitle"><a class="updates" href="/">Update<br/>Stream</a></h2>
+      <nav>
+        <ul>
+          <li><a href="http://slides.html5rocks.com" target="_blank">{% trans "Presentation" %}</a></li>
+          <li><a href="http://playground.html5rocks.com">{% trans "Playground" %}</a></li>
+          <li><a href="http://studio.html5rocks.com">{% trans "Studio" %}</a></li>
+          <li><a href="/{{LANGUAGE_CODE}}/tutorials/">{% trans "Tutorials" %}</a></li>
+          <li><a href="/{{LANGUAGE_CODE}}/resources.html">{% trans "Resources" %}</a></li>
+        </ul>
+
+    <form id="quick-search" action="/search" method="get">
+      <p>
+        <input type="hidden" name="cref"
+               value="http://{{config.host}}/cse.xml" />
+        <input type="hidden" name="cof" value="FORID:11" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input class="tbox" type="text" id="q" name="q" size="31" />
+        <input class="btn" type="button" name="sa" value="Search Updates" />
+      </p>
+    </form>
+
+
+      </nav>
+    </div>
+
+  </header>
+
+    <script type="text/javascript"
+	    src="http://www.google.com/coop/cse/brand?form=quick-search&lang=en">
+    </script>
+
+    {% block body %}{% endblock %}
+
+    <footer>
+      <span>
+        <a href="http://www.w3.org/html/logo/">
+          <img src="/static/html5rocks/images/HTML5_Badge_64.png" align="left" title="{% trans "HTML5 Logo" %}" alt="{% trans "HTML5 Logo" %}" class="footer-badge"/>
+        </a>
+      </span>
+      <span>
+        <a href="/{{LANGUAGE_CODE}}/tos.html" {% ifequal current 'tos' %}class="current"{% endifequal %}>{% trans "Terms" %}</a> -
+        <a href="/{{LANGUAGE_CODE}}/privacy.html" {% ifequal current 'privacy' %}class="current"{% endifequal %}>{% trans "Privacy" %}</a> -
+        <a href="http://code.google.com/p/html5rocks/issues/entry">{% trans "Report bug or request a feature" %}</a> - 
+        <a href="http://twitter.com/ChromiumDev">{% trans "Follow us on Twitter" %}</a> -
+        <a href="/{{LANGUAGE_CODE}}/profiles" {% ifequal current 'profiles' %}class="current"{% endifequal %}>{% trans "About Authors" %}</a>
+      </span>
+      <span class="madeby">{% trans "Made by Google" %}| <img src="/static/images/google_logo_small.png" width="50" height="20" alt="" /></span>
+      <p>{% trans "This site contains information on APIs that are not part of the W3C HTML5 specification." %}</p>
+    </footer>
+
+  </div> <!-- content -->
+</div> <!-- wrap -->
+
+    {% if config.analytics_id and not devel and not is_admin %}
+      <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("{{config.analytics_id}}");
+      pageTracker._trackPageview();
+      } catch(err) {}</script>
+    {% endif %}
+
+  </body>
+
+</html>

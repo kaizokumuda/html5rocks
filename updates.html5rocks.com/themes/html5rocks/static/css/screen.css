@@ -1,0 +1,18 @@
+#quick-search {
+    float:right;
+    opacity:.5;
+    -webkit-transition:opacity .10s ease-in-out;
+    -moz-transition:opacity .10s ease-in-out;
+    -o-transition:opacity .10s ease-in-out
+}
+#cse-search-box:hover {opacity:1 }
+#q { width:150px; outline:0 background: none !important; }
+#subtitle { font-size: 24px; float: left; position: relative; left: 10px; top: -15px; color: red; font-family: 'Reenie Beanie', arial, helvetica, sans-serif; }
+#subtitle a { color: red; }
+
+/* HTML5Rocks overrides */
+.postmeta { border: 1px solid #ddd; padding: 10px; }
+.date { float: right; }
+footer { margin-top: 20px; }
+.tag { color: #696; text-decoration: underline; }
+h2 { margin: 20px 0 10px; }
