@@ -573,3 +573,8 @@ video {
 [data-build] > *.to-build {
   opacity: 0;
 }
+
+.sidebar {
+  background-color: #F3F3F3;
+  border-right: 5px solid #987;
+}
