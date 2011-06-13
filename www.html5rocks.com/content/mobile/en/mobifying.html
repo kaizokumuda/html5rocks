@@ -167,7 +167,7 @@ to make things look better in mobile.</p>
   <li>Adjusts the layout to be single column. <a href="#toc-layout">More on this later</a>.</li>
   <li>Removes the <code>box-shadow</code> around the site's main container div. Large box shadows
   reduce page performance.</li>
-  <li>Used CSS box model <code>box-ordinal-group</code> to change the ordering of each section on the homepage.
+  <li>Used CSS flex box model <code>box-ordinal-group</code> to change the ordering of each section on the homepage.
   You'll notice the "LEARN BY MAJOR HTML5 FEATURE GROUPS" comes before the "TUTORIALS" section on the <a href="/">homepage</a>
   but after it on the mobile version. This ordering made more sense for mobile and didn't require markup changes.
   CSS flexbox FTW!</li>
@@ -226,7 +226,7 @@ for more information on targeting device resolutions.</p>
 
 <h3 id="toc-meta-fullscreen">Full-screen browsing</h3>
 
-<p>There are two other meta values that are iOS-specific. <code>apple-mobile-web-app-capable</code>
+<p>There are two other meta values that are iOS-sfic. <code>apple-mobile-web-app-capable</code>
 and <code>apple-mobile-web-app-status-bar-style</code> will render page content
 in app-like full screen mode and make the status bar translucent:</p>
 
@@ -295,7 +295,7 @@ but are occasionally overlooked when rushing a site out the door.</p>
 
 <h3 id="toc-optimizations-scrolling">Auto-hide address bar</h3>
 
-<p>Mobile browsering lacks the screen real estate of its desktop counterpart.
+<p>Mobile browsers lacks the screen real estate of its desktop counterpart.
 To make things worst, on different platforms, you sometimes end up with a big ol'
 address bar at the top of the screen...even after the page is done loading.</p>
 
@@ -371,7 +371,7 @@ on html5rocks:</p>
 &lt;script src="//www.google.com/jsapi?autoload={"modules":[{"name":"search","version":"1"}]}"&gt;&lt;/script&gt;
 </pre>
   </li>
-  <li>Our code prettyprinter and <a href="http://www.modernizr.com/">Modernizr</a> were
+  <li>Our code pretty printer and <a href="http://www.modernizr.com/">Modernizr</a> were
   being included on every page, even if they were never used. Modernizr is great,
   but it runs a bunch of tests on every load. Some of those tests make costly modifications
   to the DOM and slows down page load. Now, we're only including these libraries
