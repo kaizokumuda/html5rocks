@@ -469,7 +469,7 @@ video {
   -o-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
 }
 
-.key { font-family: Arial; }
+.key { font-family: "Lucida console", Monospace, Arial; }
 
 :not(header) > .css,
 :not(header) > .js,
