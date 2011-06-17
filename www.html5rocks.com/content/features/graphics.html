@@ -16,7 +16,7 @@ Until recently, HTML developers were limited to CSS and JavaScript in order to p
 or they would have to rely on a plugin like Flash.  With the addition of technologies like the canvas element, Web GL, and SVG images,
 this is no longer the case! In fact, there are many new features which deal with graphics on the web:
 {% endblocktrans %}</p>
-  
+
 <ul>
   <li>{% trans "2D Canvas" %}</li>
   <li>{% trans "WebGL" %}</li>
@@ -70,7 +70,7 @@ Chrome specific details can be found on the <a href="http://dev.chromium.org/dev
 {% endblocktrans %}</p>
 {% endblock %}
 
-<!-- wrap tutorials content with LI's 
+<!-- wrap tutorials content with LI's
      Note: do not add existing tutorials from html5rocks. Those will be
      added here automatically by scraping the tutorial page's tags.
      Only add external tutorials. -->
@@ -79,6 +79,12 @@ Chrome specific details can be found on the <a href="http://dev.chromium.org/dev
 
 
 {% block inthewild %}
+<figure>
+  <a href="http://ro.me">
+    <img src="/static/images/features/rome.png" alt="An interactive film by Chris Black" title="An interactive film by Chris Black">
+    <figcaption>3 Dreams of Black</figcaption>
+  </a>
+</figure>
 <figure>
   <a href="http://thewildernessdowntown.com/">
     <img src="/static/images/features/arcadefire.png" alt="Online music video from the Arcade Fire" title="Online music video from the Arcade Fire" />
@@ -97,35 +103,29 @@ Chrome specific details can be found on the <a href="http://dev.chromium.org/dev
     <figcaption>Wikipedia</figcaption>
   </a>
 </figure>
-<figure>
-  <a href="http://www.monocubed.com/?p=549">
-    <img src="/static/images/features/galactic_inbox.png" alt="GMail the game" title="GMail the game">
-    <figcaption>Galactic Inbox</figcaption>
-  </a>
-</figure>
 {% endblock %}
 
 
-{% block demos %} 
+{% block demos %}
 <dl>
+  <dt><a href="http://www.chromeexperiments.com">Chrome Experiments</a><dt>
+  <dd>{% trans "Various WebGL / canvas demos which take advantage of HW accel" %}</dd>
+  <dt><a href="http://tinkercad.com/">TinkerCad</a><dt>
+  <dd>{% trans "WebGL solid modeling CAD" %}</dd>
   <dt><a href="http://www.paulrhayes.com/2009-07/animated-css3-cube-interface-using-3d-transforms/">Animated CSS3 cube using 3D transforms</a><dt>
   <dd>{% trans "3D effects without WebGL" %}</dd>
-  <dt><a href="http://www.3dtin.com/">3DTin</a><dt>
-  <dd>{% trans "Design 3d models in the browser using canvas" %}</dd>
   <dt><a href="http://hakim.se/experiments/">Hakim.se / Experiments</a><dt>
   <dd>{% trans "Nicely polished canvas experiments" %}</dd>
   <dt><a href="http://www.effectgames.com/demos/canvascycle/?sound=0">8-Bit color cycling with HTML5</a><dt>
   <dd>{% trans "Old-school games effect" %}</dd>
   <dt><a href="http://ie.microsoft.com/testdrive/">IE9 Graphics demos</a><dt>
   <dd>{% trans "Various canvas demos which take advantage of HW accel" %}</dd>
-  <dt><a href="http://dev.chromium.org/developers/demos-gpu-acceleration-and-webgl">Chrome WebGL / canvas demos</a><dt>
-  <dd>{% trans "Various WebGL / canvas demos which take advantage of HW accel" %}</dd>
   <dt><a href="http://www.craftymind.com/2010/04/20/blowing-up-html5-video-and-mapping-it-into-3d-space/">Blowing up HTML5 video and mapping it into 3D space</a><dt>
   <dd>{% trans "Nice integration between video and canvas" %}</dd>
 </dl>
 {% endblock %}
 
-{% block resources %} 
+{% block resources %}
 <dl>
   <dt><a href="http://code.google.com/p/svgweb/">svgweb</a></dt>
   <dd>{% trans "Support SVG on all browsers" %}</dd>
