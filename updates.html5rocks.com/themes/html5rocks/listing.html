@@ -3,20 +3,20 @@
 {% block body %}
   {% for post in posts %}
     <h2><a href="{{config.url_prefix}}{{post.path}}">{{post.title|escape}}</a></h2>
-    <p class="post-info">
+    <div class="post-info">
+      <time pubdate class="date">{{post.published_tz|date:config.date_format}}</time>
       {% if post.tags %}
         {% for tag in post.tag_pairs %}
-          <a class="tag" href="{{config.url_prefix}}/tag/{{tag.1|escape}}">{{tag.0|escape}}</a>{% if not forloop.last %},{% endif %}
+          <a class="tag" href="{{config.url_prefix}}/tag/{{tag.1|escape}}">{{tag.0|escape}}</a>
         {% endfor %}
       {% endif %}
-    </p>
+    </div>
     {{post.rendered}}
     <p class="postmeta">
       {% if config.disqus_forum %}
         <a href="{{config.url_prefix}}{{post.path}}#disqus_thread" class="readmore">Comments</a> |
       {% endif %}
       <a href="{{config.url_prefix}}{{post.path}}" class="readmore">permalink</a>
-      <time pubdate class="date">{{post.published_tz|date:config.date_format}}</time>
     </p>
   {% endfor %}
   {% if prev_page %}

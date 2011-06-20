@@ -40,10 +40,13 @@
      #updates-title a { color: red; }
 
      /* HTML5Rocks overrides */
-     .postmeta { border: 1px solid #ddd; padding: 10px; font-size: 11px;}
+     .post-info {
+       margin-top: 5px;
+     }
+     .postmeta { border-bottom: 1px solid #ddd; padding: 10px; font-size: 11px;}
      .date { float: right; }
      footer { margin-top: 20px; }
-     .tag { color: #696; text-decoration: underline; }
+     .tag { font-size: small; color: #696; text-decoration: underline; margin-right: 5px; }
      #content h2 {
        margin-bottom: 0;
      }
@@ -86,7 +89,7 @@
             <input type="hidden" name="cof" value="FORID:9" />
             <input type="hidden" name="ie" value="UTF-8" />
             <input type="hidden" name="hl" value="{{LANGUAGE_CODE}}" />
-            <input type="search" name="q" id="q" autocomplete="off" placeholder="{% trans "Search updates" %}"/>
+            <input type="search" name="q" id="q" autocomplete="off" placeholder="{% trans "Search HTML5Rocks" %}"/>
           </div>
         </form>
 
