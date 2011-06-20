@@ -1,13 +1,17 @@
-#quick-search {
-    float:right;
-    opacity:.5;
-    -webkit-transition:opacity .10s ease-in-out;
-    -moz-transition:opacity .10s ease-in-out;
-    -o-transition:opacity .10s ease-in-out
+#subtitle {
+  font-size: 25px;
+  float: left;
+  position: relative;
+  left: 15px;
+  font-family: 'Reenie Beanie', arial, helvetica, sans-serif;
+  margin: 0;
+  -webkit-transform: rotateZ(-15deg);
+  -moz-transform: rotateZ(-15deg);
+  -ms-transform: rotateZ(-15deg);
+  -o-transform: rotateZ(-15deg);
+  transform: rotateZ(-15deg);
+  letter-spacing: -1px;
 }
-#cse-search-box:hover {opacity:1 }
-#q { width:150px; outline:0 background: none !important; }
-#subtitle { font-size: 24px; float: left; position: relative; left: 10px; top: -15px; color: red; font-family: 'Reenie Beanie', arial, helvetica, sans-serif; }
 #subtitle a { color: red; }
 
 /* HTML5Rocks overrides */
@@ -15,4 +19,5 @@
 .date { float: right; }
 footer { margin-top: 20px; }
 .tag { color: #696; text-decoration: underline; }
-h2 { margin: 20px 0 10px; }
+/*h2 { margin: 20px 0 10px; }*/
+

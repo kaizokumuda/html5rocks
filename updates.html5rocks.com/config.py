@@ -1,14 +1,17 @@
 # Name of the blog
-blog_name = 'My Blog'
+blog_name = 'HTML5Rocks Updates'
 
 # Your name (used for copyright info)
-author_name = 'the author'
+author_name = 'Chrome Developer Relations'
 
 # (Optional) slogan
-slogan = 'This is my blog'
+slogan = 'stay up to date with the open web'
 
 # The hostname this site will primarially serve off (used for Atom feeds)
-host = 'localhost:8080'
+host = 'updates.html5rocks.com'
+
+# The hostname of the main site.
+main_site_origin = 'http://www.html5rocks.com'
 
 # Selects the theme to use. Theme names correspond to directories under
 # the 'themes' directory, containing templates and static content.
@@ -16,8 +19,8 @@ theme = 'html5rocks'
 
 # List of page templates
 page_templates = {
-	'Theme.html': 'Theme',
-	'Simple.html': 'Simple',
+  'Theme.html': 'Theme',
+  'Simple.html': 'Simple',
 }
 
 # Defines the URL organization to use for blog postings. Valid substitutions:
@@ -54,7 +57,7 @@ disqus_forum = 'html5rocks'
 summary_length = 200
 
 # If you want to use Google Analytics, enter your 'web property id' here
-analytics_id = None
+analytics_id =  'UA-15028909-7'
 
 # If you want to use PubSubHubbub, supply the hub URL to use here.
 hubbub_hub_url = 'http://pubsubhubbub.appspot.com/'

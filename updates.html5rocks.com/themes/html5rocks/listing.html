@@ -16,7 +16,7 @@
         <a href="{{config.url_prefix}}{{post.path}}#disqus_thread" class="readmore">Comments</a> |
       {% endif %}
       <a href="{{config.url_prefix}}{{post.path}}" class="readmore">permalink</a>
-      <span class="date">{{post.published_tz|date:config.date_format}}</span>
+      <time pubdate class="date">{{post.published_tz|date:config.date_format}}</time>
     </p>
   {% endfor %}
   {% if prev_page %}
