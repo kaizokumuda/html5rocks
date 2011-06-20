@@ -316,6 +316,7 @@
   SlideShow.prototype = {
     _presentationCounter: query('#presentation-counter'),
     _speakerNote: query('#speaker-note'),
+    _help: query('#help'),
     _slides: [],
     _getCurrentIndex: function() {
       var me = this;
@@ -386,12 +387,10 @@
       this._update(slideId, dontPush);
     },
 
-    _notesOn: false,
     showNotes: function() {
       if (disableNotes) {
         return;
       }
-      var isOn = this._notesOn = !this._notesOn;
       this._speakerNote.style.display = "block";
       this._speakerNote.classList.toggle('invisible');
     },
@@ -415,24 +414,34 @@
       linkEls[(sheetIndex + 1) % linkEls.length].disabled = false;
       sessionStorage['theme'] = linkEls[(sheetIndex + 1) % linkEls.length].href;
     },
+    toggleHelp: function() {
+      this._help.style.display = "block";
+      this._help.classList.toggle('invisible');
+    },
+    viewSource: function() {
+      window.open("view-source:" + window.location.href);
+    },
     handleKeys: function(e) {
       if (/^(input|textarea)$/i.test(e.target.nodeName) || e.target.isContentEditable) {
         return;
       }
-
       switch (e.keyCode) {
-        case 37: // left arrow
+        case 37:  // left arrow
           this.prev(); break;
-        case 39: // right arrow
-        case 32: // space
+        case 39:  // right arrow
+        case 32:  // space
           this.next(); break;
-        case 51: // 3
+        case 48:  // 0
+          this.toggleHelp(); break;
+        case 51:  // 3
           this.switch3D(); break;
-        case 72: // H
+        case 72:  // H
           this.toggleHightlight(); break;
-        case 78: // N
+        case 78:  // N
           this.showNotes(); break;
-        case 84: // T
+        case 83:  // S
+          this.viewSource(); break;
+        case 84:  // T
           this.changeTheme(); break;
       }
     },
