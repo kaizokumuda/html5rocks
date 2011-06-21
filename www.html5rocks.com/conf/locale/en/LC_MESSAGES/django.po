@@ -148,7 +148,7 @@ msgid "Storage"
 msgstr ""
 
 #: content/index.html:89
-msgid "Latest Tutorials"
+msgid "Latest Updates"
 msgstr ""
 
 #: content/index.html:101

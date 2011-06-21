@@ -86,7 +86,7 @@
     </section>
 
     <section class="fr feed-section">
-      <h2 class="section-header">{% trans "Latest Tutorials" %} <a href="http://feeds.feedburner.com/html5rocks"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0
+      <h2 class="section-header">{% trans "Latest Updates" %} <a href="http://feeds.feedburner.com/html5rocks"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0
 U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJpSURBVDjLfVNJT1NRGL0/wY0/wonaEesO
 AxoTF4bEpY1GFGGBqEUhggjYaCVIcIKC1TiHiCEBiXEhVdm4EDaaKI2WofTRlqbYR8sbOhzfd5v3
 tEK8i5d3F+fcM3wf+3x065bZc9t6F5rNCLeYsXTJgkibBUK7FcsdVkS7bIh57Ihfs2PFa0fihgOx
@@ -126,13 +126,12 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
     function processFeedResponse(result) {
       var container = document.getElementById('latest_articles_feed');
 
-      if (!container) {
+      if (!container || !result.responseData) {
         return;
       }
 
-      if (!result.responseData) {
-        container.innerHTML = '<li>' + result.responseDetails + '<\/li>';
-        return;
+      if (container.textContent == 'loading feed...') {
+        container.textContent = '';
       }
 
       var html = [];
@@ -140,10 +139,10 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
         var date = new Date(entry.publishedDate);
         var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
 
-        html.push('<li>', formattedDateStr, ' <a href="', entry.link, '">',
-                  entry.title, '<\/a><\/li>')
+        html.push('<li>', formattedDateStr, ' ', entry.title.link(entry.link),
+                  '<\/li>');
       }
-      container.innerHTML = html.join('');
+      container.innerHTML += html.join('');
     }
 
     {% if not is_mobile %}
@@ -161,5 +160,6 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
       })();
     {% endif %}
   </script>
-  <script src="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&amp;num=6&amp;q={{host}}/tutorials/index.xml&amp;callback=processFeedResponse"></script>
+  <script src="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&amp;num=10&amp;q=http://pipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3D647030be6aceb6d005c3775a1c19401c%26_render%3Drss&amp;callback=processFeedResponse"></script>
+
 {% endblock %}
