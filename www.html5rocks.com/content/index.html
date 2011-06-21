@@ -123,10 +123,10 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
   </article>
 
   <script>
-    function processFeedResponse(result) {
+    function processPipeFeed(result) {
       var container = document.getElementById('latest_articles_feed');
 
-      if (!container || !result.responseData) {
+      if (!container || !result.value.items) {
         return;
       }
 
@@ -135,8 +135,8 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
       }
 
       var html = [];
-      for (var i = 0, entry; entry = result.responseData.feed.entries[i]; ++i) {
-        var date = new Date(entry.publishedDate);
+      for (var i = 0, entry; entry = result.value.items[i]; ++i) {
+        var date = new Date(entry.pubDate);
         var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
 
         html.push('<li>', formattedDateStr, ' ', entry.title.link(entry.link),
@@ -160,6 +160,6 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
       })();
     {% endif %}
   </script>
-  <script src="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&amp;num=10&amp;q=http://pipes.yahoo.com%2Fpipes%2Fpipe.run%3F_id%3D647030be6aceb6d005c3775a1c19401c%26_render%3Drss&amp;callback=processFeedResponse"></script>
+  <script src="http://pipes.yahoo.com/pipes/pipe.run?_id=647030be6aceb6d005c3775a1c19401c&_render=json&_callback=processPipeFeed"></script>-->
 
 {% endblock %}
