@@ -10,6 +10,7 @@
   <title>{% block title %}HTML5 Rocks - A resource for open web HTML5 developers{% endblock %}</title>
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="{{config.main_site_origin}}/static/css/base.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/static/html5rocks/css/updates.css" />
   <link rel="alternate" type="application/atom+xml" href="/feeds/atom.xml" />
 
   <link rel="stylesheet" media="only screen and (max-width: 800px)" href="{{config.main_site_origin}}/static/css/mobile.min.css" />
@@ -21,44 +22,6 @@
    <!--[if lt IE 9]>
    <script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
    <![endif]-->
-
-   <style>
-     #updates-title {
-       font-size: 25px;
-       float: left;
-       position: relative;
-       left: 15px;
-       font-family: 'Reenie Beanie', arial, helvetica, sans-serif;
-       margin: 0;
-       -webkit-transform: rotateZ(-15deg);
-       -moz-transform: rotateZ(-15deg);
-       -ms-transform: rotateZ(-15deg);
-       -o-transform: rotateZ(-15deg);
-       transform: rotateZ(-15deg);
-       letter-spacing: -1px;
-     }
-     #updates-title a { color: red; }
-
-     /* HTML5Rocks overrides */
-     .post-info {
-       margin-top: 5px;
-     }
-     .postmeta { border-bottom: 1px solid #ddd; padding: 10px; font-size: 11px;}
-     .date { float: right; }
-     footer { margin-top: 20px; }
-     .tag { font-size: small; color: #696; text-decoration: underline; margin-right: 5px; }
-     #content h2 {
-       margin-bottom: 0;
-     }
-     @media only screen and (max-width: 800px) {
-       #cse-search-box {
-         top: 0;
-       }
-       #updates-title {
-         display: none;
-       }
-     }
-   </style>
   {% block head %}{% endblock %}
 </head>
 

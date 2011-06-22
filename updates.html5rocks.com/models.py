@@ -2,6 +2,7 @@ import aetycoon
 import datetime
 import hashlib
 import re
+import common
 from google.appengine.ext import db
 from google.appengine.ext import deferred
 
@@ -16,7 +17,6 @@ if config.default_markup in markup.MARKUP_MAP:
   DEFAULT_MARKUP = config.default_markup
 else:
   DEFAULT_MARKUP = 'html'
-
 
 class BlogDate(db.Model):
   """Contains a list of year-months for published blog posts."""
@@ -40,18 +40,32 @@ class BlogDate(db.Model):
   def date(self):
     return BlogDate.datetime_from_key_name(self.key().name()).date()
 
-
 class BlogPost(db.Model):
+
   # The URL path to the blog post. Posts have a path iff they are published.
   path = db.StringProperty()
   title = db.StringProperty(required=True, indexed=False)
   body_markup = db.StringProperty(choices=set(markup.MARKUP_MAP),
                                   default=DEFAULT_MARKUP)
   body = db.TextProperty(required=True)
+  image_url = db.StringProperty(required=False, indexed=False) # external
+  cached_image_url = db.StringProperty(required=False, indexed=False) # blobstore
+  image_id = db.StringProperty(required=False, indexed=False) # blobstore
+  image_style = db.StringProperty(required=False, indexed=False)
   tags = aetycoon.SetProperty(basestring, indexed=False)
   published = db.DateTimeProperty()
   updated = db.DateTimeProperty(auto_now=False)
   deps = aetycoon.PickleProperty()
+  author_id = db.StringProperty(required=True, indexed=True)
+
+  @property
+  def author_link(self):
+    try:
+      profile = common.get_profiles()[self.author_id]
+      name = profile['name']
+      return '<a href="http://html5rocks.com/profiles/#!/'+self.author_id+'">'+name['given']+" "+name['family']+'</a>'
+    except:
+      return self.author_id
 
   @property
   def published_tz(self):
