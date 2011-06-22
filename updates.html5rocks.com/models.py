@@ -48,6 +48,7 @@ class BlogPost(db.Model):
   body_markup = db.StringProperty(choices=set(markup.MARKUP_MAP),
                                   default=DEFAULT_MARKUP)
   body = db.TextProperty(required=True)
+  image = db.StringProperty(required=False, indexed=False)
   tags = aetycoon.SetProperty(basestring, indexed=False)
   published = db.DateTimeProperty()
   updated = db.DateTimeProperty(auto_now=False)

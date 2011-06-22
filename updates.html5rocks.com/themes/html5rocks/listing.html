@@ -10,6 +10,9 @@
         {% endfor %}
       {% endif %}
     </p>
+    {% if post.image %}
+      <img class="postimage" src="/images/{{post.image}}"
+    {% endif %}
     {{post.rendered}}
     <p class="postmeta">
       {% if config.disqus_forum %}

@@ -1,3 +1,6 @@
+from __future__ import with_statement
+from google.appengine.api import files
+
 import datetime
 import logging
 import os
@@ -12,8 +15,10 @@ import post_deploy
 import utils
 
 from django import newforms as forms
+from django.forms.util import ErrorList
 from google.appengine.ext.db import djangoforms
 
+import urllib2
 
 class PostForm(djangoforms.ModelForm):
   title = forms.CharField(widget=forms.TextInput(attrs={'id':'name'}))
@@ -25,9 +30,10 @@ class PostForm(djangoforms.ModelForm):
     choices=[(k, v[0]) for k, v in markup.MARKUP_MAP.iteritems()])
   tags = forms.CharField(widget=forms.Textarea(attrs={'rows': 5, 'cols': 20}))
   draft = forms.BooleanField(required=False)
+  image = forms.CharField(required=False, widget=forms.TextInput(attrs={'id':'image'}))
   class Meta:
     model = models.BlogPost
-    fields = [ 'title', 'body', 'tags' ]
+    fields = [ 'title', 'body', 'image', 'tags' ]
 
 
 def with_post(fun):
@@ -90,6 +96,21 @@ class PostHandler(BaseHandler):
     form = PostForm(data=self.request.POST, instance=post,
                     initial={'draft': post and post.published is None})
     if form.is_valid():
+      image = form.clean_data['image']
+      if image:
+        try:
+          u = urllib2.urlopen(image)
+          file_name = files.blobstore.create(mime_type='image/jpeg')
+          with files.open(file_name, 'a') as f:
+            f.write(u.read())
+          files.finalize(file_name)
+          blob_key = files.blobstore.get_blob_key(file_name)
+          form.clean_data['image'] = str(blob_key)
+        except:
+          # Not sure how to use ErrorList in Django 0.96
+          # form._errors['image'] = ''
+          self.render_form(form)
+          return
       post = form.save(commit=False)
       if form.clean_data['draft']:# Draft post
         post.published = datetime.datetime.max
@@ -230,3 +251,4 @@ class PageDeleteHandler(BaseHandler):
   def post(self, page):
     page.remove()
     self.render_to_response("deletedpage.html", None)
+

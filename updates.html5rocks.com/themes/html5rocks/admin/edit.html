@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% block title %}{% if form.instance %}Edit{% else %}New{% endif %} Post{% endblock %}
+{% block body %}
+  <form method="post" action="">
+    <table>
+      <h2>{% if form.instance %}Edit{% else %}New{% endif %} Post</h2>
+      {{form}}
+      <tr><td>&nbsp;</td><td><input id="submit" type="submit" value="Submit post" /></td></tr>
+    </table>
+  </form>
+  <h3>Please use Textile markup (<a
+    href="http://en.wikipedia.org/wiki/Textile_(markup_language)">reference</a>)</h3>
+    <ul>
+      <li>New paragraph: <span class="textile">Just leave an empty line.</span></li>
+        <li>Links: <span class="textile">"the Google search
+          engine":http://google.com</span></li>
+        <li>A little code: <span class="textile">@alert("just some
+          code")@</span></li>
+        <li>A lot of code: <span class="textile">Resort to HTML</span>:
+<pre>
+&lt;pre&gt;&lt;code&gt;for (i=0; i<10; i++) {
+  console.log(i);
+}
+&lt;/code&gt;&lt;/pre&gt;</pre>
+    </ul>
+{% endblock %}
