@@ -138,6 +138,11 @@ if(q.addEventListener) {
   }, false);
 }
 
+// Auto syntax highlight all pre tags.
+var pres = document.querySelectorAll('pre');
+for (var i = 0, pre; pre = pres[i]; ++i) {
+  pre.className += ' prettyprint';
+};
 prettyPrint();
 </script>
 
