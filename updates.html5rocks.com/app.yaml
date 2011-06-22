@@ -1,4 +1,4 @@
-application: updatesrock
+application: updaterocker
 version: live
 runtime: python
 api_version: 1
