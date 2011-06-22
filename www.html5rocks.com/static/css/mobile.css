@@ -39,6 +39,7 @@ article header h1 {
   margin-top: 4px;
   position: absolute;
   right: 4px;
+  top: 0;
 }
 #q {
  width: 130px;

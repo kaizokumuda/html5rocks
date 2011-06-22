@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{LANGUAGE_CODE}}">
+<head>
+  <meta charset="utf-8" /> 
+  <meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps." /> 
+  <meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,offline,audio,video,drag and drop,chrome" /> 
+  <title>{% block title %}HTML5 Rocks - A resource for open web HTML5 developers{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" media="screen" href="{{config.main_site_origin}}/static/css/base.min.css" />
+  <link rel="alternate" type="application/atom+xml" href="/feeds/atom.xml" />
+
+  <link rel="stylesheet" media="only screen and (max-width: 800px)" href="{{config.main_site_origin}}/static/css/mobile.min.css" />
+
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+   <link rel="apple-touch-icon" href="/static/html5rocks/images/HTML5_Badge_64.png" />
+   <link rel="apple-touch-icon-precomposed" href="/static/html5rocks/images/HTML5_Badge_64.png" />
+
+   <!--[if lt IE 9]>
+   <script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+   <![endif]-->
+
+   <style>
+     #updates-title {
+       font-size: 25px;
+       float: left;
+       position: relative;
+       left: 15px;
+       font-family: 'Reenie Beanie', arial, helvetica, sans-serif;
+       margin: 0;
+       -webkit-transform: rotateZ(-15deg);
+       -moz-transform: rotateZ(-15deg);
+       -ms-transform: rotateZ(-15deg);
+       -o-transform: rotateZ(-15deg);
+       transform: rotateZ(-15deg);
+       letter-spacing: -1px;
+     }
+     #updates-title a { color: red; }
+
+     /* HTML5Rocks overrides */
+     .post-info {
+       margin-top: 5px;
+     }
+     .postmeta { border-bottom: 1px solid #ddd; padding: 10px; font-size: 11px;}
+     .date { float: right; }
+     footer { margin-top: 20px; }
+     .tag { font-size: small; color: #696; text-decoration: underline; margin-right: 5px; }
+     #content h2 {
+       margin-bottom: 0;
+     }
+     @media only screen and (max-width: 800px) {
+       #cse-search-box {
+         top: 0;
+       }
+       #updates-title {
+         display: none;
+       }
+     }
+   </style>
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+
+<div id="wrap">
+  <div id="content">
+
+  <header>
+    <div>
+      <h1 id="title">
+        <a href="{{config.main_site_origin}}" title="{% trans "HTML5 Rocks Logo" %}"><span class="normal">{% trans "HTML" %}</span><img src="/static/html5rocks/images/HTML5_Badge_64.png" alt=""><span class="rocks">{% trans "Rocks" %}</span></a>
+      </h1>
+      <h2 id="updates-title"><a class="updates" href="/">Update<br/>Stream</a></h2>
+      <nav>
+        <ul>
+          <li><a href="http://slides.html5rocks.com" target="_blank">{% trans "Presentation" %}</a></li>
+          <li><a href="http://playground.html5rocks.com">{% trans "Playground" %}</a></li>
+          <li><a href="http://studio.html5rocks.com">{% trans "Studio" %}</a></li>
+          <li><a href="{{config.main_site_origin}}/tutorials/">{% trans "Tutorials" %}</a></li>
+          <li><a href="{{config.main_site_origin}}/resources.html">{% trans "Resources" %}</a></li>
+        </ul>
+
+        <form id="cse-search-box" action="/search" method="get">
+          <div>
+            <!--<input type="hidden" name="cref" value="http://{{config.host}}/cse.xml" />-->
+            <input type="hidden" name="cx" value="007435387813601113811:ef_kuvvx6a8" />
+            <input type="hidden" name="cof" value="FORID:9" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            <input type="hidden" name="hl" value="{{LANGUAGE_CODE}}" />
+            <input type="search" name="q" id="q" autocomplete="off" placeholder="{% trans "Search HTML5Rocks" %}"/>
+          </div>
+        </form>
+
+      </nav>
+    </div>
+
+  </header>
+
+    {% block body %}{% endblock %}
+
+    <footer>
+      <span>
+        <a href="http://www.w3.org/html/logo/">
+          <img src="/static/html5rocks/images/HTML5_Badge_64.png" align="left" title="{% trans "HTML5 Logo" %}" alt="{% trans "HTML5 Logo" %}" class="footer-badge"/>
+        </a>
+      </span>
+      <span>
+        <a href="{{config.main_site_origin}}/tos.html" {% ifequal current 'tos' %}class="current"{% endifequal %}>{% trans "Terms" %}</a> -
+        <a href="{{config.main_site_origin}}/privacy.html" {% ifequal current 'privacy' %}class="current"{% endifequal %}>{% trans "Privacy" %}</a> -
+        <a href="http://code.google.com/p/html5rocks/issues/entry">{% trans "Report bug or request a feature" %}</a> - 
+        <a href="http://twitter.com/ChromiumDev">{% trans "Follow us on Twitter" %}</a> -
+        <a href="{{config.main_site_origin}}/profiles" {% ifequal current 'profiles' %}class="current"{% endifequal %}>{% trans "About Authors" %}</a>
+      </span>
+      <span class="madeby">{% trans "Made by Google" %}| <img src="{{config.main_site_origin}}/static/images/google_logo_small.png" width="50" height="20" alt="" /></span>
+      <p>{% trans "This site contains information on APIs that are not part of the W3C HTML5 specification." %}</p>
+    </footer>
+
+  </div> <!-- content -->
+</div> <!-- wrap -->
+
+<!--<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>-->
+<script type="text/javascript" src="//www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22search%22%2C%22version%22%3A%221%22%7D%5D%7D"></script>
+<script type="text/javascript" src="{{config.url_prefix}}/static/{{config.theme}}/prettify/prettify.js"></script>
+
+<script>
+var q = document.getElementById('q');
+
+google.search.CustomSearchControl.attachAutoCompletion(
+    '007435387813601113811:ef_kuvvx6a8', q, 'cse-search-box');
+
+if(q.addEventListener) {
+  q.addEventListener('keydown', function(e) {
+    if (e.keyCode == 13) { // enter key
+      document.getElementById('cse-search-box').submit();
+    }
+  }, false);
+}
+
+// Auto syntax highlight all pre tags.
+var pres = document.querySelectorAll('pre');
+for (var i = 0, pre; pre = pres[i]; ++i) {
+  pre.className += ' prettyprint';
+};
+prettyPrint();
+</script>
+
+{% if config.analytics_id and not devel and not is_admin %}
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '{{config.analytics_id}}']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+{% endif %}
+
+  </body>
+
+</html>
