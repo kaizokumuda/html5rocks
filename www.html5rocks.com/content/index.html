@@ -86,7 +86,7 @@
     </section>
 
     <section class="fr feed-section">
-      <h2 class="section-header">{% trans "Latest Tutorials" %} <a href="http://feeds.feedburner.com/html5rocks"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0
+      <h2 class="section-header">{% trans "Latest Updates" %} <a href="http://feeds.feedburner.com/html5rocks"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0
 U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJpSURBVDjLfVNJT1NRGL0/wY0/wonaEesO
 AxoTF4bEpY1GFGGBqEUhggjYaCVIcIKC1TiHiCEBiXEhVdm4EDaaKI2WofTRlqbYR8sbOhzfd5v3
 tEK8i5d3F+fcM3wf+3x065bZc9t6F5rNCLeYsXTJgkibBUK7FcsdVkS7bIh57Ihfs2PFa0fihgOx
@@ -123,27 +123,26 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
   </article>
 
   <script>
-    function processFeedResponse(result) {
+    function processPipeFeed(result) {
       var container = document.getElementById('latest_articles_feed');
 
-      if (!container) {
+      if (!container || !result.value.items) {
         return;
       }
 
-      if (!result.responseData) {
-        container.innerHTML = '<li>' + result.responseDetails + '<\/li>';
-        return;
+      if (container.textContent == 'loading feed...') {
+        container.textContent = '';
       }
 
       var html = [];
-      for (var i = 0, entry; entry = result.responseData.feed.entries[i]; ++i) {
-        var date = new Date(entry.publishedDate);
+      for (var i = 0, entry; entry = result.value.items[i]; ++i) {
+        var date = new Date(entry.pubDate);
         var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
 
-        html.push('<li>', formattedDateStr, ' <a href="', entry.link, '">',
-                  entry.title, '<\/a><\/li>')
+        html.push('<li>', formattedDateStr, ' ', entry.title.link(entry.link),
+                  '<\/li>');
       }
-      container.innerHTML = html.join('');
+      container.innerHTML += html.join('');
     }
 
     {% if not is_mobile %}
@@ -161,5 +160,6 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
       })();
     {% endif %}
   </script>
-  <script src="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&amp;num=6&amp;q={{host}}/tutorials/index.xml&amp;callback=processFeedResponse"></script>
+  <script src="http://pipes.yahoo.com/pipes/pipe.run?_id=647030be6aceb6d005c3775a1c19401c&_render=json&_callback=processPipeFeed"></script>
+
 {% endblock %}

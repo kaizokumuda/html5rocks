@@ -30,7 +30,7 @@
         {% if not is_mobile %}
         <span id="share_buttons">
           <ul>
-            <li><div class="g-plusone" size="medium" count="true" href="{{disqus_url}}"></div></li>
+            <li><div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div></li>
             <li><iframe src="http://www.facebook.com/plugins/like.php?href={{disqus_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
             <li><a href="http://twitter.com/share" class="twitter-share-button" data-url="{{disqus_url}}" data-count="horizontal" data-via="ChromiumDev" data-lang="{{LANGUAGE_CODE}}">{% trans "Tweet" %}</a></li>
           </ul>

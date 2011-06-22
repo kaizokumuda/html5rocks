@@ -55,6 +55,7 @@
             <input type="search" name="q" id="q" autocomplete="off" placeholder="{% trans "Search HTML5Rocks" %}"/>
           </div>
         </form>
+        <a alt="feed" id="feedlink" href="http://localhost:8080/feeds/atom.xml"><img src="/static/html5rocks/images/feed28.png"></a>
 
       </nav>
     </div>
@@ -101,6 +102,11 @@ if(q.addEventListener) {
   }, false);
 }
 
+// Auto syntax highlight all pre tags.
+var pres = document.querySelectorAll('pre');
+for (var i = 0, pre; pre = pres[i]; ++i) {
+  pre.className += ' prettyprint';
+};
 prettyPrint();
 </script>
 

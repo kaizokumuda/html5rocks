@@ -57,19 +57,25 @@
         </div>
 
         <div class="slide" id="controls-slide">
+          <header>Slides controls</header>
           <style>
             #controls-slide li, #controls-slide p {
-              font-size: 35px;
+              font-size: 32px;
+            }
+            #controls-slide .key {
+              bottom: 2px;
             }
           </style>
           <section>
-            <p>Slides controls, press:</p>
             <ul>
               <li><span class="key">&larr;</span> and <span class="key">&rarr;</span> to move around.</li>
               <li><span class="key">Ctrl/Command</span> and <span class="key">+</span> or <span class="key">-</span> to zoom in and out if slides don’t fit.</li>
+              <li><span class="key">S</span> to view page source.</li>
               <li><span class="key">T</span> to change the theme.</li>
               <li><span class="key">H</span> to toggle syntax highlight.</li>
               <li><span class="key">N</span> to toggle speaker notes.</li>
+              <li><span class="key">3</span> to toggle 3D effect.</li>
+              <li><span class="key">0</span> to toggle help.</li>
             </ul>
           </section>
         </div>
@@ -156,7 +162,7 @@
 
 
         <div class="slide" id="table-of-contents">
-          <header><h1>Today, We Will Cover...</h1></header>
+          <header><h1>Today, we will cover...</h1></header>
           <style>
             #toc-list > li {
               font-size: 26px;
@@ -3272,6 +3278,85 @@ window.addEventListener('<em>popstate</em>', function(event) {
       </style>
       <div id="speaker-note" class="invisible" style="display: none;">
       </div> <!-- speaker note -->
+      <style>
+      .sidebar {
+        z-index: 999;
+        box-sizing: border-box;
+        height: 100%;
+        overflow: hidden;
+        top: 0;
+        position: absolute;
+        display: block;
+        margin: 0;
+        padding: 10px 16px;
+        overflow: auto;
+        -webkit-transition: margin 0.2s ease-in-out;
+        -moz-transition: margin 0.2s ease-in-out;
+        -o-transition: margin 0.2s ease-in-out;
+        transition: margin 0.2s ease-in-out;
+      }
+      .sidebar.invisible {
+        margin-left: -400px;
+      }
+      .sidebar table {
+        border-collapse: collapse;
+      }
+      .sidebar caption {
+        text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 55px;
+      }
+      .sidebar tr {
+        margin: 2px 0;
+        border-bottom: 1px solid #CCC;
+      }
+      .sidebar th{
+        text-align: left;
+        max-width: 300px;
+      }
+      .sidebar td {
+        text-align: right;
+        padding-left: 20px;
+        padding-right: 5px;
+        font-family: Monospace;
+      }
+      </style>
+      <aside id="help" class="sidebar invisible" style="display: hidden;">
+        <table>
+          <caption>Help</caption>
+          <tbody>
+            <tr>
+              <th>Move Around</th>
+              <td>&larr;&nbsp;&rarr;</td>
+            </tr>
+            <tr>
+              <th>Source File</th>
+              <td>s</td>
+            </tr>
+            <tr>
+              <th>Change Theme</th>
+              <td>t</td>
+            </tr>
+            <tr>
+              <th>Syntax Highlight</th>
+              <td>h</td>
+            </tr>
+            <tr>
+              <th>Speaker Notes</th>
+              <td>n</td>
+            </tr>
+            <tr>
+              <th>Toggle 3D</th>
+              <td>3</td>
+            </tr>
+            <tr>
+              <th>Help</th>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+      </aside>
     </div> <!-- presentation -->
 
     <!--[if lt IE 9]>

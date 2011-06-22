@@ -67,7 +67,7 @@ class ContentHandler(webapp.RequestHandler):
     return browser.find('Android') != -1 or browser.find('iPhone') != -1
 
   def get_toc(self, path):
-    if not re.search('tutorials', path):
+    if not (re.search('tutorials', path) or re.search('/mobile/', path)):
       return ''
 
     toc = memcache.get('toc|%s' % path)

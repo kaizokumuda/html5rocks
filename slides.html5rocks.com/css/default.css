@@ -462,7 +462,7 @@ video {
   -o-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
 }
 
-.key { font-family: Arial; }
+.key { font-family: "Lucida console", Monospace, Arial; }
 
 :not(header) > .css,
 :not(header) > .js,
@@ -530,4 +530,9 @@ video {
 
 [data-build] > *.to-build {
   opacity: 0;
+}
+
+.sidebar {
+  background-color: #EEE;
+  border-right: 5px solid #CCD;
 }
