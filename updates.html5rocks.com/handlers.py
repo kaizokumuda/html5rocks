@@ -4,6 +4,8 @@ from google.appengine.api import files
 import datetime
 import logging
 import os
+import re
+import urllib2
 
 from google.appengine.ext import deferred
 from google.appengine.ext import webapp
@@ -17,12 +19,11 @@ import utils
 from django import newforms as forms
 from google.appengine.ext.db import djangoforms
 
-import urllib2
-
 import common # html5rocks profiles
 from google.appengine.api import users
 
 class PostForm(djangoforms.ModelForm):
+  # log = logging.getLogger()
   title = forms.CharField(widget=forms.TextInput(attrs={'id':'name'}))
   body = forms.CharField(widget=forms.Textarea(attrs={
       'id':'message',
@@ -34,7 +35,8 @@ class PostForm(djangoforms.ModelForm):
   draft = forms.BooleanField(required=False)
   image_url = forms.CharField(required=False, widget=forms.TextInput(attrs={'id':'image_url'}))
   sorted_profiles = sorted(common.get_profiles().keys())
-  author_id = forms.ChoiceField(choices=[(id,id) for id in sorted_profiles])
+  author_id = forms.ChoiceField(
+    choices=[(id,id) for id in sorted_profiles])
   IMAGE_STYLES = (('top','top'), ('left','left'), ('right','right'))
   image_style = forms.ChoiceField(required=False, choices=IMAGE_STYLES)
   class Meta:
@@ -89,14 +91,14 @@ class PostHandler(BaseHandler):
 
   @with_post
   def get(self, post):
+    likely_profile_id = re.sub(r'@.*', '', users.get_current_user().nickname())
     self.render_form(PostForm(
         instance=post,
         initial={
           'draft': post and not post.path,
           'body_markup': post and post.body_markup or config.default_markup,
           'image_style': post and post.image_style or config.default_image_style,
-          'author_id': post and post.author_id or
-          users.get_current_user().nickname
+          'author_id': post and post.author_id or likely_profile_id
         }))
 
   @with_post
