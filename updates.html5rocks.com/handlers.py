@@ -1,6 +1,11 @@
+from __future__ import with_statement
+from google.appengine.api import files
+
 import datetime
 import logging
 import os
+import re
+import urllib2
 
 from google.appengine.ext import deferred
 from google.appengine.ext import webapp
@@ -14,8 +19,11 @@ import utils
 from django import newforms as forms
 from google.appengine.ext.db import djangoforms
 
+import common # html5rocks profiles
+from google.appengine.api import users
 
 class PostForm(djangoforms.ModelForm):
+  # log = logging.getLogger()
   title = forms.CharField(widget=forms.TextInput(attrs={'id':'name'}))
   body = forms.CharField(widget=forms.Textarea(attrs={
       'id':'message',
@@ -25,10 +33,15 @@ class PostForm(djangoforms.ModelForm):
     choices=[(k, v[0]) for k, v in markup.MARKUP_MAP.iteritems()])
   tags = forms.CharField(widget=forms.Textarea(attrs={'rows': 5, 'cols': 20}))
   draft = forms.BooleanField(required=False)
+  image_url = forms.CharField(required=False, widget=forms.TextInput(attrs={'id':'image_url'}))
+  sorted_profiles = sorted(common.get_profiles().keys())
+  author_id = forms.ChoiceField(
+    choices=[(id,id) for id in sorted_profiles])
+  IMAGE_STYLES = (('top','top'), ('left','left'), ('right','right'))
+  image_style = forms.ChoiceField(required=False, choices=IMAGE_STYLES)
   class Meta:
     model = models.BlogPost
-    fields = [ 'title', 'body', 'tags' ]
-
+    fields = [ 'title', 'body', 'tags', 'author_id', 'image_url', 'image_style' ]
 
 def with_post(fun):
   def decorate(self, post_id=None):
@@ -78,11 +91,14 @@ class PostHandler(BaseHandler):
 
   @with_post
   def get(self, post):
+    likely_profile_id = re.sub(r'@.*', '', users.get_current_user().nickname())
     self.render_form(PostForm(
         instance=post,
         initial={
           'draft': post and not post.path,
           'body_markup': post and post.body_markup or config.default_markup,
+          'image_style': post and post.image_style or config.default_image_style,
+          'author_id': post and post.author_id or likely_profile_id
         }))
 
   @with_post
@@ -90,7 +106,23 @@ class PostHandler(BaseHandler):
     form = PostForm(data=self.request.POST, instance=post,
                     initial={'draft': post and post.published is None})
     if form.is_valid():
+
       post = form.save(commit=False)
+
+      image_url = form.clean_data['image_url']
+      if image_url:
+        try:
+          u = urllib2.urlopen(image_url)
+          file_name = files.blobstore.create(mime_type='image/jpeg')
+          with files.open(file_name, 'a') as f:
+            f.write(u.read())
+          files.finalize(file_name)
+          post.image_id = str(files.blobstore.get_blob_key(file_name))
+        except:
+          # Not sure how to use ErrorList in Django 0.96
+          # form._errors['image'] = ''
+          self.render_form(form)
+          return
       if form.clean_data['draft']:# Draft post
         post.published = datetime.datetime.max
         post.put()
@@ -230,3 +262,4 @@ class PageDeleteHandler(BaseHandler):
   def post(self, page):
     page.remove()
     self.render_to_response("deletedpage.html", None)
+

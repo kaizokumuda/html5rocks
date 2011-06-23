@@ -1,5 +1,5 @@
 application: updaterocker
-version: 1
+version: live
 runtime: python
 api_version: 1
 
@@ -32,5 +32,9 @@ handlers:
   static_files: themes/\1/static/\2
   upload: themes/[^/]+/static/.*
 
+- url: /images/(.*)
+  script: images.py
+
 - url: /.*
   script: static.py
+

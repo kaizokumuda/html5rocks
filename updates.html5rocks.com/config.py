@@ -74,7 +74,7 @@ google_sitemap_ping = True
 google_site_verification = None
 
 # Default markup language for entry bodies (defaults to html).
-default_markup = 'html'
+default_markup = 'textile'
 
 # Syntax highlighting style for RestructuredText and Markdown,
 # one of 'manni', 'perldoc', 'borland', 'colorful', 'default', 'murphy',
@@ -103,3 +103,7 @@ google_friends_members  = True # For a members container.
 # To format the date of your post.
 # http://docs.djangoproject.com/en/1.1/ref/templates/builtins/#now
 date_format = "d F, Y"
+DEBUG=True
+
+# html5rocks image customisation
+default_image_style='top'

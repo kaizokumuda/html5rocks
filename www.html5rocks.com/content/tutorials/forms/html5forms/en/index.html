@@ -495,24 +495,33 @@ function check(input) {
 
   <p>Here's an example for a reservation request form that pulls together 
   different input types, form validation, and CSS selectors and styling.</p>
-  <form>
+  <form oninput="total.value = (nights.valueAsNumber * 99) + 
+   ((guests.valueAsNumber - 1) * 10)">
     <label>Full name:</label>
     <input type="text" id="full_name" name="full_name" placeholder="Jane Doe" 
     required>
 
-    <label>Email:</label>
+    <label>Email address:</label>
     <input type="email" id="email_addr" name="email_addr" required>
 
-    <label>Repeat Email Address:</label>
+    <label>Repeat email address:</label>
     <input type="email" id="email_addr_repeat" name="email_addr_repeat" required
     oninput="check(this)">
 
     <label>Arrival date:</label>
     <input type="date" id="arrival_dt" name="arrival_dt" required>
     
-    <label>Number of nights:</label>
-    <input type="number" id="num_nights" name="num_nights" value="1" min="1" max="30" 
+    <label>Number of nights (rooms are $99.00 per night):</label>
+    <input type="number" id="nights" name="nights" value="1" min="1" max="30" 
     required>
+
+    <label>Number of guests (each additional guest adds $10.00 per night):</label>
+    <input type="number" id="guests" name="guests" value="1" min="1" max="4" 
+    required>
+
+    <label>Estimated total:</label>
+    $<output id="total" name="total">99</output>.00
+    <br><br>
 
     <label>Promo code:</label>
     <input type="text" id="promo" name="promo" pattern="[A-Za-z0-9]{6}" 
@@ -533,25 +542,35 @@ function check(input) {
   </script>
 
   <p>This is the HTML and JavaScript for the form:</p>
-  <pre class="prettyprint">&lt;form&gt;
+  <pre class="prettyprint">&lt;form oninput="total.value = (nights.valueAsNumber * 99) + 
+ ((guests.valueAsNumber - 1) * 10)"&gt;
+
   &lt;label&gt;Full name:&lt;/label&gt;
   &lt;input type="text" id="full_name" name="full_name" placeholder="Jane Doe" required&gt;
 
-  &lt;label&gt;Email:&lt;/label&gt;
+  &lt;label&gt;Email address:&lt;/label&gt;
   &lt;input type="email" id="email_addr" name="email_addr" required&gt;
 
-  &lt;label&gt;Repeat Email Address:&lt;/label&gt;
-  &lt;input type="email" id="email_addr_repeat" name="email_addr_repeat" required&gt;
+  &lt;label&gt;Repeat email address:&lt;/label&gt;
+  &lt;input type="email" id="email_addr_repeat" name="email_addr_repeat" required 
+   oninput="check(this)"&gt;
 
   &lt;label&gt;Arrival date:&lt;/label&gt;
   &lt;input type="date" id="arrival_dt" name="arrival_dt" required&gt;
   
-  &lt;label>Number of nights:&lt;/label&gt;
+  &lt;label&gt;Number of nights (rooms are $99.00 per night):&lt;/label&gt;
   &lt;input type="number" id="nights" name="nights" value="1" min="1" max="30" required&gt;
+
+  &lt;label&gt;Number of guests (each additional guest adds $10.00 per night):&lt;/label&gt;
+  &lt;input type="number" id="guests" name="guests" value="1" min="1" max="4" required&gt;
+
+  &lt;label&gt;Estimated total:&lt;/label&gt;
+  $&lt;output id="total" name="total"&gt;99&lt;/output&gt;.00
+  &lt;br&gt;&lt;br&gt;
 
   &lt;label&gt;Promo code:&lt;/label&gt;
   &lt;input type="text" id="promo" name="promo" pattern="[A-Za-z0-9]{6}" 
-  title="Promo codes consist of 6 alphanumeric characters."&gt;
+   title="Promo codes consist of 6 alphanumeric characters."&gt;
 
   &lt;input type="submit" value="Request Reservation" /&gt; 
 &lt;/form&gt;
