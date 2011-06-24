@@ -54,7 +54,7 @@ a.tag { font-size: small; color: #696; text-decoration: underline; margin-right:
 
 .postheader { margin-bottom: 1em; }
 .postmeta, .postfooter { clear: both; margin-top: 1em; }
-.postimage { display: block; width: 400px; }
+.postimage { display: block; max-width: 100%; }
 .left { float: left; margin: 0 1em 1em 0; }
 .right { float: right; margin: 0 0 1em 1em; }
 .top { display: block; margin-bottom: 1em; }
