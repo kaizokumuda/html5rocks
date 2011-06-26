@@ -85,7 +85,7 @@ nav#helpers button {
 .toc {
   font-size: 10px;
   position: relative;
-  margin-top: -3px;
+  top: -3px;
 }
 nav#helpers button#slide-no {
   font-size: 10px;
