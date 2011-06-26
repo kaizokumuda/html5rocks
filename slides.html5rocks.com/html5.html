@@ -19,7 +19,7 @@
                  Alex Russell (slightlyoff@chromium.org)
                  Brad Neuberg
 -->
-<html manifest="cache.appcache">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
@@ -29,9 +29,22 @@
     <link href="css/moon.css" class="theme" rel="stylesheet" />
     <link href="css/sand.css" class="theme" rel="stylesheet" />
     <link href="css/sea_wave.css" class="theme" rel="stylesheet" />
-    <link href="css/default.css" class="theme" rel="stylesheet" media="screen" />
+    <link href="css/default.css" class="theme" rel="stylesheet" media="screen"  />
+    <link href="css/common.css" rel="stylesheet" media="screen" />
   </head>
   <body>
+    <nav id="helpers">
+      <button title="Previous slide" id="nav-prev" class="nav-prev">⇽</button> 
+      <button title="Jump to a random slide" id="slide-no">5</button> 
+      <button title="Next slide" id="nav-next" class="nav-next">⇾</button>
+      <menu>
+        <button type="checkbox" data-command="toc" title="Table of Contents" class="toc">TOC</button>
+        <!-- <button type="checkbox" data-command="resources" title="View Related Resources">☆</button> -->
+        <button type="checkbox" data-command="notes" title="View Slide Notes">✏</button>
+        <button type="checkbox" data-command="source" title="View slide source">↻</button>
+        <button type="checkbox" data-command="help" title="View Help">?</button>
+      </menu>
+    </nav>
     <div class="presentation">
       <div id="presentation-counter">Loading...</div>
       <div class="slides">
@@ -3255,73 +3268,8 @@ window.addEventListener('<em>popstate</em>', function(event) {
         </div>
 
       </div> <!-- slides -->
-      <style>
-      #speaker-note {
-        position:absolute;
-        left: 0;
-        top: 80%;
-        width: 100%;
-        height: 20%;
-        z-index: 50;
-        opacity: 0.75;
-        background-color: white;
-        overflow: auto;
-        padding: 2px 20px;
-        -webkit-transition: top 0.5s ease-in-out;
-        -moz-transition: top 0.5s ease-in-out;
-        -o-transition: top 0.5s ease-in-out;
-        transition: top 0.5s ease-in-out;
-      }
-      #speaker-note.invisible {
-        top: 101%;
-      }
-      </style>
       <div id="speaker-note" class="invisible" style="display: none;">
       </div> <!-- speaker note -->
-      <style>
-      .sidebar {
-        z-index: 999;
-        box-sizing: border-box;
-        height: 100%;
-        overflow: hidden;
-        top: 0;
-        position: absolute;
-        display: block;
-        margin: 0;
-        padding: 10px 16px;
-        overflow: auto;
-        -webkit-transition: margin 0.2s ease-in-out;
-        -moz-transition: margin 0.2s ease-in-out;
-        -o-transition: margin 0.2s ease-in-out;
-        transition: margin 0.2s ease-in-out;
-      }
-      .sidebar.invisible {
-        margin-left: -400px;
-      }
-      .sidebar table {
-        border-collapse: collapse;
-      }
-      .sidebar caption {
-        text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
-        font-size: 24px;
-        font-weight: bold;
-        line-height: 55px;
-      }
-      .sidebar tr {
-        margin: 2px 0;
-        border-bottom: 1px solid #CCC;
-      }
-      .sidebar th{
-        text-align: left;
-        max-width: 300px;
-      }
-      .sidebar td {
-        text-align: right;
-        padding-left: 20px;
-        padding-right: 5px;
-        font-family: Monospace;
-      }
-      </style>
       <aside id="help" class="sidebar invisible" style="display: hidden;">
         <table>
           <caption>Help</caption>

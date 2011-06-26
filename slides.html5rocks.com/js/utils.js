@@ -218,7 +218,7 @@
     _makeCounter: function() {
       if(!this._count || !this._node) { return; }
       var c = doc.createElement('span');
-      c.textContent = this._count;
+      // c.textContent = this._count;
       c.className = 'counter';
       this._node.appendChild(c);
     },
@@ -311,10 +311,17 @@
     query('#left-init-key').addEventListener('click',
         function() { _t.next(); }, false);
     this._update();
+    queryAll('#nav-prev, #nav-next').forEach(function(el) {
+      el.addEventListener('click', _t.onNavClick.bind(_t), false);
+    });
+    queryAll('menu button').forEach(function(el) {
+      el.addEventListener('click', _t.onCommandClick.bind(_t), false);
+    });
   };
 
   SlideShow.prototype = {
     _presentationCounter: query('#presentation-counter'),
+    _menuCounter: query('#slide-no'),
     _speakerNote: query('#speaker-note'),
     _help: query('#help'),
     _slides: [],
@@ -353,6 +360,9 @@
       var elem = document.elementFromPoint( docElem.clientWidth / 2, docElem.clientHeight / 2);
       if (elem && elem.className != 'presentation') {
         this._presentationCounter.textContent = currentIndex;
+        if (this._menuCounter) {
+          this._menuCounter.textContent = currentIndex;          
+        }
       }
       this._speakerNote.innerHTML = this._slides[currentIndex - 1].getSpeakerNote();
       if (history.pushState) {
@@ -458,6 +468,30 @@
         this.prev();
       }
     },
+    onNavClick: function(e) {
+      if (e.target.id == "nav-prev") {
+        this.prev();
+      } else if (e.target.id = "nav-next") {
+        this.next();
+      }
+    },
+    onCommandClick: function(e) {
+      var n = e.target.getAttribute('data-command');
+      switch(n) {
+      case 'toc':
+        this._update("table-of-contents"); break;
+      case 'resources':
+        break;
+      case 'notes':
+        this.showNotes(); break;
+      case 'source':
+        this.viewSource(); break;
+      case 'help':
+        this.toggleHelp(); break;
+      default:
+        return;
+      }
+    }
   };
 
   // load highlight setting from session storage, if available.
@@ -485,7 +519,8 @@
   query('#toc-list').innerHTML = li_array.join('');
 
   var slideshow = new SlideShow(queryAll('.slide'));
-
+  window.slideshow = slideshow; // to test bottom menu
+  
   document.addEventListener('DOMContentLoaded', function() {
     query('.slides').style.display = 'block';
   }, false);
@@ -497,4 +532,5 @@
   queryAll('pre').forEach(function(el) {
     addClass(el, 'prettyprint');
   });
+    
 })();
