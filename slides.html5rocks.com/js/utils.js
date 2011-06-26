@@ -218,7 +218,6 @@
     _makeCounter: function() {
       if(!this._count || !this._node) { return; }
       var c = doc.createElement('span');
-      // c.textContent = this._count;
       c.className = 'counter';
       this._node.appendChild(c);
     },
@@ -519,7 +518,6 @@
   query('#toc-list').innerHTML = li_array.join('');
 
   var slideshow = new SlideShow(queryAll('.slide'));
-  window.slideshow = slideshow; // to test bottom menu
   
   document.addEventListener('DOMContentLoaded', function() {
     query('.slides').style.display = 'block';
@@ -531,6 +529,5 @@
 
   queryAll('pre').forEach(function(el) {
     addClass(el, 'prettyprint');
-  });
-    
+  });    
 })();
