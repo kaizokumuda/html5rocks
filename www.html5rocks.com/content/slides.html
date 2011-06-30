@@ -23,7 +23,8 @@
 
     article { padding: 10px; margin: 0 -10px; border-top: 1px solid hsl(0, 0%, 90%);}
     article.even { background: hsl(0, 0%, 95%);}
-
+    
+    .slides { vertical-align: top; }
     .slides iframe { width: 467px; height: 400px; border: 0;}
     .slides img { width: 475px;}
     .slides img:hover { 
@@ -32,7 +33,7 @@
               box-shadow: 0px 3px 8px hsl(202,69%,23%);
       }
  
-    #filter { font-size: 16px; float: right; width: 203px; border-radius: 12px;   position: relative; top: -40px;}
+    #filter { font-size: 16px; float: right; width: 353px; border-radius: 12px;   position: relative; top: -40px;}
   </style>
 {% endblock %}
 
@@ -46,7 +47,7 @@
     <!-- 
       https://spreadsheets.google.com/a/google.com/spreadsheet/ccc?hl=en&key=t2ZDVzRdCvcC8etphuOOonQ&hl=en#gid=0
       spreadhseet of all slides etc etc -->
-    <input id="filter" placeholder=" Live filter these results" >
+    <input id="filter" placeholder=" Filter these slides by topic, person, etc" >
     <div id="output">Loading...</div>
     
     <script src="/static/js/handlebars.1.0.0.beta.3.js"></script>

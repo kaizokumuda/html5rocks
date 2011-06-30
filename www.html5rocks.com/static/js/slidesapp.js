@@ -21,11 +21,14 @@ Handlebars.registerHelper('video', function(video) {
     id = uri.path.match(/\d+/)[0];
     html = '<iframe src="http://player.vimeo.com/video/' + id +
            '?title=0&amp;byline=0&amp;portrait=0&amp;color=0" frameborder="0"></iframe>';
+  } else if (~video.indexOf('blip.tv')){
+   
+    html = '<iframe src="' + video.match(/src="(.*?)"/)[1] +
+           '" frameborder="0" scrolling="no"></iframe>';
   }
   
   return new Handlebars.SafeString('<div class="video">' + html + '</div>');
 });
-
 
 
 Handlebars.registerHelper('slides', function(slides) {
@@ -49,6 +52,30 @@ Handlebars.registerHelper('slides', function(slides) {
   
   return new Handlebars.SafeString('<div class="slides">' + html + '</div>');
 });
+
+
+
+Handlebars.registerHelper('presntr', function(names) {
+  
+  var html = '';
+  
+  names = names.split(/ and|&|, /)
+
+  // need map polyfill and string.trim
+  html = names.map(function(name) {
+
+    var lookup = presenters[name.trim()];
+    if (lookup) {
+      return '<a href="/profiles/#!/' + lookup + '">' + name + '</a>';
+    } else {
+      return name;
+    }
+
+  }).join(' & ');
+  
+  return new Handlebars.SafeString(html);
+});
+
 
 
 // called from jsonp
