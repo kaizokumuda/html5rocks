@@ -202,6 +202,16 @@ class ContentHandler(webapp.RequestHandler):
     self.response.out.write(feed.writeString('utf-8'))
 
   def get(self, relpath):
+
+    # Handle humans before locale, to prevent redirect to /en/
+    # (but still ensure it's dynamic, ie we can't just redirect to a static url)
+    if (relpath == 'humans.txt'):
+      self.response.headers.add_header('Content-Type', 'text/plain')
+      return self.render(data={'sorted_profiles': common.get_sorted_profiles(),
+                               'profile_amount': common.get_profile_amount() },
+                         template_path='content/humans.txt',
+                         relpath=relpath)
+
     # Get the locale: if it's "None", redirect to English
     locale = self.get_language()
     if not locale:
@@ -248,10 +258,7 @@ class ContentHandler(webapp.RequestHandler):
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
       # Setup caching layer for this file i/o.
-      profiles = common.get_profiles()
-      sorted_profiles = sorted(profiles.values(),
-                               key=lambda profile:profile['name']['family'])
-      self.render(data={'sorted_profiles': sorted_profiles},
+      self.render(data={'sorted_profiles': common.get_sorted_profiles() },
                   template_path='content/profiles.html', relpath=relpath)
 
     elif re.search('tutorials/casestudies', relpath) and not is_feed:
