@@ -1276,14 +1276,11 @@ document.querySelector('#dropzone').addEventListener('drop', function(e) {
         <div class="slide device-access" id="drag-out">
           <style>
             .dragout {
-              background: #0687FF;
-              color: #fff;
-              padding: 10px;
+              cursor: move;
+              background: #ddd;
+              padding: 6px;
               margin: 10px;
-              -moz-border-radius: 5px;
-              -webkit-border-radius: 5px;
-              -o-border-radius: 5px;
-              border-radius: 5px;
+              border: 1px solid #666;
             }
           </style>
           <header><span class="js">JS</span> <h1>Desktop Drag-Out</h1></header>
@@ -1646,8 +1643,14 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
         <div class="slide semantics" id="semantic-tags-2">
           <header><span class="html">HTML</span> <h1>Markup for applications</h1></header>
           <style>
+            #semantic-tags-2 {
+              font-size: 13px;
+            }
             #cars-input {
               width: 500px;
+            }
+            #cars {
+              display: none;
             }
             #semantic-tags-2 pre {
               font-size: 90%;
@@ -1668,13 +1671,14 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
   <option value="Volvo" />
 </datalist>
 &lt;<b>menu</b>&gt;
-  &lt;<b>command</b> type="command"&gt;Save as...&lt;/<b>command</b>&gt;
+  &lt;<b>command</b> type="command" disabled label="Publish" /&gt;
 &lt;/<b>menu</b>&gt;
 
 &lt;<b>details</b>&gt;
   &lt;<b>summary</b>&gt;HTML 5&lt;/<b>summary</b>&gt;
   This slide deck teaches you everything you need to know about HTML 5.
 &lt;<b>/details</b>&gt;
+<details><summary>HTML 5</summary>This slide deck teaches you everything you need to know about HTML 5.</details>
 </pre>
 
 <pre>&lt;<b>meter</b> <b>min</b>="0" <b>max</b>="100" <b>low</b>="40" <b>high</b>="90" <b>optimum</b>="100" value="91"&gt;A+&lt;/<b>meter</b>&gt;
