@@ -77,6 +77,21 @@
   border: 1px solid #e1e1e1;
   vertical-align: middle;
 }
+#themes div.app.mobile {
+  background: url(/static/images/mobile.png) no-repeat,
+              -webkit-gradient(linear, left top, left bottom,
+                               from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+  background: url(/static/images/mobile.png) no-repeat,
+              -moz-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background: url(/static/images/mobile.png) no-repeat,
+              -ms-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background: url(/static/images/mobile.png) no-repeat,
+              -o-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background: url(/static/images/mobile.png) no-repeat,
+              linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background-position: 50% 50%;
+  background-size: contain;
+}
 #themes h3 {
   margin: 0;
   display: inline;
@@ -159,6 +174,15 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+#latest_articles_feed .type {
+  font-size: 90%;
+  font-variant: small-caps;
+  margin-left: 7px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #000;
+}
+
 
 @media only screen and (min-width: 641px) and (max-width: 800px) { /*iPad*/
   #themes a {

@@ -83,6 +83,10 @@
         <div class="app feature" style="background-position: -28px 50%;"></div>
         <h3>{% trans "Storage" %}</h3>
       </a>
+      <a href="/{{LANGUAGE_CODE}}/mobile">
+        <div class="app feature mobile"></div>
+        <h3>{% trans "Mobile" %}</h3>
+      </a>
     </section>
 
     <section class="fr feed-section">
@@ -139,8 +143,15 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
         var date = new Date(entry.pubDate);
         var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
 
+        var type = '';
+        if (entry.id.match('www.html5rocks.com')) {
+          type = 'tutorial';
+        } else if (entry.id.match('updates.html5rocks.com')) {
+          type = 'update';
+        }
+
         html.push('<li>', formattedDateStr, ' ', entry.title.link(entry.link),
-                  '<\/li>');
+                  '<span data-type="', type, '" class="type">', type, '<\/span><\/li>');
       }
       container.innerHTML += html.join('');
     }
