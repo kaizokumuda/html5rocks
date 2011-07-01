@@ -324,6 +324,7 @@
     _speakerNote: query('#speaker-note'),
     _help: query('#help'),
     _slides: [],
+    _themes: queryAll('style[link_href]').slice(1),
     _getCurrentIndex: function() {
       var me = this;
       var slideCount = null;
@@ -400,7 +401,7 @@
       if (disableNotes) {
         return;
       }
-      this._speakerNote.style.display = "block";
+      this._speakerNote.style.display = 'block';
       this._speakerNote.classList.toggle('invisible');
     },
     switch3D: function() {
@@ -412,19 +413,17 @@
       sessionStorage['highlightOn'] = !link.disabled;
     },
     changeTheme: function() {
-      var linkEls = queryAll('link.theme');
       var sheetIndex = 0;
-      linkEls.forEach(function(stylesheet, i) {
-        if (!stylesheet.disabled) {
-          sheetIndex = i;
-        }
-      });
-      linkEls[sheetIndex].disabled = true;
-      linkEls[(sheetIndex + 1) % linkEls.length].disabled = false;
-      sessionStorage['theme'] = linkEls[(sheetIndex + 1) % linkEls.length].href;
+      while (this._themes[sheetIndex].disabled) {
+        sheetIndex++;
+      }
+      this._themes[sheetIndex].disabled = true;
+      var nextSheet = this._themes[(sheetIndex + 1) % this._themes.length];
+      nextSheet.disabled = false;
+      sessionStorage['theme'] = nextSheet.getAttribute('link_href').split('/').pop();
     },
     toggleHelp: function() {
-      this._help.style.display = "block";
+      this._help.style.display = 'block';
       this._help.classList.toggle('invisible');
     },
     viewSource: function() {
@@ -499,11 +498,20 @@
   query('#prettify-link').disabled = !(sessionStorage['highlightOn'] == 'true');
 
   // disable style theme stylesheets
-  var linkEls = queryAll('link.theme');
-  var stylesheetPath = sessionStorage['theme'] || 'css/default.css';
-  linkEls.forEach(function(stylesheet) {
-    stylesheet.disabled = !(stylesheet.href.indexOf(stylesheetPath) != -1);
+  var themeEls = queryAll('style[link_href]').slice(1);
+  var stylesheetPath = sessionStorage['theme'] || 'default.css';
+  var found = false;
+  themeEls.forEach( function(stylesheet) {
+    var preserved = stylesheet.getAttribute('link_href').indexOf(stylesheetPath) >= 0;
+    stylesheet.disabled = !preserved;
+    if (preserved) {
+      found = true;
+    }
   });
+  if (!found) {
+    themeEls[0].disabled = false;
+    sessionStorage['theme'] = themeEls[0].getAttribute('link_href').split('/').pop();
+  }
 
   // Initialize
   var li_array = [];
