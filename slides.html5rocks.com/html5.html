@@ -26,22 +26,22 @@
     <title>HTML5 Presentation</title>
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet" type="text/css" />
     <link id="prettify-link" href="src/prettify/prettify.css" rel="stylesheet" disabled />
-    <link href="css/moon.css" class="theme" rel="stylesheet" />
-    <link href="css/sand.css" class="theme" rel="stylesheet" />
-    <link href="css/sea_wave.css" class="theme" rel="stylesheet" />
-    <link href="css/default.css" class="theme" rel="stylesheet" media="screen"  />
-    <link href="css/common.css" rel="stylesheet" media="screen" />
+    <link href="css/common.excss" rel="stylesheet" type="text/excss" media="screen" />
+    <link class="theme" href="css/default.excss" rel="stylesheet" type="text/excss" media="screen" />
+    <link class="theme" href="css/moon.excss" rel="stylesheet" type="text/excss" media="screen"/>
+    <link class="theme" href="css/sand.excss" rel="stylesheet" type="text/excss" media="screen"/>
+    <link class="theme" href="css/sea_wave.excss" rel="stylesheet" type="text/excss" media="screen"/>
   </head>
   <body>
     <nav id="helpers">
-      <button title="Previous slide" id="nav-prev" class="nav-prev">⇽</button> 
+      <button title="Previous slide" id="nav-prev" class="nav-prev">&#8701;</button> 
       <button title="Jump to a random slide" id="slide-no">5</button> 
-      <button title="Next slide" id="nav-next" class="nav-next">⇾</button>
+      <button title="Next slide" id="nav-next" class="nav-next">&#8702;</button>
       <menu>
         <button type="checkbox" data-command="toc" title="Table of Contents" class="toc">TOC</button>
-        <!-- <button type="checkbox" data-command="resources" title="View Related Resources">☆</button> -->
-        <button type="checkbox" data-command="notes" title="View Slide Notes">✏</button>
-        <button type="checkbox" data-command="source" title="View slide source">↻</button>
+        <!-- <button type="checkbox" data-command="resources" title="View Related Resources">&#9734;</button> -->
+        <button type="checkbox" data-command="notes" title="View Slide Notes">&#9999;</button>
+        <button type="checkbox" data-command="source" title="View slide source">&#8635;</button>
         <button type="checkbox" data-command="help" title="View Help">?</button>
       </menu>
     </nav>
@@ -64,7 +64,7 @@
           </section>
           <aside class="note">
             <section>
-              Welcome! (This field is for presenter notes and commentary.)
+              Welcome! (This field is for speaker notes and commentary.)
             </section>
           </aside> 
         </div>
@@ -3274,7 +3274,7 @@ window.addEventListener('<em>popstate</em>', function(event) {
       </div> <!-- slides -->
       <div id="speaker-note" class="invisible" style="display: none;">
       </div> <!-- speaker note -->
-      <aside id="help" class="sidebar invisible" style="display: hidden;">
+      <aside id="help" class="sidebar invisible" style="display: none;">
         <table>
           <caption>Help</caption>
           <tbody>
@@ -3319,6 +3319,7 @@ window.addEventListener('<em>popstate</em>', function(event) {
     <![endif]-->
 
     <script src="src/prettify/prettify.js" onload="prettyPrint();" defer></script>
+    <script src="js/excss.js"></script>
     <script src="js/utils.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
     <script>
