@@ -501,7 +501,7 @@ xhr.send();
   build a <code>Blob</code> from the data, and write the blob using <code>FileWriter</code>:</p>
 
 <pre class="prettyprint">
-window.requestFileSystem  = window.requestFileSystem || window.webkiRequestFileSystem;
+window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 
 function onError(e) {
   console.log('Error', e);
