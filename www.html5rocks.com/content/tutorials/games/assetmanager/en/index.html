@@ -8,7 +8,7 @@
 
 <style>
   .highlight {
-	background-color: yellow;
+    background-color: yellow;
   }
 </style>
 
@@ -52,7 +52,7 @@ HTML5 games can’t assume their assets such as images or audio will be on the p
 The basic way to programmatically load an image in a web browser is the following code:
 </p>
 
-<pre><code>var image = new Image();
+<pre class="prettyprint"><code>var image = new Image();
 image.addEventListener(“success”, function(e) {
   // do stuff with the image
 });
@@ -95,7 +95,7 @@ The first requirement is to queue up downloads. This design lets you declare the
 The code for the constructor and queuing looks like:
 </p>
 
-<pre><code>function AssetManager() {
+<pre class="prettyprint"><code>function AssetManager() {
   this.downloadQueue = [];
 }
 
@@ -120,7 +120,7 @@ The web browser can parallelize the downloads, luckily—usually up to 4 connect
 Our method for download initialization is called <code>downloadAll()</code>. We’ll build it up over time. For now, here is the first logic to just start the downloads.
 </p>
 
-<pre><code>AssetManager.prototype.downloadAll = function() {
+<pre class="prettyprint"><code>AssetManager.prototype.downloadAll = function() {
     for (var i = 0; i &lt; this.downloadQueue.length; i++) {
         var path = this.downloadQueue[i];
         var img = new Image();
@@ -149,7 +149,7 @@ Tracking Success and Failure
 Another requirement is to track both success and failures, because unfortunately not everything always works out perfectly. The code so far only tracks successfully downloaded assets. By adding an event listener for the error event, you will be able to capture both success and failure scenarios.
 </p>
 
-<pre><code>AssetManager.prototype.downloadAll = function(downloadCallback) {
+<pre class="prettyprint"><code>AssetManager.prototype.downloadAll = function(downloadCallback) {
   for (var i = 0; i &lt; this.downloadQueue.length; i++) {
     var path = this.downloadQueue[i];
     var img = new Image();
@@ -173,7 +173,7 @@ Our asset manager needs to know how many successes and failures we’ve encounte
 First up, we’ll add the counters to the object in the constructor, which now looks like this:
 </p>
 
-<pre><code>function AssetManager() {
+<pre class="prettyprint"><code>function AssetManager() {
     <span class="highlight">this.successCount = 0;
     this.errorCount = 0;</span>
     this.downloadQueue = [];
@@ -184,7 +184,7 @@ First up, we’ll add the counters to the object in the constructor, which now l
 Next, increment the counters in the event listeners, which now look like this:
 </p>
 
-<pre><code>img.addEventListener("load", function() {
+<pre class="prettyprint"><code>img.addEventListener("load", function() {
     <span class="highlight">that.successCount += 1;</span>
 }, false);
 img.addEventListener("error", function() {
@@ -208,7 +208,7 @@ After the game has queued up its assets for download, and asked the asset manage
 The asset manager needs to first know when every asset is finished. We will add an isDone method now:
 </p>
 
-<pre><code>AssetManager.prototype.isDone = function() {
+<pre class="prettyprint"><code>AssetManager.prototype.isDone = function() {
     return (this.downloadQueue.length == this.successCount + this.errorCount);
 }
 </pre></code>
@@ -221,7 +221,7 @@ By comparing the successCount + errorCount to the size of the downloadQueue, the
 Of course knowing if it’s done is only half the battle; the asset manager also needs to check this method. We will add this check inside both of our event handlers, as the code below shows:
 </p>
 
-<pre><code>img.addEventListener("load", function() {
+<pre class="prettyprint"><code>img.addEventListener("load", function() {
     console.log(this.src + ' is loaded');
     that.successCount += 1;
     <span class="highlight">if (that.isDone()) {
@@ -244,7 +244,8 @@ After the counters are incremented, we will see if that was the last asset in ou
 If the asset manager is done downloading all the assets, we will call a callback method, of course!  Let’s change <code>downloadAll()</code> and add a parameter for the callback:
 </p>
 
-<pre><code>AssetManager.prototype.downloadAll = function(<span class="highlight">downloadCallback</span>) {
+<pre class="prettyprint"><code>
+AssetManager.prototype.downloadAll = function(<span class="highlight">downloadCallback</span>) {
     ...
 </pre></code>
 
@@ -252,7 +253,7 @@ If the asset manager is done downloading all the assets, we will call a callback
 We will call the downloadCallback method inside of our event listeners:
 </p>
 
-<pre><code>img.addEventListener("load", function() {
+<pre class="prettyprint"><code>img.addEventListener("load", function() {
     that.successCount += 1;
     if (that.isDone()) {
         <span class="highlight">downloadCallback();</span>
@@ -282,7 +283,7 @@ Once the game has been signaled that it can start, the game will begin to render
 Our final requirement implies some sort of getAsset method, so we’ll add it now:
 </p>
 
-<pre><code>AssetManager.prototype.getAsset = function(path) {
+<pre class="prettyprint"><code>AssetManager.prototype.getAsset = function(path) {
     return this.cache[path];
 }
 </code></pre>
@@ -291,7 +292,7 @@ Our final requirement implies some sort of getAsset method, so we’ll add it no
 This cache object is initialized in the constructor, which now looks like this:
 </p>
 
-<pre><code>function AssetManager() {
+<pre class="prettyprint"><code>function AssetManager() {
     this.successCount = 0;
     this.errorCount = 0;
     <span class="highlight">this.cache = {};</span>
@@ -303,7 +304,7 @@ This cache object is initialized in the constructor, which now looks like this:
 The cache is populated at the end of <code>downloadAll()</code>, as shown below:
 </p>
 
-<pre><code>AssetManager.prototype.downloadAll = function(downloadCallback) {
+<pre class="prettyprint"><code>AssetManager.prototype.downloadAll = function(downloadCallback) {
   ...
       img.addEventListener("error", function() {
           that.errorCount += 1;
@@ -329,7 +330,7 @@ Did you spot the bug?  As written above, the isDone method is only called when e
 You can accommodate this scenario by adding the following code to <code>downloadAll()</code>:
 </p>
 
-<pre><code>AssetManager.prototype.downloadAll = function(downloadCallback) {
+<pre class="prettyprint"><code>AssetManager.prototype.downloadAll = function(downloadCallback) {
   <span class="highlight">if (this.downloadQueue.length === 0) {
       downloadCallback();
   }</span>
@@ -349,7 +350,7 @@ Example Usage
 Using this asset manager in your HTML5 game is quite straightforward. Here is the most basic way to use the library:
 </p>
 
-<pre><code>var ASSET_MANAGER = new AssetManager();
+<pre class="prettyprint"><code>var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload('img/earth.png');
 
