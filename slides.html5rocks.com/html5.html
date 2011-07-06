@@ -2813,6 +2813,94 @@ background:
           </section>
         </div>
 
+        <div class="slide styling" id="border-image">
+          <style>
+            #border-image pre {
+              line-height: 28px;
+            }
+            #border-image div.img-frame {
+              margin: 10px;
+              float: left;
+              width: 120px;
+              height: 120px;
+              text-align: center;
+            }
+            #border-image div.img-frame.selected {
+              background-color: rgba(180, 180, 180, 0.5);
+            }
+            #border-image img {
+              margin: 10px auto;
+            }
+            #border-image .example {
+              height: 248px;
+            }
+            #border-image-example {
+              width: 100px;
+              height: 100px;
+              margin: 24px auto;
+            }
+          </style>
+          <header><span class="css">CSS</span> <h1>Border image</h1></header>
+          <section>
+<pre><div class="img-frame selected" onclick="changeBorderImageSource(event)"><img id="border_image_1" src="src/borderimage/border_image_1.png" width="100" height="100" alt="Border image No.1" />
+</div><div class="img-frame" onclick="changeBorderImageSource(event)"><img id="border_image_2" src="src/borderimage/border_image_2.png" width="100" height="100" alt="Border image No.2" />
+</div><div class="img-frame" onclick="changeBorderImageSource(event)"><img id="border_image_3" src="src/borderimage/border_image_3.png" width="100" height="100" alt="Border image No.3" />
+</div><div class="img-frame" onclick="changeBorderImageSource(event)"><img id="border_image_4" src="src/borderimage/border_image_4.png" width="100" height="100" alt="Border image No.4" />
+</div><div class="img-frame" onclick="changeBorderImageSource(event)"><img id="border_image_5" src="src/borderimage/border_image_5.png" width="100" height="100" alt="Border image No.5" />
+</div><div style="clear:both;"></div>
+-webkit-<b>border-image</b>: url(<span id="border_image_name">border_image_1</span>.png)</span> <select onchange="changeBorderImage()">
+<option value="20%">20%</option>
+<option value="40%">40%</option>
+<option value="15">15</option>
+<option value="33">33</option>
+<option value="50">50</option>
+</select> <select onchange="changeBorderImage()">
+<option value="stretch">stretch</option>
+<option value="repeat">repeat</option>
+<option value="round">round</option></select> <select onchange='changeBorderImage()'>
+<option value="stretch">stretch</option>
+<option value="repeat">repeat</option>
+<option value="round">round</option></select>;
+border-width: <span id="border_width_value">10</span>px;  <input id="border_width_range" type="range" min="0" max="50" value="10" onchange="changeBorderWidth(event)" /></pre>
+
+            <div class="example">
+              <div id="border-image-example" style="border-width: 10px; -webkit-border-image: url(src/borderimage/border_image_1.png) 20% stretch stretch;">
+              </div>
+            </div>
+            <script defer>
+              changeBorderImage = function() {
+                var imgSrc = document.querySelector('#border-image div.img-frame.selected > img').src;
+                var selectList = document.querySelectorAll('#border-image select');
+                var str = ['url(', imgSrc, ') ', selectList[0].value, ' ',
+                           selectList[1].value, ' ', selectList[2].value,
+                           ';'].join('');
+                var borderWidth = document.getElementById('border_width_range').value;
+                document.getElementById('border-image-example').style.cssText =
+                    ['border-width: ', borderWidth,
+                     'px; -webkit-border-image: ', str, ' -moz-border-image: ',
+                     str, ' border-image: ', str].join('');
+              };
+
+              changeBorderWidth = function(event) {
+                console.log(event.target);
+                document.getElementById('border_width_value').innerHTML = event.target.value;
+                changeBorderImage();
+              };
+
+              changeBorderImageSource = function(event) {
+                var preselected = document.querySelector('#border-image div.img-frame.selected');
+                if (preselected != event.currentTarget) {
+                  preselected.classList.remove('selected');
+                  event.currentTarget.classList.add('selected');
+                  document.getElementById('border_image_name').innerHTML = event.target.id;
+                }
+                changeBorderImage();
+              };
+            </script>
+          </section>
+        </div>
+
+
         <div class="slide styling" id="flex-box-1">
           <style>
             #box-orient-example {

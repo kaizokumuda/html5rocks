@@ -206,7 +206,7 @@ class ContentHandler(webapp.RequestHandler):
     # Handle humans before locale, to prevent redirect to /en/
     # (but still ensure it's dynamic, ie we can't just redirect to a static url)
     if (relpath == 'humans.txt'):
-      self.response.headers.add_header('Content-Type', 'text/plain')
+      self.response.headers['Content-Type'] = 'text/plain'
       return self.render(data={'sorted_profiles': common.get_sorted_profiles(),
                                'profile_amount': common.get_profile_amount() },
                          template_path='content/humans.txt',
