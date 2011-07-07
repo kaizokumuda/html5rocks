@@ -50,7 +50,7 @@
   box-pack: $value;
 }
 
-@trait transition(prop, duration, timeFunc) {
+@trait simpleTransition(prop, duration, timeFunc) {
   -webkit-transition: $prop $duration $timeFunc;
   -moz-transition: $prop $duration $timeFunc;
   -o-transition: $prop $duration $timeFunc;
@@ -533,7 +533,7 @@ video {
 }
 
 [data-build] > * {
-  @mixin transition(opacity, 0.5s, ease-in-out, 0.2s);
+  @mixin simpleTransition(opacity, 0.5s, ease-in-out, 0.2s);
 }
 
 [data-build] > *.to-build {
@@ -551,7 +551,7 @@ video {
   background-color: white;
   overflow: auto;
   padding: 2px 20px;
-  @mixin transition(top, 0.5s, ease-in-out);
+  @mixin simpleTransition(top, 0.5s, ease-in-out);
   
   &.invisible {
     top: 101%;
@@ -569,7 +569,7 @@ video {
   margin: 0;
   padding: 10px 16px;
   overflow: auto;
-  @mixin transition(margin, 0.2s, ease-in-out);
+  @mixin simpleTransition(margin, 0.2s, ease-in-out);
 
   &.invisible {
     margin-left: -400px;

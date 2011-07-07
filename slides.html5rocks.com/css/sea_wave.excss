@@ -6,7 +6,7 @@
   background-color: #fff;
   border-radius: 10px;
   border: 2px solid #aaa;
-  @mixin transition(margin, 0,25s, ease-in-out);
+  @mixin simpleTransition(margin, 0,25s, ease-in-out);
 }
 
 header {
