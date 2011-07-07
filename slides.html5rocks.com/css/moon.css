@@ -146,12 +146,6 @@ body {
   background: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Styling_32.png);
 }
 
-.slide.title > .counter,
-.slide.segue > .counter,
-.slide.mainTitle > .counter {
-  display: none;
-}
-
 .slide.transitionSlide h2 {
   font-size: 40px;
   margin: 0;
@@ -349,11 +343,6 @@ a {
   border-bottom: 2px solid #3f3f3f;
 }
 
-.gmap a {
-  line-height: 100%;
-  border-bottom: none;
-}
-
 li {
   list-style: none;
   padding: 10px 0;
@@ -367,10 +356,6 @@ pre button {
   margin: 2px;
 }
 
-.summary {
-  font-size: 30px;
-}
-
 .bullets {
   font-size: 40px;
 }
@@ -378,19 +363,6 @@ pre button {
 section.left {
   float: left;
   width: 390px;
-}
-
-section.small {
-  font-size: 24px;
-}
-
-section.small ul {
-  margin: 0 0 0 15px;
-  padding: 0;
-}
-
-section.small li {
-  padding-bottom: 0;
 }
 
 section.middle {
@@ -432,10 +404,6 @@ button {
   font-family: Verdana;
 }
 
-button.large {
-  font-size: 32px;
-}
-  
 pre b {
   font-weight: normal;
   color: #c61800;
@@ -532,7 +500,7 @@ video {
   column-count: 2;
 }
 
-.summary li::before, .bullets li::before {
+.bullets li::before {
   content: '· ';
 }
 

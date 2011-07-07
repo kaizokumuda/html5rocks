@@ -175,9 +175,6 @@ body {
     right: 45px;
     opacity: 0.25;
   }
-  &.title > .counter, &.segue > .counter, &.mainTitle > .counter {
-    display: none;
-  }
 
   &.transitionSlide h2 {
     margin: 0;
@@ -194,7 +191,6 @@ body {
     width: 64px;
     height: 64px;
   }
-
 }
 
 .offline-storage .counter:after {
@@ -372,11 +368,6 @@ a {
   border-bottom: 2px solid #3f3f3f;
 }
 
-.gmap a {
-  line-height: 100%;
-  border-bottom: none;
-}
-
 li {
   list-style: none;
   padding: 10px 0;
@@ -385,9 +376,6 @@ li {
 button {
   font-family: Verdana;
   font-size: 20px;
-  &.large {
-    font-size: 32px;
-  }
 }
 
 pre {
@@ -418,28 +406,16 @@ pre {
   }
 }
 
-.summary {
-  font-size: 30px;
-}
-
 .bullets {
   font-size: 40px;
+  & li::before {
+    content: '¡¤ ';
+  }
 }
 
 section.left {
   float: left;
   width: 390px;
-}
-
-section.small {
-  font-size: 24px;
-  &  ul {
-    margin: 0 0 0 15px;
-    padding: 0;
-  }
-  & li {
-    padding-bottom: 0;
-  }
 }
 
 section.middle {
@@ -531,10 +507,6 @@ video {
 
 .two-column {
   @mixin columnCount(2);
-}
-
-.summary li::before, .bullets li::before {
-  content: '¡¤ ';
 }
 
 .stroke {
