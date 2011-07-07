@@ -3,7 +3,7 @@
 }
 
 .slide {
-  @mixin bgGradient(#fff, #dcb, #eee) borderRadius(20px, 0, 10px) simpleTransition(margin, 0,25s, ease-in-out);
+  @mixin bgGradient(#fff, #dcb, #eee) borderRadius(20px, 0, 10px) simpleTransition(margin, 0.25s, ease-in-out);
   -webkit-box-shadow: 0 5px 8px rgba(0, 0, 0, .2);
 }
 
