@@ -6,23 +6,6 @@ api_version: 1
 default_expiration: "30d"
 
 handlers:
-- url: /src
-  static_dir: src
-
-- url: /css
-  static_dir: css
-
-- url: /js
-  static_dir: js
-
-- url: /disclaimer.html
-  static_files: disclaimer.html
-  upload: disclaimer.html
-
-- url: /favicon.ico
-  static_files: favicon.ico
-  upload: favicon.ico
-
 # Server appropriate mimetype for certain static content.
 - url: /(.*\.(appcache|manifest))
   static_files: \1
@@ -54,6 +37,29 @@ handlers:
   static_files: /\1
   mime_type: audio/mpeg
   upload: /(.*\.mp3)
+
+- url: /src/svg/(.*\.svg)
+  static_files: src/svg/\1
+  mime_type: image/svg+xml
+  upload: src/svg/(.*\.svg)
+  
+# Other static files.
+- url: /src
+  static_dir: src
+
+- url: /css
+  static_dir: css
+
+- url: /js
+  static_dir: js
+
+- url: /disclaimer.html
+  static_files: disclaimer.html
+  upload: disclaimer.html
+
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
 
 - url: /
   static_files: html5.html
