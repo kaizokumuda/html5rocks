@@ -9,8 +9,8 @@ handlers:
 - url: /src
   static_dir: src
 
-- url: /css
-  static_dir: css
+- url: /styles
+  static_dir: styles
 
 - url: /js
   static_dir: js
