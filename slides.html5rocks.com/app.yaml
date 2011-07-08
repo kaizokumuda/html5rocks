@@ -6,6 +6,7 @@ api_version: 1
 default_expiration: "30d"
 
 handlers:
+
 # Server appropriate mimetype for certain static content.
 - url: /(.*\.(appcache|manifest))
   static_files: \1
@@ -47,8 +48,8 @@ handlers:
 - url: /src
   static_dir: src
 
-- url: /css
-  static_dir: css
+- url: /styles
+  static_dir: styles
 
 - url: /js
   static_dir: js
