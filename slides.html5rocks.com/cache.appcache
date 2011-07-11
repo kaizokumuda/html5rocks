@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#2011-07-08 11:36:51.032000
+#2011-07-11 11:49:46.050000
 
 /src/android-form-number.png
 /src/android-form-text.png
@@ -84,6 +84,7 @@ CACHE MANIFEST
 /src/webworkers/Worker.js
 /styles/common.excss
 /styles/default.excss
+/styles/fonts.css
 /styles/moon.excss
 /styles/sand.excss
 /styles/sea_wave.excss

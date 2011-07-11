@@ -3,7 +3,7 @@
 }
 
 .slide {
-  @mixin bgGradient(#fff, #bbd, #eee) borderRadius(20px, 0, 10px) simpleTransition(margin, 0.25s, ease-in-out);
+  @mixin bgGradient(#fff, #bbd, #eee) borderRadius(20px, 0, 10px) transitionSingle(margin, 0.25s, ease-in-out);
 }
 
 header, section, footer, .css, .js, .html {

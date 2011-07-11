@@ -26,7 +26,7 @@
   /* NOTE(slightlyoff): simpler animations for slower boxes */
   /* @mixin transition(margin, 0.3s, ease-in-out;) */
   &.current {
-    @mixin transform(scale, 1.0);
+    @mixin transformSingle(scale, 1.0);
     opacity: 1.0;
   }
 }
