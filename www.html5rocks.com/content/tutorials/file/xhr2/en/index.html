@@ -521,7 +521,7 @@ xhr.open('GET', '/path/to/image.png', true);
         writer.onerror = function(e) { ... };
 
         <b>var bb = new BlobBuilder();</b>
-        <b>bb.append</b>(<b>this.response</b>);
+        <b>bb.append</b>(<b>xhr.response</b>);
 
         <b>writer.write</b>(bb.getBlob('image/png'));
 
