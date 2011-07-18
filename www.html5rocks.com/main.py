@@ -67,7 +67,7 @@ class ContentHandler(webapp.RequestHandler):
     return browser.find('Android') != -1 or browser.find('iPhone') != -1
 
   def get_toc(self, path):
-    if not (re.search('tutorials', path) or re.search('/mobile/', path)):
+    if not (re.search('', path) or re.search('/mobile/', path)):
       return ''
 
     toc = memcache.get('toc|%s' % path)
@@ -256,7 +256,13 @@ class ContentHandler(webapp.RequestHandler):
     # Render the .html page if it exists. Otherwise, check that the Atom feed
     # the user is requesting has a corresponding .html page that exists.
 
-    if (relpath == 'profiles' or relpath == 'profiles/'):
+### test start
+    if (relpath == 'profiles/addnew'):
+      self.addAuthorInformations();
+
+### test end
+
+    elif (relpath == 'profiles' or relpath == 'profiles/'):
       # Setup caching layer for this file i/o.
       self.render(data={'sorted_profiles': common.get_sorted_profiles() },
                   template_path='content/profiles.html', relpath=relpath)
@@ -336,6 +342,43 @@ class ContentHandler(webapp.RequestHandler):
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
+  def addAuthorInformations(self):
+    sample = common.Author(key_name = 'hanrui', given_name = u'Hanrui', family_name = u'Gao',
+                           org = u'Google', unit = u'Developer Relations',
+                           city = u'Beijing', state = u'Beijing', country = u'China',
+                           google_account = u'hanrui.gao', twitter_account = u'hanruigao',
+                           email = 'hanrui@google.com')
+    sample.put()
+
+    sample = common.Author(key_name = 'ebidelman', given_name = u'Eric', family_name = u'Bidelman',
+                           org = u'Google', unit = u'Developer Relations',
+                           city = u'Mountain View', state = u'California', country = u'USA',
+                           geo_location = '37.42192,-122.087824', homepage = 'http://ebidel.com',
+                           google_account = u'ebidel', twitter_account = u'ebidel',
+                           email = 'e.bidelman@google.com')
+    sample.put()
+
+    sample = common.Author(key_name = 'ernestd', given_name = u'Ernest', family_name = u'Delgado',
+                           org = u'Google', unit = u'Developer Relations',
+                           city = u'Mountain View', state = u'California', country = u'USA',
+                           geo_location = '37.42192,-122.087824', homepage = 'http://ernestdelgado.com/',
+                           google_account = u'ernestd', twitter_account = u'edr',
+                           email = 'ernestd@google.com')
+    sample.put()
+
+    sample = common.Author(key_name = 'paulkinlan', given_name = u'Paul', family_name = u'Kinlan',
+                           org = u'Google', unit = u'Developer Relations',
+                           city = u'London', state = u'London', country = u'UK',
+                           geo_location = '51.4948,-0.1467', homepage = 'http://paul.kinlan.me',
+                           google_account = u'paul.kinlan', twitter_account = u'paul_kinlan',
+                           email = 'paul.kinlan@google.com', lanyrd = True)
+    sample.put()
+
+    sample = common.Author(key_name = 'michaeldewey', given_name = u'Mike', family_name = u'Dewey',
+                           org = u'deviantART', unit = u'Muro',
+                           city = u'Oakland', state = u'California', country = u'USA',
+                           geo_location = '37.8043637,-122.2711137')
+    sample.put()
 
 def main():
   application = webapp.WSGIApplication([

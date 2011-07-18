@@ -116,7 +116,7 @@ img[itemprop="photo"] {
   -moz-box-shadow: 1px 1px 5px rgba(0,0,0,0.4) inset, -1px -1px 5px rgba(0,0,0,0.4) inset;
   -box-shadow: 1px 1px 5px rgba(0,0,0,0.4) inset, -1px -1px 5px rgba(0,0,0,0.4) inset;
 }
-[itemprop="locality"] {
+[itemprop="city"] {
   display: none;
 }
 [itemprop="org"] {
