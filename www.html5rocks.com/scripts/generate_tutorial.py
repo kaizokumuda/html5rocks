@@ -29,7 +29,7 @@ class CommandLine(object):
   """Helper class to parse command line options."""
 
   def __PrintHelp(self):
-    print ('python gdocs_to_template.py [--input filename] '
+    print ('python generate_template.py [--input filename] '
            '--output /workers/basic/index.html')
 
   def GetArgs(self):
@@ -63,12 +63,17 @@ class CommandLine(object):
       'input': ifilename,
       'new_dir': '%s/' % '/'.join(parts[:-1]),
       'filename': parts[-1],
-      'iscasestudy': path.find('casestudies') != -1
+      'iscasestudy': path.find('casestudies') != -1, # returns lowest idx found.
+      'is_mobile': path.find('mobile') != -1
     }
 
 
 class Article(object):
   """Container for a tutorial."""
+
+  TUTORIAL = 0
+  CASE_STUDY = 1
+  MOBILE = 2
 
   def __init__(self, props):
 
@@ -77,8 +82,10 @@ class Article(object):
       if k == 'title':
         self.id = self.title.lower().replace(' ', '-')
 
-    # If we're not a case study, article should be index.html. Point to folder.
-    if not self.iscasestudy and self.href[-1] != '/':
+    # If we're not a case study or mobile article, article should be index.html,
+    # so point to folder.
+    if ((self.article_type in [self.CASE_STUDY, self.MOBILE]) and
+         self.href[-1] != '/'):
       self.href += '/'
 
     self.profile_id = ''
@@ -91,9 +98,13 @@ class TutorialFactory(object):
 
   TUTORIAL_DIR = os.path.dirname(__file__) + '/../content/tutorials/'
   CASESTUDY_DIR = TUTORIAL_DIR + '/casestudies/'
+  MOBILE_DIR = os.path.dirname(__file__) + '/../content/mobile/'
 
-  def __init__(self, new_dir, out_file_name, article=None):
-    self.new_dir = '%s%s' % (self.TUTORIAL_DIR, new_dir)
+  def __init__(self, new_dir, out_file_name, article=None, article_type=Article.TUTORIAL):
+    if article_type == Article.MOBILE:
+      self.new_dir = '%s%s' % (self.MOBILE_DIR, 'en/')
+    else:
+      self.new_dir = '%s%s%s' % (self.TUTORIAL_DIR, new_dir, 'en/')
     self.tut_index_file = open(self.TUTORIAL_DIR + 'index.html', 'r+')
     self.template_file = open(self.TUTORIAL_DIR + 'tutorial.html.template')
     try:
@@ -277,10 +288,14 @@ class TutorialFactory(object):
             self.__ConstructBrowserSupportHTML(self.article.browser_support))
         )
 
-    if self.article.iscasestudy:
+    if self.article.article_type == Article.CASE_STUDY:
       template = template.replace(
           '{% extends "sample.html" %}',
           '{% extends "casestudy.html" %}')
+    elif self.article.article_type == Article.MOBILE:
+      template = template.replace(
+          '{% extends "sample.html" %}',
+          '{% extends "mobile_tutorial.html" %}')
 
     if filename is not None:
       print '== Including tutorial body from existing file.' 
@@ -292,7 +307,28 @@ class TutorialFactory(object):
 def main():
   args = CommandLine().GetArgs()
 
-  factory = TutorialFactory(args['new_dir'], args['filename'])
+  # Create a list of tags, stripping ws, lower-casing, and removing empties.
+  tags = []
+  tags = filter(None, [x.strip().replace(' ', '') for x in
+                raw_input('Tags (e.g. tag1,tag2,tag3): ').lower().split(',')])
+
+  # Contruct the correct href link for the tutorial index page to point to.
+  article_type = Article.TUTORIAL
+  if args['iscasestudy']:
+    article_type = Article.CASE_STUDY
+    href = '/tutorials/casestudies/' + args['filename']
+    if not 'casestudy' in tags:
+      tags.append('casestudy')
+  elif args['is_mobile']:
+    article_type = Article.MOBILE
+    href = '/mobile/' + args['filename']
+    if not 'mobile' in tags:
+      tags.append('mobile')
+  else:
+    href = '/tutorials/' + args['new_dir']
+
+  factory = TutorialFactory(args['new_dir'], args['filename'],
+                            article_type=article_type)
 
   title = raw_input('Title of your article: ').strip()
   fname = raw_input('Your first name: ').strip()
@@ -305,19 +341,6 @@ def main():
     browser_support[browser] = raw_input(
         ' ' + browser.upper() + ' (y/n)?: ').strip().lower() == 'y'
 
-  # Create a list of tags, stripping ws, lower-casing, and removing empties.
-  tags = []
-  tags = filter(None, [x.strip().replace(' ', '') for x in
-                raw_input('Tags (e.g. tag1,tag2,tag3): ').lower().split(',')])
-
-  # Contruct the correct href link for the tutorial index page to point to.
-  if args['iscasestudy']:
-    href = '/tutorials/casestudies/' + args['filename']
-    if not 'casestudy' in tags:
-      tags.append('casestudy')
-  else:
-    href = '/tutorials/' + args['new_dir']
-
   factory.article = Article({
     'title': title,
     'href': href,
@@ -327,7 +350,7 @@ def main():
     'fname': fname,
     'lname': lname,
     'email': email,
-    'iscasestudy': args['iscasestudy']
+    'article_type': article_type
   })
 
   print '== Adding article to index page.'

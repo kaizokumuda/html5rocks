@@ -233,7 +233,7 @@ Specifying query parameters:
 
 
 def main():
-  locale.setlocale(locale.LC_ALL, '')
+  locale.setlocale(locale.LC_ALL)
 
   args = CommandLine().GetArgs()
 

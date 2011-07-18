@@ -1,0 +1,63 @@
+/**********************************************************************/
+/* ::::HTML5Rocks Updates Stream - Overrides::::
+ * In here are customisations for Bloggart and overrides of the 
+ * default HTML5Rocks stylesheet
+ ****************************************/
+#updates-title {
+ font-size: 25px;
+ float: left;
+ position: relative;
+ left: 15px;
+ font-family: 'Reenie Beanie', arial, helvetica, sans-serif;
+ margin: 0;
+ -webkit-transform: rotateZ(-15deg);
+ -moz-transform: rotateZ(-15deg);
+ -ms-transform: rotateZ(-15deg);
+ -o-transform: rotateZ(-15deg);
+ transform: rotateZ(-15deg);
+ letter-spacing: -1px;
+}
+#updates-title a { color: red; }
+
+footer { margin-top: 20px; }
+#content h2 {
+ margin-bottom: 0;
+}
+#feedlink { float: right; }
+#feedlink img { height: 20px; margin-right: 0.5em; }
+
+@media only screen and (max-width: 800px) {
+  #cse-search-box { top: 0; }
+  #updates-title { display: none; }
+}
+/*********/
+/* ADMIN */
+/*********/
+form table input, form table textarea { width: 40em; }
+form table th { text-align: right; vertical-align: top; padding-right: 5px; }
+form table th label { font-weight: normal; }
+#submit { width: auto; }
+/* mandatory */
+[for=name], [for=message], [for=id_tags], [for=id_author_id] { font-weight: bold; }
+ul.errorlist { list-style-type: none; margin-top: 1em; color: red; margin: 0; padding: 0; }
+.textile { font-style: italic; }
+
+/********/
+/* POST */
+/********/
+.post-info {
+  margin-top: 5px;
+}
+.postmeta { border-bottom: 1px solid #ddd; padding: 10px 0; font-size: 11px; }
+.tags { display: block; }
+a.tag { font-size: small; color: #696; text-decoration: underline; margin-right: 0.15em; }
+
+.postheader { margin-bottom: 1em; }
+.postmeta, .postfooter { clear: both; margin-top: 1em; }
+.postimage { display: block; max-width: 100%; }
+.left { float: left; margin: 0 1em 1em 0; }
+.right { float: right; margin: 0 0 1em 1em; }
+.top { display: block; margin-bottom: 1em; }
+.time-author { float: right; color: #bbb; font-style: italic; }
+.time-author time { float: none; font-size: 100%; }
+.time-author a, .time-author a:visited { color: #bbb; text-decoration: underline; }

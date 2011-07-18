@@ -1,10 +1,15 @@
 {% extends "feature.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block headtitle %}MyFeature{% endblock %}
-{% block h2title   %}MyFeature{% endblock %}
+{% block headtitle %}{% trans "MyFeature" %}{% endblock %}
+{% block h2title   %}{% trans "MyFeature" %}{% endblock %}
 {% block tuttags   %}{% endblock %}
 
-{% block description %}<p></p>{% endblock %}
+{% block description %}
+<p>{% blocktrans %}
+{% endblocktrans %}</p>
+{% endblock %}
 
 <!-- wrap tutorials content with LI's 
      Note: do not add existing tutorials from html5rocks. Those will be

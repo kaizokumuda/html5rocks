@@ -1,9 +1,11 @@
 {% extends "base.html" %}
-{% block headtitle %}Author Profiles{% endblock %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block headtitle %}{% trans "Author Profiles" %}{% endblock %}
 {% block head %}
 <link href="http://fonts.googleapis.com/css?family=Tangerine:regular,bold|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="/static/css/profiles{% if prod %}.min{% endif %}.css"/>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script src="/static/js/profiles{% if prod %}.min{% endif %}.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollTo-min.js"></script>
 {% endblock %}
@@ -11,8 +13,8 @@
 {% block body %}
   <nav>
     <p class="breadcrumb">
-      <a class="buttonlink" href="/">
-        <span>Home</span>
+      <a class="buttonlink" href="/{{LANGUAGE_CODE}}/">
+        <span>{% trans "Home" %}</span>
       </a >&gt; {{ current.capitalize }}
     </p>
   </nav>
@@ -67,7 +69,7 @@
                 {% if profile.address.country %}<span itemprop="country-name">{{profile.address.country}}</span>{% endif %}
               </div>
             </div>
-            <div class="list-articles">Articles</div>
+            <div class="list-articles">{% trans "Articles" %}</div>
           </div>
           <div class="face back">
             <ul class="articles"></ul>

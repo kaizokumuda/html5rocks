@@ -20,27 +20,35 @@
   width: 150px;
   padding: 13px 10px;
   margin: 0 4px;
-  background: -moz-linear-gradient(90deg, #eee, #fff, #eee);
-  background: -webkit-gradient(linear, left top, left bottom,
-                               from(#eee), color-stop(0.5, #fff), to(#eee));
-  border: 2px solid #e1e1e1;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 15px;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  background-color: white;
+  border: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
   -webkit-transition: -webkit-box-shadow 0.10s ease-in-out;
   -moz-transition: all 0.10s ease-in-out;
   -o-transition: all 0.10s ease-in-out;
   cursor: pointer;
 }
-#index div.app:hover,
+#index div.app:hover {
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 0, 0, 0.2) inset;
+}
 #themes a:hover {
-  border-color: #e1e1e1;
   -webkit-box-shadow: #666 0px 0px 6px;
   -moz-box-shadow: #666 0px 0px 6px;
   box-shadow: #666 0px 0px 6px;
   background: -webkit-gradient(linear, left top, left bottom,
                                from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
   background: -moz-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
+  background: -webkit-linear-gradient(#e1e1e1, #fff, #e1e1e1);
+  background: -ms-linear-gradient(#e1e1e1, #fff, #e1e1e1);
+  background: -o-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
+  background: linear-gradient(#e1e1e1, #fff, #e1e1e1);
 }
 #themes div.app {
   display: inline-block;
@@ -51,14 +59,38 @@
                                from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
   background: url(/static/images/identity/classes_32/badge-icon-sprite_32.png) no-repeat,
               -moz-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background: url(/static/images/identity/classes_32/badge-icon-sprite_32.png) no-repeat,
+              -ms-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background: url(/static/images/identity/classes_32/badge-icon-sprite_32.png) no-repeat,
+              -o-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background: url(/static/images/identity/classes_32/badge-icon-sprite_32.png) no-repeat,
+              linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
   background-position: 6px 50%;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
   margin: 3px;
   padding: 5px;
   -moz-border-radius: 0;
   -o-border-radius: 0;
   border-radius: 0;
-  border-width: 1px;
+  border: 1px solid #e1e1e1;
   vertical-align: middle;
+}
+#themes div.app.mobile {
+  background: url(/static/images/mobile.png) no-repeat,
+              -webkit-gradient(linear, left top, left bottom,
+                               from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
+  background: url(/static/images/mobile.png) no-repeat,
+              -moz-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background: url(/static/images/mobile.png) no-repeat,
+              -ms-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background: url(/static/images/mobile.png) no-repeat,
+              -o-linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background: url(/static/images/mobile.png) no-repeat,
+              linear-gradient(top, #e1e1e1, #fff, #e1e1e1);
+  background-position: 50% 50%;
+  background-size: contain;
 }
 #themes h3 {
   margin: 0;
@@ -83,7 +115,7 @@
   color: #222;
   font-weight: normal;
 }
-.desc { 
+.desc {
   font-size: 13px;
   color: #666;
   margin-top: 0;
@@ -142,6 +174,15 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+#latest_articles_feed .type {
+  font-size: 90%;
+  font-variant: small-caps;
+  margin-left: 7px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #000;
+}
+
 
 @media only screen and (min-width: 641px) and (max-width: 800px) { /*iPad*/
   #themes a {
@@ -149,6 +190,8 @@
     background: -webkit-gradient(linear, left top, left bottom,
                                  from(#e1e1e1), color-stop(0.5, #fff), to(#e1e1e1));
     background: -moz-linear-gradient(90deg, #e1e1e1, #fff, #e1e1e1);
+    background: -ms-linear-gradient(#e1e1e1, #fff, #e1e1e1);
+    background: linear-gradient(#e1e1e1, #fff, #e1e1e1);
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;

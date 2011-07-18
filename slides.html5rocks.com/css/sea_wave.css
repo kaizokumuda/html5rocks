@@ -88,6 +88,10 @@ body {
   background-image: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Offline_Storage_32.png);
 }
 
+.device-access .counter:after{
+  background-image: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Device_Access_32.png);
+}
+
 .realtime-communication .counter:after {
   background-image: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Connectivity_32.png);
 }
@@ -449,7 +453,7 @@ video {
   -o-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
 }
 
-.key { font-family: Arial; }
+.key { font-family: "Lucida console", Monospace, Arial; }
 
 :not(header) > .css,
 :not(header) > .js,
@@ -517,4 +521,9 @@ video {
 
 [data-build] > *.to-build {
   opacity: 0;
+}
+
+.sidebar {
+  background-color: #F8F8F8;
+  border-right: 5px solid #AAA;
 }

@@ -22,7 +22,7 @@ var tempJSON = [
     "category":"JavaScript APIs-Web Storage",
     "samples":[
       {
-        "boilerplateLoc": "samples/boilerplateHTML/html5/html_css_js.html",
+        "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
         "files": ["samples/js/html5/local_storage.js"],
         "editor": "js",
         "sampleName": "localStorage",
@@ -30,7 +30,7 @@ var tempJSON = [
         "spec": "http://dev.w3.org/html5/webstorage/#the-localstorage-attribute"
       },
       {
-        "boilerplateLoc": "samples/boilerplateHTML/html5/html_css_js.html",
+        "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
         "files": ["samples/js/html5/session_storage.js"],
         "editor": "js",
         "sampleName": "sessionStorage",
@@ -43,7 +43,7 @@ var tempJSON = [
     "category":"JavaScript APIs-Web SQL Database",
     "samples":[
       {
-        "boilerplateLoc": "samples/boilerplateHTML/html5/html_css_js.html",
+        "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
         "files": ["samples/js/html5/web_database.js"],
         "editor": "js",
         "sampleName": "Async Transactions",
@@ -108,7 +108,7 @@ var tempJSON = [
     "category":"JavaScript APIs-File API",
     "samples":[
       {
-        "boilerplateLoc": "samples/boilerplateHTML/html5/html_css_js.html",
+        "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
         "files": ["samples/js/html5/file_api.js"],
         "editor": "js",
         "sampleName": "Drag from Desktop",

@@ -26,9 +26,19 @@
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Vollkorn|Droid+Serif|Droid+Sans:regular,bold"> 
   <!-- JavaScript -->
   <script src="codemirror/js/prod_codemirrorz_237dc27be9961d049c38dd9ba4c126c3.js" type="text/javascript" charset="utf-8"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    jQuery.ajaxSetup({
+      converters: {
+        "text script": function( text ) {
+          // Must comment the line below to prevent auto-eval fetched script
+          // jQuery.globalEval( text );
+          return text;
+        }
+      }
+    });
+  </script>
   <script src="js/jquery-ui-packed.js" type="text/javascript" charset="utf-8"></script>
-
   {% for i in sample_srcs %}
     <script src="{{ i }}"></script>
   {% endfor %}
@@ -161,6 +171,17 @@
       margin-bottom: -7px;
     }
   </style>
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15028909-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
 </head>
 <body>
 <div id="container">
@@ -399,17 +420,6 @@ iFrame fixes it.
   document.querySelector('#title').addEventListener('click', function() {
       window.location = 'http://www.html5rocks.com/';
   }, false);
-  
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-15028909-4']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
 </script>
 </body>
 </html>

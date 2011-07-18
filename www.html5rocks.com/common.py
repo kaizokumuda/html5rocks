@@ -24,3 +24,8 @@ def get_profiles():
 
   return profiles
 
+def get_sorted_profiles():
+  return sorted(get_profiles().values(), key=lambda profile:profile['name']['family'])
+
+def get_profile_amount():
+  return len(get_profiles())

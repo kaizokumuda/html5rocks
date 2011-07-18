@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block headtitle %}Home{% endblock %}
+
+{% block head %}
+<style>
+  h1 {
+    font-family: 'Droid Sans';
+  }
+  #community .resource-category {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Droid Sans';
+    color: black;
+    padding: 0;
+    text-transform: uppercase;
+  }
+  #community iframe {
+    width: 100%;
+  }
+  #community nav ul {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    border-bottom: 1px solid #666;
+  }
+  #community nav li:first-child {
+    margin-left: 10px;
+  }
+  
+  #community nav img {
+    width: 20px;
+    height: 20px;
+    vertical-align: bottom;
+    margin: 0 4px -1px 0;
+  }
+  #community nav li {
+    float: left;
+    list-style: none;
+    padding: 5px 12px;
+    margin-right: 3px;
+    border: 1px solid #666;
+    border-bottom: none;
+    width: 20%;
+    cursor: pointer;
+    background-color: #ddd;
+    -webkit-transition: all .5s ease-in;
+  }
+  #community .community-section {
+    -webkit-transition: all .5s ease-in;
+    display: none;
+  }
+  #community nav li.active {
+    background-color: white;
+  }
+  #stackoverflow {
+    margin-top: 40px;
+    color: black;
+    padding: 5px;
+  }
+  #stackoverflow .gfc-title {
+    font-size: 20px;
+    padding: 10px 0;
+    display: block;
+    color: black;
+  }
+  #stackoverflow .gfc-result {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+ </style>
+{% endblock %}
+
+{% block body %}
+{% include "header.html" %}
+<h1>{% trans "Community" %}</h1>
+<p>{% trans "The HTML5 community is getting bigger and bigger. Here you will find some resources to be up to date about the latest HTML5 news as well as to be able to discuss with developers and engineers the experimental features and proposals around the standards and browser implementations." %}</p>
+
+<div id="community">
+  <nav>
+    <ul>
+      <li data-tab="forum" class="active"><img src="/static/images/forum_icon.png" /><a href="#">Forum</a></li>
+      <li data-tab="events"><img src="/static/images/cal_icon.png" /><a href="#">Events</a></li>
+      <li data-tab="irc-channel"><img src="/static/images/irc_icon.png" /><a href="#">IRC Channel</a></li>
+      <li data-tab="twitter"><img src="/static/images/twitter_icon.png" /><a href="#">Twitter</a></li>
+    </ul>
+  </nav>
+  <section id="forum" class="community-section">
+    <!--      
+      Forum section
+    -->
+    <iframe id="forum_embed"
+            src="javascript:void(0)"
+            scrolling="no"
+            frameborder="0"
+            width="900"
+            height="700">
+    </iframe>
+    <div id="stackoverflow">
+      
+    </div>
+  </section>
+  <section id="events" class="community-section">
+    <!--      
+      Events section
+    -->
+    <div id="events-list"></div>
+  </section>
+  
+  <section id="irc-channel" class="community-section">
+    <!--      
+      IRC section
+    -->
+    <iframe src="http://webchat.freenode.net?channels=html5&uio=d4" height="400"></iframe>
+  </section>
+
+  <section id="twitter" class="community-section">
+    <!--      
+      Twitter section
+    -->
+    <div id="twitter-widget"></div>
+  </section>
+  
+  <script src="http://www.google.com/jsapi"></script>
+  
+  <!-- tab handling -->
+  <script>
+    document.querySelector('#forum').style.display = 'block';
+    var sections = document.querySelectorAll('.community-section');
+    var tabs = document.querySelectorAll('nav li');
+    document.querySelector('#community nav ul')
+      .addEventListener('click', function(e) {
+        e.preventDefault();
+        var sectionName = e.target.getAttribute('data-tab') ||
+                          e.target.parentNode.getAttribute('data-tab');
+        var tabEl = (e.target.tagName == 'LI') ? e.target : e.target.parentNode;
+        for (var k = 0; k < tabs.length; k++) {
+          if (tabs[k] == tabEl) {
+            if (!tabs[k].classList.contains('active'))   
+              tabs[k].classList.add('active');
+          } else {
+            tabs[k].classList.remove('active');
+          }
+        }
+        if (sectionName) {
+          for (var i = 0; i < sections.length; i++) {
+            sections[i].style.display = (sections[i].id == sectionName) ?
+                                       'block' : 'none';
+          }
+        }
+    }, false);
+  </script>
+  
+  <!-- JS and CSS for events and forum section -->
+  <script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js">
+  </script>
+  <style>
+    @import url("http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.css");
+  </style>
+  
+  <script>
+  document.getElementById("forum_embed").src = "https://groups.google.com/a/chromium.org/forum/embed/#!forum/chromium-html5";
+      // "&showsearch=true&showpopout=true&parenturl=" +
+      // encodeURIComponent(window.location.href);
+  
+    
+    google.load('feeds', '1');
+
+    function OnLoad() {
+      var eventFeeds = [
+        {
+          title: '{% trans "HTML5 conferences (Lanyrd)" %}',
+          url: 'http://lanyrd.com/topics/html5-1/feed/'
+        },
+        {
+          title: '{% trans "HTML5 Meetup Groups" %}',
+          url: 'http://html5.meetup.com/newest/rss/New+HTML5+Groups'
+        },
+        {
+          title: '{% trans "Google Developer Events Calendar" %}',
+          url: 'http://www.google.com/calendar/feeds/developer-calendar@google.com/public/basic'
+        }
+      ];
+
+      var eventOptions = {
+        stacked : true,
+        horizontal : false,
+        title : "{% trans "HTML5 Events" %}"
+      };
+
+      new GFdynamicFeedControl(eventFeeds, 'events-list', eventOptions);
+      
+      // Pulling stackoverflow google-chrome tagged to show in forum section
+      var feedControl = new google.feeds.FeedControl();
+feedControl.addFeed("http://stackoverflow.com/feeds/tag/google-chrome", "Stack Overflow #google-chrome");
+      feedControl.draw(document.getElementById("stackoverflow"));
+    }
+    google.setOnLoadCallback(OnLoad);
+  </script>
+
+</div>
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+  /*   
+   * Twitter gadget script
+   */ 
+  window.addEventListener('load', function() {
+    new TWTR.Widget({
+      version: 2,
+      type: 'profile',
+      rpp: 10,
+      interval: 6000,
+      width: 'auto',
+      id: 'twitter-widget',
+      height: 300,
+      theme: {
+        shell: {
+          background: '#346fa3',
+          color: '#ffffff'
+        },
+        tweets: {
+          background: '#ffffff',
+          color: '#000000',
+          links: '#2ba0d6'
+        }
+      },
+      features: {
+        scrollbar: false,
+        loop: false,
+        live: true,
+        hashtags: true,
+        timestamp: true,
+        avatars: false,
+        behavior: 'all'
+      }
+    }).render().setUser('ChromiumDev').start();
+  }, false);
+
+</script>
+  {% include "footer.html" %}
+
+  
+{% endblock %}

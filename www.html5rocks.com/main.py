@@ -18,13 +18,11 @@ __author__ = ('kurrik@html5rocks.com (Arne Kurrik) ',
               'ericbidelman@html5rocks.com (Eric Bidelman)')
 
 
-from google.appengine.dist import use_library
-use_library('django', '1.2')
-
 # Standard Imports
 import datetime
 import logging
 import os
+import re
 import yaml
 
 # Libraries
@@ -32,24 +30,34 @@ import html5lib
 from html5lib import treebuilders, treewalkers, serializer
 from html5lib.filters import sanitizer
 
-# Hack to fix templating issue in django 1.2.
+# Use Django 1.2.
+from google.appengine.dist import use_library
+use_library('django', '1.2')
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_settings'
+
 from django.conf import settings
-settings.configure(INSTALLED_APPS=('nothing',))
+from django.utils import feedgenerator
+from django.utils import translation
+from django.utils.translation import ugettext as _
 
 # Google App Engine Imports
+from google.appengine.api import memcache
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
-
-from google.appengine.api import memcache
-
-from django.utils import feedgenerator
 
 import common
 
 template.register_template_library('templatetags.templatefilters')
 
 class ContentHandler(webapp.RequestHandler):
+  def get_language(self):
+    lang_match = re.match("^/(\w{2,3})(?:/|$)", self.request.path)
+    self.locale = lang_match.group(1) if lang_match else settings.LANGUAGE_CODE
+    logging.info("Set Language as %s" % self.locale)
+    translation.activate( self.locale )
+    return self.locale if lang_match else None
 
   def browser(self):
     return str(self.request.headers['User-Agent'])
@@ -59,6 +67,9 @@ class ContentHandler(webapp.RequestHandler):
     return browser.find('Android') != -1 or browser.find('iPhone') != -1
 
   def get_toc(self, path):
+    if not (re.search('tutorials', path) or re.search('/mobile/', path)):
+      return ''
+
     toc = memcache.get('toc|%s' % path)
     if toc is None or self.request.cache == False:
       template_text = template.render(path, {});
@@ -141,6 +152,10 @@ class ContentHandler(webapp.RequestHandler):
     if relpath is not None:
       current = relpath.split('/')[0].split('.')[0]
 
+    # Strip out language code from path. Urls changed for i18n work and correct
+    # disqus comment thread won't load with the changed urls.
+    path_no_lang = re.sub('^\/\w{2,3}\/', '', self.request.path, 1)
+
     template_data = {
       'toc' : self.get_toc(template_path),
       'self_url': self.request.url,
@@ -149,6 +164,8 @@ class ContentHandler(webapp.RequestHandler):
       'current': current,
       'prod': common.PROD
     }
+
+    template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
 
     # Request was for an Atom feed. Render one!
     if self.request.path.endswith('.xml'):
@@ -185,6 +202,21 @@ class ContentHandler(webapp.RequestHandler):
     self.response.out.write(feed.writeString('utf-8'))
 
   def get(self, relpath):
+
+    # Handle humans before locale, to prevent redirect to /en/
+    # (but still ensure it's dynamic, ie we can't just redirect to a static url)
+    if (relpath == 'humans.txt'):
+      self.response.headers['Content-Type'] = 'text/plain'
+      return self.render(data={'sorted_profiles': common.get_sorted_profiles(),
+                               'profile_amount': common.get_profile_amount() },
+                         template_path='content/humans.txt',
+                         relpath=relpath)
+
+    # Get the locale: if it's "None", redirect to English
+    locale = self.get_language()
+    if not locale:
+      return self.redirect( "/en/%s" % relpath, permanent=True)
+
     if self.request.get('cache', '1') == '0':
       self.request.cache = False
     else:
@@ -192,11 +224,31 @@ class ContentHandler(webapp.RequestHandler):
 
     basedir = os.path.dirname(__file__)
 
+    # Strip off leading `/[en|de|fr|...]/`
+    relpath = re.sub('^/?\w{2,3}/', '', relpath)
+
+    # Are we looking for a feed?
+    is_feed = self.request.path.endswith('.xml')
+
     logging.info('relpath: ' + relpath)
 
+    # Setup handling of redirected article URLs: If a user tries to access an
+    # article from a non-supported language, we'll redirect them to the English
+    # version (assuming it exists), with a `redirect_from_locale` GET param.
+    redirect_from_locale = self.request.get('redirect_from_locale', '')
+    if not re.match('[a-zA-Z]{2,3}$', redirect_from_locale):
+      redirect_from_locale = False
+    else:
+      translation.activate(redirect_from_locale)
+      redirect_from_locale = {
+        'lang': redirect_from_locale,
+        'msg': _("Sorry, this article isn't available in your native language; we've redirected you to the English version.")
+      }
+      translation.activate(locale);
+
+    # Landing page or /tutorials|features|mobile\/?
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
-       (relpath == 'tutorials' and relpath[-1] != '/') or   # Accept /tutorials\/?
-       (relpath == 'features' and relpath[-1] != '/')):      # Accept /features\/?
+       (relpath in ['mobile', 'tutorials', 'features'] and relpath[-1] != '/')):
       path = os.path.join(basedir, 'content', relpath, 'index.html')
     else:
       path = os.path.join(basedir, 'content', relpath)
@@ -206,11 +258,72 @@ class ContentHandler(webapp.RequestHandler):
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
       # Setup caching layer for this file i/o.
-      profiles = common.get_profiles()
-      sorted_profiles = sorted(profiles.values(),
-                               key=lambda profile:profile['name']['family'])
-      self.render(data={'sorted_profiles': sorted_profiles},
+      self.render(data={'sorted_profiles': common.get_sorted_profiles() },
                   template_path='content/profiles.html', relpath=relpath)
+
+    elif re.search('tutorials/casestudies', relpath) and not is_feed:
+      # Case Studies look like this on the filesystem:
+      #
+      #   .../tutorials +
+      #                 |
+      #                 +-- casestudies   +
+      #                 |                 |
+      #                 |                 +-- en  +
+      #                 |                 |       |
+      #                 |                 |       +-- case_study_name.html
+      #                 ...
+      #
+      # So, to determine if an HTML page exists for the requested language
+      # `split` the file's path, add in the locale, and check existance:
+      logging.info('Building request for casestudy `%s` in locale `%s`', path, locale)
+      potentialfile = re.sub('tutorials/casestudies',
+                             'tutorials/casestudies/%s' % locale,
+                             path)
+      englishfile = re.sub('tutorials/casestudies',
+                           'tutorials/casestudies/%s' % 'en',
+                           path)
+      logging.info(englishfile)
+      if os.path.isfile(potentialfile):
+        logging.info('Rendering in native: %s' % potentialfile)
+
+        self.render(template_path=potentialfile,
+                    data={'redirect_from_locale': redirect_from_locale},
+                    relpath=relpath)
+
+      # If the localized file doesn't exist, and the locale isn't English, look
+      # for an english version of the file, and redirect the user there if
+      # it's found:
+      elif os.path.isfile( englishfile ):
+        return self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
+
+
+    elif ((re.search('tutorials/.+', relpath) or re.search('mobile/.+', relpath))
+          and not is_feed):
+      # Tutorials look like this on the filesystem:
+      #
+      #   .../tutorials +
+      #                 |
+      #                 +-- article-slug  +
+      #                 |                 |
+      #                 |                 +-- en  +
+      #                 |                 |       |
+      #                 |                 |       +-- index.html
+      #                 ...
+      #
+      # So, to determine if an HTML page exists for the requested language
+      # `split` the file's path, add in the locale, and check existance:
+      logging.info('Building request for `%s` in locale `%s`', path, locale)
+      (dir, filename) = os.path.split(path)
+      if os.path.isfile( os.path.join( dir, locale, filename ) ):
+        self.render(template_path=os.path.join( dir, locale, filename ),
+                    data={'redirect_from_locale': redirect_from_locale},
+                    relpath=relpath)
+
+      # If the localized file doesn't exist, and the locale isn't English, look
+      # for an english version of the file, and redirect the user there if
+      # it's found:
+      elif os.path.isfile( os.path.join( dir, "en", filename ) ):
+        return self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
     elif os.path.isfile(path):
       self.render(data={}, template_path=path, relpath=relpath)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
@@ -227,7 +340,7 @@ class ContentHandler(webapp.RequestHandler):
 def main():
   application = webapp.WSGIApplication([
     ('/(.*)', ContentHandler)
-  ], debug=False)
+  ], debug=True)
   run_wsgi_app(application)
 
 if __name__ == '__main__':

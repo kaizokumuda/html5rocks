@@ -1,21 +1,28 @@
 {% extends "feature.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
-{% block headtitle %}File Access{% endblock %}
-{% block h2title   %}File Access{% endblock %}
+{% block headtitle %}{% trans "File Access" %}{% endblock %}
+{% block h2title   %}{% trans "File Access" %}{% endblock %}
 {% block tuttags   %}file,dnd,filereader,filewriter,blob{% endblock %}
 {% block caniuse   %}fileapi{% endblock %}
 
 {% block description %}
 <img src="/static/images/identity/classes_128/HTML5_Offline_Storage_128.png" width="128" height="128">
 <p>
+{% blocktrans %}
 HTML5 provides (and in some cases, will soon provide) very powerful APIs to interact
 with binary data and a user's local file system. The File APIs give web applications the ability to
 do things like read files [a]synchronously, create arbitrary Blobs, write files to a temporary location, recursively read a file directory,
-perform file drag and drop from the desktop to the browser, and upload binary data using <code>XMLHttpRequest</code>.</p>
-<p>As examples, the File APIs can be used to create a thumbnail preview of images as they're being sent to the server,
+perform file drag and drop from the desktop to the browser, and upload binary data using <code>XMLHttpRequest</code>.
+{% endblocktrans %}
+</p><p>
+{% blocktrans %}
+As examples, the File APIs can be used to create a thumbnail preview of images as they're being sent to the server,
 or allow an app to save a file reference while the user is offline. Using the upcoming Audio Data API,
 your app could read an .mp3 file and display a visualization of the song as it plays. Additionally, you could use
 client-side logic to verify an upload's mimetype matches its file extension or restrict the size of an upload.
+{% endblocktrans %}
 </p>
 {% endblock %}
 
@@ -67,36 +74,35 @@ client-side logic to verify an upload's mimetype matches its file extension or r
 {% block resources %}
 <dl>
   <dt><a href="http://www.w3.org/TR/file-upload/">W3C Spec: File</a></dt>
-  <dd>This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>.</dd>
+  <dd>{% trans "This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>." %}</dd>
 </dl>
 <dl>
   <dt><a href="http://www.w3.org/TR/file-system-api/">W3C Spec: FileSystem APIs</a></dt>
-  <dd>This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing
-  files and directories in a sandboxed file system.</dd>
+  <dd>{% trans "This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing files and directories in a sandboxed file system." %}</dd>
 </dl>
 <dl>
   <dt><a href="http://www.w3.org/TR/file-writer-api/">W3C Spec: FileWriter</a></dt>
-  <dd>This W3C specification defines the FileWriter API; which provides an interface for writing to files from web applications.</dd>
+  <dd>{% trans "This W3C specification defines the FileWriter API; which provides an interface for writing to files from web applications." %}</dd>
 </dl>
 <dl>
   <dt><a href="http://www.w3.org/TR/progress-events/#Progress">W3C Spec: ProgressEvents</a></dt>
-  <dd>This W3C specification defines the ProgressEvent; which gives asynchronous updates on the progress of a File read.</dd>
+  <dd>{% trans "This W3C specification defines the ProgressEvent; which gives asynchronous updates on the progress of a File read." %}</dd>
 </dl>
 <dl>
   <dt><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#the-dragevent-and-datatransfer-interfaces">WHATWG Spec: Drag and Drop</a></dt>
-  <dd>This whatwg specification defines the native HTML5 drag and drop APIs</dd>
+  <dd>{% trans "This whatwg specification defines the native HTML5 drag and drop APIs" %}</dd>
 </dl>
 <dl>
   <dt><a href="http://hacks.mozilla.org/2009/12/uploading-files-with-xmlhttprequest/">Mozilla Hacks: Interactive file uploads</a></dt>
-  <dd>Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files.</dd>
+  <dd>{% trans "Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files." %}</dd>
 </dl>
 <dl>
   <dt><a href="https://developer.mozilla.org/En/DragDrop/Drag_Operations">MDC: Drag Operations</a></dt>
-  <dd>Reference on the various dragging options that are available in the DnD API</dd>
+  <dd>{% trans "Reference on the various dragging options that are available in the DnD API" %}</dd>
 </dl>
 <dl>
   <dt><a href="http://html5doctor.com/native-drag-and-drop/">HTML5 Doctor: Native Drag and Drop</a></dt>
-  <dd>Article on using Native Drag and Drop in HTML5. Discusses File drag/drop from desktop.</dd>
+  <dd>{% trans "Article on using Native Drag and Drop in HTML5. Discusses File drag/drop from desktop." %}</dd>
 </dl>
 {% endblock %}
 
