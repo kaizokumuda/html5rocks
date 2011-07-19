@@ -36,6 +36,7 @@ use_library('django', '1.2')
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_settings'
 
+from django import http
 from django.conf import settings
 from django.utils import feedgenerator
 from django.utils import translation
@@ -43,6 +44,7 @@ from django.utils.translation import ugettext as _
 
 # Google App Engine Imports
 from google.appengine.api import memcache
+from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -211,6 +213,17 @@ class ContentHandler(webapp.RequestHandler):
                                'profile_amount': common.get_profile_amount() },
                          template_path='content/humans.txt',
                          relpath=relpath)
+### test start
+    elif (relpath == 'admin/load_author_information'):
+      self.addAuthorInformations()
+      if common.PROD:
+        datastore_console_url = 'https://appengine.google.com/datastore/admin?&app_id=%s&version_id=%s' % (os.environ['APPLICATION_ID'], os.environ['CURRENT_VERSION_ID'])
+      else:
+        datastore_console_url = 'http://%s/_ah/admin/datastore' % os.environ['HTTP_HOST']
+
+      return self.redirect(datastore_console_url)
+### test end
+
 
     # Get the locale: if it's "None", redirect to English
     locale = self.get_language()
@@ -256,13 +269,7 @@ class ContentHandler(webapp.RequestHandler):
     # Render the .html page if it exists. Otherwise, check that the Atom feed
     # the user is requesting has a corresponding .html page that exists.
 
-### test start
-    if (relpath == 'profiles/addnew'):
-      self.addAuthorInformations();
-
-### test end
-
-    elif (relpath == 'profiles' or relpath == 'profiles/'):
+    if (relpath == 'profiles' or relpath == 'profiles/'):
       # Setup caching layer for this file i/o.
       self.render(data={'sorted_profiles': common.get_sorted_profiles() },
                   template_path='content/profiles.html', relpath=relpath)
