@@ -118,52 +118,52 @@
 
   <p>HTML5 introduces 5 new elements related to input and forms. 
   <table class="alternating">
-	  <thead>
-		  <tr>
-			  <th scope="col">Element</th>
-			  <th scope="col">Purpose</th>
-			  <th scope="col">Notes</th>
-		  </tr>
-	  </thead>
-	  <tbody>
-		  <tr>
-			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-progress-element" 
+    <thead>
+      <tr>
+        <th scope="col">Element</th>
+        <th scope="col">Purpose</th>
+        <th scope="col">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-progress-element" 
         target="_blank">progress</a></code></td>
-			  <td>Represents completion of a task.</td>
-			  <td>The <code>progress</code> element could represent the progress of a
+        <td>Represents completion of a task.</td>
+        <td>The <code>progress</code> element could represent the progress of a
         file being uploaded.</td>
-		  </tr>
-		  <tr>
-			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-meter-element" 
+      </tr>
+      <tr>
+        <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-meter-element" 
         target="_blank">meter</a></code></td>
-			  <td>Represents a scalar measurement within a known range.</td>
-			  <td>The <code>meter</code> element could be used to represent something
+        <td>Represents a scalar measurement within a known range.</td>
+        <td>The <code>meter</code> element could be used to represent something
         like a temperature or weight measurement.</td>
-		  </tr>
-		  <tr>
-			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-datalist-element" 
+      </tr>
+      <tr>
+        <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-datalist-element" 
         target="_blank">datalist</a></code></td>
-			  <td>Represents a set of <code>option</code> elements that can be used in
+        <td>Represents a set of <code>option</code> elements that can be used in
         combination with the new <code>list</code> attribute for input to make
         dropdown menus.</td>
-			  <td>When the input with the associated datalist gets focus, a dropdown 
+        <td>When the input with the associated datalist gets focus, a dropdown 
         menu appears and contains the values from the <code>datalist</code>.
         </td>
-		  </tr>
-		  <tr>
-			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-keygen-element" 
+      </tr>
+      <tr>
+        <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-keygen-element" 
         target="_blank">keygen</a></code></td>
-			  <td>A control for key-pair generation.</td>
-			  <td>When the form is submitted, the private key gets stored in the local 
+        <td>A control for key-pair generation.</td>
+        <td>When the form is submitted, the private key gets stored in the local 
         keystore, and the public key is sent to the server.</td>
-		  </tr>
-		  <tr>
-			  <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-output-element" 
+      </tr>
+      <tr>
+        <td><code><a href="http://dev.w3.org/html5/spec/Overview.html#the-output-element" 
         target="_blank">output</a></code></td>
-			  <td>Displays the results of a calculation.</td>
+        <td>Displays the results of a calculation.</td>
         <td>An example use of the <code>output</code> element could be to 
         display the sum of the values of two input elements</code>.</td>
-		  </tr>
+      </tr>
     </tbody>
   </table>
   </p>
@@ -174,96 +174,96 @@
   support them, these input types fall back to text input.
 
   <table class="alternating">
-	  <thead>
-		  <tr>
-			  <th scope="col">Input Type</th>
-			  <th scope="col">Purpose</th>
-			  <th scope="col">Notes</th>
-		  </tr>
-	  </thead>
-	  <tbody>
-		  <tr>
-			  <td><code>tel</code></td>
-			  <td>For entering a telephone number.</td>
-			  <td><code>tel</code> does not enforce a particular syntax, so if you 
+    <thead>
+      <tr>
+        <th scope="col">Input Type</th>
+        <th scope="col">Purpose</th>
+        <th scope="col">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>tel</code></td>
+        <td>For entering a telephone number.</td>
+        <td><code>tel</code> does not enforce a particular syntax, so if you 
         want to ensure a particular format, you can use <code>pattern</code> or 
         <code>setCustomValidity()</code> to do additional validation.</td>
-		  </tr>
-		  <tr>
-			  <td><code>search</code></td>
-			  <td>To prompt users to enter text that they want to search for.</td>
-			  <td>The difference between <code>search</code> and <code>text</code> is 
+      </tr>
+      <tr>
+        <td><code>search</code></td>
+        <td>To prompt users to enter text that they want to search for.</td>
+        <td>The difference between <code>search</code> and <code>text</code> is 
         primarily stylistic. Using an input type of <code>search</code> might 
         result in the input field being styled in a way that is consistent with 
         that platform's search fields.</td>
-		  </tr>
-		  <tr>
-			  <td><code>url</code></td>
-			  <td>For entering a single URL.</td>
-			  <td><code>url</code> is intended for entering a single, <a href="http://www.w3.org/TR/html5/urls.html#absolute-url" target="_blank">
+      </tr>
+      <tr>
+        <td><code>url</code></td>
+        <td>For entering a single URL.</td>
+        <td><code>url</code> is intended for entering a single, <a href="http://www.w3.org/TR/html5/urls.html#absolute-url" target="_blank">
         absolute URL</a>, which represents a pretty wide range of values.</td>
-		  </tr>
-		  <tr>
-			  <td><code>email</code></td>
-			  <td>For entering either a single email address or a list of email 
+      </tr>
+      <tr>
+        <td><code>email</code></td>
+        <td>For entering either a single email address or a list of email 
         addresses.</td>
-			  <td>If the <code>multiple</code> attribute is specified, then multiple 
+        <td>If the <code>multiple</code> attribute is specified, then multiple 
         email addresses can be entered, separated by commas.</td>
-		  </tr>
-		  <tr>
-			  <td><code>datetime</code></td>
-			  <td>For entering a date and time with the time zone set to UTC.</td>
-			  <td></td>
-		  </tr>
-		  <tr>
-			  <td><code>date</code></td>
-			  <td>For entering a date with no time zone.</td>
-			  <td></td>
-		  </tr>
-		  <tr>
-			  <td><code>month</code></td>
-			  <td>For entering a date with a year and a month, but no time zone.</td>
-			  <td></td>
-		  </tr>
-		  <tr>
-			  <td><code>week</code></td>
-			  <td>For entering a date that consists of a week-year number and a week 
+      </tr>
+      <tr>
+        <td><code>datetime</code></td>
+        <td>For entering a date and time with the time zone set to UTC.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>date</code></td>
+        <td>For entering a date with no time zone.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>month</code></td>
+        <td>For entering a date with a year and a month, but no time zone.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>week</code></td>
+        <td>For entering a date that consists of a week-year number and a week 
         number, but no time zone.</td>
-			  <td>An example of this format is 2011-W05 for the fifth week of 2011.
+        <td>An example of this format is 2011-W05 for the fifth week of 2011.
         </td>
-		  </tr>
-		  <tr>
-			  <td><code>time</code></td>
-			  <td>For entering a time value with hour, minute, seconds, and fractional
+      </tr>
+      <tr>
+        <td><code>time</code></td>
+        <td>For entering a time value with hour, minute, seconds, and fractional
         seconds, but no time zone.</td>
-			  <td></td>
-		  </tr>
-		  <tr>
-			  <td><code>datetime-local</code></td>
-			  <td>For entering a date and time with no time zone.</td>
-			  <td></td>
-		  </tr>
-		  <tr>
-			  <td><code>number</code></td>
-			  <td>For numerical input.</td>
-			  <td>Valid values are <a href="http://www.w3.org/TR/html5/common-microsyntaxes.html#valid-floating-point-number" 
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>datetime-local</code></td>
+        <td>For entering a date and time with no time zone.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>number</code></td>
+        <td>For numerical input.</td>
+        <td>Valid values are <a href="http://www.w3.org/TR/html5/common-microsyntaxes.html#valid-floating-point-number" 
         target="_blank">floating point numbers</a>.</td>
-		  </tr>
-		  <tr>
-			  <td><code>range</code></td>
-			  <td>For numerical input, but unlike <code>number</code>, the actual 
+      </tr>
+      <tr>
+        <td><code>range</code></td>
+        <td>For numerical input, but unlike <code>number</code>, the actual 
         is not important.</td>
-			  <td>The implementation of the range control is a slider in most 
+        <td>The implementation of the range control is a slider in most 
         browsers that support it.</td>
-		  </tr>
-		  <tr>
-			  <td><code>color</code></td>
-			  <td>For choosing color through a color well control.</td>
-			  <td>The value must be a 
+      </tr>
+      <tr>
+        <td><code>color</code></td>
+        <td>For choosing color through a color well control.</td>
+        <td>The value must be a 
         <a href="http://www.w3.org/TR/html5/common-microsyntaxes.html#valid-lowercase-simple-color" 
         target="_blank">valid lowercase simple color</a> such as #ffffff.</td>
-		  </tr>
-	  </tbody>
+      </tr>
+    </tbody>
   </table>
   </p>
 
@@ -272,101 +272,101 @@
   <p>HTML5 also introduces several new attributes for the input and form 
   elements.
   <table class="alternating">
-	  <thead>
-		  <tr>
-			  <th scope="col">Attribute</th>
-			  <th scope="col">Purpose</th>
-			  <th scope="col">Notes</th>
-		  </tr>
-	  </thead>
-	  <tbody>
-		  <tr>
-			  <td><code>autofocus</code></td>
-			  <td>Focuses the input on the element when the page is loaded.</td>
-			  <td><code>autofocus</code> can be applied to input, select, textarea, 
+    <thead>
+      <tr>
+        <th scope="col">Attribute</th>
+        <th scope="col">Purpose</th>
+        <th scope="col">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>autofocus</code></td>
+        <td>Focuses the input on the element when the page is loaded.</td>
+        <td><code>autofocus</code> can be applied to input, select, textarea, 
         and button.</td>
-		  </tr>
-		  <tr>
-			  <td><code>placeholder</code></td>
-			  <td>Gives the user a hint about what sort of data they should enter.</td>
-			  <td>The placeholder value is displayed in light text 
+      </tr>
+      <tr>
+        <td><code>placeholder</code></td>
+        <td>Gives the user a hint about what sort of data they should enter.</td>
+        <td>The placeholder value is displayed in light text 
         until the element gets focus and the user enters some data. It can be 
         specified on input and textarea.</td>
-		  </tr>
-		  <tr>
-			  <td><code>form</code></td>
-			  <td>Specifies one or more forms to which the input element belongs.</td>
-			  <td>By using the <code>form</code> attribute, the input elements can be 
+      </tr>
+      <tr>
+        <td><code>form</code></td>
+        <td>Specifies one or more forms to which the input element belongs.</td>
+        <td>By using the <code>form</code> attribute, the input elements can be 
         placed anywhere on the page, not just within the form element. Also, a 
         single input element can be associated with more than one form.</td>
-		  </tr>
-		  <tr>
-			  <td><code>required</code></td>
-			  <td>A boolean attribute that means the element is required.</td>
-			  <td>The <code>required</code> attribute is helpful for doing 
+      </tr>
+      <tr>
+        <td><code>required</code></td>
+        <td>A boolean attribute that means the element is required.</td>
+        <td>The <code>required</code> attribute is helpful for doing 
         browser-based validation without using custom JavaScript.</td>
-		  </tr>
-		  <tr>
-			  <td><code>autocomplete</code></td>
-			  <td>For specifying that a field should not autocomplete or be pre-filled
+      </tr>
+      <tr>
+        <td><code>autocomplete</code></td>
+        <td>For specifying that a field should not autocomplete or be pre-filled
         by the browser based on a user's past entries.</td>
-			  <td>The <code>autocomplete</code> attribute for fields like a credit 
+        <td>The <code>autocomplete</code> attribute for fields like a credit 
         card number or one-time password, which you don't want autocomplete. By 
         default, <code>autocomplete</code> is in the <code>on</code> state, so 
         if you want to disable it, set it to <code>off</code>.</td>
-		  </tr>
-		  <tr>
-			  <td><code>pattern</code></td>
-			  <td>For validating an element's value against a regular expression.</td>
-			  <td>When using a <code>pattern</code>, you should also specify a 
+      </tr>
+      <tr>
+        <td><code>pattern</code></td>
+        <td>For validating an element's value against a regular expression.</td>
+        <td>When using a <code>pattern</code>, you should also specify a 
         <code>title</code> value to give the user a description of the pattern 
         that's expected.</td>
-		  </tr>
-		  <tr>
-			  <td><code>dirname</code></td>
-			  <td>For submitting the directionality of the control with the form.</td>
-			  <td>For example, if the user entered text data with right-to-left 
+      </tr>
+      <tr>
+        <td><code>dirname</code></td>
+        <td>For submitting the directionality of the control with the form.</td>
+        <td>For example, if the user entered text data with right-to-left 
         directionality and the input element contained the <code>dirname</code> 
         attribute, then an indication of the right-to-left directionality would 
         be submitted along with the input value.</td>
-		  </tr>
-		  <tr>
-			  <td><code>novalidate</code></td>
-			  <td>For disabling form submission validation when specified on a form
+      </tr>
+      <tr>
+        <td><code>novalidate</code></td>
+        <td>For disabling form submission validation when specified on a form
         element.</td>
-			  <td></td>
-		  </tr>
-		  <tr>
-			  <td><code>formaction</code></td>
-			  <td>For overriding the action attribute on the form element.</td>
-			  <td>This attribute is supported on <code>input</code> and 
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>formaction</code></td>
+        <td>For overriding the action attribute on the form element.</td>
+        <td>This attribute is supported on <code>input</code> and 
         <code>button</code> elements.</td>
-		  </tr>
-		  <tr>
-			  <td><code>formenctype</code></td>
-			  <td>For overriding the enctype attribute on the form element.</td>
-			  <td>This attribute is supported on <code>input</code> and 
+      </tr>
+      <tr>
+        <td><code>formenctype</code></td>
+        <td>For overriding the enctype attribute on the form element.</td>
+        <td>This attribute is supported on <code>input</code> and 
         <code>button</code> elements.</td>
-		  </tr>
-		  <tr>
-			  <td><code>formmethod</code></td>
-			  <td>For overriding the method attribute on the form element.</td>
-			  <td>This attribute is supported on <code>input</code> and 
+      </tr>
+      <tr>
+        <td><code>formmethod</code></td>
+        <td>For overriding the method attribute on the form element.</td>
+        <td>This attribute is supported on <code>input</code> and 
         <code>button</code> elements.</td>
-		  </tr>
-		  <tr>
-			  <td><code>formnovalidate</code></td>
-			  <td>For overriding the novalidate attribute on the form element.</td>
-			  <td>This attribute is supported on <code>input</code> and 
+      </tr>
+      <tr>
+        <td><code>formnovalidate</code></td>
+        <td>For overriding the novalidate attribute on the form element.</td>
+        <td>This attribute is supported on <code>input</code> and 
         <code>button</code> elements.</td>
-		  </tr>
-		  <tr>
-			  <td><code>formtarget</code></td>
-			  <td>For overriding the target attribute on the form element.</td>
-			  <td>This attribute is supported on <code>input</code> and 
+      </tr>
+      <tr>
+        <td><code>formtarget</code></td>
+        <td>For overriding the target attribute on the form element.</td>
+        <td>This attribute is supported on <code>input</code> and 
         <code>button</code> elements.</td>
-		  </tr>
-	  </tbody>
+      </tr>
+    </tbody>
   </table> 
   </p>
   
@@ -633,4 +633,10 @@ input[type=submit] {
   background:none;
   padding:10px;
 }</pre>
+
+<h2 id="resources">Resources</h2>
+<ul>
+  <li><a href="http://www.w3.org/TR/html5/forms.html">W3C Specification</a></li>
+  <li><a href="http://wufoo.com/html5/">The Current State of HTML5 Forms</a></li>
+</ul>
 {% endblock %}
