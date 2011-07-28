@@ -140,7 +140,8 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
 
       var html = [];
       for (var i = 0, entry; entry = result.value.items[i]; ++i) {
-        var date = new Date(entry.pubDate);
+        //var date = new Date(entry.pubDate);
+        var date = new Date(entry.pubDate.split('T')[0].replace(/-/g, '/'));
         var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
 
         var type = '';
