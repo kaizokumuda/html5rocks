@@ -202,6 +202,25 @@ class ContentHandler(webapp.RequestHandler):
     self.response.headers.add_header('Content-Type', 'application/atom+xml')
     self.response.out.write(feed.writeString('utf-8'))
 
+  def post(self, relpath):
+    if (relpath == 'database/submit'):
+      sample = common.Author(key_name = self.request.get('key_name'),
+                             given_name = self.request.get('given_name'),
+                             family_name = self.request.get('family_name'),
+                             org = self.request.get('org'),
+                             unit = self.request.get('unit'),
+                             city = self.request.get('city'),
+                             state = self.request.get('state'),
+                             country = self.request.get('country'),
+                             geo_location = self.request.get('geo_location') or None,
+                             homepage = self.request.get('homepage') or None,
+                             google_account = self.request.get('google_account') or None,
+                             twitter_account = self.request.get('twitter_account') or None,
+                             email = self.request.get('email') or None,
+                             lanyrd = self.request.get('lanyrd') == 'on')
+      sample.put()      
+      return self.redirect('/database/edit')
+
   def get(self, relpath):
 
     # Handle humans before locale, to prevent redirect to /en/
@@ -212,17 +231,24 @@ class ContentHandler(webapp.RequestHandler):
                                'profile_amount': common.get_profile_amount() },
                          template_path='content/humans.txt',
                          relpath=relpath)
-### test start
-    elif (relpath == 'admin/load_author_information'):
+
+    elif (relpath == 'database/load_author_information'):
       self.addAuthorInformations()
+      return self.redirect('/database/edit')
+
+    elif (relpath == 'database/new'):
+      # adds a new author information into DataStore
+      return self.render(data={'author_form': common.AuthorForm() },
+                         template_path='database/author_new.html',
+                         relpath=relpath)
+
+    elif (relpath == 'database/edit'):
       if common.PROD:
         datastore_console_url = 'https://appengine.google.com/datastore/admin?&app_id=%s&version_id=%s' % (os.environ['APPLICATION_ID'], os.environ['CURRENT_VERSION_ID'])
       else:
         datastore_console_url = 'http://%s/_ah/admin/datastore' % os.environ['HTTP_HOST']
 
-      return self.redirect(datastore_console_url)
-### test end
-
+      return self.redirect(datastore_console_url, permanent=True)
 
     # Get the locale: if it's "None", redirect to English
     locale = self.get_language()

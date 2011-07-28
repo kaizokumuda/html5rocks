@@ -112,7 +112,7 @@ handlers:
   static_files: static/robots.txt
   upload: static/robots.txt
 
-- url: /admin/load_author_information
+- url: /database/.*
   script: main.py
   login: admin
 

@@ -2,8 +2,10 @@ import os
 import yaml
 import logging
 
-from google.appengine.ext import db
 from google.appengine.api import memcache
+from google.appengine.ext import db
+from google.appengine.ext.db import djangoforms
+from django import forms
 
 if 'SERVER_SOFTWARE' in os.environ:
   PROD = not os.environ['SERVER_SOFTWARE'].startswith('Development')
@@ -27,7 +29,8 @@ def get_profiles():
   return profiles
 
 def get_sorted_profiles():
-  return sorted(get_profiles().values(), key=lambda profile:profile.family_name)
+  return sorted(get_profiles().values(),
+                key=lambda profile:profile.family_name)
 
 def get_profile_amount():
   return len(get_profiles())
@@ -49,3 +52,14 @@ class Author(db.Model):
   twitter_account = db.StringProperty()
   email = db.EmailProperty()
   lanyrd = db.BooleanProperty(default=False)
+
+class AuthorForm(djangoforms.ModelForm):
+  class Meta:
+    model = Author
+
+  def __init__(self, *args, **keyargs):
+    super(AuthorForm, self).__init__(*args, **keyargs)
+
+    for field in self.fields:
+      if (self.Meta.model.properties()[field].required):
+        self.fields[field].widget.attrs['required'] = 'required'
