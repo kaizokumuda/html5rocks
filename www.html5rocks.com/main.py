@@ -44,6 +44,7 @@ from django.utils.translation import ugettext as _
 
 # Google App Engine Imports
 from google.appengine.api import memcache
+from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -204,22 +205,26 @@ class ContentHandler(webapp.RequestHandler):
 
   def post(self, relpath):
     if (relpath == 'database/submit'):
-      sample = common.Author(key_name = self.request.get('key_name'),
-                             given_name = self.request.get('given_name'),
-                             family_name = self.request.get('family_name'),
-                             org = self.request.get('org'),
-                             unit = self.request.get('unit'),
-                             city = self.request.get('city'),
-                             state = self.request.get('state'),
-                             country = self.request.get('country'),
-                             geo_location = self.request.get('geo_location') or None,
-                             homepage = self.request.get('homepage') or None,
-                             google_account = self.request.get('google_account') or None,
-                             twitter_account = self.request.get('twitter_account') or None,
-                             email = self.request.get('email') or None,
-                             lanyrd = self.request.get('lanyrd') == 'on')
-      sample.put()      
-      return self.redirect('/database/edit')
+      try:
+        sample = common.Author(key_name = self.request.get('key_name'),
+                               given_name = self.request.get('given_name'),
+                               family_name = self.request.get('family_name'),
+                               org = self.request.get('org'),
+                               unit = self.request.get('unit'),
+                               city = self.request.get('city'),
+                               state = self.request.get('state'),
+                               country = self.request.get('country'),
+                               geo_location = self.request.get('geo_location') or None,
+                               homepage = self.request.get('homepage') or None,
+                               google_account = self.request.get('google_account') or None,
+                               twitter_account = self.request.get('twitter_account') or None,
+                               email = self.request.get('email') or None,
+                               lanyrd = self.request.get('lanyrd') == 'on')
+        sample.put()
+      except db.Error:
+        pass
+      else:
+        return self.redirect('/database/edit')
 
   def get(self, relpath):
 
