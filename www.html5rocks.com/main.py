@@ -337,6 +337,10 @@ class ContentHandler(webapp.RequestHandler):
 
     elif ((re.search('tutorials/.+', relpath) or re.search('mobile/.+', relpath))
           and not is_feed):
+      # If no trailing / (e.g. /tutorials/blah/blah), append index.html file.
+      if (relpath[-1] != '/' and not relpath.endswith('.html')):
+        path += '/index.html'
+
       # Tutorials look like this on the filesystem:
       #
       #   .../tutorials +
