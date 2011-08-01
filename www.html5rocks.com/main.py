@@ -36,6 +36,7 @@ use_library('django', '1.2')
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_settings'
 
+from django import http
 from django.conf import settings
 from django.utils import feedgenerator
 from django.utils import translation
@@ -67,7 +68,7 @@ class ContentHandler(webapp.RequestHandler):
     return browser.find('Android') != -1 or browser.find('iPhone') != -1
 
   def get_toc(self, path):
-    if not (re.search('tutorials', path) or re.search('/mobile/', path)):
+    if not (re.search('', path) or re.search('/mobile/', path)):
       return ''
 
     toc = memcache.get('toc|%s' % path)
@@ -201,6 +202,25 @@ class ContentHandler(webapp.RequestHandler):
     self.response.headers.add_header('Content-Type', 'application/atom+xml')
     self.response.out.write(feed.writeString('utf-8'))
 
+  def post(self, relpath):
+    if (relpath == 'database/submit'):
+      sample = common.Author(key_name = self.request.get('key_name'),
+                             given_name = self.request.get('given_name'),
+                             family_name = self.request.get('family_name'),
+                             org = self.request.get('org'),
+                             unit = self.request.get('unit'),
+                             city = self.request.get('city'),
+                             state = self.request.get('state'),
+                             country = self.request.get('country'),
+                             geo_location = self.request.get('geo_location') or None,
+                             homepage = self.request.get('homepage') or None,
+                             google_account = self.request.get('google_account') or None,
+                             twitter_account = self.request.get('twitter_account') or None,
+                             email = self.request.get('email') or None,
+                             lanyrd = self.request.get('lanyrd') == 'on')
+      sample.put()      
+      return self.redirect('/database/edit')
+
   def get(self, relpath):
 
     # Handle humans before locale, to prevent redirect to /en/
@@ -211,6 +231,24 @@ class ContentHandler(webapp.RequestHandler):
                                'profile_amount': common.get_profile_amount() },
                          template_path='content/humans.txt',
                          relpath=relpath)
+
+    elif (relpath == 'database/load_author_information'):
+      self.addAuthorInformations()
+      return self.redirect('/database/edit')
+
+    elif (relpath == 'database/new'):
+      # adds a new author information into DataStore
+      return self.render(data={'author_form': common.AuthorForm() },
+                         template_path='database/author_new.html',
+                         relpath=relpath)
+
+    elif (relpath == 'database/edit'):
+      if common.PROD:
+        datastore_console_url = 'https://appengine.google.com/datastore/admin?&app_id=%s&version_id=%s' % (os.environ['APPLICATION_ID'], os.environ['CURRENT_VERSION_ID'])
+      else:
+        datastore_console_url = 'http://%s/_ah/admin/datastore' % os.environ['HTTP_HOST']
+
+      return self.redirect(datastore_console_url, permanent=True)
 
     # Get the locale: if it's "None", redirect to English
     locale = self.get_language()
@@ -336,6 +374,43 @@ class ContentHandler(webapp.RequestHandler):
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
+  def addAuthorInformations(self):
+    sample = common.Author(key_name = 'hanrui', given_name = u'Hanrui', family_name = u'Gao',
+                           org = u'Google', unit = u'Developer Relations',
+                           city = u'Beijing', state = u'Beijing', country = u'China',
+                           google_account = u'hanrui.gao', twitter_account = u'hanruigao',
+                           email = 'hanrui@google.com')
+    sample.put()
+
+    sample = common.Author(key_name = 'ebidelman', given_name = u'Eric', family_name = u'Bidelman',
+                           org = u'Google', unit = u'Developer Relations',
+                           city = u'Mountain View', state = u'California', country = u'USA',
+                           geo_location = '37.42192,-122.087824', homepage = 'http://ebidel.com',
+                           google_account = u'ebidel', twitter_account = u'ebidel',
+                           email = 'e.bidelman@google.com')
+    sample.put()
+
+    sample = common.Author(key_name = 'ernestd', given_name = u'Ernest', family_name = u'Delgado',
+                           org = u'Google', unit = u'Developer Relations',
+                           city = u'Mountain View', state = u'California', country = u'USA',
+                           geo_location = '37.42192,-122.087824', homepage = 'http://ernestdelgado.com/',
+                           google_account = u'ernestd', twitter_account = u'edr',
+                           email = 'ernestd@google.com')
+    sample.put()
+
+    sample = common.Author(key_name = 'paulkinlan', given_name = u'Paul', family_name = u'Kinlan',
+                           org = u'Google', unit = u'Developer Relations',
+                           city = u'London', state = u'London', country = u'UK',
+                           geo_location = '51.4948,-0.1467', homepage = 'http://paul.kinlan.me',
+                           google_account = u'paul.kinlan', twitter_account = u'paul_kinlan',
+                           email = 'paul.kinlan@google.com', lanyrd = True)
+    sample.put()
+
+    sample = common.Author(key_name = 'michaeldewey', given_name = u'Mike', family_name = u'Dewey',
+                           org = u'deviantART', unit = u'Muro',
+                           city = u'Oakland', state = u'California', country = u'USA',
+                           geo_location = '37.8043637,-122.2711137')
+    sample.put()
 
 def main():
   application = webapp.WSGIApplication([

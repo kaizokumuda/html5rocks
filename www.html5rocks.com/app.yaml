@@ -112,6 +112,10 @@ handlers:
   static_files: static/robots.txt
   upload: static/robots.txt
 
+- url: /database/.*
+  script: main.py
+  login: admin
+
 - url: /admin/.*
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
@@ -121,3 +125,6 @@ handlers:
 
 - url: .*
   script: main.py
+
+builtins:
+- datastore_admin: on
