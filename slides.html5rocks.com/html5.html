@@ -1529,60 +1529,50 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
           <aside><a target="_blank" href="http://www.monocubed.com/?p=696">Fight or Flight game</a></aside>
         </div>
 
-        <div class="slide" id="speech-input"> 
-          <style> 
+        <div class="slide device-access" id="speech-input">
+          <style>
             #speech-input-field {
-              width: 300px;
-              height: 30px;
-              padding: 3px;
-              margin-bottom: 10px;
+              width: 400px;
+              height: 50px;
+              padding: 10px 15px;
               font-size: 155%;
-              border-radius: 5px;
+              border-radius: 10px;
               border: 1px solid #ccc;
               outline: 0;
             }
-            #speech-results {
-              text-align: left;
-              font-size: 17px;
-              height: 200px;
-              overflow: auto;
-              width: 500px;
-              border: 1px solid black;
-              padding: 10px;
-            }
-          </style> 
-          <header><span class="html">HTML</span> <h1>Speech Input</h1></header> 
+          </style>
+          <header><span class="html">HTML</span> <h1>Speech Input</h1></header>
           <section>
-            <pre>&lt;input type="text" <b>x-webkit-speech</b> /&gt;</pre> 
-            <pre>function startSearch(event) {
-  if (event.target.<b>results</b>.length > 1) {
-    var second = event.target.results[1].<b>utterance</b>;
-    document.getElementById("second_best").value = second;
-  }
-  event.target.form.submit();
-}</pre> 
 
-               <input id="speech-input-field" type="text" x-webkit-speech /> 
-               <div id="speech-results">
+            <pre>&lt;input type="text" <b>x-webkit-speech</b> /&gt;</pre>
 
-               </div> 
-               <script> 
-               document.getElementById("speech-input-field").addEventListener("webkitspeechchange", function(event) {
-                 var speechresults = document.getElementById('speech-results');
-                 speechresults.innerHTML = '';
-                 for (var res in event.results) {
-                   speechresults.innerHTML += 'Utterance: ' + event.results[res]['utterance'] + '<br />Confidence: ' + event.results[res]['confidence'] + '<br /><br />';
-                 }
-               }, false);
-               </script>
-               <p style="display:none">Speech input is not enabled in your browser.<br> 
-               Try running Google Chrome with the <code>--enable-speech-input</code> flag.</p> 
-            <script> 
+            <div class="flex hbox boxcenter">
+              <div class="noflex vbox boxcenter" style="height:300px;text-align:center">
+               <input id="speech-input-field" type="text" x-webkit-speech />
+               
+               <div style="text-align: left; font-size: 17px; height: 200px; overflow: auto; width: 500px; border: 1px solid black; padding: 10px" id="speech-results">
+                 
+               <p style="display:none">Speech input is not enabled in your browser.<br>
+               Try running Google Chrome with the <code>--enable-speech-input</code> flag.</p>
+              </div>
+            </div>
+            <script>
               if (!('webkitSpeech' in document.createElement('input'))) {
                 document.querySelector('#speech-input p').style.display = 'block';
               }
             </script>
-          </section> 
+            <script>
+            document.getElementById("speech-input-field").addEventListener("webkitspeechchange", function(event) {
+              var speechresults = document.getElementById('speech-results');
+              speechresults.innerHTML = '';
+              for (var res in event.results) {
+                speechresults.innerHTML += 'Utterance: ' + event.results[res]['utterance'] + '<br />Confidence: ' + event.results[res]['confidence'] + '<br /><br />';
+              }
+            }, false);
+            </script>
+            
+          </section>
+          
         </div>
 
 
@@ -2691,6 +2681,9 @@ header {
             </div>
 
           </section>
+             <aside>  <a target="_blank" href="http://www.viget.com/uploads/file/boxshadows/">39 Ridiculous Things To Do With CSS3 Box Shadows</a> <a target="_blank" href="http://nicolasgallagher.com/css-drop-shadows-without-images/demo/">CSS drop-shadows without images</a>
+
+                </aside>
 
           <script defer>
             function changeShadow() {
