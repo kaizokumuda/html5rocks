@@ -1190,6 +1190,249 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
           </section>
         </div>
 
+        <div class="slide" id="dnd">
+          <style>
+          #draggable-list {
+            margin: 10px 20px 0 0;
+            padding: 0;
+            float: left;
+            width: 300px;
+          }
+          #draggable-list li {
+            border: 1px solid black;
+          }
+          #dnd .example {
+            float: left;
+            width: 300px;
+          }
+          #dnd #drop-area {
+
+            height: 150px;
+            width: 100%;
+            -webkit-border-radius: 10px;
+            -khtml-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px dashed #0687FF;
+          }     
+          #dnd-log {
+            text-align: left;
+            font-size: 17px;
+            height: 100px;
+            overflow: auto;
+            width: 90%;
+            border: 1px solid black;
+            padding: 10px;
+          }
+
+          </style>
+          <header><span class="js">JS</span> Drag and Drop API</header>
+          <section>
+            <pre>document.querySelector('#dropzone').addEventListener('drop', function(e) {
+  var reader = new <b>FileReader</b>();
+  reader.onload = function(evt) {
+    document.querySelector('img').src = evt.target.<b>result</b>;
+  };
+
+  reader.<b>readAsDataURL</b>(e.<b>dataTransfer.files[0]</b>);
+}, false);</pre>
+            <ul id="draggable-list">
+              <li>A</li>
+              <li>B</li>
+              <li>C</li>
+            </ul>
+            <div class="example">
+              <div id="drop-area" class="vbox boxcenter center">
+                Drop in items from the list
+              </div>              
+            </div>
+            <div id="dnd-log">
+
+            </div>
+          </section>
+          <script>
+            var dndc = new DNDFileController('drop-area');
+            var dndlist = new DNDList('draggable-list');
+
+            function DNDFileController(dropId) {
+              var el_ = document.getElementById(dropId);
+
+              this.dragenter = function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                el_.classList.add('active');
+              };
+
+              this.dragover = function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+              };
+
+              this.dragleave = function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                el_.classList.remove('active');
+              };
+
+              this.drop = function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                el_.classList.remove('active');
+
+                // readDraggedFiles(e.dataTransfer.files);
+
+                return false;
+              };
+
+              el_.addEventListener("dragenter", this.dragenter, false);
+              el_.addEventListener("dragover", this.dragover, false);
+              el_.addEventListener("dragleave", this.dragleave, false);
+              el_.addEventListener("drop", this.drop, false);
+
+            };
+
+            function readDraggedFiles(files) {
+              var dropdata = document.querySelector('#drop-data');
+              var types = event.dataTransfer.types;
+              dropdata.textContent = '';
+              this.innerHTML = '';
+              for (var i = 0; i < types.length; i++) {
+                if (types[i] == 'Files') {
+                  var files = event.dataTransfer.files;
+                  for (var j = 0; j < files.length; j++) {
+                    dropdata.textContent += 'File Name: '+files[j].fileName;
+                    dropdata.textContent += 'File Size: '+files[j].fileSize;
+                  }
+                }
+                else {
+                  if (typeof event.dataTransfer.getData(types[i]) !== 'undefined') {
+                    dropdata.innerHTML += '<p><em class="datatypes">'+types[i]+'</em>: <br />'+event.dataTransfer.getData(types[i]).replace(/</g, '&lt;') + '</p>';
+                  }
+                }
+
+                if (types[i] == 'text/uri-list') {
+                  imgPassed = event.dataTransfer.getData('text/uri-list');
+                }
+              }
+            }
+
+            function renderFileMeta(aFile) {
+              var li = document.createElement('li');
+              li.appendChild(document.createTextNode(aFile.name));
+              li.dataset['songname'] = aFile.name;
+              dndlist.addItem(li);
+              listArea.appendChild(li);
+              FILE_QUEUE.push(aFile);
+            }
+
+            // ready to be used if needed
+            function readFileContent(file) {
+              var reader = new FileReader();
+
+              reader.onerror = function(evt) {
+                 var msg = 'Error ' + evt.target.error.code;
+                 switch (evt.target.error.code) {
+                   case FileError.NOT_READABLE_ERR:
+                     msg += ': NOT_READABLE_ERR';
+                     break;
+                   case FileError.SECURITY_ERR:
+                     msg += ': SECURITY_ERR';
+                     break;
+                 };
+                 alert(msg);
+              };
+
+              reader.onload = (function(aFile) {
+                return function(evt) {
+                  if (evt.target.readyState == FileReader.DONE) {
+                    // fileContentHandler(evt, aFile)
+                  }
+                };
+              })(file);
+
+              reader.readAsDataURL(file);
+            }
+
+
+            function DNDList(listId) {
+              var id_ = listId;
+              var cols_ = document.querySelectorAll('#' + id_ + ' li');
+              var dragSrcEl_ = null;
+
+              this.handleDragStart = function(e) {
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/html', this.innerHTML);
+
+                dragSrcEl_ = this;
+
+                // this/e.target is the source node.
+                this.classList.add('moving');
+              };
+
+              this.handleDragOver = function(e) {
+                if (e.preventDefault) {
+                  e.preventDefault(); // Allows us to drop.
+                }
+
+                e.dataTransfer.dropEffect = 'move';
+
+                return false;
+              };
+
+              this.handleDragEnter = function(e) {
+                this.classList.add('over');
+              };
+
+              this.handleDragLeave = function(e) {
+                // this/e.target is previous target element.
+                this.classList.remove('over');
+              };
+
+              this.handleDrop = function(e) {
+                // this/e.target is current target element.
+
+                if (e.stopPropagation) {
+                  e.stopPropagation(); // stops the browser from redirecting.
+                }
+
+                // Don't do anything if we're dropping on the same column we're dragging.
+                if (dragSrcEl_ != this) {
+                  dragSrcEl_.innerHTML = this.innerHTML;
+                  this.innerHTML = e.dataTransfer.getData('text/html');
+                  // saveSongList();
+                }
+
+                return false;
+              };
+
+              this.handleDragEnd = function(e) {
+                // this/e.target is the source node.
+                [].forEach.call(cols_, function (col) {
+                  col.classList.remove('over');
+                  col.classList.remove('moving');
+                });
+              };
+
+              this.handleClick = function(e) {
+                for (var i = 0; i < FILE_QUEUE.length; i++) {
+                  if (e.target.dataset['songname'] && e.target.dataset['songname'] == FILE_QUEUE[i].name) {
+                    alert('song: ' + FILE_QUEUE[i].name + ' clicked');
+                  }
+                }
+              };
+
+              [].forEach.call(cols_, function(col) {
+                col.setAttribute('draggable', 'true');  // Enable columns to be draggable.
+                col.addEventListener('dragstart', this.handleDragStart, false);
+                col.addEventListener('dragenter', this.handleDragEnter, false);
+                col.addEventListener('dragover', this.handleDragOver, false);
+                col.addEventListener('dragleave', this.handleDragLeave, false);
+                col.addEventListener('drop', this.handleDrop, false);
+                col.addEventListener('dragend', this.handleDragEnd, false);
+              }.bind(this));
+            }
+          </script>
+        </div>
 
         <div class="slide device-access" id="drag-in">
           <style>
