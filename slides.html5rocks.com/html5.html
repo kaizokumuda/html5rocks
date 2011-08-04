@@ -1088,8 +1088,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
 <pre>document.addEventListener(<em>'dragstart'</em>, function(event) {
   event.<b>dataTransfer.setData</b>('text', 'Customized text');
   event.<b>dataTransfer.effectAllowed</b> = 'copy';
-}, false);
-</pre>
+}, false);</pre>
             <ol id="drag-zone">
               <li><img src="src/dwd1.png" draggable class="copy" /></li>
               <li><span class="draggable-text" draggable>Select text and drag (original text will be dropped)</span></li>
@@ -1190,250 +1189,7 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
           </section>
         </div>
 
-        <div class="slide" id="dnd">
-          <style>
-          #draggable-list {
-            margin: 10px 20px 0 0;
-            padding: 0;
-            float: left;
-            width: 300px;
-          }
-          #draggable-list li {
-            border: 1px solid black;
-          }
-          #dnd .example {
-            float: left;
-            width: 300px;
-          }
-          #dnd #drop-area {
-
-            height: 150px;
-            width: 100%;
-            -webkit-border-radius: 10px;
-            -khtml-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-            border: 2px dashed #0687FF;
-          }     
-          #dnd-log {
-            text-align: left;
-            font-size: 17px;
-            height: 100px;
-            overflow: auto;
-            width: 90%;
-            border: 1px solid black;
-            padding: 10px;
-          }
-
-          </style>
-          <header><span class="js">JS</span> Drag and Drop API</header>
-          <section>
-            <pre>document.querySelector('#dropzone').addEventListener('drop', function(e) {
-  var reader = new <b>FileReader</b>();
-  reader.onload = function(evt) {
-    document.querySelector('img').src = evt.target.<b>result</b>;
-  };
-
-  reader.<b>readAsDataURL</b>(e.<b>dataTransfer.files[0]</b>);
-}, false);</pre>
-            <ul id="draggable-list">
-              <li>A</li>
-              <li>B</li>
-              <li>C</li>
-            </ul>
-            <div class="example">
-              <div id="drop-area" class="vbox boxcenter center">
-                Drop in items from the list
-              </div>              
-            </div>
-            <div id="dnd-log">
-
-            </div>
-          </section>
-          <script>
-            var dndc = new DNDFileController('drop-area');
-            var dndlist = new DNDList('draggable-list');
-
-            function DNDFileController(dropId) {
-              var el_ = document.getElementById(dropId);
-
-              this.dragenter = function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-                el_.classList.add('active');
-              };
-
-              this.dragover = function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-              };
-
-              this.dragleave = function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-                el_.classList.remove('active');
-              };
-
-              this.drop = function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-                el_.classList.remove('active');
-
-                // readDraggedFiles(e.dataTransfer.files);
-
-                return false;
-              };
-
-              el_.addEventListener("dragenter", this.dragenter, false);
-              el_.addEventListener("dragover", this.dragover, false);
-              el_.addEventListener("dragleave", this.dragleave, false);
-              el_.addEventListener("drop", this.drop, false);
-
-            };
-
-            function readDraggedFiles(files) {
-              var dropdata = document.querySelector('#drop-data');
-              var types = event.dataTransfer.types;
-              dropdata.textContent = '';
-              this.innerHTML = '';
-              for (var i = 0; i < types.length; i++) {
-                if (types[i] == 'Files') {
-                  var files = event.dataTransfer.files;
-                  for (var j = 0; j < files.length; j++) {
-                    dropdata.textContent += 'File Name: '+files[j].fileName;
-                    dropdata.textContent += 'File Size: '+files[j].fileSize;
-                  }
-                }
-                else {
-                  if (typeof event.dataTransfer.getData(types[i]) !== 'undefined') {
-                    dropdata.innerHTML += '<p><em class="datatypes">'+types[i]+'</em>: <br />'+event.dataTransfer.getData(types[i]).replace(/</g, '&lt;') + '</p>';
-                  }
-                }
-
-                if (types[i] == 'text/uri-list') {
-                  imgPassed = event.dataTransfer.getData('text/uri-list');
-                }
-              }
-            }
-
-            function renderFileMeta(aFile) {
-              var li = document.createElement('li');
-              li.appendChild(document.createTextNode(aFile.name));
-              li.dataset['songname'] = aFile.name;
-              dndlist.addItem(li);
-              listArea.appendChild(li);
-              FILE_QUEUE.push(aFile);
-            }
-
-            // ready to be used if needed
-            function readFileContent(file) {
-              var reader = new FileReader();
-
-              reader.onerror = function(evt) {
-                 var msg = 'Error ' + evt.target.error.code;
-                 switch (evt.target.error.code) {
-                   case FileError.NOT_READABLE_ERR:
-                     msg += ': NOT_READABLE_ERR';
-                     break;
-                   case FileError.SECURITY_ERR:
-                     msg += ': SECURITY_ERR';
-                     break;
-                 };
-                 alert(msg);
-              };
-
-              reader.onload = (function(aFile) {
-                return function(evt) {
-                  if (evt.target.readyState == FileReader.DONE) {
-                    // fileContentHandler(evt, aFile)
-                  }
-                };
-              })(file);
-
-              reader.readAsDataURL(file);
-            }
-
-
-            function DNDList(listId) {
-              var id_ = listId;
-              var cols_ = document.querySelectorAll('#' + id_ + ' li');
-              var dragSrcEl_ = null;
-
-              this.handleDragStart = function(e) {
-                e.dataTransfer.effectAllowed = 'move';
-                e.dataTransfer.setData('text/html', this.innerHTML);
-
-                dragSrcEl_ = this;
-
-                // this/e.target is the source node.
-                this.classList.add('moving');
-              };
-
-              this.handleDragOver = function(e) {
-                if (e.preventDefault) {
-                  e.preventDefault(); // Allows us to drop.
-                }
-
-                e.dataTransfer.dropEffect = 'move';
-
-                return false;
-              };
-
-              this.handleDragEnter = function(e) {
-                this.classList.add('over');
-              };
-
-              this.handleDragLeave = function(e) {
-                // this/e.target is previous target element.
-                this.classList.remove('over');
-              };
-
-              this.handleDrop = function(e) {
-                // this/e.target is current target element.
-
-                if (e.stopPropagation) {
-                  e.stopPropagation(); // stops the browser from redirecting.
-                }
-
-                // Don't do anything if we're dropping on the same column we're dragging.
-                if (dragSrcEl_ != this) {
-                  dragSrcEl_.innerHTML = this.innerHTML;
-                  this.innerHTML = e.dataTransfer.getData('text/html');
-                  // saveSongList();
-                }
-
-                return false;
-              };
-
-              this.handleDragEnd = function(e) {
-                // this/e.target is the source node.
-                [].forEach.call(cols_, function (col) {
-                  col.classList.remove('over');
-                  col.classList.remove('moving');
-                });
-              };
-
-              this.handleClick = function(e) {
-                for (var i = 0; i < FILE_QUEUE.length; i++) {
-                  if (e.target.dataset['songname'] && e.target.dataset['songname'] == FILE_QUEUE[i].name) {
-                    alert('song: ' + FILE_QUEUE[i].name + ' clicked');
-                  }
-                }
-              };
-
-              [].forEach.call(cols_, function(col) {
-                col.setAttribute('draggable', 'true');  // Enable columns to be draggable.
-                col.addEventListener('dragstart', this.handleDragStart, false);
-                col.addEventListener('dragenter', this.handleDragEnter, false);
-                col.addEventListener('dragover', this.handleDragOver, false);
-                col.addEventListener('dragleave', this.handleDragLeave, false);
-                col.addEventListener('drop', this.handleDrop, false);
-                col.addEventListener('dragend', this.handleDragEnd, false);
-              }.bind(this));
-            }
-          </script>
-        </div>
-
+        
         <div class="slide device-access" id="drag-in">
           <style>
             #dropzone {
@@ -2251,6 +2007,48 @@ document.getElementById("video").<b>play</b>();
           </script>
         </div>
 
+        <div class="slide effects" id="audio-data-api">
+          <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Audio Data API</h1></header>
+          <section>
+            <div class="centertext"><img src="src/audio-routing.png"></div> 
+    <pre>var ctx = new window.<b>AudioContext</b>();
+
+function playSound(arrBuff) { // Obtain arrBuffer from XHR
+  var src = <b>ctx.createBufferSource</b>();
+  src.buffer = <b>ctx.createBuffer</b>(arrBuff, false /*mix2Mono*/);
+  src.looping = true;
+
+  <b>src.connect</b>(ctx.destination);
+  <b>src.noteOn</b>(0); // Play immediately.
+}</pre> 
+            <button onclick="ringBellAudioAPI()">Play ( Web Audio API )</button> 
+            <audio src="src/bell.ogg" id="bell"></audio>
+          </section>
+          <script>
+            (function() {
+              if (window.AudioContext || window.webkitAudioContext) {
+                var ctx = new (window.AudioContext || window.webkitAudioContext)();
+                var sample = null;
+
+                window.ringBellAudioAPI = function() {
+                  var src = ctx.createBufferSource();
+                  src.connect(ctx.destination);
+                  src.buffer = sample;
+                  src.noteOn(0);
+                };
+
+                var request = new XMLHttpRequest();
+                request.open('GET', 'src/bell.ogg', true);
+                request.responseType = 'arraybuffer';
+                request.onload = function() {
+                  sample = ctx.createBuffer(request.response, false);
+                };
+                request.send();
+              }
+            })();
+          </script>
+        </div>
+        
         <div class="slide effects" id="canvas-2d">
           <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Canvas 2D</h1></header>
           <section>
@@ -3338,7 +3136,6 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
           </section>
         </div>
 
-
         <div class="slide styling" id="css-transforms">
           <style>
             #threed-example {
@@ -3359,7 +3156,7 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
               transform: rotateZ(-5deg);
             }
           </style>
-          <header><span class="css">CSS</span> <h1>Transforms</h1></header>
+          <header><span class="css">CSS</span> <h1>2D Transforms</h1></header>
           <section>
             <p class="center">
               Hover over me:
@@ -3388,6 +3185,77 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
             </aside> 
         </div>
 
+        <div class="slide styling" id="transforms-3d">
+          <style>
+            #css3d-wrap {
+              -webkit-perspective: 1500;
+              -webkit-transform-style: preserve-3d;
+              -moz-perspective: 1500;
+              -moz-transform-style: preserve-3d;
+            }
+            #css3d-wrap .containerwrap {
+              height: 300px;
+            }
+            #css3d-wrap .container {
+              position: relative;
+              top: 30px;
+              margin: 0 auto;
+              width: 200px;
+              -webkit-transform-style: preserve-3d;
+              -webkit-animation: css3d-spin 8s infinite linear;
+              -moz-transform-style: preserve-3d;
+              -moz-animation: css3d-spin 8s infinite linear;
+            }
+            #css3d-wrap .panel {
+              position: absolute;
+              width: 200px;
+              height: 200px;
+              background: rgba(100,100,200,0.3);
+              border-radius: 40px;
+              font: 180px Arial;
+              text-align: center;
+              -webkit-transform-style: preserve-3d;
+              -moz-transform-style: preserve-3d;
+            }
+            #css3d-wrap .panel > span {
+              color: #000;
+              display: block;
+              height: 200px;
+              width: 200px;
+              background: rgba(100,200,100,1.0);
+              border-radius: 40px;
+              -webkit-transform-origin: 50% 0;
+              -moz-transform-origin: 50% 0;
+              -webkit-transition: -webkit-transform 0.3s linear;
+              -moz-transition: -moz-transform 0.3s linear;
+            }
+            #css3d-wrap .panel:hover > span {
+              -webkit-transform: translateZ(10px) rotateX(120deg);
+            }
+            #css3d-wrap .one   { -webkit-transform: rotateY(0) translateZ(110px); }
+            #css3d-wrap .two   { -webkit-transform: rotateY(90deg)  translateZ(110px); }
+            #css3d-wrap .three { -webkit-transform: rotateY(180deg) translateZ(110px); }
+            #css3d-wrap .four  { -webkit-transform: rotateY(270deg) translateZ(110px); }
+          </style>
+          <header><span class="css">CSS</span> <h1>3D Transforms</h1></header>
+          <section id="css3d-wrap">
+    <pre>.container { transform-style: preserve-3d;
+             perspective: 800; }
+
+.one   { transform: rotateY(0)      translateZ(110px); }
+.two   { transform: rotateY(90deg)  translateZ(110px); }
+.three { transform: rotateY(180deg) translateZ(110px); }
+.four  { transform: rotateY(270deg) translateZ(110px); }</pre>
+            <div class="containerwrap">
+              <div class="container" data-build>
+                <div class="panel one"><span>1</span></div>
+                <div class="panel two"><span>2</span></div>
+                <div class="panel three"><span>3</span></div>
+                <div class="panel four"><span>4</span></div>
+              </div> 
+            </div> 
+          </section>
+        </div>
 
         <div class="slide styling" id="css-animation">
           <style>
