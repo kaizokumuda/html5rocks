@@ -500,7 +500,7 @@
     var slide = el.parentNode.parentNode;
     return slide;
   });
-  tocElems.unique().slice(2).forEach(function(el) {
+  tocElems.unique().slice(3).forEach(function(el) {
 
     if (!Modernizr.csscolumns && !el.classList.contains('transitionSlide')) {
       return true;
