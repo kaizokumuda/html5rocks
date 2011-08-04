@@ -1549,6 +1549,9 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
             <div class="flex hbox boxcenter">
               <div class="noflex vbox boxcenter" style="height:300px;text-align:center">
                <input id="speech-input-field" type="text" x-webkit-speech />
+               
+               <div style="text-align: left; font-size: 17px; height: 200px; overflow: auto; width: 500px; border: 1px solid black; padding: 10px" id="speech-results">
+                 
                <p style="display:none">Speech input is not enabled in your browser.<br>
                Try running Google Chrome with the <code>--enable-speech-input</code> flag.</p>
               </div>
@@ -1558,7 +1561,18 @@ window.addEventListener('<em>deviceorientation</em>', function(event) {
                 document.querySelector('#speech-input p').style.display = 'block';
               }
             </script>
+            <script>
+            document.getElementById("speech-input-field").addEventListener("webkitspeechchange", function(event) {
+              var speechresults = document.getElementById('speech-results');
+              speechresults.innerHTML = '';
+              for (var res in event.results) {
+                speechresults.innerHTML += 'Utterance: ' + event.results[res]['utterance'] + '<br />Confidence: ' + event.results[res]['confidence'] + '<br /><br />';
+              }
+            }, false);
+            </script>
+            
           </section>
+          
         </div>
 
 
