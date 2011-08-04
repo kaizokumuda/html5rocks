@@ -2007,47 +2007,6 @@ document.getElementById("video").<b>play</b>();
           </script>
         </div>
 
-        <div class="slide effects" id="audio-data-api">
-          <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Audio Data API</h1></header>
-          <section>
-            <div class="centertext"><img src="src/audio-routing.png"></div> 
-    <pre>var ctx = new window.<b>AudioContext</b>();
-
-function playSound(arrBuff) { // Obtain arrBuffer from XHR
-  var src = <b>ctx.createBufferSource</b>();
-  src.buffer = <b>ctx.createBuffer</b>(arrBuff, false /*mix2Mono*/);
-  src.looping = true;
-
-  <b>src.connect</b>(ctx.destination);
-  <b>src.noteOn</b>(0); // Play immediately.
-}</pre> 
-            <button onclick="ringBellAudioAPI()">Play ( Web Audio API )</button> 
-            <audio src="src/bell.ogg" id="bell"></audio>
-          </section>
-          <script>
-            (function() {
-              if (window.AudioContext || window.webkitAudioContext) {
-                var ctx = new (window.AudioContext || window.webkitAudioContext)();
-                var sample = null;
-
-                window.ringBellAudioAPI = function() {
-                  var src = ctx.createBufferSource();
-                  src.connect(ctx.destination);
-                  src.buffer = sample;
-                  src.noteOn(0);
-                };
-
-                var request = new XMLHttpRequest();
-                request.open('GET', 'src/bell.ogg', true);
-                request.responseType = 'arraybuffer';
-                request.onload = function() {
-                  sample = ctx.createBuffer(request.response, false);
-                };
-                request.send();
-              }
-            })();
-          </script>
-        </div>
         
         <div class="slide effects" id="canvas-2d">
           <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Canvas 2D</h1></header>
@@ -3185,77 +3144,6 @@ document.getElementById('box').className = 'right'; <button onclick="transitionR
             </aside> 
         </div>
 
-        <div class="slide styling" id="transforms-3d">
-          <style>
-            #css3d-wrap {
-              -webkit-perspective: 1500;
-              -webkit-transform-style: preserve-3d;
-              -moz-perspective: 1500;
-              -moz-transform-style: preserve-3d;
-            }
-            #css3d-wrap .containerwrap {
-              height: 300px;
-            }
-            #css3d-wrap .container {
-              position: relative;
-              top: 30px;
-              margin: 0 auto;
-              width: 200px;
-              -webkit-transform-style: preserve-3d;
-              -webkit-animation: css3d-spin 8s infinite linear;
-              -moz-transform-style: preserve-3d;
-              -moz-animation: css3d-spin 8s infinite linear;
-            }
-            #css3d-wrap .panel {
-              position: absolute;
-              width: 200px;
-              height: 200px;
-              background: rgba(100,100,200,0.3);
-              border-radius: 40px;
-              font: 180px Arial;
-              text-align: center;
-              -webkit-transform-style: preserve-3d;
-              -moz-transform-style: preserve-3d;
-            }
-            #css3d-wrap .panel > span {
-              color: #000;
-              display: block;
-              height: 200px;
-              width: 200px;
-              background: rgba(100,200,100,1.0);
-              border-radius: 40px;
-              -webkit-transform-origin: 50% 0;
-              -moz-transform-origin: 50% 0;
-              -webkit-transition: -webkit-transform 0.3s linear;
-              -moz-transition: -moz-transform 0.3s linear;
-            }
-            #css3d-wrap .panel:hover > span {
-              -webkit-transform: translateZ(10px) rotateX(120deg);
-            }
-            #css3d-wrap .one   { -webkit-transform: rotateY(0) translateZ(110px); }
-            #css3d-wrap .two   { -webkit-transform: rotateY(90deg)  translateZ(110px); }
-            #css3d-wrap .three { -webkit-transform: rotateY(180deg) translateZ(110px); }
-            #css3d-wrap .four  { -webkit-transform: rotateY(270deg) translateZ(110px); }
-          </style>
-          <header><span class="css">CSS</span> <h1>3D Transforms</h1></header>
-          <section id="css3d-wrap">
-    <pre>.container { transform-style: preserve-3d;
-             perspective: 800; }
-
-.one   { transform: rotateY(0)      translateZ(110px); }
-.two   { transform: rotateY(90deg)  translateZ(110px); }
-.three { transform: rotateY(180deg) translateZ(110px); }
-.four  { transform: rotateY(270deg) translateZ(110px); }</pre>
-            <div class="containerwrap">
-              <div class="container" data-build>
-                <div class="panel one"><span>1</span></div>
-                <div class="panel two"><span>2</span></div>
-                <div class="panel three"><span>3</span></div>
-                <div class="panel four"><span>4</span></div>
-              </div> 
-            </div> 
-          </section>
-        </div>
 
         <div class="slide styling" id="css-animation">
           <style>
