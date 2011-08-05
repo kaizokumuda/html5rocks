@@ -21,7 +21,7 @@
       <img class="postimage {{post.image_style}}" src="/images/{{post.image_id}}" />
     {% endif %}
     {{post.rendered}}
-    <div class="g-plusone" data-size="small" data-count="true" data-href="{{config.url_prefix}}{{post.path}}"></div>
+    <div class="g-plusone" data-size="small" data-count="true" data-href="http://{{config.host}}{{config.url_prefix}}{{post.path}}"></div>
     <p class="postmeta">
       {% if config.disqus_forum %}
         <a href="{{config.url_prefix}}{{post.path}}#disqus_thread" class="readmore">Comments</a> |
