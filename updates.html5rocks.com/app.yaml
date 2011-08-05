@@ -1,5 +1,5 @@
 application: updaterocker
-version: 1
+version: 1-1
 runtime: python
 api_version: 1
 
@@ -22,6 +22,10 @@ handlers:
 
 - url: /_ah/queue/deferred
   script: deferred.py
+  login: admin
+
+- url: /admin2/.*
+  script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
 
 - url: /admin/.*
