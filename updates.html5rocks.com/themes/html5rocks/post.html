@@ -20,7 +20,7 @@
     {% endif %}
   {{post.rendered}}
 
- <div class="g-plusone" data-size="medium" data-count="true" data-href="{{config.url_prefix}}{{post.path}}"></div>
+ <div class="g-plusone" data-size="medium" data-count="true" data-href="http://{{config.host}}{{config.url_prefix}}{{post.path}}"></div>
  <div class="postfooter">
   {% if prev %}
     <a id="prev" href="{{config.url_prefix}}{{prev.path}}">Previous Post</a>
