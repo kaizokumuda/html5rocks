@@ -1510,7 +1510,7 @@ Incremental layout is triggered (asynchronously) when renderers are dirty. For e
 
 <figure>
   <img src="reflow.png" width="326" height="341" />
-  <figcaption>  Figure 20: Incremental layout - only dirty renderers and their children are layed out(<a href="#3_6">3.6</a>).</figcaption>
+  <figcaption>  Figure 20: Incremental layout - only dirty renderers and their children are layed out (<a href="#3_6">3.6</a>).</figcaption>
 </figure>
 
 <h4><a name="Asynchronous_and_Synchronous_layout">Asynchronous and Synchronous layout</a></h4>
@@ -1612,9 +1612,10 @@ The stacking order of a block renderer is:
 <h4><a name="Firefox_display_list">Firefox display list</a></h4>
 Firefox goes over the render tree and builds a display list for the painted rectangular.
 It contains the renderers relevant for the rectangular, in the right painting order (backgrounds of the renderers, then borders etc).
-<br>
+
 That way the tree needs to be traversed only once for a repaint instead of several times - painting all backgrounds, then all images , then all borders etc.
-<br>
+
+<p>
 Firefox optimizes the process by not adding elements that will be hidden, like elements completely beneath other opaque elements.
 </p>
 <h4><a name="Webkit_rectangle_storage">Webkit rectangle storage</a></h4>
