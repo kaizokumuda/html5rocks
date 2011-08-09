@@ -35,7 +35,17 @@
               box-shadow: 0px 3px 8px hsl(202,69%,23%);
       }
 
-    #filter { font-size: 16px; float: right; width: 353px; border-radius: 12px;   position: relative; top: -33px;}
+    #filter, #filter + label { font-size: 16px; float: right; width: 353px; border-radius: 12px;   position: relative; top: -33px;}
+    #filter + label { display: block;
+    width: 390px;
+    font-size: 14px;
+    top: -30px;
+    clear: right;
+    text-align: right;
+    color: #666; }
+    #filter + label output { display: block; font-size: 12px; }
+    
+    html { overflow-y: scroll; }
   </style>
 {% endblock %}
 
@@ -49,7 +59,13 @@
     <!--
       https://spreadsheets.google.com/a/google.com/spreadsheet/ccc?hl=en&key=t2ZDVzRdCvcC8etphuOOonQ&hl=en#gid=0
       spreadhseet of all slides etc etc -->
-    <input id="filter" placeholder=" Filter these slides by topic, person, etc" >
+      
+    <input id="filter" placeholder=" Filter talks by topic, person, etc" >
+    <label> Only show talks more recent than: 
+      <input id="datefilter" type="range" value=0 min=0 max=100> 
+      <output id="dateoutput"></output>
+    </label>
+    
     <div id="output">Loading...</div>
 
     <script src="/static/js/handlebars.1.0.0.beta.3.js"></script>

@@ -13,7 +13,7 @@ var talktmpl = '' +
         (<span class=location>{{location}}</span>)     \
       {{/if}}                                          \
       {{#if date}}                                     \
-        <span class=date>{{date}}</span>               \
+        <span class=date data-time="{{dateexact}}">{{date}}</span>               \
       {{/if}}                                          \
   </h4>                                                \
   <div class="body">                                   \
