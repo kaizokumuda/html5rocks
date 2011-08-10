@@ -27,7 +27,7 @@ Handlebars.registerHelper('video', function(video) {
            '" frameborder="0" scrolling="no"></iframe>';
   }
   
-  return ''; //new Handlebars.SafeString('<div class="video">' + html + '</div>');
+  return new Handlebars.SafeString('<div class="video">' + html + '</div>');
 });
 
 
@@ -52,6 +52,15 @@ Handlebars.registerHelper('slides', function(slides) {
   
   return new Handlebars.SafeString('<div class="slides">' + html + '</div>');
 });
+
+
+Handlebars.registerHelper('img', function(image) {
+  
+  if (~image.indexOf('/')) return image;
+  
+  return '/static/images/pres/' + image;
+});
+
 
 
 
