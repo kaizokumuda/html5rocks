@@ -55,9 +55,7 @@ Handlebars.registerHelper('slides', function(slides) {
 
 
 Handlebars.registerHelper('img', function(image) {
-  
   if (~image.indexOf('/')) return image;
-  
   return '/static/images/pres/' + image;
 });
 
@@ -70,7 +68,7 @@ Handlebars.registerHelper('presntr', function(names) {
   
   names = names.split(/ and|&|, /)
 
-  // need map polyfill and string.trim
+  // using map polyfill and string.trim
   html = names.map(function(name) {
 
     var lookup = presenters[name.trim()];
@@ -147,18 +145,14 @@ window.FLTR = {
     FLTR.datechange();
     FLTR.keyup(); 
     
+    // hide slider if not supported.
+    var input = document.createElement('input');
+    input.setAttribute('type', 'range');
+    if (input.type != 'range') FLTR.dateinput.parentNode.style.display = 'none';
   },
   
   keyup : function(e){
     var val = FLTR.value = (e && e.target.value.toLowerCase()) || '';
-    
-    if (val == ''){
-      FLTR.toggle(true);
-      [].forEach.call( document.querySelectorAll('#output article:nth-of-type(even)'), function(elem, i) {
-        elem.classList.add('even')
-      });
-      return;
-    }
     
     FLTR.toggle(false);
     
@@ -166,17 +160,28 @@ window.FLTR = {
       var text = elem.innerText || elem.textContent;
       return ~text.toLowerCase().indexOf(val);
     });
+    
+    
+    if (val == ''){
+      FLTR.toggle(true);
+      FLTR.filterElems(function(elem){ return true; });
+    }
         
   },
   
   // include the elements if they match the callback
   filterElems : function(callback) {
-    var i = 0;
+    var i    = 0
+      , hash = {};
     
     [].forEach.call( FLTR.elems, function(elem){
       if (callback(elem)){
         var curNode = elem;
         while (curNode.nodeName != 'ARTICLE') curNode = curNode.parentNode;
+
+        if (hash[curNode.dataset.event]) return;
+        hash[curNode.dataset.event] = true;
+        
         curNode.classList.remove('hidden');
         curNode.classList.remove('even');
         if (++i % 2) curNode.classList.add('even')

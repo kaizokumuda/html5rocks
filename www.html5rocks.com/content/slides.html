@@ -18,6 +18,14 @@
     .event { color: hsl(0, 0%, 30%); }
     .date { float: none;}
 
+    .body { min-height: 350px; 
+         -moz-transition: all 0.3s ease-out;  
+           -o-transition: all 0.3s ease-out;  
+      -webkit-transition: all 0.3s ease-out;  
+          -ms-transition: all 0.3s ease-out;  
+              transition: all 0.3s ease-out;  
+    }
+    
     .video iframe { width: 475px; height: 400px;}
     .video { margin-right: 15px; }
     .video,
@@ -28,7 +36,11 @@
 
     .slides { vertical-align: top; }
     .slides iframe { width: 467px; height: 400px; border: 0;}
-    .slides img { width: 475px;}
+    .slides img { width: 475px; outline: 2px solid hsl(221, 44%, 43%);
+      -webkit-box-shadow: 0px 16px 8px -9px hsl(202,4%,56%);
+         -moz-box-shadow: 0px 16px 8px -9px hsl(202,4%,56%);
+              box-shadow: 0px 16px 8px -9px hsl(202,4%,56%);
+      }
     .slides img:hover {
       -webkit-box-shadow: 0px 3px 8px hsl(202,69%,23%);
          -moz-box-shadow: 0px 3px 8px hsl(202,69%,23%);
