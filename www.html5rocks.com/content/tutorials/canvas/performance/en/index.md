@@ -1,3 +1,4 @@
+<h2 id="toc-intro">Introduction</h2>
 
 HTML5 canvas, which started as an experiment from Apple, is the most
 widely supported standard for 2D [immediate mode graphics][immediate] on
@@ -19,9 +20,9 @@ will be noted where appropriate.
 Note that this article does not go into usage of HTML5 canvas. For that,
 check out these [canvas related articles][canvas] on HTML5Rocks, this
 this [Dive into HTML5 chapter][divehtml] and the [MDN Canvas][mdn]
-tutorial. 
+tutorial.
 
-## Performance testing
+<h2 id="toc-perf">Performance testing</h2>
 
 To address the quickly changing world of HTML5 canvas, [JSPerf][jsperf]
 ([jsperf.com][jsperf]) tests verify that every proposed optimization
@@ -38,10 +39,10 @@ browser, and let JSPerf store the normalized test results on
 [Browserscope][bs] ([browserscope.org][bs]). Because the optimization
 techniques in this article are backed up by a JSPerf result, you can
 return to see up-to-date information about whether or not the technique
-still applies. I’ve written a small helper application that renders
-these results as graphs, embedded throughout this article. 
+still applies. I’ve written a small [helper application][jspv] that
+renders these results as graphs, embedded throughout this article.
 
-## Pre-render to an off-screen canvas
+<h2 id="toc-pre-render">Pre-render to an off-screen canvas</h2>
 
 If you’re re-drawing similar primitives to the screen across multiple
 frames, as is often the case when writing a game, you can make large
@@ -100,7 +101,7 @@ are drawing, otherwise the performance gain of off-screen rendering is
 counterweighted by the performance loss of copying one large canvas onto
 another (which varies as a function of source target size).
 
-## Batch canvas calls together
+<h2 id="toc-batch">Batch canvas calls together</h2>
 
 Since drawing is an expensive operation, it’s more efficient to load the
 drawing state machine with a long set of commands, and then have it dump
@@ -121,7 +122,8 @@ may actually be more efficient to render them separately
 <iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBjRzK4HDA">
 </iframe>
 
-## Avoid unnecessary canvas state changes
+<h2 id="toc-avoid-state-change">Avoid unnecessary canvas state
+changes</h2>
 
 The HTML5 canvas element is implemented on top of a state machine that
 tracks things like fill and stroke styles, as well as previous points
@@ -144,7 +146,8 @@ pattern using the two approaches
 As expected, the interlaced approach is slower because changing the
 state machine is expensive.
 
-## Render screen differences only, not the whole new state
+<h2 id="toc-render-diff">Render screen differences only, not the whole
+new state</h2>
 
 As one would expect, rendering less on the screen is cheaper than
 rendering more. If you have only incremental differences between
@@ -161,7 +164,8 @@ box is saved, and then cleared on each rendering.
 
 This technique also applies to pixel-based rendering contexts, as is illustrated by this JavaScript [Nintendo emulator talk][nesemu].
 
-## Use multiple layered canvases for complex scenes
+<h2 id="toc-mul-canvas">Use multiple layered canvases for complex
+scenes</h2>
 
 As mentioned before, drawing large images is expensive and should be
 avoided if possible. In addition to using another canvas for rendering
@@ -197,7 +201,7 @@ Also note that this approach generalizes well for any number of
 composite canvases if your application works better with a this sort of
 structure.
 
-## Avoid shadowBlur
+<h2 id="toc-avoid-blur">Avoid shadowBlur</h2>
 
 Like many other graphics environments, HTML5 canvas allows developers to
 blur primitives, but this operation can be very expensive:
@@ -215,7 +219,7 @@ without shadow and the drastic performance difference
 <iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBiwja8HDA">
 </iframe>
 
-## Know various ways to clear the canvas
+<h2 id="toc-clear-canvas">Know various ways to clear the canvas</h2>
 
 Since HTML5 canvas is an [immediate mode][immediate] drawing paradigm,
 the scene needs to be redrawn explicitly at each frame. Because of this,
@@ -240,7 +244,7 @@ is significantly faster in Chrome 14
 Be careful with this tip, since it depends heavily on the underlying
 canvas implementation and is very much subject to change.
 
-## Avoid floating point coordinates
+<h2 id="toc-avoid-float">Avoid floating point coordinates</h2>
 
 HTML5 canvas supports sub-pixel rendering, and there’s no way to turn it
 off. If you draw with coordinates that are not integers, it
@@ -267,7 +271,8 @@ operator tilde. The full performance breakdown is here
 Note that this sort of optimization should no longer matter once canvas
 implementations are GPU accelerated.
 
-## Optimize your animations with `requestAnimationFrame`
+<h2 id="toc-raf">Optimize your animations with
+`requestAnimationFrame`</h2>
 
 The relatively new `requestAnimationFrame` API is the recommended way of
 implementing interactive applications in the browser. Rather than
@@ -298,7 +303,7 @@ other rendering technologies such as WebGL.
 At the time of writing, this API is only available in Chrome, Safari and
 Firefox, so you should use [this shim][rafshim].
 
-## Most mobile implementations are slow
+<h2 id="toc-mobile">Most mobile canvas implementations are slow</h2>
 
 Let’s talk about mobile. Unfortunately at the time of writing, only iOS
 5.0 beta running Safari 5.1 has GPU accelerated mobile canvas
@@ -309,7 +314,7 @@ order of magnitude worse on mobile compared to desktop, greatly
 restricting the kinds of cross-device apps you can expect to
 successfully run.
 
-## Conclusion
+<h2 id="toc-conclusion">Conclusion</h2>
 
 To recap, this article covered a comprehensive set of useful
 optimization techniques that will help you develop performant HTML5
@@ -318,17 +323,18 @@ forth and optimize your awesome creations. Or, if you don’t currently
 have a game or application to optimize, check out
 [Chrome Experiments][crexp] and [Creative JS][cjs] for inspiration.
 
-## References
+<h2 id="toc-ref">References</h2>
 
-* [Immediate][immediate] mode vs. [retained][] mode
-* Other HTML5Rocks [canvas articles][canvas]
-* The [Canvas section][divehtml] of Dive into HTML5
-* [JSPerf][jsperf] lets developers create JS performance tests
-* [Browserscope][bs] stores browser performance data
-* Simon's [blog post][clear] on clearing the canvas
-* Sebastian's [blog post][subpixel] on sub-pixel rendering performance
-* Paul's [blog post][rafshim] on using the `requestAnimationFrame`
-* Ben's [talk][nesemu] about optimizing a JS NES emulator
+* [Immediate][immediate] mode vs. [retained][] mode.
+* Other HTML5Rocks [canvas articles][canvas].
+* The [Canvas section][divehtml] of Dive into HTML5.
+* [JSPerf][jsperf] lets developers create JS performance tests.
+* [Browserscope][bs] stores browser performance data.
+* [JSPerfView][jspv], which renders JSPerf tests as charts.
+* Simon's [blog post][clear] on clearing the canvas.
+* Sebastian's [blog post][subpixel] on sub-pixel rendering performance.
+* Paul's [blog post][rafshim] on using the `requestAnimationFrame`.
+* Ben's [talk][nesemu] about optimizing a JS NES emulator.
 
 [immediate]: http://en.wikipedia.org/wiki/Immediate_mode
 [retained]: http://en.wikipedia.org/wiki/Retained_mode
@@ -344,4 +350,5 @@ have a game or application to optimize, check out
 [cjs]: http://creativejs.com/
 [subpixel]: http://sebleedelisle.com/2011/02/html5-canvas-sprite-optimisation
 [clear]: http://simonsarris.com/blog/346-how-you-clear-your-canvas-matters
+[jspv]: https://github.com/borismus/jsperfview
 
