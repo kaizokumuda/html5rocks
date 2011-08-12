@@ -174,7 +174,7 @@ class ContentHandler(webapp.RequestHandler):
 
     template_data.update(data)
     if not 'category' in template_data:
-      template_data['category'] = 'this feature'
+      template_data['category'] = _('this feature')
 
     # Add CORS support entire site.
     self.response.headers.add_header('Access-Control-Allow-Origin', '*')
@@ -186,9 +186,9 @@ class ContentHandler(webapp.RequestHandler):
     logging.info(prefix)
 
     feed = feedgenerator.Atom1Feed(
-        title=u'HTML5Rocks - Tutorials',  # TODO: make generic for any page.
+        title= _(u'HTML5Rocks - Tutorials'),  # TODO: make generic for any page.
         link=prefix,
-        description=u'Take a guided tour through code that uses HTML5.',
+        description= _(u'Take a guided tour through code that uses HTML5.'),
         language=u'en'
         )
     for tutorial in data:

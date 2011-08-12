@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block headtitle %}Videos and Presentations{% endblock %}
+{% block headtitle %}{% trans "Videos and Presentations" %}{% endblock %}
 
 {% block head %}
   <style media="screen">
@@ -66,19 +66,19 @@
   <section class="pres">
 
 
-    <h2 class="section-header">HTML5 Slides, Presentations, and Videos</h2>
+  <h2 class="section-header">{% trans "HTML5 Slides, Presentations, and Videos" %}</h2>
 
     <!--
       https://spreadsheets.google.com/a/google.com/spreadsheet/ccc?hl=en&key=t2ZDVzRdCvcC8etphuOOonQ&hl=en#gid=0
       spreadhseet of all slides etc etc -->
       
-    <input id="filter" placeholder=" Filter talks by topic, person, etc" >
-    <label> Only show talks more recent than: 
+    <input id="filter" placeholder=" {% trans "Filter talks by topic, person, etc" %}" >
+    <label> {% trans "Only show talks more recent than:" %} 
       <input id="datefilter" type="range" value=0 min=0 max=100> 
       <output id="dateoutput"></output>
     </label>
     
-    <div id="output">Loading...</div>
+    <div id="output">{% trans "Loading..." %}</div>
 
     <script src="/static/js/handlebars.1.0.0.beta.3.js"></script>
     <script src="/static/js/parseuri.js"></script>
