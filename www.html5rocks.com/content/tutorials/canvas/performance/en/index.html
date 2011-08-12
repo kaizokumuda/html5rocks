@@ -246,13 +246,15 @@ is significantly faster in Chrome 14
 </iframe>
 
 <p>Be careful with this tip, since it depends heavily on the underlying
-canvas implementation and is very much subject to change.</p>
+canvas implementation and is very much subject to change. For more
+information, see <a href="http://simonsarris.com/blog/346-how-you-clear-your-canvas-matters">Simon Sarris' article on clearing the canvas</a>.</p>
 <h2 id="toc-avoid-float">Avoid floating point coordinates</h2>
 
 <p>HTML5 canvas supports sub-pixel rendering, and there’s no way to turn it
 off. If you draw with coordinates that are not integers, it
 automatically uses anti-aliasing to try to to smooth out the lines.
-Here’s the visual effect, taken from <a href="http://sebleedelisle.com/2011/02/html5-canvas-sprite-optimisation">this article</a>:</p>
+Here’s the visual effect, taken from
+<a href="http://sebleedelisle.com/2011/02/html5-canvas-sprite-optimisation">this sub-pixel canvas performance article by Seb Lee-Delisle</a>:</p>
 <p><img alt="sub-pixel" src="bunny.png" /></p>
 <p>If the smoothed sprite is not the effect you seek, it can be much faster
 to convert your coordinates to integers using <code>Math.float</code> or

@@ -242,14 +242,16 @@ is significantly faster in Chrome 14
 </iframe>
 
 Be careful with this tip, since it depends heavily on the underlying
-canvas implementation and is very much subject to change.
+canvas implementation and is very much subject to change. For more
+information, see [Simon Sarris' article on clearing the canvas][clear].
 
 <h2 id="toc-avoid-float">Avoid floating point coordinates</h2>
 
 HTML5 canvas supports sub-pixel rendering, and there’s no way to turn it
 off. If you draw with coordinates that are not integers, it
 automatically uses anti-aliasing to try to to smooth out the lines.
-Here’s the visual effect, taken from [this article][subpixel]:
+Here’s the visual effect, taken from
+[this sub-pixel canvas performance article by Seb Lee-Delisle][subpixel]:
 
 ![sub-pixel](bunny.png)
 
