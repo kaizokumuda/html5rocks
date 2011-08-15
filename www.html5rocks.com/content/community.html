@@ -2,7 +2,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block headtitle %}Home{% endblock %}
+{% block headtitle %}{% trans "Home" %}{% endblock %}
 
 {% block head %}
 <style>
@@ -81,10 +81,10 @@
 <div id="community">
   <nav>
     <ul>
-      <li data-tab="forum" class="active"><img src="/static/images/forum_icon.png" /><a href="#">Forum</a></li>
-      <li data-tab="events"><img src="/static/images/cal_icon.png" /><a href="#">Events</a></li>
-      <li data-tab="irc-channel"><img src="/static/images/irc_icon.png" /><a href="#">IRC Channel</a></li>
-      <li data-tab="twitter"><img src="/static/images/twitter_icon.png" /><a href="#">Twitter</a></li>
+      <li data-tab="forum" class="active"><img src="/static/images/forum_icon.png" /><a href="#">{% trans "Forum" %}</a></li>
+      <li data-tab="events"><img src="/static/images/cal_icon.png" /><a href="#">{% trans "Events" %}</a></li>
+      <li data-tab="irc-channel"><img src="/static/images/irc_icon.png" /><a href="#">{% trans "IRC Channel" %}</a></li>
+      <li data-tab="twitter"><img src="/static/images/twitter_icon.png" /><a href="#">{% trans "Twitter" %}</a></li>
     </ul>
   </nav>
   <section id="forum" class="community-section">
@@ -194,7 +194,7 @@
       
       // Pulling stackoverflow google-chrome tagged to show in forum section
       var feedControl = new google.feeds.FeedControl();
-feedControl.addFeed("http://stackoverflow.com/feeds/tag/google-chrome", "Stack Overflow #google-chrome");
+      feedControl.addFeed("http://stackoverflow.com/feeds/tag/google-chrome", "Stack Overflow #google-chrome");
       feedControl.draw(document.getElementById("stackoverflow"));
     }
     google.setOnLoadCallback(OnLoad);

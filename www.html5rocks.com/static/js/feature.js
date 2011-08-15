@@ -45,7 +45,8 @@ window.caniusecallback = function(data) {
 
 
 // Request associated tutorials and populate into this page.
-var div = $('<div>').load('/tutorials/ #index', function() {
+var lang = document.documentElement.getAttribute('lang') || 'en';
+var div = $('<div>').load('/' + lang + 'tutorials/ #index', function() {
   var MAX_NUM_TUTS = 5;
 
   var ul = $('section.tutorials ul');
