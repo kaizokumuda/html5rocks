@@ -99,16 +99,48 @@ However, observe that in the above example, the poor performance of the
 make sure that your temporary canvas fits snugly around the image you
 are drawing, otherwise the performance gain of off-screen rendering is
 counterweighted by the performance loss of copying one large canvas onto
-another (which varies as a function of source target size).
+another (which varies as a function of source target size). A snug
+canvas in the above test is simply smaller:
+
+    can2.width = 100;
+    can2.height = 40;
+
+Compared to the loose one that yields poorer performance:
+
+    can3.width = 300;
+    can3.height = 100;
 
 <h2 id="toc-batch">Batch canvas calls together</h2>
 
 Since drawing is an expensive operation, it’s more efficient to load the
 drawing state machine with a long set of commands, and then have it dump
-them all onto the video buffer. This applies to the world of HTML5
-canvas as well. When drawing a complex path, for example, it’s better to
-put all of the points into the path, rather than rendering the segments
-separately ([jsperf](http://jsperf.com/batching-line-drawing-calls/2)).
+them all onto the video buffer. In other words, rather than drawing
+separate lines:
+
+    for (var i = 0; i < points.length - 1; i++) {
+      var p1 = points[i];
+      var p2 = points[i+1];
+      context.beginPath();
+      context.moveTo(p1.x, p1.y);
+      context.lineTo(p2.x, p2.y);
+      context.stroke();
+    }
+
+We get better performance from drawing a single polyline:
+
+    context.beginPath();
+    for (var i = 0; i < points.length - 1; i++) {
+      var p1 = points[i];
+      var p2 = points[i+1];
+      context.moveTo(p1.x, p1.y);
+      context.lineTo(p2.x, p2.y);
+    }
+    context.stroke();
+
+This applies to the world of HTML5 canvas as well. When drawing a
+complex path, for example, it’s better to put all of the points into the
+path, rather than rendering the segments separately
+([jsperf](http://jsperf.com/batching-line-drawing-calls/2)).
 
 <iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBjf9K4HDA">
 </iframe>
@@ -135,9 +167,26 @@ overhead.
 If you use multiple fill colors to render a scene, for example, it’s
 cheaper to render by color rather than by placement on the canvas. To
 render a pinstripe pattern, you could render a stripe, change colors,
-render the next stripe, etc, or render all odd stripes and then all even
-stripes. The following performance test draws an interlaced pinstripe
-pattern using the two approaches
+render the next stripe, etc:
+
+    for (var i = 0; i < STRIPES; i++) {
+      context.fillStyle = (i % 2 ? COLOR1 : COLOR2);
+      context.fillRect(i * GAP, 0, GAP, 480);
+    }
+
+Or render all odd stripes and then all even stripes:
+
+    for (var i = 0; i < STRIPES/2; i++) {
+      context.fillStyle = COLOR1;
+      context.fillRect((i*2) * GAP, 0, GAP, 480);
+    }
+    for (var i = 0; i < STRIPES/2; i++) {
+      context.fillStyle = COLOR2;
+      context.fillRect((i*2+1) * GAP, 0, GAP, 480);
+    }
+
+The following performance test draws an interlaced pinstripe pattern
+using the two approaches
 ([jsperf](http://jsperf.com/changing-canvas-state)):
 
 <iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBjMsK4HDA">
@@ -152,17 +201,28 @@ new state</h2>
 As one would expect, rendering less on the screen is cheaper than
 rendering more. If you have only incremental differences between
 redraws, you can get a significant performance boost by just drawing the
-difference, as in the following performance test which involves a white
-dot crossing the screen ([jsperf](http://jsperf.com/partial-re-rendering)):
+difference. In other words, rather than clearing the whole screen before
+drawing:
 
-<iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBiQg68HDA">
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+Keep track of the drawn bounding box, and only clear that.
+
+    context.fillRect(last.x, last.y, last.width, last.height);
+
+This is illustrated in the following performance test which involves a
+white dot crossing the screen
+([jsperf](http://jsperf.com/partial-re-rendering/2)):
+
+<iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBiXy8wHDA">
 </iframe>
 
 If you are familiar with computer graphics, you might also know this
 technique as “redraw regions”, where the previously rendered bounding
 box is saved, and then cleared on each rendering.
 
-This technique also applies to pixel-based rendering contexts, as is illustrated by this JavaScript [Nintendo emulator talk][nesemu].
+This technique also applies to pixel-based rendering contexts, as is
+illustrated by this JavaScript [Nintendo emulator talk][nesemu].
 
 <h2 id="toc-mul-canvas">Use multiple layered canvases for complex
 scenes</h2>
@@ -242,14 +302,16 @@ is significantly faster in Chrome 14
 </iframe>
 
 Be careful with this tip, since it depends heavily on the underlying
-canvas implementation and is very much subject to change.
+canvas implementation and is very much subject to change. For more
+information, see [Simon Sarris' article on clearing the canvas][clear].
 
 <h2 id="toc-avoid-float">Avoid floating point coordinates</h2>
 
 HTML5 canvas supports sub-pixel rendering, and there’s no way to turn it
 off. If you draw with coordinates that are not integers, it
 automatically uses anti-aliasing to try to to smooth out the lines.
-Here’s the visual effect, taken from [this article][subpixel]:
+Here’s the visual effect, taken from
+[this sub-pixel canvas performance article by Seb Lee-Delisle][subpixel]:
 
 ![sub-pixel](bunny.png)
 
@@ -261,15 +323,26 @@ to convert your coordinates to integers using `Math.float` or
 </iframe>
 
 To convert your floating point coordinates to integers, you can use
-several clever techniques, many of which involve the bitwise not
-operator tilde. The full performance breakdown is here
+several clever techniques, the most performant of which involve adding
+one half to the target number, and then performing bitwise operations on
+the result to eliminate the fractional part.
+
+    // With a bitwise or.
+    rounded = (0.5 + somenum) | 0;
+    // A double bitwise not.
+    rounded = ~~ (0.5 + somenum);
+    // Finally, a left bitwise shift.
+    rounded = (0.5 + somenum) << 0;
+
+The full performance breakdown is here
 ([jsperf](http://jsperf.com/math-round-vs-hack/3)):
 
 <iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBj36qAEDA">
 </iframe>
 
 Note that this sort of optimization should no longer matter once canvas
-implementations are GPU accelerated.
+implementations are GPU accelerated which will be able to quickly
+render non-integer coordinates.
 
 <h2 id="toc-raf">Optimize your animations with
 `requestAnimationFrame`</h2>
