@@ -60,6 +60,9 @@
   }
   h2:hover .tocnum, h3:hover .tocnum, h4:hover .tocnum, h5:hover .tocnum { color: hsl(0, 0%, 20%); }
   .preface + hr + .tocchap { visibility: hidden;  }
+  aside.bio  { border: 3px double hsl(0, 0%, 80%); padding: 10px; }
+  aside.bio img { width: 70px; margin: 0 10px 0 0; border: 1px solid hsl(0, 0%, 50%); }
+  aside.bio p { margin: 0; }
 </style>
 <script >
   [].forEach.call( document.querySelectorAll('header .date a'), function(elem, i) {
@@ -72,6 +75,7 @@
 <p>
   This comprehensive primer on the internal operations of WebKit and Gecko is the result of much research done by Israeli developer Tali Garsiel. Over a few years, she reviewed all the published data about browser internals <small>(see <a href="#Resources">Resources</a>)</small> and spent a lot of time reading web browser source code.
   She wrote:
+
   <blockquote>
     In the years of IE 90% dominance there was nothing much to do but regard the browser as a "black box", but now, with open source browsers having <a href="http://techcrunch.com/2011/08/01/open-web-browsers/">more than half of the usage share</a>, it's a good time to take a peek under the engine's hood and see what's inside a web browser. Well, what's inside are millions of C++ lines...
   </blockquote>
@@ -1873,6 +1877,7 @@ Although the green div comes before the red one, and would have been painted bef
       <li id="1">Browser architecture
           <ol>
               <li id="1_1">Grosskurth, Alan.  <a href="http://grosskurth.ca/papers/browser-refarch.pdf">A Reference Architecture for Web Browsers (pdf)</a>
+              <li id="1_2">Gupta, Vineet. <a href="http://www.vineetgupta.com/2010/11/how-browsers-work-part-1-architecture/">How Browsers Work - Part 1 - Architecture</a>
           </ol>
 
       <li id="2">Parsing
@@ -1914,10 +1919,21 @@ Although the green div comes before the red one, and would have been painted bef
           </ol>
 
   </ol>
+
+  <!--  -->
+
 </div>
 
 
 </div>
+
+<aside class="bio">
+  
+  <img align=left src="/static/images/profiles/taligarsiel.png">
+  <p><a href="http://taligarsiel.com/">Tali Garsiel</a> is a developer in Israel. She started as a web developer in 2000, and became aquainted with Netscape's "evil" layer model. Just like Richard Feynmann, she had a fascination for figuring how how things work so she began digging into browser internals and documenting what she found. Tali also has published a short <a href="http://taligarsiel.com/ClientSidePerformance.html">guide on client-side performance</a>. </p>
+
+</aside>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>
