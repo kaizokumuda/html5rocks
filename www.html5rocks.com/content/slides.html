@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block headtitle %}{% trans "Videos and Presentations" %}{% endblock %}
 
@@ -8,7 +10,7 @@
       .slides img { max-width: 50%; }
     }
 
-    #content { max-width: 970px; }
+    #content { max-width: 970px; min-height: 400px; }
 
     #cse-search-box {
       margin-top: 4px;
