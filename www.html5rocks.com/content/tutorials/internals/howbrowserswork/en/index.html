@@ -45,6 +45,7 @@
   ol.toc { padding-left: 20px; line-height: 1.1; }
   .autonum *:target { background: hsl(60, 73%, 93%);}
   cite { display:block; text-align: right;}
+  figcaption span:after { content: attr(data-count) ; }
 
   .tocchap, .tocnum { cursor: default; }
   .tocchap { color: hsl(0, 0%, 60%); margin-bottom: 0; margin-top: 30px; }
@@ -292,7 +293,7 @@ The browser's main components are (<a href="#1_1">1.1</a>):
 
 <figure>
   <img src="layers.png" width="500" height="339" alt="" title=""/>
-  <figcaption>Figure 1:  Browser main components.</figcaption>
+  <figcaption><span>Figure </span>:  Browser main components.</figcaption>
 </figure>
 
 
@@ -332,7 +333,7 @@ After that this is the basic flow of the rendering engine:
 
 <figure>
   <img src="flow.png" width="600" height="66" alt="" title=""  />
-  <figcaption>Figure 2: Rendering engine basic flow.</figcaption>
+  <figcaption><span>Figure </span>: Rendering engine basic flow.</figcaption>
 </figure>
 
 
@@ -360,13 +361,13 @@ Parts of the content will be parsed and displayed, while the process continues w
   
   <figure>
     <img src="webkitflow.png" width="624" height="289" alt="" />
-    <figcaption>Figure 3:  Webkit main flow</figcaption>     
+    <figcaption><span>Figure </span>:  Webkit main flow</figcaption>     
   </figure>                                                  
                                                              
                                                              
   <figure>                                                   
     <img src="image008.jpg" width="624" height="290" alt=""/>
-    <figcaption>Figure 4:  Mozilla's Gecko rendering engine main flow(<a href="#3_6">3.6</a>)</figcaption>
+    <figcaption><span>Figure </span>:  Mozilla's Gecko rendering engine main flow(<a href="#3_6">3.6</a>)</figcaption>
   </figure>
   
 
@@ -399,7 +400,7 @@ Example - parsing the expression <samp>2 + 3 - 1</samp> could return this tree:
 
 <figure>
   <img src="image009.png" width="400" height="155" />
-  <figcaption>  Figure 5:  mathematical expression tree node</figcaption>
+  <figcaption> <span>Figure </span>:  mathematical expression tree node</figcaption>
 </figure>
 
 <h4 id="Grammars">Grammars</h4>
@@ -427,7 +428,7 @@ The lexer knows how to strip irrelevant characters like white spaces and line br
 
 <figure>
   <img src="image011.png" width="101" height="300" />
-  <figcaption>  Figure 6:  from source document to parse trees</figcaption>
+  <figcaption>  <span>Figure </span>:  from source document to parse trees</figcaption>
 </figure>
 
 <p>
@@ -445,7 +446,7 @@ An example is compilation. The compiler that compiles a source code into machine
 
 <figure>
   <img src="image013.png" width="104" height="400" />
-  <figcaption>Figure 7:  compilation flow</figcaption>
+  <figcaption><span>Figure </span>:  compilation flow</figcaption>
 </figure>
 
 
@@ -604,7 +605,7 @@ Would be translated to the following DOM tree:
 
 <figure>
   <img src="image015.png" width="400" height="219"  />  
-  <figcaption>  Figure 8:  DOM tree of the example markup</figcaption>
+  <figcaption>  <span>Figure </span>:  DOM tree of the example markup</figcaption>
 </figure>
 
 <p>
@@ -643,7 +644,7 @@ The tokenizer recognizes the token, gives it to the tree constructor and consume
 
 <figure>
   <img src="image017.png" width="308" height="400" />
-  <figcaption>Figure 6:  HTML parsing flow (taken from HTML5 spec)</figcaption>
+  <figcaption><span>Figure </span>:  HTML parsing flow (taken from HTML5 spec)</figcaption>
 </figure>
 
 <h4 id="The_tokenization_algorithm">The tokenization algorithm</h4>
@@ -692,7 +693,7 @@ The <code>&lt;/html&gt;</code> input will be treated like the previous case.
 
 <figure>
   <img src="image019.png" width="627" height="387" >
-  <figcaption>Figure 9:  Tokenizing the example input</figcaption>
+  <figcaption><span>Figure </span>:  Tokenizing the example input</figcaption>
 </figure>
 
 <h4 id="Tree_construction_algorithm">Tree construction algorithm</h4>
@@ -744,7 +745,7 @@ Receiving the end of file token will end the parsing.
 
 <figure>
   <img src="image022.gif" width="532" height="769" /> 
-  <figcaption>Figure 10:  tree construction of example html</figcaption>
+  <figcaption><span>Figure </span>:  tree construction of example html</figcaption>
 </figure>
 
 
@@ -990,7 +991,7 @@ In both cases each CSS file is parsed into a StyleSheet object, each object cont
 
 <figure>
   <img src="image023.png" width="500" height="393" alt="" title="" border="0" align="" />
-  <figcaption>Figure 7:  parsing CSS</figcaption>
+  <figcaption><span>Figure </span>:  parsing CSS</figcaption>
 </figure>
 
 
@@ -1102,7 +1103,7 @@ A placeholder frame is where they should have been.
   
   <figure>
       <img src="image025.png" width="731" height="396" >
-    <figcaption>Figure 11:  The render tree and the corresponding DOM tree (<a href="#3_1">3.1</a>). The "Viewport" is the initial containing block. In Webkit it will be the "RenderView" object.</figcaption>
+    <figcaption><span>Figure </span>:  The render tree and the corresponding DOM tree (<a href="#3_1">3.1</a>). The "Viewport" is the initial containing block. In Webkit it will be the "RenderView" object.</figcaption>
   </figure>
   
 
@@ -1186,7 +1187,7 @@ Webkit also has style objects but they are not stored in a tree like the style c
 
 <figure>
   <img src="image035.png" width="640" height="407" />
-  <figcaption>Figure 13:  Firefox style context tree(<a href="#2_2">2.2</a>)</figcaption>
+  <figcaption><span>Figure </span>:  Firefox style context tree(<a href="#2_2">2.2</a>)</figcaption>
 </figure>
 
 
@@ -1280,7 +1281,7 @@ The resulting rule tree will look like this (the nodes are marked with the node 
 
 <figure>
   <img src="image027.png" width="500" height="294" />
-  <figcaption>Figure 12:  The rule tree</figcaption>
+  <figcaption><span>Figure </span>:  The rule tree</figcaption>
 </figure>
 
 
@@ -1290,7 +1291,7 @@ The context tree will look like this (node name : rule node they point to):
 
 <figure>
   <img src="image029.png" width="400" height="305" >  
-  <figcaption>  Figure 13:  The context tree</figcaption>
+  <figcaption> <span>Figure </span>:  The context tree</figcaption>
 </figure>
 
 
@@ -1518,7 +1519,7 @@ Incremental layout is triggered (asynchronously) when renderers are dirty. For e
 
 <figure>
   <img src="reflow.png" width="326" height="341" />
-  <figcaption>  Figure 20: Incremental layout - only dirty renderers and their children are layed out (<a href="#3_6">3.6</a>).</figcaption>
+  <figcaption> <span>Figure </span>: Incremental layout - only dirty renderers and their children are layed out (<a href="#3_6">3.6</a>).</figcaption>
 </figure>
 
 <h4 id="Asynchronous_and_Synchronous_layout">Asynchronous and Synchronous layout</h4>
@@ -1677,7 +1678,7 @@ Each box has a content area (e.g., text, an image, etc.) and optional surroundin
 
 <figure>
   <img src="image046.jpg" width="509" height="348" >  
-  <figcaption>  Figure 14:  CSS2 box model</figcaption>
+  <figcaption> <span>Figure </span>:  CSS2 box model</figcaption>
 </figure>
 
 
@@ -1735,7 +1736,7 @@ Block box: forms a block - have their own rectangle on the browser window.
 
 <figure>
   <img src="image057.png" width="150" height="127"  />  
-  <figcaption>  Figure 15: Block box</figcaption>
+  <figcaption> <span>Figure </span>: Block box</figcaption>
 </figure>
 
 <p>
@@ -1745,7 +1746,7 @@ Inline box: does not have its own block, but is inside a containing block.
 
 <figure>
   <img src="image059.png" width="300" height="233" />
-  <figcaption>Figure 15: Inline boxes</figcaption>
+  <figcaption><span>Figure </span>: Inline boxes</figcaption>
 </figure>
 
 
@@ -1758,7 +1759,7 @@ Inlines are formatted horizontally.
 
 <figure>
   <img src="image061.png" width="350" height="324" />  
-  <figcaption>Figure 16: Block and Inline formatting</figcaption>
+  <figcaption><span>Figure </span>: Block and Inline formatting</figcaption>
 </figure>
 
 
@@ -1773,7 +1774,7 @@ This is usually what happens in a paragraph.
 
 <figure>
   <img src="image063.png" width="400" height="277" >
-  <figcaption>Figure 17: Lines</figcaption>
+  <figcaption><span>Figure </span>: Lines</figcaption>
 </figure>
 
 <h3 id="Positioning">Positioning</h3>
@@ -1784,7 +1785,7 @@ Relative positioning - positioned like usual and then moved by the required delt
 
 <figure>
   <img src="image065.png" width="500" height="261" />
-  <figcaption>Figure 18: Relative positioning</figcaption>
+  <figcaption><span>Figure </span>: Relative positioning</figcaption>
 </figure>
 
 <h4 id="Floats">Floats</h4>
@@ -1803,7 +1804,7 @@ Will look like:
 
 <figure>
   <img src="image067.png" width="444" height="203" />
-  <figcaption>Figure 19: Float</figcaption>
+  <figcaption><span>Figure </span>: Float</figcaption>
 </figure>  
   
 
@@ -1815,7 +1816,7 @@ In fixed - the container is the view port.
 
 <figure>
   <img src="image069.png" width="500" height="343" />  
-  <figcaption>Figure 20: Fixed positioning</figcaption>
+  <figcaption><span>Figure </span>: Fixed positioning</figcaption>
 </figure>
 
 
@@ -1861,7 +1862,7 @@ The result will be this:
 
 <figure>
   <img src="image071.png" width="254" height="227" />
-  <figcaption>Figure 20: Fixed positioning</figcaption>
+  <figcaption><span>Figure </span>: Fixed positioning</figcaption>
 </figure>
 
 <p>
@@ -1965,7 +1966,11 @@ toc
     });
   });
 });
-  
+
+
+$('figcaption span').each(function(i, elem) {
+  elem.setAttribute('data-count', i + 1);
+});  
   //console.log(elem, $(elem).attr('href'),  $('a[name="' +  )
 </script>
 
