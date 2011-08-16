@@ -59,6 +59,7 @@
             transition: all 0.3s ease-out;  
   }
   h2:hover .tocnum, h3:hover .tocnum, h4:hover .tocnum, h5:hover .tocnum { color: hsl(0, 0%, 20%); }
+  .preface + hr + .tocchap { visibility: hidden;  }
 </style>
 <script >
   [].forEach.call( document.querySelectorAll('header .date a'), function(elem, i) {
@@ -101,7 +102,6 @@ We will see what happens when you type <code>google.com</code> in the address ba
 	<li><a href="#The_browsers_we_will_talk_about">The browsers we will talk about</a></li>
 	<li><a href="#The_browser_main_functionality">The browser's main functionality</a></li>
 	<li><a href="#The_browser_high_level_structure">The browser's high level structure</a></li>
-	<li><a href="#Communication_between_the_components">Communication between the components</a></li>
 </ol>
 </li>
 <li><a href="#The_rendering_engine">The rendering engine</a>
@@ -142,7 +142,6 @@ We will see what happens when you type <code>google.com</code> in the address ba
 	  <li><a href="#Webkit_CSS_parser">Webkit CSS parser</a></li>
 	</ol>
 	</li>
-	<li><a href="#Parsing_scripts">Parsing scripts</a></li>
 	<li><a href="#The_order_of_processing_scripts_and_style_sheets">The order of processing scripts and style sheets</a>
 	<ol>
       <li><a href="#Scripts">Scripts</a></li>
@@ -241,7 +240,7 @@ So nowadays open source browsers are a substantial part of the browser business.
 <p>
 The browser main functionality is to present the web resource you choose, by requesting it from the server and displaying it on the browser window.
 The resource format is usually HTML but also PDF, image and more.
-The location of the resource is specified by the user using a URI (Uniform resource Identifier). More on that in the network chapter.
+The location of the resource is specified by the user using a URI (Uniform resource Identifier). 
 </p>
 <p>
 The way the browser interprets and displays HTML files is specified in the HTML and CSS specifications.
@@ -294,15 +293,8 @@ The browser's main components are (<a href="#1_1">1.1</a>):
 
 
 <p>
-It is important to note that Chrome, unlike most browsers, holds multiple instances of the rendering engine - one for each tab,.
+It is important to note that Chrome, unlike most browsers, holds multiple instances of the rendering engine - one for each tab.
 Each tab is a separate process.
-</p>
-<p>
-I will devote a chapter for each of these components.
-</p>
-<h3 id="Communication_between_the_components">Communication between the components</h3>
-<p>
-Both Firefox and Chrome developed  special communication infrastructures. They will be discussed in a special chapter.
 </p>
 
 <h2 id="The_rendering_engine">The rendering engine</h2>
@@ -311,8 +303,7 @@ The responsibility of the rendering engine is well... Rendering, that is display
 </p>
 <p>
 By default the rendering engine can display HTML and XML documents and images.
-It can display other types through a plug-in (a browser extension). An example is displaying PDF using a PDF viewer plug-in. We will talk about plug-ins and extensions in a special chapter.
-In this chapter we will focus on the main use case - displaying HTML and images that are formatted using CSS.</p>
+It can display other types through a plug-in (or browser extension); for example, displaying PDF using a PDF viewer plug-in. However, in this chapter we will focus on the main use case: displaying HTML and images that are formatted using CSS.</p>
 
 <h3 id="Rendering_engines">Rendering engines</h3>
 <p>
@@ -353,7 +344,7 @@ The rectangles are in the right order to be displayed on the screen.
 <p>
 After the construction of the render tree it goes through a "<a href="#layout">layout</a>" process.
 This means giving each node the exact coordinates where it should appear on the screen.
-The next stage is <a href="painting">painting</a> - the render tree will be traversed and each node will be painted using the UI backend layer.
+The next stage is <a href="#Painting">painting</a> - the render tree will be traversed and each node will be painted using the UI backend layer.
 </p>
 <p>
 It's important to understand that this is a gradual process. For better user experience, the rendering engine will try to display contents on the screen as soon as possible.
@@ -939,7 +930,7 @@ ident		{nmstart}{nmchar}*
 </p>
 <p>
 The syntax grammar is described in BNF.
-<pre class="prettyprint">
+<pre class="prettyprint lang-css">
 ruleset
   : selector [ ',' S* selector ]*
     '{' S* declaration [ ';' S* declaration ]* '}' S*
@@ -967,7 +958,7 @@ pseudo
 </pre>
 Explanation:
 A ruleset is this structure:
-<pre class="prettyprint">
+<pre class="prettyprint lang-css">
 div.error , a.error {
 	color:red;
 	font-weight:bold;
@@ -975,7 +966,7 @@ div.error , a.error {
 </pre>
 div.error and a.error are selectors. The part inside the curly braces contains the rules that are applied by this ruleset.
 This structure is defined formally in this definition:
-<pre class="prettyprint">
+<pre class="prettyprint lang-css">
 ruleset
   : selector [ ',' S* selector ]*
     '{' S* declaration [ ';' S* declaration ]* '}' S*
@@ -998,9 +989,6 @@ In both cases each CSS file is parsed into a StyleSheet object, each object cont
   <figcaption>Figure 7:  parsing CSS</figcaption>
 </figure>
 
-
-<h3 id="Parsing_scripts">Parsing scripts</h3>
-This will be dealt with in the chapter about JavaScript
 
 <h3 id="The_order_of_processing_scripts_and_style_sheets">The order of processing scripts and style sheets</h3>
 <h4 id="Scripts">Scripts</h4>
@@ -1269,13 +1257,13 @@ Suppose we have this HTML
 </pre>
 
 And the following rules:
-<pre class="prettyprint">
-1.  div {margin:5px;color:black}
-2.  .err {color:red}
-3.  .big {margin-top:3px}
-4.  div span {margin-bottom:4px}
-5.  #div1 {color:blue}
-6.  #div 2 {color:green}
+<pre class="prettyprint lang-css linenums">
+div {margin:5px;color:black}
+.err {color:red}
+.big {margin-top:3px}
+div span {margin-bottom:4px}
+#div1 {color:blue}
+#div 2 {color:green}
 </pre>
 <p>
 To simplify things let's say we need to fill out only two structs - the color struct and the margin struct.
@@ -1483,7 +1471,7 @@ If the style is not fully loaded when attaching - place holders are used and it 
 </p>
 
  
-<h3 id="layout">Layout</h3>
+<h3 id="Layout">Layout</h3>
 <p>
 When the renderer is created and added to the tree, it does not have a position and size. Calculating these values is called layout or reflow.
 </p>
@@ -1602,10 +1590,10 @@ When a renderer in the middle of layout decides it needs to break.
 It stops and propagates to its parent it needs to be broken.
 The parent will create the extra renderers and calls layout on them.
 </p>
-<h3 id="painting">Painting</h3>
+<h3 id="Painting">Painting</h3>
 <p>
 In the painting stage, the render tree is traversed and the renderers "paint" method is called to display their content on the screen.
-Painting uses the UI infrastructure component.  More on that in the chapter about the UI.
+Painting uses the UI infrastructure component.  
 <h4 id="Global_and_Incremental">Global and Incremental</h4>
 Like layout, painting can also be global - the entire tree is painted - or incremental.
 In incremental painting, some of the renderers change in a way that does not affect the entire tree.
@@ -1945,7 +1933,7 @@ toc
   .find(' > li > a').each(function(i, elem) {
     // top level chapters get a preceding line
     $('<h5 class="tocchap"></h5>')
-      .text('Chapter ' + (i + 1) + ':')
+      .text('Chapter ' + (i + 1))
       .insertBefore(getReffedElem(elem));
 
     $(elem).parent().find(' > ol > li > a').each(function(j, elem2) {
