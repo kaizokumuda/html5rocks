@@ -316,7 +316,7 @@ Here’s the visual effect, taken from
 ![sub-pixel](bunny.png)
 
 If the smoothed sprite is not the effect you seek, it can be much faster
-to convert your coordinates to integers using `Math.float` or
+to convert your coordinates to integers using `Math.floor` or
 `Math.round` ([jsperf](http://jsperf.com/drawimage-whole-pixels)):
 
 <iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBiRk-kDDA">

@@ -310,7 +310,7 @@ Here’s the visual effect, taken from
 <a href="http://sebleedelisle.com/2011/02/html5-canvas-sprite-optimisation">this sub-pixel canvas performance article by Seb Lee-Delisle</a>:</p>
 <p><img alt="sub-pixel" src="bunny.png" /></p>
 <p>If the smoothed sprite is not the effect you seek, it can be much faster
-to convert your coordinates to integers using <code>Math.float</code> or
+to convert your coordinates to integers using <code>Math.floor</code> or
 <code>Math.round</code> (<a href="http://jsperf.com/drawimage-whole-pixels">jsperf</a>):</p>
 <iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBiRk-kDDA">
 </iframe>
