@@ -206,6 +206,9 @@ em {
 .date a {
   color: #bbb;
 }
+.date a:hover {
+  text-decoration: underline;
+}
 .date > div {
   margin-top: 3px;
 }
