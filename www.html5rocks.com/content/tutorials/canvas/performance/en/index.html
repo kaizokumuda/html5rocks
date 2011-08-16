@@ -70,6 +70,14 @@ techniques in this article are backed up by a JSPerf result, you can
 return to see up-to-date information about whether or not the technique
 still applies. I’ve written a small <a href="https://github.com/borismus/jsperfview">helper application</a> that
 renders these results as graphs, embedded throughout this article.</p>
+
+<p>All of the performance results in this article are keyed on the
+browser version. This turns out to be a limitation, since we don't know what OS
+the browser was running on, or even more importantly, whether or not HTML5
+canvas was hardware accelerated when the performance test ran. You can find out
+if Chrome's HTML5 canvas is hardware accelerated by visiting
+<code>about:gpu</code> in the address bar.</p>
+
 <h2 id="toc-pre-render">Pre-render to an off-screen canvas</h2>
 
 <p>If you’re re-drawing similar primitives to the screen across multiple
@@ -134,8 +142,11 @@ can3.height = 100;
 
 <p>Since drawing is an expensive operation, it’s more efficient to load the
 drawing state machine with a long set of commands, and then have it dump
-them all onto the video buffer. In other words, rather than drawing
-separate lines:</p>
+them all onto the video buffer.</p>
+
+<p>For example, when drawing multiple lines, it's more efficient to create one
+path with all the lines in it and draw it with a single draw call. In other
+words, rather than drawing separate lines:</p>
 <pre class="prettyprint"><code>for (var i = 0; i &lt; points.length - 1; i++) {
   var p1 = points[i];
   var p2 = points[i+1];
