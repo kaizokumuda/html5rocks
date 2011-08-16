@@ -206,6 +206,9 @@ em {
 .date a {
   color: #bbb;
 }
+.date a:hover {
+  text-decoration: underline;
+}
 .date > div {
   margin-top: 3px;
 }
@@ -315,7 +318,10 @@ article.sample .date {
 }
 #share_buttons a[href="#disqus_thread"] {
   font-size: 80%;
+  text-align: right;
+  display: block;
 }
+
 .footer {
   font-size: 80%;
   color: #bbb;
