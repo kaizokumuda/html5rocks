@@ -276,7 +276,7 @@ The browser's main components are (<a href="#1_1">1.1</a>):
 <ol>
 
   <li><strong>The user interface   </strong>- this includes the address bar, back/forward button, bookmarking menu etc. Every part of the browser display except the main window where you see the requested page.</li>
-  <li><strong>The browser engine   </strong>- the interface for querying and manipulating the rendering engine.</li>
+  <li><strong>The browser engine   </strong>- marshalls the actions between the UI and the rendering engine.</li>
   <li><strong>The rendering engine </strong>- responsible for displaying the requested content. For example if the requested content is HTML, it is responsible for parsing the HTML and CSS and displaying the parsed content on the screen.</li>
   <li><strong>Networking           </strong>- used for network calls, like HTTP requests. It has platform independent interface and underneath implementations for each platform.</li>
   <li><strong>UI backend           </strong>- used for drawing basic widgets like combo boxes and windows. It exposes a generic interface that is not platform specific. Underneath it uses the operating system user interface methods.</li>
@@ -1872,39 +1872,39 @@ Although the green div comes before the red one, and would have been painted bef
   <ol>
       <li id="1">Browser architecture
           <ol>
-              <li><a id="1_1">Grosskurth, Alan.</a> <a href="http://grosskurth.ca/papers/browser-refarch.pdf">A Reference Architecture for Web Browsers (pdf)</a>
+              <li id="1_1">Grosskurth, Alan.  <a href="http://grosskurth.ca/papers/browser-refarch.pdf">A Reference Architecture for Web Browsers (pdf)</a>
           </ol>
 
       <li id="2">Parsing
           <ol>
-              <li><a id="2_1">Aho, Sethi, Ullman, Compilers: Principles, Techniques, and Tools (aka the "Dragon book"), Addison-Wesley, 1986</a>
-              <li><a id="2_2"></a>Rick Jelliffe. <a href="http://broadcast.oreilly.com/2009/05/the-bold-and-the-beautiful-two.html">The Bold and the Beautiful: two new drafts for HTML 5.</a>
+              <li id="2_1">Aho, Sethi, Ullman, Compilers: Principles, Techniques, and Tools (aka the "Dragon book"), Addison-Wesley, 1986 
+              <li id="2_2"> Rick Jelliffe. <a href="http://broadcast.oreilly.com/2009/05/the-bold-and-the-beautiful-two.html">The Bold and the Beautiful: two new drafts for HTML 5.</a>
           </ol>
 
       <li id="3">Firefox
           <ol>
-              <li><a id="3_1">L. David Baron,</a> <a href="http://dbaron.org/talks/2008-11-12-faster-html-and-css/slide-6.xhtml">Faster HTML and CSS: Layout Engine Internals for Web Developers.</a>
-              <li><a id="3_2">L. David Baron,</a> <a href="http://www.youtube.com/watch?v=a2_6bGNZ7bA">Faster HTML and CSS: Layout Engine Internals for Web Developers (Google tech talk video)</a>
-              <li><a id="3_3">L. David Baron,</a> <a href="http://www.mozilla.org/newlayout/doc/layout-2006-07-12/slide-6.xhtml">Mozilla's Layout Engine</a>
-              <li><a id="3_4">L. David Baron,</a> <a href="http://www.mozilla.org/newlayout/doc/style-system.html">Mozilla Style System Documentation</a>
-              <li><a id="3_5">Chris Waterson,</a> <a href="http://www.mozilla.org/newlayout/doc/reflow.html">Notes on HTML Reflow</a>
-              <li><a id="3_6">Chris Waterson,</a> <a href="http://www.mozilla.org/newlayout/doc/gecko-overview.htm">Gecko Overview</a>
-              <li><a id="3_7">Alexander Larsson,</a> <a href="https://developer.mozilla.org/en/The_life_of_an_HTML_HTTP_request">The life of an HTML HTTP request</a>
+              <li id="3_1">L. David Baron,  <a href="http://dbaron.org/talks/2008-11-12-faster-html-and-css/slide-6.xhtml">Faster HTML and CSS: Layout Engine Internals for Web Developers.</a>
+              <li id="3_2">L. David Baron,  <a href="http://www.youtube.com/watch?v=a2_6bGNZ7bA">Faster HTML and CSS: Layout Engine Internals for Web Developers (Google tech talk video)</a>
+              <li id="3_3">L. David Baron,  <a href="http://www.mozilla.org/newlayout/doc/layout-2006-07-12/slide-6.xhtml">Mozilla's Layout Engine</a>
+              <li id="3_4">L. David Baron,  <a href="http://www.mozilla.org/newlayout/doc/style-system.html">Mozilla Style System Documentation</a>
+              <li id="3_5">Chris Waterson,  <a href="http://www.mozilla.org/newlayout/doc/reflow.html">Notes on HTML Reflow</a>
+              <li id="3_6">Chris Waterson,  <a href="http://www.mozilla.org/newlayout/doc/gecko-overview.htm">Gecko Overview</a>
+              <li id="3_7">Alexander Larsson,  <a href="https://developer.mozilla.org/en/The_life_of_an_HTML_HTTP_request">The life of an HTML HTTP request</a>
           </ol>
 
       <li id="4">Webkit
           <ol>
-              <li><a id="4_1">David Hyatt,</a> <a href="http://weblogs.mozillazine.org/hyatt/archives/cat_safari.html">Implementing CSS(part 1)</a>
-              <li><a id="4_2">David Hyatt,</a> <a href="http://weblogs.mozillazine.org/hyatt/WebCore/chapter2.html">An Overview of WebCore</a>
-              <li><a id="4_3">David Hyatt,</a> <a href="http://webkit.org/blog/114/">WebCore Rendering</a>
-              <li><a id="4_5">David Hyatt,</a> <a href="http://webkit.org/blog/66/the-fouc-problem/">The FOUC Problem</a>
+              <li id="4_1">David Hyatt,  <a href="http://weblogs.mozillazine.org/hyatt/archives/cat_safari.html">Implementing CSS(part 1)</a>
+              <li id="4_2">David Hyatt,  <a href="http://weblogs.mozillazine.org/hyatt/WebCore/chapter2.html">An Overview of WebCore</a>
+              <li id="4_3">David Hyatt,  <a href="http://webkit.org/blog/114/">WebCore Rendering</a>
+              <li id="4_5">David Hyatt,  <a href="http://webkit.org/blog/66/the-fouc-problem/">The FOUC Problem</a>
           </ol>
 
       <li id="5">W3C Specifications
           <ol>
-              <li><a id="5_1"></a><a href="http://www.w3.org/TR/html4/">HTML 4.01 Specification</a>
-              <li><a id="5_2"></a><a href="http://dev.w3.org/html5/spec/Overview.html">W3C HTML5 Specification</a>
-              <li><a id="5_3"></a><a href="http://www.w3.org/TR/CSS2/">Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification</a>
+              <li id="5_1"> <a href="http://www.w3.org/TR/html4/">HTML 4.01 Specification</a>
+              <li id="5_2"> <a href="http://dev.w3.org/html5/spec/Overview.html">W3C HTML5 Specification</a>
+              <li id="5_3"> <a href="http://www.w3.org/TR/CSS2/">Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification</a>
           </ol>
 
       <li>Browsers build instructions
