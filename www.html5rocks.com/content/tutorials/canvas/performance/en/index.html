@@ -200,19 +200,19 @@ render the next stripe, etc:</p>
 }
 </code></pre>
 <p>Or render all odd stripes and then all even stripes:</p>
-<pre class="prettyprint"><code>for (var i = 0; i &lt; STRIPES/2; i++) {
-  context.fillStyle = COLOR1;
+<pre class="prettyprint"><code>context.fillStyle = COLOR1;
+for (var i = 0; i &lt; STRIPES/2; i++) {
   context.fillRect((i*2) * GAP, 0, GAP, 480);
 }
+context.fillStyle = COLOR2;
 for (var i = 0; i &lt; STRIPES/2; i++) {
-  context.fillStyle = COLOR2;
   context.fillRect((i*2+1) * GAP, 0, GAP, 480);
 }
 </code></pre>
 <p>The following performance test draws an interlaced pinstripe pattern
 using the two approaches
-(<a href="http://jsperf.com/changing-canvas-state">jsperf</a>):</p>
-<iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBjMsK4HDA">
+(<a href="http://jsperf.com/changing-canvas-state/3">jsperf</a>):</p>
+<iframe src="embed.html?id=agt1YS1wcm9maWxlcnINCxIEVGVzdBiG69oHDA">
 </iframe>
 
 <p>As expected, the interlaced approach is slower because changing the
