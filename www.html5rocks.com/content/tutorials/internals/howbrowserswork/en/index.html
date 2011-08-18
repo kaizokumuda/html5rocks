@@ -464,7 +464,7 @@ Syntax:
 <ol>
 <li> The language syntax building blocks are expressions, terms and operations.
 <li> Our language can include any number of expressions.</li>
-<li> A expression is defined as a "term" followed by an "operation" followed by another term</li>
+<li> An expression is defined as a "term" followed by an "operation" followed by another term</li>
 <li> An operation is a plus token or a minus token</li>
 <li> A term is an integer token or an expression</li>
 </ol>
@@ -1006,7 +1006,7 @@ Authors could mark the script as "defer" and thus it will not halt the document 
 </p>
 <h4 id="Speculative_parsing">Speculative parsing</h4>
 <p>
-Both Webkit and Firefox do this optimization. While executing scripts, another thread parses the rest of the document and finds out what other resources need to be loaded from the network and loads them. These way resources can be loaded on parallel connections and the overall speed is better. Note - the speculative parser doesn't modify the DOM tree and leaves that to the main parser, it only parses references to external resources like external scripts, style sheets and images.
+Both Webkit and Firefox do this optimization. While executing scripts, another thread parses the rest of the document and finds out what other resources need to be loaded from the network and loads them. This way resources can be loaded on parallel connections and the overall speed is better. Note - the speculative parser doesn't modify the DOM tree and leaves that to the main parser, it only parses references to external resources like external scripts, style sheets and images.
 </p>
 <h4 id="Style_sheets">Style sheets</h4>
 <p> 
