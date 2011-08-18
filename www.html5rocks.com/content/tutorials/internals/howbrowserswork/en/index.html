@@ -173,7 +173,7 @@ We will see what happens when you type <code>google.com</code> in the address ba
 <li><a href="#Applying_the_rules_in_the_correct_cascade_order">Applying the rules in the correct cascade order</a>
 <ol>
     <li><a href="#Style_sheet_cascade_order">Style sheet cascade order</a></li>
-<li><a href="#Specifity">Specifity</a></li>
+<li><a href="#Specificity">Specificity</a></li>
 <li><a href="#Sorting_the_rules">Sorting the rules</a></li>
 </ol>
 </li>
@@ -473,7 +473,7 @@ Syntax:
   Let's analyze the input <samp>2 + 3 - 1</samp>.
   <br>
   The first substring that matches a rule is <samp>2</samp>, according to rule #5 it is a term.
-  The second match is <samp>2  + 3</samp> this matches the second rule - a term followed by an operation followed by another term.
+  The second match is <samp>2  + 3</samp> this matches the third rule - a term followed by an operation followed by another term.
   The next match will only be hit at the end of the input.
   <samp>2 + 3 - 1</samp> is an expression because we already know that <samp>2+3</samp> is a term so we have a term followed by an operation followed by another term.
   <samp>2 + + </samp>will not match any rule and therefore is an invalid input.
@@ -1419,12 +1419,12 @@ According to CSS2 spec, the cascade order is (from low to high):
 </p>
 <p>
 The browser declarations are least important and the user overrides the author only if the declaration was marked as important.
-Declarations with the same order will be sorted by <a href="#specifity">specifity</a> and then the order they are specified.
+Declarations with the same order will be sorted by <a href="#Specificity">specificity</a> and then the order they are specified.
 The HTML visual attributes are translated to matching CSS declarations . They are treated as author rules with low priority.
 </p>
-<h5 id="specifity">Specifity</h5>
+<h5 id="Specificity">Specificity</h5>
 <p>
-The selector specifity is defined by the <a href="http://www.w3.org/TR/CSS2/cascade.html#specificity">CSS2 specification</a> as follows:
+The selector specificity is defined by the <a href="http://www.w3.org/TR/CSS2/cascade.html#specificity">CSS2 specification</a> as follows:
 <ul>
     <li>count 1 if the declaration is from is a 'style' attribute rather than a rule with a selector, 0 otherwise (= a)</li> 
     <li>count the number of ID attributes in the selector (= b) </li>
