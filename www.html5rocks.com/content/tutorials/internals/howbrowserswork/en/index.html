@@ -44,7 +44,7 @@
   samp:empty { display:none; }
   ol.toc { padding-left: 20px; line-height: 1.1; }
   .autonum *:target { background: hsl(60, 73%, 93%);}
-  cite { display:block; text-align: right;}
+  cite { display:block; text-align: right; font-size: 80%; }
   figcaption span:after { content: attr(data-count) ; }
 
   .tocchap, .tocnum { cursor: default; }
@@ -104,56 +104,56 @@ We will see what happens when you type <code>google.com</code> in the address ba
 <ol class="toc">
 <li><a href="#Introduction">Introduction</a>
 <ol>
-	<li><a href="#The_browsers_we_will_talk_about">The browsers we will talk about</a></li>
-	<li><a href="#The_browser_main_functionality">The browser's main functionality</a></li>
-	<li><a href="#The_browser_high_level_structure">The browser's high level structure</a></li>
+  <li><a href="#The_browsers_we_will_talk_about">The browsers we will talk about</a></li>
+  <li><a href="#The_browser_main_functionality">The browser's main functionality</a></li>
+  <li><a href="#The_browser_high_level_structure">The browser's high level structure</a></li>
 </ol>
 </li>
 <li><a href="#The_rendering_engine">The rendering engine</a>
 <ol>
-	<li><a href="#Rendering_engines">Rendering engines</a></li>
-	<li><a href="#The_main_flow">The main flow</a></li>
-	<li><a href="#Main_flow_examples">Main flow examples</a></li>
+  <li><a href="#Rendering_engines">Rendering engines</a></li>
+  <li><a href="#The_main_flow">The main flow</a></li>
+  <li><a href="#Main_flow_examples">Main flow examples</a></li>
 </ol>
 </li>
 <li><a href="#Parsing_general">Parsing and DOM tree construction</a>
 <ol>
-	<li><a href="#Parsing_general">Parsing - general</a>
-	<ol>
-    	<li><a href="#Grammars">Grammars</a></li>
-    	<li><a href="#Parser_Lexer_combination">Parser - Lexer combination</a></li>
-    	<li><a href="#Translation">Translation</a></li>
-    	<li><a href="#Parsing_example">Parsing example</a></li>
-    	<li><a href="#Formal_definitions_for_vocabulary_and_syntax">Formal definitions for vocabulary and syntax</a></li>
-    	<li><a href="#Types_of_parsers">Types of parsers</a></li>
-		<li><a href="#Generating_parsers_automatically">Generating parsers automatically</a></li>
-	</ol>
-	</li>
-	<li><a href="#HTML_Parser">HTML Parser</a>
-	<ol>
+  <li><a href="#Parsing_general">Parsing - general</a>
+  <ol>
+      <li><a href="#Grammars">Grammars</a></li>
+      <li><a href="#Parser_Lexer_combination">Parser - Lexer combination</a></li>
+      <li><a href="#Translation">Translation</a></li>
+      <li><a href="#Parsing_example">Parsing example</a></li>
+      <li><a href="#Formal_definitions_for_vocabulary_and_syntax">Formal definitions for vocabulary and syntax</a></li>
+      <li><a href="#Types_of_parsers">Types of parsers</a></li>
+    <li><a href="#Generating_parsers_automatically">Generating parsers automatically</a></li>
+  </ol>
+  </li>
+  <li><a href="#HTML_Parser">HTML Parser</a>
+  <ol>
       <li><a href="#The_HTML_grammar_definition">The HTML grammar definition</a></li>
       <li><a href="#Not_a_context_free_grammar">Not a context free grammar</a></li>
       <li><a href="#HTML_DTD">HTML DTD</a></li>
-	  <li><a href="#DOM">DOM</a></li>
+    <li><a href="#DOM">DOM</a></li>
       <li><a href="#The_parsing_algorithm">The parsing algorithm</a></li>
       <li><a href="#The_tokenization_algorithm">The tokenization algorithm</a></li>
-	  <li><a href="#Tree_construction_algorithm">Tree construction algorithm</a></li>
+    <li><a href="#Tree_construction_algorithm">Tree construction algorithm</a></li>
       <li><a href="#Actions_when_the_parsing_is_finished">Actions when the parsing is finished</a></li>
       <li><a href="#Browsers_error_tolerance">Browsers error tolerance</a></li>
-	</ol>
-	</li>
-	<li><a href="#CSS_parsing">CSS parsing</a>
-	<ol>
-	  <li><a href="#Webkit_CSS_parser">Webkit CSS parser</a></li>
-	</ol>
-	</li>
-	<li><a href="#The_order_of_processing_scripts_and_style_sheets">The order of processing scripts and style sheets</a>
-	<ol>
+  </ol>
+  </li>
+  <li><a href="#CSS_parsing">CSS parsing</a>
+  <ol>
+    <li><a href="#Webkit_CSS_parser">Webkit CSS parser</a></li>
+  </ol>
+  </li>
+  <li><a href="#The_order_of_processing_scripts_and_style_sheets">The order of processing scripts and style sheets</a>
+  <ol>
       <li><a href="#Scripts">Scripts</a></li>
       <li><a href="#Speculative_parsing">Speculative parsing</a></li>
       <li><a href="#Style_sheets">Style sheets</a></li>
-	</ol>
-	</li>
+  </ol>
+  </li>
 </ol>
 </li>
 <li><a href="#Render_tree_construction">Render tree construction</a>
@@ -165,8 +165,8 @@ We will see what happens when you type <code>google.com</code> in the address ba
     <li><a href="#Sharing_style_data">Sharing style data</a></li>
     <li><a href="#Firefox_rule_tree">Firefox rule tree</a>
 <ol>
-	    <li><a href="#Division_into_structs">Division into structs</a></li>
-      <li><a href="#Computing_the_style_contexts_using_the_rule_tree">Computing the style contexts using the rule 		tree</a></li>
+      <li><a href="#Division_into_structs">Division into structs</a></li>
+      <li><a href="#Computing_the_style_contexts_using_the_rule_tree">Computing the style contexts using the rule     tree</a></li>
     </ol>
 </li>
     <li><a href="#Manipulating_the_rules_for_an_easy_match">Manipulating the rules for an easy match</a></li>
@@ -184,47 +184,47 @@ We will see what happens when you type <code>google.com</code> in the address ba
 </li>
 <li><a href="#Layout">Layout</a>
   <ol>
-  	<li><a href="#Dirty_bit_system">Dirty bit system</a></li>
-  	<li><a href="#Global_and_incremental_layout">Global and incremental layout</a></li>
-  	<li><a href="#Asynchronous_and_Synchronous_layout">Asynchronous and Synchronous layout</a></li>
-  	<li><a href="#Optimizations">Optimizations</a></li>
+    <li><a href="#Dirty_bit_system">Dirty bit system</a></li>
+    <li><a href="#Global_and_incremental_layout">Global and incremental layout</a></li>
+    <li><a href="#Asynchronous_and_Synchronous_layout">Asynchronous and Synchronous layout</a></li>
+    <li><a href="#Optimizations">Optimizations</a></li>
 <li><a href="#The_layout_process">The layout process</a></li>
-  	<li><a href="#Width_calculation">Width calculation</a></li>
-  	<li><a href="#Line_Breaking">Line Breaking</a></li>
+    <li><a href="#Width_calculation">Width calculation</a></li>
+    <li><a href="#Line_Breaking">Line Breaking</a></li>
   </ol>
  </li>
 <li><a href="#Painting">Painting</a>
   <ol>
-  	<li><a href="#Global_and_Incremental">Global and Incremental</a></li>
-  	<li><a href="#The_painting_order">The painting order</a></li>
-  	<li><a href="#Firefox_display_list">Firefox display list</a></li>
-  	<li><a href="#Webkit_rectangle_storage">Webkit rectangle storage</a></li>
+    <li><a href="#Global_and_Incremental">Global and Incremental</a></li>
+    <li><a href="#The_painting_order">The painting order</a></li>
+    <li><a href="#Firefox_display_list">Firefox display list</a></li>
+    <li><a href="#Webkit_rectangle_storage">Webkit rectangle storage</a></li>
   </ol>
  </li>
 <li><a href="#Dynamic_changes">Dynamic changes</a></li>
 <li><a href="#The_rendering_engines_threads">The rendering engine's threads</a>
 <ol>
-  	<li><a href="#Event_loop">Event loop</a></li>
+    <li><a href="#Event_loop">Event loop</a></li>
   </ol> 
 </li>
 <li><a href="#css">CSS2 visual model</a>
   <ol>
-  	<li><a href="#The_canvas">The canvas</a></li>
-  	<li><a href="#CSS_Box_model">CSS Box model</a></li>
-  	<li><a href="#Positioning_scheme">Positioning scheme</a></li>
-  	<li><a href="#Box_types">Box types</a></li>
+    <li><a href="#The_canvas">The canvas</a></li>
+    <li><a href="#CSS_Box_model">CSS Box model</a></li>
+    <li><a href="#Positioning_scheme">Positioning scheme</a></li>
+    <li><a href="#Box_types">Box types</a></li>
 <li><a href="#Positioning">Positioning</a>
 <ol>
-    	<li><a href="#Relative">Relative</a></li>
-    	<li><a href="#Floats">Floats</a></li>
-	<li><a href="#Absolute_and_fixed">Absolute and fixed</a></li>
+      <li><a href="#Relative">Relative</a></li>
+      <li><a href="#Floats">Floats</a></li>
+  <li><a href="#Absolute_and_fixed">Absolute and fixed</a></li>
 </ol>
 </li>
 <li><a href="#Layered_representation">Layered representation</a></li>
   </ol>
  </li>
 <li><a href="#Resources">Resources</a></li>
-</ol>	
+</ol> 
 
 
 
@@ -244,7 +244,7 @@ So nowadays open source browsers are a substantial part of the browser business.
 <h3 id="The_browser_main_functionality">The browser's main functionality</h3>
 <p>
 The browser main functionality is to present the web resource you choose, by requesting it from the server and displaying it on the browser window.
-The resource format is usually HTML but also PDF, image and more.
+The resource is usually an HTML document, but may also be a PDF, image, or other type.
 The location of the resource is specified by the user using a URI (Uniform resource Identifier). 
 </p>
 <p>
@@ -269,9 +269,9 @@ Browsers' user interface have a lot in common with each other. Among the common 
 </ul>
 
 <p>
-Strangely enough, the browser's user interface is not specified in any formal specification, it is just good practices shaped over years of experience and by browsers imitating each other.
+Strangely enough, the browser's user interface is not specified in any formal specification, it just comes from good practices shaped over years of experience and by browsers imitating each other.
 The HTML5 specification doesn't define UI elements a browser must have, but lists some common elements. Among those are the address bar, status bar and tool bar.
-There are, of course, features unique to a specific browser like Firefox downloads manager.
+There are, of course, features unique to a specific browser like Firefox's downloads manager.
 </p>
 <h3 id="The_browser_high_level_structure">The browser's high level structure</h3>
 <p>
@@ -374,11 +374,11 @@ Parts of the content will be parsed and displayed, while the process continues w
 <p>
 From figures 3 and 4 you can see that although Webkit and Gecko use slightly different terminology, the flow is basically the same.
 <p>
-Gecko calls the tree of visually formatted elements - Frame tree. Each element is a frame.
+Gecko calls the tree of visually formatted elements a "Frame tree". Each element is a frame.
 Webkit uses the term "Render Tree" and it consists of "Render Objects".
 Webkit uses the term "layout" for the placing of elements, while Gecko calls it "Reflow".
 "Attachment" is Webkit's term for connecting DOM nodes and visual information to create the render tree.
-A minor non semantic difference is that Gecko has an extra layer between the HTML and the DOM tree. It is called the "content sink" and is a factory for making DOM elements.
+A minor non-semantic difference is that Gecko has an extra layer between the HTML and the DOM tree. It is called the "content sink" and is a factory for making DOM elements.
 We will talk about each part of the flow:
 <p>
 <h3 id="Parsing_general">Parsing - general</h3>
@@ -527,13 +527,13 @@ The partly matched expression is placed on the parsers stack.
   <tr><td>term operation</td>       <td><samp> 3 - 1    </samp></td></tr>
   <tr><td>expression</td>           <td><samp>- 1       </samp></td></tr> 
   <tr><td>expression operation</td> <td><samp>1         </samp></td></tr> 
-  <tr><td>expression</td>           <td><samp>&nbsp;    </samp></td></tr>              			                          
+  <tr><td>expression</td>           <td><samp>&nbsp;    </samp></td></tr>                                             
 </table>
-This type of bottom up parser is called a shift reduce parser, because the input is shifted to the right (imagine a pointer pointing first at the input start and moving to the right) and is gradually reduced to syntax rules.
+This type of bottom up parser is called a shift-reduce parser, because the input is shifted to the right (imagine a pointer pointing first at the input start and moving to the right) and is gradually reduced to syntax rules.
 </p>
 <h4 id="Generating_parsers_automatically">Generating parsers automatically</h4>
 <p>
-There are tools that can generate a parser for you. They are called parser generators. You feed them with the grammar of your language - its vocabulary and syntax rules and they generate a working parser.
+There are tools that can generate a parser for you. They are called parser generators. You feed them with the grammar of your language&mdash;its vocabulary and syntax rules&mdash;and they generate a working parser.
 Creating a parser requires a deep understanding of parsing and its not easy to create an optimized parser by hand, so parser generators can be very useful.
 </p>
 <p>
@@ -567,7 +567,7 @@ On the whole it's a "soft" syntax, as opposed to XML's stiff and demanding synta
 </p><p>
 Apparently this seemingly small difference makes a world of a difference.
 On one hand this is the main reason why HTML is so popular - it forgives your mistakes and makes life easy for the web author.
-On the other hand, it makes it difficult to write a format grammar. So to summarize - HTML cannot be parsed easily, not by conventional parsers since its grammar is not a context free grammar, and not by XML parsers.
+On the other hand, it makes it difficult to write a formal grammar. So to summarize - HTML cannot be parsed easily, not by conventional parsers since its grammar is not a context free grammar, and not by XML parsers.
 </p>
 <h4 id="HTML_DTD">HTML DTD</h4>
 <p>
@@ -580,15 +580,15 @@ The current strict DTD is here:
 </p>
 <h4 id="DOM">DOM</h4>
 <p>
-The output tree - the parse tree is a tree of DOM element and attribute nodes.
+The output tree - the "parse tree" is a tree of DOM element and attribute nodes.
 DOM is short for Document Object Model.
 It is the object presentation of the HTML document and the interface of HTML elements to the outside world like JavaScript.
 <br>
 The root of the tree is the "<a  href="http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-core.html#i-Document">Document</a>" object.
 </p>
 <p>
-The DOM has an almost one to one relation to the markup.
-Example, this markup:
+The DOM has an almost one-to-one relation to the markup.
+For example, this markup:
 <pre class="prettyprint">
 &lt;html&gt;
   &lt;body&gt;
@@ -639,7 +639,7 @@ Tokenization is the lexical analysis, parsing the input into tokens.
 Among HTML tokens are start tags, end tags, attribute names and attribute values.
 </p>
 <p>
-The tokenizer recognizes the token, gives it to the tree constructor and consumes the next character for recognizing the next token and so on until the end of the input.
+The tokenizer recognizes the token, gives it to the tree constructor, and consumes the next character for recognizing the next token, and so on until the end of the input.
 </p>
 
 <figure>
@@ -653,7 +653,7 @@ The algorithm's output is an HTML token.
 The algorithm is expressed as a state machine.
 Each state consumes one or more characters of the input stream and updates the next state according to those characters.
 The decision is influenced by the current tokenization state and by the tree construction state. This means the same consumed character will yield different results for the correct next state, depending on the current state.
-The algorithm is too complex to bring fully, so let's see a simple example that will help us understand the principal.
+The algorithm is too complex to describe fully, so let's see a simple example that will help us understand the principle.
 
 </p><p>
 
@@ -762,7 +762,7 @@ You can see <a href="http://www.w3.org/TR/html5/syntax.html#html-parser">the ful
 <h4 id="Browsers_error_tolerance">Browsers error tolerance</h4>
 <p>
 You never get an "Invalid Syntax" error on an HTML page.
-Browsers fix an invalid content and go on.
+Browsers fix any invalid content and go on.
 
 </p><p>
 Take this HTML for example:
@@ -776,7 +776,7 @@ Take this HTML for example:
   &lt;div&gt;
   &lt;p&gt;
   &lt;/div&gt;
-  	Really lousy HTML
+    Really lousy HTML
   &lt;/p&gt;
 &lt;/html&gt;
 </pre>
@@ -907,7 +907,7 @@ if (t->tagName == htmlTag || t->tagName == bodyTag )
         return;
 
 </pre>
-So web authors beware - unless you want to appear as an example in a Webkit error tolerance code - write well formed HTML.
+So web authors beware - unless you want to appear as an example in a Webkit error tolerance code snippet - write well formed HTML.
 </p>
 <p>
 
@@ -921,13 +921,13 @@ Let's see some examples:
 <br> 
 The lexical grammar (vocabulary) is defined by regular expressions for each token:
 <pre>
-comment		\/\*[^*]*\*+([^/*][^*]*\*+)*\/
-num		[0-9]+|[0-9]*"."[0-9]+
-nonascii	[\200-\377]
-nmstart		[_a-z]|{nonascii}|{escape}
-nmchar		[_a-z0-9-]|{nonascii}|{escape}
-name		{nmchar}+
-ident		{nmstart}{nmchar}*
+comment   \/\*[^*]*\*+([^/*][^*]*\*+)*\/
+num   [0-9]+|[0-9]*"."[0-9]+
+nonascii  [\200-\377]
+nmstart   [_a-z]|{nonascii}|{escape}
+nmchar    [_a-z0-9-]|{nonascii}|{escape}
+name    {nmchar}+
+ident   {nmstart}{nmchar}*
 </pre>
 <p>
 "ident" is short for identifier, like a class name.
@@ -941,7 +941,7 @@ ruleset
     '{' S* declaration [ ';' S* declaration ]* '}' S*
   ;
 selector
-  : simple_selector [ combinator selector | S+ [ combinator selector ] ]
+  : simple_selector [ combinator selector | S+ [ combinator? selector ]? ]? 
   ;
 simple_selector
   : element_name [ HASH | class | attrib | pseudo ]*
@@ -965,8 +965,8 @@ Explanation:
 A ruleset is this structure:
 <pre class="prettyprint lang-css">
 div.error , a.error {
-	color:red;
-	font-weight:bold;
+  color:red;
+  font-weight:bold;
 }
 </pre>
 div.error and a.error are selectors. The part inside the curly braces contains the rules that are applied by this ruleset.
@@ -984,7 +984,7 @@ A ruleset contains curly braces and inside them a declaration or optionally a nu
 <h4 id="Webkit_CSS_parser">Webkit CSS parser</h4>
 <p>
 Webkit uses <a href="#parser_generators">Flex and Bison</a> parser generators to create parsers automatically from the CSS grammar files.
-As you recall from the parser introduction, Bison creates a bottom up shift reduce parser.
+As you recall from the parser introduction, Bison creates a bottom up shift-reduce parser.
 Firefox uses a top down parser written manually.
 In both cases each CSS file is parsed into a StyleSheet object, each object contains CSS rules. The CSS rule objects contain selector and declaration objects and other object corresponding to CSS grammar.
 </p>
@@ -1015,7 +1015,7 @@ Conceptually it seems that since style sheets don't change the DOM tree, there i
 If the style is not loaded and parsed yet, the script will get wrong answers and apparently this caused lots of problems.
 It seems to be an edge case but is quite common.
 Firefox blocks all scripts when there is a style sheet that is still being loaded and parsed.
-Webkit blocks scripts only when they try to access for certain style properties that may be effected by unloaded style sheets.
+Webkit blocks scripts only when they try to access certain style properties that may be effected by unloaded style sheets.
 </p>
 <h3 id="Render_tree_construction">Render tree construction</h3>
 <p>
@@ -1027,17 +1027,17 @@ The purpose of this tree is to enable painting the contents in their correct ord
 <p>
 Firefox calls the elements in the render tree "frames". Webkit uses the term renderer or render object.
 <br>
-A renderer knows how to  layout and paint itself and it's children.
+A renderer knows how to  layout and paint itself and its children.
 <br>
-Webkits RenderObject class, the base class of the renderers has the following definition:
+Webkits RenderObject class, the base class of the renderers, has the following definition:
 <pre class="prettyprint">
 class RenderObject{
-	virtual void layout();
-	virtual void paint(PaintInfo);
-	virtual void rect repaintRect();
-	Node* node;  //the DOM node
-	RenderStyle* style;  // the computed style
-	RenderLayer* containgLayer; //the containing z-index layer
+  virtual void layout();
+  virtual void paint(PaintInfo);
+  virtual void rect repaintRect();
+  Node* node;  //the DOM node
+  RenderStyle* style;  // the computed style
+  RenderLayer* containgLayer; //the containing z-index layer
 }
 </pre>
 </p>
@@ -1866,7 +1866,7 @@ The result will be this:
 </figure>
 
 <p>
-Although the green div comes before the red one, and would have been painted before in the regular flow, the z-index property is higher, so it is more forward in the stack held by the root box.
+Although the red div precedes the green one in the markup, and would have been painted before in the regular flow, the z-index property is higher, so it is more forward in the stack held by the root box.
 </p>
 
 
