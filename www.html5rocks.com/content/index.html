@@ -158,17 +158,21 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
     }
 
     {% if not is_mobile %}
-      (function poll(){
-        if (document.body.id.toLowerCase() == 'googleio'){
-          var ref = document.getElementsByTagName('script')[0];
-          var script = document.createElement('script');
-          // thx a bunch erkie!  github.com/erkie/erkie.github.com
-          script.src = '/static/js/boom/asteroids.min.js';
-          ref.parentNode.insertBefore(script, ref);
-          return;
-        } else {
-          setTimeout(poll, 500);
-        }
+      (function(){
+
+        var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+        document.addEventListener('keydown', function hdl(e) {
+          kkeys.push( e.keyCode );
+          if ( kkeys.toString().indexOf( konami ) >= 0 ){
+            document.removeEventListener('keydown', hdl, false);
+              var ref    = document.getElementsByTagName('script')[0],
+                  script = document.createElement('script');
+              // thx a bunch erkie!  github.com/erkie/erkie.github.com
+              script.src = '/static/js/boom/asteroids.min.js';
+              ref.parentNode.insertBefore(script, ref);         
+          }
+        }, false);
+      
       })();
     {% endif %}
   </script>
