@@ -536,37 +536,3 @@ video {
   background-color: #EEE;
   border-right: 5px solid #CCD;
 }
-
-/* Table Of Contents */
-
-#toc-list > li {
-  font-size: 22px;
-  opacity: 0.85;
-  padding: 0;
-}
-#toc-list > li:hover {
-  opacity: 1;
-}
-#toc-list a {
-  border-bottom: 0;
-  display: block;
-  min-height: 32px;
-  margin-top: 20px;
-  cursor: pointer;
-}
-#toc-list li:first-child a {
-  margin-top: 0px;
-}
-#toc-list a:hover{
-  outline-bottom: 2px solid #3f3f3f;
-}
-#toc-list img {
-  vertical-align: middle;
-  margin-left: 15px;
-}
-.csstransitions #toc-list { 
-  -webkit-column-count: 3;  -webkit-column-gap: 15px; 
-     -moz-column-count: 3;     -moz-column-gap: 15px; 
-          column-count: 3;          column-gap: 15px; 
-}
-#toc-list label { font-size: 16px; }

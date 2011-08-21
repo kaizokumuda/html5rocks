@@ -97,17 +97,33 @@
   };
 
 
-  
-  // https://gist.github.com/1044540
-  Array.prototype.unique=function(a){return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0})
-  
-  
-  /* Modernizr 2.0.6 (Custom Build) | MIT & BSD
-   * Contains: csscolumns | csstransitions | cssclasses | testprop | testallprops | domprefixes
-   */
-  ;window.Modernizr=function(a,b,c){function A(a,b){var c=a.charAt(0).toUpperCase()+a.substr(1),d=(a+" "+n.join(c+" ")+c).split(" ");return z(d,b)}function z(a,b){for(var d in a)if(k[a[d]]!==c)return b=="pfx"?a[d]:!0;return!1}function y(a,b){return!!~(""+a).indexOf(b)}function x(a,b){return typeof a===b}function w(a,b){return v(prefixes.join(a+";")+(b||""))}function v(a){k.cssText=a}var d="2.0.6",e={},f=!0,g=b.documentElement,h=b.head||b.getElementsByTagName("head")[0],i="modernizr",j=b.createElement(i),k=j.style,l,m=Object.prototype.toString,n="Webkit Moz O ms Khtml".split(" "),o={},p={},q={},r=[],s,t={}.hasOwnProperty,u;!x(t,c)&&!x(t.call,c)?u=function(a,b){return t.call(a,b)}:u=function(a,b){return b in a&&x(a.constructor.prototype[b],c)},o.csscolumns=function(){return A("columnCount")},o.csstransitions=function(){return A("transitionProperty")};for(var B in o)u(o,B)&&(s=B.toLowerCase(),e[s]=o[B](),r.push((e[s]?"":"no-")+s));v(""),j=l=null,e._version=d,e._domPrefixes=n,e.testProp=function(a){return z([a])},e.testAllProps=A,g.className=g.className + ' ' + r.join(" ");return e}(this,this.document);
-  
-   
+  // modernizr lite via https://gist.github.com/598008
+  var testStyle = function(style) {
+
+    var elem = document.createElement('div');
+    var prefixes = ['Webkit', 'Moz', 'O', 'ms', 'Khtml'];
+    var bool;
+    var bump = function(all, letter) {
+          return letter.toUpperCase();
+        };
+    var prop;
+
+    bool = style in elem.style;
+    prop = style.replace(/^(.)/, bump).replace(/-([a-z])/ig, bump);
+
+    for (var len = prefixes.length; len--; ){
+      if (bool) {
+        break;
+      }
+      bool = prefixes[len] + prop in elem.style;
+    }
+
+    document.documentElement.className += ' ' + (bool ? '' : 'no-') + style.replace(/-/g, '');
+    return bool;
+  };
+
+  var canTransition = testStyle('transition');
+
   //
   // Slide class
   //
@@ -135,7 +151,6 @@
                'past', 'current', 'future',
                'far-future', 'distant-slide' ],
     setState: function(state) {
-      
       if (typeof state != 'string') {
         state = this._states[state];
       }
@@ -233,7 +248,7 @@
         var elem = this._buildList.splice(idx, 1)[0];
 
         var _t = this;
-        if (Modernizr.csstransitions) {
+        if (canTransition) {
           var l = function(evt) {
             elem.parentNode.removeEventListener('webkitTransitionEnd', l, false);
             elem.parentNode.removeEventListener('transitionend', l, false);  // moz
@@ -356,14 +371,10 @@
       } else {
         window.location.hash = this.current;
       }
-      var tagged = 0;
-      var x = currentIndex - 4;
-      while (tagged < 7){
-        // if users disabled slides on the TOC we skip over them here.  
-        if (this._slides[x] && !this._slides[x]._node.classList.contains('disabled')) {
-          this._slides[x].setState(tagged++);
+      for (var x = currentIndex; x < currentIndex + 7; x++) {
+        if (this._slides[x-4]) {
+          this._slides[x-4].setState(x-currentIndex);
         }
-        x++; 
       }
     },
 
@@ -496,62 +507,16 @@
 
   // Initialize
   var li_array = [];
-  var tocElems = queryAll('.slide h1, .transitionSlide h2').map(function(el){
-    var slide = el.parentNode.parentNode;
-    return slide;
-  });
-  tocElems.unique().slice(2).forEach(function(el) {
-
-    if (!Modernizr.csscolumns && !el.classList.contains('transitionSlide')) {
-      return true;
-    }
-
-    li_array.push( el.classList.contains('transitionSlide') 
-                    ?
-                      ['<li><a data-hash="', el.id, 
-                      '" style="background:url(', query('img', el).src.replace(/64/g, '32'), 
-                      ') no-repeat 100% 50%;">',
-                      query('h2', el).textContent, '</a>',
-                      '</li>'].join('')
-                    :
-                      ['<li><label><input type=checkbox checked name=', el.id, '>',
-                      query('h1', el).textContent, '</label></li>'].join('')
+  var transitionSlides = queryAll('.transitionSlide').forEach(function(el) {
+    li_array.push( ['<li><a data-hash="', el.id, '">',
+                    query('h2', el).textContent, '</a><img src="',
+                    query('img', el).src.replace(/64/g, '32'),
+                    '"/></li>'].join('')
                  );
   });
 
   query('#toc-list').innerHTML = li_array.join('');
-  
-  try {
-    if (localStorage.getItem) {
-      var storage = localStorage;
-    }
-  } catch(e) {}
-  
-  if (storage) {
-    var disabled = JSON.parse(storage.getItem('disabledslides'));
-    if (disabled) {
-      for (var key in disabled) {
-        if (disabled[key]) {
-          query('#' + key).classList.add('disabled');
-          query('#table-of-contents input[name="' + key + '"]').checked = false;
-        }
-      }
-    }
-  }
-  
-  query('#table-of-contents').addEventListener('change', function(e) {
-    var elem = e.target;
-    var className = query('#' + elem.name).classList;
-    className[ elem.checked ? 'remove' : 'add']('disabled'); // this doesnt work with the classList polyfill
-    
-    if (storage) {
-      var disabled = JSON.parse(storage.getItem('disabledslides')) || {};
-      disabled[elem.name] =  elem.checked ? undefined : true;
-      storage.setItem('disabledslides', JSON.stringify(disabled));
-    }
-  }, false);
-  
-  
+
   var slideshow = new SlideShow(queryAll('.slide'));
   
   document.addEventListener('DOMContentLoaded', function() {
