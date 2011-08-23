@@ -1526,7 +1526,7 @@ Incremental layout is triggered (asynchronously) when renderers are dirty. For e
 Incremental layout is done asynchronously. Firefox queues "reflow commands" for incremental layouts and a scheduler triggers batch execution of these commands.
 Webkit also has a timer that executes an incremental layout - the tree is traversed and "dirty" renderers are layout out.
 <br>
-Scripts asking for style information, like "offsightHeight" can trigger incremental layout synchronously.
+Scripts asking for style information, like "offsetHeight" can trigger incremental layout synchronously.
 <br>
 Global layout will usually be triggered synchronously.
 <br>
@@ -1639,7 +1639,7 @@ The browsers try to do the minimal possible actions in response to a change.
 So changes to an elements color will cause only repaint of the element.
 Changes to the element position will cause layout and repaint of the element, its children and possibly siblings.
 Adding a DOM node will cause layout and repaint of the node.
-Major changes, like increasing font size of the "html" element, will cause invalidation of caches, relyout and repaint of the entire tree.
+Major changes, like increasing font size of the "html" element, will cause invalidation of caches, relayout and repaint of the entire tree.
 
 
 <h3 id="The_rendering_engines_threads">The rendering engine's threads</h3>
