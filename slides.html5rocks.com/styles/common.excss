@@ -1319,7 +1319,6 @@ div#wrapping {
   @mixin transformSingle(rotateZ, 5deg);
   @mixin transformTransition(2s, ease-in-out);
   &:hover {
-    /* @mixin transformSingle(rotateZ, -5deg); */
     -webkit-transform: rotateZ(-5deg);
     -moz-transform: rotateZ(-5deg);
     -o-transform: rotateZ(-5deg);

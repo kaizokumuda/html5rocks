@@ -336,8 +336,9 @@ TABLES.Macros = ruleify({
   unicode: [/\\[0-9a-f]{1,6}(\r\n|[ \n\r\t\f])?/],
   escape_: first(m('unicode'), ['\\', /"[^\n\r\f0-9a-f]"/]),
   nmchar: first(/[_a-z0-9\-]/, m('nonascii'), m('escape')),
-  // NOTE: num is modified from /[0-9]+|[0-9]*\.[0-9]+/
-  num: [/[0-9]*\.[0-9]+|[0-9]+/],
+  // NOTE: in the CSS3 grammar, num is /[0-9]+|[0-9]*\.[0-9]+/.
+  // Modified here to allow for negative numbers, and for parser correctness.
+  num: [/[-]?([0-9]*\.[0-9]+|[0-9]+)/],
   string: first(m('string1'), m('string2')),
   string1:
     ['"', zeroOrMore(first(/[^\n\r\f"]/, ['\\', m('nl')], m('escape'))), '"'],
@@ -1000,6 +1001,14 @@ Stylesheet.createFromLinkElement = function(linkElement) {
   var styleElement = instrument('  DOM bs...', function() {
     styleElement = document.createElement('style');
     styleElement.setAttribute('link_href', linkElement.href);
+    var linkAttributes = linkElement.attributes;
+    for (var i = 0; i < linkAttributes.length; i++) {
+      if (linkAttributes.item(i).name !== 'type' &&
+          linkAttributes.item(i).name !== 'href') {
+        styleElement.setAttribute(linkAttributes.item(i).name,
+                                  linkAttributes.item(i).value);
+      }
+    }
     linkElement.parentNode.insertBefore(styleElement, linkElement);
     linkElement.parentNode.removeChild(linkElement);
     return styleElement;
