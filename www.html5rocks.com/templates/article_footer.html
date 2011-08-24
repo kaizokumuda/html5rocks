@@ -8,34 +8,42 @@
 {% endblocktrans %}
 </p>
 
-<script src="/static/js/modernizr.custom.50849.js"></script>
-<script src="/static/js/prettify{% if prod %}.min{% endif %}.js" onload="prettyPrint();"></script>
+<script async src="/static/js/modernizr.custom.50849.js"></script>
+<script async src="/static/js/prettify{% if prod %}.min{% endif %}.js"></script>
 
 {% if not is_mobile %}
 <div id="disqus_thread"></div>
 <noscript>
-{% blocktrans %}
-  <p class="center"><strong>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></strong></p>
-{% endblocktrans %}
+  <p class="center">
+    <strong>
+      <a href="http://disqus.com/?ref_noscript">{% trans "Please enable JavaScript to view the comments powered by Disqus." %}</a>
+    </strong>
+  </p>
 </noscript>
+
+<script async src="http://platform.twitter.com/widgets.js"></script>
 <script>
   var disqus_shortname = 'html5rocks';
   var disqus_identifier = '{{disqus_url}}';
   var disqus_url = '{{disqus_url}}';
   var disqus_developer = {% if not prod %}1{% else %}0{% endif %};
 
-  (function () {
-    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
-    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+  window.addEventListener && addEventListener('load', function () {
 
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    prettyPrint();
+
+    var c = document.createElement('script'); c.type = 'text/javascript'; 
+    c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; 
     dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
 
-    var el = document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0];
-    el.appendChild(s);
-    el.appendChild(dsq);
-  }());
+    var po = document.createElement('script'); po.type = 'text/javascript';
+    po.src = 'https://apis.google.com/js/plusone.js';
+
+    var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
+    sp.insertBefore(po, s); sp.insertBefore(c, s); sp.insertBefore(dsq, s);
+     
+  }, false);
 </script>
-<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 {% endif %}

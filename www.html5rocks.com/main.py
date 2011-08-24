@@ -174,7 +174,7 @@ class ContentHandler(webapp.RequestHandler):
 
     template_data.update(data)
     if not 'category' in template_data:
-      template_data['category'] = 'this feature'
+      template_data['category'] = _('this feature')
 
     # Add CORS support entire site.
     self.response.headers.add_header('Access-Control-Allow-Origin', '*')
@@ -186,9 +186,9 @@ class ContentHandler(webapp.RequestHandler):
     logging.info(prefix)
 
     feed = feedgenerator.Atom1Feed(
-        title=u'HTML5Rocks - Tutorials',  # TODO: make generic for any page.
+        title= _(u'HTML5Rocks - Tutorials'),  # TODO: make generic for any page.
         link=prefix,
-        description=u'Take a guided tour through code that uses HTML5.',
+        description= _(u'Take a guided tour through code that uses HTML5.'),
         language=u'en'
         )
     for tutorial in data:
@@ -258,6 +258,7 @@ class ContentHandler(webapp.RequestHandler):
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
       # Setup caching layer for this file i/o.
+
       self.render(data={'sorted_profiles': common.get_sorted_profiles() },
                   template_path='content/profiles.html', relpath=relpath)
 
@@ -299,6 +300,10 @@ class ContentHandler(webapp.RequestHandler):
 
     elif ((re.search('tutorials/.+', relpath) or re.search('mobile/.+', relpath))
           and not is_feed):
+      # If no trailing / (e.g. /tutorials/blah/blah), append index.html file.
+      if (relpath[-1] != '/' and not relpath.endswith('.html')):
+        path += '/index.html'
+
       # Tutorials look like this on the filesystem:
       #
       #   .../tutorials +

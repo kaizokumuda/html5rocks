@@ -18,14 +18,16 @@ window.caniusecallback = function(data) {
     var featurestats = data.data[feature];
     var localdom = dom.clone();
 
-    localdom.find('h4').text(featurestats.title + ' browser support');
+    var url = 'http://caniuse.com/#search=' + feature;
+    localdom.find('h4').html(
+        (featurestats.title + ' browser support').link(url));
 
     $.each(featurestats.stats, function(browser, browserobj) {
 
       var resulttext = '---';
 
       $.each(browserobj, function(version, result) {
-        if (result == 'y') {
+        if (result.indexOf('y') == 0) {
           if (resulttext != '---') {
             resulttext += '+';
             return false;
@@ -45,7 +47,8 @@ window.caniusecallback = function(data) {
 
 
 // Request associated tutorials and populate into this page.
-var div = $('<div>').load('/tutorials/ #index', function() {
+var lang = document.documentElement.getAttribute('lang') || 'en';
+var div = $('<div>').load('/' + lang + '/tutorials/ #index', function() {
   var MAX_NUM_TUTS = 5;
 
   var ul = $('section.tutorials ul');

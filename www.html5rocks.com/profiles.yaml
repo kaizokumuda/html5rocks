@@ -478,3 +478,41 @@ address:
 homepage: http://aerotwist.com
 twitter: aerotwist
 email: website@aerotwist.com
+
+---
+    
+id: eligrey
+name:
+  given: Eli
+  family: Grey
+org:
+  name: ΩF:∅
+  unit: Programmer
+address:
+  locality: Pennsylvania
+  region: Pennsylvania
+  country: USA
+  lat: 40.8666
+  lon: -77.8
+homepage: http://eligrey.com/blog/
+twitter: sephr
+email: me@eligrey.com
+
+---
+
+id: taligarsiel
+name:
+  given: Tali
+  family: Garsiel
+org:
+  name: Incapsula
+  unit: Developer 
+address:
+  locality: 
+  region: 
+  country: Israel
+  lat: 31.5
+  lon: 34.75
+homepage: http://taligarsiel.com/
+email: tgarsiel@gmail.com
+

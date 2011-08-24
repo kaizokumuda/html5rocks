@@ -13,7 +13,7 @@ var talktmpl = '' +
         (<span class=location>{{location}}</span>)     \
       {{/if}}                                          \
       {{#if date}}                                     \
-        <span class=date>{{date}}</span>               \
+        <span class=date data-time="{{dateexact}}">{{date}}</span>               \
       {{/if}}                                          \
   </h4>                                                \
   <div class="body">                                   \
@@ -28,7 +28,7 @@ var talktmpl = '' +
       {{#if slideslink}}                                  \
         <div class="slides">                              \
           <a href="{{slideslink}}" class="slides" target="_blank" title="Click to open slides in new tab">      \
-            {{#if image}} <img src="{{image}}"> {{/if}}                                                         \
+            {{#if image}} <img src="{{img image}}"> {{/if}}                                                         \
             {{#unless image}} <img src="http://www.awwwards.com/awards/images/1284023910slides.jpg">{{/unless}} \
           </a>                                          \
         </div>                                          \
