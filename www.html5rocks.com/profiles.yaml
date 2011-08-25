@@ -516,3 +516,23 @@ address:
 homepage: http://taligarsiel.com/
 email: tgarsiel@gmail.com
 
+---
+
+id: agektmr
+name:
+  given: Eiji
+  family: Kitamura
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Tokyo
+  region: 
+  country: Japan
+  lat: 35.666
+  lon: 139.766666667
+homepage: 
+google: agektmr
+twitter: agektmr
+email: agektmr@google.com
+
