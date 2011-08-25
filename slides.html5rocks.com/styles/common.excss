@@ -178,17 +178,14 @@ body {
     right: 45px;
     opacity: 0.25;
   }
-
   &.transitionSlide h2 {
     margin: 0;
     font-size: 40px;
     line-height: 10px;
   }
-
   &.transitionSlide p {
     margin: 0;
   }
-
   &.transitionSlide img {
     opacity: 0.25;
     width: 64px;
