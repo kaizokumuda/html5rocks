@@ -324,7 +324,7 @@
     _speakerNote: query('#speaker-note'),
     _help: query('#help'),
     _slides: [],
-    _themes: queryAll('style[link_href]').slice(1),
+    _themes: queryAll('.theme'),
     _getCurrentIndex: function() {
       var me = this;
       var slideCount = null;
@@ -498,8 +498,8 @@
   query('#prettify-link').disabled = !(sessionStorage['highlightOn'] == 'true');
 
   // disable style theme stylesheets
-  var themeEls = queryAll('style[link_href]').slice(1);
-  var stylesheetPath = sessionStorage['theme'] || 'default.css';
+  var themeEls = queryAll('.theme');
+  var stylesheetPath = sessionStorage['theme'] || 'default.excss';
   var found = false;
   themeEls.forEach( function(stylesheet) {
     var preserved = stylesheet.getAttribute('link_href').indexOf(stylesheetPath) >= 0;

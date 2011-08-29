@@ -1,295 +1,3 @@
-/* Traits */
-@trait bgGradient(from, to, fallback) {
-  background: $fallback;
-  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
-  background: -moz-linear-gradient(top, $from, $to);
-}
-
-@trait borderRadius(leftTop, rightTop, default) {
-  border-radius: $default;
-
-  &:nth-child(even) {
-    border-radius: $leftTop $rightTop;
-  }
-
-  &:nth-child(odd) {
-    border-radius: $rightTop $leftTop;
-  }
-}
-
-@trait textShadow(color, hOffset, vOffset, blurRadius) {
-  text-shadow: $color $hOffset $vOffset $blurRadius;
-}
-
-@trait boxShadow(hOffset, vOffset, blurRadius, color) {
-  -webkit-box-shadow: $hOffset $vOffset $blurRadius $color;
-  -moz-box-shadow: $hOffset $vOffset $blurRadius $color;
-  box-shadow: $hOffset $vOffset $blurRadius $color;
-}
-
-@trait insetBoxShadow(hOffset, vOffset, blurRadius, color) {
-  -webkit-box-shadow: inset $hOffset $vOffset $blurRadius $color;
-  -moz-box-shadow: inset $hOffset $vOffset $blurRadius $color;
-  box-shadow: inset $hOffset $vOffset $blurRadius $color;
-}
-
-@trait textStroke(width, color) {
-  -webkit-text-stroke: $width $color;
-}
-
-@trait columnCount(num) {
-  -webkit-column-count: $num;
-  -moz-column-count: $num;
-  column-count: $num;
-}
-
-@trait columnComplex(count, gap, width, style, color) {
-  @mixin columnCount($count);
-  -webkit-column-gap: $gap;
-  -webkit-column-rule: $width $style $color;
-  -moz-column-gap: $gap;
-  -moz-column-rule: $width $style $color;
-  column-gap: $gap;
-  column-rule: $width $style $color;
-}
-
-@trait displayAsBox {
-  display: -webkit-box;
-  display: -moz-box;
-  display: box;
-}
-
-@trait boxOrient(value) {
-  -webkit-box-orient: $value;
-  -moz-box-orient: $value;
-  box-orient: $value;
-}
-
-@trait boxFlex(value) {
-  -webkit-box-flex: $value;
-  -moz-box-flex: $value;
-  box-flex: $value;
-}
-
-@trait boxPack(value) {
-  -webkit-box-pack: $value;
-  -moz-box-pack: $value;
-  box-pack: $value;
-}
-
-@trait boxAlign(value) {
-  -webkit-box-align: $value;
-  -moz-box-align: $value;
-  box-align: $value;
-}
-
-@trait transitionSingle(prop, duration, timeFunc) {
-  -webkit-transition: $prop $duration $timeFunc;
-  -moz-transition: $prop $duration $timeFunc;
-  -o-transition: $prop $duration $timeFunc;
-  transition: $prop $duration $timeFunc;
-}
-
-@trait delayedTransition(prop, duration, timeFunc, delay) {
-  -webkit-transition: $prop $duration $timeFunc $delay;
-  -moz-transition: $prop $duration $timeFunc $delay;
-  -o-transition: $prop $duration $timeFunc $delay;
-  transition: $prop $duration $timeFunc $delay;
-}
-
-@trait transformTransition(duration, timeFunc) {
-  -webkit-transition: -webkit-transform $duration $timeFunc;
-  -moz-transition: -moz-transform $duration $timeFunc;
-  -o-transition: -o-transform $duration $timeFunc;
-  transition: transform $duration $timeFunc;
-}
-
-@trait transformSingle(func, value) {
-  -webkit-transform: $func($value);
-  -moz-transform: $func($value);
-  -o-transform: $func($value);
-  transform: $func($value);
-}
-
-/* Selectors */
-body {
-  font: 16px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-
-.presentation {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: 0px;
-  top: 0px;
-  display: block;
-  overflow: hidden;
-  background: #778;
-}
-
-.slides {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  position: absolute;
-  display: none;
-  @mixin transfromTransition(1s, ease-in-out);
-}
-
-.slide {
-  display: none;
-  position: absolute;
-  overflow: hidden;
-  width: 900px;
-  height: 700px;
-  left: 50%;
-  top: 50%;
-  margin-top: -350px;
-  border-radius: 10px;
-  background-color: #eee;
-  & p, textarea {
-    font-size: 20px;
-  }
-  & .counter {
-    color: #999999;
-    position: absolute;
-    left: 20px;
-    bottom: 20px;
-    display: block;
-    font-size: 12px;
-    width: 100%;
-  }
-  &:not(.transitionSlide) .counter:after {
-    content: '';
-    width: 32px;
-    height: 32px;
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    position: absolute;
-    bottom: 0;
-    right: 45px;
-    opacity: 0.25;
-  }
-  &.transitionSlide h2 {
-    margin: 0;
-    font-size: 40px;
-    line-height: 10px;
-  }
-  &.transitionSlide p {
-    margin: 0;
-  }
-  &.transitionSlide img {
-    opacity: 0.25;
-    width: 64px;
-    height: 64px;
-  }
-}
-
-.offline-storage .counter:after {
-  background-image: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Offline_Storage_32.png);
-}
-
-.device-access .counter:after{
-  background-image: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Device_Access_32.png);
-}
-
-.realtime-communication .counter:after {
-  background-image: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Connectivity_32.png);
-}
-
-.performance .counter:after {
-  background-image: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Performance_32.png);
-}
-
-.semantics .counter:after {
-  background-image: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Semantics_32.png);
-}
-
-.multimedia .counter:after {
-  background: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_MultiMedia_32.png);
-}
-
-.effects .counter:after {
-  background: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_3D_Effects_32.png);
-}
-
-.styling .counter:after {
-  background: url(http://www.html5rocks.com/static/images/identity/classes_32/HTML5_Styling_32.png);
-}
-
-.vbox {
-  @mixin displayAsBox;
-  @mixin boxOrient(vertical);
-  @mixin boxAlign(stretch);
-}
-
-.hbox {
-  @mixin displayAsBox;
-  @mixin boxOrient(horizontal);
-  @mixin boxAlign(stretch);
-}
-
-.flex {
-  @mixin boxFlex(1);
-}
-
-.noflex {
-  @mixin boxFlex(0);
-}
-
-.boxcenter {
-  @mixin boxPack(center);
-}
-
-.slide.far-past {
-  display: block;
-  margin-left: -2400px;
-}
-
-.slide.past {
-  visibility: visible;
-  display: block;
-  margin-left: -1400px;
-}
-
-.slide.current {
-  visibility: visible;
-  display: block;
-  margin-left: -450px;
-}
-
-.slide.future {
-  visibility: visible;
-  display: block;
-  margin-left: 500px;
-}
-
-.slide.far-future {
-  display: block;
-  margin-left: 1500px;
-}
-
-body.three-d {
-  & .slides {
-    -webkit-transform: translateX(50px) scale(0.8) rotateY(10deg);
-    -moz-transform: translateX(50px) scale(0.8) rotateY(10deg);
-    -o-transform: translateX(50px) scale(0.8) rotateY(10deg);
-    transform: translateX(50px) scale(0.8) rotateY(10deg);
-  }
-  & .presentation {
-    -webkit-tranform-style: preserve-3d;
-    -webkit-perspective: 500;
-  }
-}
-
 /* Content                         */
 /*   Font sizes:                   */
 /*     header h1 - 50px            */
@@ -326,7 +34,7 @@ h2 {
   padding: 0;
   margin: 15px 0 5px 0;
 }
-      
+
 h2:first-child {
   margin-top: 0;
 }
@@ -342,6 +50,30 @@ section, footer {
 footer {
   font-size: 12px;
   margin: 20px 0 0 30px;
+}
+
+.vbox {
+  @mixin displayAsBox;
+  @mixin boxOrient(vertical);
+  @mixin boxAlign(stretch);
+}
+
+.hbox {
+  @mixin displayAsBox;
+  @mixin boxOrient(horizontal);
+  @mixin boxAlign(stretch);
+}
+
+.flex {
+  @mixin boxFlex(1);
+}
+
+.noflex {
+  @mixin boxFlex(0);
+}
+
+.boxcenter {
+  @mixin boxPack(center);
 }
 
 a {
@@ -393,7 +125,7 @@ pre {
 .bullets {
   font-size: 40px;
   & li::before {
-    content: '¡¤ ';
+    content: 'Â· ';
   }
 }
 
@@ -491,17 +223,6 @@ video {
 
 .formula {
   font-size: 50px;
-}
-
-#presentation-counter {
-  color: #ccc;
-  font-size: 100px;
-  letter-spacing: 1px;
-  position: absolute;
-  top: 40%;
-  left: 0;
-  width: 100%;
-  text-align: center;
 }
 
 [data-build] > * {
@@ -875,6 +596,7 @@ menu {
 #dnd-thumbnails {
   height: 125px;
   margin-top: 10px;
+
   & img {
     width: 75px;
     height: 75px;
@@ -883,6 +605,8 @@ menu {
     -webkit-transition: -webkit-transform 0.2s ease-in, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
     -moz-transition: -moz-transform 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
     -o-transition: -o-transform 1s ease-in-out, margin-left 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+    transition: transform 1s ease-in-out, margin-left 1s ease-in-out, margin-left 0.7s ease-in-out, margin-right 0.7s ease-in-out;
+
     &:hover {
       -webkit-transform: scale(3.0) rotate(10deg);
       -webkit-transform-origin: 50% 75px;
@@ -890,6 +614,8 @@ menu {
       -moz-transform-origin: 50% 75px;
       -o-transform: scale(3.0) rotate(10deg);
       -o-transform-origin: 50% 75px;
+      transform: scale(3.0) rotate(10deg);
+      transform-origin: 50% 75px;
       margin: 0 100px;
     }
   }
@@ -1006,15 +732,15 @@ menu {
 input[required] {
   border-color: #88a;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
+     -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, rgba(0, 0, 255, 0.5) 0px 0px 3px;
 }
 
 input:invalid {
   border-color: #e88;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+     -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
+          box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 3px inset, 0 0 5px rgba(255, 0, 0, .8);
 }
 
 #video-column {
@@ -1158,10 +884,7 @@ div#wrapping {
 
 #hsl-example {
   font-size: 75px;
-  padding-top: 20px;
-  padding-right: 0px;
-  padding-bottom: 20px;
-  padding-left: 0px;
+  padding: 20px 0;
   text-align: center;
   color: rgb(21, 147, 38);
 }
@@ -1176,17 +899,21 @@ div#wrapping {
 }
 
 #gradients-linear-example {
-  border: 0;
+  border: none;
   height: 100px;
-  background: -moz-linear-gradient(90deg, #00abeb, #fff, #66cc00, #fff);
-  background: -webkit-gradient(linear, left top, left bottom, from(#00abeb), to(#fff), color-stop(0.5, #fff), color-stop(0.5, #66cc00));
+  background-image: -webkit-linear-gradient(top, #00abeb 0%, #fff 50%, #66cc00 50%, #fff 100%);
+  background-image:    -moz-linear-gradient(top, #00abeb 0%, #fff 50%, #66cc00 50%, #fff 100%);
+  background-image:      -o-linear-gradient(top, #00abeb 0%, #fff 50%, #66cc00 50%, #fff 100%);
+  background-image:         linear-gradient(top, #00abeb 0%, #fff 50%, #66cc00 50%, #fff 100%);
 }
 
 #gradients-radial-example {
-  border: 0;
+  border: none;
   height: 100px;
-  background: -moz-radial-gradient(430px 50px, circle cover, red 0, #000 200px);
-  background: -webkit-gradient(radial, 430 50, 0, 430 50, 200, from(red), to(#000));
+  background-image: -webkit-radial-gradient(center, circle cover, red, #000 40%);
+  background-image:    -moz-radial-gradient(center, circle cover, red, #000 40%);
+  background-image:      -o-radial-gradient(center, circle cover, red, #000 40%);
+  background-image:         radial-gradient(center, circle cover, red, #000 40%);
 }
 
 #shadow-example {
@@ -1316,10 +1043,7 @@ div#wrapping {
   @mixin transformSingle(rotateZ, 5deg);
   @mixin transformTransition(2s, ease-in-out);
   &:hover {
-    -webkit-transform: rotateZ(-5deg);
-    -moz-transform: rotateZ(-5deg);
-    -o-transform: rotateZ(-5deg);
-    transform: rotateZ(-5deg);
+    @minin transformSingle(rotateZ, -5deg);
   }
 }
 

@@ -27,6 +27,7 @@
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet" type="text/css" />
     <link id="prettify-link" href="src/prettify/prettify.css" rel="stylesheet" disabled />
     <link href="styles/fonts.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="styles/presentation.excss" rel="stylesheet" type="text/excss" media="screen" />
     <link href="styles/common.excss" rel="stylesheet" type="text/excss" media="screen" />
     <link class="theme" href="styles/default.excss" rel="stylesheet" type="text/excss" media="screen" />
     <link class="theme" href="styles/moon.excss" rel="stylesheet" type="text/excss" media="screen"/>
@@ -1533,7 +1534,7 @@ document.getElementById("video").<b>play</b>();
             }
 
             function addReflection() {
-              videoClip.style.webkitBoxReflect = videoClip.style.webkitBoxReflect !== '' ? '' : "below 0px -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.55, transparent), to(white))";
+              videoClip.style.webkitBoxReflect = videoClip.style.webkitBoxReflect !== '' ? '' : "below 0px -webkit-linear-gradient(top, transparent, transparent 55%, white) 0 0 0 0 stretch stretch";
             }
           </script>
 
@@ -1645,7 +1646,7 @@ document.getElementById("video").<b>play</b>();
             var svg = document.createElementNS(svgns, 'svg');
             svg.setAttribute('width', '300px');
             svg.setAttribute('height', '300px');
-            
+
             // our linearGradient
             var defs = document.createElementNS(svgns, 'defs');
             var gradient = document.createElementNS(svgns, 'linearGradient');
@@ -1665,7 +1666,7 @@ document.getElementById("video").<b>play</b>();
             gradient.appendChild(stop);
             defs.appendChild(gradient);
             svg.appendChild(defs);
-            
+
             // our example circle
             var circle = document.createElementNS(svgns, 'circle');
             circle.setAttribute('cx', '50%');
@@ -1679,10 +1680,10 @@ document.getElementById("video").<b>play</b>();
             svg.appendChild(circle);
             container.appendChild(svg);
           </script>
-            
+
           </section>
         </div>
-        
+
         <div class="slide effects" id="svg-example-slide">
           <header><span class="html">HTML</span> <h1>SVG example</h1></header>
           <section>
@@ -1713,40 +1714,40 @@ document.getElementById("video").<b>play</b>();
   background: white;
 }
 </pre>
-            <div class="example"> 
-              <div class="row">Row 1</div> 
-              <div class="row">Row 2</div> 
-              <div class="row">Row 3</div> 
-              <div class="row">Row 4</div> 
-            </div>  
-            <h2>Image-like display</h2> 
+            <div class="example">
+              <div class="row">Row 1</div>
+              <div class="row">Row 2</div>
+              <div class="row">Row 3</div>
+              <div class="row">Row 4</div>
+            </div>
+            <h2>Image-like display</h2>
             <pre>div {
   display: <b>inline-block</b>;
 }
-</pre> 
-          </section> 
-          
-          <section class="right"> 
-            <h2>Specific attributes</h2> 
+</pre>
+          </section>
+
+          <section class="right">
+            <h2>Specific attributes</h2>
             <pre>input<b>[type="text"]</b> {
   background: #eee;
-}</pre>          
-            
-            <h2>Negation</h2> 
-            <pre><b>:not</b>(.box) {
-  color: #00c; 
-}            
-<b>:not</b>(span) {
-  display: block; 
-}  
-</pre> 
+}</pre>
 
-            <h2>More specific targetting</h2> 
+            <h2>Negation</h2>
+            <pre><b>:not</b>(.box) {
+  color: #00c;
+}
+<b>:not</b>(span) {
+  display: block;
+}
+</pre>
+
+            <h2>More specific targetting</h2>
             <pre>h2:<b>first-child</b> { ... }
 
-div.text <b>&gt;</b> div { ... } 
-h2 <b>+</b> header { ... } 
-</pre>            
+div.text <b>&gt;</b> div { ... }
+h2 <b>+</b> header { ... }
+</pre>
           </section>
           <footer><a href="http://www.w3.org/TR/CSS2/selector.html#pattern-matching">CSS2 selectors</a> and <a href="http://www.w3.org/TR/css3-selectors/#selectors">CSS3 selectors</a> introduced some of the ones demonstrated here.</footer>
         </div>
@@ -2002,14 +2003,13 @@ header {
           <header><span class="css">CSS</span> <h1>Gradients</h1></header>
 
           <section>
-            <pre>background: -webkit-<b>gradient</b>(<b>linear</b>, left top, left bottom, 
-                             from(#<span style="text-shadow: #00abeb 0 0 1px; color: #00abeb">00abeb</span>), to(white), 
-                             color-stop(0.5, white), color-stop(0.5, <span style="text-shadow: #00abeb 0 0 1px; color: #66cc00">#66cc00</span>))
+            <pre>background-image: <b>linear-gradient</b>(top, <span style="text-shadow: #00abeb 0 0 1px; color: #00abeb">#00abeb</span> 0%, #fff 50%,
+                            <span style="text-shadow: #00abeb 0 0 1px; color: #66cc00">#66cc00</span> 50%, #fff 100%);
 </pre>
             <div id="gradients-linear-example" class="example"></div>
 <br />
-<pre>background: -webkit-gradient(<b>radial</b>, 430 50, 0, 430 50, <span id="gradients-radial-value">200</span>, from(red), to(#000))
-                                                        <input id="gradients-radial" type="range" min="1" max="800" value="200" onchange="changeGradients(event)">
+<pre>background-image: <b>radial-gradient</b>(center, circle cover, red, #000 <span id="gradients-radial-value">40</span>%);
+                                                        <input id="gradients-radial" type="range" min="1" max="100" value="40" onchange="changeGradients(event)">
 </pre>
             <div id="gradients-radial-example" class="example"></div>
 
@@ -2017,8 +2017,8 @@ header {
               function changeGradients() {
                 var size = document.getElementById('gradients-radial').value;
 
-                document.getElementById('gradients-radial-example').style.background = 
-                    '-webkit-gradient(radial, 430 50, 0, 430 50, ' + size + ', from(red), to(#000))';
+                document.getElementById('gradients-radial-example').style.backgroundImage = 
+                    '-webkit-radial-gradient(center, circle cover, red, #000 ' + size + '%)';
 
                 document.getElementById('gradients-radial-value').textContent = size;
               }
@@ -2081,14 +2081,14 @@ header {
             <pre><b>text-shadow</b>: rgba(0, 0, 0, 0.5) 0 <span id="web20-shadow-value-1">0</span>px <span id="web20-shadow-value-2">0</span>px; <input id="web20-shadow" type="range" min="0" max="9" value="0" onchange="changeWeb20(event)">
 
 background: 
-  -<b>webkit-gradient</b>(linear, left top, left bottom, <input id="web20-gradient" type="range" min="0" max="100" value="0" onchange="changeWeb20(event)">
-                   from(rgba(200, 200, 240, <span id="web20-gradient-value-1">0</span>)), to(rgba(255, 255, 255, <span id="web20-gradient-value-2">0</span>)));
+  -<b>webkit-linear-gradient</b>(top, <input id="web20-gradient" type="range" min="0" max="100" value="0" onchange="changeWeb20(event)">
+                   rgba(200, 200, 240, <span id="web20-gradient-value-1">0</span>), rgba(255, 255, 255, <span id="web20-gradient-value-2">0</span>));
 
 <b>border-radius</b>: <span id="web20-border-value">0</span>px; <input id="web20-border" type="range" min="0" max="50" value="0" onchange="changeWeb20(event)">
 
 -webkit-<b>box-reflect</b>: below 10px
-  -webkit-gradient(linear, left top, left bottom, <input id="web20-reflect" type="range" min="0" max="100" value="0" onchange="changeWeb20(event)">
-                   from(transparent), to(rgba(255, 255, 255, <span id="web20-reflect-value">0</span>)));
+  -webkit-linear-gradient(top, <input id="web20-reflect" type="range" min="0" max="100" value="0" onchange="changeWeb20(event)">
+                   transparent, rgba(255, 255, 255, <span id="web20-reflect-value">0</span>));
 </pre>
 
             <div class="example">
@@ -2120,9 +2120,9 @@ background:
               document.getElementById('web20-reflect-value').textContent = reflectVal;
 
               el.style.textShadow = 'rgba(0, 0, 0, 0.5) 0 ' + textShadowVal + 'px ' + textShadowVal + 'px';
-              el.style.background = '-webkit-gradient(linear, left top, left bottom, from(rgba(200, 200, 240, ' + gradientVal + ')), to(rgba(255, 255, 255, ' + gradientVal + ')))';
+              el.style.background = '-webkit-linear-gradient(top, rgba(200, 200, 240, ' + gradientVal + '), rgba(255, 255, 255, ' + gradientVal + '))';
               el.style.borderRadius = borderVal + 'px';
-              el.style.webkitBoxReflect = 'below 10px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, ' + reflectVal + ')))';
+              el.style.webkitBoxReflect = 'below 10px -webkit-linear-gradient(top, transparent, rgba(255, 255, 255, ' + reflectVal + '))';
             }
           </script>
         </div>
