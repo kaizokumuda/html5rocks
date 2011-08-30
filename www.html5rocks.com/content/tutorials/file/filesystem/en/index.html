@@ -104,7 +104,8 @@ window.requestFileSystem(<var>type</var>, <var>size</var>, <var>successCallback<
     Possible values are <code>window.TEMPORARY</code> or <code>window.PERSISTENT</code>.
     Data stored using <code>TEMPORARY</code> can be removed at the browser's discretion
     (for example if more space is needed). <code>PERSISTENT</code> storage cannot cleared
-    unless explicitly authorized by the user or the app.</dd>
+    unless explicitly authorized by the user or the app and requires the user to grant
+    quota to your app.</dd>
     <dt><var>size</var></dt>
     <dd>Size (in bytes) the app will require for storage.</dd>
     <dt><var>successCallback</var></dt>
@@ -128,7 +129,7 @@ function onInitFs(fs) {
   console.log('Opened file system: ' + fs.name);
 }
 
-<b>window.requestFileSystem</b>(<b>window.PERSISTENT</b>, 5*1024*1024 /*5MB*/, onInitFs, errorHandler);
+<b>window.requestFileSystem</b>(<b>window.TEMPORARY</b>, 5*1024*1024 /*5MB*/, onInitFs, errorHandler);
 </pre>
 
   <p>The FileSystem specification also defines a synchronous API, <code><a href="http://dev.w3.org/2009/dap/file-system/file-dir-sys.html#using-localfilesystemsync">LocalFileSystemSync</a></code>
@@ -224,7 +225,7 @@ function onInitFs(fs) {
 
 }
 
-window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
+window.requestFileSystem(window.TEMPORARY, 1024*1024, onInitFs, errorHandler);
 </pre>
 
   <p>Once the file system has been requested, the success handler is passed
@@ -269,7 +270,7 @@ function onInitFs(fs) {
 
 }
 
-window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
+window.requestFileSystem(window.TEMPORARY, 1024*1024, onInitFs, errorHandler);
 </pre>
 
   <h3 id="toc-file-writing">Writing to a file</h3>
@@ -304,7 +305,7 @@ function onInitFs(fs) {
 
 }
 
-window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
+window.requestFileSystem(window.TEMPORARY, 1024*1024, onInitFs, errorHandler);
 </pre>
 
   <p>This time, we call the FileEntry's <code>createWriter()</code> method to
@@ -339,7 +340,7 @@ function onInitFs(fs) {
 
 }
 
-window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
+window.requestFileSystem(window.TEMPORARY, 1024*1024, onInitFs, errorHandler);
 </pre>
 
   <h3 id="toc-file-user-selected">Duplicating user-selected files</h3>
@@ -386,7 +387,7 @@ document.querySelector('#myfile').onchange = function(e) {
   <p>The following code deletes the file 'log.txt'.</p>
 
   <pre class="prettyprint">
-window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
   fs.root.getFile('log.txt', {create: false}, function(fileEntry) {
 
     <b>fileEntry.remove(function() {
@@ -428,7 +429,7 @@ dirEntry.removeRecursively(successCallback, opt_errorCallback);
   root directory:</p>
 
   <pre class="prettyprint">
-window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
   fs.root.<b>getDirectory</b>('MyPictures', {create: true}, function(dirEntry) {
     ...
   }, errorHandler);
@@ -466,7 +467,7 @@ function onInitFs(fs) {
   createDir(fs.root, path.split('/')); // fs.root is a DirectoryEntry.
 }
 
-window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
+window.requestFileSystem(window.TEMPORARY, 1024*1024, onInitFs, errorHandler);
 </pre>
 
   <p>Now that "music/genres/jazz" is in place, we can pass its full path
@@ -474,7 +475,7 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
   For example:</p>
 
   <pre class="prettyprint">
-window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
   fs.root.getFile('/music/genres/jazz/song.mp3', {create: true}, function(fileEntry) {
     ...
   }, errorHandler);
@@ -534,7 +535,7 @@ function onInitFs(fs) {
 
 }
 
-window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
+window.requestFileSystem(window.TEMPORARY, 1024*1024, onInitFs, errorHandler);
 </pre>
 
   <h3 id="toc-dir-removing">Removing a directory</h3>
@@ -546,7 +547,7 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, onInitFs, errorHandler);
   <p>The following removes the empty directory "jazz" from "/music/genres/":</p>
 
   <pre class="prettyprint">
-window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
   fs.root.getDirectory('music/genres/jazz', {}, function(dirEntry) {
 
     <b>dirEntry.remove(function() {
@@ -566,7 +567,7 @@ window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
   files and directories that it contains:</p>
 
   <pre class="prettyprint">
-window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
   fs.root.getDirectory('/misc/../music', {}, function(dirEntry) {
 
     <b>dirEntry.removeRecursively(function() {
@@ -600,7 +601,7 @@ function copy(cwd, src, dest) {
   }, errorHandler);
 }
 
-window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
   copy(fs.root, '/folder1/me.png', 'folder2/mypics/');
 }, errorHandler);
 </pre>
@@ -622,7 +623,7 @@ function rename(cwd, src, newName) {
   }, errorHandler);
 }
 
-window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
   rename(fs.root, 'me.png', 'you.png');
 }, errorHandler);
 </pre>
@@ -641,7 +642,7 @@ function move(src, dirName) {
   }, errorHandler);
 }
 
-window.requestFileSystem(window.PERSISTENT, 1024*1024, function(fs) {
+window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
   move('/me.png', 'newfolder/');
 }, errorHandler);
 </pre>
