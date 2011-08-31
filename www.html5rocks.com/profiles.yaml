@@ -536,3 +536,24 @@ google: agektmr
 twitter: agektmr
 email: agektmr@google.com
 
+---
+
+id: dutton
+name:
+  given: Sam
+  family: Dutton
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: London
+  region: England
+  country: United Kingdom
+  lat: 51.4948
+  lon: -0.1467
+homepage: http://samdutton.wordpress.com
+google: dutton
+twitter: sw12
+email: dutton@google.com
+lanyrd: true
+
