@@ -26,6 +26,15 @@
 {% endblock %}
 
 {% block head %}
+<style>
+.dynamicExample {
+  background: none repeat scroll 0 0 #FFEBEB;
+  border: 1px solid #FFCCCC;
+  border-radius: 8px;
+  font-family: monospace;
+  padding: 7px;
+}
+</style>
 {% endblock %}
 
 {% block onload %}
@@ -33,16 +42,6 @@ writeDynamicElements();
 {% endblock %}
 
 {% block content %}
-
-<style type="text/css">
-.dynamicExample {
-    background: none repeat scroll 0 0 #FFEBEB;
-    border: 1px solid #FFCCCC;
-    border-radius: 8px;
-    font-family: monospace;
-    padding: 7px;
-}
-</style>
 
 <h2 id="toc-introduction">Measuring Page Load Speed with Navigation Timing</h2>
 
