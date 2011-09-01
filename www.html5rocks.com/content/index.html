@@ -151,7 +151,7 @@ aoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height=
           type = 'update';
         }
 
-        html.push('<li>', formattedDateStr, ' ', entry.title.link(entry.link),
+        html.push('<li><span>', formattedDateStr, '</span> ', entry.title.link(entry.link),
                   '<span data-type="', type, '" class="type">', type, '<\/span><\/li>');
       }
       container.innerHTML += html.join('');

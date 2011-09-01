@@ -188,6 +188,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+#latest_articles_feed li span {
+  width: 30px;
+  display: inline-block;
+}
 
 @media only screen and (min-width: 641px) and (max-width: 800px) { /*iPad*/
   #themes a {
