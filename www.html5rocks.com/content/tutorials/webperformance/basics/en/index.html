@@ -34,6 +34,16 @@ writeDynamicElements();
 
 {% block content %}
 
+<style type="text/css">
+.dynamicExample {
+    background: none repeat scroll 0 0 #FFEBEB;
+    border: 1px solid #FFCCCC;
+    border-radius: 8px;
+    font-family: monospace;
+    padding: 7px;
+}
+</style>
+
 <h2 id="toc-introduction">Measuring Page Load Speed with Navigation Timing</h2>
 
 
@@ -114,7 +124,7 @@ console.log("Page load took " + (Date.now() - start) + "milliseconds");
 
 <p>Hover the cursor over each item to see the exact event time.</p>
 
-<div id="timeline"></div>
+<div class="dynamicExample" id="timeline">Sorry, this section is not supported in your browser.</div>
 
 <p>Note that <code>loadEventEnd</code> and <code>domComplete</code> events did not occur in this case, because the page was still being loaded when the timeline was rendered!</p>
 
@@ -145,7 +155,9 @@ console.log("Page load took " + (Date.now() - start) + "milliseconds");
     <li>2: navigation by moving back or forward through history</li>
 </ul>
 
-<p>(You got to this page by <span id="howIGotHere"></span>.)</p>
+<p>Let's check how you got to this page...</p>
+
+<p class="dynamicExample" id="howIGotHere">Sorry, this section is not supported in your browser.</p>
 
 <h2 id="wild">In the wild</h2>
 
@@ -159,7 +171,7 @@ console.log("Page load took " + (Date.now() - start) + "milliseconds");
 
 <p>Better reporting helps us understand page load latency. That should lead to more efficient websites and infrastructure, faster web applications, and a better experience on the web.</p>
 
-<p>To get more of a sense of how the Navigation Timing API might be used, you may want to try the <a href="https://chrome.google.com/webstore/detail/lgmnmdkkghdeagbghognjbjijpnckcid/publish-accepted" title="Navigation Timing extension page">Page Speed Test</a> extension for Google Chrome, developed by the author of this article. This uses the API to build a timeline and chart of historical data, for navigation and page load timings for every page you visit.</p>
+<p>To get more of a sense of how the API might be used, you may want to try the <a href="https://chrome.google.com/webstore/detail/lgmnmdkkghdeagbghognjbjijpnckcid/publish-accepted" title="Navigation Timing extension page">Page Speed Test</a> extension for Google Chrome, developed by the author of this article. This charts current and historical navigation and page load performance for visits to any page.</p>
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
@@ -190,7 +202,7 @@ function Timeline(timelineElement, events) {
     this.backgroundColor = "rgba(255, 0, 0, 0.05)";
     this.border = "1px solid rgba(255, 0, 0, 0.2)";
     this.borderRadius = "8px 8px 8px 8px";
-    this.fontFamily = "Consolas, sans-serif";
+    this.fontFamily = "monospace";
   this.numTicks = 5; // number of ticks on x-axis
   this.padding = 20;
   this.width = 708;
@@ -199,7 +211,7 @@ function Timeline(timelineElement, events) {
     this.eventBorderLeftColor = "rgba(255, 0, 0, 0.2)";
     this.eventBorderLeftStyle = "solid";
     this.eventBorderLeftWidth = 2;
-    this.eventColor = "#666";
+    this.eventColor = "#000";
     this.eventMargin = 5;
     this.eventPadding = 5;
     this.eventWidth = 220; // hack: large enough to fit longest event name...
@@ -241,7 +253,7 @@ Timeline.prototype = {
                 "width": this.eventWidth + "px"
             });
             eventDiv.attr({"title": event.time + "ms"});
-      $("#timeline").append(eventDiv);
+      $(this.timelineElement).append(eventDiv);
     };
     // draw timeline x-axis ticks and labels
     var xAxisDiv = $("<div />");
@@ -312,8 +324,9 @@ function writeTimeline() {
   });
 
 
-  // draw timeline
+  // draw timeline events
   var timelineElement = document.querySelector("#timeline");
+  $(timelineElement).empty(); // in case of warning messages, etc.
   var timelineObject = new Timeline(timelineElement, events);
   timelineObject.draw();
 
@@ -336,10 +349,10 @@ function writeTimeline() {
     "width": tickDivWidth + "px"
     };
   // this is hacky and ugly but it works
-  var zeroTickDiv = $("<div>|<br />0</div>").css(tickDivCss).css({"left": -tickDivWidth / 2 + 1}); // 50 = half width
+  var zeroTickDiv = $("<div>|<br />0</div>").css(tickDivCss).css({"left": -tickDivWidth / 2}); // 50 = half width
   // get the css left value for the max tick
   var maxTickDivLeft = timelineObject.width - timelineObject.eventWidth -
-    timelineObject.eventPadding - timelineObject.eventBorderLeftWidth - (tickDivWidth / 2) + 2;
+    timelineObject.eventPadding - timelineObject.eventBorderLeftWidth - (tickDivWidth / 2) + 1;
   var maxTickDiv = $("<div>|<br />" + timelineObject.maxTime + "ms</div>").css(tickDivCss).
     css({"left": maxTickDivLeft});
   xAxisDiv.append(zeroTickDiv).append(maxTickDiv);
@@ -372,7 +385,7 @@ function writeDynamicElements() {
 
     var navigationTypes = ["clicking a link or entering a URL", "reload", "navigating through history"];
     var howIGotHere = navigationTypes[performance.navigation.type];
-    $("#howIGotHere").html(howIGotHere);
+    $("#howIGotHere").html("You got to this page by " + howIGotHere + ".");
 
     writeTimeline();
 }
