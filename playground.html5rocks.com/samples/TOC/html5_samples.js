@@ -426,6 +426,30 @@ var tempJSON = [
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-3D and CSS",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/3d_transforms_basic.html",
+        "files": [],
+        "editor": "mixed",
+        "sampleName": "3D Transformation Basic",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-3d-transforms/",
+        "tutorial": "http://www.html5rocks.com/en/tutorials/3d/css/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/3d_transforms.html",
+        "files": ["samples/css/tutorials/3d_transforms.css"],
+        "editor": "css",
+        "sampleName": "3D Transformation",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-3d-transforms/",
+        "tutorial": "http://www.html5rocks.com/en/tutorials/3d/css/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
   }
 ];
 
