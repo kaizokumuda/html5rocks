@@ -450,6 +450,21 @@ var tempJSON = [
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-Multimedia",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/audio_tag_with_fallback.html",
+        "files": ["samples/css/tutorials/audio_tag_with_fallback.css", "samples/js/tutorials/audio_tag_with_fallback.js"],
+        "editor": "mixed",
+        "sampleName": "Audio Tag with Fallback to Flash",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/html5/video.html#audio",
+        "tutorial": "http://www.html5rocks.com/en/tutorials/audio/quick/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
   }
 ];
 
