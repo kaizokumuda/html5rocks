@@ -437,7 +437,7 @@ var tempJSON = [
         "sampleName": "3D Transformation Basic",
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-3d-transforms/",
-        "tutorial": "http://www.html5rocks.com/en/tutorials/3d/css/"
+        "tutorial": "http://www.html5rocks.com/tutorials/3d/css/"
       },
       {
         "boilerplateLoc": "samples/boilerplateHTML/tutorials/3d_transforms.html",
@@ -446,7 +446,7 @@ var tempJSON = [
         "sampleName": "3D Transformation",
         "tags": "",
         "spec": "http://www.w3.org/TR/css3-3d-transforms/",
-        "tutorial": "http://www.html5rocks.com/en/tutorials/3d/css/"
+        "tutorial": "http://www.html5rocks.com/tutorials/3d/css/"
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
@@ -461,7 +461,25 @@ var tempJSON = [
         "sampleName": "Audio Tag with Fallback to Flash",
         "tags": "",
         "spec": "http://www.w3.org/TR/html5/video.html#audio",
-        "tutorial": "http://www.html5rocks.com/en/tutorials/audio/quick/"
+        "tutorial": "http://www.html5rocks.com/tutorials/audio/quick/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/video_formats.html",
+        "files": ["samples/css/tutorials/video_formats.css"],
+        "editor": "mixed",
+        "sampleName": "Video Formats",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/html5/video.html#video",
+        "tutorial": "http://www.html5rocks.com/tutorials/video/basics/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/video_plus_canvas.html",
+        "files": ["samples/css/tutorials/video_plus_canvas.css", "samples/js/tutorials/video_plus_canvas.js"],
+        "editor": "mixed",
+        "sampleName": "Video + Canvas",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/html5/video.html#video",
+        "tutorial": "http://www.html5rocks.com/tutorials/video/basics/"
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
