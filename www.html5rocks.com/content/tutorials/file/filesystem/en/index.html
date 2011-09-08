@@ -6,6 +6,7 @@
 {% block pagetitle %}Exploring the FileSystem APIs{% endblock %}
 {% block head %}
 <style>
+{% if is_mobile %}
 .example {
   padding: 10px;
   border: 1px solid #CCC;
@@ -19,6 +20,8 @@
 #example-list-fs img {
   vertical-align: middle;
 }
+{% endif %}
+
 #terminal-iframe {
   display: none;
   border: 1px solid black;
@@ -679,10 +682,15 @@ var url = 'filesystem:http://example.com/temporary/myfile.png';
 
   <h3 id="toc-samples-basic">Basic example</h3>
   <p>This demo lists the files/folders in the filesystem.</p>
+
+  {% if is_mobile %}
   <div id="example-list-fs" class="example">
     <button>Add some files</button> <button>List files</button> <button>Remove all files</button>
     <ul id="example-list-fs-ul"></ul>
   </div>
+  {% else %}
+  <iframe src="http://playground.html5rocks.com/?mode=frame&hu=180&hl=160#filesystem_apis" style="border: none; width: 100%; height: 460px;"></iframe>
+  {% endif %}
 
   <h3 id="toc-samples-terminal">HTML5 Terminal</h3>
   <p>This shell replicates some of the common operations in a UNIX filesystem
@@ -770,6 +778,7 @@ var url = 'filesystem:http://example.com/temporary/myfile.png';
     <li><a href="http://dev.w3.org/2006/webapi/FileAPI/#dfn-Blob">Blob</a></li>
   </ul>
 
+{% if is_mobile %}
 <script>
 window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 var fs = null;
@@ -868,5 +877,6 @@ if (window.requestFileSystem) {
   initFS();  // Initiate filesystem on page load.
 }
 </script>
+{% endif %}
 
 {% endblock %}

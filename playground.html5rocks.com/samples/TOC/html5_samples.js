@@ -483,6 +483,21 @@ var tempJSON = [
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-Exploring the FileSystem APIs",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/filesystem_apis.html",
+        "files": ["samples/css/tutorials/filesystem_apis.css", "samples/js/tutorials/filesystem_apis.js"],
+        "editor": "js",
+        "sampleName": "FileSystem APIs",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/file-system-api/",
+        "tutorial": "http://www.html5rocks.com/en/tutorials/file/filesystem/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
   }
 ];
 
