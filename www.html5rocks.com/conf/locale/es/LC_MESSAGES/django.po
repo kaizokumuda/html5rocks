@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-12 16:35+0200\n"
+"POT-Creation-Date: 2011-09-09 10:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,7 +152,6 @@ msgstr ""
 
 #: content/index.html:76 content/features/index.html:33
 #: content/features/presentation.html:5 content/features/presentation.html:6
-#: templates/base.html:59
 msgid "Presentation"
 msgstr ""
 
@@ -367,23 +366,23 @@ msgstr ""
 msgid "Search Results"
 msgstr ""
 
-#: content/slides.html:3
+#: content/slides.html:5
 msgid "Videos and Presentations"
 msgstr ""
 
-#: content/slides.html:69
+#: content/slides.html:71
 msgid "HTML5 Slides, Presentations, and Videos"
 msgstr ""
 
-#: content/slides.html:75
+#: content/slides.html:77
 msgid "Filter talks by topic, person, etc"
 msgstr ""
 
-#: content/slides.html:76
+#: content/slides.html:78
 msgid "Only show talks more recent than:"
 msgstr ""
 
-#: content/slides.html:81
+#: content/slides.html:83
 msgid "Loading..."
 msgstr ""
 
@@ -467,7 +466,7 @@ msgstr ""
 msgid "who is using %(category)s?"
 msgstr ""
 
-#: content/features/feature.html:43 content/mobile/index.html:46
+#: content/features/feature.html:43 content/mobile/index.html:47
 msgid "Additional Resources"
 msgstr ""
 
@@ -538,23 +537,25 @@ msgstr ""
 #: content/features/file.html:13
 msgid ""
 "\n"
-"HTML5 provides (and in some cases, will soon provide) very powerful APIs to "
-"interact\n"
-"with binary data and a user's local file system. The File APIs give web "
-"applications the ability to\n"
-"do things like read files [a]synchronously, create arbitrary Blobs, write "
-"files to a temporary location, recursively read a file directory,\n"
+"HTML5 provides very powerful APIs to interact with binary data and a user's "
+"local file system.\n"
+"The File APIs give web applications the ability to do things like read files "
+"[a]synchronously,\n"
+"create arbitrary Blobs, write files to a temporary location, recursively "
+"read a file directory,\n"
 "perform file drag and drop from the desktop to the browser, and upload "
-"binary data using <code>XMLHttpRequest</code>.\n"
+"binary data using\n"
+"<code>XMLHttpRequest2</code>.\n"
 msgstr ""
 
-#: content/features/file.html:20
+#: content/features/file.html:21
 msgid ""
 "\n"
 "As examples, the File APIs can be used to create a thumbnail preview of "
 "images as they're being sent to the server,\n"
 "or allow an app to save a file reference while the user is offline. Using "
-"the upcoming Audio Data API,\n"
+"the <a href=\"https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/"
+"specification.html\">Web Audio API</a>,\n"
 "your app could read an .mp3 file and display a visualization of the song as "
 "it plays. Additionally, you could use\n"
 "client-side logic to verify an upload's mimetype matches its file extension "
@@ -1565,7 +1566,7 @@ msgstr ""
 msgid "View all HTML5Rocks mobile tutorials"
 msgstr ""
 
-#: content/mobile/index.html:47
+#: content/mobile/index.html:48
 msgid "A collection of useful references"
 msgstr ""
 
@@ -1581,31 +1582,31 @@ msgstr ""
 msgid "Filter by tag"
 msgstr ""
 
-#: content/tutorials/index.html:545
+#: content/tutorials/index.html:595
 msgid "Case Study: Converting Wordico from Flash to HTML5"
 msgstr ""
 
-#: content/tutorials/index.html:548 content/tutorials/index.html.py:576
-#: content/tutorials/index.html:602 content/tutorials/index.html.py:629
-#: content/tutorials/index.html:657 content/tutorials/index.html.py:685
-#: content/tutorials/index.html:711 content/tutorials/index.html.py:738
-#: content/tutorials/index.html:763 content/tutorials/index.html.py:790
-#: content/tutorials/index.html:818 content/tutorials/index.html.py:843
-#: content/tutorials/index.html:868 content/tutorials/index.html.py:891
-#: content/tutorials/index.html:915 content/tutorials/index.html.py:943
-#: content/tutorials/index.html:968 content/tutorials/index.html.py:993
-#: content/tutorials/index.html:1017 content/tutorials/index.html.py:1043
-#: content/tutorials/index.html:1070 content/tutorials/index.html.py:1095
+#: content/tutorials/index.html:598 content/tutorials/index.html.py:626
+#: content/tutorials/index.html:652 content/tutorials/index.html.py:679
+#: content/tutorials/index.html:707 content/tutorials/index.html.py:735
+#: content/tutorials/index.html:761 content/tutorials/index.html.py:788
+#: content/tutorials/index.html:813 content/tutorials/index.html.py:840
+#: content/tutorials/index.html:868 content/tutorials/index.html.py:893
+#: content/tutorials/index.html:918 content/tutorials/index.html.py:941
+#: content/tutorials/index.html:965 content/tutorials/index.html.py:993
+#: content/tutorials/index.html:1018 content/tutorials/index.html.py:1043
+#: content/tutorials/index.html:1067 content/tutorials/index.html.py:1093
 #: content/tutorials/index.html:1120 content/tutorials/index.html.py:1145
-#: content/tutorials/index.html:1170 content/tutorials/index.html.py:1194
-#: content/tutorials/index.html:1220 content/tutorials/index.html.py:1245
-#: content/tutorials/index.html:1270 content/tutorials/index.html.py:1296
-#: content/tutorials/index.html:1319 content/tutorials/index.html.py:1342
-#: content/tutorials/index.html:1367
+#: content/tutorials/index.html:1170 content/tutorials/index.html.py:1195
+#: content/tutorials/index.html:1220 content/tutorials/index.html.py:1244
+#: content/tutorials/index.html:1270 content/tutorials/index.html.py:1295
+#: content/tutorials/index.html:1320 content/tutorials/index.html.py:1346
+#: content/tutorials/index.html:1369 content/tutorials/index.html.py:1392
+#: content/tutorials/index.html:1417
 msgid "By:"
 msgstr ""
 
-#: content/tutorials/index.html:553
+#: content/tutorials/index.html:603
 msgid ""
 "\n"
 "        Learn how we converted our <a href=\"https://chrome.google.com/"
@@ -1614,30 +1615,18 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:559 content/tutorials/index.html.py:585
-#: content/tutorials/index.html:612 content/tutorials/index.html.py:640
-#: content/tutorials/index.html:668 content/tutorials/index.html.py:694
-#: content/tutorials/index.html:720 content/tutorials/index.html.py:747
-#: content/tutorials/index.html:774 content/tutorials/index.html.py:801
-#: content/tutorials/index.html:827 content/tutorials/index.html.py:852
-#: content/tutorials/index.html:875 content/tutorials/index.html.py:899
-#: content/tutorials/index.html:927 content/tutorials/index.html.py:952
-#: content/tutorials/index.html:1027 content/tutorials/index.html.py:1054
-#: content/tutorials/index.html:1079 content/tutorials/index.html.py:1104
-#: content/tutorials/index.html:1129 content/tutorials/index.html.py:1154
-#: content/tutorials/index.html:1178 content/tutorials/index.html.py:1204
-#: content/tutorials/index.html:1229 content/tutorials/index.html.py:1254
-#: content/tutorials/index.html:1280 content/tutorials/index.html.py:1303
-#: content/tutorials/index.html:1326 content/tutorials/index.html.py:1351
-#: content/tutorials/index.html:1377
-msgid "View tutorial"
+#: content/tutorials/index.html:609 content/tutorials/index.html.py:718
+#: content/tutorials/index.html:770 content/tutorials/index.html.py:797
+#: content/tutorials/index.html:877 content/tutorials/index.html.py:1027
+#: content/tutorials/index.html:1051
+msgid "View case study"
 msgstr ""
 
-#: content/tutorials/index.html:573 content/tutorials/index.html.py:1067
+#: content/tutorials/index.html:623 content/tutorials/index.html.py:1117
 msgid "\\"
 msgstr ""
 
-#: content/tutorials/index.html:579
+#: content/tutorials/index.html:629
 msgid ""
 "\n"
 "        A guide on how to create a mobile version of an existing HTML5 "
@@ -1647,11 +1636,27 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:599
+#: content/tutorials/index.html:635 content/tutorials/index.html.py:662
+#: content/tutorials/index.html:690 content/tutorials/index.html.py:744
+#: content/tutorials/index.html:824 content/tutorials/index.html.py:851
+#: content/tutorials/index.html:902 content/tutorials/index.html.py:925
+#: content/tutorials/index.html:949 content/tutorials/index.html.py:977
+#: content/tutorials/index.html:1002 content/tutorials/index.html.py:1077
+#: content/tutorials/index.html:1104 content/tutorials/index.html.py:1129
+#: content/tutorials/index.html:1154 content/tutorials/index.html.py:1179
+#: content/tutorials/index.html:1204 content/tutorials/index.html.py:1228
+#: content/tutorials/index.html:1254 content/tutorials/index.html.py:1279
+#: content/tutorials/index.html:1304 content/tutorials/index.html.py:1330
+#: content/tutorials/index.html:1353 content/tutorials/index.html.py:1376
+#: content/tutorials/index.html:1401 content/tutorials/index.html.py:1427
+msgid "View tutorial"
+msgstr ""
+
+#: content/tutorials/index.html:649
 msgid "Typographic effects in canvas"
 msgstr ""
 
-#: content/tutorials/index.html:607
+#: content/tutorials/index.html:657
 msgid ""
 "\n"
 "        Effects in &lt;canvas&gt;; inner/outer shadows, neon-glows, "
@@ -1660,22 +1665,22 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:626
+#: content/tutorials/index.html:676
 msgid "Improving the Performance of your HTML5 App"
 msgstr ""
 
-#: content/tutorials/index.html:635
+#: content/tutorials/index.html:685
 msgid ""
 "\n"
 "        Optimization strategies and techniques for HTML5 applications.\n"
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:654
+#: content/tutorials/index.html:704
 msgid "Case Study: Onslaught! Arena"
 msgstr ""
 
-#: content/tutorials/index.html:662
+#: content/tutorials/index.html:712
 msgid ""
 "\n"
 "        Learn how <a href=\"https://chrome.google.com/webstore/detail/"
@@ -1685,11 +1690,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:682
+#: content/tutorials/index.html:732
 msgid "No Tears Guide to HTML5 Games"
 msgstr ""
 
-#: content/tutorials/index.html:689
+#: content/tutorials/index.html:739
 msgid ""
 "\n"
 "        Building an HTML5 game using <code>&lt;canvas&gt;</code>, the no "
@@ -1697,11 +1702,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:708
+#: content/tutorials/index.html:758
 msgid "Case Study: HTML5 MathBoard"
 msgstr ""
 
-#: content/tutorials/index.html:714
+#: content/tutorials/index.html:764
 msgid ""
 "\n"
 "        A discussion on how the iPad's popular <a href=\"https://chrome."
@@ -1710,11 +1715,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:735
+#: content/tutorials/index.html:785
 msgid "Case Study: Page Flip Effect from 20thingsilearned.com"
 msgstr ""
 
-#: content/tutorials/index.html:742
+#: content/tutorials/index.html:792
 msgid ""
 "\n"
 "        Learn how to re-create the page flip effect found on\n"
@@ -1723,11 +1728,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:760
+#: content/tutorials/index.html:810
 msgid "Exploring the FileSystem APIs"
 msgstr ""
 
-#: content/tutorials/index.html:769
+#: content/tutorials/index.html:819
 msgid ""
 "\n"
 "        The FileSystem APIs give applications the ability to read/write "
@@ -1736,11 +1741,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:787
+#: content/tutorials/index.html:837
 msgid "A Simple TODO list using HTML5 IndexedDB"
 msgstr ""
 
-#: content/tutorials/index.html:794
+#: content/tutorials/index.html:844
 msgid ""
 "\n"
 "        IndexedDB represents the future of query-able client-side storage.  "
@@ -1751,11 +1756,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:815
+#: content/tutorials/index.html:865
 msgid "Case Study: Getting Entangled with HTML5 Canvas"
 msgstr ""
 
-#: content/tutorials/index.html:822
+#: content/tutorials/index.html:872
 msgid ""
 "\n"
 "        Entanglement is a puzzle game made by Gopherwood Studios. This "
@@ -1764,11 +1769,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:840
+#: content/tutorials/index.html:890
 msgid "Stream Updates with Server-Sent Events"
 msgstr ""
 
-#: content/tutorials/index.html:847
+#: content/tutorials/index.html:897
 msgid ""
 "\n"
 "        The EventSource API is designed for receiving push notifications "
@@ -1777,11 +1782,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:865
+#: content/tutorials/index.html:915
 msgid "Introducing WebSockets: Bringing Sockets to the Web"
 msgstr ""
 
-#: content/tutorials/index.html:871
+#: content/tutorials/index.html:921
 msgid ""
 "\n"
 "        Learn how to use WebSockets to add low latency bidirectional client-"
@@ -1789,11 +1794,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:888
+#: content/tutorials/index.html:938
 msgid "Quick hits with the Flexible Box Model"
 msgstr ""
 
-#: content/tutorials/index.html:895
+#: content/tutorials/index.html:945
 msgid ""
 "\n"
 "        An introduction to <q>flexbox</q>, an alternative <abbr title="
@@ -1802,11 +1807,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:912
+#: content/tutorials/index.html:962
 msgid "Client-Side Storage"
 msgstr ""
 
-#: content/tutorials/index.html:922
+#: content/tutorials/index.html:972
 msgid ""
 "\n"
 "        An overview of client-side storage techniques: Web Storage (local/"
@@ -1815,11 +1820,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:940
+#: content/tutorials/index.html:990
 msgid "Native HTML5 Drag and Drop"
 msgstr ""
 
-#: content/tutorials/index.html:947
+#: content/tutorials/index.html:997
 msgid ""
 "\n"
 "        Drag-and-drop is yet another first class citizen in HTML5! This "
@@ -1829,11 +1834,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:965
+#: content/tutorials/index.html:1015
 msgid "Case Study: HTML5 in deviantART muro"
 msgstr ""
 
-#: content/tutorials/index.html:973
+#: content/tutorials/index.html:1023
 msgid ""
 "\n"
 "        Learn how deviantART used HTML5 drawing features in deviantART "
@@ -1841,15 +1846,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:977 content/tutorials/index.html.py:1001
-msgid "View article"
-msgstr ""
-
-#: content/tutorials/index.html:990
+#: content/tutorials/index.html:1040
 msgid "Case Study: Drag and Drop Download in Chrome"
 msgstr ""
 
-#: content/tutorials/index.html:997
+#: content/tutorials/index.html:1047
 msgid ""
 "\n"
 "        Learn how Box.net implemented GMail's attachment drag and drop to "
@@ -1857,11 +1858,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1014
+#: content/tutorials/index.html:1064
 msgid "3D and CSS"
 msgstr ""
 
-#: content/tutorials/index.html:1023
+#: content/tutorials/index.html:1073
 msgid ""
 "\n"
 "        Learn how to build exciting 3D user interfaces using the power of "
@@ -1869,11 +1870,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1040
+#: content/tutorials/index.html:1090
 msgid "HTML5 Video"
 msgstr ""
 
-#: content/tutorials/index.html:1048
+#: content/tutorials/index.html:1098
 msgid ""
 "\n"
 "        Video is one of the most interesting and widely supported features "
@@ -1885,7 +1886,7 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1074
+#: content/tutorials/index.html:1124
 msgid ""
 "\n"
 "        A discussion of what it means to take an application \"offline\" and "
@@ -1894,11 +1895,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1092
+#: content/tutorials/index.html:1142
 msgid "Quick guide to webfonts via @font-face"
 msgstr ""
 
-#: content/tutorials/index.html:1100
+#: content/tutorials/index.html:1150
 msgid ""
 "\n"
 "        Webfonts give new typographic freedom to designers while retaining "
@@ -1906,11 +1907,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1117
+#: content/tutorials/index.html:1167
 msgid "Auditing Your Web App For Speed"
 msgstr ""
 
-#: content/tutorials/index.html:1124
+#: content/tutorials/index.html:1174
 msgid ""
 "\n"
 "        The Audit Panel is an excellent tool for examining latency in your "
@@ -1919,11 +1920,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1142
+#: content/tutorials/index.html:1192
 msgid "The Basics of Web Workers"
 msgstr ""
 
-#: content/tutorials/index.html:1149
+#: content/tutorials/index.html:1199
 msgid ""
 "\n"
 "        Web Workers are a means of spawning background scripts in your "
@@ -1933,11 +1934,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1167
+#: content/tutorials/index.html:1217
 msgid "Introduction to Chrome Developer Tools, Part One"
 msgstr ""
 
-#: content/tutorials/index.html:1174
+#: content/tutorials/index.html:1224
 msgid ""
 "\n"
 "        An introduction to the tools available in Google Chrome that make a "
@@ -1945,11 +1946,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1191
+#: content/tutorials/index.html:1241
 msgid "Best Practices for a Faster Web App with HTML5"
 msgstr ""
 
-#: content/tutorials/index.html:1200
+#: content/tutorials/index.html:1250
 msgid ""
 "\n"
 "        How to effectively use features from HTML5 to improve the "
@@ -1957,11 +1958,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1217
+#: content/tutorials/index.html:1267
 msgid "A Beginner's Guide to Using the Application Cache"
 msgstr ""
 
-#: content/tutorials/index.html:1225
+#: content/tutorials/index.html:1275
 msgid ""
 "\n"
 "        A step-by-step guide to taking your web app offline using the "
@@ -1969,11 +1970,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1242
+#: content/tutorials/index.html:1292
 msgid "Practical Guide to Take Your TODO List Offline"
 msgstr ""
 
-#: content/tutorials/index.html:1249
+#: content/tutorials/index.html:1299
 #, python-format
 msgid ""
 "\n"
@@ -1984,11 +1985,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1267
+#: content/tutorials/index.html:1317
 msgid "Reading files in JavaScript using the File APIs"
 msgstr ""
 
-#: content/tutorials/index.html:1275
+#: content/tutorials/index.html:1325
 msgid ""
 "\n"
 "        Starter guide for using the File/FileList/FileReader APIs to "
@@ -1997,11 +1998,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1293
+#: content/tutorials/index.html:1343
 msgid "A Simple Trip Meter using the Geolocation API"
 msgstr ""
 
-#: content/tutorials/index.html:1299
+#: content/tutorials/index.html:1349
 msgid ""
 "\n"
 "        Learn how to implement geolocation very quickly including a distance "
@@ -2009,22 +2010,22 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1316
+#: content/tutorials/index.html:1366
 msgid "Using the Notifications API"
 msgstr ""
 
-#: content/tutorials/index.html:1322
+#: content/tutorials/index.html:1372
 msgid ""
 "\n"
 "        Learn the notification basics creating a twitter notification\n"
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1339
+#: content/tutorials/index.html:1389
 msgid "A Simple TODO list using HTML5 WebDatabases"
 msgstr ""
 
-#: content/tutorials/index.html:1347
+#: content/tutorials/index.html:1397
 msgid ""
 "\n"
 "        Create a TODO list which persists data using a client side "
@@ -2032,11 +2033,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/tutorials/index.html:1364
+#: content/tutorials/index.html:1414
 msgid "Quick Guide to Implementing the HTML5 Audio Tag"
 msgstr ""
 
-#: content/tutorials/index.html:1372
+#: content/tutorials/index.html:1422
 msgid ""
 "\n"
 "        Learn how to use the HTML5 audio tag and fall back to Flash on\n"
@@ -2729,6 +2730,10 @@ msgstr ""
 
 #: templates/base.html:55
 msgid "Rocks"
+msgstr ""
+
+#: templates/base.html:59
+msgid "Slides"
 msgstr ""
 
 #: templates/base.html:60
