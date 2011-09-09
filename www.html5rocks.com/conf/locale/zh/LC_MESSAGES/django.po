@@ -1,50 +1,54 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Chinese Simp translation for www.html5rocks.com
+# Copyright (C) 2011 HTML5Rocks Contributors
+# This file is distributed under the same license as the HTML5Rocks package.
+# Dean Lee <xslidian@gmail.com>, 2011.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: html5rocks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-12 16:35+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2011-09-09 10:28+0200\n"
+"PO-Revision-Date: 2011-06-26 02:52+0800\n"
+"Last-Translator: Dean Lee <xslidian@gmail.com>\n"
+"Language-Team: Chinese Simp <html5rocks@lidian.info>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Basepath: C:\\Users\\Dean\\xslidian-html5rocks\\www.html5rocks.com\n"
 
 #: main.py:177
+#, fuzzy
 msgid "this feature"
-msgstr ""
+msgstr "功能"
 
 #: main.py:189
+#, fuzzy
 msgid "HTML5Rocks - Tutorials"
-msgstr ""
+msgstr "查看全部相关的 HTML5Rocks 教程"
 
 #: main.py:191
+#, fuzzy
 msgid "Take a guided tour through code that uses HTML5."
-msgstr ""
+msgstr "游览使用 HTML5 功能的代码。"
 
 #: main.py:245
 msgid ""
 "Sorry, this article isn't available in your native language; we've "
 "redirected you to the English version."
-msgstr ""
+msgstr "抱歉，本文尚无您语言的版本；我们已将您重定向至英文版。"
 
 #: content/community.html:5 content/profiles.html:17
 #: content/features/index.html:23 content/tutorials/index.html:16
 #: templates/casestudy.html:9 templates/mobile_tutorial.html:9
 #: templates/sample.html:9
 msgid "Home"
-msgstr ""
+msgstr "主页"
 
 #: content/community.html:78 content/resources.html:209
 msgid "Community"
-msgstr ""
+msgstr "社区"
 
 #: content/community.html:79
 msgid ""
@@ -53,142 +57,144 @@ msgid ""
 "to discuss with developers and engineers the experimental features and "
 "proposals around the standards and browser implementations."
 msgstr ""
+"HTML5 社区日渐壮大。您可以在这里找到最新的 HTML5 新闻资源以及与开发者与工程师"
+"讨论这些标准与浏览器集成方面的实验性功能与提案。"
 
 #: content/community.html:84
 msgid "Forum"
-msgstr ""
+msgstr "论坛"
 
 #: content/community.html:85
 msgid "Events"
-msgstr ""
+msgstr "活动"
 
 #: content/community.html:86
 msgid "IRC Channel"
-msgstr ""
+msgstr "IRC 频道"
 
 #: content/community.html:87
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: content/community.html:174
 msgid "HTML5 conferences (Lanyrd)"
-msgstr ""
+msgstr "HTML5 峰会 (Lanyrd)"
 
 #: content/community.html:178
 msgid "HTML5 Meetup Groups"
-msgstr ""
+msgstr "HTML5 聚会组"
 
 #: content/community.html:182
 msgid "Google Developer Events Calendar"
-msgstr ""
+msgstr "Google Developer 活动日历"
 
 #: content/community.html:190
 msgid "HTML5 Events"
-msgstr ""
+msgstr "HTML5 活动"
 
 #: content/index.html:5 templates/base.html:29
 msgid "A resource for open web HTML5 developers"
-msgstr ""
+msgstr "开放网络 HTML5 开发者资源"
 
 #: content/index.html:8
 msgid "HTML5Rocks"
-msgstr ""
+msgstr "HTML5Rocks"
 
 #: content/index.html:20
 msgid "<span>Interactive</span> Presentation"
-msgstr ""
+msgstr "<span>互动</span>演示文稿"
 
 #: content/index.html:22
 msgid "Watch the slideshow that lets you play with HTML5 features."
-msgstr ""
+msgstr "观看通过 HTML5 功能播放的幻灯片。"
 
 #: content/index.html:29
 msgid "<span>Code</span> Playground"
-msgstr ""
+msgstr "<span>代码</span>练兵场"
 
 #: content/index.html:31
 msgid "Jump headfirst into HTML5 by experimenting with each API."
-msgstr ""
+msgstr "通过实验各 API 闯入 HTML5 的世界。"
 
 #: content/index.html:38
 msgid "<span>Samples</span> Studio"
-msgstr ""
+msgstr "<span>示例</span>工作室"
 
 #: content/index.html:40
 msgid "A showroom of content that you can reuse in your own site."
-msgstr ""
+msgstr "您可以在自己网站上利用的内容的展示间。"
 
 #: content/index.html:47
 msgid "<span>Step by Step</span> Tutorials"
-msgstr ""
+msgstr "<span>手把手</span>教程"
 
 #: content/index.html:49
 msgid "Take a guided tour through code that uses HTML5 features."
-msgstr ""
+msgstr "游览使用 HTML5 功能的代码。"
 
 #: content/index.html:57
 msgid "Learn by Major HTML5 Feature Groups"
-msgstr ""
+msgstr "按 HTML5 主功能组了解"
 
 #: content/index.html:60 content/features/index.html:31
 #: content/features/offline.html:5 content/features/offline.html.py:6
 msgid "Offline"
-msgstr ""
+msgstr "离线"
 
 #: content/index.html:64 content/features/file.html:5
 #: content/features/file.html.py:6 content/features/index.html:28
 msgid "File Access"
-msgstr ""
+msgstr "文件存取"
 
 #: content/index.html:68 content/features/index.html:30
 #: content/features/multimedia.html:5 content/features/multimedia.html.py:6
 msgid "Multimedia"
-msgstr ""
+msgstr "多媒体"
 
 #: content/index.html:72 content/features/index.html:32
 #: content/features/performance.html:5 content/features/performance.html:6
 msgid "Performance"
-msgstr ""
+msgstr "性能"
 
 #: content/index.html:76 content/features/index.html:33
 #: content/features/presentation.html:5 content/features/presentation.html:6
-#: templates/base.html:59
 msgid "Presentation"
-msgstr ""
+msgstr "演示"
 
 #: content/index.html:80 content/features/graphics.html:5
 #: content/features/graphics.html.py:6 content/features/index.html:29
 msgid "Graphics"
-msgstr ""
+msgstr "图形"
 
 #: content/index.html:84 content/features/index.html:34
 #: content/features/storage.html:5 content/features/storage.html.py:6
 msgid "Storage"
-msgstr ""
+msgstr "存储"
 
 #: content/index.html:88 templates/mobile_tutorial.html:12
 msgid "Mobile"
-msgstr ""
+msgstr "移动"
 
 #: content/index.html:93
+#, fuzzy
 msgid "Latest Updates"
-msgstr ""
+msgstr "最新教程"
 
 #: content/index.html:105
 msgid "RSS"
-msgstr ""
+msgstr "RSS"
 
 #: content/index.html:106
 msgid "loading feed..."
-msgstr ""
+msgstr "正在加载 feed..."
 
 #: content/index.html:107
 msgid "See more &rArr;"
-msgstr ""
+msgstr "查看更多 &rArr;"
 
 #: content/index.html:111
 msgid "Contribute"
-msgstr ""
+msgstr "贡献"
 
 #: content/index.html:112
 msgid ""
@@ -202,6 +208,14 @@ msgid ""
 "ContributorsGuide\">contribute</a> new guides!</p>\n"
 "      "
 msgstr ""
+"\n"
+"      <p>本站点，HTML5 <a href=\"http://playground.html5rocks.com\">练兵场</"
+"a>、<a href=\"http://studio.html5rocks.com\">工作室</a>，\n"
+"      以及 <a href=\"http://slides.html5rocks.com\">演示</a> 幻灯片均为 <a "
+"href=\"http://code.google.com/p/html5rocks/\">开源项目</a>。\n"
+"      修改现有代码或<a href=\"http://code.google.com/p/html5rocks/wiki/"
+"ContributorsGuide\">贡献</a>新教程!</p>\n"
+"      "
 
 #: content/index.html:120
 msgid ""
@@ -213,10 +227,16 @@ msgid ""
 "      on your site:</p>\n"
 "      "
 msgstr ""
+"\n"
+"      <p>准备用 HTML5 开发但是担心早期版本 Internet Explorer 的支持情况?\n"
+"      了解 <a href=\"http://code.google.com/chrome/chromeframe/\">Google "
+"Chrome Frame</a> 如何为您助力。只需\n"
+"      在您的网站上加入:</p>\n"
+"      "
 
 #: content/privacy.html:5
 msgid "Privacy Policy"
-msgstr ""
+msgstr "隐私政策"
 
 #: content/privacy.html:13
 msgid ""
@@ -229,18 +249,24 @@ msgid ""
 "privacy.html</a>.</p>\n"
 "      "
 msgstr ""
+"\n"
+"      <p>HTML5ROCKS 网站 (本“网站”) 由 Google 托管，因此，就个人信息而言，\n"
+"        本网站与其他 Google 服务以同样的处理。Google 的隐私政策位于\n"
+"        <a href=\"http://www.google.com/privacy.html\">http://www.google.com/"
+"privacy.html</a>。</p>\n"
+"      "
 
 #: content/profiles.html:4
 msgid "Author Profiles"
-msgstr ""
+msgstr "作者档案"
 
 #: content/profiles.html:72
 msgid "Articles"
-msgstr ""
+msgstr "文章"
 
 #: content/resources.html:5 templates/base.html:63
 msgid "Resources"
-msgstr ""
+msgstr "资源"
 
 #: content/resources.html:52
 msgid "Reference"
@@ -248,116 +274,117 @@ msgstr ""
 
 #: content/resources.html:57
 msgid "Visual timeline of HTML5 feature support."
-msgstr ""
+msgstr "HTML5 功能支持的时间轴展示。"
 
 #: content/resources.html:62
 msgid "Up to date HTML5 feature browser support reference."
-msgstr ""
+msgstr "最新的 HTML5 功能浏览器支持情况参考。"
 
 #: content/resources.html:67
 msgid "Series of browser tests to evaluate feature support."
-msgstr ""
+msgstr "系列浏览器测试，评估功能支持。"
 
 #: content/resources.html:72
 msgid "Detailed browser feature support reference."
-msgstr ""
+msgstr "浏览器功能支持情况详细参考。"
 
 #: content/resources.html:77
 msgid "A quick overview of scope and support."
-msgstr ""
+msgstr "范围与支持速览。"
 
 #: content/resources.html:83
 msgid ""
 "Follow the engineering effort for cutting edge support from the Chrome team."
-msgstr ""
+msgstr "关注 Chrome 团队尖端支持的工程工作。"
 
 #: content/resources.html:88
 msgid "If the Wikipedia says it then it must be true."
-msgstr ""
+msgstr "如果 Wikipedia 说了的话那肯定是真的。"
 
 #: content/resources.html:94
 msgid "Detailed table of ES5 support across browsers."
-msgstr ""
+msgstr "各浏览器 ES5 支持情况详表。"
 
 #: content/resources.html:99
 msgid "Results of DOM and CSS properties tests in major browsers."
-msgstr ""
+msgstr "主要浏览器的 DOM 与 CSS 属性测试结果。"
 
 #: content/resources.html:110
+#, fuzzy
 msgid "Documentation"
-msgstr ""
+msgstr "演示"
 
 #: content/resources.html:115
 msgid "Lightweight version of the W3c spec, perfect for web developers."
-msgstr ""
+msgstr "轻量版 W3c 规范，非常适合 web 开发者。"
 
 #: content/resources.html:121
 msgid "Learn HTML5 and have a laugh at the same time."
-msgstr ""
+msgstr "快乐学习 HTML5。"
 
 #: content/resources.html:127
 msgid "Excellent WebKit-oriented development documentation."
-msgstr ""
+msgstr "优质 WebKit 方向开发文档。"
 
 #: content/resources.html:132
 msgid "Excellent documentation and guides."
-msgstr ""
+msgstr "优质文档与指南。"
 
 #: content/resources.html:137
 msgid "Working draft spec of everything under the larger HTML5 umbrella."
-msgstr ""
+msgstr "HTML5 大雨伞下各方面的规范草案。"
 
 #: content/resources.html:143 content/features/concept.html:60
 #: content/mobile/index.html:29
 msgid "Tools"
-msgstr ""
+msgstr "工具"
 
 #: content/resources.html:148
 msgid ""
 "Javascript library for feature detection and control fallback cases of HTML5."
-msgstr ""
+msgstr "功能侦测与 HTML5 后备情况控制的 Javascript 库。"
 
 #: content/resources.html:153
 msgid "Javascript patch to make IE support, and print, the new tag elements."
-msgstr ""
+msgstr "实现 IE 支持的 Javascript patch，以及输出新标记元素。"
 
 #: content/resources.html:158
 msgid ""
 "An set of HTML/CSS/JS templates with best practices for HTML5 and front-end "
 "dev built in."
-msgstr ""
+msgstr "一组 HTML5 及内置前端开发最佳实践的 HTML/CSS/JS 模板。"
 
 #: content/resources.html:163
 msgid "The collection of scripts that enable HTML5 features in all browsers."
-msgstr ""
+msgstr "在所有浏览器启用 HTML5 功能的脚本集。"
 
 #: content/resources.html:168 content/resources.html.py:173
 msgid "Preview CSS buttons with a fancy interface to play with the parameters."
-msgstr ""
+msgstr "预览界面漂亮的 CSS 按钮，并调整参数。"
 
 #: content/resources.html:178
 msgid "Test and get the code of the fanciest CSS features."
-msgstr ""
+msgstr "测试并获取最漂亮 CSS 功能的代码。"
 
 #: content/resources.html:183
 msgid "Generate CSS code for gradients on the fly."
-msgstr ""
+msgstr "试试生成渐变 CSS 代码。"
 
 #: content/resources.html:188
 msgid "Use CSS3 without having to worry about xbrowser differences."
-msgstr ""
+msgstr "使用 CSS3 而无需担心跨浏览器差异。"
 
 #: content/resources.html:193
 msgid "Test your fonts using drag and drop."
-msgstr ""
+msgstr "通过拖放测试字体。"
 
 #: content/resources.html:198
 msgid "Most complete tool to generate code for you font-face support."
-msgstr ""
+msgstr "为字体外观支持生成代码的最完整工具。"
 
 #: content/resources.html:203
 msgid "Complete list of tools related to web performance."
-msgstr ""
+msgstr "网络性能相关工具总表。"
 
 #: content/resources.html:260
 msgid "Books"
@@ -365,31 +392,33 @@ msgstr ""
 
 #: content/search.html:5
 msgid "Search Results"
-msgstr ""
+msgstr "搜索结果"
 
-#: content/slides.html:3
+#: content/slides.html:5
+#, fuzzy
 msgid "Videos and Presentations"
-msgstr ""
+msgstr "演示"
 
-#: content/slides.html:69
+#: content/slides.html:71
 msgid "HTML5 Slides, Presentations, and Videos"
 msgstr ""
 
-#: content/slides.html:75
+#: content/slides.html:77
 msgid "Filter talks by topic, person, etc"
 msgstr ""
 
-#: content/slides.html:76
+#: content/slides.html:78
 msgid "Only show talks more recent than:"
 msgstr ""
 
-#: content/slides.html:81
+#: content/slides.html:83
+#, fuzzy
 msgid "Loading..."
-msgstr ""
+msgstr "正在加载 feed..."
 
 #: content/tos.html:5
 msgid "Terms of Service"
-msgstr ""
+msgstr "服务条款"
 
 #: content/tos.html:13
 msgid ""
@@ -402,123 +431,130 @@ msgid ""
 "Policy</a>.</p>\n"
 "      "
 msgstr ""
+"\n"
+"      <p>HTML5ROCKS 网站 (本“网站”) 由 Google 托管。使用或访问本网站，均表明"
+"您同意遵守\n"
+"      这些服务条款以及 Google 的通用<a href=\"http://www.google.com/accounts/"
+"TOS\">服务条款</a>与 Google 的通用<a href=\"http://www.google.com/privacy."
+"html\">隐私政策</a>。</p>\n"
+"      "
 
 #: content/features/concept.html:12 content/features/feature.html:11
 #: content/mobile/index.html:17 content/tutorials/index.html:5
 #: templates/base.html:62 templates/mobile_tutorial.html:15
 #: templates/sample.html:12
 msgid "Tutorials"
-msgstr ""
+msgstr "教程"
 
 #: content/features/concept.html:13
 #, python-format
 msgid "learn more about %(category)s."
-msgstr ""
+msgstr "进一步了解 %(category)s。"
 
 #: content/features/concept.html:19
 msgid "View all related HTML5Rocks tutorials"
-msgstr ""
+msgstr "查看全部相关的 HTML5Rocks 教程"
 
 #: content/features/concept.html:24
 msgid "Themes"
-msgstr ""
+msgstr "主题"
 
 #: content/features/concept.html:32
 msgid "Technologies"
-msgstr ""
+msgstr "科技"
 
 #: content/features/concept.html:40
 msgid "Text"
-msgstr ""
+msgstr "文本"
 
 #: content/features/concept.html:41
 #, python-format
 msgid "read more about %(category)s."
-msgstr ""
+msgstr "进一步阅读 %(category)s。"
 
 #: content/features/concept.html:52
 msgid "Techniques"
-msgstr ""
+msgstr "技巧"
 
 #: content/features/feature.html:12
 #, python-format
 msgid "learn how to use %(category)s."
-msgstr ""
+msgstr "了解如何使用 %(category)s。"
 
 #: content/features/feature.html:18
 msgid "View all related HTML5Rocks tutorials</a> &rArr;"
-msgstr ""
+msgstr "查看全部相关的 HTML5Rocks 教程</a> &rArr;"
 
 #: content/features/feature.html:23
 msgid "Demos"
-msgstr ""
+msgstr "演示"
 
 #: content/features/feature.html:24
 #, python-format
 msgid "see %(category)s in action"
-msgstr ""
+msgstr "查看实际运行的 %(category)s"
 
 #: content/features/feature.html:34
 msgid "In the Wild"
-msgstr ""
+msgstr "实际应用"
 
 #: content/features/feature.html:35
 #, python-format
 msgid "who is using %(category)s?"
-msgstr ""
+msgstr "谁在使用 %(category)s?"
 
-#: content/features/feature.html:43 content/mobile/index.html:46
+#: content/features/feature.html:43 content/mobile/index.html:47
 msgid "Additional Resources"
-msgstr ""
+msgstr "其他资源"
 
 #: content/features/feature.html:44
 msgid "learn from the best, explore the potential"
-msgstr ""
+msgstr "学习最佳案例，探索潜能"
 
 #: content/features/feature_concept.html:5
 #: content/features/feature_concept.html:13
 msgid "Feature"
-msgstr ""
+msgstr "功能"
 
 #: content/features/feature_concept.html:18
 msgid "loading browser support data..."
-msgstr ""
+msgstr "正在加载浏览器支持数据..."
 
 #: content/features/feature_concept.html:22
 msgid "Chrome"
-msgstr ""
+msgstr "Chrome"
 
 #: content/features/feature_concept.html:23
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: content/features/feature_concept.html:24
 msgid "Safari"
-msgstr ""
+msgstr "Safari"
 
 #: content/features/feature_concept.html:25
 msgid "Opera"
-msgstr ""
+msgstr "Opera"
 
 #: content/features/feature_concept.html:26
 msgid "IE"
-msgstr ""
+msgstr "IE"
 
 #: content/features/feature_concept.html:27
 msgid "iOS Safari"
-msgstr ""
+msgstr "iOS Safari"
 
 #: content/features/feature_concept.html:28
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: content/features/feature_concept.html:29
 msgid "Opera Mini"
-msgstr ""
+msgstr "Opera Mini"
 
 #: content/features/feature_concept.html:30
 msgid "Opera Mobile"
-msgstr ""
+msgstr "Opera Mobile"
 
 #: content/features/feature_concept.html:35
 msgid ""
@@ -526,46 +562,68 @@ msgid ""
 "          and <a href=\"http://dev.chromium.org/developers/web-platform-"
 "status\">Chrome Platform Status</a>"
 msgstr ""
+"数据由 <a href=\"http://caniuse.com/\">caniuse.com</a>\n"
+"          与 <a href=\"http://dev.chromium.org/developers/web-platform-status"
+"\">Chrome 平台状态</a> 提供"
 
 #: content/features/feature_empty.html:5 content/features/feature_empty.html:6
 msgid "MyFeature"
-msgstr ""
+msgstr "我的功能"
 
 #: content/features/feature_empty.html:10
 msgid "\n"
-msgstr ""
+msgstr "\n"
 
 #: content/features/file.html:13
+#, fuzzy
 msgid ""
 "\n"
-"HTML5 provides (and in some cases, will soon provide) very powerful APIs to "
-"interact\n"
-"with binary data and a user's local file system. The File APIs give web "
-"applications the ability to\n"
-"do things like read files [a]synchronously, create arbitrary Blobs, write "
-"files to a temporary location, recursively read a file directory,\n"
+"HTML5 provides very powerful APIs to interact with binary data and a user's "
+"local file system.\n"
+"The File APIs give web applications the ability to do things like read files "
+"[a]synchronously,\n"
+"create arbitrary Blobs, write files to a temporary location, recursively "
+"read a file directory,\n"
 "perform file drag and drop from the desktop to the browser, and upload "
-"binary data using <code>XMLHttpRequest</code>.\n"
+"binary data using\n"
+"<code>XMLHttpRequest2</code>.\n"
 msgstr ""
+"\n"
+"HTML5 提供了 (部分是即将提供) 与\n"
+"二进制数据以及用户的本地文件系统交互的非常强大的 API。文件 API 允许 web 应"
+"用\n"
+"实现同步/异步读取文件、创建任意 Blob、将文件写入临时位置、递归读取文件目"
+"录、\n"
+"执行从桌面到浏览器的文件拖放、使用 <code>XMLHttpRequest</code> 上传二进制数"
+"据。\n"
 
-#: content/features/file.html:20
+#: content/features/file.html:21
+#, fuzzy
 msgid ""
 "\n"
 "As examples, the File APIs can be used to create a thumbnail preview of "
 "images as they're being sent to the server,\n"
 "or allow an app to save a file reference while the user is offline. Using "
-"the upcoming Audio Data API,\n"
+"the <a href=\"https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/"
+"specification.html\">Web Audio API</a>,\n"
 "your app could read an .mp3 file and display a visualization of the song as "
 "it plays. Additionally, you could use\n"
 "client-side logic to verify an upload's mimetype matches its file extension "
 "or restrict the size of an upload.\n"
 msgstr ""
+"\n"
+"例如，文件 API 可用来在将其发送至服务器时创建图像的缩略图预览，\n"
+"或允许应用在用户离线时保存文件引用。使用即将实现的 Audio Data API\n"
+"可让应用读取 .mp3 文件并在播放时显示可视化效果。此外，您可以使用\n"
+"客户端逻辑验证上传的 mimetype 与其文件扩展名匹配或限制上传尺寸。\n"
 
 #: content/features/file.html:77
 msgid ""
 "This W3C specification defines the File APIs: <code>File</code>, "
 "<code>FileList</code>, <code>FileReader</code>, <code>Blob</code>."
 msgstr ""
+"此 W3C 规范定义了文件 API: <code>File</code>、<code>FileList</code>、"
+"<code>FileReader</code>、<code>Blob</code>。"
 
 #: content/features/file.html:81
 msgid ""
@@ -573,38 +631,40 @@ msgid ""
 "interface for reading and writing files and directories in a sandboxed file "
 "system."
 msgstr ""
+"此 W3C 规范定义了文件系统 API; 在沙盒文件系统中提供读取与写入文件与目录的接"
+"口。"
 
 #: content/features/file.html:85
 msgid ""
 "This W3C specification defines the FileWriter API; which provides an "
 "interface for writing to files from web applications."
-msgstr ""
+msgstr "此 W3C 规范定义了 FileWriter API; 提供在 web 应用中写入文件的接口。"
 
 #: content/features/file.html:89
 msgid ""
 "This W3C specification defines the ProgressEvent; which gives asynchronous "
 "updates on the progress of a File read."
-msgstr ""
+msgstr "此 W3C 规范定义了 ProgressEvent; 提供 File 读取进度的异步更新。"
 
 #: content/features/file.html:93
 msgid "This whatwg specification defines the native HTML5 drag and drop APIs"
-msgstr ""
+msgstr "此 whatwg 规范定义了原生 HTML5 拖放 API"
 
 #: content/features/file.html:97
 msgid ""
 "Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files."
-msgstr ""
+msgstr "使用拖放、FileAPI 以及 XMLHttpRequest 上传文件的教程。"
 
 #: content/features/file.html:101
 msgid ""
 "Reference on the various dragging options that are available in the DnD API"
-msgstr ""
+msgstr "拖放 API 中可用的各种拖动选项参考"
 
 #: content/features/file.html:105
 msgid ""
 "Article on using Native Drag and Drop in HTML5. Discusses File drag/drop "
 "from desktop."
-msgstr ""
+msgstr "关于使用 HTML5 中原生拖放的文章。讨论从桌面拖/放文件。"
 
 #: content/features/graphics.html:13
 msgid ""
@@ -617,26 +677,32 @@ msgid ""
 "this is no longer the case! In fact, there are many new features which deal "
 "with graphics on the web:\n"
 msgstr ""
+"\n"
+"Web 一直是视觉媒体，充其量也还有限制的。\n"
+"直到最近，HTML 开发者只能用 CSS 与 JavaScript 为网站制作动画或视觉特效，\n"
+"否则只能依赖 Flash 之类的插件。 随着 canvas 元素、Web GL 以及 SVG 图像等技术"
+"的引入，\n"
+"再也不会有那些限制! 实际上，web 上有很多新功能可处理图形:\n"
 
 #: content/features/graphics.html:21
 msgid "2D Canvas"
-msgstr ""
+msgstr "2D Canvas"
 
 #: content/features/graphics.html:22
 msgid "WebGL"
-msgstr ""
+msgstr "WebGL"
 
 #: content/features/graphics.html:23
 msgid "SVG"
-msgstr ""
+msgstr "SVG"
 
 #: content/features/graphics.html:24
 msgid "3D CSS transforms"
-msgstr ""
+msgstr "3D CSS 变换"
 
 #: content/features/graphics.html:25
 msgid "SMIL"
-msgstr ""
+msgstr "SMIL"
 
 #: content/features/graphics.html:28
 msgid ""
@@ -649,6 +715,11 @@ msgid ""
 "browsers,\n"
 "meaning that even CSS transitions and transforms will be butter-smooth.\n"
 msgstr ""
+"\n"
+"当然，如果这些新技术不能够快速运行，将没有用处。\n"
+"幸好，JavaScript 引擎足够快，能够实时执行 3D 游戏与控制视频。\n"
+"硬件加速合成也正在很多浏览器中实现，\n"
+"意味着即使是 CSS 过渡与变换也将如黄油般流畅。\n"
 
 #: content/features/graphics.html:35
 msgid ""
@@ -659,11 +730,15 @@ msgid ""
 "algorithms,\n"
 "to brand new techniques created specifically for the modern web.\n"
 msgstr ""
+"\n"
+"开发者正在利用这些功能: 网上已出现大量 HTML 图形演示，\n"
+"从旧式 2D 图形算法\n"
+"到专为现代 web 创建的全新技术。\n"
 
 #: content/features/graphics.html:41 content/features/presentation.html:65
 #: content/features/storage.html:29
 msgid "Browser support"
-msgstr ""
+msgstr "浏览器支持"
 
 #: content/features/graphics.html:42
 msgid ""
@@ -672,74 +747,77 @@ msgid ""
 "worked on.\n"
 "A comprehensive graphics demo may use several of the following:\n"
 msgstr ""
+"\n"
+"“图形”这个话题如此之广，现在就有数个规范在起草。\n"
+"综合性图形演示可能会用到下述多个:\n"
 
 #: content/features/graphics.html:48
 msgid "PNG Alpha Transparency"
-msgstr ""
+msgstr "PNG Alpha 透明"
 
 #: content/features/graphics.html:49
 msgid "Data URLs"
-msgstr ""
+msgstr "Data URL"
 
 #: content/features/graphics.html:50
 msgid "CSS3 Colors"
-msgstr ""
+msgstr "CSS3 颜色"
 
 #: content/features/graphics.html:51
 msgid "SVG (basic support)"
-msgstr ""
+msgstr "SVG (基本支持)"
 
 #: content/features/graphics.html:52
 msgid "Canvas (basic support)"
-msgstr ""
+msgstr "Canvas (基本支持)"
 
 #: content/features/graphics.html:53
 msgid "Video element"
-msgstr ""
+msgstr "Video 元素"
 
 #: content/features/graphics.html:54
 msgid "CSS Transforms"
-msgstr ""
+msgstr "CSS 变换"
 
 #: content/features/graphics.html:55
 msgid "Text API for Canvas"
-msgstr ""
+msgstr "Canvas 文本 API"
 
 #: content/features/graphics.html:56
 msgid "SVG in CSS Backgrounds"
-msgstr ""
+msgstr "CSS SVG 背景"
 
 #: content/features/graphics.html:57
 msgid "SVG effects for HTML elements"
-msgstr ""
+msgstr "HTML 元素的 SVG 特效"
 
 #: content/features/graphics.html:58
 msgid "SVG SMIL animation"
-msgstr ""
+msgstr "SVG SMIL 动画"
 
 #: content/features/graphics.html:59
 msgid "SVG Fonts"
-msgstr ""
+msgstr "SVG 字体"
 
 #: content/features/graphics.html:60
 msgid "SVG filters"
-msgstr ""
+msgstr "SVG 滤镜"
 
 #: content/features/graphics.html:61
 msgid "CSS3 Animation"
-msgstr ""
+msgstr "CSS3 动画"
 
 #: content/features/graphics.html:62
 msgid "Inline SVG in HTML5"
-msgstr ""
+msgstr "HTML5 行内 SVG"
 
 #: content/features/graphics.html:63
 msgid "3D Canvas graphics / WebGL"
-msgstr ""
+msgstr "3D Canvas 图形 / WebGL"
 
 #: content/features/graphics.html:64
 msgid "CSS 3D Transforms"
-msgstr ""
+msgstr "CSS 3D 变换"
 
 #: content/features/graphics.html:67
 msgid ""
@@ -749,10 +827,15 @@ msgid ""
 "Chrome specific details can be found on the <a href=\"http://dev.chromium."
 "org/developers/web-platform-status\">Chrome Platform Status</a>.\n"
 msgstr ""
+"\n"
+"点击各规范到 <a href=\"http://caniuse.com/\">caniuse.com</a> 查看其支持情"
+"况。\n"
+"Chrome 特定的细节可以在 <a href=\"http://dev.chromium.org/developers/web-"
+"platform-status\">Chrome 平台状态</a>找到。\n"
 
 #: content/features/graphics.html:112
 msgid "Various WebGL / canvas demos which take advantage of HW accel"
-msgstr ""
+msgstr "采用硬件加速的各种 WebGL / canvas 演示"
 
 #: content/features/graphics.html:114
 msgid "WebGL solid modeling CAD"
@@ -760,58 +843,58 @@ msgstr ""
 
 #: content/features/graphics.html:116
 msgid "3D effects without WebGL"
-msgstr ""
+msgstr "无 WebGL 的 3D 特效"
 
 #: content/features/graphics.html:118
 msgid "Nicely polished canvas experiments"
-msgstr ""
+msgstr "很赞的 canvas 实验"
 
 #: content/features/graphics.html:120
 msgid "Old-school games effect"
-msgstr ""
+msgstr "传统游戏特效"
 
 #: content/features/graphics.html:122
 msgid "Various canvas demos which take advantage of HW accel"
-msgstr ""
+msgstr "采用硬件加速的各种 canvas 演示"
 
 #: content/features/graphics.html:124
 msgid "Nice integration between video and canvas"
-msgstr ""
+msgstr "视频与 canvas 的完美整合"
 
 #: content/features/graphics.html:131
 msgid "Support SVG on all browsers"
-msgstr ""
+msgstr "支持所有浏览器上的 SVG"
 
 #: content/features/graphics.html:133
 msgid "SVG, CSS, Canvas support for Illustrator"
-msgstr ""
+msgstr "Illustrator 的 SVG, CSS, Canvas 支持"
 
 #: content/features/graphics.html:135
 msgid "Animation library wrapping SVG"
-msgstr ""
+msgstr "封装 SVG 的动画库"
 
 #: content/features/graphics.html:137
 msgid "JavaScript scenegraph library for the canvas element"
-msgstr ""
+msgstr "canvas 元素 JavaScript 场景图库"
 
 #: content/features/graphics.html:139
 msgid ""
 "Port of Processing animation scripting language to JavaScript - uses canvas"
-msgstr ""
+msgstr "处理动画脚本语言的 JavaScript 实现 - 采用 canvas"
 
 #: content/features/graphics.html:141
 msgid "Lightweight 3D engine, uses canvas, SVG, WebGL"
-msgstr ""
+msgstr "轻量 3D 引擎，采用 canvas, SVG, WebGL"
 
 #: content/features/graphics.html:143
 msgid ""
 "Background and details on the implementation of hardware accelerated "
 "compositing in Chrome"
-msgstr ""
+msgstr "Chrome 中实现硬件加速合成的背景与详细信息"
 
 #: content/features/index.html:5
 msgid "Features"
-msgstr ""
+msgstr "功能"
 
 #: content/features/multimedia.html:12
 msgid ""
@@ -831,6 +914,14 @@ msgid ""
 "with the other technologies of the web stack, be it Canvas, SVG, CSS or even "
 "WebGL.\n"
 msgstr ""
+"\n"
+"音频与视频是 HTML5 Web 上的头等公民，就像过去\n"
+"其他媒体类型，如图像的地位。通过新的 API 可以\n"
+"访问、控制与操纵时间轴数据以及文件的网络状态。\n"
+"使用即将增加的 API 可以读取与写入音频文件的\n"
+"原始数据 (Audio Data API) 或操纵视频的说明文字 (Timed Track API)。\n"
+"但这些新 HTML 元素的真实能耐在与 web 堆栈中的\n"
+"其他技术组合起来时才能显现，比如与 Canvas、SVG、CSS 或甚至是 WebGL。\n"
 
 #: content/features/multimedia.html:21
 msgid ""
@@ -841,36 +932,42 @@ msgid ""
 "and, on top of that, use SVG filters a la Photoshop to distort the movie "
 "while the videos are playing.\n"
 msgstr ""
+"\n"
+"例如，您可以构建一款 DJ 混音器应用，显示一些可淡入淡出以及缩混音轨的控件。"
+"Canvas 允许从视频读取像素数据，以便增加附带场景选择功能的视频视觉化效果，最重"
+"要的是，使用 SVG 滤镜可以像 Photoshop 一样在视频播放时扭曲影片画面。\n"
 
 #: content/features/multimedia.html:70
 msgid ""
 "This W3C specification defines the audio element with all the available "
 "methods, attributes and events."
-msgstr ""
+msgstr "此 W3C 规范定义了 audio 元素及其所有可用方法、属性与事件。"
 
 #: content/features/multimedia.html:74
 msgid ""
 "This W3C specification defines the video element with all the available "
 "methods, attributes and events."
-msgstr ""
+msgstr "此 W3C 规范定义了 video 元素及其所有可用方法、属性与事件。"
 
 #: content/features/multimedia.html:78
 msgid ""
 "This W3C specification defines those methods and properties which are common "
 "to both audio and video elements."
-msgstr ""
+msgstr "此 W3C 规范定义了 audio 与 video 元素共有的方法与属性。"
 
 #: content/features/multimedia.html:82
 msgid ""
 "A subset of the media element spec currently being written where it defines "
 "means to handle metadata of audio/video files such as captions and subtitles."
 msgstr ""
+"当前正在起草的媒体元素规范的子集，定义了处理音频/视频文件元数据，如说明文字与"
+"字幕的方法。"
 
 #: content/features/multimedia.html:86
 msgid ""
 "Draft recommendation for Audio Data API where methods are defined to read "
 "and write spectrum data of audio files."
-msgstr ""
+msgstr "Audio Data API 草案推荐，定义了读写音频文件频谱数据的方法。"
 
 #: content/features/offline.html:12
 msgid ""
@@ -882,22 +979,26 @@ msgid ""
 "HTML5 and related specs introduce a number of features to make offline web "
 "apps a reality:\n"
 msgstr ""
+"\n"
+"“Web”与“在线”是两个紧密相连的术语，对很多人而言是完全同义的。\n"
+"既然这样，为何还要讨论“离线”web 技术，而这个术语又是什么意思?\n"
+"HTML5 以及相关的规范引入了一系列实现离线 web 应用的功能:\n"
 
 #: content/features/offline.html:19
 msgid "application cache"
-msgstr ""
+msgstr "应用程序缓存"
 
 #: content/features/offline.html:20
 msgid "localStorage"
-msgstr ""
+msgstr "localStorage"
 
 #: content/features/offline.html:21
 msgid "web SQL &amp; indexed database"
-msgstr ""
+msgstr "web SQL &amp; 索引数据库"
 
 #: content/features/offline.html:22
 msgid "online/offline events"
-msgstr ""
+msgstr "在线/离线事件"
 
 #: content/features/offline.html:25
 msgid ""
@@ -907,42 +1008,46 @@ msgid ""
 "application’s performance by storing data in the cache or to make data "
 "persistent between user sessions and when reloading and restoring pages."
 msgstr ""
+"离线状态的快速概览请考虑一看 <a href=\"/tutorials/offline/whats-offline/"
+"\">“离线”: 是什么意思? 为何要在意?</a>。哲学系功能也能用于通过在缓存存储数据"
+"或让数据在用户会话期间或重新加载与恢复页面时持久来改进应用的性能。"
 
 #: content/features/offline.html:76
 msgid "Presented by Nikolas Coukouma, January 5, 2011"
-msgstr ""
+msgstr "由 Nikolas Coukouma 演示，2011 那件 1 月 5 日"
 
 #: content/features/offline.html:78
 msgid ""
 "The w3c spec has the strict details on how the cache.manifest and "
 "applicationCache APIs work."
 msgstr ""
+"w3c 规范有 cache.manifest 与 applicationCache API 如何工作的严谨的详细信息。"
 
 #: content/features/offline.html:80
 msgid "Mark Pilgrim dives into using the app cache in practice."
-msgstr ""
+msgstr "Mark Pilgrim 深入应用缓存在实践中的使用。"
 
 #: content/features/offline.html:83
 msgid ""
 "Mozilla Developer Center reference documentation and guides, covering online "
 "and offline events and app cache."
-msgstr ""
+msgstr "Mozilla 开发中心参考文档与指南，涉及在线与离线事件与应用缓存。"
 
 #: content/features/offline.html:85
 msgid ""
 "Creating a todo list manager using localStorage, app cache and offline "
 "events. Putting everything together."
-msgstr ""
+msgstr "使用 localStorage、应用缓存与离线事件创建 todo 列表。各项的组合。"
 
 #: content/features/offline.html:87
 msgid ""
 "The app cache explained with solid examples showing different features and "
 "configurations in use."
-msgstr ""
+msgstr "以展示不同功能与配置的使用的可靠示例解释的应用缓存。"
 
 #: content/features/offline.html:89
 msgid "The C code used by Webkit for the app cache"
-msgstr ""
+msgstr "Webkit 用于应用缓存的 C 代码"
 
 #: content/features/performance.html:16
 msgid ""
@@ -955,6 +1060,11 @@ msgid ""
 "important, it's\n"
 "a constant theme across all aspects of your development and product.\n"
 msgstr ""
+"\n"
+"Web 应用现在可以与原生桌面应用的性能相匹敌。\n"
+"通过使用各种技巧与技术，您的站点与应用可以反应更敏捷\n"
+"用户能完成的事更多。 性能很重要，\n"
+"它是您开发与产品各方面永恒的主题。\n"
 
 #: content/features/performance.html:22
 #, python-format
@@ -970,6 +1080,15 @@ msgid ""
 "Documents/2007-10EmetricsExperimenation.pdf\">Microsoft found that slowing a "
 "page by 2 seconds decreased ad clicks by 4%%</a>.\n"
 msgstr ""
+"\n"
+"编写快速且反应敏捷的应用不仅对您的用户重要，还\n"
+"对您的底线重要。 例如，<a href=\"http://googlewebmastercentral.blogspot."
+"com/2010/04/using-site-speed-in-web-search-ranking.html\">Google 现在将站点速"
+"度纳为页面排名因素</a>。 <a href=\"http://exp-platform.com/"
+"Documents/2007-10EmetricsExperimenation.pdf\">Amazon 还发现，页面加载时间每"
+"慢 100 ms 将导致销售额降低 1%%</a>。此外，<a href=\"http://exp-platform.com/"
+"Documents/2007-10EmetricsExperimenation.pdf\">Microsoft 发现页面速度每慢 2 秒"
+"将减少 4%% 的广告点击</a>。\n"
 
 #: content/features/performance.html:26
 msgid ""
@@ -978,313 +1097,320 @@ msgid ""
 "to the network to the client. Focusing on performance is critical to "
 "success.\n"
 msgstr ""
+"\n"
+"Web 应用优化横跨开发的所有方面，从服务器到客户端网络。注重性能对成功至关重"
+"要。\n"
 
 #: content/features/performance.html:42
 msgid "Store locally."
-msgstr ""
+msgstr "在本地储存。"
 
 #: content/features/performance.html:43
 msgid ""
 "Data stored on the client is quicker to access than data stored on the "
 "server.  Also, data stored closer to the calculation is quicker to access."
 msgstr ""
+"存储在本地的数据比存储在服务器上的数据存取更快。 此外，接近计算存储的数据存取"
+"更快。"
 
 #: content/features/performance.html:44
 msgid "Process in the background."
-msgstr ""
+msgstr "在后台处理。"
 
 #: content/features/performance.html:45
 msgid ""
 "Anything that doesn't help the user see a response to their action should be "
 "performed in the background."
-msgstr ""
+msgstr "任何非相应用户操作的活动都应在后台执行。"
 
 #: content/features/performance.html:46
 msgid "Minimize connections."
-msgstr ""
+msgstr "最小化连接数。"
 
 #: content/features/performance.html:47
 msgid "Each connection requires work for setup and teardown."
-msgstr ""
+msgstr "每次连接都需要进行配置与断开工作。"
 
 #: content/features/performance.html:48
 msgid "Decrease bandwidth."
-msgstr ""
+msgstr "减轻带宽。"
 
 #: content/features/performance.html:49
 msgid "Less bandwidth means a faster response."
-msgstr ""
+msgstr "更少的带宽意味着更快的响应。"
 
 #: content/features/performance.html:56
 msgid "HTTP caching"
-msgstr ""
+msgstr "HTTP 缓存"
 
 #: content/features/performance.html:57
 msgid "Allow clients and servers to reduce connections and bandwidth."
-msgstr ""
+msgstr "允许客户端与服务器减轻连接数与带宽压力。"
 
 #: content/features/performance.html:58
 msgid "HTTP caching servers"
-msgstr ""
+msgstr "HTTP 缓存服务器"
 
 #: content/features/performance.html:59
 msgid ""
 "Servers like <a href=\"http://www.varnish-cache.org/\">Varnish</a> and <a "
 "href=\"http://www.squid-cache.org/\">Squid</a> can cache your content."
 msgstr ""
+"<a href=\"http://www.varnish-cache.org/\">Varnish</a> 与 <a href=\"http://"
+"www.squid-cache.org/\">Squid</a> 等服务器可以缓存您的内容。"
 
 #: content/features/performance.html:60
 msgid "Memcache"
-msgstr ""
+msgstr "Memcache"
 
 #: content/features/performance.html:61
 msgid "Efficient server side storage and retrieval of key/value data"
-msgstr ""
+msgstr "高效的服务端存储与键/值数据检索"
 
 #: content/features/performance.html:62
 msgid "Web workers"
-msgstr ""
+msgstr "Web workers"
 
 #: content/features/performance.html:63
 msgid "Run JavaScript in the background, in parallel with the main window"
-msgstr ""
+msgstr "与主窗口平行在后台运行 JavaScript"
 
 #: content/features/performance.html:64
 msgid "Web sockets"
-msgstr ""
+msgstr "Web sockets"
 
 #: content/features/performance.html:65
 msgid "Efficient bi-directional streaming communication"
-msgstr ""
+msgstr "高效的双向流式通讯"
 
 #: content/features/performance.html:66
 msgid "Local storage"
-msgstr ""
+msgstr "本地存储"
 
 #: content/features/performance.html:67
 msgid "Client side key/value data storage"
-msgstr ""
+msgstr "客户端键/值数据存储"
 
 #: content/features/performance.html:68
 msgid "Indexed database"
-msgstr ""
+msgstr "索引数据库"
 
 #: content/features/performance.html:69
 msgid "Client side simple object storage"
-msgstr ""
+msgstr "客户端简单对象存储"
 
 #: content/features/performance.html:70
 msgid "App cache"
-msgstr ""
+msgstr "应用缓存"
 
 #: content/features/performance.html:71
 msgid "Caching web app assets locally for offline use"
-msgstr ""
+msgstr "在本地缓存网页应用资源供离线使用"
 
 #: content/features/performance.html:72
 msgid "CSS3 transitions and animations"
-msgstr ""
+msgstr "CSS3 过渡与动画"
 
 #: content/features/performance.html:73
 msgid ""
 "Native (and possibly hardware accelerated) property changes for elements"
-msgstr ""
+msgstr "原生 (可能经硬件加速) 元素属性变更"
 
 #: content/features/performance.html:74
 msgid "CSS sprites"
-msgstr ""
+msgstr "CSS sprites"
 
 #: content/features/performance.html:75
 msgid "Combining many small images into one image, reduce downloads"
-msgstr ""
+msgstr "将很多小图像合并为一个图像，减少下载量"
 
 #: content/features/performance.html:76
 msgid "Link prefetching"
-msgstr ""
+msgstr "链接预装载"
 
 #: content/features/performance.html:77
 msgid "Ask the browser to download other pages in the background"
-msgstr ""
+msgstr "让浏览器在后台下载其他页面"
 
 #: content/features/performance.html:78
 msgid "Native client"
-msgstr ""
+msgstr "原生客户端"
 
 #: content/features/performance.html:79
 msgid "Run native code (C/C++) in a browser sandbox"
-msgstr ""
+msgstr "在浏览器沙盒中运行原生代码 (C/C++)"
 
 #: content/features/performance.html:80
 msgid "HTTP persistent connections"
-msgstr ""
+msgstr "HTTP 持久连接"
 
 #: content/features/performance.html:81
 msgid "send multiple resources over the same connection"
-msgstr ""
+msgstr "在同一连接中发送多个资源"
 
 #: content/features/performance.html:82
 msgid "Web fonts"
-msgstr ""
+msgstr "Web 字体"
 
 #: content/features/performance.html:83
 msgid "natively render text instead of download images"
-msgstr ""
+msgstr "原生渲染文本，替代图像下载"
 
 #: content/features/performance.html:84
 msgid "Data URI"
-msgstr ""
+msgstr "Data URI"
 
 #: content/features/performance.html:85
 msgid "Embed binary data such as images into HTML, reducing HTTP requests"
-msgstr ""
+msgstr "在 HTML 中嵌入图片等二进制数据，减少 HTTP 请求数"
 
 #: content/features/performance.html:91
 msgid "HTTP Caching"
-msgstr ""
+msgstr "HTTP 缓存"
 
 #: content/features/performance.html:92
 msgid "Use If-Modified-Since and ETags to reduce content over the wire."
-msgstr ""
+msgstr "使用 If-Modified-Since 与 ETags 减少内容传输流量。"
 
 #: content/features/performance.html:93
 msgid "Data caching"
-msgstr ""
+msgstr "数据缓存"
 
 #: content/features/performance.html:94
 msgid "Use systems like Memcache for frequently accessed data."
-msgstr ""
+msgstr "对常用数据采用 Memcache 等系统。"
 
 #: content/features/performance.html:95
 msgid "Local data caching"
-msgstr ""
+msgstr "本地数据缓存"
 
 #: content/features/performance.html:96
 msgid "Put data on the client for faster access."
-msgstr ""
+msgstr "将数据放在客户端以便更快存取。"
 
 #: content/features/performance.html:97
 msgid "Content delivery networks"
-msgstr ""
+msgstr "内容传送网络"
 
 #: content/features/performance.html:98
 msgid "Place the content closer to the client with a CDN."
-msgstr ""
+msgstr "通过 CDN 将内容与客户端的距离拉近。"
 
 #: content/features/performance.html:99
 msgid "Efficient data retrieval"
-msgstr ""
+msgstr "高效数据检索"
 
 #: content/features/performance.html:100
 msgid "Minimize SQL calls, reduce joins, retrieve via an index."
-msgstr ""
+msgstr "最小化 SQL 调用，减少 join 操作，通过索引检索。"
 
 #: content/features/performance.html:101
 msgid "Pre-calculating results"
-msgstr ""
+msgstr "预计算结果"
 
 #: content/features/performance.html:102
 msgid "Denormalize or pre-calculate frequently retrieved data."
-msgstr ""
+msgstr "反常规化或预计算常检索数据。"
 
 #: content/features/performance.html:103
 msgid "Minification"
-msgstr ""
+msgstr "微化"
 
 #: content/features/performance.html:104
 msgid "Shrink your JavaScript, CSS, and even HTML files."
-msgstr ""
+msgstr "减少 JavaScript、CSS 甚至是 HTML 文件。"
 
 #: content/features/performance.html:105
 msgid "Compression"
-msgstr ""
+msgstr "压缩"
 
 #: content/features/performance.html:106
 msgid "Compress your assets via HTTP's Accept-Encoding."
-msgstr ""
+msgstr "通过 HTTP 的 Accept-Encoding 压缩资源。"
 
 #: content/features/performance.html:107
 msgid "Asynchronous callbacks"
-msgstr ""
+msgstr "异步回调"
 
 #: content/features/performance.html:108
 msgid "Defer the work, get notified when it’s done."
-msgstr ""
+msgstr "推迟工作，并在完成时得到通知。"
 
 #: content/features/performance.html:109
 msgid "Hardware acceleration"
-msgstr ""
+msgstr "硬件加速"
 
 #: content/features/performance.html:110
 msgid "Browsers are now using the GPU for things like canvas and transforms."
-msgstr ""
+msgstr "浏览器现在采用 GPU 处理 canvas、变换等内容。"
 
 #: content/features/performance.html:111
 msgid "Moving calculations close to data"
-msgstr ""
+msgstr "让计算更接近数据"
 
 #: content/features/performance.html:112
 msgid "Data is bigger than algorithms, move code and not data."
-msgstr ""
+msgstr "数据比算法更大，移动代码而非数据。"
 
 #: content/features/performance.html:113
 msgid "Profiling"
-msgstr ""
+msgstr "汇集"
 
 #: content/features/performance.html:114
 msgid ""
 "Use tools to understand and collect real life data. Measure, don’t guess."
-msgstr ""
+msgstr "使用工具理解并收集现实生活数据。测量，而非猜测。"
 
 #: content/features/performance.html:115
 msgid "Sprites"
-msgstr ""
+msgstr "Sprites"
 
 #: content/features/performance.html:116
 msgid "Place many images into one file, minimizing HTTP requests."
-msgstr ""
+msgstr "将很多图像合并为一个文件，最小化 HTTP 请求数。"
 
 #: content/features/performance.html:117
 msgid "Image optimization"
-msgstr ""
+msgstr "图像优化"
 
 #: content/features/performance.html:118
 msgid "Compress your images, pick the right format for the job."
-msgstr ""
+msgstr "压缩图像，选择合适的格式。"
 
 #: content/features/performance.html:119
 msgid "Specify image width and heights"
-msgstr ""
+msgstr "指定图像宽度与高度"
 
 #: content/features/performance.html:120
 msgid ""
 "Tell the browser how to render around images before they are downloaded."
-msgstr ""
+msgstr "在图像下载完成之前告诉浏览器如何渲染周边区域。"
 
 #: content/features/performance.html:121
 msgid "Place JavaScript at the bottom of your HTML"
-msgstr ""
+msgstr "将 JavaScript 放在 HTML 底部"
 
 #: content/features/performance.html:122
 msgid "Let the page download and begin rendering."
-msgstr ""
+msgstr "让页面先下载再开始渲染。"
 
 #: content/features/performance.html:123
 msgid "Rendering on the client"
-msgstr ""
+msgstr "客户端渲染"
 
 #: content/features/performance.html:124
 msgid ""
 "Use canvas to draw images, or web fonts to render text, instead of "
 "downloading assets."
-msgstr ""
+msgstr "使用 canvas 绘制图像，或使用 web 字体渲染文本，而非下载资源。"
 
 #: content/features/performance.html:125
 msgid "Read 'High Performance Web Sites' and 'Even Faster Web Sites'"
-msgstr ""
+msgstr "阅读《高性能网站》与《更快的网站》"
 
 #: content/features/performance.html:126
 msgid "Covers web app performance in great detail"
-msgstr ""
+msgstr "详细讲解了 web 应用性能"
 
 #: content/features/performance.html:132
 msgid ""
@@ -1292,38 +1418,43 @@ msgid ""
 "and <a href=\"http://developer.apple.com/technologies/safari/developer-tools."
 "html\">Safari</a>"
 msgstr ""
+"<a href=\"http://www.chromium.org/devtools\">Chrome</a> 与 <a href=\"http://"
+"developer.apple.com/technologies/safari/developer-tools.html\">Safari</a> 的"
+"开发工具"
 
 #: content/features/performance.html:133
 msgid ""
 "Peer into requests, walk the DOM, set JavaScript breakpoints, get behind the "
 "scenes"
-msgstr ""
+msgstr "深入请求、跨过 DOM、设置 JavaScript 断点、步入后台"
 
 #: content/features/performance.html:134
 msgid "<a href=\"http://www.opera.com/dragonfly/\">Dragonfly</a> for Opera"
-msgstr ""
+msgstr "<a href=\"http://www.opera.com/dragonfly/\">Dragonfly</a> for Opera"
 
 #: content/features/performance.html:135
 msgid "Similar to Webkit Developer Tools, but for Opera"
-msgstr ""
+msgstr "类似于 Webkit 开发工具，但供 Opera 使用"
 
 #: content/features/performance.html:136
 msgid "<a href=\"http://getfirebug.com/\">Firebug</a> for Firefox"
-msgstr ""
+msgstr "<a href=\"http://getfirebug.com/\">Firebug</a> for Firefox"
 
 #: content/features/performance.html:137
 msgid "Similar to Opera Dragonfly, but for Firefox."
-msgstr ""
+msgstr "类似于 Opera Dragonfly，但供 Firefox 使用。"
 
 #: content/features/performance.html:138
 msgid ""
 "<a href=\"http://www.html5rocks.com/tutorials/developertools/auditpanel/"
 "\">Audit panel</a> in the Developer tools"
 msgstr ""
+"开发工具的<a href=\"http://www.html5rocks.com/tutorials/developertools/"
+"auditpanel/\">审查面板</a>"
 
 #: content/features/performance.html:139
 msgid "Get suggestions for speeding up your web app"
-msgstr ""
+msgstr "获取加速 web 应用的建议"
 
 #: content/features/performance.html:140
 msgid ""
@@ -1331,47 +1462,52 @@ msgid ""
 "not just for GWT, check out the <a href=\"http://www.igvita.com/2010/07/19/"
 "speed-tracer-server-side-tracing-with-rack/\">Ruby plugin</a>"
 msgstr ""
+"<a href=\"http://code.google.com/webtoolkit/speedtracer/\">Speedtracer</a> - "
+"不仅供 GWT 使用，还有 <a href=\"http://www.igvita.com/2010/07/19/speed-"
+"tracer-server-side-tracing-with-rack/\">Ruby 插件</a>"
 
 #: content/features/performance.html:141
 msgid "Identify and fix performance problems in your web app"
-msgstr ""
+msgstr "鉴定并修正 web 应用的性能问题"
 
 #: content/features/performance.html:142
 msgid "<a href=\"http://developer.yahoo.com/yslow/\">YSlow</a> for Firebug"
-msgstr ""
+msgstr "Firebug <a href=\"http://developer.yahoo.com/yslow/\">YSlow</a> 扩展"
 
 #: content/features/performance.html:143
 msgid "Like the Developer Tools' Audit Panel, but for Firefox"
-msgstr ""
+msgstr "与开发工具的审查面板类似，但供 Firefox 使用"
 
 #: content/features/performance.html:144
 msgid ""
 "<a href=\"http://code.google.com/closure/compiler/\">Closure JavaScript "
 "compiler</a>"
 msgstr ""
+"<a href=\"http://code.google.com/closure/compiler/\">Closure JavaScript 编译"
+"器</a>"
 
 #: content/features/performance.html:145
 msgid "Minify, reduce, and obfuscate your JavaScript"
-msgstr ""
+msgstr "精简与模糊化 JavaScript"
 
 #: content/features/performance.html:146
 msgid ""
 "<a href=\"http://developer.yahoo.com/yui/compressor/\">YUI Compressor</a>"
-msgstr ""
+msgstr "<a href=\"http://developer.yahoo.com/yui/compressor/\">YUI 压缩器</a>"
 
 #: content/features/performance.html:147
 msgid "Minify and obfuscate your JavaScript and CSS"
-msgstr ""
+msgstr "精简与模糊化 JavaScript 及 CSS"
 
 #: content/features/performance.html:148
 msgid "<a href=\"http://www.webpagetest.org/\">WebPageTest</a>"
-msgstr ""
+msgstr "<a href=\"http://www.webpagetest.org/\">WebPageTest</a>"
 
 #: content/features/performance.html:149
 msgid ""
 "An industry collaboration providing the testing infrastructure for testing "
 "from around the globe"
-msgstr ""
+msgstr "业界协作成果，提供在全球进行测试的测试设施"
 
 #: content/features/presentation.html:11
 msgid ""
@@ -1386,18 +1522,27 @@ msgid ""
 "  <a href=\"http://www.w3.org/TR/css3-webfonts\">WebFonts</a> to name just a "
 "few.\n"
 msgstr ""
+"\n"
+"  CSS3 的引入令用 HTML 创建丰富\n"
+"  美观站点与应用更加简便。CSS3 有很多新技术与\n"
+"  扩展，包括: <a href=\"http://www.w3.org/TR/css3-2d-transforms\">2D 变形</"
+"a>、\n"
+"  <a href=\"http://www.w3.org/TR/css3-transistion\">过渡</a>、\n"
+"  <a href=\"http://www.w3.org/TR/css3-3d-transforms\">3D 变换</a>及\n"
+"  <a href=\"http://www.w3.org/TR/css3-webfonts\">WebFonts</a> 等等。\n"
 
 #: content/features/presentation.html:20
 msgid ""
 "You can create rich user experiences with no coding effort required, just "
 "simply apply a little CSS to your existing applications."
-msgstr ""
+msgstr "无需编写代码即可创建丰富的用户体验，只需对现有应用应用一小段 CSS。"
 
 #: content/features/presentation.html:45
 msgid ""
 "CSS3 Transformations allow you to apply rotations, scales, skews and "
 "translations to any DOM element with simple styles."
 msgstr ""
+"CSS3 变换允许您通过简单的样式应用旋转、缩放、倾斜以及过渡为任意 DOM 元素。"
 
 #: content/features/presentation.html:49
 msgid ""
@@ -1405,12 +1550,14 @@ msgid ""
 "between transformed states.  For example, you can animate the background "
 "color when the user hovers over an element."
 msgstr ""
+"过渡允许指定 DOM 元素的样式如何在变换态之间绘制动画。 例如，您可以绘制用户划"
+"过元素时背景颜色的动画。"
 
 #: content/features/presentation.html:59
 msgid ""
 "Applying 3D transforms is simple too.  Just specify the transformation in 3d "
 "co-ordinates and you are ready."
-msgstr ""
+msgstr "应用 3D 变换同样简单。 只需以 3d 坐标指定变换即可。"
 
 #: content/features/presentation.html:66
 msgid ""
@@ -1420,37 +1567,41 @@ msgid ""
 "\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform "
 "Status</a>."
 msgstr ""
+"不是所有浏览器都支持变换、过渡与 3d 变换。 请查看<a href=\"http://caniuse."
+"com/#feat=css3\">caniuse.com 上的主流浏览器对 CSS3 的支持情况</a>。Chrome 特"
+"定的详细情况可以在 <a href=\"http://dev.chromium.org/developers/web-platform-"
+"status\">Chrome 平台状态</a>找到。"
 
 #: content/features/presentation.html:115
 msgid "A list of the current status of the CSS3 specifications."
-msgstr ""
+msgstr "CSS3 规范当前状态列表。"
 
 #: content/features/presentation.html:117
 msgid ""
 "This W3C specification defines the new selectors available to developers."
-msgstr ""
+msgstr "此 W3C 规范定义了开发者可用的新选择器。"
 
 #: content/features/presentation.html:121
 msgid ""
 "This W3C specification defines how rotations, transformations, skews and "
 "scaling should be applied to DOM elements in 2 dimensions."
-msgstr ""
+msgstr "此 W3C 规范定义了旋转、转化、倾斜与缩放应如何应用到二维的 DOM 元素。"
 
 #: content/features/presentation.html:125
 msgid ""
 "This W3C specification defines how 3d transformations should be applied to "
 "DOM elements."
-msgstr ""
+msgstr "此 W3C 规范定义了 3d 变换应如何应用到 DOM 元素。"
 
 #: content/features/presentation.html:129
 msgid ""
 "This W3C specification defines how properties should be animated between "
 "states."
-msgstr ""
+msgstr "此 W3C 规范定义了动画各态之间属性应如何绘制。"
 
 #: content/features/presentation.html:131
 msgid "This W3C specification defines the new animation properties available."
-msgstr ""
+msgstr "此 W3C 规范定义了新的可用动画属性。"
 
 #: content/features/storage.html:12
 msgid ""
@@ -1461,6 +1612,10 @@ msgid ""
 "device. It might also be sync'd back to the server, or it might only ever "
 "stay on the client: that's down to you, the developer.\n"
 msgstr ""
+"\n"
+"Web 开发者想到储存任何关于用户的数据时，他们立刻回想到上传到服务器。HTML5 改"
+"变了这种想法，因为有几种技术允许应用在客户端设备保存数据。数据还可以同步回服"
+"务器，或者只一直留在客户端: 这由您，开发者决定。\n"
 
 #: content/features/storage.html:15
 msgid ""
@@ -1478,10 +1633,18 @@ msgid ""
 "discussion of offline technologies, of which client-side storage is one "
 "component.\n"
 msgstr ""
+"\n"
+"有几点理由利用客户端存储。首先，您可以让应用在离线时也能工作，可能在网络再次"
+"连接后将数据同步回去。其次，客户端存储是性能助推器; 您可以在用户点击后即时显"
+"示大量数据，而无需再等待其下载。再者，客户端存储是更简单的程序模型，无需服务"
+"器架构。当然，数据更脆弱，而用户勿发从多个客户端访问，因此您只能将其用户非关"
+"键性数据，尤其是缓存同时“存在于云中”的数据版本。请参见<a href=\"/tutorials/"
+"offline/whats-offline/\">“离线”: 是什么意思? 为何要在意?</a> 对离线技术、哪方"
+"面客户端存储能成为组件的大体讨论。\n"
 
 #: content/features/storage.html:19
 msgid "The technologies are:"
-msgstr ""
+msgstr "这些技术有:"
 
 #: content/features/storage.html:21
 msgid ""
@@ -1492,12 +1655,18 @@ msgid ""
 "You can do so using <code>JSON.stringify()</code> and <code>JSON.parse()</"
 "code>."
 msgstr ""
+"<a href=\"http://dev.w3.org/html5/webstorage/\">Web 存储</a> 简单地提高了键-"
+"值映射，如 <code>localStorage[\"名字\"] = 用户名;</code>。 不幸的是，目前的实"
+"现只支持字符串到字符串的映射，因此需要序列化与反序列化其他数据结构。您可以通"
+"过 <code>JSON.stringify()</code> 与 <code>JSON.parse()</code> 做到。"
 
 #: content/features/storage.html:22
 msgid ""
 "<a href=\"http://dev.w3.org/html5/webdatabase/\">Web SQL Database</a> gives "
 "you all the power - and effort - of a structured SQL relational database."
 msgstr ""
+"<a href=\"http://dev.w3.org/html5/webdatabase/\">Web SQL 数据库</a> 提供结构 "
+"SQL 关系数据库的全部功能 - 以及效果。"
 
 #: content/features/storage.html:23
 msgid ""
@@ -1507,6 +1676,9 @@ msgid ""
 "of relational databases, so searching objects matching a particular field is "
 "fast; you don't have to manually iterate through every object in the store."
 msgstr ""
+"<a href=\"http://www.w3.org/TR/IndexedDB/\">索引数据库</a>介于 Web 存储与 "
+"Web SQL 数据库之间。与 Web 存储类似，是直接的键-值映射，但支持像关系数据库一"
+"样的索引，因此搜索匹配特定字串的对象很快; 您无需手动对库中的各对象反复运算。"
 
 #: content/features/storage.html:24
 msgid ""
@@ -1517,6 +1689,10 @@ msgid ""
 "show the image. There are also proposals underway for file writing "
 "capabilities."
 msgstr ""
+"<a href=\"http://www.w3.org/TR/FileAPI/\">文件访问</a> 是通过 JavaScript 读取"
+"文件内容的 API。对给定的用户通过“file”input 元素添加的一组文件，您可以读取文"
+"件内容或将其作为 URL 引用，例如，如果用户指定了图像文件，您可以显示图像。另有"
+"文件写入功能的提案正在进行。"
 
 #: content/features/storage.html:27
 msgid ""
@@ -1524,6 +1700,8 @@ msgid ""
 "see our <a href=\"/tutorials/offline/storage/\">Client-Side Storage</a> "
 "article."
 msgstr ""
+"客户端存储技术的详细比较以及代码演示请见我们的<a href=\"/tutorials/offline/"
+"storage/\">客户端存储</a>一文。"
 
 #: content/features/storage.html:30
 msgid ""
@@ -1534,78 +1712,86 @@ msgid ""
 "implementation in Firefox 4.0 Beta and Chrome dev channel. There's a good "
 "chance all browsers will support it in the future, but that's not yet clear."
 msgstr ""
+"尽管 Chrome、Safari &amp; Opera 支持 Web SQL 数据库，Firefox 与 IE 在短期内似"
+"乎还不会支持它 (Mozilla 持<a href=\"http://hacks.mozilla.org/2010/06/beyond-"
+"html5-database-apis-and-the-road-to-indexeddb/\">原则上反对</a>的态度)。索引"
+"数据库在 Firefox 4.0 Beta 与 Chrome dev 分支较早实现。很有可能得到所有浏览器"
+"的支持，但尚不明确。"
 
 #: content/features/storage.html:72
 msgid "Mark Pilgrim dives into using the storage APIs."
-msgstr ""
+msgstr "Mark Pilgrim 深入存储 API 的使用。"
 
 #: content/features/storage.html:74
+#, fuzzy
 msgid "Mozilla Developer Center on Web Storage."
-msgstr ""
+msgstr "Mozilla 开发中心上的 IndexedDB。"
 
 #: content/features/storage.html:76
 msgid "Mozilla Developer Center on IndexedDB."
-msgstr ""
+msgstr "Mozilla 开发中心上的 IndexedDB。"
 
 #: content/features/storage.html:78
 msgid ""
 "Creating a todo list manager using localStorage, app cache and offline "
 "events."
-msgstr ""
+msgstr "使用 localStorage、应用缓存与离线事件创建 todo 列表管理器。"
 
 #: content/features/storage.html:80
 msgid "Mozilla explains its views on Web SQL Database and Indexed Database"
-msgstr ""
+msgstr "Mozilla 解释其 Web SQL 数据库与索引数据库的观点"
 
 #: content/mobile/index.html:18
 msgid "Learn how to leverage HTML5 in mobile"
 msgstr ""
 
 #: content/mobile/index.html:24
+#, fuzzy
 msgid "View all HTML5Rocks mobile tutorials"
-msgstr ""
+msgstr "查看全部相关的 HTML5Rocks 教程"
 
-#: content/mobile/index.html:47
+#: content/mobile/index.html:48
 msgid "A collection of useful references"
 msgstr ""
 
 #: content/tutorials/index.html:22
 msgid "Currently filtering by tag"
-msgstr ""
+msgstr "当前按标记过滤"
 
 #: content/tutorials/index.html:23
 msgid "[Clear filter]"
-msgstr ""
+msgstr "[清除过滤器]"
 
 #: content/tutorials/index.html:27
 msgid "Filter by tag"
-msgstr ""
+msgstr "按标记过滤"
 
-#: content/tutorials/index.html:545
+#: content/tutorials/index.html:595
 msgid "Case Study: Converting Wordico from Flash to HTML5"
-msgstr ""
+msgstr "案例分析: 将 Wordico 从 Flash 转换为 HTML5"
 
-#: content/tutorials/index.html:548 content/tutorials/index.html.py:576
-#: content/tutorials/index.html:602 content/tutorials/index.html.py:629
-#: content/tutorials/index.html:657 content/tutorials/index.html.py:685
-#: content/tutorials/index.html:711 content/tutorials/index.html.py:738
-#: content/tutorials/index.html:763 content/tutorials/index.html.py:790
-#: content/tutorials/index.html:818 content/tutorials/index.html.py:843
-#: content/tutorials/index.html:868 content/tutorials/index.html.py:891
-#: content/tutorials/index.html:915 content/tutorials/index.html.py:943
-#: content/tutorials/index.html:968 content/tutorials/index.html.py:993
-#: content/tutorials/index.html:1017 content/tutorials/index.html.py:1043
-#: content/tutorials/index.html:1070 content/tutorials/index.html.py:1095
+#: content/tutorials/index.html:598 content/tutorials/index.html.py:626
+#: content/tutorials/index.html:652 content/tutorials/index.html.py:679
+#: content/tutorials/index.html:707 content/tutorials/index.html.py:735
+#: content/tutorials/index.html:761 content/tutorials/index.html.py:788
+#: content/tutorials/index.html:813 content/tutorials/index.html.py:840
+#: content/tutorials/index.html:868 content/tutorials/index.html.py:893
+#: content/tutorials/index.html:918 content/tutorials/index.html.py:941
+#: content/tutorials/index.html:965 content/tutorials/index.html.py:993
+#: content/tutorials/index.html:1018 content/tutorials/index.html.py:1043
+#: content/tutorials/index.html:1067 content/tutorials/index.html.py:1093
 #: content/tutorials/index.html:1120 content/tutorials/index.html.py:1145
-#: content/tutorials/index.html:1170 content/tutorials/index.html.py:1194
-#: content/tutorials/index.html:1220 content/tutorials/index.html.py:1245
-#: content/tutorials/index.html:1270 content/tutorials/index.html.py:1296
-#: content/tutorials/index.html:1319 content/tutorials/index.html.py:1342
-#: content/tutorials/index.html:1367
+#: content/tutorials/index.html:1170 content/tutorials/index.html.py:1195
+#: content/tutorials/index.html:1220 content/tutorials/index.html.py:1244
+#: content/tutorials/index.html:1270 content/tutorials/index.html.py:1295
+#: content/tutorials/index.html:1320 content/tutorials/index.html.py:1346
+#: content/tutorials/index.html:1369 content/tutorials/index.html.py:1392
+#: content/tutorials/index.html:1417
 msgid "By:"
-msgstr ""
+msgstr "作者:"
 
-#: content/tutorials/index.html:553
+#: content/tutorials/index.html:603
+#, fuzzy
 msgid ""
 "\n"
 "        Learn how we converted our <a href=\"https://chrome.google.com/"
@@ -1613,31 +1799,25 @@ msgid ""
 "        crossword game from Flash to HTML5.\n"
 "      "
 msgstr ""
+"\n"
+"          了解我们是如何将 <a href=\"https://chrome.google.com/webstore/"
+"detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl\">Wordico</a>\n"
+"          这款填字游戏由 Flash 转换为 HTML5 的。\n"
+"        "
 
-#: content/tutorials/index.html:559 content/tutorials/index.html.py:585
-#: content/tutorials/index.html:612 content/tutorials/index.html.py:640
-#: content/tutorials/index.html:668 content/tutorials/index.html.py:694
-#: content/tutorials/index.html:720 content/tutorials/index.html.py:747
-#: content/tutorials/index.html:774 content/tutorials/index.html.py:801
-#: content/tutorials/index.html:827 content/tutorials/index.html.py:852
-#: content/tutorials/index.html:875 content/tutorials/index.html.py:899
-#: content/tutorials/index.html:927 content/tutorials/index.html.py:952
-#: content/tutorials/index.html:1027 content/tutorials/index.html.py:1054
-#: content/tutorials/index.html:1079 content/tutorials/index.html.py:1104
-#: content/tutorials/index.html:1129 content/tutorials/index.html.py:1154
-#: content/tutorials/index.html:1178 content/tutorials/index.html.py:1204
-#: content/tutorials/index.html:1229 content/tutorials/index.html.py:1254
-#: content/tutorials/index.html:1280 content/tutorials/index.html.py:1303
-#: content/tutorials/index.html:1326 content/tutorials/index.html.py:1351
-#: content/tutorials/index.html:1377
-msgid "View tutorial"
+#: content/tutorials/index.html:609 content/tutorials/index.html.py:718
+#: content/tutorials/index.html:770 content/tutorials/index.html.py:797
+#: content/tutorials/index.html:877 content/tutorials/index.html.py:1027
+#: content/tutorials/index.html:1051
+msgid "View case study"
 msgstr ""
 
-#: content/tutorials/index.html:573 content/tutorials/index.html.py:1067
+#: content/tutorials/index.html:623 content/tutorials/index.html.py:1117
 msgid "\\"
-msgstr ""
+msgstr "\\"
 
-#: content/tutorials/index.html:579
+#: content/tutorials/index.html:629
+#, fuzzy
 msgid ""
 "\n"
 "        A guide on how to create a mobile version of an existing HTML5 "
@@ -1646,12 +1826,33 @@ msgid ""
 "users.\n"
 "      "
 msgstr ""
+"\n"
+"          如何创建现有 HTML5 网站移动版的指南。此研究\n"
+"          涉及需要什么才能让 html5rocks.com 对移动用户友好。\n"
+"        "
 
-#: content/tutorials/index.html:599
+#: content/tutorials/index.html:635 content/tutorials/index.html.py:662
+#: content/tutorials/index.html:690 content/tutorials/index.html.py:744
+#: content/tutorials/index.html:824 content/tutorials/index.html.py:851
+#: content/tutorials/index.html:902 content/tutorials/index.html.py:925
+#: content/tutorials/index.html:949 content/tutorials/index.html.py:977
+#: content/tutorials/index.html:1002 content/tutorials/index.html.py:1077
+#: content/tutorials/index.html:1104 content/tutorials/index.html.py:1129
+#: content/tutorials/index.html:1154 content/tutorials/index.html.py:1179
+#: content/tutorials/index.html:1204 content/tutorials/index.html.py:1228
+#: content/tutorials/index.html:1254 content/tutorials/index.html.py:1279
+#: content/tutorials/index.html:1304 content/tutorials/index.html.py:1330
+#: content/tutorials/index.html:1353 content/tutorials/index.html.py:1376
+#: content/tutorials/index.html:1401 content/tutorials/index.html.py:1427
+msgid "View tutorial"
+msgstr "查看教程"
+
+#: content/tutorials/index.html:649
 msgid "Typographic effects in canvas"
-msgstr ""
+msgstr "canvas 排版特效"
 
-#: content/tutorials/index.html:607
+#: content/tutorials/index.html:657
+#, fuzzy
 msgid ""
 "\n"
 "        Effects in &lt;canvas&gt;; inner/outer shadows, neon-glows, "
@@ -1659,23 +1860,32 @@ msgid ""
 "other text/vector-effects&hellip;\n"
 "      "
 msgstr ""
+"\n"
+"          Effects in &lt;canvas&gt;; 内外阴影、霓虹光晕、反射、太空式、图案/"
+"渐变覆盖、立体成像特效及其他文本/矢量特效&hellip;\n"
+"        "
 
-#: content/tutorials/index.html:626
+#: content/tutorials/index.html:676
 msgid "Improving the Performance of your HTML5 App"
-msgstr ""
+msgstr "改进 HTML5 应用的性能"
 
-#: content/tutorials/index.html:635
+#: content/tutorials/index.html:685
+#, fuzzy
 msgid ""
 "\n"
 "        Optimization strategies and techniques for HTML5 applications.\n"
 "      "
 msgstr ""
+"\n"
+"          HTML5 应用程序优化技巧。\n"
+"        "
 
-#: content/tutorials/index.html:654
+#: content/tutorials/index.html:704
 msgid "Case Study: Onslaught! Arena"
-msgstr ""
+msgstr "案例分析: Onslaught! Arena"
 
-#: content/tutorials/index.html:662
+#: content/tutorials/index.html:712
+#, fuzzy
 msgid ""
 "\n"
 "        Learn how <a href=\"https://chrome.google.com/webstore/detail/"
@@ -1684,24 +1894,34 @@ msgid ""
 "up.\n"
 "      "
 msgstr ""
+"\n"
+"          了解 <a href=\"https://chrome.google.com/webstore/detail/"
+"khodnfbkbanejphecblcofbghjdgfaih\">Onslaught! Arena</a>\n"
+"          如何创建快节奏、街机式中世纪幻想 shoot 'em up。\n"
+"        "
 
-#: content/tutorials/index.html:682
+#: content/tutorials/index.html:732
 msgid "No Tears Guide to HTML5 Games"
-msgstr ""
+msgstr "HTML5 游戏轻松入门"
 
-#: content/tutorials/index.html:689
+#: content/tutorials/index.html:739
+#, fuzzy
 msgid ""
 "\n"
 "        Building an HTML5 game using <code>&lt;canvas&gt;</code>, the no "
 "tears way.\n"
 "      "
 msgstr ""
+"\n"
+"          使用最轻松的 <code>&lt;canvas&gt;</code> 构建 HTML5 游戏。\n"
+"        "
 
-#: content/tutorials/index.html:708
+#: content/tutorials/index.html:758
 msgid "Case Study: HTML5 MathBoard"
-msgstr ""
+msgstr "案例分析: HTML5 MathBoard"
 
-#: content/tutorials/index.html:714
+#: content/tutorials/index.html:764
+#, fuzzy
 msgid ""
 "\n"
 "        A discussion on how the iPad's popular <a href=\"https://chrome."
@@ -1709,12 +1929,17 @@ msgid ""
 "        application was ported to HTML5.\n"
 "      "
 msgstr ""
+"\n"
+"          讨论 iPad 热门应用 <a href=\"https://chrome.google.com/webstore/"
+"detail/elcilkmmbpmchojdmdohhoalmfmkcklk\">MathBoard</a>\n"
+"          如何移植到 HTML5 上。\n"
+"        "
 
-#: content/tutorials/index.html:735
+#: content/tutorials/index.html:785
 msgid "Case Study: Page Flip Effect from 20thingsilearned.com"
-msgstr ""
+msgstr "案例分析: 20thingsilearned.com 翻页特效"
 
-#: content/tutorials/index.html:742
+#: content/tutorials/index.html:792
 msgid ""
 "\n"
 "        Learn how to re-create the page flip effect found on\n"
@@ -1722,12 +1947,17 @@ msgid ""
 "using the Canvas API.\n"
 "      "
 msgstr ""
+"\n"
+"        了解如何使用 Canvas API 重新创建\n"
+"        <a href=\"http://www.20thingsilearned.com\">20thingsilearned.com</a> "
+"上的翻页特效。\n"
+"      "
 
-#: content/tutorials/index.html:760
+#: content/tutorials/index.html:810
 msgid "Exploring the FileSystem APIs"
-msgstr ""
+msgstr "探索文件系统 API"
 
-#: content/tutorials/index.html:769
+#: content/tutorials/index.html:819
 msgid ""
 "\n"
 "        The FileSystem APIs give applications the ability to read/write "
@@ -1735,12 +1965,16 @@ msgid ""
 "        in a secure, sandboxed file system on a user's local machine.\n"
 "      "
 msgstr ""
+"\n"
+"        文件系统 API 允许应用程序在永恒本地机器上在安全的沙盒文件系统中\n"
+"        读写文件与目录。\n"
+"      "
 
-#: content/tutorials/index.html:787
+#: content/tutorials/index.html:837
 msgid "A Simple TODO list using HTML5 IndexedDB"
-msgstr ""
+msgstr "采用 HTML5 IndexedDB 的简易 todo 列表"
 
-#: content/tutorials/index.html:794
+#: content/tutorials/index.html:844
 msgid ""
 "\n"
 "        IndexedDB represents the future of query-able client-side storage.  "
@@ -1750,12 +1984,17 @@ msgid ""
 "        the IndexedDB API.\n"
 "      "
 msgstr ""
+"\n"
+"        IndexedDB 代表可查询客户端存储的未来。本\n"
+"        教程展示实现 IndexedDB API 基本功能的\n"
+"        实际应用。\n"
+"      "
 
-#: content/tutorials/index.html:815
+#: content/tutorials/index.html:865
 msgid "Case Study: Getting Entangled with HTML5 Canvas"
-msgstr ""
+msgstr "案例分析: 进入 HTML5 Canvas 的世界"
 
-#: content/tutorials/index.html:822
+#: content/tutorials/index.html:872
 msgid ""
 "\n"
 "        Entanglement is a puzzle game made by Gopherwood Studios. This "
@@ -1763,12 +2002,17 @@ msgid ""
 "        usage of the &lt;canvas&gt; tag.\n"
 "      "
 msgstr ""
+"\n"
+"        Entanglement 是 Gopherwood Studios 制作的一款字谜游戏。本文讨论 "
+"Entanglement\n"
+"        对 &lt;canvas&gt; 标签的应用。\n"
+"      "
 
-#: content/tutorials/index.html:840
+#: content/tutorials/index.html:890
 msgid "Stream Updates with Server-Sent Events"
-msgstr ""
+msgstr "通过服务器发送事件实现流式更新"
 
-#: content/tutorials/index.html:847
+#: content/tutorials/index.html:897
 msgid ""
 "\n"
 "        The EventSource API is designed for receiving push notifications "
@@ -1776,24 +2020,32 @@ msgid ""
 "        removing the need for client-size XHR polling.\n"
 "      "
 msgstr ""
+"\n"
+"        EventSource API 设计用于接收服务器的推送通知，\n"
+"        无需客户端通过 http 请求拉取。\n"
+"      "
 
-#: content/tutorials/index.html:865
+#: content/tutorials/index.html:915
 msgid "Introducing WebSockets: Bringing Sockets to the Web"
-msgstr ""
+msgstr "WebSockets 简介: 将 Sockets 带入 Web 领域"
 
-#: content/tutorials/index.html:871
+#: content/tutorials/index.html:921
 msgid ""
 "\n"
 "        Learn how to use WebSockets to add low latency bidirectional client-"
 "server communication to your web app.\n"
 "      "
 msgstr ""
+"\n"
+"        了解如何使用 WebSockets 将低延迟的双向客户端-服务器通讯添加到您的 "
+"web 应用中。\n"
+"      "
 
-#: content/tutorials/index.html:888
+#: content/tutorials/index.html:938
 msgid "Quick hits with the Flexible Box Model"
-msgstr ""
+msgstr "Flexible Box 模型快速入门"
 
-#: content/tutorials/index.html:895
+#: content/tutorials/index.html:945
 msgid ""
 "\n"
 "        An introduction to <q>flexbox</q>, an alternative <abbr title="
@@ -1801,12 +2053,17 @@ msgid ""
 "hboxes.\n"
 "      "
 msgstr ""
+"\n"
+"        <q>flexbox</q> 简介，可选的 <abbr title=\"Cascading Style Sheets"
+"\">CSS</abbr> 布局方案，基于横向与纵向框区。\n"
+"      "
 
-#: content/tutorials/index.html:912
+#: content/tutorials/index.html:962
 msgid "Client-Side Storage"
-msgstr ""
+msgstr "客户端存储"
 
-#: content/tutorials/index.html:922
+#: content/tutorials/index.html:972
+#, fuzzy
 msgid ""
 "\n"
 "        An overview of client-side storage techniques: Web Storage (local/"
@@ -1814,12 +2071,16 @@ msgid ""
 "        Indexed Database, FileSystem.\n"
 "      "
 msgstr ""
+"\n"
+"        客户端存储技术概览: Web Storage (本地/会话存储)、Web SQL 数据库、\n"
+"        索引数据库、文件访问。\n"
+"      "
 
-#: content/tutorials/index.html:940
+#: content/tutorials/index.html:990
 msgid "Native HTML5 Drag and Drop"
-msgstr ""
+msgstr "原生 HTML5 拖放"
 
-#: content/tutorials/index.html:947
+#: content/tutorials/index.html:997
 msgid ""
 "\n"
 "        Drag-and-drop is yet another first class citizen in HTML5! This "
@@ -1828,52 +2089,61 @@ msgid ""
 "functionality.\n"
 "      "
 msgstr ""
+"\n"
+"        拖放是另一位 HTML5 头等公民! 本文\n"
+"        讲解如何通过添加原生拖放功能增强 web 应用的功能。\n"
+"      "
 
-#: content/tutorials/index.html:965
+#: content/tutorials/index.html:1015
 msgid "Case Study: HTML5 in deviantART muro"
-msgstr ""
+msgstr "案例分析: deviantART muro 中的 HTML5"
 
-#: content/tutorials/index.html:973
+#: content/tutorials/index.html:1023
 msgid ""
 "\n"
 "        Learn how deviantART used HTML5 drawing features in deviantART "
 "muro.\n"
 "      "
 msgstr ""
+"\n"
+"        了解 deviantART 如何在 deviantART muro 中使用 HTML5 绘图功能。\n"
+"      "
 
-#: content/tutorials/index.html:977 content/tutorials/index.html.py:1001
-msgid "View article"
-msgstr ""
-
-#: content/tutorials/index.html:990
+#: content/tutorials/index.html:1040
 msgid "Case Study: Drag and Drop Download in Chrome"
-msgstr ""
+msgstr "案例分析: Chrome 拖放下载"
 
-#: content/tutorials/index.html:997
+#: content/tutorials/index.html:1047
 msgid ""
 "\n"
 "        Learn how Box.net implemented GMail's attachment drag and drop to "
 "the desktop.\n"
 "      "
 msgstr ""
+"\n"
+"        了解 Box.net 如何实现 GMail 附件拖放到桌面上的功能。\n"
+"      "
 
-#: content/tutorials/index.html:1014
+#: content/tutorials/index.html:1064
 msgid "3D and CSS"
-msgstr ""
+msgstr "3D 与 CSS"
 
-#: content/tutorials/index.html:1023
+#: content/tutorials/index.html:1073
 msgid ""
 "\n"
 "        Learn how to build exciting 3D user interfaces using the power of "
 "CSS.\n"
 "      "
 msgstr ""
+"\n"
+"        了解如何使用 CSS 构建令人兴奋的 3D 用户界面。\n"
+"      "
 
-#: content/tutorials/index.html:1040
+#: content/tutorials/index.html:1090
 msgid "HTML5 Video"
-msgstr ""
+msgstr "HTML5 视频"
 
-#: content/tutorials/index.html:1048
+#: content/tutorials/index.html:1098
 msgid ""
 "\n"
 "        Video is one of the most interesting and widely supported features "
@@ -1884,8 +2154,13 @@ msgid ""
 "video&gt; tag.\n"
 "      "
 msgstr ""
+"\n"
+"        视频是 HTML5 最有趣又广泛支持的功能之一。\n"
+"        本教程涉及在网站上整合原生视频 (无需插件) 的方法\n"
+"        并给出使用 &lt;video&gt; 标签的有趣示例。\n"
+"      "
 
-#: content/tutorials/index.html:1074
+#: content/tutorials/index.html:1124
 msgid ""
 "\n"
 "        A discussion of what it means to take an application \"offline\" and "
@@ -1893,24 +2168,31 @@ msgid ""
 "        to developers for doing so.\n"
 "      "
 msgstr ""
+"\n"
+"        讨论让应用支持“离线”的意义以及开发者可选的\n"
+"        途径。\n"
+"      "
 
-#: content/tutorials/index.html:1092
+#: content/tutorials/index.html:1142
 msgid "Quick guide to webfonts via @font-face"
-msgstr ""
+msgstr "通过 @font-face 使用 webfonts 快速指南"
 
-#: content/tutorials/index.html:1100
+#: content/tutorials/index.html:1150
 msgid ""
 "\n"
 "        Webfonts give new typographic freedom to designers while retaining "
 "scalability and accessibility.\n"
 "      "
 msgstr ""
+"\n"
+"        Webfonts 给设计师提供全新的排版自由，同时保持可扩展性与可访问性。\n"
+"      "
 
-#: content/tutorials/index.html:1117
+#: content/tutorials/index.html:1167
 msgid "Auditing Your Web App For Speed"
-msgstr ""
+msgstr "审查 Web 应用的速度"
 
-#: content/tutorials/index.html:1124
+#: content/tutorials/index.html:1174
 msgid ""
 "\n"
 "        The Audit Panel is an excellent tool for examining latency in your "
@@ -1918,12 +2200,16 @@ msgid ""
 "        enhance performance and reduce latency.\n"
 "      "
 msgstr ""
+"\n"
+"        审查面板是检查 web 应用中延迟的优秀工具。它提供\n"
+"        增强性能与降低延迟的定制建议。\n"
+"      "
 
-#: content/tutorials/index.html:1142
+#: content/tutorials/index.html:1192
 msgid "The Basics of Web Workers"
-msgstr ""
+msgstr "Web Workers 基础"
 
-#: content/tutorials/index.html:1149
+#: content/tutorials/index.html:1199
 msgid ""
 "\n"
 "        Web Workers are a means of spawning background scripts in your "
@@ -1932,48 +2218,61 @@ msgid ""
 "intensive tasks.\n"
 "      "
 msgstr ""
+"\n"
+"        Web Workers 是一种在应用中实现后台脚本的途径，\n"
+"        允许类线程的信息传输以处理计算密集型任务。\n"
+"      "
 
-#: content/tutorials/index.html:1167
+#: content/tutorials/index.html:1217
 msgid "Introduction to Chrome Developer Tools, Part One"
-msgstr ""
+msgstr "Chrome 开发工具简介，第一部分"
 
-#: content/tutorials/index.html:1174
+#: content/tutorials/index.html:1224
 msgid ""
 "\n"
 "        An introduction to the tools available in Google Chrome that make a "
 "developer's life easier!\n"
 "      "
 msgstr ""
+"\n"
+"        Google Chrome 中可用方便开发的工具简介!\n"
+"      "
 
-#: content/tutorials/index.html:1191
+#: content/tutorials/index.html:1241
 msgid "Best Practices for a Faster Web App with HTML5"
-msgstr ""
+msgstr "通过 HTML5 加速 web 应用的最佳实践"
 
-#: content/tutorials/index.html:1200
+#: content/tutorials/index.html:1250
 msgid ""
 "\n"
 "        How to effectively use features from HTML5 to improve the "
 "performance and responsiveness of your app.\n"
 "      "
 msgstr ""
+"\n"
+"        如何有效利用 HTML5 功能改进应用的性能与响应。\n"
+"      "
 
-#: content/tutorials/index.html:1217
+#: content/tutorials/index.html:1267
 msgid "A Beginner's Guide to Using the Application Cache"
-msgstr ""
+msgstr "应用缓存初级使用指南"
 
-#: content/tutorials/index.html:1225
+#: content/tutorials/index.html:1275
 msgid ""
 "\n"
 "        A step-by-step guide to taking your web app offline using the "
 "application cache APIs.\n"
 "      "
 msgstr ""
+"\n"
+"        通过应用缓存 API 让 web 应用支持离线的分布指南。\n"
+"      "
 
-#: content/tutorials/index.html:1242
+#: content/tutorials/index.html:1292
 msgid "Practical Guide to Take Your TODO List Offline"
-msgstr ""
+msgstr "离线 todo 列表实用指南"
 
-#: content/tutorials/index.html:1249
+#: content/tutorials/index.html:1299
 #, python-format
 msgid ""
 "\n"
@@ -1983,12 +2282,17 @@ msgid ""
 "application cache.\n"
 "      "
 msgstr ""
+"\n"
+"        对 <a href=\"/%(LANGUAGE_CODE)s/tutorials/webdatabase/todo/\">简易 "
+"todo 列表</a> 的扩展，本教程\n"
+"        给出使用应用缓存让示例支持离线的实用指南。\n"
+"      "
 
-#: content/tutorials/index.html:1267
+#: content/tutorials/index.html:1317
 msgid "Reading files in JavaScript using the File APIs"
-msgstr ""
+msgstr "在 JavaScript 中通过文件 API 读取文件"
 
-#: content/tutorials/index.html:1275
+#: content/tutorials/index.html:1325
 msgid ""
 "\n"
 "        Starter guide for using the File/FileList/FileReader APIs to "
@@ -1996,696 +2300,713 @@ msgid ""
 "        and read binary files in JavaScript.\n"
 "      "
 msgstr ""
+"\n"
+"        在 JavaScript 中使用 File/FileList/FileReader API 处理\n"
+"        与读取二进制文件的初学者指南。\n"
+"      "
 
-#: content/tutorials/index.html:1293
+#: content/tutorials/index.html:1343
 msgid "A Simple Trip Meter using the Geolocation API"
-msgstr ""
+msgstr "使用地理位置 API 制作的简单旅程表"
 
-#: content/tutorials/index.html:1299
+#: content/tutorials/index.html:1349
 msgid ""
 "\n"
 "        Learn how to implement geolocation very quickly including a distance "
 "calculator\n"
 "      "
 msgstr ""
+"\n"
+"        了解如何迅速实现地理位置功能，含距离计算器示例\n"
+"      "
 
-#: content/tutorials/index.html:1316
+#: content/tutorials/index.html:1366
 msgid "Using the Notifications API"
-msgstr ""
+msgstr "使用通知 API"
 
-#: content/tutorials/index.html:1322
+#: content/tutorials/index.html:1372
 msgid ""
 "\n"
 "        Learn the notification basics creating a twitter notification\n"
 "      "
 msgstr ""
+"\n"
+"        了解创建 twitter 通知的通知基本操作\n"
+"      "
 
-#: content/tutorials/index.html:1339
+#: content/tutorials/index.html:1389
 msgid "A Simple TODO list using HTML5 WebDatabases"
-msgstr ""
+msgstr "采用 HTML5 WebDatabase 的简易 todo 列表"
 
-#: content/tutorials/index.html:1347
+#: content/tutorials/index.html:1397
 msgid ""
 "\n"
 "        Create a TODO list which persists data using a client side "
 "database.\n"
 "      "
 msgstr ""
+"\n"
+"        创建使用客户端数据库储存数据的 todo 列表。\n"
+"      "
 
-#: content/tutorials/index.html:1364
+#: content/tutorials/index.html:1414
 msgid "Quick Guide to Implementing the HTML5 Audio Tag"
-msgstr ""
+msgstr "HTML5 Audio 标签实现快速指南"
 
-#: content/tutorials/index.html:1372
+#: content/tutorials/index.html:1422
 msgid ""
 "\n"
 "        Learn how to use the HTML5 audio tag and fall back to Flash on\n"
 "        platforms which do not support it.\n"
 "      "
 msgstr ""
+"\n"
+"        了解如何使用 HTML5 audio 标记，并在平台不支持时采用\n"
+"        后备的 Flash。\n"
+"      "
 
 #: html5lib/constants.py:15
 msgid "Null character in input stream, replaced with U+FFFD."
-msgstr ""
+msgstr "输入流含 Null 字符，以 U+FFFD 替代。"
 
 #: html5lib/constants.py:17
 msgid "Invalid codepoint in stream."
-msgstr ""
+msgstr "流中含无效码点。"
 
 #: html5lib/constants.py:19
 msgid "Solidus (/) incorrectly placed in tag."
-msgstr ""
+msgstr "斜线 (/) 在标记内位置错误。"
 
 #: html5lib/constants.py:21
 msgid "Incorrect CR newline entity, replaced with LF."
-msgstr ""
+msgstr "CR 换行实体错误，以 LF 替代。"
 
 #: html5lib/constants.py:23
 msgid "Entity used with illegal number (windows-1252 reference)."
-msgstr ""
+msgstr "实体所用数字非法 (windows-1252 引用)。"
 
 #: html5lib/constants.py:25
 #, python-format
 msgid ""
 "Numeric entity couldn't be converted to character (codepoint U+"
 "%(charAsInt)08x)."
-msgstr ""
+msgstr "数字实体无法转换为字符 (码点 U+%(charAsInt)08x)。"
 
 #: html5lib/constants.py:28
 #, python-format
 msgid "Numeric entity represents an illegal codepoint: U+%(charAsInt)08x."
-msgstr ""
+msgstr "数字实体表示的码点非法: U+%(charAsInt)08x。"
 
 #: html5lib/constants.py:31
 msgid "Numeric entity didn't end with ';'."
-msgstr ""
+msgstr "数字实体未以 ';' 结尾。"
 
 #: html5lib/constants.py:33
 msgid "Numeric entity expected. Got end of file instead."
-msgstr ""
+msgstr "应为数字实体。但出现文件结尾 (EOF)。"
 
 #: html5lib/constants.py:35
 msgid "Numeric entity expected but none found."
-msgstr ""
+msgstr "应为数字实体，但未找到。"
 
 #: html5lib/constants.py:37
 msgid "Named entity didn't end with ';'."
-msgstr ""
+msgstr "命名实体未以 ';' 结尾。"
 
 #: html5lib/constants.py:39
 msgid "Named entity expected. Got none."
-msgstr ""
+msgstr "应为命名实体。未发现。"
 
 #: html5lib/constants.py:41
 msgid "End tag contains unexpected attributes."
-msgstr ""
+msgstr "终止标记含意外出现的属性。"
 
 #: html5lib/constants.py:43
 msgid "Expected tag name. Got '>' instead."
-msgstr ""
+msgstr "应为标记名称。出现 '>'。"
 
 #: html5lib/constants.py:45
 msgid ""
 "Expected tag name. Got '?' instead. (HTML doesn't support processing "
 "instructions.)"
-msgstr ""
+msgstr "应为标记名称。却出现 '?'。(HTML 不支持处理指令。)"
 
 #: html5lib/constants.py:48
 msgid "Expected tag name. Got something else instead"
-msgstr ""
+msgstr "应为标记名称。却出现其他内容"
 
 #: html5lib/constants.py:50
 msgid "Expected closing tag. Got '>' instead. Ignoring '</>'."
-msgstr ""
+msgstr "应为闭合标记。却出现 '>'。忽略 '</>'。"
 
 #: html5lib/constants.py:52
 msgid "Expected closing tag. Unexpected end of file."
-msgstr ""
+msgstr "应为闭合标记。意外文件结尾 (EOF)。"
 
 #: html5lib/constants.py:54
 #, python-format
 msgid "Expected closing tag. Unexpected character '%(data)s' found."
-msgstr ""
+msgstr "应为闭合标记。发现意外字符 '%(data)s'。"
 
 #: html5lib/constants.py:56
 msgid "Unexpected end of file in the tag name."
-msgstr ""
+msgstr "标记名称中出现意外的文件结尾 (EOF)。"
 
 #: html5lib/constants.py:58
 msgid "Unexpected end of file. Expected attribute name instead."
-msgstr ""
+msgstr "意外的文件结尾 (EOF)。应为属性名称。"
 
 #: html5lib/constants.py:60
 msgid "Unexpected end of file in attribute name."
-msgstr ""
+msgstr "属性名称中出现意外的文件结尾 (EOF)。"
 
 #: html5lib/constants.py:62
 msgid "Invalid chracter in attribute name"
-msgstr ""
+msgstr "属性名称中出现无效字符"
 
 #: html5lib/constants.py:64
 msgid "Dropped duplicate attribute on tag."
-msgstr ""
+msgstr "标记的重复属性已忽略。"
 
 #: html5lib/constants.py:66
 msgid "Unexpected end of file. Expected = or end of tag."
-msgstr ""
+msgstr "意外的文件结尾 (EOF)。应为 = 或标记结尾。"
 
 #: html5lib/constants.py:68
 msgid "Unexpected end of file. Expected attribute value."
-msgstr ""
+msgstr "意外的文件结尾 (EOF)。应为属性值。"
 
 #: html5lib/constants.py:70
 msgid "Expected attribute value. Got '>' instead."
-msgstr ""
+msgstr "应为属性值。出现 '>'。"
 
 #: html5lib/constants.py:72
 msgid "Unexpected end of file in attribute value (\")."
-msgstr ""
+msgstr "属性值 (\") 中出现意外的文件结尾 (EOF)。"
 
 #: html5lib/constants.py:74
 msgid "Unexpected end of file in attribute value (')."
-msgstr ""
+msgstr "属性值 (') 中出现意外的文件结尾 (EOF)。"
 
 #: html5lib/constants.py:76
 msgid "Unexpected end of file in attribute value."
-msgstr ""
+msgstr "属性值中出现意外的文件结尾 (EOF)。"
 
 #: html5lib/constants.py:78
 msgid "Unexpected end of file in tag. Expected >"
-msgstr ""
+msgstr "标记中出现意外的文件结尾 (EOF)。应为 >"
 
 #: html5lib/constants.py:80
 msgid "Unexpected character after / in tag. Expected >"
-msgstr ""
+msgstr "标记中 / 后出现意外的文件结尾 (EOF)。应为 >"
 
 #: html5lib/constants.py:82
 msgid "Expected '--' or 'DOCTYPE'. Not found."
-msgstr ""
+msgstr "应为 '--' 或 'DOCTYPE'。未找到。"
 
 #: html5lib/constants.py:84
 msgid "Incorrect comment."
-msgstr ""
+msgstr "错误注释。"
 
 #: html5lib/constants.py:86
 msgid "Unexpected end of file in comment."
-msgstr ""
+msgstr "注释中出现意外的文件结尾 (EOF)。"
 
 #: html5lib/constants.py:88
 msgid "Unexpected end of file in comment (-)"
-msgstr ""
+msgstr "注释中出现意外的文件结尾 (EOF) (-)"
 
 #: html5lib/constants.py:90
 msgid "Unexpected '-' after '--' found in comment."
-msgstr ""
+msgstr "注释中 '--' 后出现意外的  '-'。"
 
 #: html5lib/constants.py:92
 msgid "Unexpected end of file in comment (--)."
-msgstr ""
+msgstr "注释中出现意外的文件结尾 (EOF) (--)。"
 
 #: html5lib/constants.py:94
 msgid "Unexpected character in comment found."
-msgstr ""
+msgstr "注释中发现意外的字符。"
 
 #: html5lib/constants.py:96
 msgid "No space after literal string 'DOCTYPE'."
-msgstr ""
+msgstr "基本字符串 'DOCTYPE' 后无空格。"
 
 #: html5lib/constants.py:98
 msgid "Unexpected > character. Expected DOCTYPE name."
-msgstr ""
+msgstr "意外的 > 字符。应为 DOCTYPE 名称。"
 
 #: html5lib/constants.py:100
 msgid "Unexpected end of file. Expected DOCTYPE name."
-msgstr ""
+msgstr "出现意外的文件结尾 (EOF)。应为 DOCTYPE 名称。"
 
 #: html5lib/constants.py:102
 msgid "Unexpected end of file in DOCTYPE name."
-msgstr ""
+msgstr "DOCTYPE 名称中出现意外的文件结尾 (EOF)。"
 
 #: html5lib/constants.py:104
 msgid "Unexpected end of file in DOCTYPE."
-msgstr ""
+msgstr "DOCTYPE 中出现意外的文件结尾 (EOF)。"
 
 #: html5lib/constants.py:106
 #, python-format
 msgid "Expected space or '>'. Got '%(data)s'"
-msgstr ""
+msgstr "应为空格或 '>'。发现 '%(data)s'"
 
 #: html5lib/constants.py:108
 msgid "Unexpected end of DOCTYPE."
-msgstr ""
+msgstr "意外的 DOCTYPE 结尾。"
 
 #: html5lib/constants.py:110
 msgid "Unexpected character in DOCTYPE."
-msgstr ""
+msgstr "DOCTYPE 中出现意外字符。"
 
 #: html5lib/constants.py:112
 msgid "XXX innerHTML EOF"
-msgstr ""
+msgstr "XXX innerHTML EOF"
 
 #: html5lib/constants.py:114
 msgid "Unexpected DOCTYPE. Ignored."
-msgstr ""
+msgstr "意外的 DOCTYPE。已忽略。"
 
 #: html5lib/constants.py:116
 msgid "html needs to be the first start tag."
-msgstr ""
+msgstr "html 应为首个开放标记。"
 
 #: html5lib/constants.py:118
 msgid "Unexpected End of file. Expected DOCTYPE."
-msgstr ""
+msgstr "出现意外的文件结尾 (EOF)。应为 DOCTYPE。"
 
 #: html5lib/constants.py:120
 msgid "Erroneous DOCTYPE."
-msgstr ""
+msgstr "DOCTYPE 错误。"
 
 #: html5lib/constants.py:122
 msgid "Unexpected non-space characters. Expected DOCTYPE."
-msgstr ""
+msgstr "出现意外的非空字符。应为 DOCTYPE。"
 
 #: html5lib/constants.py:124
 #, python-format
 msgid "Unexpected start tag (%(name)s). Expected DOCTYPE."
-msgstr ""
+msgstr "出现意外的起始标记 (%(name)s)。应为 DOCTYPE。"
 
 #: html5lib/constants.py:126
 #, python-format
 msgid "Unexpected end tag (%(name)s). Expected DOCTYPE."
-msgstr ""
+msgstr "出现意外的终止标记 (%(name)s)。应为 DOCTYPE。"
 
 #: html5lib/constants.py:128
 #, python-format
 msgid "Unexpected end tag (%(name)s) after the (implied) root element."
-msgstr ""
+msgstr "(疑似) 根元素后出现意外的终止标记 (%(name)s)。"
 
 #: html5lib/constants.py:130
 #, python-format
 msgid "Unexpected end of file. Expected end tag (%(name)s)."
-msgstr ""
+msgstr "出现意外的文件结尾 (EOF)。应为终止标记 (%(name)s)。"
 
 #: html5lib/constants.py:132
 msgid "Unexpected start tag head in existing head. Ignored."
-msgstr ""
+msgstr "已有的 head 中出现意外的其实标记 head。已忽略。"
 
 #: html5lib/constants.py:134
 #, python-format
 msgid "Unexpected end tag (%(name)s). Ignored."
-msgstr ""
+msgstr "出现意外的终止标记 (%(name)s)。已忽略。"
 
 #: html5lib/constants.py:136
 #, python-format
 msgid "Unexpected start tag (%(name)s) that can be in head. Moved."
-msgstr ""
+msgstr "出现可能在 head 中的意外起始标记 (%(name)s)。已移动。"
 
 #: html5lib/constants.py:138
 #, python-format
 msgid "Unexpected start tag (%(name)s)."
-msgstr ""
+msgstr "出现意外的起始标记 (%(name)s)。"
 
 #: html5lib/constants.py:140
 #, python-format
 msgid "Missing end tag (%(name)s)."
-msgstr ""
+msgstr "缺终止标记 (%(name)s)。"
 
 #: html5lib/constants.py:142
 #, python-format
 msgid "Missing end tags (%(name)s)."
-msgstr ""
+msgstr "缺终止标记 (%(name)s)。"
 
 #: html5lib/constants.py:144
 #, python-format
 msgid "Unexpected start tag (%(startName)s) implies end tag (%(endName)s)."
-msgstr ""
+msgstr "出现意外的起始标记 (%(startName)s)，估计是终止标记 (%(endName)s)。"
 
 #: html5lib/constants.py:147
 #, python-format
 msgid "Unexpected start tag (%(originalName)s). Treated as %(newName)s."
-msgstr ""
+msgstr "出现意外的起始标记 (%(originalName)s)。作为 %(newName)s 对待。"
 
 #: html5lib/constants.py:149
 #, python-format
 msgid "Unexpected start tag %(name)s. Don't use it!"
-msgstr ""
+msgstr "出现意外的起始标记 %(name)s。不要使用它!"
 
 #: html5lib/constants.py:151
 #, python-format
 msgid "Unexpected start tag %(name)s. Ignored."
-msgstr ""
+msgstr "出现意外的起始标记 %(name)s。已忽略。"
 
 #: html5lib/constants.py:153
 #, python-format
 msgid "Unexpected end tag (%(gotName)s). Missing end tag (%(expectedName)s)."
-msgstr ""
+msgstr "出现意外的终止标记 (%(gotName)s)。缺终止标记 (%(expectedName)s)。"
 
 #: html5lib/constants.py:156
 #, python-format
 msgid "End tag (%(name)s) seen too early. Expected other end tag."
-msgstr ""
+msgstr "终止标记 (%(name)s) 太早出现。应为其他终止标记。"
 
 #: html5lib/constants.py:158
 #, python-format
 msgid "Unexpected end tag (%(gotName)s). Expected end tag (%(expectedName)s)."
-msgstr ""
+msgstr "出现意外的终止标记 (%(gotName)s)。应为终止标记 (%(expectedName)s)。"
 
 #: html5lib/constants.py:160
 #, python-format
 msgid "End tag (%(name)s) seen too early. Ignored."
-msgstr ""
+msgstr "终止标记 (%(name)s) 太早出现。已忽略。"
 
 #: html5lib/constants.py:162
 #, python-format
 msgid ""
 "End tag (%(name)s) violates step 1, paragraph 1 of the adoption agency "
 "algorithm."
-msgstr ""
+msgstr "终止标记 (%(name)s) 违反了收养机构算法第 1 步的第 1 段。"
 
 #: html5lib/constants.py:165
 #, python-format
 msgid ""
 "End tag (%(name)s) violates step 1, paragraph 2 of the adoption agency "
 "algorithm."
-msgstr ""
+msgstr "终止标记 (%(name)s) 违反了收养机构算法第 1 步的第 2 段。"
 
 #: html5lib/constants.py:168
 #, python-format
 msgid ""
 "End tag (%(name)s) violates step 1, paragraph 3 of the adoption agency "
 "algorithm."
-msgstr ""
+msgstr "终止标记 (%(name)s) 违反了收养机构算法第 1 步的第 3 段。"
 
 #: html5lib/constants.py:171
 #, python-format
 msgid "Unexpected end tag (%(originalName)s). Treated as %(newName)s."
-msgstr ""
+msgstr "出现意外的终止标记 (%(originalName)s)。作为 %(newName)s 对待。"
 
 #: html5lib/constants.py:173
 #, python-format
 msgid "This element (%(name)s) has no end tag."
-msgstr ""
+msgstr "该元素 (%(name)s) 无终止标记。"
 
 #: html5lib/constants.py:175
 #, python-format
 msgid "Unexpected implied end tag (%(name)s) in the table phase."
-msgstr ""
+msgstr "table 区域出现意外的疑似终止标记 (%(name)s)。"
 
 #: html5lib/constants.py:177
 #, python-format
 msgid "Unexpected implied end tag (%(name)s) in the table body phase."
-msgstr ""
+msgstr "table 主体区域出现意外的疑似终止标记 (%(name)s)。"
 
 #: html5lib/constants.py:179
 msgid "Unexpected non-space characters in table context caused voodoo mode."
-msgstr ""
+msgstr "table 上下文出现意外的非空字符，引发 voodoo 模式。"
 
 #: html5lib/constants.py:182
 msgid "Unexpected input with type hidden in table context."
-msgstr ""
+msgstr "table 上下文出现意外的类型为 hidden 的 input。"
 
 #: html5lib/constants.py:184
 msgid "Unexpected form in table context."
-msgstr ""
+msgstr "table 上下文出现意外的 form。"
 
 #: html5lib/constants.py:186
 #, python-format
 msgid "Unexpected start tag (%(name)s) in table context caused voodoo mode."
-msgstr ""
+msgstr "table 上下文出现意外的起始标记 (%(name)s) 造成 voodoo 模式。"
 
 #: html5lib/constants.py:189
 #, python-format
 msgid "Unexpected end tag (%(name)s) in table context caused voodoo mode."
-msgstr ""
+msgstr "table 上下文出现意外的终止标记 (%(name)s) 造成 voodoo 模式。"
 
 #: html5lib/constants.py:192
 #, python-format
 msgid "Unexpected table cell start tag (%(name)s) in the table body phase."
-msgstr ""
+msgstr "table 主体区域出现意外的 table 单元格起始元素 (%(name)s)。"
 
 #: html5lib/constants.py:195
 #, python-format
 msgid "Got table cell end tag (%(name)s) while required end tags are missing."
-msgstr ""
+msgstr "出现 table 单元格终止标记 (%(name)s)，而所需终止标记缺失。"
 
 #: html5lib/constants.py:198
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the table body phase. Ignored."
-msgstr ""
+msgstr "table 主体区域出现意外的终止标记 (%(name)s)。已忽略。"
 
 #: html5lib/constants.py:200
 #, python-format
 msgid "Unexpected implied end tag (%(name)s) in the table row phase."
-msgstr ""
+msgstr "table 行区域出现意外的疑似终止标记 (%(name)s)。"
 
 #: html5lib/constants.py:202
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the table row phase. Ignored."
-msgstr ""
+msgstr "table 行区域出现意外的终止标记 (%(name)s)。已忽略。"
 
 #: html5lib/constants.py:204
 msgid ""
 "Unexpected select start tag in the select phase treated as select end tag."
-msgstr ""
+msgstr "select 区域出现意外的 select 起始标记，已作为 select 终止标记对待。"
 
 #: html5lib/constants.py:207
 msgid "Unexpected input start tag in the select phase."
-msgstr ""
+msgstr "select 区域出现意外的 input 起始标记。"
 
 #: html5lib/constants.py:209
 #, python-format
 msgid "Unexpected start tag token (%(name)s in the select phase. Ignored."
-msgstr ""
+msgstr "select 区域出现意外的起始标记 token (%(name)s。已忽略。"
 
 #: html5lib/constants.py:212
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the select phase. Ignored."
-msgstr ""
+msgstr "select 区域出现意外的终止标记 (%(name)s)。已忽略。"
 
 #: html5lib/constants.py:214
 #, python-format
 msgid ""
 "Unexpected table element start tag (%(name)s) in the select in table phase."
-msgstr ""
+msgstr "table 内 select 区域出现意外的 table 元素起始标记 (%(name)s)。"
 
 #: html5lib/constants.py:216
 #, python-format
 msgid ""
 "Unexpected table element end tag (%(name)s) in the select in table phase."
-msgstr ""
+msgstr "table 内 select 区域出现意外的 table 元素终止标记 (%(name)s)。"
 
 #: html5lib/constants.py:218
 msgid "Unexpected non-space characters in the after body phase."
-msgstr ""
+msgstr "body 后区域出现意外的非空字符。"
 
 #: html5lib/constants.py:220
 #, python-format
 msgid "Unexpected start tag token (%(name)s) in the after body phase."
-msgstr ""
+msgstr "body 后区域出现意外的起始标记 token (%(name)s)。"
 
 #: html5lib/constants.py:223
 #, python-format
 msgid "Unexpected end tag token (%(name)s) in the after body phase."
-msgstr ""
+msgstr "body 后区域出现意外的终止标记 token (%(name)s)。"
 
 #: html5lib/constants.py:226
 msgid "Unepxected characters in the frameset phase. Characters ignored."
-msgstr ""
+msgstr "frameset 区域出现意外的字符。字符已忽略。"
 
 #: html5lib/constants.py:228
 #, python-format
 msgid "Unexpected start tag token (%(name)s) in the frameset phase. Ignored."
-msgstr ""
+msgstr "frameset 区域出现意外的起始标记 token (%(name)s)。已忽略。"
 
 #: html5lib/constants.py:231
 msgid "Unexpected end tag token (frameset) in the frameset phase (innerHTML)."
-msgstr ""
+msgstr "frameset 区域 (innerHTML) 中出现意外的终止标记 token (frameset)。"
 
 #: html5lib/constants.py:234
 #, python-format
 msgid "Unexpected end tag token (%(name)s) in the frameset phase. Ignored."
-msgstr ""
+msgstr "frameset 区域出现意外的终止标记 (%(name)s)。已忽略。"
 
 #: html5lib/constants.py:237
 msgid "Unexpected non-space characters in the after frameset phase. Ignored."
-msgstr ""
+msgstr "frameset 后区域出现意外的非空字符。已忽略。"
 
 #: html5lib/constants.py:240
 #, python-format
 msgid "Unexpected start tag (%(name)s) in the after frameset phase. Ignored."
-msgstr ""
+msgstr "frameset 后区域出现意外的起始标记 (%(name)s)。已忽略。"
 
 #: html5lib/constants.py:243
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the after frameset phase. Ignored."
-msgstr ""
+msgstr "frameset 后区域出现意外的终止标记 (%(name)s)。已忽略。"
 
 #: html5lib/constants.py:246
 msgid "Unexpected end tag after body(innerHtml)"
-msgstr ""
+msgstr "body(innerHtml) 后出现意外的终止标记"
 
 #: html5lib/constants.py:248
 msgid "Unexpected non-space characters. Expected end of file."
-msgstr ""
+msgstr "出现意外的非空字符。应为文件结尾 (EOF)。"
 
 #: html5lib/constants.py:250
 #, python-format
 msgid "Unexpected start tag (%(name)s). Expected end of file."
-msgstr ""
+msgstr "出现意外的起始标记 (%(name)s)。应为文件结尾 (EOF)。"
 
 #: html5lib/constants.py:253
 #, python-format
 msgid "Unexpected end tag (%(name)s). Expected end of file."
-msgstr ""
+msgstr "出现意外的终止标记 (%(name)s)。应为文件结尾 (EOF)。"
 
 #: html5lib/constants.py:256
 msgid "Unexpected end of file. Expected table content."
-msgstr ""
+msgstr "意外的文件结尾 (EOF)。应为 table 内容。"
 
 #: html5lib/constants.py:258
 msgid "Unexpected end of file. Expected select content."
-msgstr ""
+msgstr "意外的文件结尾 (EOF)。应为 select 内容。"
 
 #: html5lib/constants.py:260
 msgid "Unexpected end of file. Expected frameset content."
-msgstr ""
+msgstr "意外的文件结尾 (EOF)。应为 frameset 内容。"
 
 #: html5lib/constants.py:262
 msgid "Unexpected end of file. Expected script content."
-msgstr ""
+msgstr "意外的文件结尾 (EOF)。应为 script 内容。"
 
 #: html5lib/constants.py:264
 #, python-format
 msgid "Trailing solidus not allowed on element %(name)s"
-msgstr ""
+msgstr "元素 %(name)s 不允许末尾斜线"
 
 #: html5lib/constants.py:266
 #, python-format
 msgid "Element %(name)s not allowed in a non-html context"
-msgstr ""
+msgstr "非 html 上下文不允许出现 %(name)s 元素"
 
 #: html5lib/constants.py:268
 #, python-format
 msgid "Unexpected end tag (%(name)s) before html."
-msgstr ""
+msgstr "html 前出现意外的终止标记 (%(name)s)。"
 
 #: html5lib/filters/lint.py:21
 #, python-format
 msgid "StartTag not in PCDATA content model flag: %(tag)s"
-msgstr ""
+msgstr "起始标记不在 PCDATA 内容模型标记内: %(tag)s"
 
 #: html5lib/filters/lint.py:23 html5lib/filters/lint.py:49
 #: html5lib/filters/lint.py:79
 #, python-format
 msgid "Tag name is not a string: %(tag)r"
-msgstr ""
+msgstr "标记名称非字符串: %(tag)r"
 
 #: html5lib/filters/lint.py:25 html5lib/filters/lint.py:51
 msgid "Empty tag name"
-msgstr ""
+msgstr "空标记名称"
 
 #: html5lib/filters/lint.py:27
 #, python-format
 msgid "Void element reported as StartTag token: %(tag)s"
-msgstr ""
+msgstr "Void 元素报告为起始标记 token: %(tag)s"
 
 #: html5lib/filters/lint.py:29
 #, python-format
 msgid "Non-void element reported as EmptyTag token: %(tag)s"
-msgstr ""
+msgstr "非 void 元素报告为空标记 token: %(tag)s"
 
 #: html5lib/filters/lint.py:34 html5lib/filters/lint.py:66
 #, python-format
 msgid "Attribute name is not a string: %(name)r"
-msgstr ""
+msgstr "属性名称非字符串: %(name)r"
 
 #: html5lib/filters/lint.py:36
 msgid "Empty attribute name"
-msgstr ""
+msgstr "空属性名称"
 
 #: html5lib/filters/lint.py:38
 #, python-format
 msgid "Attribute value is not a string: %(value)r"
-msgstr ""
+msgstr "属性值非字符串: %(value)r"
 
 #: html5lib/filters/lint.py:53
 #, python-format
 msgid "Void element reported as EndTag token: %(tag)s"
-msgstr ""
+msgstr "Void 元素报告为终止标记 token: %(tag)s"
 
 #: html5lib/filters/lint.py:56
 #, python-format
 msgid "EndTag (%(end)s) does not match StartTag (%(start)s)"
-msgstr ""
+msgstr "终止标记 (%(end)s) 不匹配起始标记 (%(start)s)"
 
 #: html5lib/filters/lint.py:61
 msgid "Comment not in PCDATA content model flag"
-msgstr ""
+msgstr "注释未在 PCDATA 内容模型标记内"
 
 #: html5lib/filters/lint.py:68
 #, python-format
 msgid "%(type)s token with empty data"
-msgstr ""
+msgstr "%(type)s token 数据为空"
 
 #: html5lib/filters/lint.py:72
 #, python-format
 msgid "Non-space character(s) found in SpaceCharacters token: %(token)r"
-msgstr ""
+msgstr "SpaceCharacters token 发现非空字符: %(token)r"
 
 #: html5lib/filters/lint.py:77
 #, python-format
 msgid "Doctype not in PCDATA content model flag: %(name)s"
-msgstr ""
+msgstr "Doctype 未在 PCDATA 内容模型标记内: %(name)s"
 
 #: html5lib/filters/lint.py:86
 #, python-format
 msgid "Unknown token type: %(type)s"
-msgstr ""
+msgstr "未知 token 类型: %(type)s"
 
 #: html5lib/serializer/htmlserializer.py:115
 msgid "System identifer contains both single and double quote characters"
-msgstr ""
+msgstr "系统 id 同时含单双引号"
 
 #: html5lib/serializer/htmlserializer.py:131
 msgid "Unexpected </ in CDATA"
-msgstr ""
+msgstr "CDATA 中出现意外的 </"
 
 #: html5lib/serializer/htmlserializer.py:146
 #: html5lib/serializer/htmlserializer.py:202
 msgid "Unexpected child element of a CDATA element"
-msgstr ""
+msgstr "CDATA 元素出现意外的子元素"
 
 #: html5lib/serializer/htmlserializer.py:211
 msgid "Comment contains --"
-msgstr ""
+msgstr "注释含 --"
 
 #: html5lib/treewalkers/_base.py:29
 msgid "Void element has children"
-msgstr ""
+msgstr "Void 元素无子元素"
 
 #: html5lib/treewalkers/_base.py:68
 msgid "Unknown node type: "
-msgstr ""
+msgstr "未知节点类型: "
 
 #: html5lib/treewalkers/lxmletree.py:114 html5lib/treewalkers/lxmletree.py:154
 #: html5lib/treewalkers/lxmletree.py:170
 #, python-format
 msgid "Text nodes are text or tail, found %s"
-msgstr ""
+msgstr "文本节点为文本或部分，出现 %s"
 
 #: html5lib/treewalkers/lxmletree.py:143
 msgid "Text nodes have no children"
-msgstr ""
+msgstr "文本节点无子节点"
 
 #: templates/404.html:4
 msgid "404 - Page Not Found"
-msgstr ""
+msgstr "404 - 页面未找到"
 
 #: templates/404.html:59 templates/404.html.py:60
 msgid "I pity da foo who doesn't use HTML5!"
-msgstr ""
+msgstr "我很同情那些没有用 HTML5 的傻瓜!"
 
 #: templates/404.html:61
 msgid "Oops!! We didn't find any HTML<sub>5</sub> resources here."
-msgstr ""
+msgstr "喔唷!! 这里没有任何 HTML<sub>5</sub> 资源。"
 
 #: templates/article_footer.html:4
 msgid ""
@@ -2697,16 +3018,25 @@ msgid ""
 "  and code samples are licensed under the <a href=\"http://www.apache.org/"
 "licenses/LICENSE-2.0\">Apache 2.0 License</a>.\n"
 msgstr ""
+"\n"
+"  除非特别<a href=\"http://code.google.com/policies.html#restrictions\">注明"
+"</a>，本页内容\n"
+"  依 <a href=\"http://creativecommons.org/licenses/by/3.0/\">Creative "
+"Commons 署名 3.0 授权许可</a>授权，<br>\n"
+"  而代码示例依 <a href=\"http://www.apache.org/licenses/LICENSE-2.0\">Apache "
+"2.0 授权许可</a>授权。\n"
 
 #: templates/article_footer.html:19
+#, fuzzy
 msgid "Please enable JavaScript to view the comments powered by Disqus."
-msgstr ""
+msgstr "请启用 JavaScript 查看 <a href="
 
 #: templates/base.html:27
 msgid ""
 "A resource for developers looking to put HTML5 to use today, including "
 "information on specific features and when to use them in your apps."
 msgstr ""
+"为将 HTML5 投入使用的开发者提供的资源，含特定功能与何时在应用中使用的信息。"
 
 #: templates/base.html:28
 msgid ""
@@ -2714,46 +3044,52 @@ msgid ""
 "geolocation,web workers,apppcache,file api,filereader,offline,audio,video,"
 "drag and drop,chrome"
 msgstr ""
+"html5,html 5,html5 演示,html5 示例,javascript,css3,通知,地理位置,web workers,"
+"apppcache,文件 api,文件读取器,离线,音频,视频,拖放,chrome"
 
 #: templates/base.html:29
 msgid "HTML5 Rocks"
-msgstr ""
+msgstr "HTML5 Rocks"
 
 #: templates/base.html:55
 msgid "HTML5 Rocks Logo"
-msgstr ""
+msgstr "HTML5 Rocks Logo"
 
 #: templates/base.html:55
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: templates/base.html:55
 msgid "Rocks"
+msgstr "Rocks"
+
+#: templates/base.html:59
+msgid "Slides"
 msgstr ""
 
 #: templates/base.html:60
 msgid "Playground"
-msgstr ""
+msgstr "练兵场"
 
 #: templates/base.html:61
 msgid "Studio"
-msgstr ""
+msgstr "工作室"
 
 #: templates/base.html:73
 msgid "Search HTML5Rocks"
-msgstr ""
+msgstr "搜索 HTML5Rocks"
 
 #: templates/base.html:83
 msgid "HTML5 Logo"
-msgstr ""
+msgstr "HTML5 Logo"
 
 #: templates/base.html:87
 msgid "Terms"
-msgstr ""
+msgstr "条款"
 
 #: templates/base.html:88
 msgid "Privacy"
-msgstr ""
+msgstr "隐私"
 
 #: templates/base.html:89
 msgid "Report bug or request a feature"
@@ -2761,59 +3097,74 @@ msgstr ""
 
 #: templates/base.html:90
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "在 Twitter 上关注我们"
 
 #: templates/base.html:91
 msgid "About Authors"
-msgstr ""
+msgstr "关于作者"
 
 #: templates/base.html:93
 msgid "Made by Google"
-msgstr ""
+msgstr "由 Google 制作"
 
 #: templates/base.html:94
 msgid ""
 "This site contains information on APIs that are not part of the W3C HTML5 "
 "specification."
-msgstr ""
+msgstr "本站含 W3C HTML5 规范以外的 API。"
 
 #: templates/base.html:114
 msgid "A new version of this site is available. Load it?"
-msgstr ""
+msgstr "此站点有新版本可用。是否加载?"
 
 #: templates/casestudy.html:12
 msgid "Case Studies"
-msgstr ""
+msgstr "案例分析"
 
 #: templates/casestudy.html:32 templates/mobile_tutorial.html:35
 #: templates/sample.html:35
 msgid "Tweet"
-msgstr ""
+msgstr "发推"
 
 #: templates/casestudy.html:34 templates/mobile_tutorial.html:37
 #: templates/sample.html:37
 msgid "Leave a comment"
-msgstr ""
+msgstr "留下评论"
 
 #: templates/casestudy.html:39 templates/sample.html:42
 msgid "Supported browsers:"
-msgstr ""
+msgstr "支持浏览器:"
 
 #: templates/casestudy.html:47 templates/sample.html:50
 msgid ""
 "Your browser may not support all of the functionality used in this article."
-msgstr ""
+msgstr "您的浏览器可能不支持本文中所用的全部功能。"
 
 #: templates/casestudy.html:52 templates/sample.html:55
 msgid ""
 "Your browser appears to support all of the functionality used in this "
 "article."
-msgstr ""
+msgstr "您的浏览器似乎支持本文中所用的全部功能。"
 
 #: templates/casestudy.html:61 templates/sample.html:64
 msgid "HTML5 Powered"
-msgstr ""
+msgstr "HTML5 强力驱动"
 
 #: templates/mobile_tutorial.html:42
 msgid "Supported mobile browsers:"
-msgstr ""
+msgstr "支持的移动浏览器:"
+
+#~ msgid "Design 3d models in the browser using canvas"
+#~ msgstr "使用 canvas 在浏览器中设计 3d 建模"
+
+#~ msgid "View article"
+#~ msgstr "查看文章"
+
+#~ msgid "Make a Suggestion"
+#~ msgstr "提交建议"
+
+#~ msgid "Report Bug"
+#~ msgstr "报告 Bug"
+
+#~ msgid "Post to Google Buzz"
+#~ msgstr "发布到 Google Buzz"
