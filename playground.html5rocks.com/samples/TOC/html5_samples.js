@@ -498,6 +498,21 @@ var tempJSON = [
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-A Simple Trip Meter using the Geolocation API",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/trip_meter.html",
+        "files": ["samples/css/tutorials/trip_meter.css", "samples/js/tutorials/trip_meter.js"],
+        "editor": "js",
+        "sampleName": "The Final Product: Trip Meter",
+        "tags": "",
+        "spec": "http://dev.w3.org/geo/api/",
+        "tutorial": "http://www.html5rocks.com/en/tutorials/geolocation/trip_meter/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
   }
 ];
 

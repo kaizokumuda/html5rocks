@@ -13,6 +13,7 @@
 }
 button {
   padding: 5px 8px;
+  cursor: pointer;
   text-shadow: 1px 1px white;
   font-weight: 700;
   font-size: 10pt;
