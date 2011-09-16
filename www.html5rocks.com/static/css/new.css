@@ -369,9 +369,29 @@ article
   margin: 2em auto;
 }
 
+article article
+{
+  margin: 0;
+  padding: 0;
+}
+
 section
 {
   background: url(/static/new_images/section_background.png);
+}
+
+section.topic h2,
+section.topic p
+{
+  float: left;
+  width: 461px;
+}
+
+section.topic p
+{
+  font-size: 16px;
+  font-style: italic;
+  margin-left: 26px;
 }
 
 /* SITE-GRID NAVIGATION */
@@ -379,7 +399,8 @@ section
 .nav,
 .nav:hover
 {
-  color: #eee;
+  text-shadow: 0 0 5px #000000;
+  color: #fff;
   cursor: pointer !important;
   overflow: hidden;
 }
@@ -391,7 +412,7 @@ section
 {
   background-image: url(/static/new_images/nav_arrows.png);
   background-repeat: no-repeat;
-  font-size: 13px;
+  font-size: 15px;
   font-style: italic;
   text-align: center;
   text-transform: uppercase;
@@ -503,20 +524,6 @@ section
 {
   float: right;
   margin-left: 3em;
-}
-
-#intro h2,
-#intro p
-{
-  float: left;
-  width: 461px;
-}
-
-#intro p
-{
-  font-size: 16px;
-  font-style: italic;
-  margin-left: 26px;
 }
 
 #classes h2

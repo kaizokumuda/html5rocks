@@ -8,6 +8,8 @@
   <link rel="alternate" type="application/rss+xml" title="{% trans "HTML5Rocks" %}" href="http://feeds.feedburner.com/html5rocks" />
   <link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/index_page_mobile{% if prod %}.min{% endif %}.css" />
 
+  <script src="/static/js/profiles{% if prod %}.min{% endif %}.js"></script>
+
   <script>
   $(document).ready(function(){
     $('#search_show').click(function() { $('.subheader').show(); $('#q').focus(); });
@@ -29,17 +31,23 @@
       });
     });
 
-    $('#go-technology').click(function() {
+    function scrollToTechnology()
+    {
       $.scrollTo('#intro', 600, {margin: true, offset: -25});
 
+      $('body').addClass('scrolled');
+
+      // Disappear the 'Go to Technology' arrow.
       $('#go-technology').css('position', 'relative').animate({
         top: -200,
         opacity: 0,
         height: 0
       }, 600);
-    });
+    }
 
-    // Watermark
+	    $('#go-technology').click( function() { scrollToTechnology() });
+      $('#go-authors').click( function() { $.scrollTo('#authors', 600, {margin: true}); });
+
 		var top = $('html, body').offset().top;
 
 		$(window).scroll(function (event) {
@@ -49,12 +57,18 @@
 			if (y > top)
 			{
 				$('#watermark').fadeIn(600);
+
+        if (!$('body').hasClass('scrolled'))
+          scrollToTechnology();
 			}
 			else
 			{
 				$('#watermark').fadeOut(600);
 
-				$('#go-technology').css('position', 'relative').animate({
+				$('body').removeClass('scrolled');
+
+        // Reappear the 'Go to Technology' arrow.
+        $('#go-technology').css('position', 'relative').animate({
           top: 0,
           opacity: 1,
           height: 100
@@ -139,7 +153,7 @@
 </article>
 
 <article id="intro">
-  <section>
+  <section class="topic">
     <h2>
       Welcome to HTML5ROCKS<br>
       <span>What kind of HTML dev do you think you are?</span>
@@ -206,6 +220,78 @@
 
 <a id="go-authors" class="nav arrow_down">HTML5 Contributors</a>
 
+<article id="authors">
+  <section class="topic">
+    <h2>
+      HTML5 Gurus Rock<br>
+      <span>New Hotness Every Day</span>
+    </h2>
+    <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet! Duis, dis urna rhoncus.</p>
+  </section>
+
+  {% for profile in sorted_profiles %}
+
+    <article class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
+      <section class="card">
+        <div class="face front">
+          <h2>
+            <div itemprop="fn">
+              <div itemprop="n" itemscope>
+                <span itemprop="given-name">{{profile.name.given}}</span>
+               <span itemprop="family-name">{{profile.name.family}}</span>
+              </div>
+            </div>
+          </h2>
+
+          <div class="photoZone">
+            <img itemprop="photo" alt="{{profile.name.given}} {{profile.name.family}}" title="{{profile.name.given}} {{profile.name.family}}" src="/static/images/profiles/{{profile.id}}.png">
+            <ul class="urls">
+              {% if profile.homepage %}
+              <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
+              {% endif %}
+              {% if profile.google %}
+              <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google}}">&nbsp;</a></li>
+              {% endif %}
+              {% if profile.twitter %}
+              <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter}}">&nbsp;</a></li>
+              {% endif %}
+              {% if profile.lanyrd %}
+              <li><a data-type="lanyrd" itemprop="url" href="http://www.lanyrd.com/people/{{profile.twitter}}">&nbsp;</a></li>
+              {% endif %}
+            </ul>
+          </div>
+
+          <div itemprop="org" itemscope>
+            {% if profile.org.unit %}<div itemprop="organization-unit">{{profile.org.unit}}</div>{% endif %}
+            {% if profile.org.name %}<div itemprop="organization-name">{{profile.org.name}}</div>{% endif %}
+          </div>
+          <div class="details">
+            <div itemprop="adr" itemscope>
+              {% if profile.address.locality %}<span itemprop="locality">{{profile.address.locality}},</span>{% endif %}
+              {% if profile.address.region %}<span itemprop="region">{{profile.address.region}},</span>{% endif %}
+              {% if profile.address.country %}<span itemprop="country-name">{{profile.address.country}}</span>{% endif %}
+            </div>
+          </div>
+          <div class="list-articles">{% trans "Articles" %}</div>
+        </div>
+        <div class="face back">
+          <ul class="articles"></ul>
+        </div>
+      </section>
+      {% if not is_mobile %}
+      <section class="map">
+        {% if profile.address.lat and profile.address.lon %}
+        <div itemprop="geo">
+          <img src="http://maps.google.com/maps/api/staticmap?center={{profile.address.lat}},{{profile.address.lon}}&markers=color:red|label:|{{profile.address.lat}},{{profile.address.lon}}&zoom=14&size=200x175&sensor=false"/>
+        </div>
+        {% endif %}
+      </section>
+      {% endif %}
+    </article>
+
+  {% endfor %}
+
+</article>
 
 <!--
 {% if not is_mobile %}
