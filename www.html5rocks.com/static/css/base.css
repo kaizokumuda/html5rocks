@@ -34,9 +34,7 @@ body a {
   margin-left: 15px;
 }
 header {
-  border-bottom: 2px solid #222;
   overflow: hidden;
-  padding-top: 7px;
 }
 article header {
   border: none;
@@ -91,10 +89,10 @@ figcaption {
  outline: none;
 }
 header nav {
-  float: right;
+
 }
 header nav a {
-  font-family: 'Droid Sans', Arial, sans-serif;
+/*  font-family: 'Droid Sans', Arial, sans-serif;*/
 }
 header nav ul {
   padding-left: 0;
@@ -150,7 +148,7 @@ article section h1, article section h2, article section h3 {
   padding: 0;
 }
 h1, h2, h3 {
-  font-family: 'Droid Sans', Arial, sans-serif;
+/*  font-family: 'Droid Sans', Arial, sans-serif;*/
 }
 h1 {
   font-size: 195%;
@@ -334,7 +332,7 @@ footer {
   clear: both;
   text-align: left;
   padding: 20px 0 10px 0;
-  font-size: 12px; 
+  font-size: 12px;
   border-top: 2px solid #222;
   display: inline-block;
   width: 100%;
@@ -364,7 +362,7 @@ abbr, acronym {
   border-bottom: 1px dotted #888;
   cursor: help;
 }
-b, strong { 
+b, strong {
   font-weight: bold;
 }
 .section-header {
@@ -377,7 +375,7 @@ b, strong {
 }
 
 
-@font-face {
+/*@font-face {
   font-family: 'Droid Sans';
   font-style: normal;
   font-weight: bold;
@@ -395,12 +393,12 @@ b, strong {
   font-weight: normal;
   src: local('Droid Serif'), local('DroidSerif'), url('http://themes.googleusercontent.com/font?kit=0AKsP294HTD-nvJgucYTaCwlidHJgAgmTjOEEzwu1L8') format('truetype');
 }
-
+*/
 /* originally from prettify.css */
 .str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun{color:#660}.pln{color:#000}.tag{color:#008;text-decoration:none;font-size: inherit; padding:0;}.atn{color:#606}.atv{color:#080}.dec{color:#606}@media print{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun{color:#440}.pln{color:#000}.tag{color:#006;font-weight:bold;}.atn{color:#404}.atv{color:#060}}
 /* end prettify */
 
-.tutorials a[href^='http']:not([href*='html5rocks.']), 
+.tutorials a[href^='http']:not([href*='html5rocks.']),
 .description a[href^='http']:not([href*='html5rocks.']),
 .feed-section a[href^='http']:not([href*='html5rocks']),
 .info-section a[href^='http']:not([href*='html5rocks.']),
