@@ -31,22 +31,22 @@
       });
     });
 
-    function scrollToTechnology()
+    function hideScrollToTechnologyArrow()
     {
-      $.scrollTo('#intro', 600, {margin: true, offset: -25});
-
-      $('body').addClass('scrolled');
-
-      // Disappear the 'Go to Technology' arrow.
-      $('#go-technology').css('position', 'relative').animate({
+      $('#scroll-technology').css('position', 'relative').animate({
         top: -200,
         opacity: 0,
         height: 0
       }, 600);
     }
 
-	    $('#go-technology').click( function() { scrollToTechnology() });
-      $('#go-authors').click( function() { $.scrollTo('#authors', 600, {margin: true}); });
+    $('#scroll-technology').click( function() {
+      $.scrollTo('#intro', 600, {margin: true, offset: -25});
+      hideScrollToTechnologyArrow();
+      $('body').addClass('scrolled');
+    });
+
+    $('#scroll-authors').click( function() { $.scrollTo('#authors', 600, {margin: true}); });
 
 		var top = $('html, body').offset().top;
 
@@ -59,7 +59,10 @@
 				$('#watermark').fadeIn(600);
 
         if (!$('body').hasClass('scrolled'))
-          scrollToTechnology();
+        {
+          hideScrollToTechnologyArrow();
+          $('body').addClass('scrolled');
+        }
 			}
 			else
 			{
@@ -67,8 +70,8 @@
 
 				$('body').removeClass('scrolled');
 
-        // Reappear the 'Go to Technology' arrow.
-        $('#go-technology').css('position', 'relative').animate({
+        // Reappear the 'Scroll to Technology' arrow.
+        $('#scroll-technology').css('position', 'relative').animate({
           top: 0,
           opacity: 1,
           height: 100
@@ -179,7 +182,7 @@
   </section>
 </article>
 
-<a id="go-technology" class="nav arrow_down">Or get straight to the tech!</a>
+<a id="scroll-technology" class="nav arrow_down">Or get straight to the tech!</a>
 
 <article id="classes">
   <section>
@@ -218,7 +221,7 @@
   </section>
 </article>
 
-<a id="go-authors" class="nav arrow_down">HTML5 Contributors</a>
+<a id="scroll-authors" class="nav arrow_down">HTML5 Contributors</a>
 
 <article id="authors">
   <section class="topic">
