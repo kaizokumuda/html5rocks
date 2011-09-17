@@ -34,17 +34,18 @@
   <link rel="stylesheet" media="all" href="/static/css/new.css"> <!-- TODO: merge into base stylesheet. -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,800' rel='stylesheet' type='text/css'> <!-- TODO: find out how this font should be requested/included -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> <!-- TODO: fetch local copy -->
-  <script type="text/javascript" src="/static/js/jquery.scrollTo-min.js"></script>
-
-  <!-- History.js -->
-<!--
-  <script>if ( typeof window.JSON === 'undefined' ) { document.write('<script src="http://localhost:4000/static/js/history.js/json2.js"><\/script>'); }</script>
-  <script src="/static/js/history.js/amplify.store.js"></script>
-  <script src="/static/js/history.js/history.adapter.jquery.js"></script>
-  <script src="/static/js/history.js/history.js"></script>
-  <script src="/static/js/history.js/history.html4.js"></script>
--->
+  
+  <!-- Try to load remote jquery, test it, if no can, load local version of jQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+  <script>window.jQuery || document.write('<script src="/static/jquery-1.6.4.min.js">\x3C/script>')</script>
+  
+  <!-- jQuery ScrollTo Plugin -->
+  <script defer src="http://balupton.github.com/jquery-scrollto/scripts/jquery.scrollto.min.js"></script>
+  
+  <!-- History.js --> 
+  <script defer src="http://balupton.github.com/history.js/scripts/compressed/history.adapter.jquery.js"></script> 
+  <script defer src="http://balupton.github.com/history.js/scripts/compressed/history.js"></script>
+  <script defer src="http://gist.github.com/raw/854622/ajaxify-html5.js"></script> 
 
   <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css">
 
