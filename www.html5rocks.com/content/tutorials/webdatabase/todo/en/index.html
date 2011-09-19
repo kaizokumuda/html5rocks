@@ -267,7 +267,7 @@ function loadTodoItems(tx, rs) {
 
 function renderTodo(row) {
   return '&lt;li&gt;' + row.ID  +
-         '[&lt;a onclick="html5rocks.webdb.deleteTodo(' + row.ID + ');"'>X&lt;/a>]&lt;/li&gt;';
+         '[&lt;a onclick="html5rocks.webdb.deleteTodo(' + row.ID + ');">X&lt;/a>]&lt;/li&gt;';
 }</pre>
   <p>
     The effect of this method call is that the todo list is rendered into
@@ -278,7 +278,8 @@ function renderTodo(row) {
 html5rocks.webdb.deleteTodo = function(id) {
   html5rocks.webdb.db.transaction(function(tx) {
     tx.executeSql('DELETE FROM todo WHERE ID=?', [id],
-        loadTodoItems, html5rocks.webdb.onError);
+        html5rocks.webdb.onSuccess,
+        html5rocks.webdb.onError);
   });
 }</pre>
   <h2 id="toc-step6">Step 6. Hooking it all up</h2>
