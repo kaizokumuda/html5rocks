@@ -494,7 +494,7 @@ var tempJSON = [
         "sampleName": "FileSystem APIs",
         "tags": "",
         "spec": "http://www.w3.org/TR/file-system-api/",
-        "tutorial": "http://www.html5rocks.com/en/tutorials/file/filesystem/"
+        "tutorial": "http://www.html5rocks.com/tutorials/file/filesystem/"
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
@@ -509,7 +509,22 @@ var tempJSON = [
         "sampleName": "The Final Product: Trip Meter",
         "tags": "",
         "spec": "http://dev.w3.org/geo/api/",
-        "tutorial": "http://www.html5rocks.com/en/tutorials/geolocation/trip_meter/"
+        "tutorial": "http://www.html5rocks.com/tutorials/geolocation/trip_meter/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-A Simple TODO List using HTML5 WebDatabases",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/webdb_todo_list.html",
+        "files": ["samples/css/tutorials/webdb_todo_list.css", "samples/js/tutorials/webdb_todo_list.js"],
+        "editor": "js",
+        "sampleName": "The Final Product: A Simple TODO List",
+        "tags": "",
+        "spec": "http://dev.w3.org/html5/webdatabase/",
+        "tutorial": "http://www.html5rocks.com/tutorials/webdatabase/todo/"
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
