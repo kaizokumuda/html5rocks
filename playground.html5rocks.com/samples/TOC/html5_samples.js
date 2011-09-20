@@ -515,16 +515,25 @@ var tempJSON = [
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
   },
   {
-    "category":"Tutorial Samples-A Simple TODO List using HTML5 WebDatabases",
+    "category":"Tutorial Samples-Simple TODO Lists using Web Storage",
     "samples":[
       {
         "boilerplateLoc": "samples/boilerplateHTML/tutorials/webdb_todo_list.html",
         "files": ["samples/css/tutorials/webdb_todo_list.css", "samples/js/tutorials/webdb_todo_list.js"],
         "editor": "js",
-        "sampleName": "The Final Product: A Simple TODO List",
+        "sampleName": "A Simple TODO List using Web SQL Database",
         "tags": "",
         "spec": "http://dev.w3.org/html5/webdatabase/",
         "tutorial": "http://www.html5rocks.com/tutorials/webdatabase/todo/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/indexeddb_todo_list.html",
+        "files": ["samples/css/tutorials/webdb_todo_list.css", "samples/js/tutorials/indexeddb_todo_list.js"],
+        "editor": "js",
+        "sampleName": "A Simple TODO List using IndexedDB",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/IndexedDB/",
+        "tutorial": "http://www.html5rocks.com/tutorials/indexeddb/todo/"
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
