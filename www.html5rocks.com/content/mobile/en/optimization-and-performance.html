@@ -26,18 +26,7 @@
 
 <p>Spinning refreshes, choppy page transitions, and periodic delays in tap events are just a few of the headaches in today’s mobile web environments. Developers are trying to get as close to native as they possibly can, but are often derailed by hacks, resets, and rigid frameworks.</p>
 
-<p>In this article, we will discuss the bare minimum of what it takes to create a mobile HTML5 web app. This includes:</p>
-
-<ul>
-<li>Hardware Acceleration</li>
-<li>Page Transitions: Sliding, Flipping, and Rotating</li>
-<li>Debugging Our Transitions and Other Acceleration Tips</li>
-<li>Behind the Scenes: Fetching and Caching</li>
-<li>Network Type Detection, Handling, and Profiling</li>
-<li>Conclusion</li>
-</ul>
-
-<p>The main point behind this article is to unmask the hidden complexities which today’s mobile frameworks try to hide. You will see a minimalistic approach (using core HTML5 APIs) and basic fundamentals that will empower you to write your own framework or contribute to the one you currently use.</p>
+<p>In this article, we will discuss the bare minimum of what it takes to create a mobile HTML5 web app. The main point is to unmask the hidden complexities which today’s mobile frameworks try to hide. You will see a minimalistic approach (using core HTML5 APIs) and basic fundamentals that will empower you to write your own framework or contribute to the one you currently use.</p>
 
 <h2 id="toc-hw-acceleration">Hardware acceleration</h2>
 
@@ -57,7 +46,7 @@ To make user interaction smooth and as close to native as possible, we must make
 </p>
 
 
-<h2 id="toc-transitions">Page transitions: sliding, flipping, and rotating</h2>
+<h2 id="toc-transitions">Page transitions</h2>
 
 
 <p>
@@ -166,11 +155,11 @@ function slideTo(id) {
 
 <pre class="prettyprint">
 .stage-left {
-	translate3d(-480px,0,0);
+    left: -480px;
 }
 
 .stage-right {
-    translate3d(480px,0,0);
+    left: 480px;
 }
 
 .stage-center {
@@ -189,17 +178,16 @@ Note that hardware acceleration tricks do not provide any speed improvement unde
 /* iOS/android phone landscape screen width*/
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
     .stage-left {
-        translate3d(-480px,0,0);
+       left: -480px;
     }
 
     .stage-right {
-        translate3d(480px,0,0);
+        left: 480px;
     }
 
     .page {
         width: 480px;
     }
-
 }	
 </pre>
 
@@ -377,9 +365,11 @@ Now that we have our basic transitions covered, let’s take a look at the mecha
 To make this magical debugging session happen, let’s fire up a couple of browsers and your IDE of choice. 
 First start Safari from the command line to make use of some debugging environment variables. I’m on Mac, so the commands might differ based on your OS.
 Open the Terminal and type the following:
-$&gt; export CA_COLOR_OPAQUE=1
-$&gt; export CA_LOG_MEMORY_USAGE=1
-$&gt; /Applications/Safari.app/Contents/MacOS/Safari
+<ul>
+<li>$&gt; export CA_COLOR_OPAQUE=1</li>
+<li>$&gt; export CA_LOG_MEMORY_USAGE=1</li>
+<li>$&gt; /Applications/Safari.app/Contents/MacOS/Safari</li>
+</ul>
 </p>
 
 <p>
@@ -388,9 +378,11 @@ This starts Safari with a couple of debugging helpers. CA_COLOR_OPAQUE shows us 
 
 <p>
 Now let’s fire up Chrome so we can see some good frames per second (FPS) information:
-1) Open the Google Chrome web browser.
-2) In the URL bar, type <a href="about:flags">about:flags</a>.
-3) Scroll down a few items and click on “Enable” for FPS Counter.
+<ol>
+<li>Open the Google Chrome web browser.</li>
+<li>In the URL bar, type <a href="about:flags">about:flags</a>.</li>
+<li>Scroll down a few items and click on “Enable” for FPS Counter.</li>
+</ol>
 Note: Do not enable the GPU compositing on all pages option. The FPS counter only appear in the left-hand corner if the browser detects compositing in your markup—and that is what we want in this case.
 </p>
 
@@ -732,6 +724,9 @@ function setupApp(){
 	
 <p>
 There are numerous adjustments we could make to our fetchAndCache process, but all I did here was tell it to fetch the resources asynchronous (true) or synchronous (false) for a given connection.
+</p>
+
+<p>
 Edge (Synchronous) Request Timeline
 </p>
 
@@ -756,11 +751,4 @@ The big point here is to cut down on latencies while leveraging the full capabil
 
 <h2 id="toc-conclusion">Conclusion</h2>
 <p>The journey down the road of mobile HTML5 apps is just beginning. Now you see the very simple and basic underpinnings of a mobile “framework” built solely around HTML5 and it’s supporting technologies. I think it’s important for developers to work with and address these features at their core and not masked by a wrapper.</p>
-
-<p>
-Fork the code here: TODO
-Blog: www.wesleyhales.com
-Twitter: @wesleyhales
-Article Source License: ASL 2.0
-</p>
 {% endblock %}

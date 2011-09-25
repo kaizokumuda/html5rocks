@@ -578,4 +578,23 @@ twitter: ecspike
 email: james.l.williams@gmail.com
 lanyrd: true
 
+---
 
+id: wesleyhales
+name:
+  given: Wesley
+  family: Hales
+org:
+  name: Red Hat
+  unit: Senior Developer
+address:
+  locality: Atlanta
+  region: Georgia
+  country: USA
+  lat: 33.845701 
+  lon: -84.369196 
+homepage: http://wesleyhales.com
+google: wesleyhales
+twitter: wesleyhales
+email: wesleyhales@gmail.com
+lanyrd: true
