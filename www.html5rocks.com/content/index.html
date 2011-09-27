@@ -2,6 +2,8 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
+{% block bodyclass %}index{% endblock %}
+
 {% block headtitle %}{% trans "A resource for open web HTML5 developers" %}{% endblock %}
 
 {% block head %}
@@ -10,9 +12,6 @@
 
   <script>
   $(document).ready(function(){
-    $('#search_show').click(function() { $('.subheader').show(); $('#q').focus(); });
-    $('#search_hide').click(function() { $('.subheader').hide() });
-
     // Scroll the updates into view, changing the width and margins of the container to simulate movement from the edges of the window.
     $('#updates_badge').click(function() {
       $('#start').css('width', '100%');
@@ -81,7 +80,6 @@
 {% endblock %}
 
 {% block body %}
-
 <article id="start">
   <div id="logo">
     <img src="/static/new_images/logo.png">
@@ -576,4 +574,3 @@
   </article>
 -->
 {% endblock %}
-
