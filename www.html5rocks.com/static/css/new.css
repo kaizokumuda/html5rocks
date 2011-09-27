@@ -541,17 +541,33 @@ section.topic p
 #classes ul
 {
   list-style: none;
-  margin: .75em 0 0;
+  margin: -90px 0 0;
   padding: 0;
+  position: relative;
+  z-index: 2;
 }
 
 #classes li
 {
   float: left;
-  font-size: 12px;
   margin-right: 4px;
+  width: 90px;
+}
+
+#classes li a
+{
+  color: #333;
+  display: block;
   text-align: center;
   width: 90px;
+  padding-top: 100px;
+  height: 10px;
+}
+
+#classes li h3
+{
+  display: inline;
+  font-size: 12px;
 }
 
 .authors_wrapper
