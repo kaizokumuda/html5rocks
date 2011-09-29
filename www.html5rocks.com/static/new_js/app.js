@@ -2,8 +2,8 @@
 
 $('#search_show').click(function(){
   $('.subheader.features').hide();
-  $('#features_show').removeClass('active');
-  $('#search_show').addClass('active');
+  $('#features_show').removeClass('current');
+  $('#search_show').addClass('current');
   $('.subheader.search').show();
   $('#q').focus();
 });
@@ -14,18 +14,18 @@ $('#search_hide').click(function(){
 
 $('#features_show').click(function(){
   $('.subheader.search').hide();
-  $('#search_show').removeClass('active');
-  $('#features_show').addClass('active');
+  $('#search_show').removeClass('current');
+  $('#features_show').addClass('current');
   $('.subheader.features').show();
 });
 
 $('#features_hide').click(function(){
-  $('#features_show').removeClass('active');
+  $('#features_show').removeClass('current');
   $('.subheader.features').hide();
 });
 
 $('.subheader.features ul li a').click(function(){
-  $('#features_show').removeClass('active');
+  $('#features_show').removeClass('current');
   $('.subheader.features').slideUp();
 });
 
