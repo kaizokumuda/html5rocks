@@ -3,8 +3,37 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block contents %}
+<nav class="site_nav">
+  <a class="previous" href="#">Storage</a>
+  <a class="next" href="#">Nuts &amp; Bolts</a>
 
-<div style="margin-bottom: 2em" class="clearfix">
+  <ul>
+    <li>
+      <a href="/{{LANGUAGE_CODE}}/features/offline" class="offline">{% trans "Offline" %}</a>
+      <ul>
+        <li><a href="#">Intro</a></li>
+        <li><a href="#">What&rsquo;s New</a></li>
+        <li><a href="#">Browser Support</a></li>
+        <li><a href="#">Tutorials</a></li>
+        <li><a href="#">Examples</a></li>
+        <li><a href="#">Demos</a></li>
+        <li><a href="#">In the Wild</a></li>
+        <li><a href="#">Resources</a></li>
+      </ul>
+    </li>
+    <li><a href="/{{LANGUAGE_CODE}}/features/storage" class="storage">{% trans "Storage" %}</a></li>
+    <li><a href="/{{LANGUAGE_CODE}}/features/file" class="file">{% trans "File Access" %}</a></li>
+    <li><a href="#" class="connectivity">{% trans "Connectivity" %}</a></li>
+    <li><a href="#" class="semantics">{% trans "Semantics" %}</a></li>
+    <li><a href="/{{LANGUAGE_CODE}}/features/multimedia" class="multimedia">{% trans "Audio/Video" %}</a></li>
+    <li><a href="/{{LANGUAGE_CODE}}/features/graphics" class="graphics">{% trans "3D/Graphics" %}</a></li>
+    <li><a href="/{{LANGUAGE_CODE}}/features/presentation" class="presentation">{% trans "Presentation" %}</a></li>
+    <li><a href="/{{LANGUAGE_CODE}}/features/performance" class="performance">{% trans "Performance" %}</a></li>
+    <li><a href="/{{LANGUAGE_CODE}}/mobile" class="mobile">{% trans "Mobile" %}</a></li>
+  </ul>
+</nav>
+
+<div class="content clearfix">
   <div class="column">
     <section class="tutorials">
       <hgroup>
@@ -51,4 +80,3 @@
 </div>
 
 {% endblock %}
-

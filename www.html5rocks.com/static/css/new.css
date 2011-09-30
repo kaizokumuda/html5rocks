@@ -177,7 +177,7 @@ input
 
 body
 {
-  background: url(/static/new_images/background.jpg) repeat;
+  background: url(/static/new_images/background.png) repeat;
 }
 
 header
@@ -406,7 +406,7 @@ input[type="search"]::-webkit-search-results-decoration
   margin: 0;
 }
 
-#watermark
+.watermark
 {
   position: fixed;
   left: 50%;
@@ -490,10 +490,12 @@ section.topic p
   overflow: hidden;
 }
 
-.arrow_up, /* TODO: there should just be one giant sprite for these graphics */
+.arrow_up,
 .arrow_right,
 .arrow_down,
-.arrow_left
+.arrow_left,
+nav .previous,
+nav .next
 {
   background-image: url(/static/new_images/nav_arrows.png);
   background-repeat: no-repeat;
@@ -503,7 +505,8 @@ section.topic p
   text-transform: uppercase;
 }
 
-.arrow_up
+.arrow_up,
+nav .previous
 {
   background-position: center top;
 }
@@ -513,7 +516,8 @@ section.topic p
   background-position: center -100px;
 }
 
-.arrow_down
+.arrow_down,
+nav .next
 {
   background-position: center -170px;
   margin-bottom: -2em;
@@ -525,7 +529,12 @@ section.topic p
   background-position: center -300px;
 }
 
-/* INDIVIDUAL PAGES */
+/* HOMEPAGE */
+
+.index .watermark.teal
+{
+  display: none;
+}
 
 #start
 {
@@ -691,6 +700,79 @@ article.profile h3
 {
   font-size: 10px;
 }
+
+/* FEATURES  */
+
+.description
+{
+  background: url(/static/new_images/section_background.png);
+  margin-top: 4.5em;
+  position: relative;
+  overflow: visible;
+}
+
+.description img.feature_icon
+{
+  position: absolute;
+  z-index: 1;
+  top: -15px;
+  left: -50px;
+}
+
+.description h2
+{
+  float: left;
+  font-weight: 300;
+  margin: 25px -10px 30px 30px;
+  width: 300px;
+}
+
+.description h2 strong
+{
+  color: #5fa4a0;
+  font-weight: 800;
+}
+
+.description section
+{
+  background: none;
+  float: left;
+  margin: 0;
+  width: 295px;
+  font-size: 15px;
+}
+
+.description section em
+{
+  font-size: 16px;
+}
+
+.description section ul
+{
+  margin-left: 3em;
+}
+
+.description section + section
+{
+  padding-left: 0;
+}
+
+.description h2,
+.description section,
+.description .plusone
+{
+  position: relative;
+  z-index: 2;
+}
+
+.description .plusone
+{
+  position: absolute;
+  bottom: 25px;
+  left: 30px;
+}
+
+
 
 /* PRINT */
 

@@ -8,57 +8,75 @@
 <link rel="stylesheet" href="/static/css/feature{% if prod %}.min{% endif %}.css">
 {% endblock %}
 
-
 {% block body %}
-<h2>{% block h2title %}{% trans "Feature" %}{% endblock %}</h2>
-{% block description %}{% endblock %}
+<article class="description clearfix">
+  <h2>
+    HTML5 Features
+    <strong>{% block h2title %}{% trans "Feature" %}{% endblock %}</strong>
+  </h2>
 
-{% block support %}
-<article class="support" style="display:none">
-  <h4><i>{% trans "loading browser support data..." %}</i></h4>
-  <table>
-    <thead>
-      <tr>
-        <th>{% trans "Chrome" %}</th>
-        <th>{% trans "Firefox" %}</th>
-        <th>{% trans "Safari" %}</th>
-        <th>{% trans "Opera" %}</th>
-        <th>{% trans "IE" %}</th>
-        <th>{% trans "iOS Safari" %}</th>
-        <th>{% trans "Android" %}</th>
-        <th>{% trans "Opera Mini" %}</th>
-        <th>{% trans "Opera Mobile" %}</th>
-      </tr>
-    </thead>
-    <tfoot>
-      <tr>
-        <td colspan="9">{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a>
-          and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>{% endblocktrans %}</td>
-      </tr>
-    </tfoot>
-    <tbody>
-      <tr>
-        <td class="chrome">---</td>
-        <td class="firefox">---</td>
-        <td class="safari">---</td>
-        <td class="opera">---</td>
-        <td class="ie">---</td>
-        <td class="ios_saf">---</td>
-        <td class="android">---</td>
-        <td class="op_mini">---</td>
-        <td class="op_mob">---</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-{% endblock %}
+  <img src="/static/new_images/background_feature_{% block bodyclass %}{% endblock %}.png" class="feature_icon">
 
-{% block contents %}{% endblock %}
+  {% block description %}{% endblock %}
 
-<script>
- var caniusefeatures = '{% block caniuse %}{% endblock %}'.split(',');
- var features = '{% block tuttags %}{% endblock %}';
-</script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-<script src="/static/js/feature{% if prod %}.min{% endif %}.js"></script>
+  <div class="plusone">
+    <g:plusone annotation="none"></g:plusone>
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+  </div>
+</article>
+
+  {% block support %}
+  <article class="support" style="display:none">
+    <h4><i>{% trans "loading browser support data..." %}</i></h4>
+    <table>
+      <thead>
+        <tr>
+          <th>{% trans "Chrome" %}</th>
+          <th>{% trans "Firefox" %}</th>
+          <th>{% trans "Safari" %}</th>
+          <th>{% trans "Opera" %}</th>
+          <th>{% trans "IE" %}</th>
+          <th>{% trans "iOS Safari" %}</th>
+          <th>{% trans "Android" %}</th>
+          <th>{% trans "Opera Mini" %}</th>
+          <th>{% trans "Opera Mobile" %}</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="9">{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a>
+            and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>{% endblocktrans %}</td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td class="chrome">---</td>
+          <td class="firefox">---</td>
+          <td class="safari">---</td>
+          <td class="opera">---</td>
+          <td class="ie">---</td>
+          <td class="ios_saf">---</td>
+          <td class="android">---</td>
+          <td class="op_mini">---</td>
+          <td class="op_mob">---</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  {% endblock %}
+
+  {% block contents %}{% endblock %}
+
+  <script>
+   var caniusefeatures = '{% block caniuse %}{% endblock %}'.split(',');
+   var features = '{% block tuttags %}{% endblock %}';
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="/static/js/feature{% if prod %}.min{% endif %}.js"></script>
 {% endblock %}
