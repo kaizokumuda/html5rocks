@@ -74,34 +74,34 @@ For the slide effect, first we declare our markup:
 
 <pre class="prettyprint">
 &lt;div id=&quot;home-page&quot; class=&quot;page&quot;&gt;
-    &lt;h1&gt;Home Page&lt;/h1&gt;
+  &lt;h1&gt;Home Page&lt;/h1&gt;
 &lt;/div&gt;
 
 &lt;div id=&quot;products-page&quot; class=&quot;page stage-right&quot;&gt;
-    &lt;h1&gt;Products Page&lt;/h1&gt;
+  &lt;h1&gt;Products Page&lt;/h1&gt;
 &lt;/div&gt;
 
 &lt;div id=&quot;about-page&quot; class=&quot;page stage-left&quot;&gt;
-    &lt;h1&gt;About Page&lt;/h1&gt;
-&lt;/div&gt;	
+  &lt;h1&gt;About Page&lt;/h1&gt;
+&lt;/div&gt;
 </pre>
-	
+
 <p>
 Notice how we have this concept of staging pages left or right. It could essentially be any direction, but this is most common.
 </p>
 
 <p>
-We now have animation plus hardware acceleration with just a few lines of CSS. The actual animation happens when we swap classes on the page div elements.  
+We now have animation plus hardware acceleration with just a few lines of CSS. The actual animation happens when we swap classes on the page div elements.
 </p>
 
 <pre class="prettyprint">
 .page {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    /*activate the GPU for compositing each page */
-    -webkit-transform: translate3d(0, 0, 0);
-}	
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /*activate the GPU for compositing each page */
+  -webkit-transform: translate3d(0, 0, 0);
+}
 </pre>
 
 <p>
@@ -114,39 +114,39 @@ When the user clicks a navigation element, we execute the following JavaScript t
 
 <pre class="prettyprint">
 function getElement(id) {
-    return document.getElementById(id)
+  return document.getElementById(id);
 }
 
 function slideTo(id) {
-    //1.)the page we are bringing into focus dictates how
-    // the current page will exit. So let's see what classes
-    // our incoming page is using. We know it will have stage[right|left|etc...]
-    var classes = getElement(id).className.split(' ');
+  //1.) the page we are bringing into focus dictates how
+  // the current page will exit. So let's see what classes
+  // our incoming page is using. We know it will have stage[right|left|etc...]
+  var classes = getElement(id).className.split(' ');
 
-    //2.)decide if the incoming page is assigned to right or left
-    // (-1 if no match)
-    var stageType = classes.indexOf('stage-left');
+  //2.) decide if the incoming page is assigned to right or left
+  // (-1 if no match)
+  var stageType = classes.indexOf('stage-left');
 
-    //3.) on initial page load focusPage is null, so we need
-    // to set the default page which we're currently seeing.
-    if (FOCUS_PAGE == null) {
-        //use home page
-        FOCUS_PAGE = getElement('home-page');
-    }
+  //3.) on initial page load focusPage is null, so we need
+  // to set the default page which we're currently seeing.
+  if (FOCUS_PAGE == null) {
+    // use home page
+    FOCUS_PAGE = getElement('home-page');
+  }
 
-    //4.) decide how this focused page should exit.
-    if (stageType > 0) {
-        FOCUS_PAGE.className = 'page transition stage-right';
-    } else {
-        FOCUS_PAGE.className = 'page transition stage-left';
-    }
+  //4.) decide how this focused page should exit.
+  if (stageType > 0) {
+    FOCUS_PAGE.className = 'page transition stage-right';
+  } else {
+    FOCUS_PAGE.className = 'page transition stage-left';
+  }
 
-    //5. refresh/set the global variable
-    FOCUS_PAGE = getElement(id);
+  //5. refresh/set the global variable
+  FOCUS_PAGE = getElement(id);
 
-    //6. Bring in the new page.
-    FOCUS_PAGE.className = 'page transition stage-center';
-}	
+  //6. Bring in the new page.
+  FOCUS_PAGE.className = 'page transition stage-center';
+}
 </pre>
 
 <p>
@@ -155,40 +155,40 @@ function slideTo(id) {
 
 <pre class="prettyprint">
 .stage-left {
-    left: -480px;
+  left: -480px;
 }
 
 .stage-right {
-    left: 480px;
+  left: 480px;
 }
 
 .stage-center {
-    top: 0;
-    left: 0;
-}	
+  top: 0;
+  left: 0;
+}
 </pre>
 
 <p>
 Next, let’s take a look at the CSS which handles mobile device detection and orientation.
-We could address every device and every resolution (see <a href="http://www.w3.org/TR/css3-mediaqueries/#resolution">media query resolution</a>). I used just a few simple examples in this demo to cover most portrait and landscape views on mobile devices. This is also useful for applying hardware acceleration per device. For example, since the desktop version of WebKit accelerates all transformed elements (regardless if it’s 2-D or 3-D), it makes sense to create a media query and exclude acceleration at that level. 
+We could address every device and every resolution (see <a href="http://www.w3.org/TR/css3-mediaqueries/#resolution">media query resolution</a>). I used just a few simple examples in this demo to cover most portrait and landscape views on mobile devices. This is also useful for applying hardware acceleration per device. For example, since the desktop version of WebKit accelerates all transformed elements (regardless if it’s 2-D or 3-D), it makes sense to create a media query and exclude acceleration at that level.
 Note that hardware acceleration tricks do not provide any speed improvement under Android Froyo 2.2+. All composition is done within the software.
 </p>
 
 <pre class="prettyprint">
 /* iOS/android phone landscape screen width*/
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
-    .stage-left {
-       left: -480px;
-    }
+  .stage-left {
+    left: -480px;
+  }
 
-    .stage-right {
-        left: 480px;
-    }
+  .stage-right {
+    left: 480px;
+  }
 
-    .page {
-        width: 480px;
-    }
-}	
+  .page {
+    width: 480px;
+  }
+}
 </pre>
 
 <h3 id="toc-flipping">Flipping</h3>
@@ -202,13 +202,14 @@ View it in action <a href="http://slidfast.appspot.com/slide-flip-rotate.html">h
 </p>
 
 <p>
-When dealing with touch events and transitions, the first thing you’ll want is to get a handle on the current position of the element. See this doc for more information on WebKitCSSMatrix. 
+When dealing with touch events and transitions, the first thing you’ll want is to get a handle on the current position of the element. See this doc for more information on WebKitCSSMatrix.
 </p>
 <pre class="prettyprint">
 function pageMove(event) {
-    //get position after transform
-    var curTransform = new WebKitCSSMatrix(window.getComputedStyle(page).webkitTransform);
-    var pagePosition = curTransform.m41;	
+  // get position after transform
+  var curTransform = new WebKitCSSMatrix(window.getComputedStyle(page).webkitTransform);
+  var pagePosition = curTransform.m41;
+}
 </pre>
 <p>
 Since we are using a CSS3 ease-out transition for the page flip, the usual <code>element.offsetLeft</code> will not work.
@@ -218,28 +219,27 @@ Since we are using a CSS3 ease-out transition for the page flip, the usual <code
 Next we want to figure out which direction the user is flipping and set a threshold for an event (page navigation) to take place.
 </p>
 <pre class="prettyprint">
-if(pagePosition &gt;= 0){
+if (pagePosition &gt;= 0) {
  //moving current page to the right
  //so means we&#x27;re flipping backwards
-    if((pagePosition &gt; pageFlipThreshold) || (swipeTime &lt; swipeThreshold)){
-        //user wants to go backward
-        slideDirection = &#x27;right&#x27;;
-     }else{
-        slideDirection = null;
-     }
- }else{
- //current page is sliding to the left
-     if((swipeTime &lt; swipeThreshold) || (pagePosition &lt; pageFlipThreshold)){
-        //user wants to go forward
-        slideDirection = &#x27;left&#x27;;
-     }else{
-        slideDirection = null;
-     }
-
- }	
+   if ((pagePosition &gt; pageFlipThreshold) || (swipeTime &lt; swipeThreshold)) {
+     //user wants to go backward
+     slideDirection = &#x27;right&#x27;;
+   } else {
+     slideDirection = null;
+   }
+} else {
+  //current page is sliding to the left
+  if ((swipeTime &lt; swipeThreshold) || (pagePosition &lt; pageFlipThreshold)) {
+    //user wants to go forward
+    slideDirection = &#x27;left&#x27;;
+  } else {
+    slideDirection = null;
+  }
+}
 </pre>
 <p>
-You’ll also notice that we are measuring the <code>swipeTime</code> in milliseconds as well. This allows the navigation event to fire if the user quickly swipes the screen to turn a page. 
+You’ll also notice that we are measuring the <code>swipeTime</code> in milliseconds as well. This allows the navigation event to fire if the user quickly swipes the screen to turn a page.
 </p>
 
 <p>
@@ -247,17 +247,16 @@ To position the page and make the animations look native while a finger is touch
 </p>
 
 <pre class="prettyprint">
-function positionPage(end)
-{
-    page.style.webkitTransform = &#x27;translate3d(&#x27;+ currentPos + &#x27;px, 0, 0)&#x27;;
-    if(end){
-        page.style.WebkitTransition = &#x27;all .4s ease-out&#x27;;
-        //page.style.WebkitTransition = &#x27;all .4s cubic-bezier(0,.58,.58,1)&#x27;
-    }else{
-        page.style.WebkitTransition = &#x27;all .2s ease-out&#x27;;
-    }
-    page.style.WebkitUserSelect = &#x27;none&#x27;;
-}	
+function positionPage(end) {
+  page.style.webkitTransform = &#x27;translate3d(&#x27;+ currentPos + &#x27;px, 0, 0)&#x27;;
+  if (end) {
+    page.style.WebkitTransition = &#x27;all .4s ease-out&#x27;;
+    //page.style.WebkitTransition = &#x27;all .4s cubic-bezier(0,.58,.58,1)&#x27;
+  } else {
+    page.style.WebkitTransition = &#x27;all .2s ease-out&#x27;;
+  }
+  page.style.WebkitUserSelect = &#x27;none&#x27;;
+}
 </pre>
 
 <p>
@@ -270,13 +269,13 @@ Finally, to make the navigation happen, we must call our previously defined <cod
 
 <pre class="prettyprint">
 track.ontouchend = function(event) {
-    pageMove(event);
-    if(slideDirection == &#x27;left&#x27;){
-       slideTo(&#x27;products-page&#x27;);
-    }else if (slideDirection == &#x27;right&#x27;){
-        slideTo(&#x27;home-page&#x27;);
-    }
-}	
+  pageMove(event);
+  if (slideDirection == &#x27;left&#x27;) {
+    slideTo(&#x27;products-page&#x27;);
+  } else if (slideDirection == &#x27;right&#x27;) {
+    slideTo(&#x27;home-page&#x27;);
+  }
+}
 </pre>
 
 <h3 id="toc-rotating">Rotating</h3>
@@ -298,7 +297,7 @@ The markup (basic concept of front and back):
     &lt;div id=&quot;contact-page&quot; class=&quot;page&quot;&gt;
         &lt;h1&gt;Contact Page&lt;/h1&gt;
     &lt;/div&gt;
-&lt;/div&gt;	
+&lt;/div&gt;
 </pre>
 
 <p>
@@ -307,26 +306,26 @@ The JavaScript:
 
 <pre class="prettyprint">
 function flip(id) {
-    //get a handle on the flippable region
-    var front = getElement(&#x27;front&#x27;);
-    var back = getElement(&#x27;back&#x27;);
+  // get a handle on the flippable region
+  var front = getElement(&#x27;front&#x27;);
+  var back = getElement(&#x27;back&#x27;);
 
-    //again, just a simple way to see what the state is
-    var classes = front.className.split(&#x27; &#x27;);
-    var flipped = classes.indexOf(&#x27;flipped&#x27;);
+  // again, just a simple way to see what the state is
+  var classes = front.className.split(&#x27; &#x27;);
+  var flipped = classes.indexOf(&#x27;flipped&#x27;);
 
-    if (flipped &gt;= 0) {
-        //already flipped, so return to original
-        front.className = &#x27;normal&#x27;;
-        back.className = &#x27;flipped&#x27;;
-        FLIPPED = false;
-    } else {
-        //do the flip
-        front.className = &#x27;flipped&#x27;;
-        back.className = &#x27;normal&#x27;;
-        FLIPPED = true;
-    }
-}	
+  if (flipped &gt;= 0) {
+    // already flipped, so return to original
+    front.className = &#x27;normal&#x27;;
+    back.className = &#x27;flipped&#x27;;
+    FLIPPED = false;
+  } else {
+    // do the flip
+    front.className = &#x27;flipped&#x27;;
+    back.className = &#x27;normal&#x27;;
+    FLIPPED = true;
+  }
+}
 </pre>
 
 <p>
@@ -337,22 +336,22 @@ The CSS:
 /*----------------------------flip transition */
 #back,
 #front {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    -webkit-transition-duration: .5s;
-    -webkit-transform-style: preserve-3d;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition-duration: .5s;
+  -webkit-transform-style: preserve-3d;
 }
 
 .normal {
-    -webkit-transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
 }
 
 .flipped {
-    -webkit-user-select: element;
-    -webkit-transform: rotateY(180deg);
-}	
+  -webkit-user-select: element;
+  -webkit-transform: rotateY(180deg);
+}
 </pre>
 
 <h2 id="toc-debugging-hw-acceleration">Debugging hardware acceleration</h2>
@@ -362,7 +361,7 @@ Now that we have our basic transitions covered, let’s take a look at the mecha
 </p>
 
 <p>
-To make this magical debugging session happen, let’s fire up a couple of browsers and your IDE of choice. 
+To make this magical debugging session happen, let’s fire up a couple of browsers and your IDE of choice.
 First start Safari from the command line to make use of some debugging environment variables. I’m on Mac, so the commands might differ based on your OS.
 Open the Terminal and type the following:
 <ul>
@@ -391,7 +390,7 @@ If you view <a href="http://slidfast.appspot.com/slide-flip-rotate.html">this pa
 </p>
 
 <figure>
-	<img src="/static/images/screenshots/optimizing-and-performance/chrome-fps.png" width="154" height="31" alt="Chrome FPS" title="Chrome FPS">
+  <img src="/static/images/screenshots/optimizing-and-performance/chrome-fps.png" width="154" height="31" alt="Chrome FPS" title="Chrome FPS">
 </figure>
 
 <p>
@@ -399,12 +398,12 @@ This is how we know hardware acceleration is turned on. It also gives us an idea
 </p>
 
 <p>
-Another way to actually visualize the hardware acceleration is if you open the same page in Safari (with the environment variables I mentioned above). Every accelerated DOM element have a red tint to it. This shows us exactly what is being composited by layer. 
+Another way to actually visualize the hardware acceleration is if you open the same page in Safari (with the environment variables I mentioned above). Every accelerated DOM element have a red tint to it. This shows us exactly what is being composited by layer.
 Notice the white navigation is not red because it is not accelerated.
 </p>
 
 <figure>
-<img src="/static/images/screenshots/optimizing-and-performance/composited-contact.png" width="300" alt="Composited Contact" title="Composited Contact Page">	
+<img src="/static/images/screenshots/optimizing-and-performance/composited-contact.png" width="300" alt="Composited Contact" title="Composited Contact Page">
 </figure>
 
 <p>
@@ -416,16 +415,16 @@ Another great way to see the composited layers is to view the <a href="http://ww
 </p>
 
 <figure>
-	<img src="/static/images/screenshots/optimizing-and-performance/composited-leaves.png" width="300" alt="Composited Leaves" title="Composited Leaves Demo">
+  <img src="/static/images/screenshots/optimizing-and-performance/composited-leaves.png" width="300" alt="Composited Leaves" title="Composited Leaves Demo">
 </figure>
 
 <p>
 And finally, to truly understand the graphics hardware performance of our application, let’s take a look at how memory is being consumed.
-Here we see that we are pushing 1.38MB of drawing instructions to the CoreAnimation buffers on Mac OS. The Core Animation memory buffers are shared between OpenGL ES and the GPU to create the final pixels you see on the screen. 
+Here we see that we are pushing 1.38MB of drawing instructions to the CoreAnimation buffers on Mac OS. The Core Animation memory buffers are shared between OpenGL ES and the GPU to create the final pixels you see on the screen.
 </p>
 
 <figure>
-<img src="/static/images/screenshots/optimizing-and-performance/coreanimation-1.png" width="500" alt="Coreanimation 1" title="Coreanimation 1">	
+<img src="/static/images/screenshots/optimizing-and-performance/coreanimation-1.png" width="500" alt="Coreanimation 1" title="Coreanimation 1">
 </figure>
 
 <p>
@@ -433,11 +432,11 @@ When we simply resize or maximize the browser window, we see the memory expand a
 </p>
 
 <figure>
-<img src="/static/images/screenshots/optimizing-and-performance/coreanimation-2.png" width="500" alt="Coreanimation 2" title="Coreanimation 2">	
-</figure>	
+<img src="/static/images/screenshots/optimizing-and-performance/coreanimation-2.png" width="500" alt="Coreanimation 2" title="Coreanimation 2">
+</figure>
 
 <p>
-This gives you an idea of how memory is being consumed on your mobile device only if you resize the browser to the correct dimensions. If you were debugging or testing for iPhone environments resize to 480px by 320px. 
+This gives you an idea of how memory is being consumed on your mobile device only if you resize the browser to the correct dimensions. If you were debugging or testing for iPhone environments resize to 480px by 320px.
 We now understand exactly how hardware acceleration works and what it takes to debug. It’s one thing to read about it, but to actually see the GPU memory buffers working visually really brings things into perspective.
 </p>
 
@@ -465,21 +464,21 @@ Building on the code from the <a href="http://slidfast.appspot.com/slide-flip-ro
 <figure>
 <img src="/static/images/screenshots/optimizing-and-performance/iphone-home.png" width="372" height="335" alt="iPhone Home" title="iPhone Home">
 </figure>
-	
+
 <p>
 <a href="http://slidfast.appspot.com/fetch-cache.html">View the Fetch and Cache demo here.</a>
 </p>
 
 <p>
-As you can see, we are leveraging semantic markup here. Just a link to another page. The child page follows the same node/class structure as its parent. We could take this a step further and use the data-* attribute for “page” nodes, etc... 
+As you can see, we are leveraging semantic markup here. Just a link to another page. The child page follows the same node/class structure as its parent. We could take this a step further and use the data-* attribute for “page” nodes, etc...
 And here is the detail page (child) located in a separate html file (/demo2/home-detail.html) which will be loaded, cached and set up for transition on app load.
 </p>
 
 <pre class="prettyprint">
 &lt;div id=&quot;home-page&quot; class=&quot;page&quot;&gt;
-    &lt;h1&gt;Home Page&lt;/h1&gt;
-    &lt;a href=&quot;demo2/home-detail.html&quot; class=&quot;fetch&quot;&gt;Find out more about the home page!&lt;/a&gt;
-&lt;/div&gt;	
+  &lt;h1&gt;Home Page&lt;/h1&gt;
+  &lt;a href=&quot;demo2/home-detail.html&quot; class=&quot;fetch&quot;&gt;Find out more about the home page!&lt;/a&gt;
+&lt;/div&gt;
 </pre>
 
 <p>
@@ -489,31 +488,31 @@ Note—For this demo, this method <code>fetchAndCache()</code> is being called o
 
 <pre class="prettyprint">
 var fetchAndCache = function() {
-    //iterate through all nodes in this DOM to find all mobile pages we care about
-    var pages = document.getElementsByClassName(&#x27;page&#x27;);
+  // iterate through all nodes in this DOM to find all mobile pages we care about
+  var pages = document.getElementsByClassName(&#x27;page&#x27;);
 
-    for (var i = 0; i &lt; pages.length; i++) {
-        //find all links
-        var pageLinks = pages[i].getElementsByTagName(&#x27;a&#x27;);
+  for (var i = 0; i &lt; pages.length; i++) {
+    // find all links
+    var pageLinks = pages[i].getElementsByTagName(&#x27;a&#x27;);
 
-        for (var j = 0; j &lt; pageLinks.length; j++) {
-            var link = pageLinks[j];
+    for (var j = 0; j &lt; pageLinks.length; j++) {
+      var link = pageLinks[j];
 
-            if (link.hasAttribute(&#x27;href&#x27;) &amp;&amp;
-            //&#x27;#&#x27; in the href tells us that this page is already loaded in the dom - and
-            // that it links to a mobile transition/page
-                !(/[\#]/g).test(link.href) &amp;&amp;
-                //check for an explicit class name setting to fetch this link
-                (link.className.indexOf(&#x27;fetch&#x27;) &gt;= 0))  {
-                 //fetch each url concurrently
-                 var ai = new ajax(link,function(text,url){
-                      //insert the new mobile page into the DOM
-                     insertPages(text,url);
-                 });
-                 ai.doGet();
-            }
-        }
+      if (link.hasAttribute(&#x27;href&#x27;) &amp;&amp;
+      //&#x27;#&#x27; in the href tells us that this page is already loaded in the DOM - and
+      // that it links to a mobile transition/page
+         !(/[\#]/g).test(link.href) &amp;&amp;
+        //check for an explicit class name setting to fetch this link
+        (link.className.indexOf(&#x27;fetch&#x27;) &gt;= 0))  {
+         //fetch each url concurrently
+         var ai = new ajax(link,function(text,url){
+              //insert the new mobile page into the DOM
+             insertPages(text,url);
+         });
+         ai.doGet();
+      }
     }
+  }
 };
 </pre>
 
@@ -525,11 +524,11 @@ We ensure proper asynchronous post-processing through the use of the “AJAX” 
 function processRequest () {
   if (req.readyState == 4) {
     if (req.status == 200) {
-        if (supports_local_storage()) {
-            localStorage[url] = req.responseText;
-        }
-        if (callback) callback(req.responseText,url);
-    }else {
+      if (supports_local_storage()) {
+        localStorage[url] = req.responseText;
+      }
+      if (callback) callback(req.responseText,url);
+    } else {
       // There is an error of some kind, use our cached copy (if available).
       if (!!localStorage[url]) {
         // We have some data cached, return that to the callback.
@@ -538,9 +537,9 @@ function processRequest () {
       }
     }
   }
-}	
+}
 </pre>
-	
+
 <p>
 Unfortunately, since localStorage uses UTF-16 for character encoding, each single byte is stored as 2 bytes bringing our storage limit from 5MB to <a href="https://twitter.com/#!/wesleyhales/status/104992809534238721">2.6MB total</a>. The whole reason for fetching and caching these pages/markup outside of the application cache scope is revealed in the next section.
 </p>
@@ -551,41 +550,43 @@ With the recent advances in the <a href="http://dev.w3.org/html5/spec-author-vie
 
 <p>
 From the spec:
-The sandbox attribute, when specified, enables a set of extra restrictions on any content hosted by the iframe. Its value must be an unordered set of unique space-separated tokens that are ASCII case-insensitive. The allowed values are allow-forms, allow-same-origin, allow-scripts, and allow-top-navigation. When the attribute is set, the content is treated as being from a unique origin, forms and scripts are disabled, links are prevented from targeting other browsing contexts, and plugins are disabled. 
+The sandbox attribute, when specified, enables a set of extra restrictions on any content hosted by the iframe. Its value must be an unordered set of unique space-separated tokens that are ASCII case-insensitive. The allowed values are allow-forms, allow-same-origin, allow-scripts, and allow-top-navigation. When the attribute is set, the content is treated as being from a unique origin, forms and scripts are disabled, links are prevented from targeting other browsing contexts, and plugins are disabled.
 To limit the damage that can be caused by hostile HTML content, it should be served using the <a href="http://dev.w3.org/html5/spec-author-view/iana.html#text-html-sandboxed">text/html-sandboxed</a> MIME type.
 </p>
 
 <pre class="prettyprint">
 var insertPages = function(text, originalLink) {
-    var frame = getFrame();
-    //write the ajax response text to the frame and let
-    //the browser do the work
-    frame.write(text);
+  var frame = getFrame();
+  //write the ajax response text to the frame and let
+  //the browser do the work
+  frame.write(text);
 
-    //now we have a DOM to work with
-    var incomingPages = frame.getElementsByClassName(&#x27;page&#x27;);
+  //now we have a DOM to work with
+  var incomingPages = frame.getElementsByClassName(&#x27;page&#x27;);
 
-    var pageCount = incomingPages.length;
-    for (var i = 0; i &lt; pageCount; i++) {
-        //the new page will always be at index 0 because
-        //the last one just got popped off the stack with appendChild (below)
-        var newPage = incomingPages[0];
+  var pageCount = incomingPages.length;
+  for (var i = 0; i &lt; pageCount; i++) {
+    //the new page will always be at index 0 because
+    //the last one just got popped off the stack with appendChild (below)
+    var newPage = incomingPages[0];
 
-        //stage the new pages to the left by default
-        newPage.className = &#x27;page stage-left&#x27;;
+    //stage the new pages to the left by default
+    newPage.className = &#x27;page stage-left&#x27;;
 
-        //find out where to insert
-        var location = newPage.parentNode.id == &#x27;back&#x27; ? &#x27;back&#x27; : &#x27;front&#x27;;
+    //find out where to insert
+    var location = newPage.parentNode.id == &#x27;back&#x27; ? &#x27;back&#x27; : &#x27;front&#x27;;
 
-        try{
-            //mobile safari will not allow nodes to be transferred from one DOM to another so
-            //we must use adoptNode()
-            document.getElementById(location).appendChild(document.adoptNode(newPage));
-        }catch(e){
-            //todo graceful degradation?
-        }	
+    try {
+      // mobile safari will not allow nodes to be transferred from one DOM to another so
+      // we must use adoptNode()
+      document.getElementById(location).appendChild(document.adoptNode(newPage));
+    } catch(e) {
+      // todo graceful degradation?
+    }
+  }
+};
 </pre>
-	
+
 <p>
 Safari correctly refuses to implicitly move a node from one document to another. An error is raised if the new child node was created in a different document. So here we use <code>adoptNode</code> and all is well.
 </p>
@@ -621,25 +622,25 @@ Again, all of these features require very little code. First we detect our event
 
 <pre class="prettyprint">
 window.addEventListener(&#x27;load&#x27;, function(e) {
-   if (navigator.onLine) {
-      //new page load
-      processOnline();
-   }else{
-      //the app is probably already cached and (maybe) bookmarked...
-      processOffline();
-   }
+ if (navigator.onLine) {
+  // new page load
+  processOnline();
+ } else {
+   // the app is probably already cached and (maybe) bookmarked...
+   processOffline();
+ }
 }, false);
 
 window.addEventListener(&quot;offline&quot;, function(e) {
-   //we just lost our connection and entered offline mode, disable eternal link
-   processOffline(e.type);
+  // we just lost our connection and entered offline mode, disable eternal link
+  processOffline(e.type);
 }, false);
 
 window.addEventListener(&quot;online&quot;, function(e) {
-  //just came back online, enable links
+  // just came back online, enable links
   processOnline(e.type);
 }, false);
-</pre>	
+</pre>
 
 <p>
 In the EventListeners above, we must tell our code if it is being called from an event or an actual page request or refresh. The main reason is because the body <code>onload</code> event won’t be fired when switching between the online and offline modes.
@@ -650,43 +651,47 @@ Next, we have a simple check for an <code>ononline</code> or <code>onload</code>
 </p>
 
 <pre class="prettyprint">
-function processOnline(eventType){
+function processOnline(eventType) {
 
-    setupApp();
-    checkAppCache();
+  setupApp();
+  checkAppCache();
 
-    //reset our once disabled offline links
-    if(eventType){
-        for (var i = 0; i &lt; disabledLinks.length; i++) {
-            disabledLinks[i].onclick = null;
-        }
+  // reset our once disabled offline links
+  if (eventType) {
+    for (var i = 0; i &lt; disabledLinks.length; i++) {
+      disabledLinks[i].onclick = null;
     }
+  }
+}
 </pre>
-	
+
 <p>
 The same goes for <code>processOffline()</code>. Here you would manipulate your app for offline mode and try to recover any transactions that were going on behind the scenes. This code below digs out all of our external links and disables them—trapping users in our offline app FOREVER muhahaha!
 </p>
 
 <pre class="prettyprint">
 function processOffline() {
-    setupApp();
-    //disable external links until we come back - setting the bounds of app
-    disabledLinks = getUnconvertedLinks(document);
-    //helper for onlcick below
-    var onclickHelper = function(e){
-        return function(f) {
-            alert(&#x27;This app is currently offline and cannot access the hotness&#x27;);return false;
-        }
-    };
-    for (var i = 0; i &lt; disabledLinks.length; i++) {
-        if(disabledLinks[i].onclick == null){
-        //alert user we&#x27;re not online
-        disabledLinks[i].onclick = onclickHelper(disabledLinks[i].href);
+  setupApp();
 
-        }
+  // disable external links until we come back - setting the bounds of app
+  disabledLinks = getUnconvertedLinks(document);
+
+  // helper for onlcick below
+  var onclickHelper = function(e) {
+    return function(f) {
+      alert(&#x27;This app is currently offline and cannot access the hotness&#x27;);return false;
     }
-}	
-</pre>	
+  };
+
+  for (var i = 0; i &lt; disabledLinks.length; i++) {
+    if (disabledLinks[i].onclick == null) {
+      //alert user we&#x27;re not online
+      disabledLinks[i].onclick = onclickHelper(disabledLinks[i].href);
+
+    }
+  }
+}
+</pre>
 
 <p>
 OK, so on to the good stuff. Now that our app knows what connected state it’s in, we can also check the type of connection when it’s online and adjust accordingly. I have listed typical North American providers download and latencies in the comments for each connection.
@@ -694,34 +699,34 @@ OK, so on to the good stuff. Now that our app knows what connected state it’s 
 
 <pre class="prettyprint">
 function setupApp(){
-    // create a custom object if navigator.connection isn&#x27;t available
-    var connection = navigator.connection || {&#x27;type&#x27;:&#x27;0&#x27;};
-    if (connection.type == 2 || connection.type == 1){
-        //wifi/ethernet
-        //Coffee Wifi latency: ~75ms-200ms
-        //Home Wifi latency: ~25-35ms
-        //Coffee Wifi DL speed: ~550kbps-650kbps
-        //Home Wifi DL speed: ~1000kbps-2000kbps
-        fetchAndCache(true);
-    }else if (connection.type == 3){
-    //edge
-        //ATT Edge latency: ~400-600ms
-        //ATT Edge DL speed: ~2-10kbps
-        fetchAndCache(false);
-    }else if (connection.type == 2){
-        //3g
-        //ATT 3G latency: ~400ms
-        //Verizon 3G latency: ~150-250ms
-        //ATT 3G DL speed: ~60-100kbps
-        //Verizon 3G DL speed: ~20-70kbps
-        fetchAndCache(false);
-    }else{
-    //unknown
-        fetchAndCache(true);
-    }
-}	
+  // create a custom object if navigator.connection isn&#x27;t available
+  var connection = navigator.connection || {&#x27;type&#x27;:&#x27;0&#x27;};
+  if (connection.type == 2 || connection.type == 1) {
+      //wifi/ethernet
+      //Coffee Wifi latency: ~75ms-200ms
+      //Home Wifi latency: ~25-35ms
+      //Coffee Wifi DL speed: ~550kbps-650kbps
+      //Home Wifi DL speed: ~1000kbps-2000kbps
+      fetchAndCache(true);
+  } else if (connection.type == 3) {
+  //edge
+      //ATT Edge latency: ~400-600ms
+      //ATT Edge DL speed: ~2-10kbps
+      fetchAndCache(false);
+  } else if (connection.type == 2) {
+      //3g
+      //ATT 3G latency: ~400ms
+      //Verizon 3G latency: ~150-250ms
+      //ATT 3G DL speed: ~60-100kbps
+      //Verizon 3G DL speed: ~20-70kbps
+      fetchAndCache(false);
+  } else {
+  //unknown
+      fetchAndCache(true);
+  }
+}
 </pre>
-	
+
 <p>
 There are numerous adjustments we could make to our fetchAndCache process, but all I did here was tell it to fetch the resources asynchronous (true) or synchronous (false) for a given connection.
 </p>
@@ -731,7 +736,7 @@ Edge (Synchronous) Request Timeline
 </p>
 
 <figure>
-<img src="/static/images/screenshots/optimizing-and-performance/edge-sync.png" width="700" alt="Edge Sync" title="Edge Sync">	
+<img src="/static/images/screenshots/optimizing-and-performance/edge-sync.png" width="700" alt="Edge Sync" title="Edge Sync">
 </figure>
 
 <p>
@@ -739,7 +744,7 @@ WIFI (Asynchronous) Request Timeline
 </p>
 
 <figure>
-<img src="/static/images/screenshots/optimizing-and-performance/wifi-async.png" width="700" alt="WIFI Async" title="WIFI Async">	
+<img src="/static/images/screenshots/optimizing-and-performance/wifi-async.png" width="700" alt="WIFI Async" title="WIFI Async">
 </figure>
 
 <p>
