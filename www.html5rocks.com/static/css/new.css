@@ -703,6 +703,15 @@ article.profile h3
 
 /* FEATURES  */
 
+nav.site_nav
+{
+  position: fixed;
+  left: 50%;
+  top: 150px;
+  margin-right: -400px;
+  width: 200px;
+}
+
 .description
 {
   background: url(/static/new_images/section_background.png);

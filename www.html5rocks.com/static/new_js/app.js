@@ -41,5 +41,5 @@ function buildPageAndScrollThere()
 
   $(newPage).load('features/offline')
 
-  $.scrollTo({top:'3000px', left:'3000px'}, 800);
+  $.scrollTo({top:'3000px', left:'3000px'}, 800, {queue:true});
 }
