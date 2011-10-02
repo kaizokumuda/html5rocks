@@ -177,12 +177,21 @@
 #latest_articles_feed .type {
   font-size: 90%;
   font-variant: small-caps;
-  margin-left: 7px;
+  margin-left: 10px;
   font-weight: bold;
   vertical-align: top;
   color: #000;
 }
-
+#latest_articles_feed li a {
+  max-width: 75%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#latest_articles_feed li span {
+  width: 30px;
+  display: inline-block;
+}
 
 @media only screen and (min-width: 641px) and (max-width: 800px) { /*iPad*/
   #themes a {

@@ -1268,7 +1268,7 @@ div {margin:5px;color:black}
 .big {margin-top:3px}
 div span {margin-bottom:4px}
 #div1 {color:blue}
-#div 2 {color:green}
+#div2 {color:green}
 </pre>
 <p>
 To simplify things let's say we need to fill out only two structs - the color struct and the margin struct.
@@ -1325,7 +1325,7 @@ For instance if we added rules for fonts in a paragraph:
 <pre class="prettyprint">
 p {font-family:Verdana;font size:10px;font-weight:bold} 
 </pre>
-Then the div element, which is a child  of the paragraph in the context tree, could have shared the same font struct as his parent. This is if no font rules where specified for the "div".
+Then the paragraph element, which is a child of the div in the context tree, could have shared the same font struct as his parent. This is if no font rules where specified for the paragraph.
 </p>
 <p>
 In Webkit, who does not have a rule tree, the matched declarations are traversed 4 times. First non important high priority properties (properties that should be applied first because others depend on them - like display) are applied, than high priority important, then normal priority non important, then normal priority important rules.
@@ -1526,7 +1526,7 @@ Incremental layout is triggered (asynchronously) when renderers are dirty. For e
 Incremental layout is done asynchronously. Firefox queues "reflow commands" for incremental layouts and a scheduler triggers batch execution of these commands.
 Webkit also has a timer that executes an incremental layout - the tree is traversed and "dirty" renderers are layout out.
 <br>
-Scripts asking for style information, like "offsightHeight" can trigger incremental layout synchronously.
+Scripts asking for style information, like "offsetHeight" can trigger incremental layout synchronously.
 <br>
 Global layout will usually be triggered synchronously.
 <br>
@@ -1583,7 +1583,7 @@ So far this was the calculation of the "preferred width".
 Now the minimum and maximum widths will be calculated.
 <br>
 If the preferred width is higher then the maximum width - the maximum width is used.
-If it is lower then the minimum width (the smallest unbreakable unit) hen the minimum width is used.
+If it is lower then the minimum width (the smallest unbreakable unit) then the minimum width is used.
 </p>
 <p>
 The values are cached, in case a layout is needed but the width does not change.
@@ -1639,7 +1639,7 @@ The browsers try to do the minimal possible actions in response to a change.
 So changes to an elements color will cause only repaint of the element.
 Changes to the element position will cause layout and repaint of the element, its children and possibly siblings.
 Adding a DOM node will cause layout and repaint of the node.
-Major changes, like increasing font size of the "html" element, will cause invalidation of caches, relyout and repaint of the entire tree.
+Major changes, like increasing font size of the "html" element, will cause invalidation of caches, relayout and repaint of the entire tree.
 
 
 <h3 id="The_rendering_engines_threads">The rendering engine's threads</h3>
@@ -1934,6 +1934,10 @@ Although the red div precedes the green one in the markup, and would have been p
   <p><a href="http://taligarsiel.com/">Tali Garsiel</a> is a developer in Israel. She started as a web developer in 2000, and became aquainted with Netscape's "evil" layer model. Just like Richard Feynmann, she had a fascination for figuring out how things work so she began digging into browser internals and documenting what she found. Tali also has published a short <a href="http://taligarsiel.com/ClientSidePerformance.html">guide on client-side performance</a>. </p>
 
 </aside>
+
+
+<h4>Translations</h4>
+<p>This page has been translated into Japanese, twice! <a href="http://cou929.nu/docs/how-browsers-work/">How Browsers Work - Behind the Scenes of Modern Web Browsers (ja)</a> by <a href="https://twitter.com/#!/_kosei_">@_kosei_</a> and also <a href="http://shanon-tech.blogspot.com/2011/09/web.html">ブラウザってどうやって動いてるの？（モダンWEBブラウザシーンの裏側</a> by <a href="https://twitter.com/#!/ikeike443">@ikeike443</a> and <a href="https://twitter.com/#!/kiyoto01">@kiyoto01</a>. Thanks everyone!</p>
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

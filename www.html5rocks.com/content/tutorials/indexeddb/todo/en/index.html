@@ -26,6 +26,7 @@
 {% endblock %}
 
 {% block head %}
+{% if is_mobile %}
   <script>
     var html5rocks = {};
     var indexedDB = window.indexedDB || window.webkitIndexedDB ||
@@ -162,11 +163,10 @@
       html5rocks.indexedDB.open();
     }
 
-    window.addEventListener("DOMContentLoaded", init(), false);
+    window.addEventListener("DOMContentLoaded", init, false);
   </script>
+{% endif %}
 {% endblock %}
-
-{% block onload %}{% endblock %}
 
 {% block content %}
   <h2 id="toc-intro">Introduction</h2>
@@ -515,9 +515,14 @@ function addTodo() {
   todo.value = '';
 }</pre>
   <h2 id="toc-final">The final product</h2>
+{% if is_mobile %}
   <ul id="todoItems"></ul>
   <input type="text" id="todo" name="todo"
       placeholder="What do you need to do?" style="width: 200px;" />
     <input type="submit" value="Add Todo Item"
       onclick="addTodo(); return false;"/>
+{% else %}
+<iframe src="http://playground.html5rocks.com/?mode=frame&hu=210&hl=150#a_simple_todo_list_using_indexeddb" style="border: none; width: 100%; height: 480px;"></iframe>
+{% endif %}
+
 {% endblock %}

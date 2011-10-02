@@ -7,11 +7,6 @@
 {% block pagebreadcrumb %}HTML5 Video{% endblock %}
 {% block head %}
 <style>
-.example {
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
 video, canvas {
   width: 200px;
   height: 112px;
@@ -162,6 +157,7 @@ AddType video/webm .webm
   <p>
     Here you can see how your browser can only render one or two of the three formats we mentioned (you should feel lucky if you see the three of them!):
   </p>
+  {% if is_mobile %}
   <div class="video-container">
     <p>.mp4</p>
     <video poster="star.png" controls>
@@ -180,6 +176,10 @@ AddType video/webm .webm
       <source src="Chrome_ImF.ogv" type='video/ogg; codecs="theora, vorbis"' />
     </video>
   </div>
+  {% else %}
+  <iframe src="http://playground.html5rocks.com/?mode=frame&hu=180&hl=180#video_formats" style="border: none; width: 100%; height: 480px;"></iframe>
+  {% endif %}
+
   <p>
     At the time of this writing (August 2010) this is the snippet that has the safest combination of formats so you can be sure your video is displayed in all browsers:
   </p>
@@ -366,6 +366,7 @@ video_dom.addEventListener('play', function() {
   <p>
     On the left side you can see the original video playing. In the middle there's a canvas we are using to import the images every 33 milliseconds. On the right side there's a second canvas which will "suffer" all the transforms at the same time it imports the images from the first canvas. The only reason we are using two canvases is because the performance is much better than using a single one which imports the images and transforms at the same time.
   </p>
+  {% if is_mobile %}
   <video poster="star.png" id="video-canvas-fancy" controls>
     <source src="Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
     <source src="Chrome_ImF.webm" type='video/webm; codecs="vp8, vorbis"' />
@@ -373,6 +374,10 @@ video_dom.addEventListener('play', function() {
   </video>
   <canvas id="canvas-copy-fancy"></canvas>
   <canvas id="canvas-draw-fancy"></canvas>
+  {% else %}
+  <iframe src="http://playground.html5rocks.com/?mode=frame&hu=180&hl=160#video_+_canvas" style="border: none; width: 100%; height: 460px;"></iframe>
+  {% endif %}
+
   <p>
     The same technique of importing images can be also applied to <a href="https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/WebGL-spec.html">WebGL</a>. With WebGL you would be able, for instance, to import the frames of a video and render them on a spinning 3D cube. There are more details about such implementation on the <a href="https://developer.mozilla.org/en/WebGL/Animating_textures_in_WebGL">MDC website</a>.
   </p>
@@ -517,7 +522,8 @@ video_dom.addEventListener('play', function() {
         clearInterval(draw_interval);
       }, false);
     })();
-    
+
+  {% if is_mobile %}
     // video + canvas (sample 2)
     (function() {
       var video_dom = document.querySelector('#video-canvas-fancy');
@@ -538,7 +544,7 @@ video_dom.addEventListener('play', function() {
       video_dom.addEventListener('canplay', function() {
         canvas_copy.width = canvas_draw.width = video_dom.videoWidth;
         canvas_copy.height = video_dom.videoHeight;
-        canvas_draw.height = video_dom.height + out_padding;
+        canvas_draw.height = video_dom.videoHeight + out_padding;
         ctx_copy = canvas_copy.getContext('2d');
         ctx_draw = canvas_draw.getContext('2d');
       }, false);
@@ -587,7 +593,8 @@ video_dom.addEventListener('play', function() {
         clearInterval(interval);
       }, false);  
     })();
-    
+  {% endif %}
+
     // video + svg
     // insert SVG using script until SVG in HTML5 is more widely supported
     // (currently supported in IE 9 and Firefox 4 only)

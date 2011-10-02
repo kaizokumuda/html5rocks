@@ -426,6 +426,117 @@ var tempJSON = [
       }
     ],
     "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-3D and CSS",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/3d_transforms_basic.html",
+        "files": [],
+        "editor": "mixed",
+        "sampleName": "3D Transformation Basic",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-3d-transforms/",
+        "tutorial": "http://www.html5rocks.com/tutorials/3d/css/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/3d_transforms.html",
+        "files": ["samples/css/tutorials/3d_transforms.css"],
+        "editor": "css",
+        "sampleName": "3D Transformation",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/css3-3d-transforms/",
+        "tutorial": "http://www.html5rocks.com/tutorials/3d/css/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-Multimedia",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/audio_tag_with_fallback.html",
+        "files": ["samples/css/tutorials/audio_tag_with_fallback.css", "samples/js/tutorials/audio_tag_with_fallback.js"],
+        "editor": "mixed",
+        "sampleName": "Audio Tag with Fallback to Flash",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/html5/video.html#audio",
+        "tutorial": "http://www.html5rocks.com/tutorials/audio/quick/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/video_formats.html",
+        "files": ["samples/css/tutorials/video_formats.css"],
+        "editor": "mixed",
+        "sampleName": "Video Formats",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/html5/video.html#video",
+        "tutorial": "http://www.html5rocks.com/tutorials/video/basics/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/video_plus_canvas.html",
+        "files": ["samples/css/tutorials/video_plus_canvas.css", "samples/js/tutorials/video_plus_canvas.js"],
+        "editor": "mixed",
+        "sampleName": "Video + Canvas",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/html5/video.html#video",
+        "tutorial": "http://www.html5rocks.com/tutorials/video/basics/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-Exploring the FileSystem APIs",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/filesystem_apis.html",
+        "files": ["samples/css/tutorials/filesystem_apis.css", "samples/js/tutorials/filesystem_apis.js"],
+        "editor": "js",
+        "sampleName": "FileSystem APIs",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/file-system-api/",
+        "tutorial": "http://www.html5rocks.com/tutorials/file/filesystem/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-A Simple Trip Meter using the Geolocation API",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/trip_meter.html",
+        "files": ["samples/css/tutorials/trip_meter.css", "samples/js/tutorials/trip_meter.js"],
+        "editor": "js",
+        "sampleName": "The Final Product: Trip Meter",
+        "tags": "",
+        "spec": "http://dev.w3.org/geo/api/",
+        "tutorial": "http://www.html5rocks.com/tutorials/geolocation/trip_meter/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
+  },
+  {
+    "category":"Tutorial Samples-Simple TODO Lists using Web Storage",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/webdb_todo_list.html",
+        "files": ["samples/css/tutorials/webdb_todo_list.css", "samples/js/tutorials/webdb_todo_list.js"],
+        "editor": "js",
+        "sampleName": "A Simple TODO List using Web SQL Database",
+        "tags": "",
+        "spec": "http://dev.w3.org/html5/webdatabase/",
+        "tutorial": "http://www.html5rocks.com/tutorials/webdatabase/todo/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/tutorials/indexeddb_todo_list.html",
+        "files": ["samples/css/tutorials/webdb_todo_list.css", "samples/js/tutorials/indexeddb_todo_list.js"],
+        "editor": "js",
+        "sampleName": "A Simple TODO List using IndexedDB",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/IndexedDB/",
+        "tutorial": "http://www.html5rocks.com/tutorials/indexeddb/todo/"
+      }
+    ],
+    "docsUrl": "http://code.google.com/apis/ajaxlanguage/documentation/reference.html"
   }
 ];
 

@@ -539,6 +539,9 @@ li.ui-autocomplete-odd > a > strong, li.ui-autocomplete-even > a > strong {
   height: 16px;
 }
 
+.expanded {
+  display: block;
+}
 /* ------ Fix jQuery 'no drag over iFrame' CSS rules */
 
 #dragsafe {

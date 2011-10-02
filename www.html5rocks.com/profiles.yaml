@@ -12,7 +12,7 @@ address:
   lat: 37.42192
   lon: -122.087824
 homepage: http://ebidel.com
-google: ebidel
+google: 118075919496626375791
 twitter: ebidel
 email: e.bidelman@google.com
 
@@ -516,3 +516,85 @@ address:
 homepage: http://taligarsiel.com/
 email: tgarsiel@gmail.com
 
+---
+
+id: agektmr
+name:
+  given: Eiji
+  family: Kitamura
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Tokyo
+  region: 
+  country: Japan
+  lat: 35.666
+  lon: 139.766666667
+homepage: 
+google: agektmr
+twitter: agektmr
+email: agektmr@google.com
+
+---
+
+id: dutton
+name:
+  given: Sam
+  family: Dutton
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: London
+  region: England
+  country: United Kingdom
+  lat: 51.4948
+  lon: -0.1467
+homepage: http://samdutton.wordpress.com
+google: dutton
+twitter: sw12
+email: dutton@google.com
+lanyrd: true
+
+---
+
+id: jameswilliams
+name:
+  given: James
+  family: Williams
+org:
+  name: Independent
+  unit: Developer
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.4194
+  lon: -122.0906
+homepage: http://jameswilliams.be
+google: james.l.williams
+twitter: ecspike
+email: james.l.williams@gmail.com
+lanyrd: true
+
+---
+
+id: wesleyhales
+name:
+  given: Wesley
+  family: Hales
+org:
+  name: Red Hat
+  unit: Senior Developer
+address:
+  locality: Atlanta
+  region: Georgia
+  country: USA
+  lat: 33.845701 
+  lon: -84.369196 
+homepage: http://wesleyhales.com
+google: wesleyhales
+twitter: wesleyhales
+email: wesleyhales@gmail.com
+lanyrd: true

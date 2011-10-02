@@ -5,1585 +5,1390 @@
 #
 #, fuzzy
 msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-12 16:34+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+msgstr "Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2011-08-12 16:34+0200\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
 
 #: main.py:177
 msgid "this feature"
-msgstr ""
+msgstr "este recurso"
 
 #: main.py:189
 msgid "HTML5Rocks - Tutorials"
-msgstr ""
+msgstr "HTML5Rocks - Tutoriais"
 
 #: main.py:191
 msgid "Take a guided tour through code that uses HTML5."
-msgstr ""
+msgstr "Faça um tour guiado através de códigos que utilizam HTML5."
 
 #: main.py:245
-msgid ""
-"Sorry, this article isn't available in your native language; we've "
-"redirected you to the English version."
-msgstr ""
+msgid "Sorry, this article isn't available in your native language; we've redirected you to the English version."
+msgstr "Este artigo não está disponível em seu idioma nativo. Você foi redirecionado para a versão em inglês."
 
 #: content/community.html:5 content/profiles.html:17
 #: content/features/index.html:23 content/tutorials/index.html:16
 #: templates/casestudy.html:9 templates/mobile_tutorial.html:9
 #: templates/sample.html:9
 msgid "Home"
-msgstr ""
+msgstr "Página inicial"
 
 #: content/community.html:78 content/resources.html:209
 msgid "Community"
-msgstr ""
+msgstr "Comunidade"
 
 #: content/community.html:79
-msgid ""
-"The HTML5 community is getting bigger and bigger. Here you will find some "
-"resources to be up to date about the latest HTML5 news as well as to be able "
-"to discuss with developers and engineers the experimental features and "
-"proposals around the standards and browser implementations."
-msgstr ""
+msgid "The HTML5 community is getting bigger and bigger. Here you will find some resources to be up to date about the latest HTML5 news as well as to be able to discuss with developers and engineers the experimental features and proposals around the standards and browser implementations."
+msgstr "A comunidade HTML5 está ficando cada vez maior. Aqui você encontra alguns recursos para estar atualizado sobre as últimas notícias do HTML5 e para discutir com desenvolvedores e engenheiros as características experimentais e propostas em torno dos padrões e implementações em navegadores."
 
 #: content/community.html:84
 msgid "Forum"
-msgstr ""
+msgstr "Fórum"
 
 #: content/community.html:85
 msgid "Events"
-msgstr ""
+msgstr "Eventos"
 
 #: content/community.html:86
 msgid "IRC Channel"
-msgstr ""
+msgstr "Canal IRC"
 
 #: content/community.html:87
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: content/community.html:174
 msgid "HTML5 conferences (Lanyrd)"
-msgstr ""
+msgstr "Conferências HTML5 (Lanyrd)"
 
 #: content/community.html:178
 msgid "HTML5 Meetup Groups"
-msgstr ""
+msgstr "Grupos de encontro HTML5"
 
 #: content/community.html:182
 msgid "Google Developer Events Calendar"
-msgstr ""
+msgstr "Calendário de eventos do Google Developer"
 
 #: content/community.html:190
 msgid "HTML5 Events"
-msgstr ""
+msgstr "Eventos HTML5"
 
 #: content/index.html:5 templates/base.html:29
 msgid "A resource for open web HTML5 developers"
-msgstr ""
+msgstr "Um recurso para desenvolvedores HTML5 em web aberta"
 
 #: content/index.html:8
 msgid "HTML5Rocks"
-msgstr ""
+msgstr "HTML5Rocks"
 
 #: content/index.html:20
 msgid "<span>Interactive</span> Presentation"
-msgstr ""
+msgstr "Apresentação <span>interativa</span>"
 
 #: content/index.html:22
 msgid "Watch the slideshow that lets you play with HTML5 features."
-msgstr ""
+msgstr "Assista ao slideshow que permite testar recursos HTML5."
 
 #: content/index.html:29
 msgid "<span>Code</span> Playground"
-msgstr ""
+msgstr "<span>Código</span> Playground"
 
 #: content/index.html:31
 msgid "Jump headfirst into HTML5 by experimenting with each API."
-msgstr ""
+msgstr "Conheça a fundo o HTML5 testando cada API."
 
 #: content/index.html:38
 msgid "<span>Samples</span> Studio"
-msgstr ""
+msgstr "<span>Samples</span> Studio"
 
 #: content/index.html:40
 msgid "A showroom of content that you can reuse in your own site."
-msgstr ""
+msgstr "Uma vitrine de conteúdo que você pode reutilizar em seu próprio site."
 
 #: content/index.html:47
 msgid "<span>Step by Step</span> Tutorials"
-msgstr ""
+msgstr "Tutoriais <span>passo a passo</span>"
 
 #: content/index.html:49
 msgid "Take a guided tour through code that uses HTML5 features."
-msgstr ""
+msgstr "Faça um tour guiado através de códigos que utilizam HTML5."
 
 #: content/index.html:57
 msgid "Learn by Major HTML5 Feature Groups"
-msgstr ""
+msgstr "Aprender por principais grupos de recursos HTML5"
 
 #: content/index.html:60 content/features/index.html:31
 #: content/features/offline.html:5 content/features/offline.html.py:6
 msgid "Offline"
-msgstr ""
+msgstr "Off-line"
 
 #: content/index.html:64 content/features/file.html:5
 #: content/features/file.html.py:6 content/features/index.html:28
 msgid "File Access"
-msgstr ""
+msgstr "Acesso ao arquivo"
 
 #: content/index.html:68 content/features/index.html:30
 #: content/features/multimedia.html:5 content/features/multimedia.html.py:6
 msgid "Multimedia"
-msgstr ""
+msgstr "Multimídia"
 
 #: content/index.html:72 content/features/index.html:32
 #: content/features/performance.html:5 content/features/performance.html:6
 msgid "Performance"
-msgstr ""
+msgstr "Desempenho"
 
 #: content/index.html:76 content/features/index.html:33
 #: content/features/presentation.html:5 content/features/presentation.html:6
 #: templates/base.html:59
 msgid "Presentation"
-msgstr ""
+msgstr "Apresentação"
 
 #: content/index.html:80 content/features/graphics.html:5
 #: content/features/graphics.html.py:6 content/features/index.html:29
 msgid "Graphics"
-msgstr ""
+msgstr "Gráficos"
 
 #: content/index.html:84 content/features/index.html:34
 #: content/features/storage.html:5 content/features/storage.html.py:6
 msgid "Storage"
-msgstr ""
+msgstr "Armazenamento"
 
 #: content/index.html:88 templates/mobile_tutorial.html:12
 msgid "Mobile"
-msgstr ""
+msgstr "Móvel"
 
 #: content/index.html:93
 msgid "Latest Updates"
-msgstr ""
+msgstr "Atualizações mais recentes"
 
 #: content/index.html:105
 msgid "RSS"
-msgstr ""
+msgstr "RSS"
 
 #: content/index.html:106
 msgid "loading feed..."
-msgstr ""
+msgstr "carregando feed..."
 
 #: content/index.html:107
 msgid "See more &rArr;"
-msgstr ""
+msgstr "Ver mais &rArr;"
 
 #: content/index.html:111
 msgid "Contribute"
-msgstr ""
+msgstr "Contribuir"
 
 #: content/index.html:112
-msgid ""
-"\n"
-"      <p>This site, the HTML5 <a href=\"http://playground.html5rocks.com"
-"\">Playground</a>, <a href=\"http://studio.html5rocks.com\">Studio</a>,\n"
-"      and <a href=\"http://slides.html5rocks.com\">Presentation</a> slides "
-"are all <a href=\"http://code.google.com/p/html5rocks/\">open source "
-"projects</a>.\n"
-"      Tweak the code or <a href=\"http://code.google.com/p/html5rocks/wiki/"
-"ContributorsGuide\">contribute</a> new guides!</p>\n"
+msgid "\n"
+"      <p>This site, the HTML5 <a href=\"http://playground.html5rocks.com\">Playground</a>, <a href=\"http://studio.html5rocks.com\">Studio</a>,\n"
+"      and <a href=\"http://slides.html5rocks.com\">Presentation</a> slides are all <a href=\"http://code.google.com/p/html5rocks/\">open source projects</a>.\n"
+"      Tweak the code or <a href=\"http://code.google.com/p/html5rocks/wiki/ContributorsGuide\">contribute</a> new guides!</p>\n"
 "      "
-msgstr ""
+msgstr "\n"
+"      <p>Este site, o <a href=\"http://playground.html5rocks.com\">HTML5 Playground</a> (link em inglês), o <a href=\"http://studio.html5rocks.com\">HTML5 Studio</a> (link em inglês)e os slides do <a href=\"http://slides.html5rocks.com\">HTML5 Presentation</a> (link em inglês) são <a href=\"http://code.google.com/p/html5rocks/\">projetos de código aberto</a> (link em inglês). Ajuste o código ou <a href=\"http://code.google.com/p/html5rocks/wiki/ContributorsGuide\">contribua</a> (link em inglês) com novos guias.</p>"
 
 #: content/index.html:120
-msgid ""
-"\n"
-"      <p>Ready to develop in HTML5 but worried about supporting older "
-"versions of Internet Explorer?\n"
-"      Learn how <a href=\"http://code.google.com/chrome/chromeframe/"
-"\">Google Chrome Frame</a> can help. It's easy to include\n"
+msgid "\n"
+"      <p>Ready to develop in HTML5 but worried about supporting older versions of Internet Explorer?\n"
+"      Learn how <a href=\"http://code.google.com/chrome/chromeframe/\">Google Chrome Frame</a> can help. It's easy to include\n"
 "      on your site:</p>\n"
 "      "
-msgstr ""
+msgstr "\n"
+"      <p>Pronto para desenvolver em HTML5, mas preocupado com o suporte às versões mais antigas do Internet Explorer? Saiba como o <a href=\"http://code.google.com/chrome/chromeframe/\">Google Chrome Frame</a> (link em inglês) pode ajudar. É fácil inclui-lo em seu site:</p>"
 
 #: content/privacy.html:5
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Política de Privacidade"
 
 #: content/privacy.html:13
-msgid ""
-"\n"
-"      <p>The HTML5ROCKS website (the \"Website\") is hosted by Google and, "
-"as such, for the purposes of personal information,\n"
-"        the Website operates as any other Google service. Google's Privacy "
-"Policy is available at\n"
-"        <a href=\"http://www.google.com/privacy.html\">http://www.google.com/"
-"privacy.html</a>.</p>\n"
+msgid "\n"
+"      <p>The HTML5ROCKS website (the \"Website\") is hosted by Google and, as such, for the purposes of personal information,\n"
+"        the Website operates as any other Google service. Google's Privacy Policy is available at\n"
+"        <a href=\"http://www.google.com/privacy.html\">http://www.google.com/privacy.html</a>.</p>\n"
 "      "
-msgstr ""
+msgstr "\n"
+"      <p>O website  HTML5ROCKS (o \"Website\") é hospedado pelo Google e, como tal, para efeito de informações pessoais, o Website funciona como qualquer outro serviço do Google. A Política de Privacidade do Google está disponível em <a href=\"http://www.google.com/privacy.html\">http://www.google.com/privacy.html</a> (link em inglês).</p>"
 
 #: content/profiles.html:4
 msgid "Author Profiles"
-msgstr ""
+msgstr "Perfis de autor"
 
 #: content/profiles.html:72
 msgid "Articles"
-msgstr ""
+msgstr "Artigos"
 
 #: content/resources.html:5 templates/base.html:63
 msgid "Resources"
-msgstr ""
+msgstr "Recursos"
 
 #: content/resources.html:52
 msgid "Reference"
-msgstr ""
+msgstr "referência"
 
 #: content/resources.html:57
 msgid "Visual timeline of HTML5 feature support."
-msgstr ""
+msgstr "Linha do tempo visual de suporte a recursos do HTML5."
 
 #: content/resources.html:62
 msgid "Up to date HTML5 feature browser support reference."
-msgstr ""
+msgstr "Referência de suporte do navegador para recursos HTML5 atualizada."
 
 #: content/resources.html:67
 msgid "Series of browser tests to evaluate feature support."
-msgstr ""
+msgstr "Série de testes em navegadores para avaliar suporte a recursos."
 
 #: content/resources.html:72
 msgid "Detailed browser feature support reference."
-msgstr ""
+msgstr "Referência de suporte detalhada para recurso do navegador."
 
 #: content/resources.html:77
 msgid "A quick overview of scope and support."
-msgstr ""
+msgstr "Uma rápida visão geral do escopo e suporte."
 
 #: content/resources.html:83
-msgid ""
-"Follow the engineering effort for cutting edge support from the Chrome team."
-msgstr ""
+msgid "Follow the engineering effort for cutting edge support from the Chrome team."
+msgstr "Siga os esforços da equipe de engenharia para obter suporte de primeira linha da equipe Google Chrome."
 
 #: content/resources.html:88
 msgid "If the Wikipedia says it then it must be true."
-msgstr ""
+msgstr "Se a Wikipedia diz, então deve ser verdade."
 
 #: content/resources.html:94
 msgid "Detailed table of ES5 support across browsers."
-msgstr ""
+msgstr "Quadro detalhado do suporte a ES5 em diferentes navegadores."
 
 #: content/resources.html:99
 msgid "Results of DOM and CSS properties tests in major browsers."
-msgstr ""
+msgstr "Resultados de testes de propriedades CSS e DOM nos principais navegadores."
 
 #: content/resources.html:110
 msgid "Documentation"
-msgstr ""
+msgstr "Documentação"
 
 #: content/resources.html:115
 msgid "Lightweight version of the W3c spec, perfect for web developers."
-msgstr ""
+msgstr "Versão leve das especificações W3C. Perfeita para desenvolvedores da web."
 
 #: content/resources.html:121
 msgid "Learn HTML5 and have a laugh at the same time."
-msgstr ""
+msgstr "Aprenda HTML5 e divirta-se ao mesmo tempo."
 
 #: content/resources.html:127
 msgid "Excellent WebKit-oriented development documentation."
-msgstr ""
+msgstr "Excelente documentação de desenvolvimento orientada para WebKit."
 
 #: content/resources.html:132
 msgid "Excellent documentation and guides."
-msgstr ""
+msgstr "Excelente documentação e guias."
 
 #: content/resources.html:137
 msgid "Working draft spec of everything under the larger HTML5 umbrella."
-msgstr ""
+msgstr "Projeto de especificação de todos os itens sob a categoria HTML5."
 
 #: content/resources.html:143 content/features/concept.html:60
 #: content/mobile/index.html:29
 msgid "Tools"
-msgstr ""
+msgstr "Ferramentas"
 
 #: content/resources.html:148
-msgid ""
-"Javascript library for feature detection and control fallback cases of HTML5."
-msgstr ""
+msgid "Javascript library for feature detection and control fallback cases of HTML5."
+msgstr "Biblioteca Javascript para detecção de recursos e controle de casos de fallback do HTML5."
 
 #: content/resources.html:153
 msgid "Javascript patch to make IE support, and print, the new tag elements."
-msgstr ""
+msgstr "Patch do Javascript para possibilitar que o IE ofereça suporte e imprima novos elementos marcadores."
 
 #: content/resources.html:158
-msgid ""
-"An set of HTML/CSS/JS templates with best practices for HTML5 and front-end "
-"dev built in."
-msgstr ""
+msgid "An set of HTML/CSS/JS templates with best practices for HTML5 and front-end dev built in."
+msgstr "Um conjunto de modelos HTML/CSS/JS com as melhores práticas para HTML5 e desenvolvimento incorporado de front end"
 
 #: content/resources.html:163
 msgid "The collection of scripts that enable HTML5 features in all browsers."
-msgstr ""
+msgstr "A coleção de scripts que permite recursos HTML5 em todos os navegadores."
 
 #: content/resources.html:168 content/resources.html.py:173
 msgid "Preview CSS buttons with a fancy interface to play with the parameters."
-msgstr ""
+msgstr "Visualizar botões de CSS com uma interface sofisticada para testar diferentes parâmetros."
 
 #: content/resources.html:178
 msgid "Test and get the code of the fanciest CSS features."
-msgstr ""
+msgstr "Testar e obter o código dos recursos CSS mais sofisticados."
 
 #: content/resources.html:183
 msgid "Generate CSS code for gradients on the fly."
-msgstr ""
+msgstr "Gerar códigos CSS rápidos para gradientes."
 
 #: content/resources.html:188
 msgid "Use CSS3 without having to worry about xbrowser differences."
-msgstr ""
+msgstr "Use CSS3 sem preocupar-se com diferenças do xbrowser."
 
 #: content/resources.html:193
 msgid "Test your fonts using drag and drop."
-msgstr ""
+msgstr "Arraste e solte para testar suas fontes."
 
 #: content/resources.html:198
 msgid "Most complete tool to generate code for you font-face support."
-msgstr ""
+msgstr "A ferramenta mais completa de geração de código de suporte a tipos de fonte."
 
 #: content/resources.html:203
 msgid "Complete list of tools related to web performance."
-msgstr ""
+msgstr "Lista completa de ferramentas relacionadas ao desempenho na web."
 
 #: content/resources.html:260
 msgid "Books"
-msgstr ""
+msgstr "Livros"
 
 #: content/search.html:5
 msgid "Search Results"
-msgstr ""
+msgstr "Resultados da pesquisa"
 
 #: content/slides.html:3
 msgid "Videos and Presentations"
-msgstr ""
+msgstr "Vídeos e Apresentações"
 
 #: content/slides.html:69
 msgid "HTML5 Slides, Presentations, and Videos"
-msgstr ""
+msgstr "Slides, apresentações e vídeos em HTML5"
 
 #: content/slides.html:75
 msgid "Filter talks by topic, person, etc"
-msgstr ""
+msgstr "Filtrar palestras por assunto, pessoa etc."
 
 #: content/slides.html:76
 msgid "Only show talks more recent than:"
-msgstr ""
+msgstr "Exibir somente palestras mais recentes que:"
 
 #: content/slides.html:81
 msgid "Loading..."
-msgstr ""
+msgstr "Carregando..."
 
 #: content/tos.html:5
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termos de Serviço"
 
 #: content/tos.html:13
-msgid ""
-"\n"
-"      <p>The HTML5ROCKS website (the \"Website\") is hosted by Google. By "
-"using and/or visiting the Website, you consent\n"
-"      to be bound by these terms of service as well as Google's general <a "
-"href=\"http://www.google.com/accounts/TOS\">Terms of Service</a> and "
-"Google's general <a href=\"http://www.google.com/privacy.html\">Privacy "
-"Policy</a>.</p>\n"
+msgid "\n"
+"      <p>The HTML5ROCKS website (the \"Website\") is hosted by Google. By using and/or visiting the Website, you consent\n"
+"      to be bound by these terms of service as well as Google's general <a href=\"http://www.google.com/accounts/TOS\">Terms of Service</a> and Google's general <a href=\"http://www.google.com/privacy.html\">Privacy Policy</a>.</p>\n"
 "      "
-msgstr ""
+msgstr "\n"
+"      <p> O website HTML5ROCKS (o \"Website\") é hospedado pelo Google. Ao utilizar e/ou visitar este website, você está de acordo com estes termos de serviço, assim como com os <a href=\"http://www.google.com/accounts/TOS\">Termos de Serviço</a> gerais do Google e sua <a href=\"http://www.google.com.br/intl/pt-BR/privacy/\">Política de Privacidade</a> geral.</p>"
 
 #: content/features/concept.html:12 content/features/feature.html:11
 #: content/mobile/index.html:17 content/tutorials/index.html:5
 #: templates/base.html:62 templates/mobile_tutorial.html:15
 #: templates/sample.html:12
 msgid "Tutorials"
-msgstr ""
+msgstr "Tutoriais"
 
 #: content/features/concept.html:13
 #, python-format
 msgid "learn more about %(category)s."
-msgstr ""
+msgstr "Saiba mais sobre %(category)s"
 
 #: content/features/concept.html:19
 msgid "View all related HTML5Rocks tutorials"
-msgstr ""
+msgstr "Ver todos os tutoriais relacionados a HTML5Rocks"
 
 #: content/features/concept.html:24
 msgid "Themes"
-msgstr ""
+msgstr "Temas"
 
 #: content/features/concept.html:32
 msgid "Technologies"
-msgstr ""
+msgstr "Tecnologias"
 
 #: content/features/concept.html:40
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: content/features/concept.html:41
 #, python-format
 msgid "read more about %(category)s."
-msgstr ""
+msgstr "ler mais sobre %(category)s."
 
 #: content/features/concept.html:52
 msgid "Techniques"
-msgstr ""
+msgstr "Técnicas"
 
 #: content/features/feature.html:12
 #, python-format
 msgid "learn how to use %(category)s."
-msgstr ""
+msgstr "aprender a usar %(category)s."
 
 #: content/features/feature.html:18
 msgid "View all related HTML5Rocks tutorials</a> &rArr;"
-msgstr ""
+msgstr "Ver todos os tutoriais relacionados e HTML5Rocks </a> &rArr;"
 
 #: content/features/feature.html:23
 msgid "Demos"
-msgstr ""
+msgstr "Demonstrações"
 
 #: content/features/feature.html:24
 #, python-format
 msgid "see %(category)s in action"
-msgstr ""
+msgstr "ver %(category)s em ação"
 
 #: content/features/feature.html:34
 msgid "In the Wild"
-msgstr ""
+msgstr "Em funcionamento"
 
 #: content/features/feature.html:35
 #, python-format
 msgid "who is using %(category)s?"
-msgstr ""
+msgstr "quem está utilizando %(category)s?"
 
 #: content/features/feature.html:43 content/mobile/index.html:46
 msgid "Additional Resources"
-msgstr ""
+msgstr "Recursos adicionais"
 
 #: content/features/feature.html:44
 msgid "learn from the best, explore the potential"
-msgstr ""
+msgstr "aprenda com os melhores, explore o potencial"
 
 #: content/features/feature_concept.html:5
 #: content/features/feature_concept.html:13
 msgid "Feature"
-msgstr ""
+msgstr "Característica"
 
 #: content/features/feature_concept.html:18
 msgid "loading browser support data..."
-msgstr ""
+msgstr "carregando dados de suporte do navegador..."
 
 #: content/features/feature_concept.html:22
 msgid "Chrome"
-msgstr ""
+msgstr "Google Chrome"
 
 #: content/features/feature_concept.html:23
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: content/features/feature_concept.html:24
 msgid "Safari"
-msgstr ""
+msgstr "Safari"
 
 #: content/features/feature_concept.html:25
 msgid "Opera"
-msgstr ""
+msgstr "Opera"
 
 #: content/features/feature_concept.html:26
 msgid "IE"
-msgstr ""
+msgstr "IE"
 
 #: content/features/feature_concept.html:27
 msgid "iOS Safari"
-msgstr ""
+msgstr "iOS Safari"
 
 #: content/features/feature_concept.html:28
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: content/features/feature_concept.html:29
 msgid "Opera Mini"
-msgstr ""
+msgstr "Opera Mini"
 
 #: content/features/feature_concept.html:30
 msgid "Opera Mobile"
-msgstr ""
+msgstr "Opera Mobile"
 
 #: content/features/feature_concept.html:35
-msgid ""
-"Data courtesy of <a href=\"http://caniuse.com/\">caniuse.com</a>\n"
-"          and <a href=\"http://dev.chromium.org/developers/web-platform-"
-"status\">Chrome Platform Status</a>"
-msgstr ""
+msgid "Data courtesy of <a href=\"http://caniuse.com/\">caniuse.com</a>\n"
+"          and <a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform Status</a>"
+msgstr "Dados cortesia de <a href=\"http://caniuse.com/\">caniuse.com</a> (página em inglês) e <a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform Status</a> (página em inglês)"
 
 #: content/features/feature_empty.html:5 content/features/feature_empty.html:6
 msgid "MyFeature"
-msgstr ""
+msgstr "MyFeature"
 
 #: content/features/feature_empty.html:10
 msgid "\n"
-msgstr ""
+""
+msgstr "\n"
+""
 
 #: content/features/file.html:13
-msgid ""
-"\n"
-"HTML5 provides (and in some cases, will soon provide) very powerful APIs to "
-"interact\n"
-"with binary data and a user's local file system. The File APIs give web "
-"applications the ability to\n"
-"do things like read files [a]synchronously, create arbitrary Blobs, write "
-"files to a temporary location, recursively read a file directory,\n"
-"perform file drag and drop from the desktop to the browser, and upload "
-"binary data using <code>XMLHttpRequest</code>.\n"
-msgstr ""
+msgid "\n"
+"HTML5 provides (and in some cases, will soon provide) very powerful APIs to interact\n"
+"with binary data and a user's local file system. The File APIs give web applications the ability to\n"
+"do things like read files [a]synchronously, create arbitrary Blobs, write files to a temporary location, recursively read a file directory,\n"
+"perform file drag and drop from the desktop to the browser, and upload binary data using <code>XMLHttpRequest</code>.\n"
+""
+msgstr "\n"
+"HTML5 fornece (e em alguns casos, fornecerá em breve) APIs muito poderosos para interagir com dados binários e sistema de arquivo local de um usuário. As APIs do arquivo dão a aplicativos da web a habilidade de fazer coisas como ler arquivos ao mesmo tempo (ou não), criar Blobs arbitrárias, gravar arquivos para locais temporários, ler repetidamente um diretório de arquivos, arrastar e soltar arquivos do desktop para o browser, e fazer o upload de dados binários usando <code>XMLHttpRequest</code>."
 
 #: content/features/file.html:20
-msgid ""
-"\n"
-"As examples, the File APIs can be used to create a thumbnail preview of "
-"images as they're being sent to the server,\n"
-"or allow an app to save a file reference while the user is offline. Using "
-"the upcoming Audio Data API,\n"
-"your app could read an .mp3 file and display a visualization of the song as "
-"it plays. Additionally, you could use\n"
-"client-side logic to verify an upload's mimetype matches its file extension "
-"or restrict the size of an upload.\n"
-msgstr ""
+msgid "\n"
+"As examples, the File APIs can be used to create a thumbnail preview of images as they're being sent to the server,\n"
+"or allow an app to save a file reference while the user is offline. Using the upcoming Audio Data API,\n"
+"your app could read an .mp3 file and display a visualization of the song as it plays. Additionally, you could use\n"
+"client-side logic to verify an upload's mimetype matches its file extension or restrict the size of an upload.\n"
+""
+msgstr "\n"
+"Como exemplos, as APIs de arquivo podem ser utilizadas para criar uma visualização em miniatura de imagens na forma em que são enviadas para o servidor ou permitir que um aplicativo salve uma referência do arquivo enquanto o usuário estiver off-line. Ao utilizar a API Audio Data, seu aplicativo poderá ler um arquivo .mp3 e exibir uma visualização da música enquanto ela é tocada. Além disso, você pode usar a lógica do lado do cliente para verificar as correspondências mimetype, sua extensão de arquivo ou o tamanho de um upload."
 
 #: content/features/file.html:77
-msgid ""
-"This W3C specification defines the File APIs: <code>File</code>, "
-"<code>FileList</code>, <code>FileReader</code>, <code>Blob</code>."
-msgstr ""
+msgid "This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>."
+msgstr "Esta especificação W3C define as APIs de arquivo: <code>arquivo</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>."
 
 #: content/features/file.html:81
-msgid ""
-"This W3C specification defines the FileSystem APIs; which provide an "
-"interface for reading and writing files and directories in a sandboxed file "
-"system."
-msgstr ""
+msgid "This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing files and directories in a sandboxed file system."
+msgstr "Esta especificação W3C define as APIs FileSystem, que fornecem uma interface para ler e gravar arquivos e diretórios em um sistema de arquivos em área restrita."
 
 #: content/features/file.html:85
-msgid ""
-"This W3C specification defines the FileWriter API; which provides an "
-"interface for writing to files from web applications."
-msgstr ""
+msgid "This W3C specification defines the FileWriter API; which provides an interface for writing to files from web applications."
+msgstr "Esta especificação W3C define a API FileWriter, que fornece uma interface para gravação de arquivos a partir de aplicativos da web."
 
 #: content/features/file.html:89
-msgid ""
-"This W3C specification defines the ProgressEvent; which gives asynchronous "
-"updates on the progress of a File read."
-msgstr ""
+msgid "This W3C specification defines the ProgressEvent; which gives asynchronous updates on the progress of a File read."
+msgstr "Esta especificação W3C define o ProgressEvent, que fornece atualizações assíncronas sobre o desenvolvimento da leitura de um arquivo."
 
 #: content/features/file.html:93
 msgid "This whatwg specification defines the native HTML5 drag and drop APIs"
-msgstr ""
+msgstr "Esta especificação whatwg define as APIs nativas da função arrastar e soltar em HTML5"
 
 #: content/features/file.html:97
-msgid ""
-"Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files."
-msgstr ""
+msgid "Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files."
+msgstr "Tutorial sobre o uso de Arraste e Solte, FileAPI e XMLHttpRequest para fazer o upload de arquivos."
 
 #: content/features/file.html:101
-msgid ""
-"Reference on the various dragging options that are available in the DnD API"
-msgstr ""
+msgid "Reference on the various dragging options that are available in the DnD API"
+msgstr "Referência sobre as várias opções da função arrastar disponíveis na API Drag and Drop"
 
 #: content/features/file.html:105
-msgid ""
-"Article on using Native Drag and Drop in HTML5. Discusses File drag/drop "
-"from desktop."
-msgstr ""
+msgid "Article on using Native Drag and Drop in HTML5. Discusses File drag/drop from desktop."
+msgstr "Artigo sobre o uso de arrastar e soltar nativo no HTML5. Explica a função arrastar e soltar arquivos a partir da área de trabalho."
 
 #: content/features/graphics.html:13
-msgid ""
-"\n"
+msgid "\n"
 "The web has always been a visual medium, but a restricted one at best.\n"
-"Until recently, HTML developers were limited to CSS and JavaScript in order "
-"to produce animations or visual effects for their websites,\n"
-"or they would have to rely on a plugin like Flash.  With the addition of "
-"technologies like the canvas element, Web GL, and SVG images,\n"
-"this is no longer the case! In fact, there are many new features which deal "
-"with graphics on the web:\n"
-msgstr ""
+"Until recently, HTML developers were limited to CSS and JavaScript in order to produce animations or visual effects for their websites,\n"
+"or they would have to rely on a plugin like Flash.  With the addition of technologies like the canvas element, Web GL, and SVG images,\n"
+"this is no longer the case! In fact, there are many new features which deal with graphics on the web:\n"
+""
+msgstr "\n"
+"A web sempre foi um meio visual, mas um meio bastante restrito, na melhor das hipóteses. Até recentemente, desenvolvedores HTML estavam limitados a CSS e JavaScript para produzir animações e efeitos visuais para seus sites, a não ser que recorressem a plug-ins como o Flash. Com a criação de tecnologias como o elemento canvas, Web GL e imagens SVG, este não é mais o caso. Existem muitos novos recursos capazes de lidar com gráficos na web:"
 
 #: content/features/graphics.html:21
 msgid "2D Canvas"
-msgstr ""
+msgstr "2D Canvas"
 
 #: content/features/graphics.html:22
 msgid "WebGL"
-msgstr ""
+msgstr "WebGL"
 
 #: content/features/graphics.html:23
 msgid "SVG"
-msgstr ""
+msgstr "SVG"
 
 #: content/features/graphics.html:24
 msgid "3D CSS transforms"
-msgstr ""
+msgstr "3D CSS transforms"
 
 #: content/features/graphics.html:25
 msgid "SMIL"
-msgstr ""
+msgstr "SMIL"
 
 #: content/features/graphics.html:28
-msgid ""
-"\n"
-"Of course, none of these new technologies would be useful if they weren’t "
-"capable of running fast.\n"
-"Thankfully, JavaScript engines have become fast enough to run 3D games and "
-"manipulate video in realtime.\n"
-"Hardware accelerated compositing is also being implemented in many "
-"browsers,\n"
+msgid "\n"
+"Of course, none of these new technologies would be useful if they weren't capable of running fast.\n"
+"Thankfully, JavaScript engines have become fast enough to run 3D games and manipulate video in realtime.\n"
+"Hardware accelerated compositing is also being implemented in many browsers,\n"
 "meaning that even CSS transitions and transforms will be butter-smooth.\n"
-msgstr ""
+""
+msgstr "\n"
+"Nenhuma dessas novas tecnologias seria útil se não fosse ágil. Felizmente, o JavaScript já é rápido o suficiente para executar jogos 3D e manipular vídeo em tempo real. A composição acelerada por hardware também está sendo implementada em diferentes navegadores. Isso significa que até mesmo transições e transformações em CSS serão cada vez mais suaves."
 
 #: content/features/graphics.html:35
-msgid ""
-"\n"
-"Developers are taking advantage of these features: a flood of HTML graphics "
-"demos have been\n"
-"showing up on the web, ranging from implementations of old 2D graphics "
-"algorithms,\n"
+msgid "\n"
+"Developers are taking advantage of these features: a flood of HTML graphics demos have been\n"
+"showing up on the web, ranging from implementations of old 2D graphics algorithms,\n"
 "to brand new techniques created specifically for the modern web.\n"
-msgstr ""
+""
+msgstr "\n"
+"Os desenvolvedores estão tirando proveito desses recursos: uma enxurrada de demos HTML gráficos apareceram na web, da implementação de antigos algoritmos de gráficos 2D a novas técnicas criadas especificamente para a web moderna."
 
 #: content/features/graphics.html:41 content/features/presentation.html:65
 #: content/features/storage.html:29
 msgid "Browser support"
-msgstr ""
+msgstr "Suporte ao navegador"
 
 #: content/features/graphics.html:42
-msgid ""
-"\n"
-"“Graphics” is such a wide topic that there are several specifications being "
-"worked on.\n"
+msgid "\n"
+"\"Graphics\" is such a wide topic that there are several specifications being worked on.\n"
 "A comprehensive graphics demo may use several of the following:\n"
-msgstr ""
+""
+msgstr "\n"
+"\"Gráficos\" é um tópico tão extenso que existem diversas especificações em desenvolvimento. Uma demonstração mais abrangente do assunto pode utlizar várias das seguintes opções:"
 
 #: content/features/graphics.html:48
 msgid "PNG Alpha Transparency"
-msgstr ""
+msgstr "Transparência Alfa PNG"
 
 #: content/features/graphics.html:49
 msgid "Data URLs"
-msgstr ""
+msgstr "URLs de dados"
 
 #: content/features/graphics.html:50
 msgid "CSS3 Colors"
-msgstr ""
+msgstr "CSS3 Colors"
 
 #: content/features/graphics.html:51
 msgid "SVG (basic support)"
-msgstr ""
+msgstr "SVG (suporte básico)"
 
 #: content/features/graphics.html:52
 msgid "Canvas (basic support)"
-msgstr ""
+msgstr "Canvas (suporte básico)"
 
 #: content/features/graphics.html:53
 msgid "Video element"
-msgstr ""
+msgstr "Elemento de vídeo"
 
 #: content/features/graphics.html:54
 msgid "CSS Transforms"
-msgstr ""
+msgstr "CSS Transforms"
 
 #: content/features/graphics.html:55
 msgid "Text API for Canvas"
-msgstr ""
+msgstr "API de texto para Canvas"
 
 #: content/features/graphics.html:56
 msgid "SVG in CSS Backgrounds"
-msgstr ""
+msgstr "SVG em Fundos de tela CSS"
 
 #: content/features/graphics.html:57
 msgid "SVG effects for HTML elements"
-msgstr ""
+msgstr "Efeitos SVG para elementos HTML"
 
 #: content/features/graphics.html:58
 msgid "SVG SMIL animation"
-msgstr ""
+msgstr "Animação SVG SMIL"
 
 #: content/features/graphics.html:59
 msgid "SVG Fonts"
-msgstr ""
+msgstr "Fontes SVG"
 
 #: content/features/graphics.html:60
 msgid "SVG filters"
-msgstr ""
+msgstr "Filtros SVG"
 
 #: content/features/graphics.html:61
 msgid "CSS3 Animation"
-msgstr ""
+msgstr "Animação CSS3"
 
 #: content/features/graphics.html:62
 msgid "Inline SVG in HTML5"
-msgstr ""
+msgstr "SVG embutido em HTML5"
 
 #: content/features/graphics.html:63
 msgid "3D Canvas graphics / WebGL"
-msgstr ""
+msgstr "Gráficos do 3D Canvas / WebGL"
 
 #: content/features/graphics.html:64
 msgid "CSS 3D Transforms"
-msgstr ""
+msgstr "CSS 3D Transforms"
 
 #: content/features/graphics.html:67
-msgid ""
-"\n"
-"Click each specification to see its support status on <a href=\"http://"
-"caniuse.com/\">caniuse.com</a>.\n"
-"Chrome specific details can be found on the <a href=\"http://dev.chromium."
-"org/developers/web-platform-status\">Chrome Platform Status</a>.\n"
-msgstr ""
+msgid "\n"
+"Click each specification to see its support status on <a href=\"http://caniuse.com/\">caniuse.com</a>.\n"
+"Chrome specific details can be found on the <a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform Status</a>.\n"
+""
+msgstr "\n"
+"Clique em cada especificação para ver o status de seu suporte no <a href=\"http://caniuse.com/\">caniuse.com</a> (link em inglês). Detalhes específicos sobre o Google Chrome podem ser encontrados no <a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform Status</a> (link em inglês)."
 
 #: content/features/graphics.html:112
 msgid "Various WebGL / canvas demos which take advantage of HW accel"
-msgstr ""
+msgstr "Várias demonstrações WebGL/canvas que aproveitam a aceleração do hardware"
 
 #: content/features/graphics.html:114
 msgid "WebGL solid modeling CAD"
-msgstr ""
+msgstr "Modelagem sólida CAD em WebGL"
 
 #: content/features/graphics.html:116
 msgid "3D effects without WebGL"
-msgstr ""
+msgstr "Efeitos 3D sem WebGL"
 
 #: content/features/graphics.html:118
 msgid "Nicely polished canvas experiments"
-msgstr ""
+msgstr "Experimentos bem-acabados de canvas"
 
 #: content/features/graphics.html:120
 msgid "Old-school games effect"
-msgstr ""
+msgstr "Efeito de jogo retrô"
 
 #: content/features/graphics.html:122
 msgid "Various canvas demos which take advantage of HW accel"
-msgstr ""
+msgstr "Várias demonstrações do canvas que aproveitam a aceleração de hardware"
 
 #: content/features/graphics.html:124
 msgid "Nice integration between video and canvas"
-msgstr ""
+msgstr "Boa integração entre vídeo e canvas"
 
 #: content/features/graphics.html:131
 msgid "Support SVG on all browsers"
-msgstr ""
+msgstr "Suporte SVG em todos os navegadores"
 
 #: content/features/graphics.html:133
 msgid "SVG, CSS, Canvas support for Illustrator"
-msgstr ""
+msgstr "Suporte para SVG, CSS e Canvas no Adobe Illustrator"
 
 #: content/features/graphics.html:135
 msgid "Animation library wrapping SVG"
-msgstr ""
+msgstr "SVG para fechamento de biblioteca de animação"
 
 #: content/features/graphics.html:137
 msgid "JavaScript scenegraph library for the canvas element"
-msgstr ""
+msgstr "Biblioteca scenegraph do JavaScript para o elemento canvas"
 
 #: content/features/graphics.html:139
-msgid ""
-"Port of Processing animation scripting language to JavaScript - uses canvas"
-msgstr ""
+msgid "Port of Processing animation scripting language to JavaScript - uses canvas"
+msgstr "Porto de Processamento de linguagem de scripts de animação para JavaScript - utiliza canvas"
 
 #: content/features/graphics.html:141
 msgid "Lightweight 3D engine, uses canvas, SVG, WebGL"
-msgstr ""
+msgstr "Mecanismo 3D leve. Utiliza canvas, SVG e WebGL"
 
 #: content/features/graphics.html:143
-msgid ""
-"Background and details on the implementation of hardware accelerated "
-"compositing in Chrome"
-msgstr ""
+msgid "Background and details on the implementation of hardware accelerated compositing in Chrome"
+msgstr "Histórico e detalhes sobre a implementação de hardware de composição acelerada no Google Chrome"
 
 #: content/features/index.html:5
 msgid "Features"
-msgstr ""
+msgstr "Recursos"
 
 #: content/features/multimedia.html:12
-msgid ""
-"\n"
-"Audio and Video became first-class citizens on the Web with HTML5 the same "
-"way\n"
-"that other media types like images did in the past. Through their new APIs "
-"you\n"
-"can access, control and manipulate timeline data and network states of the "
-"files.\n"
-"With the coming additions to the APIs you will be able to read and write raw "
-"data\n"
-"to audio files (Audio Data API) or manipulate captions in videos (Timed "
-"Track API).\n"
-"But the real power of these new HTML elements stands out when they are "
-"combined\n"
-"with the other technologies of the web stack, be it Canvas, SVG, CSS or even "
-"WebGL.\n"
-msgstr ""
+msgid "\n"
+"Audio and Video became first-class citizens on the Web with HTML5 the same way\n"
+"that other media types like images did in the past. Through their new APIs you\n"
+"can access, control and manipulate timeline data and network states of the files.\n"
+"With the coming additions to the APIs you will be able to read and write raw data\n"
+"to audio files (Audio Data API) or manipulate captions in videos (Timed Track API).\n"
+"But the real power of these new HTML elements stands out when they are combined\n"
+"with the other technologies of the web stack, be it Canvas, SVG, CSS or even WebGL.\n"
+""
+msgstr "\n"
+"Áudio e Vídeo tornaram-se objetos de primeira classe na Web com HTML5, exatamente como aconteceu com outros tipos de mídia como imagens no passado. Através de suas novas APIs você pode acessar, controlar e manipular dados de linha do tempo e os estados da rede dos arquivos. Com os futuros acréscimos aos APIs você poderá ler e gravar dados brutos em arquivos de áudio (API Audio Data) ou manipular legendas em vídeos (API Timed Track). Mas o verdadeiro poder desses novos elementos HTML aparece quando eles são combinados com outras tecnologias do web stack, seja em Canvas, SVG, CSS ou mesmo WebGL."
 
 #: content/features/multimedia.html:21
-msgid ""
-"\n"
-"For instance, you can build a DJ mixer table app where you show several "
-"controls to fade and mix audio tracks. Canvas lets you read pixel data from "
-"videos so you could add a video visualizer with a scene selection feature "
-"and, on top of that, use SVG filters a la Photoshop to distort the movie "
-"while the videos are playing.\n"
-msgstr ""
+msgid "\n"
+"For instance, you can build a DJ mixer table app where you show several controls to fade and mix audio tracks. Canvas lets you read pixel data from videos so you could add a video visualizer with a scene selection feature and, on top of that, use SVG filters a la Photoshop to distort the movie while the videos are playing.\n"
+""
+msgstr "\n"
+"Por exemplo, você pode construir um aplicativo que funcione como uma mesa de mixagem de DJ com vários controles para mixar e finalizar faixas de áudio. O Canvas permite que você leia dados dos pixels de vídeos. Assim, é possível adicionar um visualizador de vídeo com recurso de seleção de cena e, além de tudo isso, utilizar filtros SVG como no Adobe Photoshop para distorcer o vídeo enquanto ele estiver sendo tocado."
 
 #: content/features/multimedia.html:70
-msgid ""
-"This W3C specification defines the audio element with all the available "
-"methods, attributes and events."
-msgstr ""
+msgid "This W3C specification defines the audio element with all the available methods, attributes and events."
+msgstr "Esta especificação W3C define o elemento de áudio com todos os métodos, atributos e eventos disponíveis."
 
 #: content/features/multimedia.html:74
-msgid ""
-"This W3C specification defines the video element with all the available "
-"methods, attributes and events."
-msgstr ""
+msgid "This W3C specification defines the video element with all the available methods, attributes and events."
+msgstr "Esta especificação W3C define o elemento de vídeo com todos os métodos, atributos e eventos disponíveis."
 
 #: content/features/multimedia.html:78
-msgid ""
-"This W3C specification defines those methods and properties which are common "
-"to both audio and video elements."
-msgstr ""
+msgid "This W3C specification defines those methods and properties which are common to both audio and video elements."
+msgstr "Esta especificação W3C define os métodos e propriedades comuns aos elementos de áudio e vídeo."
 
 #: content/features/multimedia.html:82
-msgid ""
-"A subset of the media element spec currently being written where it defines "
-"means to handle metadata of audio/video files such as captions and subtitles."
-msgstr ""
+msgid "A subset of the media element spec currently being written where it defines means to handle metadata of audio/video files such as captions and subtitles."
+msgstr "Um subconjunto da especificação elemento de mídia sendo atualmente escrito onde define maneiras de arquivos de áudio/vídeo como letras e legendas."
 
 #: content/features/multimedia.html:86
-msgid ""
-"Draft recommendation for Audio Data API where methods are defined to read "
-"and write spectrum data of audio files."
-msgstr ""
+msgid "Draft recommendation for Audio Data API where methods are defined to read and write spectrum data of audio files."
+msgstr "Projeto de recomendação para API de dados de áudio onde os métodos são definidos para leitura e gravação de dados de espectro de arquivos de áudio."
 
 #: content/features/offline.html:12
-msgid ""
-"\n"
-"\"Web\" and \"online\" are two closely associated terms, downright "
-"synonymous to many people.\n"
-"So why on earth would we talk about \"offline\" web technologies, and what "
-"does the term even mean?\n"
-"HTML5 and related specs introduce a number of features to make offline web "
-"apps a reality:\n"
-msgstr ""
+msgid "\n"
+"\"Web\" and \"online\" are two closely associated terms, downright synonymous to many people.\n"
+"So why on earth would we talk about \"offline\" web technologies, and what does the term even mean?\n"
+"HTML5 and related specs introduce a number of features to make offline web apps a reality:\n"
+""
+msgstr "\n"
+"\"Web\" e \"on-line\" são dois termos estreitamente associados, considerados sinônimos por muitas pessoas. Então, por que motivo falamos sobre tecnologias \"off-line\" da web e o que este termo significa? O HTML5 e as especificações relacionadas apresentam uma série de recursos capazes de tornar realidade aplicativos off-line para a web:"
 
 #: content/features/offline.html:19
 msgid "application cache"
-msgstr ""
+msgstr "cache do aplicativo"
 
 #: content/features/offline.html:20
 msgid "localStorage"
-msgstr ""
+msgstr "localStorage"
 
 #: content/features/offline.html:21
 msgid "web SQL &amp; indexed database"
-msgstr ""
+msgstr "web SQL e banco de dados indexado"
 
 #: content/features/offline.html:22
 msgid "online/offline events"
-msgstr ""
+msgstr "eventos on-line/off-line"
 
 #: content/features/offline.html:25
-msgid ""
-"For a whirlwind overview of the offline landscape, consider the article <a "
-"href=\"/tutorials/offline/whats-offline/\">\"Offline\": What does it mean "
-"and why should I care?</a>. These features can also be used to improve an "
-"application’s performance by storing data in the cache or to make data "
-"persistent between user sessions and when reloading and restoring pages."
-msgstr ""
+msgid "For a whirlwind overview of the offline landscape, consider the article <a href=\"/tutorials/offline/whats-offline/\">\"Offline\": What does it mean and why should I care?</a>. These features can also be used to improve an application's performance by storing data in the cache or to make data persistent between user sessions and when reloading and restoring pages."
+msgstr "Para um guia básico sobre o cenário off-line, veja o artigo <a href=\"/tutorials/offline/whats-offline/\">\"Off-line\": o que significa e qual sua importância?</a>. Estes recursos também podem ser usados ​​para melhorar o desempenho de aplicativos ao armazenar dados em cache, tornar os dados persistentes entre sessões do usuário ou ao reiniciar e restaurar páginas."
 
 #: content/features/offline.html:76
 msgid "Presented by Nikolas Coukouma, January 5, 2011"
-msgstr ""
+msgstr "Apresentado por Nikolas Coukouma em 05 de janeiro de 2011"
 
 #: content/features/offline.html:78
-msgid ""
-"The w3c spec has the strict details on how the cache.manifest and "
-"applicationCache APIs work."
-msgstr ""
+msgid "The w3c spec has the strict details on how the cache.manifest and applicationCache APIs work."
+msgstr "A especificação w3c tem os detalhes exatos sobre como as APIs cache.manifest e ApplicationCache funcionam."
 
 #: content/features/offline.html:80
 msgid "Mark Pilgrim dives into using the app cache in practice."
-msgstr ""
+msgstr "Mark Pilgrim entra a fundo na prática do uso de caches de aplicativos."
 
 #: content/features/offline.html:83
-msgid ""
-"Mozilla Developer Center reference documentation and guides, covering online "
-"and offline events and app cache."
-msgstr ""
+msgid "Mozilla Developer Center reference documentation and guides, covering online and offline events and app cache."
+msgstr "Documentação de referência e guias do Mozilla Developer Center, sobre eventos on-line, off-line e cache de aplicativos."
 
 #: content/features/offline.html:85
-msgid ""
-"Creating a todo list manager using localStorage, app cache and offline "
-"events. Putting everything together."
-msgstr ""
+msgid "Creating a todo list manager using localStorage, app cache and offline events. Putting everything together."
+msgstr "Criando um gerenciador de lista de tarefas a partir do armazenamento local, cache do aplicativo e de eventos off-line. Reunindo tudo."
 
 #: content/features/offline.html:87
-msgid ""
-"The app cache explained with solid examples showing different features and "
-"configurations in use."
-msgstr ""
+msgid "The app cache explained with solid examples showing different features and configurations in use."
+msgstr "O cache de aplicativo explicado, com exemplos concretos, e mostrando diferentes características e configurações em uso."
 
 #: content/features/offline.html:89
 msgid "The C code used by Webkit for the app cache"
-msgstr ""
+msgstr "O código C utilizado pelo Webkit para o cache do aplicativo"
 
 #: content/features/performance.html:16
-msgid ""
-"\n"
-"Web apps are now able to rival performance of native and desktop "
-"applications.\n"
-"By using a variety of techniques and technologies, your sites and apps can "
-"feel\n"
-"more responsive and your users will get more done.  Performance is "
-"important, it's\n"
+msgid "\n"
+"Web apps are now able to rival performance of native and desktop applications.\n"
+"By using a variety of techniques and technologies, your sites and apps can feel\n"
+"more responsive and your users will get more done.  Performance is important, it's\n"
 "a constant theme across all aspects of your development and product.\n"
-msgstr ""
+""
+msgstr "\n"
+"Aplicativos da web são capazes de rivalizar em desempenho de aplicativos nativos e para desktop. Ao utilizar uma variedade de técnicas e tecnologias, seus sites e aplicativos podem ser mais ágeis e seus usuários serão mais produtivos. Desempenho é importante, é um tema constante em todos os aspectos de seu desenvolvimento e produto."
 
 #: content/features/performance.html:22
 #, python-format
-msgid ""
-"\n"
+msgid "\n"
 "Writing fast and responsive apps isn't just important for your users, it's\n"
-"important for your bottom line.  For example,<a href=\"http://"
-"googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-"
-"ranking.html\">Google now incorporates site speed in page ranking</a>.  <a "
-"href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf"
-"\">Amazon has found that every 100 ms increase in page load time decreased "
-"sales by 1%%</a>. Also, <a href=\"http://exp-platform.com/"
-"Documents/2007-10EmetricsExperimenation.pdf\">Microsoft found that slowing a "
-"page by 2 seconds decreased ad clicks by 4%%</a>.\n"
-msgstr ""
+"important for your bottom line.  For example,<a href=\"http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html\">Google now incorporates site speed in page ranking</a>.  <a href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf\">Amazon has found that every 100 ms increase in page load time decreased sales by 1%%</a>. Also, <a href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf\">Microsoft found that slowing a page by 2 seconds decreased ad clicks by 4%%</a>.\n"
+""
+msgstr "\n"
+"A criação de aplicativos rápidos e ágeis não é importante apenas para seus usuários, mas também para o cumprimento de sua meta. Por exemplo, <a href=\"http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html\">o Google agora incorpora a velocidade do site no ranking da página</a> (link em inglês). <a href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf\"> A Amazon constatou que cada aumento de 100 ms no tempo de carregamento de uma página diminui as vendas em 1%%</a> (link em inglês). Além disso, <a href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf\">a Microsoft descobriu que reduzir o carregamento de uma página em dois segundos diminui cliques nos anúncios em 4%%</ a> (link em inglês)."
 
 #: content/features/performance.html:26
-msgid ""
-"\n"
-"Web app optimization cross cuts all aspects of development, from the server "
-"to the network to the client. Focusing on performance is critical to "
-"success.\n"
-msgstr ""
+msgid "\n"
+"Web app optimization cross cuts all aspects of development, from the server to the network to the client. Focusing on performance is critical to success.\n"
+""
+msgstr "\n"
+"A otimização de um aplicativo da web passa por todos os aspectos do desenvolvimento: do servidor e rede ao cliente. Manter o foco no desempenho é fundamental para seu sucesso."
 
 #: content/features/performance.html:42
 msgid "Store locally."
-msgstr ""
+msgstr "Armazenar localmente."
 
 #: content/features/performance.html:43
-msgid ""
-"Data stored on the client is quicker to access than data stored on the "
-"server.  Also, data stored closer to the calculation is quicker to access."
-msgstr ""
+msgid "Data stored on the client is quicker to access than data stored on the server.  Also, data stored closer to the calculation is quicker to access."
+msgstr "Dados armazenados no cliente são mais rápidos de serem acessados do que os armazenados no servidor. Dados armazenados próximos ao cálculo também são mais fáceis de serem acessados."
 
 #: content/features/performance.html:44
 msgid "Process in the background."
-msgstr ""
+msgstr "Processar em segundo plano."
 
 #: content/features/performance.html:45
-msgid ""
-"Anything that doesn't help the user see a response to their action should be "
-"performed in the background."
-msgstr ""
+msgid "Anything that doesn't help the user see a response to their action should be performed in the background."
+msgstr "É necessário que todo procedimento que não ajude o usuário a obter uma resposta para sua ação seja executado em segundo plano."
 
 #: content/features/performance.html:46
 msgid "Minimize connections."
-msgstr ""
+msgstr "Minimizar conexões."
 
 #: content/features/performance.html:47
 msgid "Each connection requires work for setup and teardown."
-msgstr ""
+msgstr "Cada conexão requer trabalho para a instalação e desmontagem."
 
 #: content/features/performance.html:48
 msgid "Decrease bandwidth."
-msgstr ""
+msgstr "Diminuir largura de banda."
 
 #: content/features/performance.html:49
 msgid "Less bandwidth means a faster response."
-msgstr ""
+msgstr "Uma largura de banda menor representa respostas mais rápidas."
 
 #: content/features/performance.html:56
 msgid "HTTP caching"
-msgstr ""
+msgstr "Armazenamento em cache HTTP"
 
 #: content/features/performance.html:57
 msgid "Allow clients and servers to reduce connections and bandwidth."
-msgstr ""
+msgstr "Permitir que clientes e servidores reduzam conexões e largura de banda."
 
 #: content/features/performance.html:58
 msgid "HTTP caching servers"
-msgstr ""
+msgstr "Servidores de cache HTTP"
 
 #: content/features/performance.html:59
-msgid ""
-"Servers like <a href=\"http://www.varnish-cache.org/\">Varnish</a> and <a "
-"href=\"http://www.squid-cache.org/\">Squid</a> can cache your content."
-msgstr ""
+msgid "Servers like <a href=\"http://www.varnish-cache.org/\">Varnish</a> and <a href=\"http://www.squid-cache.org/\">Squid</a> can cache your content."
+msgstr "Servidores como <a href=\"http://www.varnish-cache.org/\">Varnish</a> (página em inglês) e <a href=\"http://www.squid-cache.org/\">Squid</a> (página em inglês) podem armazenar seu conteúdo em cache."
 
 #: content/features/performance.html:60
 msgid "Memcache"
-msgstr ""
+msgstr "Memcache"
 
 #: content/features/performance.html:61
 msgid "Efficient server side storage and retrieval of key/value data"
-msgstr ""
+msgstr "Armazenamento eficiente do lado do servidor e recuperação de dados de chave/valor"
 
 #: content/features/performance.html:62
 msgid "Web workers"
-msgstr ""
+msgstr "Serviços da web:"
 
 #: content/features/performance.html:63
 msgid "Run JavaScript in the background, in parallel with the main window"
-msgstr ""
+msgstr "Executar JavaScript em segundo plano, em paralelo com a janela principal"
 
 #: content/features/performance.html:64
 msgid "Web sockets"
-msgstr ""
+msgstr "empty data"
 
 #: content/features/performance.html:65
 msgid "Efficient bi-directional streaming communication"
-msgstr ""
+msgstr "Comunicação bidirecional de transmissão eficiente"
 
 #: content/features/performance.html:66
 msgid "Local storage"
-msgstr ""
+msgstr "Armazenamento local"
 
 #: content/features/performance.html:67
 msgid "Client side key/value data storage"
-msgstr ""
+msgstr "Armazenamento de dados chave/valor no lado do cliente"
 
 #: content/features/performance.html:68
 msgid "Indexed database"
-msgstr ""
+msgstr "Banco de dados indexado"
 
 #: content/features/performance.html:69
 msgid "Client side simple object storage"
-msgstr ""
+msgstr "Armazenamento de objetos simples do lado do cliente"
 
 #: content/features/performance.html:70
 msgid "App cache"
-msgstr ""
+msgstr "Cache do aplicativo"
 
 #: content/features/performance.html:71
 msgid "Caching web app assets locally for offline use"
-msgstr ""
+msgstr "Armazenando ativos de aplicativos da web localmente em cache  para uso off-line"
 
 #: content/features/performance.html:72
 msgid "CSS3 transitions and animations"
-msgstr ""
+msgstr "transições e animações em CSS3"
 
 #: content/features/performance.html:73
-msgid ""
-"Native (and possibly hardware accelerated) property changes for elements"
-msgstr ""
+msgid "Native (and possibly hardware accelerated) property changes for elements"
+msgstr "Mudanças de propriedades para elementos nativos (e possivelmente acelerados por hardware)"
 
 #: content/features/performance.html:74
 msgid "CSS sprites"
-msgstr ""
+msgstr "CSS sprites"
 
 #: content/features/performance.html:75
 msgid "Combining many small images into one image, reduce downloads"
-msgstr ""
+msgstr "Combinando várias pequenas imagens em uma imagem, reduz downloads"
 
 #: content/features/performance.html:76
 msgid "Link prefetching"
-msgstr ""
+msgstr "Efetuando pré-busca de link"
 
 #: content/features/performance.html:77
 msgid "Ask the browser to download other pages in the background"
-msgstr ""
+msgstr "Solicite ao navegador que faça o download de outras páginas em segundo plano"
 
 #: content/features/performance.html:78
 msgid "Native client"
-msgstr ""
+msgstr "Cliente nativo"
 
 #: content/features/performance.html:79
 msgid "Run native code (C/C++) in a browser sandbox"
-msgstr ""
+msgstr "Executar código nativo (C/C++) na sandbox do navegador"
 
 #: content/features/performance.html:80
 msgid "HTTP persistent connections"
-msgstr ""
+msgstr "Conexões HTTP persistentes"
 
 #: content/features/performance.html:81
 msgid "send multiple resources over the same connection"
-msgstr ""
+msgstr "enviar vários recursos através da mesma conexão"
 
 #: content/features/performance.html:82
 msgid "Web fonts"
-msgstr ""
+msgstr "Fontes da web"
 
 #: content/features/performance.html:83
 msgid "natively render text instead of download images"
-msgstr ""
+msgstr "processar texto em ambiente nativo em vez de fazer o download de imagens"
 
 #: content/features/performance.html:84
 msgid "Data URI"
-msgstr ""
+msgstr "URI de Dados"
 
 #: content/features/performance.html:85
 msgid "Embed binary data such as images into HTML, reducing HTTP requests"
-msgstr ""
+msgstr "Incorporar dados binários como imagens em HTML, reduzindo as solicitações HTTP"
 
 #: content/features/performance.html:91
 msgid "HTTP Caching"
-msgstr ""
+msgstr "Cache HTTP"
 
 #: content/features/performance.html:92
 msgid "Use If-Modified-Since and ETags to reduce content over the wire."
-msgstr ""
+msgstr "Utilize \"If-Modified-Since\" e ETags para reduzir o conteúdo de transferência eletrônica."
 
 #: content/features/performance.html:93
 msgid "Data caching"
-msgstr ""
+msgstr "Cache de dados"
 
 #: content/features/performance.html:94
 msgid "Use systems like Memcache for frequently accessed data."
-msgstr ""
+msgstr "Utilize sistemas como Memcache para dados acessados ​​com frequência."
 
 #: content/features/performance.html:95
 msgid "Local data caching"
-msgstr ""
+msgstr "Armazenamento em cache de dados locais"
 
 #: content/features/performance.html:96
 msgid "Put data on the client for faster access."
-msgstr ""
+msgstr "Envie os dados para o cliente para acesso mais rápido."
 
 #: content/features/performance.html:97
 msgid "Content delivery networks"
-msgstr ""
+msgstr "Redes de fornecimento de conteúdo"
 
 #: content/features/performance.html:98
 msgid "Place the content closer to the client with a CDN."
-msgstr ""
+msgstr "Facilite a disponibilização de conteúdo para seu cliente com um CDN."
 
 #: content/features/performance.html:99
 msgid "Efficient data retrieval"
-msgstr ""
+msgstr "Recuperação eficiente dos dados"
 
 #: content/features/performance.html:100
 msgid "Minimize SQL calls, reduce joins, retrieve via an index."
-msgstr ""
+msgstr "Minimizar chamadas SQL, reduzir junções, recuperar através de um índice."
 
 #: content/features/performance.html:101
 msgid "Pre-calculating results"
-msgstr ""
+msgstr "Pré-cálculo de resultados"
 
 #: content/features/performance.html:102
 msgid "Denormalize or pre-calculate frequently retrieved data."
-msgstr ""
+msgstr "Desnormalizar ou pré-calcular dados frequentemente recuperados."
 
 #: content/features/performance.html:103
 msgid "Minification"
-msgstr ""
+msgstr "Minification"
 
 #: content/features/performance.html:104
 msgid "Shrink your JavaScript, CSS, and even HTML files."
-msgstr ""
+msgstr "Reduza seus arquivos JavaScript, CSS, e até mesmo HTML."
 
 #: content/features/performance.html:105
 msgid "Compression"
-msgstr ""
+msgstr "compressão"
 
 #: content/features/performance.html:106
 msgid "Compress your assets via HTTP's Accept-Encoding."
-msgstr ""
+msgstr "Comprimir seus ativos através da Codificação de Aceitação do HTTP."
 
 #: content/features/performance.html:107
 msgid "Asynchronous callbacks"
-msgstr ""
+msgstr "Retornos de chamada assíncronos"
 
 #: content/features/performance.html:108
-msgid "Defer the work, get notified when it’s done."
-msgstr ""
+msgid "Defer the work, get notified when it's done."
+msgstr "Adiar o trabalho e ser notificado quando estiver pronto."
 
 #: content/features/performance.html:109
 msgid "Hardware acceleration"
-msgstr ""
+msgstr "Aceleração de hardware"
 
 #: content/features/performance.html:110
 msgid "Browsers are now using the GPU for things like canvas and transforms."
-msgstr ""
+msgstr "Navegadores agora estão usando a unidade de processamento gráfico para ferramentas como canvas e transforms."
 
 #: content/features/performance.html:111
 msgid "Moving calculations close to data"
-msgstr ""
+msgstr "Aproximar cálculos aos dados"
 
 #: content/features/performance.html:112
 msgid "Data is bigger than algorithms, move code and not data."
-msgstr ""
+msgstr "Dados são mais importantes que algoritmos. Ajuste o código, não os dados."
 
 #: content/features/performance.html:113
 msgid "Profiling"
-msgstr ""
+msgstr "Criação de perfil"
 
 #: content/features/performance.html:114
-msgid ""
-"Use tools to understand and collect real life data. Measure, don’t guess."
-msgstr ""
+msgid "Use tools to understand and collect real life data. Measure, don't guess."
+msgstr "Utilize ferramentas para coletar e compreender dados da vida real. Não suponha, meça."
 
 #: content/features/performance.html:115
 msgid "Sprites"
-msgstr ""
+msgstr "Sprites"
 
 #: content/features/performance.html:116
 msgid "Place many images into one file, minimizing HTTP requests."
-msgstr ""
+msgstr "Posicione muitas imagens em um único arquivo, minimizando as solicitações HTTP."
 
 #: content/features/performance.html:117
 msgid "Image optimization"
-msgstr ""
+msgstr "Otimização de imagem"
 
 #: content/features/performance.html:118
 msgid "Compress your images, pick the right format for the job."
-msgstr ""
+msgstr "Comprimir suas imagens. Escolha o melhor formato para a tarefa."
 
 #: content/features/performance.html:119
 msgid "Specify image width and heights"
-msgstr ""
+msgstr "Especificar largura e altura da imagem"
 
 #: content/features/performance.html:120
-msgid ""
-"Tell the browser how to render around images before they are downloaded."
-msgstr ""
+msgid "Tell the browser how to render around images before they are downloaded."
+msgstr "Faça o navegador renderizar o contorno das imagens antes de fazer o download delas."
 
 #: content/features/performance.html:121
 msgid "Place JavaScript at the bottom of your HTML"
-msgstr ""
+msgstr "Posicione o JavaScript na parte inferior de seu HTML"
 
 #: content/features/performance.html:122
 msgid "Let the page download and begin rendering."
-msgstr ""
+msgstr "Deixe o download da página ser feito e inicie o render."
 
 #: content/features/performance.html:123
 msgid "Rendering on the client"
-msgstr ""
+msgstr "Processamento no cliente"
 
 #: content/features/performance.html:124
-msgid ""
-"Use canvas to draw images, or web fonts to render text, instead of "
-"downloading assets."
-msgstr ""
+msgid "Use canvas to draw images, or web fonts to render text, instead of downloading assets."
+msgstr "Em vez de fazer o download de ativos, utilize canvas para desenhar imagens e fontes para processar texto."
 
 #: content/features/performance.html:125
 msgid "Read 'High Performance Web Sites' and 'Even Faster Web Sites'"
-msgstr ""
+msgstr "Leia \"Sites de alto desempenho\" e \"Sites ainda mais rápidos\""
 
 #: content/features/performance.html:126
 msgid "Covers web app performance in great detail"
-msgstr ""
+msgstr "Aborda em detalhes o desempenho de aplicativos da web"
 
 #: content/features/performance.html:132
-msgid ""
-"Developer tools for <a href=\"http://www.chromium.org/devtools\">Chrome</a> "
-"and <a href=\"http://developer.apple.com/technologies/safari/developer-tools."
-"html\">Safari</a>"
-msgstr ""
+msgid "Developer tools for <a href=\"http://www.chromium.org/devtools\">Chrome</a> and <a href=\"http://developer.apple.com/technologies/safari/developer-tools.html\">Safari</a>"
+msgstr "Ferramentas de desenvolvedor para o <a href=\"http://www.chromium.org/devtools\">Google Chrome</a> e <a href=\"http://developer.apple.com/technologies/safari/developer-tools.html\">Safari</a> (links em inglês)"
 
 #: content/features/performance.html:133
-msgid ""
-"Peer into requests, walk the DOM, set JavaScript breakpoints, get behind the "
-"scenes"
-msgstr ""
+msgid "Peer into requests, walk the DOM, set JavaScript breakpoints, get behind the scenes"
+msgstr "Visualize detalhes de solicitações, caminhe pelo DOM, defina pontos de quebra do JavaScript, saiba o que acontece nos bastidores"
 
 #: content/features/performance.html:134
 msgid "<a href=\"http://www.opera.com/dragonfly/\">Dragonfly</a> for Opera"
-msgstr ""
+msgstr "<a href=\"http://www.opera.com/dragonfly/\">Dragonfly</a> (link em inglês) para o Opera"
 
 #: content/features/performance.html:135
 msgid "Similar to Webkit Developer Tools, but for Opera"
-msgstr ""
+msgstr "Similar a Ferramentas de Desenvolvedor Webkit, mas para o Opera"
 
 #: content/features/performance.html:136
 msgid "<a href=\"http://getfirebug.com/\">Firebug</a> for Firefox"
-msgstr ""
+msgstr "<a href=\"http://getfirebug.com/\">Firebug</a> (link em inglês) para o Firefox"
 
 #: content/features/performance.html:137
 msgid "Similar to Opera Dragonfly, but for Firefox."
-msgstr ""
+msgstr "Semelhante ao Opera Dragonfly, mas para o Firefox."
 
 #: content/features/performance.html:138
-msgid ""
-"<a href=\"http://www.html5rocks.com/tutorials/developertools/auditpanel/"
-"\">Audit panel</a> in the Developer tools"
-msgstr ""
+msgid "<a href=\"http://www.html5rocks.com/tutorials/developertools/auditpanel/\">Audit panel</a> in the Developer tools"
+msgstr "<a href=\"http://www.html5rocks.com/tutorials/developertools/auditpanel/\">Painel de Auditoria</a> (página em inglês) nas ferramentas de desenvolvedor."
 
 #: content/features/performance.html:139
 msgid "Get suggestions for speeding up your web app"
-msgstr ""
+msgstr "Obter sugestões para acelerar seu aplicativo da web"
 
 #: content/features/performance.html:140
-msgid ""
-"<a href=\"http://code.google.com/webtoolkit/speedtracer/\">Speedtracer</a> - "
-"not just for GWT, check out the <a href=\"http://www.igvita.com/2010/07/19/"
-"speed-tracer-server-side-tracing-with-rack/\">Ruby plugin</a>"
-msgstr ""
+msgid "<a href=\"http://code.google.com/webtoolkit/speedtracer/\">Speedtracer</a> - not just for GWT, check out the <a href=\"http://www.igvita.com/2010/07/19/speed-tracer-server-side-tracing-with-rack/\">Ruby plugin</a>"
+msgstr "<a href=\"http://code.google.com/webtoolkit/speedtracer/\">Speedtracer</a> (link em inglês) - não apenas para GWT. Veja o <a href=\"http://www.igvita.com/2010/07/19/speed-tracer-server-side-tracing-with-rack/\">plug-in Ruby</a> (link em inglês)"
 
 #: content/features/performance.html:141
 msgid "Identify and fix performance problems in your web app"
-msgstr ""
+msgstr "Identificar e corrigir problemas de desempenho em seu aplicativo da web"
 
 #: content/features/performance.html:142
 msgid "<a href=\"http://developer.yahoo.com/yslow/\">YSlow</a> for Firebug"
-msgstr ""
+msgstr "<a href=\"http://developer.yahoo.com/yslow/\">YSlow</a> (página em inglês) para Firebug"
 
 #: content/features/performance.html:143
 msgid "Like the Developer Tools' Audit Panel, but for Firefox"
-msgstr ""
+msgstr "Como o Painel de auditoria das ferramentas de desenvolvedor, mas para o Firefox"
 
 #: content/features/performance.html:144
-msgid ""
-"<a href=\"http://code.google.com/closure/compiler/\">Closure JavaScript "
-"compiler</a>"
-msgstr ""
+msgid "<a href=\"http://code.google.com/closure/compiler/\">Closure JavaScript compiler</a>"
+msgstr "<a href=\"http://code.google.com/closure/compiler/\">Closure JavaScript Compiler</a> (link em inglês)"
 
 #: content/features/performance.html:145
 msgid "Minify, reduce, and obfuscate your JavaScript"
-msgstr ""
+msgstr "Minify, reduzir e obstruir seu JavaScript"
 
 #: content/features/performance.html:146
-msgid ""
-"<a href=\"http://developer.yahoo.com/yui/compressor/\">YUI Compressor</a>"
-msgstr ""
+msgid "<a href=\"http://developer.yahoo.com/yui/compressor/\">YUI Compressor</a>"
+msgstr "Texto da mensagem\n"
+"<a href=\"http://developer.yahoo.com/yui/compressor/\">Compressor YUI</a> (conteúdo em inglês)"
 
 #: content/features/performance.html:147
 msgid "Minify and obfuscate your JavaScript and CSS"
-msgstr ""
+msgstr "Minify e obstruir seu JavaScript e CSS"
 
 #: content/features/performance.html:148
 msgid "<a href=\"http://www.webpagetest.org/\">WebPageTest</a>"
-msgstr ""
+msgstr "<a href=\"http://www.webpagetest.org/\"> WebPageTest</a> (link em inglês)"
 
 #: content/features/performance.html:149
-msgid ""
-"An industry collaboration providing the testing infrastructure for testing "
-"from around the globe"
-msgstr ""
+msgid "An industry collaboration providing the testing infrastructure for testing from around the globe"
+msgstr "Uma colaboração do mercado fornecendo a infra-estrutura de testes para a execução de testes em todo o mundo"
 
 #: content/features/presentation.html:11
-msgid ""
-"\n"
+msgid "\n"
 "  With the introduction of CSS3 it has never been easier to create rich and\n"
-"  beautiful sites and applications in HTML. There are many new technologies "
-"and\n"
-"  extensions to CSS3 including: <a href=\"http://www.w3.org/TR/css3-2d-"
-"transforms\">2D Transformations</a>,\n"
+"  beautiful sites and applications in HTML. There are many new technologies and\n"
+"  extensions to CSS3 including: <a href=\"http://www.w3.org/TR/css3-2d-transforms\">2D Transformations</a>,\n"
 "  <a href=\"http://www.w3.org/TR/css3-transistion\">Transitions</a>,\n"
 "  <a href=\"http://www.w3.org/TR/css3-3d-transforms\">3D Transforms</a> and\n"
-"  <a href=\"http://www.w3.org/TR/css3-webfonts\">WebFonts</a> to name just a "
-"few.\n"
-msgstr ""
+"  <a href=\"http://www.w3.org/TR/css3-webfonts\">WebFonts</a> to name just a few.\n"
+""
+msgstr "\n"
+"  Com a introdução do CSS3 está muito mais fácil criar sites complexos e cada vez mais bonitos além de aplicativos em HTML. Há muitas novas tecnologias e extensões para CSS3 incluindo: <a href=\"http://www.w3.org/TR/css3-2d-transforms\">2D Transformations</a>, <a href=\"http://www.w3.org/TR/css3-transistion\">Transitions</a>, <a href=\"http://www.w3.org/TR/css3-3d-transforms\">3D Transforms</a> e <a href=\"http://www.w3.org/TR/css3-webfonts\"> WebFonts </ a>, para citar apenas alguns (links em inglês)."
 
 #: content/features/presentation.html:20
-msgid ""
-"You can create rich user experiences with no coding effort required, just "
-"simply apply a little CSS to your existing applications."
-msgstr ""
+msgid "You can create rich user experiences with no coding effort required, just simply apply a little CSS to your existing applications."
+msgstr "Você pode criar experiências de usuário elaboradas sem necessidade de esforço de codificação. Basta aplicar um pouco de CSS às aplicações já existentes."
 
 #: content/features/presentation.html:45
-msgid ""
-"CSS3 Transformations allow you to apply rotations, scales, skews and "
-"translations to any DOM element with simple styles."
-msgstr ""
+msgid "CSS3 Transformations allow you to apply rotations, scales, skews and translations to any DOM element with simple styles."
+msgstr "O CSS3 Transformations permite que você aplique rotações, escalas, distorções e transições com estilos simples a qualquer elemento DOM."
 
 #: content/features/presentation.html:49
-msgid ""
-"Transitions allow you to specify how the style on a DOM element will animate "
-"between transformed states.  For example, you can animate the background "
-"color when the user hovers over an element."
-msgstr ""
+msgid "Transitions allow you to specify how the style on a DOM element will animate between transformed states.  For example, you can animate the background color when the user hovers over an element."
+msgstr "Transitions permite que você especifique como o estilo de um elemento DOM será animado entre estados transformados. Por exemplo, você pode animar a cor do plano de fundo quando o usuário passar o mouse sobre um elemento."
 
 #: content/features/presentation.html:59
-msgid ""
-"Applying 3D transforms is simple too.  Just specify the transformation in 3d "
-"co-ordinates and you are ready."
-msgstr ""
+msgid "Applying 3D transforms is simple too.  Just specify the transformation in 3d co-ordinates and you are ready."
+msgstr "Aplicar transformações 3D é muito simples: basta especificar as coordenadas da transição em 3D e pronto."
 
 #: content/features/presentation.html:66
-msgid ""
-"Not every browser supports transforms, transitions and 3d transforms.  Check "
-"<a href=\"http://caniuse.com/#feat=css3\">current browser support for CSS3 "
-"on caniuse.com</a>. Chrome specific details can be found on the <a href="
-"\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform "
-"Status</a>."
-msgstr ""
+msgid "Not every browser supports transforms, transitions and 3d transforms.  Check <a href=\"http://caniuse.com/#feat=css3\">current browser support for CSS3 on caniuse.com</a>. Chrome specific details can be found on the <a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform Status</a>."
+msgstr "Nem todos os navegadores suportam os módulos transformações, transições e transformações 3D. Verifique as <a href=\"http://caniuse.com/#feat=css3\">informações atuais de suporte a CSS3 em caniuse.com</a> (link em inglês). Detalhes específicos sobre o Google Chrome podem ser encontrados em <a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform Status</a> (link em inglês)."
 
 #: content/features/presentation.html:115
 msgid "A list of the current status of the CSS3 specifications."
-msgstr ""
+msgstr "A lista dos status atual das especificações do CSS3."
 
 #: content/features/presentation.html:117
-msgid ""
-"This W3C specification defines the new selectors available to developers."
-msgstr ""
+msgid "This W3C specification defines the new selectors available to developers."
+msgstr "Esta especificação W3C define os novos seletores disponíveis para desenvolvedores."
 
 #: content/features/presentation.html:121
-msgid ""
-"This W3C specification defines how rotations, transformations, skews and "
-"scaling should be applied to DOM elements in 2 dimensions."
-msgstr ""
+msgid "This W3C specification defines how rotations, transformations, skews and scaling should be applied to DOM elements in 2 dimensions."
+msgstr "Esta especificação W3C define como rotações, transformações, distorções e dimensionamento podem ser aplicados a elementos DOM em duas dimensões."
 
 #: content/features/presentation.html:125
-msgid ""
-"This W3C specification defines how 3d transformations should be applied to "
-"DOM elements."
-msgstr ""
+msgid "This W3C specification defines how 3d transformations should be applied to DOM elements."
+msgstr "Esta especificação W3C define como transformações 3d devem ser aplicadas a elementos DOM."
 
 #: content/features/presentation.html:129
-msgid ""
-"This W3C specification defines how properties should be animated between "
-"states."
-msgstr ""
+msgid "This W3C specification defines how properties should be animated between states."
+msgstr "Esta especificação W3C define como propriedades devem ser animadas entre os estados."
 
 #: content/features/presentation.html:131
 msgid "This W3C specification defines the new animation properties available."
-msgstr ""
+msgstr "Esta especificação W3C define as novas propriedades de animação disponíveis."
 
 #: content/features/storage.html:12
-msgid ""
-"\n"
-"When web developers think of storing anything about the user, they "
-"immediately think of uploading to the server. HTML5 changes that, as there "
-"are now several technologies allowing the app to save data on the client "
-"device. It might also be sync'd back to the server, or it might only ever "
-"stay on the client: that's down to you, the developer.\n"
-msgstr ""
+msgid "\n"
+"When web developers think of storing anything about the user, they immediately think of uploading to the server. HTML5 changes that, as there are now several technologies allowing the app to save data on the client device. It might also be sync'd back to the server, or it might only ever stay on the client: that's down to you, the developer.\n"
+""
+msgstr "\n"
+"Quando os desenvolvedores web precisam armazenar qualquer informação sobre o usuário, pensam imediatamente em fazer o upload para o servidor. O HTML5 mudou isso. Agora existem diversas tecnologias que permitem ao aplicativo salvar dados em dispositivos clientes. Os dados podem também ser sincronizados de volta para o servidor ou permanecer sempre no cliente. Isso é decisão do desenvolvedor, ou seja: sua."
 
 #: content/features/storage.html:15
-msgid ""
-"\n"
-"There are several reasons to use client-side storage. First, you can make "
-"your app work when the user is offline, possibly sync'ing data back once the "
-"network is connected again. Second, it's a performance booster; you can show "
-"a large corpus of data as soon as the user clicks on to your site, instead "
-"of waiting for it to download again. Third, it's an easier programming "
-"model, with no server infrastructure required. Of course, the data is more "
-"vulnerable and the user can't access it from multiple clients, so you should "
-"only use it for non-critical data, in particular cached versions of data "
-"that's also \"in the cloud\". See <a href=\"/tutorials/offline/whats-offline/"
-"\">\"Offline\": What does it mean and why should I care?</a> for a general "
-"discussion of offline technologies, of which client-side storage is one "
-"component.\n"
-msgstr ""
+msgid "\n"
+"There are several reasons to use client-side storage. First, you can make your app work when the user is offline, possibly sync'ing data back once the network is connected again. Second, it's a performance booster; you can show a large corpus of data as soon as the user clicks on to your site, instead of waiting for it to download again. Third, it's an easier programming model, with no server infrastructure required. Of course, the data is more vulnerable and the user can't access it from multiple clients, so you should only use it for non-critical data, in particular cached versions of data that's also \"in the cloud\". See <a href=\"/tutorials/offline/whats-offline/\">\"Offline\": What does it mean and why should I care?</a> for a general discussion of offline technologies, of which client-side storage is one component.\n"
+""
+msgstr "\n"
+"Existem vários motivos para utilizar armazenamento do lado do cliente. Em primeiro lugar, você pode fazer seu aplicativo funcionar quando o usuário estiver off-line, possivelmente voltando a sincronizar dados assim que a rede estiver novamente ligada. Em segundo lugar, ele é um impulsionador de desempenho que permite a apresentação de um grande volume de dados assim que o usuário clicar em seu site, sem ter que esperar que o download seja feito novamente. Terceiro, é um modelo mais simples de programação, sem necessidade de infra-estrutura de servidores. Claro, os dados são mais vulneráveis ​​e o usuário não pode acessá-lo através de vários clientes, por isso é importante que você só use este tipo de armazenamento para dados não-críticos, em especial versões de dados armazenados em cache que também estejam \"na nuvem\". Leia <a href=\"/tutorials/offline/whats-offline/\">\"Off-line\": o que significa e por que eu devo me importar?</a> (link em inglês) para um panorama geral das tecnologias off-line, como, por exemplo, o armazenamento do lado do cliente."
 
 #: content/features/storage.html:19
 msgid "The technologies are:"
-msgstr ""
+msgstr "As tecnologias são:"
 
 #: content/features/storage.html:21
-msgid ""
-"<a href=\"http://dev.w3.org/html5/webstorage/\">Web Storage </a> simply "
-"provides a key-value mapping, e.g. <code>localStorage[\"name\"] = username;</"
-"code>.  Unfortunately, present implementations only support string-to-string "
-"mappings, so you need to serialise and de-serialise other data structures. "
-"You can do so using <code>JSON.stringify()</code> and <code>JSON.parse()</"
-"code>."
-msgstr ""
+msgid "<a href=\"http://dev.w3.org/html5/webstorage/\">Web Storage </a> simply provides a key-value mapping, e.g. <code>localStorage[\"name\"] = username;</code>.  Unfortunately, present implementations only support string-to-string mappings, so you need to serialise and de-serialise other data structures. You can do so using <code>JSON.stringify()</code> and <code>JSON.parse()</code>."
+msgstr "<a href=\"http://dev.w3.org/html5/webstorage/\">Armazenamento na web</a> (link em inglês) simplesmente fornece um mapeamento de valores-chave, por exemplo, <code>localStorage[\"name\"] = username;</ code>. Infelizmente, as implementações atuais suportam apenas mapeamentos pelo método string-to-string, então é necessário que você serialise e desserialise outras estruturas de dados. Você pode fazer isto usando <code>JSON.stringify()</code> e <code>JSON.parse()</code>."
 
 #: content/features/storage.html:22
-msgid ""
-"<a href=\"http://dev.w3.org/html5/webdatabase/\">Web SQL Database</a> gives "
-"you all the power - and effort - of a structured SQL relational database."
-msgstr ""
+msgid "<a href=\"http://dev.w3.org/html5/webdatabase/\">Web SQL Database</a> gives you all the power - and effort - of a structured SQL relational database."
+msgstr "<a href=\"http://dev.w3.org/html5/webdatabase/\">Base de Dados Web SQL</a> (link em inglês) oferece a você o poder - e a realização - de um banco de dados relacional SQL estruturado."
 
 #: content/features/storage.html:23
-msgid ""
-"<a href=\"http://www.w3.org/TR/IndexedDB/\">Indexed Database</a> is "
-"somewhere in between Web Storage and Web SQL Database. Like Web Storage, "
-"it's a straightforward key-value mapping, but it supports indexes like those "
-"of relational databases, so searching objects matching a particular field is "
-"fast; you don't have to manually iterate through every object in the store."
-msgstr ""
+msgid "<a href=\"http://www.w3.org/TR/IndexedDB/\">Indexed Database</a> is somewhere in between Web Storage and Web SQL Database. Like Web Storage, it's a straightforward key-value mapping, but it supports indexes like those of relational databases, so searching objects matching a particular field is fast; you don't have to manually iterate through every object in the store."
+msgstr "Uma <a href=\"http://www.w3.org/TR/IndexedDB/\">Base de Dados Indexada</a> (link em inglês) é algo entre o Armazenamento na Web e Bases de Dados Web SQL. Como o Armazenamento na web, é um mapeamento por valores-chave simples, mas suporta índices como os de bancos de dados relacionais. Assim, pesquisas por objetos correspondentes a um determinado campo são rápidas, pois não é necessário percorrer manualmente cada objeto armazenado."
 
 #: content/features/storage.html:24
-msgid ""
-"<a href=\"http://www.w3.org/TR/FileAPI/\">File Access</a> is an API for "
-"reading file content in JavaScript. Given a set of files the user has added "
-"to a \"file\" input element, you can read the content of the file or "
-"reference it as a URL, e.g. if the user has specified an image file, you can "
-"show the image. There are also proposals underway for file writing "
-"capabilities."
-msgstr ""
+msgid "<a href=\"http://www.w3.org/TR/FileAPI/\">File Access</a> is an API for reading file content in JavaScript. Given a set of files the user has added to a \"file\" input element, you can read the content of the file or reference it as a URL, e.g. if the user has specified an image file, you can show the image. There are also proposals underway for file writing capabilities."
+msgstr "<a href=\"http://www.w3.org/TR/FileAPI/\">File Access</a> é uma API para ler conteúdo em JavaScript. Dado um conjunto de arquivos que o usuário tenha adicionado a um elemento de entrada \"file\", você pode ler o conteúdo do arquivo ou referenciá-lo como uma URL, por exemplo, se o usuário especificar um arquivo de imagem, você pode exibi-lo. Há também propostas em curso para a criação de recursos de escrita."
 
 #: content/features/storage.html:27
-msgid ""
-"For a detailed comparison of client-side storage techniques with code demos, "
-"see our <a href=\"/tutorials/offline/storage/\">Client-Side Storage</a> "
-"article."
-msgstr ""
+msgid "For a detailed comparison of client-side storage techniques with code demos, see our <a href=\"/tutorials/offline/storage/\">Client-Side Storage</a> article."
+msgstr "Para uma comparação detalhada das técnicas de armazenamento do lado do cliente com demonstrações de código, consulte nosso artigo <a href=\"/tutorials/offline/storage/\">Armazenamento do lado do cliente</a> (link em inglês)."
 
 #: content/features/storage.html:30
-msgid ""
-"While Web SQL Database is supported in Chrome, Safari &amp; Opera, Firefox "
-"and IE are unlikely to support it any time soon (Mozilla is <a href=\"http://"
-"hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-"
-"indexeddb/\">philosophically opposed</a>). Indexed Database has an early "
-"implementation in Firefox 4.0 Beta and Chrome dev channel. There's a good "
-"chance all browsers will support it in the future, but that's not yet clear."
-msgstr ""
+msgid "While Web SQL Database is supported in Chrome, Safari &amp; Opera, Firefox and IE are unlikely to support it any time soon (Mozilla is <a href=\"http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/\">philosophically opposed</a>). Indexed Database has an early implementation in Firefox 4.0 Beta and Chrome dev channel. There's a good chance all browsers will support it in the future, but that's not yet clear."
+msgstr "Enquanto Google Chrome, Safari e Opera oferecem suporte para bases de dados Web SQL, o Mozilla Firefox e IE provavelmente não oferecerão suporte tão cedo. A filosofia do Mozilla é <a href=\"http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/\">contrária a isso</a> (link em inglês). Bases de dados indexadas têm uma implementação inicial no Firefox 4.0 Beta e no canal de desenvolvedor do Google Chrome. Há uma boa chance de todos os navegadores oferecerem suporte no futuro, mas isto ainda não está definido com clareza."
 
 #: content/features/storage.html:72
 msgid "Mark Pilgrim dives into using the storage APIs."
-msgstr ""
+msgstr "Mark Pilgrim mergulha no uso de APIs de armazenamento."
 
 #: content/features/storage.html:74
 msgid "Mozilla Developer Center on Web Storage."
-msgstr ""
+msgstr "Mozilla Developer Center no Armazenamento na Web."
 
 #: content/features/storage.html:76
 msgid "Mozilla Developer Center on IndexedDB."
-msgstr ""
+msgstr "Centro de Desenvolvedor Mozilla no IndexedDB."
 
 #: content/features/storage.html:78
-msgid ""
-"Creating a todo list manager using localStorage, app cache and offline "
-"events."
-msgstr ""
+msgid "Creating a todo list manager using localStorage, app cache and offline events."
+msgstr "Criando um gerenciador de lista de tarefas utilizando localStorage, cache do aplicativo e eventos off-line."
 
 #: content/features/storage.html:80
 msgid "Mozilla explains its views on Web SQL Database and Indexed Database"
-msgstr ""
+msgstr "Mozilla explica sua opinião sobre bases de dados Web SQL e bases de dados indexada"
 
 #: content/mobile/index.html:18
 msgid "Learn how to leverage HTML5 in mobile"
-msgstr ""
+msgstr "Aprenda a utilizar HTML5 em dispositivos móveis"
 
 #: content/mobile/index.html:24
 msgid "View all HTML5Rocks mobile tutorials"
-msgstr ""
+msgstr "Ver todos os tutoriais do HTML5Rocks móvel"
 
 #: content/mobile/index.html:47
 msgid "A collection of useful references"
-msgstr ""
+msgstr "Uma coleção de referências úteis"
 
 #: content/tutorials/index.html:22
 msgid "Currently filtering by tag"
-msgstr ""
+msgstr "Filtro atual por marcador"
 
 #: content/tutorials/index.html:23
 msgid "[Clear filter]"
-msgstr ""
+msgstr "[limpar filtro]"
 
 #: content/tutorials/index.html:27
 msgid "Filter by tag"
-msgstr ""
+msgstr "Filtrar por marcador"
 
 #: content/tutorials/index.html:545
 msgid "Case Study: Converting Wordico from Flash to HTML5"
-msgstr ""
+msgstr "Estudo de caso: conversão de Wordico de Flash para HTML5"
 
 #: content/tutorials/index.html:548 content/tutorials/index.html.py:576
 #: content/tutorials/index.html:602 content/tutorials/index.html.py:629
@@ -1603,16 +1408,15 @@ msgstr ""
 #: content/tutorials/index.html:1319 content/tutorials/index.html.py:1342
 #: content/tutorials/index.html:1367
 msgid "By:"
-msgstr ""
+msgstr "Por:"
 
 #: content/tutorials/index.html:553
-msgid ""
-"\n"
-"        Learn how we converted our <a href=\"https://chrome.google.com/"
-"webstore/detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl\">Wordico</a>\n"
+msgid "\n"
+"        Learn how we converted our <a href=\"https://chrome.google.com/webstore/detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl\">Wordico</a>\n"
 "        crossword game from Flash to HTML5.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Saiba como convertemos nosso jogo de palavras cruzadas <a href=\"https://chrome.google.com/webstore/detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl\">Wordico</a> (link em inglês) de Flash para HTML5."
 
 #: content/tutorials/index.html:559 content/tutorials/index.html.py:585
 #: content/tutorials/index.html:612 content/tutorials/index.html.py:640
@@ -1631,1189 +1435,1125 @@ msgstr ""
 #: content/tutorials/index.html:1326 content/tutorials/index.html.py:1351
 #: content/tutorials/index.html:1377
 msgid "View tutorial"
-msgstr ""
+msgstr "Visualizar tutorial"
 
 #: content/tutorials/index.html:573 content/tutorials/index.html.py:1067
 msgid "\\"
-msgstr ""
+msgstr "\\"
 
 #: content/tutorials/index.html:579
-msgid ""
-"\n"
-"        A guide on how to create a mobile version of an existing HTML5 "
-"website. This study\n"
-"        looks at what was required to make html5rocks.com friendly to mobile "
-"users.\n"
+msgid "\n"
+"        A guide on how to create a mobile version of an existing HTML5 website. This study\n"
+"        looks at what was required to make html5rocks.com friendly to mobile users.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Um guia sobre a criação da versão móvel de um website HTML5. Este estudo analisa o que foi necessário para tornar o html5rocks.com amigável para usuários móveis."
 
 #: content/tutorials/index.html:599
 msgid "Typographic effects in canvas"
-msgstr ""
+msgstr "Efeitos tipográficos em canvas"
 
 #: content/tutorials/index.html:607
-msgid ""
-"\n"
-"        Effects in &lt;canvas&gt;; inner/outer shadows, neon-glows, "
-"reflections, space-age, pattern/gradient overlays, stereoscopic imaging, and "
-"other text/vector-effects&hellip;\n"
+msgid "\n"
+"        Effects in &lt;canvas&gt;; inner/outer shadows, neon-glows, reflections, space-age, pattern/gradient overlays, stereoscopic imaging, and other text/vector-effects&hellip;\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Efeitos em &lt;canvas&gt;; sombras internas/externas, brilhos em neon, reflexos, era espacial, sobreposições de estampa/gradiente, imagens estereoscópicas e outros efeitos de texto/vetor&hellip;"
 
 #: content/tutorials/index.html:626
 msgid "Improving the Performance of your HTML5 App"
-msgstr ""
+msgstr "Melhorando o desempenho de seu aplicativo HTML5"
 
 #: content/tutorials/index.html:635
-msgid ""
-"\n"
+msgid "\n"
 "        Optimization strategies and techniques for HTML5 applications.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Estratégias de otimização e técnicas para aplicativos HTML5."
 
 #: content/tutorials/index.html:654
 msgid "Case Study: Onslaught! Arena"
-msgstr ""
+msgstr "Estudo de caso: Onslaught! Arena"
 
 #: content/tutorials/index.html:662
-msgid ""
-"\n"
-"        Learn how <a href=\"https://chrome.google.com/webstore/detail/"
-"khodnfbkbanejphecblcofbghjdgfaih\">Onslaught! Arena</a>\n"
-"        created their fast-paced, arcade-style medieval fantasy shoot 'em "
-"up.\n"
+msgid "\n"
+"        Learn how <a href=\"https://chrome.google.com/webstore/detail/khodnfbkbanejphecblcofbghjdgfaih\">Onslaught! Arena</a>\n"
+"        created their fast-paced, arcade-style medieval fantasy shoot 'em up.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Saiba como <a href=\"hhttps://chrome.google.com/webstore/detail/khodnfbkbanejphecblcofbghjdgfaih\">Onslaught! Arena</a> (link em inglês) criaram este jogo dinâmico de ação em estilo arcade e ambiente de fantasia medieval."
 
 #: content/tutorials/index.html:682
 msgid "No Tears Guide to HTML5 Games"
-msgstr ""
+msgstr "Guia sem drama para jogos HTML5"
 
 #: content/tutorials/index.html:689
-msgid ""
-"\n"
-"        Building an HTML5 game using <code>&lt;canvas&gt;</code>, the no "
-"tears way.\n"
+msgid "\n"
+"        Building an HTML5 game using <code>&lt;canvas&gt;</code>, the no tears way.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Construir um jogo HTML5 utilizando <code>&lt;canvas&gt;</code>, sem drama."
 
 #: content/tutorials/index.html:708
 msgid "Case Study: HTML5 MathBoard"
-msgstr ""
+msgstr "Estudo de Caso: MathBoard em HTML5"
 
 #: content/tutorials/index.html:714
-msgid ""
-"\n"
-"        A discussion on how the iPad's popular <a href=\"https://chrome."
-"google.com/webstore/detail/elcilkmmbpmchojdmdohhoalmfmkcklk\">MathBoard</a>\n"
+msgid "\n"
+"        A discussion on how the iPad's popular <a href=\"https://chrome.google.com/webstore/detail/elcilkmmbpmchojdmdohhoalmfmkcklk\">MathBoard</a>\n"
 "        application was ported to HTML5.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Uma discussão sobre como o aplicativo popular <a href=\"https://chrome.google.com/webstore/detail/elcilkmmbpmchojdmdohhoalmfmkcklk\">MathBoard</a> (link em inglês) foi portado para HTML5."
 
 #: content/tutorials/index.html:735
 msgid "Case Study: Page Flip Effect from 20thingsilearned.com"
-msgstr ""
+msgstr "Estudo de Caso: efeito Page Flip do 20thingsilearned.com"
 
 #: content/tutorials/index.html:742
-msgid ""
-"\n"
+msgid "\n"
 "        Learn how to re-create the page flip effect found on\n"
-"        <a href=\"http://www.20thingsilearned.com\">20thingsilearned.com</a> "
-"using the Canvas API.\n"
+"        <a href=\"http://www.20thingsilearned.com\">20thingsilearned.com</a> using the Canvas API.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Aprenda a re-criar o efeito page flip encontrado em <a href=\"http://www.20thingsilearned.com\">20thingsilearned.com</a> (link em inglês) usando a API Canvas."
 
 #: content/tutorials/index.html:760
 msgid "Exploring the FileSystem APIs"
-msgstr ""
+msgstr "Explorar as APIs FileSystem"
 
 #: content/tutorials/index.html:769
-msgid ""
-"\n"
-"        The FileSystem APIs give applications the ability to read/write "
-"files and directories\n"
+msgid "\n"
+"        The FileSystem APIs give applications the ability to read/write files and directories\n"
 "        in a secure, sandboxed file system on a user's local machine.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        As APIs de FileSystem permitem que aplicativos façam a leitura/gravação de arquivos e diretórios em um sistema de arquivos seguro, em área restrita na máquina local do usuário."
 
 #: content/tutorials/index.html:787
 msgid "A Simple TODO list using HTML5 IndexedDB"
-msgstr ""
+msgstr "Uma lista de tarefas simples utilizando HTML5 IndexedDB"
 
 #: content/tutorials/index.html:794
-msgid ""
-"\n"
-"        IndexedDB represents the future of query-able client-side storage.  "
-"This\n"
-"        tutorial presents a real world application implementing the basics "
-"of\n"
+msgid "\n"
+"        IndexedDB represents the future of query-able client-side storage.  This\n"
+"        tutorial presents a real world application implementing the basics of\n"
 "        the IndexedDB API.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        IndexedDB representa o futuro do armazenamento pesquisável do lado do cliente. Este tutorial apresenta um aplicativo real implementando os princípios básicos da API IndexedDB."
 
 #: content/tutorials/index.html:815
 msgid "Case Study: Getting Entangled with HTML5 Canvas"
-msgstr ""
+msgstr "Estudo de caso: produzindo Entangled com o HTML5 Canvas"
 
 #: content/tutorials/index.html:822
-msgid ""
-"\n"
-"        Entanglement is a puzzle game made by Gopherwood Studios. This "
-"article talks about Entanglement's\n"
+msgid "\n"
+"        Entanglement is a puzzle game made by Gopherwood Studios. This article talks about Entanglement's\n"
 "        usage of the &lt;canvas&gt; tag.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Entanglement é um quebra-cabeça criado pelo Gopherwood Studios. Este artigo fala sobre o uso do marcador &lt;canvas&gt; pelo Entanglement."
 
 #: content/tutorials/index.html:840
 msgid "Stream Updates with Server-Sent Events"
-msgstr ""
+msgstr "Transmissão de atualizações através de eventos enviados pelo servidor"
 
 #: content/tutorials/index.html:847
-msgid ""
-"\n"
-"        The EventSource API is designed for receiving push notifications "
-"from a server,\n"
+msgid "\n"
+"        The EventSource API is designed for receiving push notifications from a server,\n"
 "        removing the need for client-size XHR polling.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        A API EventSource é projetada para receber notificações de envio de um servidor, eliminando a necessidade de XHR long polling no tamanho do conteúdo."
 
 #: content/tutorials/index.html:865
 msgid "Introducing WebSockets: Bringing Sockets to the Web"
-msgstr ""
+msgstr "Apresentando WebSockets: trazendo soquetes para a web"
 
 #: content/tutorials/index.html:871
-msgid ""
-"\n"
-"        Learn how to use WebSockets to add low latency bidirectional client-"
-"server communication to your web app.\n"
+msgid "\n"
+"        Learn how to use WebSockets to add low latency bidirectional client-server communication to your web app.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Aprenda a usar WebSockets para adicionar comunicação bidirecional cliente-servidor de baixa latência a seu aplicativo da web."
 
 #: content/tutorials/index.html:888
 msgid "Quick hits with the Flexible Box Model"
-msgstr ""
+msgstr "Visão geral do Flexible Box Model"
 
 #: content/tutorials/index.html:895
-msgid ""
-"\n"
-"        An introduction to <q>flexbox</q>, an alternative <abbr title="
-"\"Cascading Style Sheets\">CSS</abbr> layout scheme based on vboxes and "
-"hboxes.\n"
+msgid "\n"
+"        An introduction to <q>flexbox</q>, an alternative <abbr title=\"Cascading Style Sheets\">CSS</abbr> layout scheme based on vboxes and hboxes.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Uma introdução a <q>flexbox</q>, um  esquema de layout alternativo em <abbr title=\"Cascading Style Sheets\">CSS</abbr> baseado em vboxes e hboxes."
 
 #: content/tutorials/index.html:912
 msgid "Client-Side Storage"
-msgstr ""
+msgstr "Armazenamento do lado do cliente"
 
 #: content/tutorials/index.html:922
-msgid ""
-"\n"
-"        An overview of client-side storage techniques: Web Storage (local/"
-"session storage), Web SQL Database,\n"
+msgid "\n"
+"        An overview of client-side storage techniques: Web Storage (local/session storage), Web SQL Database,\n"
 "        Indexed Database, FileSystem.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Visão geral das técnicas de armazenamento do lado do cliente: Armazenamento na Web (local/armazenamento de sessão), Base de Dados Web SQL, Base de Dados Indexada, FileSystem."
 
 #: content/tutorials/index.html:940
 msgid "Native HTML5 Drag and Drop"
-msgstr ""
+msgstr "Função Arrastar e soltar nativa do HTML5"
 
 #: content/tutorials/index.html:947
-msgid ""
-"\n"
-"        Drag-and-drop is yet another first class citizen in HTML5! This "
-"article\n"
-"        explains how to enhance your web applications by adding native DnD "
-"functionality.\n"
+msgid "\n"
+"        Drag-and-drop is yet another first class citizen in HTML5! This article\n"
+"        explains how to enhance your web applications by adding native DnD functionality.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        A função arrastar e soltar agora também é um objeto de primeira classe em HTML5. Este artigo explica como aprimorar seus aplicativos da web, adicionando a funcionalidade nativa arrastar e soltar."
 
 #: content/tutorials/index.html:965
 msgid "Case Study: HTML5 in deviantART muro"
-msgstr ""
+msgstr "Estudo de caso: HTML5 no deviantART muro"
 
 #: content/tutorials/index.html:973
-msgid ""
-"\n"
-"        Learn how deviantART used HTML5 drawing features in deviantART "
-"muro.\n"
+msgid "\n"
+"        Learn how deviantART used HTML5 drawing features in deviantART muro.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Saiba como deviantART utiliza recursos de desenho HTML5 no deviantART muro."
 
 #: content/tutorials/index.html:977 content/tutorials/index.html.py:1001
 msgid "View article"
-msgstr ""
+msgstr "Visualizar artigo"
 
 #: content/tutorials/index.html:990
 msgid "Case Study: Drag and Drop Download in Chrome"
-msgstr ""
+msgstr "Estudo de caso: download através do recurso arraste e solte no Google Chrome"
 
 #: content/tutorials/index.html:997
-msgid ""
-"\n"
-"        Learn how Box.net implemented GMail's attachment drag and drop to "
-"the desktop.\n"
+msgid "\n"
+"        Learn how Box.net implemented GMail's attachment drag and drop to the desktop.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Saiba como Box.net implementou a função arrastar e soltar dos anexos do Gmail para o desktop."
 
 #: content/tutorials/index.html:1014
 msgid "3D and CSS"
-msgstr ""
+msgstr "3D e CSS"
 
 #: content/tutorials/index.html:1023
-msgid ""
-"\n"
-"        Learn how to build exciting 3D user interfaces using the power of "
-"CSS.\n"
+msgid "\n"
+"        Learn how to build exciting 3D user interfaces using the power of CSS.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Aprenda a construir interfaces de usuário incríveis em 3D utilizando o poder do CSS."
 
 #: content/tutorials/index.html:1040
 msgid "HTML5 Video"
-msgstr ""
+msgstr "Vídeo HTML5"
 
 #: content/tutorials/index.html:1048
-msgid ""
-"\n"
-"        Video is one of the most interesting and widely supported features "
-"of HTML5.\n"
-"        This tutorial covers the mechanics of incorporating native video "
-"into your site\n"
-"        (without a plugin) and gives interesting examples of using the &lt;"
-"video&gt; tag.\n"
+msgid "\n"
+"        Video is one of the most interesting and widely supported features of HTML5.\n"
+"        This tutorial covers the mechanics of incorporating native video into your site\n"
+"        (without a plugin) and gives interesting examples of using the &lt;video&gt; tag.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        O vídeo é uma das características mais interessantes e amplamente suportada do HTML5. Este tutorial cobre a mecânica de incorporação de vídeo nativo em seu site (sem plug-in) e oferece exemplos interessantes de uso do marcador &lt;video&gt;."
 
 #: content/tutorials/index.html:1074
-msgid ""
-"\n"
-"        A discussion of what it means to take an application \"offline\" and "
-"the options available\n"
+msgid "\n"
+"        A discussion of what it means to take an application \"offline\" and the options available\n"
 "        to developers for doing so.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Uma discussão sobre o que representa tornar um aplicativo \"off-line\" e as opções disponíveis para os desenvolvedores que desejem fazê-lo."
 
 #: content/tutorials/index.html:1092
 msgid "Quick guide to webfonts via @font-face"
-msgstr ""
+msgstr "Guia rápido de fontes para a web via @font-face"
 
 #: content/tutorials/index.html:1100
-msgid ""
-"\n"
-"        Webfonts give new typographic freedom to designers while retaining "
-"scalability and accessibility.\n"
+msgid "\n"
+"        Webfonts give new typographic freedom to designers while retaining scalability and accessibility.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Webfonts trazem uma nova liberdade tipográfica a designers sem perder escalabilidade e acessibilidade."
 
 #: content/tutorials/index.html:1117
 msgid "Auditing Your Web App For Speed"
-msgstr ""
+msgstr "Auditar seu aplicativo da web para torná-lo mais rápido"
 
 #: content/tutorials/index.html:1124
-msgid ""
-"\n"
-"        The Audit Panel is an excellent tool for examining latency in your "
-"web apps. It offers customized recommendations to\n"
+msgid "\n"
+"        The Audit Panel is an excellent tool for examining latency in your web apps. It offers customized recommendations to\n"
 "        enhance performance and reduce latency.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        O Painel Auditoria é uma excelente ferramenta de análise de latência em seus aplicativos da web. Ele oferece recomendações personalizadas para aprimorar seu desempenho e reduzir a latência."
 
 #: content/tutorials/index.html:1142
 msgid "The Basics of Web Workers"
-msgstr ""
+msgstr "Conceitos básicos sobre serviços da web"
 
 #: content/tutorials/index.html:1149
-msgid ""
-"\n"
-"        Web Workers are a means of spawning background scripts in your "
-"application,\n"
-"        giving thread-like message passing for handling computationally "
-"intensive tasks.\n"
+msgid "\n"
+"        Web Workers are a means of spawning background scripts in your application,\n"
+"        giving thread-like message passing for handling computationally intensive tasks.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Serviços da web são um meio de reproduzir scripts de segundo plano em seu aplicativo, transmitindo mensagens em segmentos para lidar com tarefas intensas de computação."
 
 #: content/tutorials/index.html:1167
 msgid "Introduction to Chrome Developer Tools, Part One"
-msgstr ""
+msgstr "Introdução às Ferramentas do Desenvolvedor Chrome. Parte Um"
 
 #: content/tutorials/index.html:1174
-msgid ""
-"\n"
-"        An introduction to the tools available in Google Chrome that make a "
-"developer's life easier!\n"
+msgid "\n"
+"        An introduction to the tools available in Google Chrome that make a developer's life easier!\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Uma introdução às ferramentas disponíveis no Google Chrome que facilitam a vida dos desenvolvedores."
 
 #: content/tutorials/index.html:1191
 msgid "Best Practices for a Faster Web App with HTML5"
-msgstr ""
+msgstr "Melhores práticas para um aplicativo da web mais rápido com HTML5"
 
 #: content/tutorials/index.html:1200
-msgid ""
-"\n"
-"        How to effectively use features from HTML5 to improve the "
-"performance and responsiveness of your app.\n"
+msgid "\n"
+"        How to effectively use features from HTML5 to improve the performance and responsiveness of your app.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Como utilizar os recursos do HTML5 com eficiência para melhorar o desempenho e a capacidade de resposta de seu aplicativo."
 
 #: content/tutorials/index.html:1217
 msgid "A Beginner's Guide to Using the Application Cache"
-msgstr ""
+msgstr "Guia Básico sobre o uso do Cache do Aplicativo"
 
 #: content/tutorials/index.html:1225
-msgid ""
-"\n"
-"        A step-by-step guide to taking your web app offline using the "
-"application cache APIs.\n"
+msgid "\n"
+"        A step-by-step guide to taking your web app offline using the application cache APIs.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Um guia passo-a-passo para tomar seu aplicativo da web off-line utilizando as APIs de armazenamento em cache."
 
 #: content/tutorials/index.html:1242
 msgid "Practical Guide to Take Your TODO List Offline"
-msgstr ""
+msgstr "Guia Prático para tornar off-line sua lista de tarefas"
 
 #: content/tutorials/index.html:1249
 #, python-format
-msgid ""
-"\n"
-"        Expanding on the <a href=\"/%(LANGUAGE_CODE)s/tutorials/webdatabase/"
-"todo/\">simple TODO list</a>, this tutorial\n"
-"        gives a practical guide for taking the sample offline using the "
-"application cache.\n"
+msgid "\n"
+"        Expanding on the <a href=\"/%(LANGUAGE_CODE)s/tutorials/webdatabase/todo/\">simple TODO list</a>, this tutorial\n"
+"        gives a practical guide for taking the sample offline using the application cache.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Aprofundando em <a href=\"/%(LANGUAGE_CODE)s/tutorials/webdatabase/todo/\">listas simples de tarefas</a>, este tutorial é um guia prático para levar o exemplo off-line usando o cache do aplicativo."
 
 #: content/tutorials/index.html:1267
 msgid "Reading files in JavaScript using the File APIs"
-msgstr ""
+msgstr "Ler arquivos em JavaScript usando as APIs do arquivo"
 
 #: content/tutorials/index.html:1275
-msgid ""
-"\n"
-"        Starter guide for using the File/FileList/FileReader APIs to "
-"process\n"
+msgid "\n"
+"        Starter guide for using the File/FileList/FileReader APIs to process\n"
 "        and read binary files in JavaScript.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Guia para iniciantes sobre o uso de APIs File/FileList/FileReader para processar e ler arquivos binários em JavaScript."
 
 #: content/tutorials/index.html:1293
 msgid "A Simple Trip Meter using the Geolocation API"
-msgstr ""
+msgstr "Um medidor de percursos simples que utiliza o API do Geolocation"
 
 #: content/tutorials/index.html:1299
-msgid ""
-"\n"
-"        Learn how to implement geolocation very quickly including a distance "
-"calculator\n"
+msgid "\n"
+"        Learn how to implement geolocation very quickly including a distance calculator\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Saiba como implementar geolocalização - incluindo um calculador de distância - rapidamente"
 
 #: content/tutorials/index.html:1316
 msgid "Using the Notifications API"
-msgstr ""
+msgstr "Usando a API Notifications"
 
 #: content/tutorials/index.html:1322
-msgid ""
-"\n"
+msgid "\n"
 "        Learn the notification basics creating a twitter notification\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Aprenda o básico sobre notificação criando uma notificação do twitter"
 
 #: content/tutorials/index.html:1339
 msgid "A Simple TODO list using HTML5 WebDatabases"
-msgstr ""
+msgstr "Uma lista de tarefas simples usando WebDatabases HTML5"
 
 #: content/tutorials/index.html:1347
-msgid ""
-"\n"
-"        Create a TODO list which persists data using a client side "
-"database.\n"
+msgid "\n"
+"        Create a TODO list which persists data using a client side database.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Criar uma lista de tarefas com dados persistentes utilizando um banco de dados do lado do cliente."
 
 #: content/tutorials/index.html:1364
 msgid "Quick Guide to Implementing the HTML5 Audio Tag"
-msgstr ""
+msgstr "Guia rápido para implementação do marcador \"audio\" em HTML5"
 
 #: content/tutorials/index.html:1372
-msgid ""
-"\n"
+msgid "\n"
 "        Learn how to use the HTML5 audio tag and fall back to Flash on\n"
 "        platforms which do not support it.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Aprenda a usar o marcador \"áudio\" em HTML5 e, nas ferramentas que não oferecem suporte, retornar ao Flash."
 
 #: html5lib/constants.py:15
 msgid "Null character in input stream, replaced with U+FFFD."
-msgstr ""
+msgstr "Caractere nulo no fluxo de entrada. Substituído por U+FFFD."
 
 #: html5lib/constants.py:17
 msgid "Invalid codepoint in stream."
-msgstr ""
+msgstr "Ponto de código inválido no fluxo."
 
 #: html5lib/constants.py:19
 msgid "Solidus (/) incorrectly placed in tag."
-msgstr ""
+msgstr "Barra (/) incorretamente adicionada ao marcador."
 
 #: html5lib/constants.py:21
 msgid "Incorrect CR newline entity, replaced with LF."
-msgstr ""
+msgstr "Entidade em nova linha CR incorreta. Substituída por LF."
 
 #: html5lib/constants.py:23
 msgid "Entity used with illegal number (windows-1252 reference)."
-msgstr ""
+msgstr "Entidade utilizada com número inválido (referência windows-1252)."
 
 #: html5lib/constants.py:25
 #, python-format
-msgid ""
-"Numeric entity couldn't be converted to character (codepoint U+"
-"%(charAsInt)08x)."
-msgstr ""
+msgid "Numeric entity couldn't be converted to character (codepoint U+%(charAsInt)08x)."
+msgstr "Entidade numérica não pôde ser convertida em caracteres (codepoint U+%(charAsInt)08x)."
 
 #: html5lib/constants.py:28
 #, python-format
 msgid "Numeric entity represents an illegal codepoint: U+%(charAsInt)08x."
-msgstr ""
+msgstr "Entidade numérica representa um ponto de código inválido: U+%(charAsInt)08x."
 
 #: html5lib/constants.py:31
 msgid "Numeric entity didn't end with ';'."
-msgstr ""
+msgstr "Entidade numérica não terminou com \";\"."
 
 #: html5lib/constants.py:33
 msgid "Numeric entity expected. Got end of file instead."
-msgstr ""
+msgstr "Entidade numérica esperada. Final de arquivo encontrado no lugar."
 
 #: html5lib/constants.py:35
 msgid "Numeric entity expected but none found."
-msgstr ""
+msgstr "Entidade numérica esperada mas não encontrada."
 
 #: html5lib/constants.py:37
 msgid "Named entity didn't end with ';'."
-msgstr ""
+msgstr "Entidade nomeada não terminou com \";\"."
 
 #: html5lib/constants.py:39
 msgid "Named entity expected. Got none."
-msgstr ""
+msgstr "Entidade nomeada esperada. Nenhuma encontrada."
 
 #: html5lib/constants.py:41
 msgid "End tag contains unexpected attributes."
-msgstr ""
+msgstr "Marcador de fechamento contém atributos inesperados."
 
 #: html5lib/constants.py:43
 msgid "Expected tag name. Got '>' instead."
-msgstr ""
+msgstr "Marcador \"name\" esperado. \">\" encontrado no lugar."
 
 #: html5lib/constants.py:45
-msgid ""
-"Expected tag name. Got '?' instead. (HTML doesn't support processing "
-"instructions.)"
-msgstr ""
+msgid "Expected tag name. Got '?' instead. (HTML doesn't support processing instructions.)"
+msgstr "Marcador \"name\" esperado. \"?\" encontrado no lugar: código HTML não suporta instruções de processamento."
 
 #: html5lib/constants.py:48
 msgid "Expected tag name. Got something else instead"
-msgstr ""
+msgstr "Marcador \"name\" esperado. Algo diferente encontrado"
 
 #: html5lib/constants.py:50
 msgid "Expected closing tag. Got '>' instead. Ignoring '</>'."
-msgstr ""
+msgstr "Marcador de fechamento esperado. \">\" encontrado no lugar. \"</>\" ignorado."
 
 #: html5lib/constants.py:52
 msgid "Expected closing tag. Unexpected end of file."
-msgstr ""
+msgstr "Marcador de fechamento esperado. Fim de arquivo inesperado."
 
 #: html5lib/constants.py:54
 #, python-format
 msgid "Expected closing tag. Unexpected character '%(data)s' found."
-msgstr ""
+msgstr "Marcador de fechamento esperado. Caractere \"%(data)s\" inesperado encontrado."
 
 #: html5lib/constants.py:56
 msgid "Unexpected end of file in the tag name."
-msgstr ""
+msgstr "Fim de arquivo inesperado no marcador \"name\""
 
 #: html5lib/constants.py:58
 msgid "Unexpected end of file. Expected attribute name instead."
-msgstr ""
+msgstr "Fim de arquivo inesperado. Atributo \"name\" era esperado neste lugar."
 
 #: html5lib/constants.py:60
 msgid "Unexpected end of file in attribute name."
-msgstr ""
+msgstr "Fim de arquivo inesperado no atributo \"name\"."
 
 #: html5lib/constants.py:62
 msgid "Invalid chracter in attribute name"
-msgstr ""
+msgstr "Caractere inválido no atributo \"name\""
 
 #: html5lib/constants.py:64
 msgid "Dropped duplicate attribute on tag."
-msgstr ""
+msgstr "Atributo duplicado inserido no marcador."
 
 #: html5lib/constants.py:66
 msgid "Unexpected end of file. Expected = or end of tag."
-msgstr ""
+msgstr "Fim de arquivo inesperado. = ou marcador de fechamento esperado."
 
 #: html5lib/constants.py:68
 msgid "Unexpected end of file. Expected attribute value."
-msgstr ""
+msgstr "Fim de arquivo inesperado. Atributo \"value\" esperado."
 
 #: html5lib/constants.py:70
 msgid "Expected attribute value. Got '>' instead."
-msgstr ""
+msgstr "Atributo \"value\" esperado. \">\" encontrado no lugar."
 
 #: html5lib/constants.py:72
 msgid "Unexpected end of file in attribute value (\")."
-msgstr ""
+msgstr "Fim de arquivo inesperado no atributo \"value\" (\")."
 
 #: html5lib/constants.py:74
 msgid "Unexpected end of file in attribute value (')."
-msgstr ""
+msgstr "Fim de arquivo inesperado no atributo \"value\" (')."
 
 #: html5lib/constants.py:76
 msgid "Unexpected end of file in attribute value."
-msgstr ""
+msgstr "Fim de arquivo inesperado no atributo \"value\"."
 
 #: html5lib/constants.py:78
 msgid "Unexpected end of file in tag. Expected >"
-msgstr ""
+msgstr "Fim de arquivo inesperado no marcador. > esperado"
 
 #: html5lib/constants.py:80
 msgid "Unexpected character after / in tag. Expected >"
-msgstr ""
+msgstr "Caractere inesperado depois do/no marcador. > esperado"
 
 #: html5lib/constants.py:82
 msgid "Expected '--' or 'DOCTYPE'. Not found."
-msgstr ""
+msgstr "\"-\" ou \"DOCTYPE\" esperados. Não encontrados."
 
 #: html5lib/constants.py:84
 msgid "Incorrect comment."
-msgstr ""
+msgstr "Comentário incorreto."
 
 #: html5lib/constants.py:86
 msgid "Unexpected end of file in comment."
-msgstr ""
+msgstr "Fim de arquivo inesperado no comentário."
 
 #: html5lib/constants.py:88
 msgid "Unexpected end of file in comment (-)"
-msgstr ""
+msgstr "Marcador de fechamento inesperado no comentário (-)"
 
 #: html5lib/constants.py:90
 msgid "Unexpected '-' after '--' found in comment."
-msgstr ""
+msgstr "\"-\" inesperado após \"-\" encontrados em comentário."
 
 #: html5lib/constants.py:92
 msgid "Unexpected end of file in comment (--)."
-msgstr ""
+msgstr "Fim de arquivo inesperado no comentário (--)."
 
 #: html5lib/constants.py:94
 msgid "Unexpected character in comment found."
-msgstr ""
+msgstr "Caractere inesperado encontrado no comentário."
 
 #: html5lib/constants.py:96
 msgid "No space after literal string 'DOCTYPE'."
-msgstr ""
+msgstr "Não há espaço após a cadeia de caracteres literais \"DOCTYPE\"."
 
 #: html5lib/constants.py:98
 msgid "Unexpected > character. Expected DOCTYPE name."
-msgstr ""
+msgstr "Caractere > inesperado. Nome DOCTYPE esperado."
 
 #: html5lib/constants.py:100
 msgid "Unexpected end of file. Expected DOCTYPE name."
-msgstr ""
+msgstr "Fim de arquivo inesperado. Nome do DOCTYPE esperado."
 
 #: html5lib/constants.py:102
 msgid "Unexpected end of file in DOCTYPE name."
-msgstr ""
+msgstr "Fim de arquivo inesperado no nome do DOCTYPE."
 
 #: html5lib/constants.py:104
 msgid "Unexpected end of file in DOCTYPE."
-msgstr ""
+msgstr "Fim de arquivo inesperado em DOCTYPE."
 
 #: html5lib/constants.py:106
 #, python-format
 msgid "Expected space or '>'. Got '%(data)s'"
-msgstr ""
+msgstr "Espaço ou \">\" esperados. \"%(data)s\" encontrado."
 
 #: html5lib/constants.py:108
 msgid "Unexpected end of DOCTYPE."
-msgstr ""
+msgstr "Fim inesperado de DOCTYPE."
 
 #: html5lib/constants.py:110
 msgid "Unexpected character in DOCTYPE."
-msgstr ""
+msgstr "Caractere inesperado em DOCTYPE."
 
 #: html5lib/constants.py:112
 msgid "XXX innerHTML EOF"
-msgstr ""
+msgstr "XXX innerHTML EOF"
 
 #: html5lib/constants.py:114
 msgid "Unexpected DOCTYPE. Ignored."
-msgstr ""
+msgstr "DOCTYPE inesperado. Ignorado."
 
 #: html5lib/constants.py:116
 msgid "html needs to be the first start tag."
-msgstr ""
+msgstr "é necessário que \"html\" seja o primeiro marcador de abertura."
 
 #: html5lib/constants.py:118
 msgid "Unexpected End of file. Expected DOCTYPE."
-msgstr ""
+msgstr "Fim de arquivo inesperado. DOCTYPE esperado."
 
 #: html5lib/constants.py:120
 msgid "Erroneous DOCTYPE."
-msgstr ""
+msgstr "DOCTYPE incorreto."
 
 #: html5lib/constants.py:122
 msgid "Unexpected non-space characters. Expected DOCTYPE."
-msgstr ""
+msgstr "Caracteres (espaços não contam) inesperados. DOCTYPE esperado."
 
 #: html5lib/constants.py:124
 #, python-format
 msgid "Unexpected start tag (%(name)s). Expected DOCTYPE."
-msgstr ""
+msgstr "Marcador de abertura (%(name)s) inesperado. DOCTYPE esperado."
 
 #: html5lib/constants.py:126
 #, python-format
 msgid "Unexpected end tag (%(name)s). Expected DOCTYPE."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado. DOCTYPE esperado."
 
 #: html5lib/constants.py:128
 #, python-format
 msgid "Unexpected end tag (%(name)s) after the (implied) root element."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado após o elemento (implícito) \"root\"."
 
 #: html5lib/constants.py:130
 #, python-format
 msgid "Unexpected end of file. Expected end tag (%(name)s)."
-msgstr ""
+msgstr "Fim de arquivo inesperado. Marcador de fechamento (%(name)s) esperado."
 
 #: html5lib/constants.py:132
 msgid "Unexpected start tag head in existing head. Ignored."
-msgstr ""
+msgstr "Marcador de abertura inesperado: \"head\" já existente. Ignorado."
 
 #: html5lib/constants.py:134
 #, python-format
 msgid "Unexpected end tag (%(name)s). Ignored."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado. Ignorado."
 
 #: html5lib/constants.py:136
 #, python-format
 msgid "Unexpected start tag (%(name)s) that can be in head. Moved."
-msgstr ""
+msgstr "Marcador de abertura (%(name)s) inesperado que poderia estar em \"head\"; Movido."
 
 #: html5lib/constants.py:138
 #, python-format
 msgid "Unexpected start tag (%(name)s)."
-msgstr ""
+msgstr "Marcador de abertura (%(name)s) inesperado."
 
 #: html5lib/constants.py:140
 #, python-format
 msgid "Missing end tag (%(name)s)."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s)."
 
 #: html5lib/constants.py:142
 #, python-format
 msgid "Missing end tags (%(name)s)."
-msgstr ""
+msgstr "Faltando marcadores de fechamento (%(name)s)."
 
 #: html5lib/constants.py:144
 #, python-format
 msgid "Unexpected start tag (%(startName)s) implies end tag (%(endName)s)."
-msgstr ""
+msgstr "Marcador de abertura (%(startName)s) inesperado exige marcador de fechamento (%(endName)s)."
 
 #: html5lib/constants.py:147
 #, python-format
 msgid "Unexpected start tag (%(originalName)s). Treated as %(newName)s."
-msgstr ""
+msgstr "Marcador de abertura (%(originalName)s) inesperado. Tratado como %(newName)s."
 
 #: html5lib/constants.py:149
 #, python-format
 msgid "Unexpected start tag %(name)s. Don't use it!"
-msgstr ""
+msgstr "Marcador de abertura %(name)s inesperado. Não o utilize."
 
 #: html5lib/constants.py:151
 #, python-format
 msgid "Unexpected start tag %(name)s. Ignored."
-msgstr ""
+msgstr "Marcador de abertura %(name)s inesperado. Ignorado."
 
 #: html5lib/constants.py:153
 #, python-format
 msgid "Unexpected end tag (%(gotName)s). Missing end tag (%(expectedName)s)."
-msgstr ""
+msgstr "Marcador de fechamento (%(gotName)s) inesperado. Marcador de fechamento (%(expectedName)s) faltando."
 
 #: html5lib/constants.py:156
 #, python-format
 msgid "End tag (%(name)s) seen too early. Expected other end tag."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) posicionado muito cedo. Outro marcador de fechamento esperado."
 
 #: html5lib/constants.py:158
 #, python-format
 msgid "Unexpected end tag (%(gotName)s). Expected end tag (%(expectedName)s)."
-msgstr ""
+msgstr "Marcador de fechamento (%(gotName)s) inesperado. Marcador de fechamento (%(expectedName)s) esperado."
 
 #: html5lib/constants.py:160
 #, python-format
 msgid "End tag (%(name)s) seen too early. Ignored."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) encontrado muito cedo. Ignorado."
 
 #: html5lib/constants.py:162
 #, python-format
-msgid ""
-"End tag (%(name)s) violates step 1, paragraph 1 of the adoption agency "
-"algorithm."
-msgstr ""
+msgid "End tag (%(name)s) violates step 1, paragraph 1 of the adoption agency algorithm."
+msgstr "Marcador de fechamento (%(name)s) viola o passo 1, parágrafo 1 do adoption agency algorithm."
 
 #: html5lib/constants.py:165
 #, python-format
-msgid ""
-"End tag (%(name)s) violates step 1, paragraph 2 of the adoption agency "
-"algorithm."
-msgstr ""
+msgid "End tag (%(name)s) violates step 1, paragraph 2 of the adoption agency algorithm."
+msgstr "Marcador de fechamento (%(name)s) viola a etapa 1, parágrafo 2 do adoption agency algorithm."
 
 #: html5lib/constants.py:168
 #, python-format
-msgid ""
-"End tag (%(name)s) violates step 1, paragraph 3 of the adoption agency "
-"algorithm."
-msgstr ""
+msgid "End tag (%(name)s) violates step 1, paragraph 3 of the adoption agency algorithm."
+msgstr "Marcador de fechamento (%(name)s) viola o passo 1, parágrafo 3 do adoption agency algorithm."
 
 #: html5lib/constants.py:171
 #, python-format
 msgid "Unexpected end tag (%(originalName)s). Treated as %(newName)s."
-msgstr ""
+msgstr "Marcador de fechamento (%(originalName)s) inesperado. Tratado como %(newName)s."
 
 #: html5lib/constants.py:173
 #, python-format
 msgid "This element (%(name)s) has no end tag."
-msgstr ""
+msgstr "Este elemento (%(name)s) não possui marcador de fechamento."
 
 #: html5lib/constants.py:175
 #, python-format
 msgid "Unexpected implied end tag (%(name)s) in the table phase."
-msgstr ""
+msgstr "Marcador de fechamento implícito (%(name)s) inesperado na fase \"table\"."
 
 #: html5lib/constants.py:177
 #, python-format
 msgid "Unexpected implied end tag (%(name)s) in the table body phase."
-msgstr ""
+msgstr "Marcador de fechamento implícito (%(name)s) inesperado na fase  tabela em \"body\"."
 
 #: html5lib/constants.py:179
 msgid "Unexpected non-space characters in table context caused voodoo mode."
-msgstr ""
+msgstr "Caracteres (espaços não contam) inesperados no contexto da tabela provocaram voodoo mode."
 
 #: html5lib/constants.py:182
 msgid "Unexpected input with type hidden in table context."
-msgstr ""
+msgstr "Entrada inesperada com tipo oculto no contexto da tabela."
 
 #: html5lib/constants.py:184
 msgid "Unexpected form in table context."
-msgstr ""
+msgstr "Formulário inesperado no contexto da tabela."
 
 #: html5lib/constants.py:186
 #, python-format
 msgid "Unexpected start tag (%(name)s) in table context caused voodoo mode."
-msgstr ""
+msgstr "Marcador de abertura inesperado (%(name)s) no contexto da tabela provocou voodoo mode."
 
 #: html5lib/constants.py:189
 #, python-format
 msgid "Unexpected end tag (%(name)s) in table context caused voodoo mode."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado no contexto da tabela provocou voodoo mode."
 
 #: html5lib/constants.py:192
 #, python-format
 msgid "Unexpected table cell start tag (%(name)s) in the table body phase."
-msgstr ""
+msgstr "Marcador de abertura de célula em tabela (%(name)s) na fase de tabela em \"body\"."
 
 #: html5lib/constants.py:195
 #, python-format
 msgid "Got table cell end tag (%(name)s) while required end tags are missing."
-msgstr ""
+msgstr "Marcador de fechamento de célula de tabela (%(name)s) encontrado, mas marcadores de fechamento necessários estão faltando."
 
 #: html5lib/constants.py:198
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the table body phase. Ignored."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado na fase tabela de \"body\". Ignorado."
 
 #: html5lib/constants.py:200
 #, python-format
 msgid "Unexpected implied end tag (%(name)s) in the table row phase."
-msgstr ""
+msgstr "Marcador de fechamento implícito (%(name)s) inesperado na fase \"row\" da tabela."
 
 #: html5lib/constants.py:202
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the table row phase. Ignored."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado na fase \"row\" da tabela. Ignorado."
 
 #: html5lib/constants.py:204
-msgid ""
-"Unexpected select start tag in the select phase treated as select end tag."
-msgstr ""
+msgid "Unexpected select start tag in the select phase treated as select end tag."
+msgstr "Marcador de abertura \"select\" inesperado na fase dos seletores. tratado como marcador de fechamento \"select\"."
 
 #: html5lib/constants.py:207
 msgid "Unexpected input start tag in the select phase."
-msgstr ""
+msgstr "Marcador de abertura \"input\" inesperado na fase \"select\"."
 
 #: html5lib/constants.py:209
 #, python-format
 msgid "Unexpected start tag token (%(name)s in the select phase. Ignored."
-msgstr ""
+msgstr "Token do marcador de abertura(%(name)s inesperado na fase \"select\". Ignorado."
 
 #: html5lib/constants.py:212
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the select phase. Ignored."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado na fase \"select\". Ignorado."
 
 #: html5lib/constants.py:214
 #, python-format
-msgid ""
-"Unexpected table element start tag (%(name)s) in the select in table phase."
-msgstr ""
+msgid "Unexpected table element start tag (%(name)s) in the select in table phase."
+msgstr "Marcador de abertura de elemento de tabela (%(name)s) inesperado em \"select\" na fase da tabela."
 
 #: html5lib/constants.py:216
 #, python-format
-msgid ""
-"Unexpected table element end tag (%(name)s) in the select in table phase."
-msgstr ""
+msgid "Unexpected table element end tag (%(name)s) in the select in table phase."
+msgstr "Elemento de marcador de fechamento da tabela (%(name)s) inesperado na fase \"select\" da tabela."
 
 #: html5lib/constants.py:218
 msgid "Unexpected non-space characters in the after body phase."
-msgstr ""
+msgstr "Caracteres (espaços não contam) inesperados na fase posterior a \"body\"."
 
 #: html5lib/constants.py:220
 #, python-format
 msgid "Unexpected start tag token (%(name)s) in the after body phase."
-msgstr ""
+msgstr "Token marcador de abertura (%(name)s) inesperado na fase posterior a \"body\"."
 
 #: html5lib/constants.py:223
 #, python-format
 msgid "Unexpected end tag token (%(name)s) in the after body phase."
-msgstr ""
+msgstr "Token do marcador de fechamento (%(name)s) inesperado na fase posterior a \"body\"."
 
 #: html5lib/constants.py:226
 msgid "Unepxected characters in the frameset phase. Characters ignored."
-msgstr ""
+msgstr "Caracteres inesperados na fase \"frameset\". Caracteres ignorados."
 
 #: html5lib/constants.py:228
 #, python-format
 msgid "Unexpected start tag token (%(name)s) in the frameset phase. Ignored."
-msgstr ""
+msgstr "Token de marcador de abertura (%(name)s) inesperado na fase \"frameset\". Ignorado."
 
 #: html5lib/constants.py:231
 msgid "Unexpected end tag token (frameset) in the frameset phase (innerHTML)."
-msgstr ""
+msgstr "Token do marcador de fechamento inesperado (frameset) na fase \"frameset\" (innerHTML)."
 
 #: html5lib/constants.py:234
 #, python-format
 msgid "Unexpected end tag token (%(name)s) in the frameset phase. Ignored."
-msgstr ""
+msgstr "Token do marcador de fechamento (%(name)s) inesperado na fase \"frameset\". Ignorado."
 
 #: html5lib/constants.py:237
 msgid "Unexpected non-space characters in the after frameset phase. Ignored."
-msgstr ""
+msgstr "Caracteres (espaços não contam) inesperados na fase posterior a \"frameset\". Ignorados."
 
 #: html5lib/constants.py:240
 #, python-format
 msgid "Unexpected start tag (%(name)s) in the after frameset phase. Ignored."
-msgstr ""
+msgstr "Marcador de abertura (%(name)s) inesperado após a fase \"frameset\". Ignorado."
 
 #: html5lib/constants.py:243
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the after frameset phase. Ignored."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado na fase pós frameset. Ignorado."
 
 #: html5lib/constants.py:246
 msgid "Unexpected end tag after body(innerHtml)"
-msgstr ""
+msgstr "Marcador de fechamento inesperado após \"body\" (HTML interno)"
 
 #: html5lib/constants.py:248
 msgid "Unexpected non-space characters. Expected end of file."
-msgstr ""
+msgstr "Caracteres (espaços não contam) inesperados. Final de arquivo esperado."
 
 #: html5lib/constants.py:250
 #, python-format
 msgid "Unexpected start tag (%(name)s). Expected end of file."
-msgstr ""
+msgstr "Marcador de abertura (%(name)s) inesperado. Final de arquivo esperado."
 
 #: html5lib/constants.py:253
 #, python-format
 msgid "Unexpected end tag (%(name)s). Expected end of file."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado. Final de arquivo esperado."
 
 #: html5lib/constants.py:256
 msgid "Unexpected end of file. Expected table content."
-msgstr ""
+msgstr "Fim de arquivo inesperado. Conteúdo de tabela esperado."
 
 #: html5lib/constants.py:258
 msgid "Unexpected end of file. Expected select content."
-msgstr ""
+msgstr "Fim de arquivo inesperado. Conteúdo de \"select\" esperado."
 
 #: html5lib/constants.py:260
 msgid "Unexpected end of file. Expected frameset content."
-msgstr ""
+msgstr "Final de arquivo inesperado. Conteúdo de \"frameset\" esperado."
 
 #: html5lib/constants.py:262
 msgid "Unexpected end of file. Expected script content."
-msgstr ""
+msgstr "Fim de arquivo inesperado. Conteúdo de script esperado."
 
 #: html5lib/constants.py:264
 #, python-format
 msgid "Trailing solidus not allowed on element %(name)s"
-msgstr ""
+msgstr "Barra invertida final não permitida no elemento %(name)s"
 
 #: html5lib/constants.py:266
 #, python-format
 msgid "Element %(name)s not allowed in a non-html context"
-msgstr ""
+msgstr "Elemento %(name)s não permitido em contexto não-html"
 
 #: html5lib/constants.py:268
 #, python-format
 msgid "Unexpected end tag (%(name)s) before html."
-msgstr ""
+msgstr "Marcador de fechamento (%(name)s) inesperado antes de \"html\"."
 
 #: html5lib/filters/lint.py:21
 #, python-format
 msgid "StartTag not in PCDATA content model flag: %(tag)s"
-msgstr ""
+msgstr "Marcador de abertura não existente no sinalizador de modelo do conteúdo de PCDATA: %(tag)s"
 
 #: html5lib/filters/lint.py:23 html5lib/filters/lint.py:49
 #: html5lib/filters/lint.py:79
 #, python-format
 msgid "Tag name is not a string: %(tag)r"
-msgstr ""
+msgstr "Marcador \"nome\" não é uma cadeia de caracteres: %(tag)r"
 
 #: html5lib/filters/lint.py:25 html5lib/filters/lint.py:51
 msgid "Empty tag name"
-msgstr ""
+msgstr "Marcador \"name\" vazio"
 
 #: html5lib/filters/lint.py:27
 #, python-format
 msgid "Void element reported as StartTag token: %(tag)s"
-msgstr ""
+msgstr "Elemento vazio reportado como token StartTag: %(tag)s"
 
 #: html5lib/filters/lint.py:29
 #, python-format
 msgid "Non-void element reported as EmptyTag token: %(tag)s"
-msgstr ""
+msgstr "Elemento não-nulo relatado como token EmptyTag: %(tag)s"
 
 #: html5lib/filters/lint.py:34 html5lib/filters/lint.py:66
 #, python-format
 msgid "Attribute name is not a string: %(name)r"
-msgstr ""
+msgstr "Atributo \"name\" não é uma cadeia de caracteres: %(name)r"
 
 #: html5lib/filters/lint.py:36
 msgid "Empty attribute name"
-msgstr ""
+msgstr "Atributo \"name\" vazio"
 
 #: html5lib/filters/lint.py:38
 #, python-format
 msgid "Attribute value is not a string: %(value)r"
-msgstr ""
+msgstr "Atributo \"value\" não é uma sequência: %(value)r"
 
 #: html5lib/filters/lint.py:53
 #, python-format
 msgid "Void element reported as EndTag token: %(tag)s"
-msgstr ""
+msgstr "Elemento nulo reportado como token EndTag: %(tag)s"
 
 #: html5lib/filters/lint.py:56
 #, python-format
 msgid "EndTag (%(end)s) does not match StartTag (%(start)s)"
-msgstr ""
+msgstr "Marcador de fechamento (%(end)s) não corresponde a marcador de abertura (%(start)s)"
 
 #: html5lib/filters/lint.py:61
 msgid "Comment not in PCDATA content model flag"
-msgstr ""
+msgstr "Comentário ausente no sinalizador de modelo do conteúdo PCDATA"
 
 #: html5lib/filters/lint.py:68
 #, python-format
 msgid "%(type)s token with empty data"
-msgstr ""
+msgstr "token %(type)s com dados vazios"
 
 #: html5lib/filters/lint.py:72
 #, python-format
 msgid "Non-space character(s) found in SpaceCharacters token: %(token)r"
-msgstr ""
+msgstr "Caracter(es) (espaços não contam) encontrados no token SpaceCharacters: %(token)r"
 
 #: html5lib/filters/lint.py:77
 #, python-format
 msgid "Doctype not in PCDATA content model flag: %(name)s"
-msgstr ""
+msgstr "Doctype não existente no sinalizador de modelo de conteúdo de PCDATA: %(name)s"
 
 #: html5lib/filters/lint.py:86
 #, python-format
 msgid "Unknown token type: %(type)s"
-msgstr ""
+msgstr "Tipo de token desconhecido: %(type)s"
 
 #: html5lib/serializer/htmlserializer.py:115
 msgid "System identifer contains both single and double quote characters"
-msgstr ""
+msgstr "Identificador de sistema contém aspas simples e duplas"
 
 #: html5lib/serializer/htmlserializer.py:131
 msgid "Unexpected </ in CDATA"
-msgstr ""
+msgstr "</ inesperado em CDATA"
 
 #: html5lib/serializer/htmlserializer.py:146
 #: html5lib/serializer/htmlserializer.py:202
 msgid "Unexpected child element of a CDATA element"
-msgstr ""
+msgstr "Elemento derivado de elemento CDATA inesperado"
 
 #: html5lib/serializer/htmlserializer.py:211
 msgid "Comment contains --"
-msgstr ""
+msgstr "Comentário contém -"
 
 #: html5lib/treewalkers/_base.py:29
 msgid "Void element has children"
-msgstr ""
+msgstr "Elemento inválido possui derivados"
 
 #: html5lib/treewalkers/_base.py:68
 msgid "Unknown node type: "
-msgstr ""
+msgstr "Tipo de nó desconhecido:"
 
 #: html5lib/treewalkers/lxmletree.py:114 html5lib/treewalkers/lxmletree.py:154
 #: html5lib/treewalkers/lxmletree.py:170
 #, python-format
 msgid "Text nodes are text or tail, found %s"
-msgstr ""
+msgstr "Nós de texto são texto ou código. %s encontrado"
 
 #: html5lib/treewalkers/lxmletree.py:143
 msgid "Text nodes have no children"
-msgstr ""
+msgstr "Nós de texto não possuem derivados"
 
 #: templates/404.html:4
 msgid "404 - Page Not Found"
-msgstr ""
+msgstr "404 - Página não encontrada"
 
 #: templates/404.html:59 templates/404.html.py:60
 msgid "I pity da foo who doesn't use HTML5!"
-msgstr ""
+msgstr "Ai de quem não a usa HTML5!"
 
 #: templates/404.html:61
 msgid "Oops!! We didn't find any HTML<sub>5</sub> resources here."
-msgstr ""
+msgstr "Ops. Não encontramos recursos HTML <sub>5</sub> aqui."
 
 #: templates/article_footer.html:4
-msgid ""
-"\n"
-"  Except as otherwise <a href=\"http://code.google.com/policies."
-"html#restrictions\">noted</a>, the content of this\n"
-"  page is licensed under the <a href=\"http://creativecommons.org/licenses/"
-"by/3.0/\">Creative Commons Attribution 3.0 License</a>, <br>\n"
-"  and code samples are licensed under the <a href=\"http://www.apache.org/"
-"licenses/LICENSE-2.0\">Apache 2.0 License</a>.\n"
-msgstr ""
+msgid "\n"
+"  Except as otherwise <a href=\"http://code.google.com/policies.html#restrictions\">noted</a>, the content of this\n"
+"  page is licensed under the <a href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution 3.0 License</a>, <br>\n"
+"  and code samples are licensed under the <a href=\"http://www.apache.org/licenses/LICENSE-2.0\">Apache 2.0 License</a>.\n"
+""
+msgstr "\n"
+"  Salvo <a href=\"http://code.google.com/policies.html#restrictions\">disposições</a> (link em inglês) em contrário, o conteúdo desta página é licenciado sob a <a href=\"http://creativecommons.org/licenses/by/3.0/\"> Creative Commons Attribution 3.0 License</a> (página em inglês), <br> e amostras de código são licenciados sob a <a href=\"http://www.apache.org/licenses/LICENSE-2.0\">Licença Apache 2.0</a> (página em inglês)."
 
 #: templates/article_footer.html:19
 msgid "Please enable JavaScript to view the comments powered by Disqus."
-msgstr ""
+msgstr "Ative o JavaScript para visualizar os comentários powered by Disqus."
 
 #: templates/base.html:27
-msgid ""
-"A resource for developers looking to put HTML5 to use today, including "
-"information on specific features and when to use them in your apps."
-msgstr ""
+msgid "A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps."
+msgstr "Um recurso para desenvolvedores que já desejem utilizar HTML5, incluindo informações sobre recursos específicos e quando utilizá-los em seus aplicativos."
 
 #: templates/base.html:28
-msgid ""
-"html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,"
-"geolocation,web workers,apppcache,file api,filereader,offline,audio,video,"
-"drag and drop,chrome"
-msgstr ""
+msgid "html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,offline,audio,video,drag and drop,chrome"
+msgstr "html5,html 5,demonstrações HTML5,exemplos de html5,javascript,css3,notificações,geolocalização,serviços da web,cache do aplicativo,api do arquivo, FileReader,off-line,áudio,vídeo,arrastar e soltar,Google Chrome"
 
 #: templates/base.html:29
 msgid "HTML5 Rocks"
-msgstr ""
+msgstr "HTML5 Rocks"
 
 #: templates/base.html:55
 msgid "HTML5 Rocks Logo"
-msgstr ""
+msgstr "Logotipo HTML5 Rocks"
 
 #: templates/base.html:55
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: templates/base.html:55
 msgid "Rocks"
-msgstr ""
+msgstr "Rocks"
 
 #: templates/base.html:60
 msgid "Playground"
-msgstr ""
+msgstr "Playground"
 
 #: templates/base.html:61
 msgid "Studio"
-msgstr ""
+msgstr "HTML5 Studio"
 
 #: templates/base.html:73
 msgid "Search HTML5Rocks"
-msgstr ""
+msgstr "Pesquisar HTML5Rocks"
 
 #: templates/base.html:83
 msgid "HTML5 Logo"
-msgstr ""
+msgstr "Logotipo HTML5"
 
 #: templates/base.html:87
 msgid "Terms"
-msgstr ""
+msgstr "Condições"
 
 #: templates/base.html:88
 msgid "Privacy"
-msgstr ""
+msgstr "Privacidade"
 
 #: templates/base.html:89
 msgid "Report bug or request a feature"
-msgstr ""
+msgstr "Reportar erro ou solicitar recurso"
 
 #: templates/base.html:90
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "Siga-nos no Twitter"
 
 #: templates/base.html:91
 msgid "About Authors"
-msgstr ""
+msgstr "Sobre os autores"
 
 #: templates/base.html:93
 msgid "Made by Google"
-msgstr ""
+msgstr "Feito pelo Google"
 
 #: templates/base.html:94
-msgid ""
-"This site contains information on APIs that are not part of the W3C HTML5 "
-"specification."
-msgstr ""
+msgid "This site contains information on APIs that are not part of the W3C HTML5 specification."
+msgstr "Este site contém informações sobre APIs que não fazem parte da especificação HTML5 do W3C."
 
 #: templates/base.html:114
 msgid "A new version of this site is available. Load it?"
-msgstr ""
+msgstr "Uma nova versão deste site está disponível. Carregar?"
 
 #: templates/casestudy.html:12
 msgid "Case Studies"
-msgstr ""
+msgstr "Estudos de caso"
 
 #: templates/casestudy.html:32 templates/mobile_tutorial.html:35
 #: templates/sample.html:35
 msgid "Tweet"
-msgstr ""
+msgstr "Postar no Twitter"
 
 #: templates/casestudy.html:34 templates/mobile_tutorial.html:37
 #: templates/sample.html:37
 msgid "Leave a comment"
-msgstr ""
+msgstr "Deixar um comentário"
 
 #: templates/casestudy.html:39 templates/sample.html:42
 msgid "Supported browsers:"
-msgstr ""
+msgstr "Navegadores suportados:"
 
 #: templates/casestudy.html:47 templates/sample.html:50
-msgid ""
-"Your browser may not support all of the functionality used in this article."
-msgstr ""
+msgid "Your browser may not support all of the functionality used in this article."
+msgstr "Seu navegador pode não suportar todas as funcionalidades utilizadas neste artigo."
 
 #: templates/casestudy.html:52 templates/sample.html:55
-msgid ""
-"Your browser appears to support all of the functionality used in this "
-"article."
-msgstr ""
+msgid "Your browser appears to support all of the functionality used in this article."
+msgstr "Seu navegador parece suportar todas as funcionalidades utilizadas neste artigo."
 
 #: templates/casestudy.html:61 templates/sample.html:64
 msgid "HTML5 Powered"
-msgstr ""
+msgstr "HTML5 ativado"
 
 #: templates/mobile_tutorial.html:42
 msgid "Supported mobile browsers:"
-msgstr ""
+msgstr "Navegadores móveis suportados:"

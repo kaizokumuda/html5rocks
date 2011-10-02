@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -45,27 +46,27 @@
 
     $('#scroll-authors').click( function() { $.scrollTo('#authors', 600, {margin: true, offset: -25}); });
 
-		var top = $('html, body').offset().top;
+    var top = $('html, body').offset().top;
 
-		$(window).scroll(function (event) {
-			// Get the position of the vertical scroll.
-			var y = $(this).scrollTop();
+    $(window).scroll(function (event) {
+      // Get the position of the vertical scroll.
+      var y = $(this).scrollTop();
 
-			if (y > top)
-			{
-				$('.watermark.white').fadeIn(600);
+      if (y > top)
+      {
+        $('.watermark.white').fadeIn(600);
 
         if (!$('body').hasClass('scrolled'))
         {
           hideScrollToTechnologyArrow();
           $('body').addClass('scrolled');
         }
-			}
-			else
-			{
-				$('.watermark.white').fadeOut(600);
+      }
+      else
+      {
+        $('.watermark.white').fadeOut(600);
 
-				$('body').removeClass('scrolled');
+        $('body').removeClass('scrolled');
 
         // Reappear the 'Scroll to Technology' arrow.
         $('#scroll-technology').css('position', 'relative').animate({
@@ -73,9 +74,9 @@
           opacity: 1,
           height: 100
         }, 600);
-			}
-		});
-	});
+      }
+    });
+  });
   </script>
 {% endblock %}
 

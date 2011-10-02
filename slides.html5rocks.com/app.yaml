@@ -6,6 +6,7 @@ api_version: 1
 default_expiration: "30d"
 
 handlers:
+
 # Server appropriate mimetype for certain static content.
 - url: /(.*\.(appcache|manifest))
   static_files: \1
@@ -14,27 +15,27 @@ handlers:
   expiration: "0s"
 
 - url: /(.*\.mp4)
-  static_files: /\1
+  static_files: \1
   mime_type: video/mp4
   upload: /(.*\.mp4)
 
 - url: /(.*\.webm)
-  static_files: /\1
+  static_files: \1
   mime_type: video/webm
   upload: /(.*\.webm)
 
 - url: /(.*\.(ogg|oga))
-  static_files: /\1
+  static_files: \1
   mime_type: audio/ogg
   upload: /(.*\.(ogg|oga))
 
 - url: /(.*\.ogv)
-  static_files: /\1
+  static_files: \1
   mime_type: video/ogg
   upload: /(.*\.ogv)
 
 - url: /(.*\.mp3)
-  static_files: /\1
+  static_files: \1
   mime_type: audio/mpeg
   upload: /(.*\.mp3)
 
@@ -47,8 +48,8 @@ handlers:
 - url: /src
   static_dir: src
 
-- url: /css
-  static_dir: css
+- url: /styles
+  static_dir: styles
 
 - url: /js
   static_dir: js

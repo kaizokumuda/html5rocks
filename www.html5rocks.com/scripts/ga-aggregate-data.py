@@ -15,6 +15,7 @@ APP_NAME = 'html5rocks-AggregateAnalyticsData'
 GA_ACCOUNT_ID = '15028909'  # The tracking code account id (e.g. UA-15028909-X).
 GA_PROFILES = [
     'ga:30048415', # www.html5rocks.com
+    'ga:47360859', # updates.html5rocks.com
     'ga:33998539', # slides.html5rocks.com
     'ga:33994391', # playground.html5rocks.com
     'ga:36061411', # studio.html5rocks.com

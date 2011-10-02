@@ -246,18 +246,14 @@
         var me = this;
         var textNode = document.createElement('span');
         textNode.innerHTML = item.sampleName;
-        if (item.files.length != 0) {
-          textNode.style.cursor = 'pointer';
-          $(textNode).bind('click', function() { 
-            window['jsEditor'].setCode('');
-            window['cssEditor'].setCode('');
-            // showSampleFn(item.sampleName).call(me) 
-          }); //!
-          $(textNode).bind('click', showSampleFn.call(this, item.sampleName)); //!          
-        } else {
-          textNode.style.color = '#ccc';
-        }
-        
+        textNode.style.cursor = 'pointer';
+        $(textNode).bind('click', function() {
+          window['jsEditor'].setCode('');
+          window['cssEditor'].setCode('');
+          // showSampleFn(item.sampleName).call(me)
+        }); //!
+        $(textNode).bind('click', showSampleFn.call(this, item.sampleName)); //!
+
         li.appendChild(textNode);
         if (category == 'Saved Code') {
           this.addDeleteIcon(li, sampleList[i].samples[j].id);

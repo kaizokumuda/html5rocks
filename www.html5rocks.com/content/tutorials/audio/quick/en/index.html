@@ -180,6 +180,7 @@
   
   <h2 id="toc-examples">Examples</h2>
   <p>The following two examples will fallback to the Flash player in those browsers that don't support the audio tag nor can play mp3 in it.</p>
+  {% if is_mobile %}
   <h3 id="toc-player-default">Player with default controls</h3>
   <audio id="audio_with_controls" controls>
     <source src="test.mp3" type="audio/mpeg" />
@@ -215,6 +216,9 @@
     }
   }
   </script>
+  {% else %}
+  <iframe src="http://playground.html5rocks.com/?mode=frame&hu=180&hl=180#audio_tag_with_fallback_to_flash" style="border: none; width: 100%; height: 480px;"></iframe>
+  {% endif %}
   <p class="last_p">If you don't want to start your customized player from the scratch you can take a <a href="http://www.jezra.net/code_examples/html5_audio/">basic one</a> and style it from there.</p>
   <p>You are all set!</p>
   
