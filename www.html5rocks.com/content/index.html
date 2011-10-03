@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -29,8 +28,7 @@
       });
     });
 
-    function hideScrollToTechnologyArrow()
-    {
+    function hideScrollToTechnologyArrow() {
       $('#scroll-technology').css('position', 'relative').animate({
         top: -200,
         opacity: 0,
@@ -114,7 +112,6 @@
 
           var html = [];
           for (var i = 0, entry; entry = result.value.items[i]; ++i) {
-            //var date = new Date(entry.pubDate);
             var date = new Date(entry.pubDate.split('T')[0].replace(/-/g, '/'));
             var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
 
@@ -133,7 +130,6 @@
 
         {% if not is_mobile %}
           (function(){
-
             var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
             document.addEventListener('keydown', function hdl(e) {
               kkeys.push( e.keyCode );
@@ -146,7 +142,6 @@
                   ref.parentNode.insertBefore(script, ref);
               }
             }, false);
-
           })();
         {% endif %}
       </script>

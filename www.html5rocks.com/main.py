@@ -156,13 +156,15 @@ class ContentHandler(webapp.RequestHandler):
     # disqus comment thread won't load with the changed urls.
     path_no_lang = re.sub('^\/\w{2,3}\/', '', self.request.path, 1)
 
+    # Add template data to every request.
     template_data = {
       'toc' : self.get_toc(template_path),
       'self_url': self.request.url,
       'host': '%s://%s' % (self.request.scheme, self.request.host),
       'is_mobile': self.is_awesome_mobile_device(),
       'current': current,
-      'prod': common.PROD
+      'prod': common.PROD,
+      'sorted_profiles': common.get_sorted_profiles() # TODO: Don't add profile data on every request.
     }
 
     template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
@@ -207,8 +209,7 @@ class ContentHandler(webapp.RequestHandler):
     # (but still ensure it's dynamic, ie we can't just redirect to a static url)
     if (relpath == 'humans.txt'):
       self.response.headers['Content-Type'] = 'text/plain'
-      return self.render(data={'sorted_profiles': common.get_sorted_profiles(),
-                               'profile_amount': common.get_profile_amount() },
+      return self.render(data={'profile_amount': common.get_profile_amount()},
                          template_path='content/humans.txt',
                          relpath=relpath)
 
@@ -257,10 +258,7 @@ class ContentHandler(webapp.RequestHandler):
     # the user is requesting has a corresponding .html page that exists.
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
-      # Setup caching layer for this file i/o.
-
-      self.render(data={'sorted_profiles': common.get_sorted_profiles() },
-                  template_path='content/profiles.html', relpath=relpath)
+      self.render(template_path='content/profiles.html', relpath=relpath)
 
     elif re.search('tutorials/casestudies', relpath) and not is_feed:
       # Case Studies look like this on the filesystem:
