@@ -115,6 +115,17 @@
             var date = new Date(entry.pubDate.split('T')[0].replace(/-/g, '/'));
             var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
 
+            if (entry.author) {
+              //TODO: use each author.name
+             //console.log(entry.author.name)
+            }
+            if (entry.category && entry.category.length) {
+              entry.category.forEach(function(cat) {
+                //TODO: use each cat.term
+                //console.log(cat.term)
+              });
+            }
+
             var type = '';
             if (entry.id.match('www.html5rocks.com')) {
               type = 'tutorial';
