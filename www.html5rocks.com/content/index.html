@@ -161,6 +161,35 @@
               }
             }, false);
           })();
+
+
+
+          // webgl for greyscaling images.
+          $(window).load(function(){
+
+            if (!window.WebGLRenderingContext) return;
+
+            $.getScript('/static/js/glfx.js', function(){
+              
+              try {
+                  window.webglcanvas = fx.canvas();
+              } catch (e) { return; }
+              if (!webglcanvas) return;
+
+
+              var images = document.querySelectorAll('.authors_wrapper img');
+
+              [].forEach.call(images, function(image){
+                var texture = webglcanvas.texture(image);
+                webglcanvas.draw(texture).hueSaturation(0, -1).vignette(0.5, 0.5).update();
+                image.src = webglcanvas.toDataURL('image/png');
+              });
+
+            });
+          });
+
+
+
         {% endif %}
       </script>
       <script src="http://pipes.yahoo.com/pipes/pipe.run?Stories=4&_id=188f91f54190f37d651a071732b0ca11&_render=json&_callback=processPipeFeed"></script>
