@@ -1,3 +1,15 @@
+/*
+ * JavaScript detach - v0.2 - 5/18/2011
+ * https://gist.github.com/938767
+ *
+ * Copyright (c) 2011 "Cowboy" Ben Alman
+ * Dual licensed under the MIT and GPL licenses.
+ * http://benalman.com/about/license/
+ */
+function detach(f,e,d){var c=f.parentNode;var b=f.nextSibling;if(!c){return}c.removeChild(f);if(typeof e!="boolean"){d=e;e=false}if(d&&e){d.call(f,a)}else{if(d){d.call(f);a()}}function a(){c.insertBefore(f,b)}};
+
+
+
 if (caniusefeatures[0] && caniusefeatures[0].length) {
   $('.support').show();
 
@@ -11,7 +23,7 @@ if (caniusefeatures[0] && caniusefeatures[0].length) {
 
 window.caniusecallback = function(data) {
 
-  //var dom = $('.support').detach();
+  var dom = $('.support');
 
   $.each(caniusefeatures, function(i, feature) {
 
@@ -40,7 +52,9 @@ window.caniusecallback = function(data) {
     });
 
     localdom.find('table').css('visibility', 'visible').end()
-            .insertAfter('div.description');
+            .insertAfter('article.description');
+    // remove placeholder table  
+    dom.remove();
 
   }); // eo feature loop
 }; // eo caniusecallback()
