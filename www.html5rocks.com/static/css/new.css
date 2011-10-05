@@ -81,7 +81,7 @@ td { vertical-align: top; }
 
 /* BACKGROUND SCALE */
 
-body.index
+body.home
 {
   background: #aaa url(/static/new_images/background-index.jpg) center center fixed no-repeat;
   -moz-background-size: cover;
@@ -90,7 +90,7 @@ body.index
 
 @media only all and (max-width: 1024px) and (max-height: 768px)
 {
-  body.index {
+  body.home {
   -moz-background-size: 1024px 768px;
   background-size: 1024px 768px;
   }
@@ -553,7 +553,7 @@ nav .next
 
 /* HOMEPAGE */
 
-.index .watermark.teal
+body.home .watermark.teal
 {
   display: none;
 }

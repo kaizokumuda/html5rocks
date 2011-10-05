@@ -156,10 +156,17 @@ class ContentHandler(webapp.RequestHandler):
     # disqus comment thread won't load with the changed urls.
     path_no_lang = re.sub('^\/\w{2,3}\/', '', self.request.path, 1)
 
+    pagename = ''
+    if (path_no_lang == ''):
+      pagename = 'home'
+    else:
+      pagename = re.sub('\/', '-', path_no_lang, 1)
+
     # Add template data to every request.
     template_data = {
       'toc' : self.get_toc(template_path),
       'self_url': self.request.url,
+      'self_pagename': pagename,
       'host': '%s://%s' % (self.request.scheme, self.request.host),
       'is_mobile': self.is_awesome_mobile_device(),
       'current': current,
