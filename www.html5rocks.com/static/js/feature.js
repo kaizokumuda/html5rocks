@@ -11,7 +11,7 @@ if (caniusefeatures[0] && caniusefeatures[0].length) {
 
 window.caniusecallback = function(data) {
 
-  var dom = $('.support').detach();
+  //var dom = $('.support').detach();
 
   $.each(caniusefeatures, function(i, feature) {
 
