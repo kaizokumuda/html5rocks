@@ -33,13 +33,13 @@ $('.subheader.features ul li a').click(function(){
 
 function buildPageAndScrollThere()
 {
-  var newPage = $('<div id="newPage1"></div>');
+  var newPage = $('<div class="page" id="feature-offline"></div>');
 
   $(newPage).html('new content!').css({'position': 'absolute', 'top': '3000px', 'left': '3000px', 'font-size': '48px', 'color': '#fff'});
 
   $('body').append(newPage);
 
-  $(newPage).load('features/offline')
-
-  $.scrollTo({top:'3000px', left:'3000px'}, 800, {queue:true});
+  $(newPage).load('features/offline .page', function(){
+    $.scrollTo({top:'3000px', left:'3000px'}, 800, {queue:true});
+  });
 }
