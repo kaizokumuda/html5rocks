@@ -1,14 +1,21 @@
 /*
-   COLORS
+  # WEIGHTS
 
-   default:   3c3c3c
-              (dark grey)
+    300
+    800
 
-   alternate: 5fa4a0
-              (teal)
+  ---
 
-   highlight: f04530
-              (orange)
+  # COLORS
+
+    default:   3c3c3c
+               (dark grey)
+
+    alternate: 5fa4a0
+               (teal)
+
+    highlight: f04530
+               (orange)
 */
 
 /* NORMALIZE */
@@ -145,7 +152,8 @@ article,
   width: 1000px;
 }
 
-section
+section,
+article.link_targets section a
 {
   padding: 1.5em 2em;
 }
@@ -159,7 +167,8 @@ section+section
 {
 }
 
-.three_columns section
+.three_columns section,
+.three_columns.link_targets section a
 {
   float: left;
   width: 264px;
@@ -479,6 +488,19 @@ section.topic p
   margin-left: 26px;
 }
 
+article.link_targets section
+{
+  position: relative;
+}
+
+article.link_targets section a
+{
+  color: inherit;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 /* SITE-GRID NAVIGATION */
 
 .nav,
@@ -719,6 +741,11 @@ article.profile h2
 article.profile h3
 {
   font-size: 10px;
+}
+
+article.profile h3 div[itemprop=organization-name]
+{
+  font-weight: 800;
 }
 
 /* FEATURES  */

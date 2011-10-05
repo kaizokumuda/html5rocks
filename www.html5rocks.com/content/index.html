@@ -180,20 +180,26 @@
   </section>
 </article>
 
-<article class="three_columns">
+<article class="three_columns link_targets">
   <section>
-    <h2>Mobile</h2>
-    <p>Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris! Placerat mid integer nunc.</p>
+    <a href="#mobile">
+      <h2>Mobile</h2>
+      <p>Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris! Placerat mid integer nunc.</p>
+    </a>
   </section>
 
   <section>
-    <h2>Gaming</h2>
-    <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet!</p>
+    <a href="#gaming">
+      <h2>Gaming</h2>
+      <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet!</p>
+    </a>
   </section>
 
   <section>
-    <h2>Enterprise</h2>
-    <p>Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris! Placerat mid integer nunc parturient nec, aliquam, lacus nec lundium!</p>
+    <a href="#enterprise">
+      <h2>Enterprise</h2>
+      <p>Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris! Placerat mid integer nunc parturient nec, aliquam, lacus nec lundium!</p>
+    </a>
   </section>
 </article>
 
@@ -259,20 +265,26 @@
   </section>
 </article>
 
-<article class="three_columns">
+<article class="three_columns link_targets">
   <section>
-    <h2>Why HTML5?</h2>
-    <p><strong>Pid cras vel odio lundium</strong><br>Natoque integer urna adipiscing tortor scelerisque vut! ....</p>
+    <a href="#">
+      <h2>Why HTML5?</h2>
+      <p><strong>Pid cras vel odio lundium</strong><br>Natoque integer urna adipiscing tortor scelerisque vut! ....</p>
+    </a>
   </section>
 
   <section>
-    <h2>Updates</h2>
-    <p><strong>Pid cras vel odio lundium</strong><br>Natoque integer urna adipiscing tortor scelerisque vut! ....</p>
+    <a href="#">
+      <h2>Updates</h2>
+      <p><strong>Pid cras vel odio lundium</strong><br>Natoque integer urna adipiscing tortor scelerisque vut! ....</p>
+    </a>
   </section>
 
   <section>
-    <h2>Resources</h2>
-    <p><strong>Pid cras vel odio lundium</strong><br>Natoque integer urna adipiscing tortor scelerisque vut! ....</p>
+    <a href="/{{LANGUAGE_CODE}}/resources.html">
+      <h2>Resources</h2>
+      <p><strong>Pid cras vel odio lundium</strong><br>Natoque integer urna adipiscing tortor scelerisque vut! ....</p>
+    </a>
   </section>
 </article>
 
@@ -289,245 +301,31 @@
 
   <div class="authors_wrapper">
 
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/ebidelman.png">
-        <h2>Eric Bidelman</h2>
-        <h3>Developer Relations, Google</h3>
-      </section>
-    </article>
+    {% for profile in sorted_profiles %}
 
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/geoffblair.png">
-        <h2>Geoff Blair</h2>
-        <h3>Programmer, Designer, Lost Decade Games</h3>
-      </section>
-    </article>
+      <article class="profile mini" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
+        <section>
+            <img itemprop="photo" alt="{{profile.name.given}} {{profile.name.family}}" title="{{profile.name.given}} {{profile.name.family}}" src="/static/images/profiles/{{profile.id}}.png">
 
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/jeremychone.png">
-        <h2>Jeremy Chone</h2>
-        <h3>Developer, N2N-Apps</h3>
-      </section>
-    </article>
+            <h2>
+              <div itemprop="fn">
+                <div itemprop="n" itemscope>
+                  <span itemprop="given-name">{{profile.name.given}}</span>
+                  <span itemprop="family-name">{{profile.name.family}}</span>
+                </div>
+              </div>
+            </h2>
 
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/michaeldeal.png">
-        <h2>Michael Deal</h2>
-        <h3>New Product Development, Orange Honey</h3>
-      </section>
-    </article>
+            <h3 itemprop="org" itemscope>
+              {% if profile.org.unit %}<div itemprop="organization-unit">{{profile.org.unit}}</div>{% endif %}
+              {% if profile.org.name %}<div itemprop="organization-name">{{profile.org.name}}</div>{% endif %}
+            </h3>
+        </section>
+      </article>
 
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/geoffblair.png">
-        <h2>Geoff Blair</h2>
-        <h3>Programmer, Designer, Lost Decade Games</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/ebidelman.png">
-        <h2>Eric Bidelman</h2>
-        <h3>Developer Relations, Google</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/geoffblair.png">
-        <h2>Geoff Blair</h2>
-        <h3>Programmer, Designer, Lost Decade Games</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/ebidelman.png">
-        <h2>Eric Bidelman</h2>
-        <h3>Developer Relations, Google</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/jeremychone.png">
-        <h2>Jeremy Chone</h2>
-        <h3>Developer, N2N-Apps</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/michaeldeal.png">
-        <h2>Michael Deal</h2>
-        <h3>New Product Development, Orange Honey</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/ebidelman.png">
-        <h2>Eric Bidelman</h2>
-        <h3>Developer Relations, Google</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/geoffblair.png">
-        <h2>Geoff Blair</h2>
-        <h3>Programmer, Designer, Lost Decade Games</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/jeremychone.png">
-        <h2>Jeremy Chone</h2>
-        <h3>Developer, N2N-Apps</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/michaeldeal.png">
-        <h2>Michael Deal</h2>
-        <h3>New Product Development, Orange Honey</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/jeremychone.png">
-        <h2>Jeremy Chone</h2>
-        <h3>Developer, N2N-Apps</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/ebidelman.png">
-        <h2>Eric Bidelman</h2>
-        <h3>Developer Relations, Google</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/michaeldeal.png">
-        <h2>Michael Deal</h2>
-        <h3>New Product Development, Orange Honey</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/geoffblair.png">
-        <h2>Geoff Blair</h2>
-        <h3>Programmer, Designer, Lost Decade Games</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/ebidelman.png">
-        <h2>Eric Bidelman</h2>
-        <h3>Developer Relations, Google</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/michaeldeal.png">
-        <h2>Michael Deal</h2>
-        <h3>New Product Development, Orange Honey</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/geoffblair.png">
-        <h2>Geoff Blair</h2>
-        <h3>Programmer, Designer, Lost Decade Games</h3>
-      </section>
-    </article>
-
-    <article class="profile mini">
-      <section>
-        <img src="/static/new_images/profiles/jeremychone.png">
-        <h2>Jeremy Chone</h2>
-        <h3>Developer, N2N-Apps</h3>
-      </section>
-    </article>
+    {% endfor %}
 
   </div>
-
-  {% for profile in sorted_profiles %}
-
-    <article class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
-      <section class="card">
-        <div class="face front">
-          <h2>
-            <div itemprop="fn">
-              <div itemprop="n" itemscope>
-                <span itemprop="given-name">{{profile.name.given}}</span>
-               <span itemprop="family-name">{{profile.name.family}}</span>
-              </div>
-            </div>
-          </h2>
-
-          <div class="photoZone">
-            <img itemprop="photo" alt="{{profile.name.given}} {{profile.name.family}}" title="{{profile.name.given}} {{profile.name.family}}" src="/static/images/profiles/{{profile.id}}.png">
-            <ul class="urls">
-              {% if profile.homepage %}
-              <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
-              {% endif %}
-              {% if profile.google %}
-              <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google}}">&nbsp;</a></li>
-              {% endif %}
-              {% if profile.twitter %}
-              <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter}}">&nbsp;</a></li>
-              {% endif %}
-              {% if profile.lanyrd %}
-              <li><a data-type="lanyrd" itemprop="url" href="http://www.lanyrd.com/people/{{profile.twitter}}">&nbsp;</a></li>
-              {% endif %}
-            </ul>
-          </div>
-
-          <div itemprop="org" itemscope>
-            {% if profile.org.unit %}<div itemprop="organization-unit">{{profile.org.unit}}</div>{% endif %}
-            {% if profile.org.name %}<div itemprop="organization-name">{{profile.org.name}}</div>{% endif %}
-          </div>
-          <div class="details">
-            <div itemprop="adr" itemscope>
-              {% if profile.address.locality %}<span itemprop="locality">{{profile.address.locality}},</span>{% endif %}
-              {% if profile.address.region %}<span itemprop="region">{{profile.address.region}},</span>{% endif %}
-              {% if profile.address.country %}<span itemprop="country-name">{{profile.address.country}}</span>{% endif %}
-            </div>
-          </div>
-          <div class="list-articles">{% trans "Articles" %}</div>
-        </div>
-        <div class="face back">
-          <ul class="articles"></ul>
-        </div>
-      </section>
-      {% if not is_mobile %}
-      <section class="map">
-        {% if profile.address.lat and profile.address.lon %}
-        <div itemprop="geo">
-          <img src="http://maps.google.com/maps/api/staticmap?center={{profile.address.lat}},{{profile.address.lon}}&markers=color:red|label:|{{profile.address.lat}},{{profile.address.lon}}&zoom=14&size=200x175&sensor=false"/>
-        </div>
-        {% endif %}
-      </section>
-      {% endif %}
-    </article>
-
-  {% endfor %}
 
 </article>
 
