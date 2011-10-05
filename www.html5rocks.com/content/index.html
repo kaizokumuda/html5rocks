@@ -114,17 +114,23 @@
           for (var i = 0, entry; entry = result.value.items[i]; ++i) {
             var date = new Date(entry.pubDate.split('T')[0].replace(/-/g, '/'));
             var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
+            var classes = '<span class="classes">';
 
             if (entry.author) {
+              author = entry.author.name;
               //TODO: use each author.name
-             //console.log(entry.author.name)
+              //console.log(entry.author.name)
             }
             if (entry.category && entry.category.length) {
               entry.category.forEach(function(cat) {
+                classes += '<span class="classesClass ' + cat.term + '">' + cat.term + '</span>';
                 //TODO: use each cat.term
+                //TODO: do categories correspond to classes?
                 //console.log(cat.term)
               });
             }
+
+            classes += '</span>';
 
             var type = '';
             if (entry.id.match('www.html5rocks.com')) {
@@ -133,8 +139,11 @@
               type = 'update';
             }
 
-            html.push('<li><span class="date">', formattedDateStr, '</span> ', entry.title.link(entry.link),
-                      '<span data-type="', type, '" class="type">', type, '<\/span><\/li>');
+            html.push('<li><span class="date">', formattedDateStr, '</span> ',
+                      '<img class="author" src="/static/images/profiles/', author, '.png">',
+                      '<span class="title">', entry.title.link(entry.link), '</span>',
+                      classes,
+                      '<span data-type="', type, '" class="type">', type, '</span></li>');
           }
           container.innerHTML += html.join('');
         }
@@ -156,7 +165,7 @@
           })();
         {% endif %}
       </script>
-      <script src="http://pipes.yahoo.com/pipes/pipe.run?Stories=5&_id=188f91f54190f37d651a071732b0ca11&_render=json&_callback=processPipeFeed"></script>
+      <script src="http://pipes.yahoo.com/pipes/pipe.run?Stories=4&_id=188f91f54190f37d651a071732b0ca11&_render=json&_callback=processPipeFeed"></script>
     </section>
   </div>
 </article>
