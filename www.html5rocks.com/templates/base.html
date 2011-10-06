@@ -199,6 +199,13 @@
       }, false);
     {% endif %}
 
+    window.addEventListener('keydown', function(e) {
+      if (e.keyCode == 27) { // ESC
+        $('#search_hide').click();
+        $('#features_hide').click();
+      }
+    }, false);
+
     // Check if new appcache is available.
     if (window.applicationCache) {
       window.applicationCache.addEventListener('updateready', function(e) {
