@@ -99,40 +99,47 @@ class ContentHandler(webapp.RequestHandler):
 
   def get_feed(self, path):
     articles = memcache.get('feed|%s' % path)
+  
     if articles is None or self.request.cache == False:
       template_text = template.render(path, {});
-      parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("dom"))
+      parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder('dom'))
       dom_tree = parser.parse(template_text)
-      walker = treewalkers.getTreeWalker("dom")
-      stream = walker(dom_tree)
 
-      def __get_attr(element, attr):
-        for a in element['data']:
-          if a[0] == attr:
-            return a[1]
-        return None
+      def __get_text(node_list):
+        rc = []
+        for node in node_list:
+          if node.nodeType == node.TEXT_NODE:
+            rc.append(node.data)
+        return ''.join(rc)
 
       articles = []
-      article = None
 
-      for element in stream:
-        if element['type'] == 'StartTag':
-          if element['name'] in ['h2']:
-            article = {}
-            article['id'] = __get_attr(element, 'id')
-            article['pubdate'] = __get_attr(element, 'data-pubdate')
-            if article['pubdate'] is not None:
-              article['pubdate'] = datetime.datetime.strptime(
-                  article['pubdate'], '%Y-%m-%d')
-          if element['name'] == 'a' and article is not None:
-            article['href'] = __get_attr(element, 'href')
-        elif element['type'] == 'Characters' and article is not None:
-          article['title'] = element['data']
-        elif element['type'] == 'EndTag' and article is not None:
+      article_elements = dom_tree.getElementsByTagName('article')
+      for element in article_elements:
+        if (element.getAttribute('class') == 'sample'):
+          article = {}
+          h2 = element.getElementsByTagName('h2')[0]
+          a = h2.getElementsByTagName('a')[0]
+          article['title'] = __get_text(a.childNodes)
+          article['id'] = h2.getAttribute('id')
+          article['href'] = a.getAttribute('href')
+          article['pubdate'] = h2.getAttribute('data-pubdate')
+          if article['pubdate'] is not None:
+            article['pubdate'] = datetime.datetime.strptime(
+                article['pubdate'], '%Y-%m-%d')
+
+          divs = element.getElementsByTagName('div')
+
+          article['description'] = __get_text(divs[1].childNodes)
+          article['author_id'] = divs[0].getElementsByTagName('a')[0].getAttribute('data-id')
+          spans = divs[0].getElementsByTagName('span')
+          article['categories'] = []
+          for span in spans:
+            if (span.getAttribute('class') == 'tag'):
+              article['categories'].append(__get_text(span.childNodes)) 
+
           articles.append(article)
-          article = None
 
-      logging.info(articles)
       memcache.set('feed|%s' % path, articles, 3600)
 
     return articles
@@ -204,8 +211,10 @@ class ContentHandler(webapp.RequestHandler):
       feed.add_item(
           title=tutorial['title'],
           link=prefix + tutorial['href'],
-          description=u'',  # TODO: parse this out out of the html and fill it.
-          pubdate=tutorial['pubdate']
+          description=tutorial['description'],
+          pubdate=tutorial['pubdate'],
+          author_name=tutorial['author_id'],
+          categories=tutorial['categories']
           )
     self.response.headers.add_header('Content-Type', 'application/atom+xml')
     self.response.out.write(feed.writeString('utf-8'))

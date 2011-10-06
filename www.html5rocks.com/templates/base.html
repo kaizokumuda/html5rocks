@@ -31,7 +31,7 @@
   <!-- <link rel="stylesheet" media="all" href="/static/css/base{% if prod %}.min{% endif %}.css"> -->
 
   <!-- <link rel="stylesheet" media="all" href="/static/css/GGS.css"> -->
-  <link rel="stylesheet" media="all" href="/static/css/new.css"> <!-- TODO: merge into base stylesheet. -->
+  <link rel="stylesheet" media="all" href="/static/css/new{% if prod %}.min{% endif %}.css"> <!-- TODO: merge into base stylesheet. -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,800' rel='stylesheet' type='text/css'> <!-- TODO: find out how this font should be requested/included -->
 
   <!-- Try to load remote jquery, load local version of jQuery on fail -->
@@ -198,6 +198,13 @@
         setTimeout(function() { window.scrollTo(0, 1); }, 1);
       }, false);
     {% endif %}
+
+    window.addEventListener('keydown', function(e) {
+      if (e.keyCode == 27) { // ESC
+        $('#search_hide').click();
+        $('#features_hide').click();
+      }
+    }, false);
 
     // Check if new appcache is available.
     if (window.applicationCache) {

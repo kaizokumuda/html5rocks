@@ -10,6 +10,7 @@ $('#search_show').click(function(){
 
 $('#search_hide').click(function(){
   $('.subheader.search').hide();
+  $('#search_show').removeClass('current');
 });
 
 $('#features_show').click(function(){

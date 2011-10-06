@@ -1,3 +1,4 @@
+
 if (caniusefeatures[0] && caniusefeatures[0].length) {
   $('.support').show();
 
@@ -11,7 +12,7 @@ if (caniusefeatures[0] && caniusefeatures[0].length) {
 
 window.caniusecallback = function(data) {
 
-  //var dom = $('.support').detach();
+  var dom = $('.support');
 
   $.each(caniusefeatures, function(i, feature) {
 
@@ -40,7 +41,9 @@ window.caniusecallback = function(data) {
     });
 
     localdom.find('table').css('visibility', 'visible').end()
-            .insertAfter('div.description');
+            .insertAfter('article.description');
+    // remove placeholder table  
+    dom.remove();
 
   }); // eo feature loop
 }; // eo caniusecallback()
