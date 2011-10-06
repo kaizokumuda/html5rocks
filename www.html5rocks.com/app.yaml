@@ -64,10 +64,10 @@ handlers:
   static_files: content/\2/static/\3
   upload: content/tutorials/(.*\.mp3)
 
-- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.mp3)
-  mime_type: audio/mp3
+- url: /(\w{2,3})/(tutorials/[^/]+/[^/]+)/(.+\.wav)
+  mime_type: audio/wav
   static_files: content/\2/static/\3
-  upload: content/tutorials/(.*\.mp3)
+  upload: content/tutorials/(.*\.wav)
 
 #
 # Cache Manifests
