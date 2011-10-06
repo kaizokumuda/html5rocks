@@ -18,6 +18,66 @@
                (orange)
 */
 
+@-webkit-keyframes jitter {
+  0% {
+    -webkit-transform: rotate(0deg) translateX(2px) ;
+  }
+  2% {
+    -webkit-transform: rotate(-5deg);
+  }
+  4% {
+    -webkit-transform: rotate(0deg);
+  }
+  6% {
+    -webkit-transform: rotate(5deg);
+  }
+  8% {
+    -webkit-transform: rotate(0deg) translateX(-2px)  ;
+  }
+  10% {
+    -webkit-transform: rotate(-5deg);
+  }
+  12% {
+    -webkit-transform: rotate(0deg);
+  }
+  14% {
+    -webkit-transform: rotate(5deg);
+  }
+  16% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+@-moz-keyframes jitter {
+  0% {
+    -moz-transform: rotate(0deg) translateX(2px) ;
+  }
+  2% {
+    -moz-transform: rotate(-5deg);
+  }
+  4% {
+    -moz-transform: rotate(0deg);
+  }
+  6% {
+    -moz-transform: rotate(5deg);
+  }
+  8% {
+    -moz-transform: rotate(0deg) translateX(-2px)  ;
+  }
+  10% {
+    -moz-transform: rotate(-5deg);
+  }
+  12% {
+    -moz-transform: rotate(0deg);
+  }
+  14% {
+    -moz-transform: rotate(5deg);
+  }
+  16% {
+    -moz-transform: rotate(0deg);
+  }
+}
+
 /* NORMALIZE */
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
@@ -196,7 +256,7 @@ header
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 2;
+  z-index: 200;
 }
 
 header nav.main
@@ -421,6 +481,17 @@ input[type="search"]::-webkit-search-results-decoration
   left: 50%;
   margin-left: -585px;
   top: 50px;
+  -webkit-transition: opacity 600ms ease-in-out;
+  -moz-transition: opacity 600ms ease-in-out;
+  -ms-transition: opacity 600ms ease-in-out;
+  -o-transition: opacity 600ms ease-in-out;
+  transition: opacity 600ms ease-in-out;
+}
+.watermark.white {
+  opacity: 0;
+}
+.watermark.fadeIn {
+  opacity: 1;
 }
 
 h1,
@@ -596,6 +667,16 @@ body.home .watermark.teal
   position: absolute;
   left: 55%;
   top: 38%;
+  -webkit-animation-name: jitter;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-name: jitter;
+  -moz-animation-duration: 2s;
+  -moz-animation-timing-function: ease-in-out;
+  -moz-transform-origin: 50% 50%;
+  -moz-animation-iteration-count: infinite;
 }
 
 .feed ul
