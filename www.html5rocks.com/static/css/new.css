@@ -207,7 +207,8 @@ section+section
 header nav,
 .subheader div,
 article,
-.nav
+.nav,
+.content
 {
   display: block;
   margin: 0 auto;
@@ -225,8 +226,10 @@ section+section
   margin-left: 2em;
 }
 
-.three_columns
+.two_columns section
 {
+  float: left;
+  width: 435px;
 }
 
 .three_columns section,
