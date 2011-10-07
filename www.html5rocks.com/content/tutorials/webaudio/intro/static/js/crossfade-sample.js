@@ -59,6 +59,6 @@ CrossfadeSample.crossfade = function(element) {
   // Use an equal-power crossfading curve:
   var gain1 = 0.5 * (1.0 + Math.cos(x * Math.PI));
   var gain2 = 0.5 * (1.0 + Math.cos((1.0 - x) * Math.PI));
-  this.ctl1.gainNode.gain.value = gain2;
+  this.ctl1.gainNode.gain.value = gain1;
   this.ctl2.gainNode.gain.value = gain2;
 };
