@@ -9,11 +9,19 @@
 // Page header pulldowns.
 
 $('#search_show').click(function(){
-  $('.subheader.features').hide();
-  $('#features_show').removeClass('current');
-  $('#search_show').addClass('current');
-  $('.subheader.search').show();
-  $('#q').focus();
+  if($(this).hasClass('current'))
+  {
+    $('.subheader.search').hide();
+    $(this).removeClass('current');
+  }
+  else
+  {
+    $('.subheader.search').hide();
+    $('#features_show').removeClass('current');
+    $(this).addClass('current');
+    $('.subheader.search').show();
+    $('#q').focus();
+  }
 });
 
 $('#search_hide').click(function(){
@@ -22,10 +30,17 @@ $('#search_hide').click(function(){
 });
 
 $('#features_show').click(function(){
-  $('.subheader.search').hide();
-  $('#search_show').removeClass('current');
-  $('#features_show').addClass('current');
-  $('.subheader.features').show();
+  if($(this).hasClass('current'))
+  {
+    $('.subheader.features').hide();
+    $(this).removeClass('current');
+  }
+  else
+  {
+    $('#search_show').removeClass('current');
+    $(this).addClass('current');
+    $('.subheader.features').show();
+  }
 });
 
 $('#features_hide').click(function(){
