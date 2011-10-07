@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block headtitle %}{% trans "Why HTML5 Rocks" %}{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+{% include "header.html" %}
+
+<article>
+  <section>
+    <h1>{% trans "Why HTML5 Rocks" %}</h1>
+    <p>{% trans "Lorem ipsum." %}</p>
+  </section>
+</article>
+
+{% include "footer.html" %}
+
+{% endblock %}

@@ -32,7 +32,7 @@
 
   <!-- <link rel="stylesheet" media="all" href="/static/css/GGS.css"> -->
   <link rel="stylesheet" media="all" href="/static/css/new{% if prod %}.min{% endif %}.css"> <!-- TODO: merge into base stylesheet. -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,800' rel='stylesheet' type='text/css'> <!-- TODO: find out how this font should be requested/included -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800' rel='stylesheet' type='text/css'> <!-- TODO: find out how this font should be requested/included -->
 
   <!-- Try to load remote jquery, load local version of jQuery on fail -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
@@ -77,11 +77,11 @@
     </h1>
     <nav class="main">
       <ul>
-        <li><a href="/">Why HTML5</a></li>
+        <li><a href="/why">Why HTML5</a></li>
         <li><a id="features_show">HTML5 Features</a></li>
         <li><a href="/{{LANGUAGE_CODE}}/tutorials/" {% if current == 'tutorials' or current == 'mobile' %}class="current"{% endif %}>{% trans "Updates" %}</a></li>
-        <li><a href="/{{LANGUAGE_CODE}}/resources.html" {% if current == 'resources' %}class="current"{% endif %}>{% trans "Resources" %}</a></li>
-        <li><a href="/{{LANGUAGE_CODE}}/profiles/" {% if current == 'profiles' %}class="current"{% endif %}>{% trans "Who We Are" %}</a></li>
+        <li><a href="/{{LANGUAGE_CODE}}/resources" {% if current == 'resources' %}class="current"{% endif %}>{% trans "Resources" %}</a></li>
+        <li><a href="/{{LANGUAGE_CODE}}/profiles" {% if current == 'profiles' %}class="current"{% endif %}>{% trans "Who We Are" %}</a></li>
         <li><a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide">Contribute</a></li>
         <li id="search_show">
           Search
@@ -107,7 +107,7 @@
         <h2>Features</h2>
         <ul>
           <li>
-            <a href="#" onclick="buildPageAndScrollThere()" class="offline">
+            <a href="/{{LANGUAGE_CODE}}/features/offline" onclick="buildPageAndScrollThere()" class="offline">
               <h3>{% trans "Offline" %}</h3>
             </a>
             <!-- <a href="/{{LANGUAGE_CODE}}/features/offline" class="offline">
@@ -120,17 +120,17 @@
             </a>
           </li>
           <li>
+            <a href="/{{LANGUAGE_CODE}}/features/connectivity" class="connectivity">
+              <h3>{% trans "Connectivity" %}</h3>
+            </a>
+          </li>
+          <li>
             <a href="/{{LANGUAGE_CODE}}/features/file" class="file">
               <h3>{% trans "File Access" %}</h3>
             </a>
           </li>
           <li>
-            <a href="#" class="connectivity">
-              <h3>{% trans "Connectivity" %}</h3>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="semantics">
+            <a href="/{{LANGUAGE_CODE}}/features/semantics" class="semantics">
               <h3>{% trans "Semantics" %}</h3>
             </a>
           </li>
@@ -155,8 +155,8 @@
             </a>
           </li>
           <li>
-            <a href="/{{LANGUAGE_CODE}}/mobile" class="mobile">
-              <h3>{% trans "Mobile" %}</h3>
+            <a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts" class="nuts_and_bolts">
+              <h3>{% trans "Nuts &amp; Bolts" %}</h3>
             </a>
           </li>
         </ul>

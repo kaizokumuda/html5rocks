@@ -99,7 +99,7 @@ class ContentHandler(webapp.RequestHandler):
 
   def get_feed(self, path):
     articles = memcache.get('feed|%s' % path)
-  
+
     if articles is None or self.request.cache == False:
       template_text = template.render(path, {});
       parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder('dom'))
@@ -136,7 +136,7 @@ class ContentHandler(webapp.RequestHandler):
           article['categories'] = []
           for span in spans:
             if (span.getAttribute('class') == 'tag'):
-              article['categories'].append(__get_text(span.childNodes)) 
+              article['categories'].append(__get_text(span.childNodes))
 
           articles.append(article)
 
@@ -275,6 +275,12 @@ class ContentHandler(webapp.RequestHandler):
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
       self.render(template_path='content/profiles.html', relpath=relpath)
+
+    if (relpath == 'resources' or relpath == 'resources/'):
+      self.render(template_path='content/resources.html', relpath=relpath)
+
+    if (relpath == 'why' or relpath == 'why/'):
+      self.render(template_path='content/why.html', relpath=relpath)
 
     elif re.search('tutorials/casestudies', relpath) and not is_feed:
       # Case Studies look like this on the filesystem:
