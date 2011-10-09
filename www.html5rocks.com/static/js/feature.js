@@ -20,16 +20,15 @@ window.caniusecallback = function(data) {
     var localdom = dom.clone();
 
     var url = 'http://caniuse.com/#search=' + feature;
-    localdom.find('h4').html(
-        (featurestats.title + ' browser support').link(url));
+    localdom.find('em').hide();
 
     $.each(featurestats.stats, function(browser, browserobj) {
 
-      var resulttext = '---';
+      var resulttext = '—';
 
       $.each(browserobj, function(version, result) {
         if (result.indexOf('y') == 0) {
-          if (resulttext != '---') {
+          if (resulttext != '—') {
             resulttext += '+';
             return false;
           }
@@ -37,13 +36,23 @@ window.caniusecallback = function(data) {
         }
       });
 
-      localdom.find('.' + browser).text(resulttext);
+      localdom.find('td.' + browser).text(resulttext);
     });
 
     localdom.find('table').css('visibility', 'visible').end()
-            .insertAfter('article.description');
-    // remove placeholder table  
+            .insertBefore('section.updates');
+    // remove placeholder table
     dom.remove();
+
+    $('section.support td').hover(
+      function() {
+        $(this).parents('table').find('th:nth-child(' + ($(this).index() + 1) + ')').addClass('current');
+      },
+      function() {
+        $(this).parents('table').find('th:nth-child(' + ($(this).index() + 1) + ')').removeClass('current');
+      }
+    );
+
 
   }); // eo feature loop
 }; // eo caniusecallback()
@@ -68,4 +77,7 @@ var div = $('<div>').load('/' + lang + '/tutorials/ #index', function() {
   $(matches).find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
 
 });
+
+
+// Show the browser name heading when hovering over a browser support cell.
 

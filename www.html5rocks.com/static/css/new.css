@@ -187,7 +187,7 @@ section
   padding: 1.5em;
 }
 
-section+section
+section + section
 {
   margin-left: 2em;
 }
@@ -221,9 +221,21 @@ article.link_targets section a
   padding: 1.5em 2em;
 }
 
-section+section
+.two_columns section + section,
+.two_columns section + section + section + section
 {
   margin-left: 2em;
+}
+
+.two_columns section + section + section
+{
+  margin-top: 2em;
+  margin-left: 0;
+}
+
+.two_columns section + section + section + section
+{
+  margin-right: 0;
 }
 
 .two_columns section
@@ -583,6 +595,11 @@ article.link_targets section a
   position: absolute;
   left: 0;
   top: 0;
+}
+
+article.content section
+{
+  margin: 0 auto 2em auto;
 }
 
 /* SITE-GRID NAVIGATION */
@@ -1131,6 +1148,213 @@ nav.features_outline ul ul a
   left: 30px;
 }
 
+section.support h3,
+section.updates h3,
+section.demos h3,
+section.in_the_wild h3,
+section.resources h3
+{
+  font-size: 28px;
+  font-weight: 300;
+  margin: 0 0 .75em 0;
+  text-transform: uppercase;
+}
+
+section.support,
+section.updates
+{
+  height: 290px;
+}
+
+section.support em
+{
+  display: block;
+  float: right;
+  font-size: 18px;
+  margin-top: .25em;
+  text-transform: uppercase;
+}
+
+section.support table
+{
+  position: relative;
+}
+
+section.support table + table
+{
+  margin-top: 2em;
+}
+
+section.support thead th
+{
+  -webkit-transition: all .1s ease-in-out;
+  -moz-transition: all .1s ease-in-out;
+  -o-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+  position: absolute;
+  top: -20px;
+  color: #333;
+  font-size: 11px;
+  font-weight: 300;
+  padding: 3px 0;
+  text-align: center;
+  text-transform: uppercase;
+  width: 87px;
+  opacity: 0;
+}
+
+section.support table + table thead th:nth-child(1):first-letter { text-transform: none; } /* Don't capitalize the 'i' in iOS. */
+
+section.support thead th.current
+{
+  opacity: 1;
+}
+
+section.support thead th:nth-child(1) { left: 0; }
+section.support thead th:nth-child(2) { left: 87px; }
+section.support thead th:nth-child(3) { left: 174px; }
+section.support thead th:nth-child(4) { left: 261px; }
+section.support thead th:nth-child(5) { left: 348px; }
+
+section.support tbody td
+{
+  background-image: url(/static/new_images/browsers.png);
+  background-repeat: no-repeat;
+  font-size: 24px;
+  padding-top: 50px;
+  text-align: center;
+  width: 85px;
+}
+
+section.support tbody td.chrome  { background-position: center 2px; }
+section.support tbody td.firefox { background-position: center -159px; }
+section.support tbody td.safari  { background-position: center -320px; }
+section.support tbody td.opera   { background-position: center -480px; }
+section.support tbody td.ie      { background-position: center -644px; }
+section.support tbody td.ios_saf { background-position: center -805px; }
+section.support tbody td.android { background-position: center -966px; }
+section.support tbody td.op_mini { background-position: center -1125px; }
+section.support tbody td.op_mob  { background-position: center -1287px; }
+
+section.support p
+{
+  color: #888;
+  font-size: 11px;
+  margin-top: 2.5em;
+  text-align: center;
+}
+
+section.support p a
+{
+  color: #333;
+}
+
+section.updates h4
+{
+  clear: left;
+  float: left;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0 0 2em;
+  text-transform: uppercase;
+  width: 130px;
+}
+
+section.updates ul
+{
+  list-style: none;
+  margin: 0 0 2em;
+  padding: 0;
+}
+
+section.updates li
+{
+  margin: 0 0 .75em 130px;
+}
+
+section.demos figure,
+section.in_the_wild figure,
+section.resources figure
+{
+  float: left;
+  width: 50%;
+}
+
+section.demos figure a,
+section.in_the_wild figure a,
+section.resources figure a
+{
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  height: 100%;
+}
+
+section.demos figure a p,
+section.in_the_wild figure a p,
+section.resources figure a p
+{
+  color: #333;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+section.demos figure img,
+section.in_the_wild figure img,
+section.resources figure img
+{
+  float: left;
+  max-width: 170px;
+}
+
+section.demos figcaption,
+section.in_the_wild figcaption,
+section.resources figcaption
+{
+  float: left;
+  padding: 0 1.5em;
+  width: 260px;
+}
+
+section.resources dl
+{
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+section.resources dt
+{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+section.resources dd
+{
+  margin: 0;
+  padding: 0;
+}
+
+section.resources dd + dt
+{
+  margin-top: 1.25em;
+}
+
+
+
+
+/* HELPERS  */
+
+.ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
+.ir br { display: none; }
+.hidden { display: none !important; visibility: hidden; }
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+.invisible { visibility: hidden; }
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
 
 
 /* PRINT */

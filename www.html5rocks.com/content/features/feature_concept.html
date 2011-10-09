@@ -9,60 +9,97 @@
 {% endblock %}
 
 {% block body %}
-<article class="description clearfix">
-  <h2>
-    HTML5 Features
-    <strong>{% block h2title %}{% trans "Feature" %}{% endblock %}</strong>
-  </h2>
+  <article class="description clearfix">
+    <h2>
+      HTML5 Features
+      <strong>{% block h2title %}{% trans "Feature" %}{% endblock %}</strong>
+    </h2>
 
-  <img src="/static/new_images/background_feature_{% block bodyclass %}{% endblock %}.png" class="feature_icon">
+    <img src="/static/new_images/background_feature_{% block bodyclass %}{% endblock %}.png" class="feature_icon">
 
-  {% block description %}{% endblock %}
+    {% block description %}{% endblock %}
 
-  <div class="plusone">
-    <div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div>
-  </div>
-</article>
+    <div class="plusone">
+      <div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div>
+    </div>
+  </article>
 
-  {% block support %}
-  <article class="support" style="display:none">
-    <h4><i>{% trans "loading browser support data..." %}</i></h4>
-    <table>
-      <thead>
-        <tr>
-          <th>{% trans "Chrome" %}</th>
-          <th>{% trans "Firefox" %}</th>
-          <th>{% trans "Safari" %}</th>
-          <th>{% trans "Opera" %}</th>
-          <th>{% trans "IE" %}</th>
-          <th>{% trans "iOS Safari" %}</th>
-          <th>{% trans "Android" %}</th>
-          <th>{% trans "Opera Mini" %}</th>
-          <th>{% trans "Opera Mobile" %}</th>
-        </tr>
-      </thead>
-      <tfoot>
-        <tr>
-          <td colspan="9">{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a>
-            and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>{% endblocktrans %}</td>
-        </tr>
-      </tfoot>
-      <tbody>
-        <tr>
-          <td class="chrome">---</td>
-          <td class="firefox">---</td>
-          <td class="safari">---</td>
-          <td class="opera">---</td>
-          <td class="ie">---</td>
-          <td class="ios_saf">---</td>
-          <td class="android">---</td>
-          <td class="op_mini">---</td>
-          <td class="op_mob">---</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  {% endblock %}
+  <article class="two_columns">
+
+    {% block support %}
+      <section class="support" style="display:none">
+        <em>{% trans "loading&hellip;" %}</em>
+
+        <h3>Browser Support</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th class="chrome">{% trans "Chrome" %}</th>
+              <th class="firefox">{% trans "Firefox" %}</th>
+              <th class="safari">{% trans "Safari" %}</th>
+              <th class="opera">{% trans "Opera" %}</th>
+              <th class="ie">{% trans "IE" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="chrome">&mdash;</td>
+              <td class="firefox">&mdash;</td>
+              <td class="safari">&mdash;</td>
+              <td class="opera">&mdash;</td>
+              <td class="ie">&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table>
+          <thead>
+            <tr>
+              <th class="ios_saf">{% trans "iOS Safari" %}</th>
+              <th class="android">{% trans "Android" %}</th>
+              <th class="op_mini">{% trans "Opera Mini" %}</th>
+              <th class="op_mob">{% trans "Opera Mobile" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ios_saf">&mdash;</td>
+              <td class="android">&mdash;</td>
+              <td class="op_mini">&mdash;</td>
+              <td class="op_mob">&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.{% endblocktrans %}</p>
+      </section>
+    {% endblock %}
+
+    <section class="updates">
+      <h3>{% trans "What&rsquo;s New" %}</h3>
+
+      <h4>{% trans "Tutorials" %}</h4>
+      <ul>
+        {% block tutorials %}{% endblock %}
+      </ul>
+
+      {% if discussions %}
+        <h4>{% trans "Discussion" %}</h4>
+        <ul>
+          {% block discussions %}{% endblock %}
+        </ul>
+      {% endif %}
+
+      {% if examples %}
+        <h4>{% trans "Examples" %}</h4>
+        <ul>
+          {% block examples %}{% endblock %}
+        </ul>
+      {% endif %}
+    </section>
+
+  </article>
 
   {% block contents %}{% endblock %}
 

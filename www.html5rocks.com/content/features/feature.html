@@ -187,46 +187,20 @@
   </ul>
 </nav>
 
-<article class="two_columns">
-  <section class="tutorials">
-    <hgroup>
-      <h3>{% trans "Tutorials" %}</h3>
-      <h4>{% blocktrans %}learn how to use {{category}}.{% endblocktrans %}</h4>
-    </hgroup>
-    <div>
-      <ul>
-        {% block tuts %}{% endblock %}
-      </ul>
-      <p><a href="/tutorials/#{% block tuttags %}{% endblock %}">{% trans "View all related HTML5Rocks tutorials</a> &rArr;" %}</p>
-    </div>
-  </section>
+<article class="content">
   <section class="demos">
-    <hgroup>
-      <h3>{% trans "Demos" %}</h3>
-      <h4>{% blocktrans %}see {{category}} in action{% endblocktrans %}</h4>
-    </hgroup>
-    <div>
-      {% block demos %}{% endblock %}
-    </div>
+    <h3>{% trans "Demos" %}</h3>
+    {% block demos %}{% endblock %}
   </section>
 
-  <section class="in-the-wild">
-    <hgroup>
-      <h3>{% trans "In the Wild" %}</h3>
-      <h4>{% blocktrans %}who is using {{category}}?{% endblocktrans %}</h4>
-    </hgroup>
-    <div>
-      {% block inthewild %}{% endblock %}
-    </div>
+  <section class="in_the_wild">
+    <h3>{% trans "In the Wild" %}</h3>
+    {% block inthewild %}{% endblock %}
   </section>
+
   <section class="resources">
-    <hgroup>
-      <h3>{% trans "Additional Resources" %}</h3>
-      <h4>{% trans "learn from the best, explore the potential" %}</h4>
-    </hgroup>
-    <div>
-      {% block resources %}{% endblock %}
-    </div>
+    <h3>{% trans "Additional Resources" %}</h3>
+    {% block resources %}{% endblock %}
   </section>
 </article>
 
