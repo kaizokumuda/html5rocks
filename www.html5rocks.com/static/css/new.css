@@ -967,13 +967,27 @@ nav.features_paginator .next     { top: 90px; }
 .features-performance    nav.features_paginator ul.performance    { display: block; }
 .features-nuts_and_bolts nav.features_paginator ul.nuts_and_bolts { display: block; }
 
+.features-offline .features_outline_nav_toggle,
+.features-storage .features_outline_nav_toggle,
+.features-connectivity .features_outline_nav_toggle,
+.features-file .features_outline_nav_toggle,
+.features-semantics .features_outline_nav_toggle,
+.features-multimedia .features_outline_nav_toggle,
+.features-graphics .features_outline_nav_toggle,
+.features-presentation .features_outline_nav_toggle,
+.features-performance .features_outline_nav_toggle,
+.features-nuts_and_bolts .features_outline_nav_toggle
+{
+  display: block;
+}
+
 .features_outline_nav_toggle
 {
   position: fixed;
   left: 50%;
   top: 135px;
   margin-left: 735px;
-  display: block;
+  display: none;
   padding: 10px;
   width: 30px;
   height: 30px;
