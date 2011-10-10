@@ -7,7 +7,6 @@
 {% block tuttags   %}presentation,css,3D,webfonts{% endblock %}
 
 {% block description %}
-<img src="/static/images/identity/classes_128/HTML5_3D_effects_128.png" width="128" height="128">
 <p>{% blocktrans %}
   With the introduction of CSS3 it has never been easier to create rich and
   beautiful sites and applications in HTML. There are many new technologies and
@@ -34,7 +33,7 @@
 }
 
 #pre3 {
-  -webkit-transition: all 1s ease-in-out; 
+  -webkit-transition: all 1s ease-in-out;
   -webkit-perspective: 1200;
 }
 
@@ -45,7 +44,7 @@
 <p>{% blocktrans %}CSS3 Transformations allow you to apply rotations, scales, skews and translations to any DOM element with simple styles.{% endblocktrans %}</p>
 <pre class="prettyprint" id="pre1">pre {
   transform: rotate(-1deg) skewX(5deg);
-}</pre> 
+}</pre>
 <p>{% blocktrans %}Transitions allow you to specify how the style on a DOM element will animate between transformed states.  For example, you can animate the background color when the user hovers over an element.{% endblocktrans %}</p>
 <pre class="prettyprint" id="pre2">pre {
   transition: all 1s ease-inout;
@@ -65,9 +64,9 @@ pre:hover {
 <h4>{% trans "Browser support" %}</h4>
 <p>{% blocktrans %}Not every browser supports transforms, transitions and 3d transforms.  Check <a href="http://caniuse.com/#feat=css3">current browser support for CSS3 on caniuse.com</a>. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.{% endblocktrans %}</p>{% endblock %}
 
-<!-- wrap any tuts content with LI's 
+<!-- wrap any tuts content with LI's
      these will be added to existing tutorials scraped from h5r.com -->
-{% block tuts %} 
+{% block tutorials %}
 <li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/css-fundametals-css-3-transitions/">Net Tuts: Transitions</a></li>
 <li><a href="http://webfonts.info/wiki/index.php?title=Checking_@font-face_support_with_Modernizr">Web Fonts: Checking for @font_face support</a></li>
 <li><a href="http://dev.opera.com/articles/view/custom-html5-video-player-with-css3-and-jquery/">Opera: Building a Custom HTML5 video player with CSS3 and jQuery</a></li>
@@ -76,7 +75,7 @@ pre:hover {
 {% endblock %}
 
 
-{% block inthewild %} 
+{% block inthewild %}
 <figure>
   <a href="http://typekit.com/">
     <img src="/static/images/features/typekit.png">
@@ -92,7 +91,7 @@ pre:hover {
 {% endblock %}
 
 
-{% block demos %} 
+{% block demos %}
 <figure>
   <a href="http://www.thewildernessdowntown.com/">
     <img src="/static/images/features/arcadefire.png">
@@ -109,22 +108,16 @@ pre:hover {
 {% endblock %}
 
 
-{% block resources %} 
+{% block resources %}
 <dl>
   <dt><a href="http://www.w3.org/Style/CSS/current-work">CSS3 Spec status</a></dt>
   <dd>{% trans "A list of the current status of the CSS3 specifications." %}</dd>
   <dt><a href="http://www.w3.org/TR/css3-selectors/">W3C Spec: CSS3 Selectors</a></dt>
   <dd>{% trans "This W3C specification defines the new selectors available to developers." %}</dd>
-</dl>
-<dl>
   <dt><a href="http://www.w3.org/TR/css3-2d-transforms">W3C Draft CSS3 2d Transform module</a></dt>
   <dd>{% trans "This W3C specification defines how rotations, transformations, skews and scaling should be applied to DOM elements in 2 dimensions." %}</dd>
-</dl>
-<dl>
   <dt><a href="http://www.w3.org/TR/css3-3d-transforms">W3C Draft CSS3 3d Transform module</a></dt>
   <dd>{% trans "This W3C specification defines how 3d transformations should be applied to DOM elements." %}</dd>
-</dl>
-<dl>
   <dt><a href="http://www.w3.org/TR/css3-transitions">W3C Draft CSS3 Transition Module</a></dt>
   <dd>{% trans "This W3C specification defines how properties should be animated between states." %}</dd>
   <dt><a href="http://www.w3.org/TR/css3-animations">W3C Draft CSS3 Animation Module</a></dt>

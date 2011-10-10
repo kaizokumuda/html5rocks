@@ -8,7 +8,6 @@
 {% block caniuse   %}bloburls,blobbuilder,filesystem,filereader,fileapi{% endblock %}
 
 {% block description %}
-<img src="/static/images/identity/classes_128/HTML5_Offline_Storage_128.png" width="128" height="128">
 <p>
 {% blocktrans %}
 HTML5 provides very powerful APIs to interact with binary data and a user's local file system.
@@ -28,9 +27,9 @@ client-side logic to verify an upload's mimetype matches its file extension or r
 {% endblock %}
 
 
-<!-- wrap any tuts content with LI's 
+<!-- wrap any tuts content with LI's
      these will be added to existing tutorials scraped from h5r.com -->
-{% block tuts %}
+{% block tutorials %}
 <li><a href="http://www.thecssninja.com/javascript/filesystem">CSS Ninja: "I'll have the DOMFileSystem with a side of read/write access please..."</a></li>
 <li><a href="http://hacks.mozilla.org/2009/12/w3c-fileapi-in-firefox-3-6/">Mozilla Hacks: article on using the File API</a></li>
 <li><a href="https://developer.mozilla.org/en/Using_files_from_web_applications">MDC: Using files from web applications</a></li>
@@ -67,7 +66,6 @@ client-side logic to verify an upload's mimetype matches its file extension or r
     <figcaption>HTML5 Demos: Drag files from the desktop to the browser</figcaption>
   </a>
 </figure>
-
 {% endblock %}
 
 
@@ -75,32 +73,18 @@ client-side logic to verify an upload's mimetype matches its file extension or r
 <dl>
   <dt><a href="http://www.w3.org/TR/file-upload/">W3C Spec: File</a></dt>
   <dd>{% trans "This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>." %}</dd>
-</dl>
-<dl>
   <dt><a href="http://www.w3.org/TR/file-system-api/">W3C Spec: FileSystem APIs</a></dt>
   <dd>{% trans "This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing files and directories in a sandboxed file system." %}</dd>
-</dl>
-<dl>
   <dt><a href="http://www.w3.org/TR/file-writer-api/">W3C Spec: FileWriter</a></dt>
   <dd>{% trans "This W3C specification defines the FileWriter API; which provides an interface for writing to files from web applications." %}</dd>
-</dl>
-<dl>
   <dt><a href="http://www.w3.org/TR/progress-events/#Progress">W3C Spec: ProgressEvents</a></dt>
   <dd>{% trans "This W3C specification defines the ProgressEvent; which gives asynchronous updates on the progress of a File read." %}</dd>
-</dl>
-<dl>
   <dt><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#the-dragevent-and-datatransfer-interfaces">WHATWG Spec: Drag and Drop</a></dt>
   <dd>{% trans "This whatwg specification defines the native HTML5 drag and drop APIs" %}</dd>
-</dl>
-<dl>
   <dt><a href="http://hacks.mozilla.org/2009/12/uploading-files-with-xmlhttprequest/">Mozilla Hacks: Interactive file uploads</a></dt>
   <dd>{% trans "Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files." %}</dd>
-</dl>
-<dl>
   <dt><a href="https://developer.mozilla.org/En/DragDrop/Drag_Operations">MDC: Drag Operations</a></dt>
   <dd>{% trans "Reference on the various dragging options that are available in the DnD API" %}</dd>
-</dl>
-<dl>
   <dt><a href="http://html5doctor.com/native-drag-and-drop/">HTML5 Doctor: Native Drag and Drop</a></dt>
   <dd>{% trans "Article on using Native Drag and Drop in HTML5. Discusses File drag/drop from desktop." %}</dd>
 </dl>

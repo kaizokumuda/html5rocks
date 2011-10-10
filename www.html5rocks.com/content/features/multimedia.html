@@ -8,7 +8,6 @@
 {% block caniuse   %}audio,video{% endblock %}
 
 {% block description %}
-<img src="/static/images/identity/classes_128/HTML5_Multimedia_128.png" width="128" height="128">
 <p>{% blocktrans %}
 Audio and Video became first-class citizens on the Web with HTML5 the same way
 that other media types like images did in the past. Through their new APIs you
@@ -24,9 +23,9 @@ For instance, you can build a DJ mixer table app where you show several controls
 
 {% endblock %}
 
-<!-- wrap any tuts content with LI's 
+<!-- wrap any tuts content with LI's
      these will be added to existing tutorials scraped from h5r.com -->
-{% block tuts %}
+{% block tutorials %}
 <li><a href="http://html5doctor.com/native-audio-in-the-browser/">HTML5 Doctor: Native audio in the browser</a></li>
 <li><a href="http://html5doctor.com/the-video-element/">HTML5 Doctor: The video element</a></li>
 {% endblock %}
@@ -48,7 +47,7 @@ For instance, you can build a DJ mixer table app where you show several controls
 {% endblock %}
 
 
-{% block demos %} 
+{% block demos %}
 <figure>
   <a href="http://studio.html5rocks.com/#PiP">
     <img src="/static/images/features/video-swap.png" width="174" height="120">
@@ -64,7 +63,7 @@ For instance, you can build a DJ mixer table app where you show several controls
 {% endblock %}
 
 
-{% block resources %} 
+{% block resources %}
 <dl>
   <dt><a href="http://www.w3.org/TR/html5/video.html#audio">W3C Spec: Audio Element</a></dt>
   <dd>{% blocktrans %}This W3C specification defines the audio element with all the available methods, attributes and events.{% endblocktrans %}</dd>
