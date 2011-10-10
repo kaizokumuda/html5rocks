@@ -53,20 +53,25 @@ $('.subheader.features ul li a').click(function(){
   $('.subheader.features').slideUp();
 });
 
-// Page grid builder.
+// Page grid navigation.
 
-function buildPageAndScrollThere()
-{
-  var newPage = $('<div class="page" id="feature-offline"></div>');
+$('a').click(function(){
+  page = $(this).attr('href').substr($(this).attr('href').indexOf('/')).replace(/\/en\//gi, '').replace(/\/([A-Za-z]+)/gi, '-$1').replace(/\/$/, '').replace(/^-/, '');
 
-  $(newPage).html('new content!').css({'position': 'absolute', 'top': '3000px', 'left': '3000px', 'font-size': '48px', 'color': '#fff'});
+  $('.page').removeClass('current');
 
-  $('body').append(newPage);
+  if ($('.page#' + page).hasClass('loaded'))
+    $('.page#' + page).addClass('current');
+  else
+    $('.page#' + page).addClass('current loaded').load($(this).attr('href') + ' .page');
 
-  $(newPage).load('features/offline .page', function(){
-    $.scrollTo({top:'3000px', left:'3000px'}, 800, {queue:true});
-  });
-}
+  // $('.page#' + page).addClass('current').load($(this).attr('href') + ' .page', function(){
+  //   $.scrollTo($('page#' + page), 800, {queue:true});
+  // });
+
+  return false;
+});
+
 
 // Features navigation.
 

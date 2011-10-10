@@ -219,8 +219,17 @@ header nav,
 
 .page
 {
+  display: none;
+  position: relative;
+  top: -999999px;
   margin: 4em auto;
   width: 1000px;
+}
+
+.page.current
+{
+  display: block;
+  top: 0;
 }
 
 section,
@@ -352,13 +361,13 @@ header h1
 {
   color: #fff;
   cursor: pointer !important;
+  padding: 4px 1em 5px;
+  text-transform: uppercase;
 }
 
 #search_show
 {
   float: right;
-  padding: 4px 1em 5px;
-  text-transform: uppercase;
 }
 
 #search_show img
@@ -639,6 +648,14 @@ article.content section
 
 
 /* SITE-GRID NAVIGATION */
+
+.page
+{
+  -webkit-transition: opacity, left, top 1s ease-in-out;
+  -moz-transition: opacity, left, top 1s ease-in-out;
+  -o-transition: opacity, left, top 1s ease-in-out;
+  transition: opacity, left, top 1s ease-in-out;
+}
 
 .nav,
 .nav:hover
