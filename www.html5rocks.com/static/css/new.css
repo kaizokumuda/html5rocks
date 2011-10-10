@@ -252,6 +252,12 @@ article.link_targets section a
   height: 120px;
 }
 
+.three_columns section + section
+{
+  margin-left: 2em;
+}
+
+
 /* BASE */
 
 body,
