@@ -1,15 +1,17 @@
-Before the HTML5 `<audio>` element, flash or a plugin was required to
-break the silence of the web. However, the audio tag has significant
-limitations for implementing sophisticated games and interactive
-applications. The goal of the Web Audio API is to include capabilities
-found in modern game audio engines as well as some of the mixing,
-processing, and filtering tasks that are found in modern desktop audio
-production applications.
+Before the HTML5 `<audio>` element, flash or another plugin was required
+to break the silence of the web. While the audio tag no longer requires a
+plugin, it brings significant limitations for implementing sophisticated
+games and interactive applications.
 
 The Web Audio API is a high-level JavaScript API for processing and
-synthesizing audio in web applications. As of version 14, Google Chrome
-ships with an implementation of the Web Audio API. What follows is a
-gentle introduction to using this powerful API.
+synthesizing audio in web applications. The goal of this API is to
+include capabilities found in modern game audio engines as well as some
+of the mixing, processing, and filtering tasks that are found in modern
+desktop audio production applications.
+
+As of version 14, Google Chrome ships with a Web Audio API
+implementation. More recently, the WebKit nightly build also supports
+it. What follows is a gentle introduction to using this powerful API.
 
 <h2 id="toc-context">The audio context</h2>
 
@@ -187,7 +189,7 @@ code to do this is simple:
       }
     }
 
-Here, we make only two repeats instead of the unlimited loop we see in
+Here, we make only one repeat instead of the unlimited loop we see in
 the sheet music. The function `playSound` is is a method that plays a
 buffer at a specified time, as follows:
 

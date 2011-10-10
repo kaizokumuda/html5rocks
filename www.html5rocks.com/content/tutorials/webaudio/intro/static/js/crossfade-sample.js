@@ -10,8 +10,8 @@ CrossfadeSample.play = function() {
   }
 
   bufferLoader = new BufferLoader(context, [
-      "sounds/organ-echo-chords.wav",
-      "sounds/blueyellow.wav"
+      "sounds/blueyellow.wav",
+      "sounds/organ-echo-chords.wav"
   ], finishedLoading);
   bufferLoader.load();
 
@@ -22,7 +22,7 @@ CrossfadeSample.play = function() {
     ctx.ctl1 = createSource(bufferList[0]);
     ctx.ctl2 = createSource(bufferList[1]);
     // Mute the second source.
-    ctx.ctl2.gainNode.gain.value = 0;
+    ctx.ctl1.gainNode.gain.value = 0;
     // Start playback in a loop
     ctx.ctl1.source.noteOn(0);
     ctx.ctl2.source.noteOn(0);

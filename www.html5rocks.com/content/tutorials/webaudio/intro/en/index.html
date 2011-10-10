@@ -31,17 +31,18 @@
 
 {% block content %}
 
-<p>Before the HTML5 <code>&lt;audio&gt;</code> element, flash or a plugin was required to
-break the silence of the web. However, the audio tag has significant
-limitations for implementing sophisticated games and interactive
-applications. The goal of the Web Audio API is to include capabilities
-found in modern game audio engines as well as some of the mixing,
-processing, and filtering tasks that are found in modern desktop audio
-production applications.</p>
+<p>Before the HTML5 <code>&lt;audio&gt;</code> element, flash or another plugin was required
+to break the silence of the web. While the audio tag no longer requires a
+plugin, it brings significant limitations for implementing sophisticated
+games and interactive applications.</p>
 <p>The Web Audio API is a high-level JavaScript API for processing and
-synthesizing audio in web applications. As of version 14, Google Chrome
-ships with an implementation of the Web Audio API. What follows is a
-gentle introduction to using this powerful API.</p>
+synthesizing audio in web applications. The goal of this API is to
+include capabilities found in modern game audio engines as well as some
+of the mixing, processing, and filtering tasks that are found in modern
+desktop audio production applications.</p>
+<p>As of version 14, Google Chrome ships with a Web Audio API
+implementation. More recently, the WebKit nightly build also supports
+it. What follows is a gentle introduction to using this powerful API.</p>
 <h2 id="toc-context">The audio context</h2>
 
 <p>An <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioContext-section">AudioContext</a> is used for managing and playing all sounds. In most cases a
@@ -187,7 +188,7 @@ code to do this is simple:</p>
   }
 }
 </code></pre>
-<p>Here, we make only two repeats instead of the unlimited loop we see in
+<p>Here, we make only one repeat instead of the unlimited loop we see in
 the sheet music. The function <code>playSound</code> is is a method that plays a
 buffer at a specified time, as follows:</p>
 <pre class="prettyprint"><code>function playSound(buffer, time) {
