@@ -1181,6 +1181,7 @@ nav.features_outline ul ul a
 .description section.column + section.column + section
 {
   clear: left;
+  padding-top: 3em;
 }
 
 .description section ul
