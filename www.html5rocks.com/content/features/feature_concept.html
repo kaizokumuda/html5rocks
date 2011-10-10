@@ -15,7 +15,8 @@
       <strong>{% block h2title %}{% trans "Feature" %}{% endblock %}</strong>
     </h2>
 
-    <img src="/static/new_images/background_feature_{% block bodyclass %}{% endblock %}.png" class="feature_icon">
+    <!-- <img src="/static/new_images/background_feature_{% block bodyclass %}{% endblock %}.png" class="feature_icon"> --> <!-- TODO: get the feature icon background for each page from Michael Nieling. -->
+    <img src="/static/new_images/background_feature_offline.png" class="feature_icon">
 
     {% block description %}{% endblock %}
 
@@ -28,9 +29,10 @@
 
     {% block support %}
       <section class="support" style="display:none">
-        <em>{% trans "loading&hellip;" %}</em>
-
-        <h3>Browser Support</h3>
+        <hgroup>
+          <h3>Browser Support</h3>
+          <h4>{% trans "loading&hellip;" %}</h4>
+        </hgroup>
 
         <table>
           <thead>

@@ -20,7 +20,7 @@ window.caniusecallback = function(data) {
     var localdom = dom.clone();
 
     var url = 'http://caniuse.com/#search=' + feature;
-    localdom.find('em').hide();
+    localdom.find('h4').html((featurestats.title).link(url));
 
     $.each(featurestats.stats, function(browser, browserobj) {
 
