@@ -210,11 +210,15 @@ section + section
 
 header nav,
 .subheader div,
-article,
-.nav,
-.content
+.nav
 {
   display: block;
+  margin: 0 auto;
+  width: 1000px;
+}
+
+.page
+{
   margin: 0 auto;
   width: 1000px;
 }
