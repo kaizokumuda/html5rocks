@@ -1110,6 +1110,13 @@ nav.features_outline ul ul a
   font-weight: 800;
 }
 
+.description h3
+{
+  font-size: 22px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
 .description section
 {
   background: none;
@@ -1142,9 +1149,14 @@ nav.features_outline ul ul a
   font-style: italic;
 }
 
-.description section.column.intro
+.description section.column
 {
   margin-bottom: -2.5em;
+}
+
+.description section.column + section.column + section
+{
+  clear: left;
 }
 
 .description section ul
@@ -1162,6 +1174,18 @@ nav.features_outline ul ul a
 .description section li a
 {
   font-weight: 600;
+}
+
+.description section ul.three_columns
+{
+  -moz-column-count: 3;
+  -webkit-column-count: 3;
+  column-count: 3;
+}
+
+.description section ul.three_columns li
+{
+  margin: 0 0 .75em;
 }
 
 .description h2,
@@ -1291,7 +1315,8 @@ section.support p a
 }
 
 section.support.multiple,
-section.support.multiple + section
+section.support.multiple + section,
+section.support.none + section
 {
   float: none;
   height: inherit;
@@ -1301,6 +1326,11 @@ section.support.multiple + section
 section.support.multiple + section
 {
   margin: 2em 0 0;
+}
+
+section.support.none + section
+{
+  margin: 0;
 }
 
 section.support.multiple
@@ -1384,17 +1414,20 @@ section.updates div:last-child ul
   margin-bottom: .25em;
 }
 
+section.support.none + section.updates h4,
 section.support.multiple + section.updates h4
 {
   width: 174px;
 }
 
+section.support.none + section.updates div,
 section.support.multiple + section.updates div
 {
   float: left;
   width: 50%;
 }
 
+section.support.none + section.updates ul,
 section.support.multiple + section.updates ul
 {
   float: left;
@@ -1404,9 +1437,11 @@ section.support.multiple + section.updates ul
 
 section.updates ul
 {
+  float: left;
   list-style: none;
   margin: .4em 0 2em;
   padding: 0;
+  width: 305px;
 }
 
 section.updates li
@@ -1415,7 +1450,8 @@ section.updates li
 }
 
 section.demos h3,
-section.in_the_wild h3
+section.in_the_wild h3,
+section.resources h3
 {
   margin-bottom: 0;
 }
@@ -1425,7 +1461,7 @@ section.in_the_wild figure
 {
   float: left;
   width: 50%;
-  min-height: 120px;
+  min-height: 100px;
   margin-top: 1.5em;
 }
 
@@ -1437,6 +1473,7 @@ section.in_the_wild figure a
   font-weight: 600;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 section.demos figure a p,
@@ -1462,25 +1499,33 @@ section.in_the_wild figcaption
   width: 280px;
 }
 
+section.demos dl,
+section.in_the_wild dl,
 section.resources dl
 {
   line-height: 1.5;
-  margin: 0;
+  margin: 1em 0 0;
   padding: 0;
 }
 
+section.demos dt,
+section.in_the_wild dt,
 section.resources dt
 {
   font-size: 14px;
   font-weight: 600;
 }
 
+section.demos dd,
+section.in_the_wild dd,
 section.resources dd
 {
   margin: 0;
   padding: 0;
 }
 
+section.demos dd + dt,
+section.in_the_wild dd + dt,
 section.resources dd + dt
 {
   margin-top: 1.25em;

@@ -5,33 +5,32 @@
 {% block headtitle %}{% trans "Performance" %}{% endblock %}
 {% block h2title   %}{% trans "Performance" %}{% endblock %}
 {% block tuttags   %}performance{% endblock %}
+{% block supportblockstyle %}none{% endblock %}
 
 {% block description %}
-<style>
-dt {
-  font-size: 1.2em;
-}
-</style>
-<p>{% blocktrans %}
-Web apps are now able to rival performance of native and desktop applications.
-By using a variety of techniques and technologies, your sites and apps can feel
-more responsive and your users will get more done.  Performance is important, it's
-a constant theme across all aspects of your development and product.
-{% endblocktrans %}</p>
-<p>{% blocktrans %}
-Writing fast and responsive apps isn't just important for your users, it's
-important for your bottom line.  For example,<a href="http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html">Google now incorporates site speed in page ranking</a>.  <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Amazon has found that every 100 ms increase in page load time decreased sales by 1%</a>. Also, <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Microsoft found that slowing a page by 2 seconds decreased ad clicks by 4%</a>.
-{% endblocktrans %}</p>
-<p>{% blocktrans %}
-Web app optimization cross cuts all aspects of development, from the server to the network to the client. Focusing on performance is critical to success.
-{% endblocktrans %}</p>
+  <section class="column intro">
+    <p>
+      {% blocktrans %}
+        Web apps are now able to rival performance of native and desktop applications. By using a variety of techniques and technologies, your sites and apps can feel more responsive and your users will get more done.  Performance is important, it's a constant theme across all aspects of your development and product.
+      {% endblocktrans %}
+    </p>
+  </section>
+  <section class="column">
+    <p>
+      {% blocktrans %}
+        Writing fast and responsive apps isn't just important for your users, it's important for your bottom line.  For example,<a href="http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html">Google now incorporates site speed in page ranking</a>.  <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Amazon has found that every 100 ms increase in page load time decreased sales by 1%</a>. Also, <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Microsoft found that slowing a page by 2 seconds decreased ad clicks by 4%</a>.
+      {% endblocktrans %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+        Web app optimization cross cuts all aspects of development, from the server to the network to the client. Focusing on performance is critical to success.
+      {% endblocktrans %}
+    </p>
+  </section>
 {% endblock %}
 
 
-<!-- wrap tutorials content with LI's
-     Note: do not add existing tutorials from html5rocks. Those will be
-     added here automatically by scraping the tutorial page's tags.
-     Only add external tutorials. -->
 {% block tutorials %}
 {% endblock %}
 
@@ -85,6 +84,7 @@ Web app optimization cross cuts all aspects of development, from the server to t
 </dl>
 {% endblock %}
 
+
 {% block techniques %}
 <dl>
   <dt>{% trans "HTTP Caching" %}</dt>
@@ -126,6 +126,7 @@ Web app optimization cross cuts all aspects of development, from the server to t
 </dl>
 {% endblock %}
 
+
 {% block tools %}
 <dl>
   <dt>{% blocktrans %}Developer tools for <a href="http://www.chromium.org/devtools">Chrome</a> and <a href="http://developer.apple.com/technologies/safari/developer-tools.html">Safari</a>{% endblocktrans %}</dt>
@@ -149,6 +150,7 @@ Web app optimization cross cuts all aspects of development, from the server to t
 </dl>
 {% endblock %}
 
+
 {% block text %}
 <ul>
   <li><a href="http://code.google.com/speed/">Let's make the web faster</a></li>
@@ -158,4 +160,3 @@ Web app optimization cross cuts all aspects of development, from the server to t
   <li><a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Practical guide to controller experiments on the Web</a></li>
 </ul>
 {% endblock %}
-
