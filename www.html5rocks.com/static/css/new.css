@@ -1597,6 +1597,22 @@ article.content ul
 }
 
 
+/* DISABLE SELECTION  */
+
+header,
+#logo,
+.watermark,
+nav,
+.nav
+{
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+
 /* HELPERS  */
 
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
