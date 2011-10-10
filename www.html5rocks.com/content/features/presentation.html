@@ -5,6 +5,7 @@
 {% block headtitle %}{% trans "Presentation" %}{% endblock %}
 {% block h2title   %}{% trans "Presentation" %}{% endblock %}
 {% block tuttags   %}presentation,css,3D,webfonts{% endblock %}
+{% block caniuse   %}css-transitions,css-animation,transforms2d,transforms3d{% endblock %}
 
 {% block description %}
 <p>{% blocktrans %}
@@ -61,8 +62,7 @@ pre:hover {
   transform: rotate3d(1,1,0, 45deg);
 }</pre>
 </div>
-<h4>{% trans "Browser support" %}</h4>
-<p>{% blocktrans %}Not every browser supports transforms, transitions and 3d transforms.  Check <a href="http://caniuse.com/#feat=css3">current browser support for CSS3 on caniuse.com</a>. Chrome specific details can be found on the <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.{% endblocktrans %}</p>{% endblock %}
+{% endblock %}
 
 <!-- wrap any tuts content with LI's
      these will be added to existing tutorials scraped from h5r.com -->
