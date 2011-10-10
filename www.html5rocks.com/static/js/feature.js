@@ -12,7 +12,7 @@ if (caniusefeatures[0] && caniusefeatures[0].length) {
 
 window.caniusecallback = function(data) {
 
-  var dom = $('.support');
+  var dom = $('.support div');
 
   $.each(caniusefeatures, function(i, feature) {
 
@@ -20,16 +20,15 @@ window.caniusecallback = function(data) {
     var localdom = dom.clone();
 
     var url = 'http://caniuse.com/#search=' + feature;
-    localdom.find('h4').html(
-        (featurestats.title + ' browser support').link(url));
+    localdom.find('h4').html((featurestats.title).link(url));
 
     $.each(featurestats.stats, function(browser, browserobj) {
 
-      var resulttext = '---';
+      var resulttext = '—';
 
       $.each(browserobj, function(version, result) {
         if (result.indexOf('y') == 0) {
-          if (resulttext != '---') {
+          if (resulttext != '—') {
             resulttext += '+';
             return false;
           }
@@ -37,13 +36,25 @@ window.caniusecallback = function(data) {
         }
       });
 
-      localdom.find('.' + browser).text(resulttext);
+      localdom.find('td.' + browser).text(resulttext);
     });
 
     localdom.find('table').css('visibility', 'visible').end()
-            .insertAfter('article.description');
-    // remove placeholder table  
+            .insertAfter('.support h3');
+
+    // remove placeholder table
     dom.remove();
+
+    // Show names of browsers when hovering over the logo/version cells.
+    $('section.support td').hover(
+      function() {
+        $(this).parents('table').find('th:nth-child(' + ($(this).index() + 1) + ')').addClass('current');
+      },
+      function() {
+        $(this).parents('table').find('th:nth-child(' + ($(this).index() + 1) + ')').removeClass('current');
+      }
+    );
+
 
   }); // eo feature loop
 }; // eo caniusecallback()
@@ -54,7 +65,7 @@ var lang = document.documentElement.getAttribute('lang') || 'en';
 var div = $('<div>').load('/' + lang + '/tutorials/ #index', function() {
   var MAX_NUM_TUTS = 5;
 
-  var ul = $('section.tutorials ul');
+  var ul = $('section.updates div.tutorials ul');
   var matches = $([]);
 
   $.each(features.split(','), function(i, eachtag) {
@@ -68,4 +79,7 @@ var div = $('<div>').load('/' + lang + '/tutorials/ #index', function() {
   $(matches).find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
 
 });
+
+
+// Show the browser name heading when hovering over a browser support cell.
 
