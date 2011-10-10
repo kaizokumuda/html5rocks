@@ -219,7 +219,7 @@ header nav,
 
 .page
 {
-  margin: 0 auto;
+  margin: 4em auto;
   width: 1000px;
 }
 
@@ -698,6 +698,7 @@ body.home .watermark.teal
 
 #start
 {
+  margin-top: -1.5em;
   position: relative;
   width: 1000px;
   height: 370px;
@@ -713,7 +714,7 @@ body.home .watermark.teal
 #logo
 {
   display: block;
-  margin: .5em auto 2em auto;
+  margin: 0 auto 2em auto;
   text-align: center;
 }
 
