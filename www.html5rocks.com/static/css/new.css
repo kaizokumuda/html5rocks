@@ -911,8 +911,7 @@ a[rel='external']
   padding-right: 12px;
 }
 
-section.demos figure a[href^='http']:not([href*='html5rocks.']),
-section.in_the_wild figure a[href^='http']:not([href*='html5rocks.'])
+article.content section figure a[href^='http']:not([href*='html5rocks.'])
 {
   background-position: 156px 5px;
 }
@@ -1223,27 +1222,16 @@ nav.features_outline ul ul a
   left: 30px;
 }
 
-section.support h3,
-section.updates h3,
-section.demos h3,
-section.in_the_wild h3,
-section.resources h3
-{
-  font-size: 28px;
-  font-weight: 300;
-  margin: 0 0 .75em 0;
-  text-transform: uppercase;
-}
-
 section.support,
 section.updates
 {
   height: 320px;
 }
 
-section.support h3
+section.support h3,
+section.updates h3
 {
-  margin-bottom: 0;
+  margin-top: 0;
 }
 
 section.support h4
@@ -1469,15 +1457,22 @@ section.updates li
   margin: 0 0 .75em;
 }
 
-section.demos h3,
-section.in_the_wild h3,
-section.resources h3
+article.content h3,
+section.support h3,
+section.updates h3
 {
-  margin-bottom: 0;
+  font-size: 28px;
+  font-weight: 300;
+  text-transform: uppercase;
 }
 
-section.demos figure,
-section.in_the_wild figure
+section.support h3,
+article.content h3
+{
+  margin: 0;
+}
+
+article.content figure
 {
   float: left;
   width: 50%;
@@ -1485,8 +1480,7 @@ section.in_the_wild figure
   margin-top: 1.5em;
 }
 
-section.demos figure a,
-section.in_the_wild figure a
+article.content figure a
 {
   display: block;
   font-size: 14px;
@@ -1496,62 +1490,58 @@ section.in_the_wild figure a
   overflow: hidden;
 }
 
-section.demos figure a p,
-section.in_the_wild figure a p
+article.content figure a p
 {
   color: #333;
   font-size: 13px;
   font-weight: normal;
 }
 
-section.demos figure img,
-section.in_the_wild figure img
+article.content figure img
 {
   float: left;
   max-width: 150px;
 }
 
-section.demos figcaption,
-section.in_the_wild figcaption
+article.content figcaption
 {
-  float: left;
+  margin-left: 150px;
   padding: 0 1.5em;
   width: 280px;
 }
 
-section.demos dl,
-section.in_the_wild dl,
-section.resources dl
+article.content dl
 {
   line-height: 1.5;
   margin: 1em 0 0;
   padding: 0;
 }
 
-section.demos dt,
-section.in_the_wild dt,
-section.resources dt
+article.content dt
 {
   font-size: 14px;
   font-weight: 600;
 }
 
-section.demos dd,
-section.in_the_wild dd,
-section.resources dd
+article.content dd
 {
   margin: 0;
   padding: 0;
 }
 
-section.demos dd + dt,
-section.in_the_wild dd + dt,
-section.resources dd + dt,
-section.demos dt + dt,
-section.in_the_wild dt + dt,
-section.resources dt + dt
+article.content dd + dt,
+article.content dt + dt
 {
   margin-top: 1.25em;
+}
+
+article.content ul
+{
+  font-size: 14px;
+  line-height: 1.6;
+  list-style: square;
+  margin-left: 1.75em;
+  padding-left: 0;
 }
 
 

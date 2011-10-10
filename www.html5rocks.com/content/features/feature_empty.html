@@ -2,48 +2,79 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block headtitle %}{% trans "MyFeature" %}{% endblock %}
-{% block h2title   %}{% trans "MyFeature" %}{% endblock %}
-{% block tuttags   %}{% endblock %}
+{% block headtitle %}{% trans "Storage" %}{% endblock %}
+{% block h2title   %}{% trans "Storage" %}{% endblock %}
+{% block tuttags   %}storage,file,offline,webdatabase{% endblock %}
+{% block caniuse   %}{% endblock %}
+{% block supportblockstyle %}{% endblock %} <!-- 'multiple' if more than one caniuse class, 'none' if none. TODO: This logic should be moved out of the view!! -->
 
 {% block description %}
-<p>{% blocktrans %}
-{% endblocktrans %}</p>
+  <section class="column intro">
+    <p>
+      {% blocktrans %}
+        When web developers think of storing anything about the user, they immediately think of uploading to the server. HTML5 changes that, as there are now several technologies allowing the app to save data on the client device. It might also be sync'd back to the server, or it might only ever stay on the client: that's down to you, the developer.
+      {% endblocktrans %}
+    </p>
+  </section>
+
+  <section class="column">
+    <p>
+      {% blocktrans %}
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum est. Cras felis diam, malesuada in, pellentesque vel, ornare ut, purus. Suspendisse eget libero.
+      {% endblocktrans %}
+    </p>
+
+    <p>{% trans "The technologies are:" %}</p>
+    <ul>
+      <li>{% blocktrans %}<a href="http://example.com/">Foo</a> bar baz.{% endblocktrans %}</li>
+      <li>{% blocktrans %}<a href="http://example.com/">Foo</a> bar baz.{% endblocktrans %}</li>
+      <li>{% blocktrans %}<a href="http://example.com/">Foo</a> bar baz.{% endblocktrans %}</li>
+    </ul>
+  </section>
+
+  <section>
+    <p>{% blocktrans %}Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum est. Cras felis diam, malesuada in, pellentesque vel, ornare ut, purus. Suspendisse eget libero.{% endblocktrans %}</p>
+
+    <h4>{% trans "Foo" %}</h4>
+    <p>{% blocktrans %}Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum est. Cras felis diam, malesuada in, pellentesque vel, ornare ut, purus. Suspendisse eget libero.{% endblocktrans %}</p>
+  </section>
 {% endblock %}
 
-<!-- wrap tutorials content with LI's
-     Note: do not add existing tutorials from html5rocks. Those will be
-     added here automatically by scraping the tutorial page's tags.
-     Only add external tutorials. -->
+
 {% block tutorials %}
-<!-- <li><a href="">External tutorial name</a></li>-->
+  <li><a href="http://example.com/foo">Lorem Ipsum Dolor Sit Amet</a></li>
+  <li><a href="http://example.com/bar">consectetuer Adipiscing Elit</a></li>
 {% endblock %}
 
 
-{% block inthewild %}
-<figure>
-  <a href="">
-    <img src="/static/images/features/">
-    <figcaption></figcaption>
-  </a>
-</figure>
+{% block content %}
+  <section>
+    <h3>Demos</h3>
+    <figure>
+      <a href="">
+        <img src="/static/images/features/">
+        <figcaption></figcaption>
+      </a>
+    </figure>
+  </section>
+
+  <section>
+    <h3>In the Wild</h3>
+    <figure>
+      <a href="">
+        <img src="/static/images/features/">
+        <figcaption></figcaption>
+      </a>
+    </figure>
+  </section>
+
+  <section>
+    <h3>Resources</h3>
+    <dl>
+      <dt><a href="http://example.com/foo/bar/baz">Foo</a></dt>
+      <dd>{% trans "Lorem ipsum dolor sit amet, consectetuer adipiscing elit." %}</dd>
+    </dl>
+  </section>
+
+  <!-- Add as many <section>s as you like! The three above are the most common. -->
 {% endblock %}
-
-
-{% block demos %}
-<figure>
-  <a href="">
-    <img src="/static/images/features/">
-    <figcaption></figcaption>
-  </a>
-</figure>
-{% endblock %}
-
-
-{% block resources %}
-<dl>
-  <dt><a href=""></a></dt>
-  <dd></dd>
-</dl>
-{% endblock %}
-

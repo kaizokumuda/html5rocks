@@ -47,49 +47,52 @@
 {% endblock %}
 
 
-{% block inthewild %}
-  <figure>
-    <a href="http://googlecode.blogspot.com/2009/04/gmail-for-mobile-html5-series-using.html">
-      <img src="/static/images/features/offline-gmail.png">
-      <figcaption>Mobile Gmail</figcaption>
-    </a>
-  </figure>
-  <figure>
-    <a href="http://mugtug.com/darkroom/">
-      <img src="/static/images/features/darkroom.png">
-      <figcaption>MugTug Darkroom</figcaption>
-    </a>
-  </figure>
-{% endblock %}
+{% block content %}
+  <section>
+    <h3>Demos</h3>
+    <figure>
+      <a href="http://html5demos.com/storage">
+        <img src="/static/images/features/html5demos-storage.jpg">
+        <figcaption>HTML5 Demos: Storage</figcaption>
+      </a>
+    </figure>
+    <figure>
+      <a href="http://project.mahemoff.com/timer/timer.html">
+        <img src="/static/images/features/timer.jpg">
+        <figcaption>Timer demo</figcaption>
+      </a>
+    </figure>
+  </section>
 
+  <section>
+    <h3>In the Wild</h3>
+    <figure>
+      <a href="http://googlecode.blogspot.com/2009/04/gmail-for-mobile-html5-series-using.html">
+        <img src="/static/images/features/offline-gmail.png">
+        <figcaption>Mobile Gmail</figcaption>
+      </a>
+    </figure>
+    <figure>
+      <a href="http://mugtug.com/darkroom/">
+        <img src="/static/images/features/darkroom.png">
+        <figcaption>MugTug Darkroom</figcaption>
+      </a>
+    </figure>
+  </section>
 
-{% block demos %}
-  <figure>
-    <a href="http://html5demos.com/storage">
-      <img src="/static/images/features/html5demos-storage.jpg">
-      <figcaption>HTML5 Demos: Storage</figcaption>
-    </a>
-  </figure>
-  <figure>
-    <a href="http://project.mahemoff.com/timer/timer.html">
-      <img src="/static/images/features/timer.jpg">
-      <figcaption>Timer demo</figcaption>
-    </a>
-  </figure>
-{% endblock %}
-
-
-{% block resources %}
-  <dl>
-    <dt><a href="http://diveintohtml5.org/storage.html">Dive into HTML5: Storage</a></dt>
-    <dd>{% trans "Mark Pilgrim dives into using the storage APIs." %}</dd>
-    <dt><a href="https://developer.mozilla.org/en/DOM/Storage">MDC: DOM Storage</a></td>
-    <dd>{% trans "Mozilla Developer Center on Web Storage." %}</dd>
-    <dt><a href="https://developer.mozilla.org/en/IndexedDB">MDC: IndexedDB</a></dt>
-    <dd>{% trans "Mozilla Developer Center on IndexedDB." %}</dd>
-    <dt><a href="http://hacks.mozilla.org/2010/01/offline-web-applications/">Mozilla Hacks: offline web applications</a></dt>
-    <dd>{% trans "Creating a todo list manager using localStorage, app cache and offline events." %}</dd>
-    <dt><a href="http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/">Beyond HTML5: Database APIs and the Road to IndexedDB</a></dt>
-    <dd>{% trans "Mozilla explains its views on Web SQL Database and Indexed Database" %}</dd>
-  </dl>
+  <section>
+    <h3>Resources</h3>
+    <dl>
+      <dt><a href="http://diveintohtml5.org/storage.html">Dive into HTML5: Storage</a></dt>
+      <dd>{% trans "Mark Pilgrim dives into using the storage APIs." %}</dd>
+      <dt><a href="https://developer.mozilla.org/en/DOM/Storage">MDC: DOM Storage</a></td>
+      <dd>{% trans "Mozilla Developer Center on Web Storage." %}</dd>
+      <dt><a href="https://developer.mozilla.org/en/IndexedDB">MDC: IndexedDB</a></dt>
+      <dd>{% trans "Mozilla Developer Center on IndexedDB." %}</dd>
+      <dt><a href="http://hacks.mozilla.org/2010/01/offline-web-applications/">Mozilla Hacks: offline web applications</a></dt>
+      <dd>{% trans "Creating a todo list manager using localStorage, app cache and offline events." %}</dd>
+      <dt><a href="http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/">Beyond HTML5: Database APIs and the Road to IndexedDB</a></dt>
+      <dd>{% trans "Mozilla explains its views on Web SQL Database and Indexed Database" %}</dd>
+    </dl>
+  </section>
 {% endblock %}
