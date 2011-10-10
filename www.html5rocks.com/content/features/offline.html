@@ -2,7 +2,6 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block bodyclass %}offline{% endblock %}
 {% block headtitle %}{% trans "Offline" %}{% endblock %}
 {% block h2title   %}{% trans "Offline" %}{% endblock %}
 {% block tuttags   %}offline{% endblock %}
@@ -36,65 +35,68 @@
 {% endblock %}
 
 
-{% block inthewild %}
-  <figure>
-    <a href="http://googlecode.blogspot.com/2009/04/gmail-for-mobile-html5-series-using.html">
-      <img src="/static/images/features/offline-gmail.png">
-      <figcaption>
-        Mobile Gmail
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
-      </figcaption>
-    </a>
-  </figure>
-  <figure>
-    <a href="http://everytimezone.com">
-      <img src="http://1.bp.blogspot.com/_Ju16KL24mHY/TIGJhfJEkKI/AAAAAAAAACM/HnKH2Fvso_c/s640/2010-09-03_1520.png" width="160" height="120">
-      <figcaption>
-        Every Time Zone
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>    </figcaption>
-    </a>
-  </figure>
-{% endblock %}
+{% block content %}
+  <section>
+    <h3>Demos</h3>
+    <figure>
+      <a href="http://html5demos.com/offline">
+        <img src="/static/images/features/offline-h5d.png">
+        <figcaption>
+          HTML5 Demos: Offline events
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
+        </figcaption>
+      </a>
+    </figure>
+    <figure>
+      <a href="http://htmlfive.appspot.com/static/stickies.html">
+        <img src="/static/images/features/offline-stickies.png">
+        <figcaption>
+          Stickies demo with app cache and web SQL database
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
+        </figcaption>
+      </a>
+    </figure>
+  </section>
 
+  <section>
+    <h3>In the Wild</h3>
+    <figure>
+      <a href="http://googlecode.blogspot.com/2009/04/gmail-for-mobile-html5-series-using.html">
+        <img src="/static/images/features/offline-gmail.png">
+        <figcaption>
+          Mobile Gmail
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
+        </figcaption>
+      </a>
+    </figure>
+    <figure>
+      <a href="http://everytimezone.com">
+        <img src="http://1.bp.blogspot.com/_Ju16KL24mHY/TIGJhfJEkKI/AAAAAAAAACM/HnKH2Fvso_c/s640/2010-09-03_1520.png">
+        <figcaption>
+          Every Time Zone
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>    </figcaption>
+      </a>
+    </figure>
+  </section>
 
-{% block demos %}
-  <figure>
-    <a href="http://html5demos.com/offline">
-      <img src="/static/images/features/offline-h5d.png">
-      <figcaption>
-        HTML5 Demos: Offline events
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
-      </figcaption>
-    </a>
-  </figure>
-  <figure>
-    <a href="http://htmlfive.appspot.com/static/stickies.html">
-      <img src="/static/images/features/offline-stickies.png">
-      <figcaption>
-        Stickies demo with app cache and web SQL database
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
-      </figcaption>
-    </a>
-  </figure>
-{% endblock %}
-
-
-{% block resources %}
-  <dl>
-    <dt><a href="http://www.youtube.com/watch?v=CoUSIBep1G8">Google TechTalk: HTML5 Storage - Application Cache</a></dt>
-    <dd>{% trans "Presented by Nikolas Coukouma, January 5, 2011" %}</dd>
-    <dt><a href="http://dev.w3.org/html5/spec-author-view/offline.html#offline">W3C HTML5 Spec, author view: Offline Web Applications</a></dt>
-    <dd>{% trans "The w3c spec has the strict details on how the cache.manifest and applicationCache APIs work." %}</dd>
-    <dt><a href="http://diveintohtml5.org/offline.html">Dive into HTML5: Let's take this offline</a></dt>
-    <dd>{% trans "Mark Pilgrim dives into using the app cache in practice." %}</dd>
-    <dt><a href="https://developer.mozilla.org/En/Offline_resources_in_Firefox">MDC: Offline resources in Firefox</a></dt>
-    <dt><a href="https://developer.mozilla.org/en/Online_and_offline_events">MDC: Online and offline events</a></dt>
-    <dd>{% trans "Mozilla Developer Center reference documentation and guides, covering online and offline events and app cache." %}</dd>
-    <dt><a href="http://hacks.mozilla.org/2010/01/offline-web-applications/">Mozilla Hacks: offline web applications</a></dt>
-    <dd>{% trans "Creating a todo list manager using localStorage, app cache and offline events. Putting everything together." %}</dd>
-    <dt><a href="http://dev.opera.com/articles/view/offline-applications-html5-appcache/">DevOpera: Running your web applications offline with HTML5 AppCache</a></dt>
-    <dd>{% trans "The app cache explained with solid examples showing different features and configurations in use." %}</dd>
-    <dt><a href="http://trac.webkit.org/browser/trunk/WebCore/loader/appcache">Webkit app cache Source Code</a></dt>
-    <dd>{% trans "The C code used by Webkit for the app cache" %}</dd>
-  </dl>
+  <section>
+    <h3>Resources</h3>
+    <dl>
+      <dt><a href="http://www.youtube.com/watch?v=CoUSIBep1G8">Google TechTalk: HTML5 Storage - Application Cache</a></dt>
+      <dd>{% trans "Presented by Nikolas Coukouma, January 5, 2011" %}</dd>
+      <dt><a href="http://dev.w3.org/html5/spec-author-view/offline.html#offline">W3C HTML5 Spec, author view: Offline Web Applications</a></dt>
+      <dd>{% trans "The w3c spec has the strict details on how the cache.manifest and applicationCache APIs work." %}</dd>
+      <dt><a href="http://diveintohtml5.info/offline.html">Dive into HTML5: Let's take this offline</a></dt>
+      <dd>{% trans "Mark Pilgrim dives into using the app cache in practice." %}</dd>
+      <dt><a href="https://developer.mozilla.org/En/Offline_resources_in_Firefox">MDC: Offline resources in Firefox</a></dt>
+      <dt><a href="https://developer.mozilla.org/en/Online_and_offline_events">MDC: Online and offline events</a></dt>
+      <dd>{% trans "Mozilla Developer Center reference documentation and guides, covering online and offline events and app cache." %}</dd>
+      <dt><a href="http://hacks.mozilla.org/2010/01/offline-web-applications/">Mozilla Hacks: offline web applications</a></dt>
+      <dd>{% trans "Creating a todo list manager using localStorage, app cache and offline events. Putting everything together." %}</dd>
+      <dt><a href="http://dev.opera.com/articles/view/offline-applications-html5-appcache/">DevOpera: Running your web applications offline with HTML5 AppCache</a></dt>
+      <dd>{% trans "The app cache explained with solid examples showing different features and configurations in use." %}</dd>
+      <dt><a href="http://trac.webkit.org/browser/trunk/WebCore/loader/appcache">Webkit app cache Source Code</a></dt>
+      <dd>{% trans "The C code used by Webkit for the app cache" %}</dd>
+    </dl>
+  </section>
 {% endblock %}

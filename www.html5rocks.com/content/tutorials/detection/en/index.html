@@ -58,7 +58,7 @@ n/a
  
 <p>You might wonder why we need the second line. Isn't it enough to just create a canvas element? In fact, browsers will let you create unknown DOM elements. The only way to know if the canvas is legitimate is to test if it actually behaves like a canvas. That's detective work!</p> 
  
-<p>Our canvas detection is an example of a more general pattern for feature detection: "Create a DOM element and see if it behaves like we expect". Its one of four standard feature detection techniques, <a href="http://diveintohtml5.org/detect.html">nicely summed up</a> in Mark Pilgrim's <a href="http://diveintohtml5.org/">Dive Into HTML5</a>.</p> 
+<p>Our canvas detection is an example of a more general pattern for feature detection: "Create a DOM element and see if it behaves like we expect". Its one of four standard feature detection techniques, <a href="http://diveintohtml5.info/detect.html">nicely summed up</a> in Mark Pilgrim's <a href="http://diveintohtml5.info/">Dive Into HTML5</a>.</p> 
  
 <p>Knowing these patterns makes feature detection easier, but we can make it even easier than that. These days, we have library support too. The popular <a href="http://www.modernizr.com/">Modernizr library</a> has your feature detection needs covered. Our canvas detection is as simple as <tt>Modernizr.canvas</tt>, so we can just include Modernizr and say:
  

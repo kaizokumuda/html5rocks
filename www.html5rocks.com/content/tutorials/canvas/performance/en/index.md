@@ -412,7 +412,7 @@ have a game or application to optimize, check out
 [immediate]: http://en.wikipedia.org/wiki/Immediate_mode
 [retained]: http://en.wikipedia.org/wiki/Retained_mode
 [canvas]: http://www.html5rocks.com/en/tutorials/#canvas
-[divehtml]: http://diveintohtml5.org/canvas.html
+[divehtml]: http://diveintohtml5.info/canvas.html
 [mdn]: https://developer.mozilla.org/en/canvas_tutorial
 [bs]: http://www.browserscope.org/
 [jsperf]: http://jsperf.com/
