@@ -80,6 +80,7 @@
   }
 }
 
+
 /* NORMALIZE */
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
@@ -141,6 +142,7 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 
+
 /* BACKGROUND SCALE */
 
 body.home
@@ -157,6 +159,7 @@ body.home
   background-size: 1024px 768px;
   }
 }
+
 
 /* RESPONSIVE */
 
@@ -201,6 +204,7 @@ section + section
   float: left;
   width: 29%;
 }*/
+
 
 /* UNRESPONSIVE */
 
@@ -602,6 +606,7 @@ article.content section
   margin: 0 auto 2em auto;
 }
 
+
 /* SITE-GRID NAVIGATION */
 
 .nav,
@@ -672,6 +677,7 @@ nav.features_paginator a.next
   background-position: center -605px;
   padding: 55px 0 0 0;
 }
+
 
 /* HOMEPAGE */
 
@@ -917,7 +923,6 @@ article.content section figure a[href^='http']:not([href*='html5rocks.'])
 }
 
 
-
 /* FEATURES: NAVIGATION */
 
 nav.features_paginator
@@ -1114,6 +1119,7 @@ nav.features_outline ul ul a
 .features-presentation   nav.features_outline .presentation   ul { display: block; }
 .features-performance    nav.features_outline .performance    ul { display: block; }
 .features-nuts_and_bolts nav.features_outline .nuts_and_bolts ul { display: block; }
+
 
 /* FEATURES: CONTENT  */
 
