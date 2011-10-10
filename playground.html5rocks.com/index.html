@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="samples/html5_misc/offline.manifest">
+<html>
 <!-- copyright (c) 2010 Google inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -186,7 +186,9 @@
 <body>
 <div id="container">
   <header id="section-header"> 
-    <h1 id="title"><span class="normal">HTML</span><span class="five">5</span><span class="rocks">Rocks</span></h1>
+    <h1 id="title">
+      <span class="normal">HTML</span><img src="images/HTML5_Badge_64.png" alt=""><span class="rocks">Rocks</span>
+    </h1>
     <nav>
       <ul id="user-info">
         <li>{% if userEmail %} {{ userEmail }} | <a href="{{ logoutUrl }}">Sign out</a> {% else %} <a href="{{ loginUrl }}">Sign in</a> {% endif %}</li>
