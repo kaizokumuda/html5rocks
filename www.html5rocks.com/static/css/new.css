@@ -508,6 +508,7 @@ input[type="search"]::-webkit-search-results-decoration
   top: 30px;
   z-index: 999;
   padding: 20px;
+  opacity: .85;
   -webkit-transition: opacity 600ms ease-in-out;
   -moz-transition: opacity 600ms ease-in-out;
   -ms-transition: opacity 600ms ease-in-out;
@@ -521,6 +522,11 @@ input[type="search"]::-webkit-search-results-decoration
 }
 
 .watermark.fadeIn
+{
+  opacity: .85;
+}
+
+.watermark:hover
 {
   opacity: 1;
 }
