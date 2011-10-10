@@ -28,51 +28,52 @@
   <article class="two_columns">
 
     {% block support %}
-      <section class="support" style="display:none">
-        <hgroup>
-          <h3>Browser Support</h3>
+      <section class="support {% block supportblockstyle %}{% endblock %}" style="display:none">
+        <h3>Browser Support</h3>
+
+        <div class="clearfix">
           <h4>{% trans "loading&hellip;" %}</h4>
-        </hgroup>
 
-        <table>
-          <thead>
-            <tr>
-              <th class="chrome">{% trans "Chrome" %}</th>
-              <th class="firefox">{% trans "Firefox" %}</th>
-              <th class="safari">{% trans "Safari" %}</th>
-              <th class="opera">{% trans "Opera" %}</th>
-              <th class="ie">{% trans "IE" %}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="chrome">&mdash;</td>
-              <td class="firefox">&mdash;</td>
-              <td class="safari">&mdash;</td>
-              <td class="opera">&mdash;</td>
-              <td class="ie">&mdash;</td>
-            </tr>
-          </tbody>
-        </table>
+          <table>
+            <thead>
+              <tr>
+                <th class="chrome">{% trans "Chrome" %}</th>
+                <th class="firefox">{% trans "Firefox" %}</th>
+                <th class="safari">{% trans "Safari" %}</th>
+                <th class="opera">{% trans "Opera" %}</th>
+                <th class="ie">{% trans "IE" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="chrome">&mdash;</td>
+                <td class="firefox">&mdash;</td>
+                <td class="safari">&mdash;</td>
+                <td class="opera">&mdash;</td>
+                <td class="ie">&mdash;</td>
+              </tr>
+            </tbody>
+          </table>
 
-        <table>
-          <thead>
-            <tr>
-              <th class="ios_saf">{% trans "iOS Safari" %}</th>
-              <th class="android">{% trans "Android" %}</th>
-              <th class="op_mini">{% trans "Opera Mini" %}</th>
-              <th class="op_mob">{% trans "Opera Mobile" %}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="ios_saf">&mdash;</td>
-              <td class="android">&mdash;</td>
-              <td class="op_mini">&mdash;</td>
-              <td class="op_mob">&mdash;</td>
-            </tr>
-          </tbody>
-        </table>
+          <table>
+            <thead>
+              <tr>
+                <th class="ios_saf">{% trans "iOS Safari" %}</th>
+                <th class="android">{% trans "Android" %}</th>
+                <th class="op_mini">{% trans "Opera Mini" %}</th>
+                <th class="op_mob">{% trans "Opera Mobile" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ios_saf">&mdash;</td>
+                <td class="android">&mdash;</td>
+                <td class="op_mini">&mdash;</td>
+                <td class="op_mob">&mdash;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <p>{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.{% endblocktrans %}</p>
       </section>
@@ -81,24 +82,26 @@
     <section class="updates">
       <h3>{% trans "What&rsquo;s New" %}</h3>
 
-      <h4>{% trans "Tutorials" %}</h4>
-      <ul>
-        {% block tutorials %}{% endblock %}
-      </ul>
+      <div>
+        <h4>{% trans "Tutorials" %}</h4>
+        <ul>
+          {% block tutorials %}{% endblock %}
+        </ul>
+      </div>
 
-      {% if discussions %}
+      <div>
         <h4>{% trans "Discussion" %}</h4>
         <ul>
           {% block discussions %}{% endblock %}
         </ul>
-      {% endif %}
+      </div>
 
-      {% if examples %}
+      <div>
         <h4>{% trans "Examples" %}</h4>
         <ul>
           {% block examples %}{% endblock %}
         </ul>
-      {% endif %}
+      </div>
     </section>
 
   </article>

@@ -1290,27 +1290,128 @@ section.support p a
   color: #333;
 }
 
+section.support.multiple,
+section.support.multiple + section
+{
+  float: none;
+  height: inherit;
+  width: 948px;
+}
+
+section.support.multiple + section
+{
+  margin: 2em 0 0;
+}
+
+section.support.multiple
+{
+  height: inherit;
+}
+
+section.support.multiple div
+{
+  clear: left;
+  padding: .75em 0;
+}
+
+section.support.multiple h4
+{
+  float: left;
+  margin: 0;
+  padding: 1.2em 0 0;
+  width: 300px;
+}
+
+section.support.multiple table
+{
+  float: left;
+  margin-top: -45px;
+}
+
+section.support.multiple th
+{
+  display: none;
+}
+
+section.support.multiple td
+{
+  padding-top: 60px;
+  width: 70px;
+}
+
+section.support.multiple div + div
+{
+  border-top: 1px solid #ddd;
+}
+
+section.support.multiple div + div h4
+{
+  padding-top: .4em;
+}
+
+section.support.multiple div + div table
+{
+  margin-top: .25em;
+}
+
+section.support.multiple div + div td
+{
+  background: 0;
+  padding-top: 0;
+}
+
+section.support.multiple p
+{
+  clear: left;
+  margin-top: 1em;
+  text-align: left;
+}
+
 section.updates h4
 {
   clear: left;
   float: left;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 300;
   margin: 0 0 2em;
   text-transform: uppercase;
   width: 130px;
 }
 
+section.updates div:last-child h4,
+section.updates div:last-child ul
+{
+  margin-bottom: .25em;
+}
+
+section.support.multiple + section.updates h4
+{
+  width: 174px;
+}
+
+section.support.multiple + section.updates div
+{
+  float: left;
+  width: 50%;
+}
+
+section.support.multiple + section.updates ul
+{
+  float: left;
+  padding-right: 25px;
+  width: 275px;
+}
+
 section.updates ul
 {
   list-style: none;
-  margin: 1.8em 0 0 2em;
+  margin: .4em 0 2em;
   padding: 0;
 }
 
 section.updates li
 {
-  margin: 0 0 .75em 130px;
+  margin: 0 0 .75em;
 }
 
 section.demos h3,
@@ -1350,7 +1451,7 @@ section.demos figure img,
 section.in_the_wild figure img
 {
   float: left;
-  max-width: 170px;
+  max-width: 150px;
 }
 
 section.demos figcaption,
@@ -1358,7 +1459,7 @@ section.in_the_wild figcaption
 {
   float: left;
   padding: 0 1.5em;
-  width: 260px;
+  width: 280px;
 }
 
 section.resources dl

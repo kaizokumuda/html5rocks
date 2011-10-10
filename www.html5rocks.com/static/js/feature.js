@@ -12,7 +12,7 @@ if (caniusefeatures[0] && caniusefeatures[0].length) {
 
 window.caniusecallback = function(data) {
 
-  var dom = $('.support');
+  var dom = $('.support div');
 
   $.each(caniusefeatures, function(i, feature) {
 
@@ -40,10 +40,12 @@ window.caniusecallback = function(data) {
     });
 
     localdom.find('table').css('visibility', 'visible').end()
-            .insertBefore('section.updates');
+            .insertAfter('.support h3');
+
     // remove placeholder table
     dom.remove();
 
+    // Show names of browsers when hovering over the logo/version cells.
     $('section.support td').hover(
       function() {
         $(this).parents('table').find('th:nth-child(' + ($(this).index() + 1) + ')').addClass('current');
