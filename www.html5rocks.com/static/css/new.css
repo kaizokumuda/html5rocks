@@ -500,18 +500,24 @@ input[type="search"]::-webkit-search-results-decoration
 {
   position: fixed;
   left: 50%;
-  margin-left: -585px;
-  top: 50px;
+  margin-left: -605px;
+  top: 30px;
+  z-index: 999;
+  padding: 20px;
   -webkit-transition: opacity 600ms ease-in-out;
   -moz-transition: opacity 600ms ease-in-out;
   -ms-transition: opacity 600ms ease-in-out;
   -o-transition: opacity 600ms ease-in-out;
   transition: opacity 600ms ease-in-out;
 }
-.watermark.white {
+
+.watermark.white
+{
   opacity: 0;
 }
-.watermark.fadeIn {
+
+.watermark.fadeIn
+{
   opacity: 1;
 }
 
