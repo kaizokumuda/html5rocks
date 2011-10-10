@@ -1605,6 +1605,9 @@ article.content dd
   -moz-column-break-before: avoid;
   -webkit-column-break-before: avoid;
   column-break-before: avoid;
+  -moz-column-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  column-break-inside: avoid;
 }
 
 article.content ul
