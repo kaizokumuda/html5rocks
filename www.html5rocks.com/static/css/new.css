@@ -145,6 +145,14 @@ td { vertical-align: top; }
 
 /* BACKGROUND SCALE */
 
+body
+{
+  -webkit-transition: background .25s ease-in-out;
+  -moz-transition: background .25s ease-in-out;
+  -o-transition: background .25s ease-in-out;
+  transition: background .25s ease-in-out;
+}
+
 body.home
 {
   background: #aaa url(/static/new_images/background-index.jpg) center center fixed no-repeat;

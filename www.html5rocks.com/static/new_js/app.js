@@ -58,6 +58,7 @@ $('.subheader.features ul li a').click(function(){
 $('a').click(function(){
   page = $(this).attr('href').substr($(this).attr('href').indexOf('/')).replace(/\/en\//gi, '').replace(/\/([A-Za-z]+)/gi, '-$1').replace(/\/$/, '').replace(/^-/, '');
 
+  $('body').removeClass().addClass(page);
   $('.page').removeClass('current');
 
   if ($('.page#' + page).hasClass('loaded'))
