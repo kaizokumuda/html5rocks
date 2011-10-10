@@ -1161,14 +1161,9 @@ nav.features_outline ul ul a
 
 .description section ul
 {
-  line-height: 1.5;
+  line-height: 1.6;
   list-style: square;
   margin-left: 1em;
-}
-
-.description section li
-{
-  margin-top: .75em;
 }
 
 .description section li a
