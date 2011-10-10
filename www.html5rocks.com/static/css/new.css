@@ -1540,9 +1540,6 @@ article.content dd
   -moz-column-break-before: avoid;
   -webkit-column-break-before: avoid;
   column-break-before: avoid;
-  -moz-column-break-after: avoid;
-  -webkit-column-break-after: avoid;
-  column-break-after: avoid;
 }
 
 article.content ul
