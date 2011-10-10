@@ -78,7 +78,7 @@
     <nav class="main">
       <ul>
         <li><a href="/why">Why HTML5</a></li>
-        <li><a id="features_show">HTML5 Features</a></li>
+        <li id="features_show">HTML5 Features</li>
         <li><a href="/{{LANGUAGE_CODE}}/tutorials/" {% if current == 'tutorials' or current == 'mobile' %}class="current"{% endif %}>{% trans "Updates" %}</a></li>
         <li><a href="/{{LANGUAGE_CODE}}/resources" {% if current == 'resources' %}class="current"{% endif %}>{% trans "Resources" %}</a></li>
         <li><a href="/{{LANGUAGE_CODE}}/profiles" {% if current == 'profiles' %}class="current"{% endif %}>{% trans "Who We Are" %}</a></li>
@@ -107,12 +107,9 @@
         <h2>Features</h2>
         <ul>
           <li>
-            <a href="/{{LANGUAGE_CODE}}/features/offline" onclick="buildPageAndScrollThere()" class="offline">
+            <a href="/{{LANGUAGE_CODE}}/features/offline" class="offline">
               <h3>{% trans "Offline" %}</h3>
             </a>
-            <!-- <a href="/{{LANGUAGE_CODE}}/features/offline" class="offline">
-              <h3>{% trans "Offline" %}</h3>
-            </a> -->
           </li>
           <li>
             <a href="/{{LANGUAGE_CODE}}/features/storage" class="storage">
@@ -349,9 +346,36 @@
     </ul>
   </nav>
 
-  <div class="page" id="{{self_pagename}}">
+  <div class="page current loaded" id="{{self_pagename}}">
     {% block body %}{% endblock %}
   </div>
+
+  <!-- Page grid. -->
+
+  <div class="page" id="home"></div>
+
+  <div class="page" id="mobile"></div>
+  <div class="page" id="gaming"></div>
+  <div class="page" id="enterprise"></div>
+
+  <div class="page" id="learn"></div>
+
+  <div class="page" id="features"></div>
+  <div class="page" id="features-offline"></div>
+  <div class="page" id="features-storage"></div>
+  <div class="page" id="features-connectivity"></div>
+  <div class="page" id="features-file"></div>
+  <div class="page" id="features-semantics"></div>
+  <div class="page" id="features-multimedia"></div>
+  <div class="page" id="features-graphics"></div>
+  <div class="page" id="features-presentation"></div>
+  <div class="page" id="features-performance"></div>
+  <div class="page" id="features-nuts_and_bolts"></div>
+
+  <div class="page" id="why"></div>
+  <div class="page" id="tutorials"></div> <!-- TODO: is this 'updates'? -->
+  <div class="page" id="resources"></div>
+  <div class="page" id="who"></div>
 
 <!--
   <footer>
