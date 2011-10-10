@@ -312,12 +312,6 @@ header nav.main .current
 header h1
 {
   display: none;
-/*
-  color: #fff;
-  display: inline;
-  font-weight: normal !important;
-  padding-right: .5em;
-*/
 }
 
 #title,
