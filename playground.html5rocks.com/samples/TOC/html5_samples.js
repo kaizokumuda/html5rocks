@@ -111,7 +111,7 @@ var tempJSON = [
         "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
         "files": ["samples/js/html5/file_api.js"],
         "editor": "js",
-        "sampleName": "Drag from Desktop",
+        "sampleName": "Using FileReader",
         "tags": "",
         "spec": "http://www.w3.org/TR/FileAPI/"
       }
