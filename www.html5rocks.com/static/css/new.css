@@ -321,6 +321,7 @@ header nav.main ul
 header nav.main ul li
 {
   float: left;
+  font-size: 13px;
 }
 
 header nav.main ul li a
@@ -342,7 +343,6 @@ header h1
 #title,
 header nav a
 {
-  font-size: 12px;
   text-transform: uppercase;
 }
 
