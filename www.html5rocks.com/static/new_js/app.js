@@ -55,10 +55,10 @@ $('.subheader.features ul li a').click(function(){
 
 // Page grid navigation.
 
-$('a').click(function(){
-  page = $(this).attr('href').substr($(this).attr('href').indexOf('/')).replace(/\/en\//gi, '').replace(/\/([A-Za-z]+)/gi, '-$1').replace(/\/$/, '').replace(/^-/, '');
+$('a').click(function() {
+  page = $(this).attr('href').substr($(this).attr('href').indexOf('/')).replace(/\/\w{2,3}\//gi, '').replace(/\/([A-Za-z]+)/gi, '-$1').replace(/\/$/, '').replace(/^-/, '');
 
-  $('body').removeClass().addClass(page);
+  $('body').removeClass().attr('data-href', page);
   $('.page').removeClass('current');
 
   if ($('.page#' + page).hasClass('loaded'))

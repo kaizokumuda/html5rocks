@@ -153,7 +153,7 @@ body
   transition: background .25s ease-in-out;
 }
 
-body.home
+body[data-href='home']
 {
   background: #aaa url(/static/new_images/background-index.jpg) center center fixed no-repeat;
   -moz-background-size: cover;
@@ -162,9 +162,9 @@ body.home
 
 @media only all and (max-width: 1024px) and (max-height: 768px)
 {
-  body.home {
-  -moz-background-size: 1024px 768px;
-  background-size: 1024px 768px;
+  body[data-href='home'] {
+    -moz-background-size: 1024px 768px;
+    background-size: 1024px 768px;
   }
 }
 
@@ -737,7 +737,7 @@ nav.features_paginator a.next
 
 /* HOMEPAGE */
 
-body.home .watermark.teal
+body[data-href='home'] .watermark.teal
 {
   display: none;
 }
