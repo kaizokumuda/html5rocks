@@ -1623,6 +1623,7 @@ article.content dt
   column-break-after: avoid;
 }
 
+article.content dt + dt,
 article.content dd
 {
   margin: 0 0 1.25em;
@@ -1633,6 +1634,11 @@ article.content dd
   -moz-column-break-inside: avoid;
   -webkit-column-break-inside: avoid;
   column-break-inside: avoid;
+}
+
+article.content dt + dt
+{
+  margin-top: 1.25em;
 }
 
 article.content ul
