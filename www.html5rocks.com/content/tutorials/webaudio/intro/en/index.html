@@ -392,8 +392,12 @@ Filter on: <input type="checkbox" checked="false"
 Frequency: <input type="range" min="0" max="1" step="0.01" value="1" onchange="FilterSample.changeFrequency(this);" />
 Quality: <input type="range" min="0" max="1" step="0.01" value="0" onchange="FilterSample.changeQuality(this);" /></p>
 <p><a href="js/filter-sample.js">full source code</a></p>
-<p>Note that the sample code lets you connect and disconnect the filter,
-dynamically changing the AudioContext graph. We can disconnect
+<p>In general, frequency controls need to be tweaked to work on a
+logarithmic scale since human hearing itself works on the same principle
+(ie. A4 is 440hz, and A5 is 880hz). For more details, see the
+<code>FilterSample.changeFrequency</code> function in the source code link above.</p>
+<p>Lastly, note that the sample code lets you connect and disconnect the
+filter, dynamically changing the AudioContext graph. We can disconnect
 AudioNodes from the graph by calling <code>node.disconnect(outputNumber)</code>.
 For example, to re-route the graph from going through a filter, to a
 direct connection, we can do the following:</p>
@@ -403,19 +407,12 @@ filter.disconnect(0);
 // Connect the source directly.
 source.connect(context.destination);
 </code></pre>
-<p>Lastly, note that the range element that controls the filter has the
-following code responding to new values of the control:</p>
-<pre class="prettyprint"><code>TODO: insert filter tweak
-</code></pre>
-<p>In general, filters and other effects are tweaked to be exponential
-since human hearing itself works on an exponential scale (ie. A4 is
-440hz, and A5 is 880hz).</p>
 <h2 id="toc-further">Further listening</h2>
 
 <p>We've covered the basics of the API, including loading and playing audio
 samples. We've built audio graphs with gain nodes and filters and
 scheduled sounds and audio parameter tweaks to enable some common sound
-effects. At this point you are ready to go and build some great web
+effects. At this point you are ready to go and build some sweet web
 audio applications!</p>
 <p>If you are seeking inspiration, many developers have already created
 <a href="http://chromium.googlecode.com/svn/trunk/samples/audio/samples.html">great work</a> using the Web Audio API. Some of my favorite
