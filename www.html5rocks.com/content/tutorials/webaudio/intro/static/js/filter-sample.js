@@ -33,13 +33,16 @@ FilterSample.toggle = function() {
 };
 
 FilterSample.changeFrequency = function(element) {
-  var sampleRate = 44100.0;  // !!@@ don't hardcode
-  var nyquist = sampleRate * 0.5;
-  var noctaves = Math.log(nyquist / 40.0) / Math.LN2;
-  var v2 = Math.pow(2.0, noctaves * (element.value - 1.0));
-  var freq = v2*nyquist;
-  
-  this.filter.frequency.value = freq;
+  // Clamp the frequency between the minimum value (40 Hz) and half of the
+  // sampling rate.
+  var minValue = 40;
+  var maxValue = context.sampleRate / 2;
+  // Logarithm (base 2) to compute how many octaves fall in the range.
+  var numberOfOctaves = Math.log(maxValue / minValue) / Math.LN2;
+  // Compute a multiplier from 0 to 1 based on an exponential scale.
+  var multiplier = Math.pow(2, numberOfOctaves * (element.value - 1.0));
+  // Get back to the frequency value between min and max.
+  this.filter.frequency.value = maxValue * multiplier;
 };
 
 FilterSample.changeQuality = function(element) {

@@ -438,8 +438,13 @@ Quality: <input type="range" min="0" max="1" step="0.01" value="0" onchange="Fil
 
 [full source code](js/filter-sample.js)
 
-Note that the sample code lets you connect and disconnect the filter,
-dynamically changing the AudioContext graph. We can disconnect
+In general, frequency controls need to be tweaked to work on a
+logarithmic scale since human hearing itself works on the same principle
+(ie. A4 is 440hz, and A5 is 880hz). For more details, see the
+`FilterSample.changeFrequency` function in the source code link above.
+
+Lastly, note that the sample code lets you connect and disconnect the
+filter, dynamically changing the AudioContext graph. We can disconnect
 AudioNodes from the graph by calling `node.disconnect(outputNumber)`.
 For example, to re-route the graph from going through a filter, to a
 direct connection, we can do the following:
@@ -450,15 +455,6 @@ direct connection, we can do the following:
     // Connect the source directly.
     source.connect(context.destination);
 
-Lastly, note that the range element that controls the filter has the
-following code responding to new values of the control:
-
-    TODO: insert filter tweak
-
-In general, filters and other effects are tweaked to be exponential
-since human hearing itself works on an exponential scale (ie. A4 is
-440hz, and A5 is 880hz).
-
 
 [BiquadFilterNode]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#BiquadFilterNode-section
 [filter-graph]: diagrams/filter.png
@@ -468,7 +464,7 @@ since human hearing itself works on an exponential scale (ie. A4 is
 We've covered the basics of the API, including loading and playing audio
 samples. We've built audio graphs with gain nodes and filters and
 scheduled sounds and audio parameter tweaks to enable some common sound
-effects. At this point you are ready to go and build some great web
+effects. At this point you are ready to go and build some sweet web
 audio applications!
 
 If you are seeking inspiration, many developers have already created
