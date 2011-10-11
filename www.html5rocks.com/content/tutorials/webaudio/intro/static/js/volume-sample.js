@@ -4,34 +4,19 @@ var VolumeSample = {
 // Gain node needs to be mutated by volume control.
 VolumeSample.gainNode = null;
 
-VolumeSample.loadAndPlay = function() {
-  try {
-    context = new webkitAudioContext();
-    this.gainNode = context.createGainNode();
-  }
-  catch(e) {
-    alert("Web Audio API is not supported in this browser");
-  }
+VolumeSample.play = function() {
+  this.gainNode = context.createGainNode();
+  var source = context.createBufferSource();
+  source.buffer = BUFFERS.techno;
 
-  bufferLoader = new BufferLoader(context,
-      ["sounds/techno.mp3"], finishedLoading);
-  bufferLoader.load();
-
-  var ctx = this;
-
-  function finishedLoading(bufferList) {
-    var source = context.createBufferSource();
-    source.buffer = bufferList[0];
-
-    // Connect source to a gain node
-    source.connect(ctx.gainNode);
-    // Connect gain node to destination
-    ctx.gainNode.connect(context.destination);
-    // Start playback in a loop
-    source.loop = true;
-    source.noteOn(0);
-    ctx.source = source;
-  }
+  // Connect source to a gain node
+  source.connect(this.gainNode);
+  // Connect gain node to destination
+  this.gainNode.connect(context.destination);
+  // Start playback in a loop
+  source.loop = true;
+  source.noteOn(0);
+  this.source = source;
 };
 
 VolumeSample.changeVolume = function(element) {
@@ -43,4 +28,9 @@ VolumeSample.changeVolume = function(element) {
 
 VolumeSample.stop = function() {
   this.source.noteOff(0);
+};
+
+VolumeSample.toggle = function() {
+  this.playing ? this.stop() : this.play();
+  this.playing = !this.playing;
 };

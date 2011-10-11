@@ -1,34 +1,16 @@
 var CrossfadeSample = {};
 
 CrossfadeSample.play = function() {
-  try {
-    context = new webkitAudioContext();
-    this.gainNode = context.createGainNode();
-  }
-  catch(e) {
-    alert("Web Audio API is not supported in this browser");
-  }
-
-  bufferLoader = new BufferLoader(context, [
-      "sounds/blueyellow.wav",
-      "sounds/organ-echo-chords.wav"
-  ], finishedLoading);
-  bufferLoader.load();
-
-  var ctx = this;
-
-  function finishedLoading(bufferList) {
-    // Create two sources.
-    ctx.ctl1 = createSource(bufferList[0]);
-    ctx.ctl2 = createSource(bufferList[1]);
-    // Mute the second source.
-    ctx.ctl1.gainNode.gain.value = 0;
-    // Start playback in a loop
-    ctx.ctl1.source.noteOn(0);
-    ctx.ctl2.source.noteOn(0);
-    // Set the initial crossfade to be just source 1.
-    ctx.crossfade(0);
-  }
+  // Create two sources.
+  this.ctl1 = createSource(BUFFERS.drums);
+  this.ctl2 = createSource(BUFFERS.organ);
+  // Mute the second source.
+  this.ctl1.gainNode.gain.value = 0;
+  // Start playback in a loop
+  this.ctl1.source.noteOn(0);
+  this.ctl2.source.noteOn(0);
+  // Set the initial crossfade to be just source 1.
+  this.crossfade(0);
 
   function createSource(buffer) {
     var source = context.createBufferSource();
@@ -61,4 +43,9 @@ CrossfadeSample.crossfade = function(element) {
   var gain2 = 0.5 * (1.0 + Math.cos((1.0 - x) * Math.PI));
   this.ctl1.gainNode.gain.value = gain1;
   this.ctl2.gainNode.gain.value = gain2;
+};
+
+CrossfadeSample.toggle = function() {
+  this.playing ? this.stop() : this.play();
+  this.playing = !this.playing;
 };
