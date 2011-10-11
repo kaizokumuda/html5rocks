@@ -1,27 +1,33 @@
-.presentation {
-  background: #778;
-}
+.default {
+  & body {
+    font: 16px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+  }
 
-.slide {
-  @mixin bgGradient(#fff, #bbd, #eee) borderRadius(20px, 0, 10px) transitionSingle(margin, 0.25s, ease-in-out);
-}
+  & .presentation {
+    background: #778;
+  }
 
-header, section, footer, .css, .js, .html {
-  font-family: "Arial";
-}
+  & .slide {
+    @mixin bgGradient(#fff, #bbd, #eee) borderRadius(20px, 0, 10px) 
+  }
 
-header {
-  color: black;
-}
+  & header, section, footer, .css, .js, .html {
+    font-family: "Droid Sans", Arial;
+  }
 
-pre {
-  font-family: "Droid Sans Mono", Courier;
-  background: rgba(255, 0, 0, 0.05);
-  border-radius: 8px;
-  border: 1px solid rgba(255, 0, 0, 0.2);
-}
+  & header {
+    color: black;
+  }
 
-.sidebar {
-  background-color: #EEE;
-  border-right: 5px solid #CCD;
+  & pre {
+    font-family: "Droid Sans Mono", Courier;
+    background: rgba(255, 0, 0, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+  }
+
+  & .sidebar {
+    background-color: #EEE;
+    border-right: 5px solid #CCD;
+  }
 }
