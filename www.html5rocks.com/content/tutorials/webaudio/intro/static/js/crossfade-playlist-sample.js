@@ -1,28 +1,11 @@
 var CrossfadePlaylistSample = {
-  FADE_TIME: 2 // Seconds
+  FADE_TIME: 1, // Seconds
+  playing: false
 };
 
 CrossfadePlaylistSample.play = function() {
-  try {
-    context = new webkitAudioContext();
-    this.gainNode = context.createGainNode();
-  }
-  catch(e) {
-    alert("Web Audio API is not supported in this browser");
-  }
-
-  bufferLoader = new BufferLoader(context, [
-      "sounds/br-jam-loop.wav",
-      "sounds/clapping-crowd.wav",
-  ], finishedLoading);
-  bufferLoader.load();
-
   var ctx = this;
-
-  function finishedLoading(bufferList) {
-    // Playback a buffer, scheduling the next buffer to play.
-    playHelper(bufferList[0], bufferList[1]);
-  }
+  playHelper(BUFFERS.jam, BUFFERS.crowd);
 
   function createSource(buffer) {
     var source = context.createBufferSource();
@@ -42,30 +25,33 @@ CrossfadePlaylistSample.play = function() {
   function playHelper(bufferNow, bufferLater) {
     var playNow = createSource(bufferNow);
     var source = playNow.source;
+    ctx.source = source;
     var gainNode = playNow.gainNode;
     var duration = bufferNow.duration;
+    var currTime = context.currentTime;
     // Fade the playNow track in.
-    scheduleGain(gainNode.gain, 0, 0);
-    scheduleGain(gainNode.gain, ctx.FADE_TIME, 1);
+    gainNode.gain.linearRampToValueAtTime(0, currTime);
+    gainNode.gain.linearRampToValueAtTime(1, currTime + ctx.FADE_TIME);
     // Play the playNow track.
     source.noteOn(0);
     // At the end of the track, fade it out.
-    scheduleGain(gainNode.gain, duration - ctx.FADE_TIME, 1);
-    scheduleGain(gainNode.gain, duration, 0);
+    gainNode.gain.linearRampToValueAtTime(1, currTime + duration-ctx.FADE_TIME);
+    gainNode.gain.linearRampToValueAtTime(0, currTime + duration);
     // Schedule a recursive track change with the tracks swapped.
     var recurse = arguments.callee;
-    setTimeout(function() {
-      if (!ctx.shouldStop) {
-        recurse(bufferLater, bufferNow);
-      }
+    ctx.timer = setTimeout(function() {
+      recurse(bufferLater, bufferNow);
     }, (duration - ctx.FADE_TIME) * 1000);
   }
 
-  function scheduleGain(gainAttr, time, value) {
-    gainAttr.linearRampToValueAtTime(value, context.currentTime + time);
-  }
 };
 
 CrossfadePlaylistSample.stop = function() {
-  this.shouldStop = true;
+  clearTimeout(this.timer);
+  this.source.noteOff(0);
+};
+
+CrossfadePlaylistSample.toggle = function() {
+  this.playing ? this.stop() : this.play();
+  this.playing = !this.playing;
 };
