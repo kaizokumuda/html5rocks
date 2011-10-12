@@ -6,6 +6,16 @@
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 })();
 
+// Show header box shadow on scroll.
+var docTop = $('html, body').offset().top;
+$(window).bind('scroll', function(event) {
+  var y = $(this).scrollTop();
+  if ((y - docTop) > 100) {
+   $('header').addClass('scroll');
+  $(this).unbind('scroll', event.handler); // Remove this listen for performance. 
+  }
+});
+
 // Page header pulldowns.
 
 $('#search_show').click(function(){
