@@ -69,23 +69,39 @@
 
   <section>
     <h3>Resources</h3>
-    <dl>
-      <dt><a href="http://www.w3.org/TR/file-upload/">W3C Spec: File</a></dt>
-      <dd>{% trans "This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>." %}</dd>
-      <dt><a href="http://www.w3.org/TR/file-system-api/">W3C Spec: FileSystem APIs</a></dt>
-      <dd>{% trans "This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing files and directories in a sandboxed file system." %}</dd>
-      <dt><a href="http://www.w3.org/TR/file-writer-api/">W3C Spec: FileWriter</a></dt>
-      <dd>{% trans "This W3C specification defines the FileWriter API; which provides an interface for writing to files from web applications." %}</dd>
-      <dt><a href="http://www.w3.org/TR/progress-events/#Progress">W3C Spec: ProgressEvents</a></dt>
-      <dd>{% trans "This W3C specification defines the ProgressEvent; which gives asynchronous updates on the progress of a File read." %}</dd>
-      <dt><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#the-dragevent-and-datatransfer-interfaces">WHATWG Spec: Drag and Drop</a></dt>
-      <dd>{% trans "This whatwg specification defines the native HTML5 drag and drop APIs" %}</dd>
-      <dt><a href="http://hacks.mozilla.org/2009/12/uploading-files-with-xmlhttprequest/">Mozilla Hacks: Interactive file uploads</a></dt>
-      <dd>{% trans "Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files." %}</dd>
-      <dt><a href="https://developer.mozilla.org/En/DragDrop/Drag_Operations">MDC: Drag Operations</a></dt>
-      <dd>{% trans "Reference on the various dragging options that are available in the DnD API" %}</dd>
-      <dt><a href="http://html5doctor.com/native-drag-and-drop/">HTML5 Doctor: Native Drag and Drop</a></dt>
-      <dd>{% trans "Article on using Native Drag and Drop in HTML5. Discusses File drag/drop from desktop." %}</dd>
-    </dl>
+    <ul class="definitions">
+      <li>
+        <a href="http://www.w3.org/TR/file-upload/">W3C Spec: File</a>
+        {% trans "This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>." %}
+      </li>
+      <li>
+        <a href="http://www.w3.org/TR/file-system-api/">W3C Spec: FileSystem APIs</a>
+        {% trans "This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing files and directories in a sandboxed file system." %}
+      </li>
+      <li>
+        <a href="http://www.w3.org/TR/file-writer-api/">W3C Spec: FileWriter</a>
+        {% trans "This W3C specification defines the FileWriter API; which provides an interface for writing to files from web applications." %}
+      </li>
+      <li>
+        <a href="http://www.w3.org/TR/progress-events/#Progress">W3C Spec: ProgressEvents</a>
+        {% trans "This W3C specification defines the ProgressEvent; which gives asynchronous updates on the progress of a File read." %}
+      </li>
+      <li>
+        <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#the-dragevent-and-datatransfer-interfaces">WHATWG Spec: Drag and Drop</a>
+        {% trans "This whatwg specification defines the native HTML5 drag and drop APIs" %}
+      </li>
+      <li>
+        <a href="http://hacks.mozilla.org/2009/12/uploading-files-with-xmlhttprequest/">Mozilla Hacks: Interactive file uploads</a>
+        {% trans "Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files." %}
+      </li>
+      <li>
+        <a href="https://developer.mozilla.org/En/DragDrop/Drag_Operations">MDC: Drag Operations</a>
+        {% trans "Reference on the various dragging options that are available in the DnD API" %}
+      </li>
+      <li>
+        <a href="http://html5doctor.com/native-drag-and-drop/">HTML5 Doctor: Native Drag and Drop</a>
+        {% trans "Article on using Native Drag and Drop in HTML5. Discusses File drag/drop from desktop." %}
+      </li>
+    </ul>
   </section>
 {% endblock %}

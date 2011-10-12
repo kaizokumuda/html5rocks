@@ -1631,9 +1631,10 @@ article.content figcaption
   width: 280px;
 }
 
-article.content dl
+article.content section ul.definitions
 {
   line-height: 1.5;
+  list-style: none;
   margin: 1em 0 0;
   padding: 0;
   -moz-column-count: 2;
@@ -1644,31 +1645,31 @@ article.content dl
   column-gap: 20px;
 }
 
-article.content dt
+article.content section ul.definitions li
 {
+  margin: 0;
+  padding: 0;
   font-size: 14px;
-  font-weight: 600;
   -moz-column-break-after: avoid;
   -webkit-column-break-after: avoid;
   column-break-after: avoid;
 }
 
-article.content dt + dt,
-article.content dd
+article.content section ul.definitions li + li,
+article.content section ul.definitions li
 {
   margin: 0 0 1.25em;
   padding: 0;
-  -moz-column-break-before: avoid;
-  -webkit-column-break-before: avoid;
-  column-break-before: avoid;
   -moz-column-break-inside: avoid;
   -webkit-column-break-inside: avoid;
   column-break-inside: avoid;
 }
 
-article.content dt + dt
+article.content section ul.definitions li strong:after,
+article.content section ul.definitions li a:after
 {
-  margin-top: 1.25em;
+  content: "\A";
+  white-space: pre;
 }
 
 article.content ul
