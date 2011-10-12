@@ -73,7 +73,7 @@ class ContentHandler(webapp.RequestHandler):
       return ''
 
     toc = memcache.get('toc|%s' % path)
-    if toc is None or self.request.cache == False:
+    if toc is None or not self.request.cache:
       template_text = template.render(path, {});
       parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("dom"))
       dom_tree = parser.parse(template_text)
@@ -101,7 +101,7 @@ class ContentHandler(webapp.RequestHandler):
 
   def get_feed(self, path):
     articles = memcache.get('feed|%s' % path)
-    if articles is None or self.request.cache == False:
+    if articles is None or not self.request.cache:
       template_text = template.render(path, {});
       parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("dom"))
       dom_tree = parser.parse(template_text)
@@ -228,6 +228,12 @@ class ContentHandler(webapp.RequestHandler):
 
   def get(self, relpath):
 
+    # Render uncached verion of page with ?cache=1
+    if self.request.get('cache', default_value='1') == '1':
+      self.request.cache = True
+    else:
+      self.request.cache = False
+
     # Handle humans before locale, to prevent redirect to /en/
     # (but still ensure it's dynamic, ie we can't just redirect to a static url)
     if (relpath == 'humans.txt'):
@@ -243,7 +249,7 @@ class ContentHandler(webapp.RequestHandler):
 
     elif (relpath == 'database/new'):
       # adds a new author information into DataStore
-      return self.render(data={'author_form': common.AuthorForm() },
+      return self.render(data={'author_form': common.AuthorForm()},
                          template_path='database/author_new.html',
                          relpath=relpath)
 
@@ -259,11 +265,6 @@ class ContentHandler(webapp.RequestHandler):
     locale = self.get_language()
     if not locale:
       return self.redirect( "/en/%s" % relpath, permanent=True)
-
-    if self.request.get('cache', '1') == '0':
-      self.request.cache = False
-    else:
-      self.request.cache = True
 
     basedir = os.path.dirname(__file__)
 
