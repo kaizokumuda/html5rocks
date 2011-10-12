@@ -30,7 +30,7 @@
     <link href="styles/presentation.excss" rel="stylesheet" type="text/excss" media="screen" />
     <link href="styles/common.excss" rel="stylesheet" type="text/excss" media="screen" />
     <link class="theme" href="styles/default.excss" rel="stylesheet" type="text/excss" media="screen" />
-    <link class="theme" href="styles/moon.excss" rel="stylesheet" type="text/excss" media="screen"/>
+    <link class="theme" href="styles/moon.excss" rel="stylesheet" type="text/excss" media="screen" />
     <link class="theme" href="styles/sand.excss" rel="stylesheet" type="text/excss" media="screen"/>
     <link class="theme" href="styles/sea_wave.excss" rel="stylesheet" type="text/excss" media="screen"/>
   </head>
@@ -47,9 +47,8 @@
         <button type="checkbox" data-command="help" title="View Help">?</button>
       </menu>
     </nav>
-    <div class="presentation">
+    <div class="slides">
       <div id="presentation-counter">Loading...</div>
-      <div class="slides">
         <div class="slide" id="landing-slide">
           <section class="middle">
             <p>This presentation is an HTML5 website</p>
@@ -97,6 +96,7 @@
         <div class="slide" id="timeline-slide">
           <header>Rough Timeline of Web Technologies</header>
           <section>
+
             <ul id="timeline">
               <li data-auto><span class="year">1991</span> <span class="html">HTML</span></li>
               <li data-auto><span class="year">1994</span> <span class="html">HTML 2</span></li>
@@ -171,7 +171,7 @@ textarea.value = window.<b>localStorage</b>.<b>getItem</b>('value');
                   area.value = window.localStorage.getItem('value');
                 }
                 updateLog(false);
-  
+
                 // your content will be saved locally
                 document.querySelector('#save-ta').addEventListener('click', function () {
                   window.localStorage.setItem('value', area.value);
@@ -290,7 +290,7 @@ db.<b>transaction</b>(function(tx) {
                       onError);
                 });
               }
-              
+
               return {
                 newRecord: newRecord,
                 createTable: createTable,
@@ -304,8 +304,8 @@ db.<b>transaction</b>(function(tx) {
       </div>
 
       <div class="slide offline-storage" id="indexed-db">
-        <header><span class="js">JS</span> <h1>IndexedDB</h1></header>
-        <section>
+          <header><span class="js">JS</span> <h1>IndexedDB</h1></header>
+          <section>
 <pre>var idbRequest = window.<b>indexedDB</b>.<b>open</b>('Database Name');
 idbRequest.onsuccess = function(event) {
   <b>var db = event.srcElement.result</b>;
@@ -376,7 +376,7 @@ idbRequest.onsuccess = function(event) {
                             cursor.key, '\', this)">', cursor.value, '</span>&nbsp; ',
                             '<a href="javascript:void(0)" onclick="indexedDbSample.deleteKey(\'',
                             cursor.key, '\')">[Delete]</a></li>');
-                  cursor.continue();
+                  cursor['continue']();
                 }
                 request.onerror = idbError_;
               }
@@ -436,10 +436,11 @@ idbRequest.onsuccess = function(event) {
                 request.onerror = idbError_;
                 request.onsuccess = function(event) {
                   var value = event.srcElement.result;
-                  if (objectStore.delete) {
-                    var request = objectStore.delete(key);
+                  var request;
+                  if (objectStore['delete']) {
+                    request = objectStore['delete'](key);
                   } else {
-                    var request = objectStore.remove(key);
+                    request = objectStore.remove(key);
                   }
                   request.onerror = idbError_;
                   request.onsuccess = function(event) {
@@ -461,10 +462,11 @@ idbRequest.onsuccess = function(event) {
               function deleteKey_(key) {
                 var transaction = idb_.transaction([], IDBTransaction.READ_WRITE); // Create a transaction that locks the world.
                 var objectStore = transaction.objectStore("myObjectStore");
-                if (objectStore.delete) {
-                  var request = objectStore.delete(key);
+                var request;
+                if (objectStore['delete']) {
+                  request = objectStore['delete'](key);
                 } else {
-                  var request = objectStore.remove(key);
+                  request = objectStore.remove(key);
                 }
                 request.onerror = idbError_;
                 request.onsuccess = idbShow_;
@@ -543,8 +545,7 @@ NETWORK:
 </pre>
 
             <p id="appcache-message">Turn off your internet connection and refresh this page!
-              <img src="src/refresh.png" onclick="window.location.reload();"/>
-            </p>
+              <img src="src/refresh.png" onclick="window.location.reload();"/></p>
           </section>
         </div>
 
@@ -585,7 +586,6 @@ self.<b>onmessage</b> = function(event) {
           </div>
           <p style="font-size: 90%;" class="center">Try dragging the map while the complex route is being calculated (you will only be able to do that with Workers!)</p>
         </div>
-
         <script src="src/webworkers/points.js" defer></script>
         <script src="src/webworkers/annealing.js" defer></script>
         <script defer>
@@ -782,16 +782,17 @@ socket.<b>onclose</b> = function(event) { alert('closed'); }
   window.<b>webkitNotifications</b>.<b>requestPermission</b>();
 }
 </pre>
-            <div id="notifications-message">
-              <p>
-                <button id="request-permission" href="#">Set notification permissions for this page</button>
-              </p>
-              <p>Note: Use this button if you also want to <em>reset</em> the permissions</p>
-              <br>
-              <p>Enter your twitter user name to show your last tweet as a notification</p>
-              <input type="text" id="username" placeholder="username" />
-              <button id="show-tweets">Show tweet notifications</button>
-            </div>
+        <div id="notifications-message">
+          <p>
+            <button id="request-permission" href="#">Set notification permissions for this page</button>
+          </p>
+          <p>Note: Use this button if you also want to <em>reset</em> the permissions</p>
+
+          <br>
+          <p>Enter your twitter user name to show your last tweet as a notification</p>
+          <input type="text" id="username" placeholder="username" />
+          <button id="show-tweets">Show tweet notifications</button>
+        </div>
 
           <script defer>
           document.getElementById('request-permission').addEventListener('click', function() {
@@ -986,6 +987,7 @@ document.querySelector('#dropzone').addEventListener('drop', function(e) {
         <div class="slide device-access" id="desktop-drag-out">
           <header><span class="js">JS</span> <h1>Desktop Drag-Out</h1></header>
           <section id="dnd-section">
+
             <h3>Drag files out onto the desktop:</h3>
 
             <pre>
@@ -1026,6 +1028,7 @@ for (var i = 0, file; file = files[i]; ++i) {
         <div class="slide device-access" id="filewriter">
           <header><span class="js">JS</span> <h1>FileSystem APIs</h1></header>
           <section>
+
             <h3>Asynchronously write a file to a sandboxed file system using JavaScript:</h3>
 
             <pre>
@@ -1378,6 +1381,7 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
 
         <div class="slide semantics" id="new-form-types">
           <header><span class="html">HTML</span> <h1>New form types</h1></header>
+
           <section>
             <pre>
 &lt;style&gt;
@@ -1415,19 +1419,19 @@ Goal is: <progress value="75" max="100">3/4 complete</progress>
 
         <div class="slide semantics" id="form-types-mobile">
           <header><span class="html">HTML</span> <h1>Form field types on mobile</h1></header>
+          <style type="text/css" media="screen">
+            #form-types-mobile div {
+              float: left;
+              width: 24%;
+              padding-right: 1%;
+              text-align: center;
+            }
+            #form-types-mobile img {
+              width: 90%;
+              -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 4px 6px;
+            }
+          </style>          
           <section>
-            <style type="text/css" media="screen">
-              #form-types-mobile div {
-                float: left;
-                width: 24%;
-                padding-right: 1%;
-                text-align: center;
-              }
-              #form-types-mobile img {
-                width: 90%;
-                -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 4px 6px;
-              }
-            </style>
             <div>
 <pre>type="<em>text</em>"</pre>
               <figure>
@@ -1492,7 +1496,7 @@ document.getElementById("video").<b>play</b>();
                 <input type="button" id="mute" onclick="MuteUnMute()" value="Mute" />
               </div>
             </div>
-            
+
             <div id="audio-column" class="center">
               <audio id="audio-clip" width="670" controls>
                 <source src="src/rushus-modal_blues.mp3" type="audio/mpeg" />
@@ -1576,7 +1580,7 @@ document.getElementById("video").<b>play</b>();
 &lt;script&gt;
   var canvasContext = document.getElementById("canvas").<b>getContext</b>("2d");
   canvasContext.<b>fillRect</b>(250, 25, 150, 100);
-  
+
   canvasContext.<b>beginPath</b>();
   canvasContext.<b>arc</b>(450, 110, 100, Math.PI * 1/2, Math.PI * 3/2);
   canvasContext.<b>lineWidth</b> = 15;
@@ -1623,11 +1627,12 @@ document.getElementById("video").<b>play</b>();
             <iframe scrolling="no" _src="src/webgl/san_angeles.html" id="webgl-iframe"></iframe>
           </section>
         </div>
-        
-        
+
+
         <div class="slide effects" id="inline-svg">
           <header><span class="html">HTML</span> <h1>Inline SVG</h1></header>
           <section>
+
             <pre>&lt;html&gt;
   <b>&lt;svg&gt;
     &lt;circle id="myCircle" class="important" cx="50%" cy="50%" r="100" 
@@ -1714,40 +1719,40 @@ document.getElementById("video").<b>play</b>();
   background: white;
 }
 </pre>
-            <div class="example">
-              <div class="row">Row 1</div>
-              <div class="row">Row 2</div>
-              <div class="row">Row 3</div>
-              <div class="row">Row 4</div>
-            </div>
-            <h2>Image-like display</h2>
+            <div class="example"> 
+              <div class="row">Row 1</div> 
+              <div class="row">Row 2</div> 
+              <div class="row">Row 3</div> 
+              <div class="row">Row 4</div> 
+            </div>  
+            <h2>Image-like display</h2> 
             <pre>div {
   display: <b>inline-block</b>;
 }
-</pre>
-          </section>
+</pre> 
+          </section> 
 
-          <section class="right">
-            <h2>Specific attributes</h2>
+          <section class="right"> 
+            <h2>Specific attributes</h2> 
             <pre>input<b>[type="text"]</b> {
   background: #eee;
-}</pre>
+}</pre>          
 
-            <h2>Negation</h2>
+            <h2>Negation</h2> 
             <pre><b>:not</b>(.box) {
-  color: #00c;
-}
+  color: #00c; 
+}            
 <b>:not</b>(span) {
-  display: block;
-}
-</pre>
+  display: block; 
+}  
+</pre> 
 
-            <h2>More specific targetting</h2>
+            <h2>More specific targetting</h2> 
             <pre>h2:<b>first-child</b> { ... }
 
-div.text <b>&gt;</b> div { ... }
-h2 <b>+</b> header { ... }
-</pre>
+div.text <b>&gt;</b> div { ... } 
+h2 <b>+</b> header { ... } 
+</pre>            
           </section>
           <footer><a href="http://www.w3.org/TR/CSS2/selector.html#pattern-matching">CSS2 selectors</a> and <a href="http://www.w3.org/TR/css3-selectors/#selectors">CSS3 selectors</a> introduced some of the ones demonstrated here.</footer>
         </div>
@@ -1756,6 +1761,7 @@ h2 <b>+</b> header { ... }
         <div class="slide styling" id="web-fonts">
           <header><span class="css">CSS</span> <h1>Webfonts</h1></header>
           <section>
+
             <pre><b>@font-face</b> {
   font-family: 'LeagueGothic';
   src: url(LeagueGothic.otf);
@@ -1899,6 +1905,7 @@ header {
         <div class="slide styling" id="css-opacity">
           <header><span class="css">CSS</span> <h1>Opacity</h1></header>
           <section>
+
 <pre>  color: <b>rgba</b>(255, 0, 0, <span id="opacity-color-value">0.75</span>); <input id="opacity-color" type="range" min="0" max="100" value="75" onchange="changeOpacity()">
   background: <b>rgba</b>(0, 0, 255, <span id="opacity-background-value">0.75</span>); <input id="opacity-background" type="range" min="0" max="100" value="75" onchange="changeOpacity()">
 </pre>
@@ -2081,14 +2088,14 @@ header {
             <pre><b>text-shadow</b>: rgba(0, 0, 0, 0.5) 0 <span id="web20-shadow-value-1">0</span>px <span id="web20-shadow-value-2">0</span>px; <input id="web20-shadow" type="range" min="0" max="9" value="0" onchange="changeWeb20(event)">
 
 background: 
-  -<b>webkit-linear-gradient</b>(top, <input id="web20-gradient" type="range" min="0" max="100" value="0" onchange="changeWeb20(event)">
-                   rgba(200, 200, 240, <span id="web20-gradient-value-1">0</span>), rgba(255, 255, 255, <span id="web20-gradient-value-2">0</span>));
+  -<b>webkit-gradient</b>(linear, left top, left bottom, <input id="web20-gradient" type="range" min="0" max="100" value="0" onchange="changeWeb20(event)">
+                   from(rgba(200, 200, 240, <span id="web20-gradient-value-1">0</span>)), to(rgba(255, 255, 255, <span id="web20-gradient-value-2">0</span>)));
 
 <b>border-radius</b>: <span id="web20-border-value">0</span>px; <input id="web20-border" type="range" min="0" max="50" value="0" onchange="changeWeb20(event)">
 
 -webkit-<b>box-reflect</b>: below 10px
-  -webkit-linear-gradient(top, <input id="web20-reflect" type="range" min="0" max="100" value="0" onchange="changeWeb20(event)">
-                   transparent, rgba(255, 255, 255, <span id="web20-reflect-value">0</span>));
+  -webkit-gradient(linear, left top, left bottom, <input id="web20-reflect" type="range" min="0" max="100" value="0" onchange="changeWeb20(event)">
+                   from(transparent), to(rgba(255, 255, 255, <span id="web20-reflect-value">0</span>)));
 </pre>
 
             <div class="example">
@@ -2120,15 +2127,16 @@ background:
               document.getElementById('web20-reflect-value').textContent = reflectVal;
 
               el.style.textShadow = 'rgba(0, 0, 0, 0.5) 0 ' + textShadowVal + 'px ' + textShadowVal + 'px';
-              el.style.background = '-webkit-linear-gradient(top, rgba(200, 200, 240, ' + gradientVal + '), rgba(255, 255, 255, ' + gradientVal + '))';
+              el.style.background = '-webkit-gradient(linear, left top, left bottom, from(rgba(200, 200, 240, ' + gradientVal + ')), to(rgba(255, 255, 255, ' + gradientVal + ')))';
               el.style.borderRadius = borderVal + 'px';
-              el.style.webkitBoxReflect = 'below 10px -webkit-linear-gradient(top, transparent, rgba(255, 255, 255, ' + reflectVal + '))';
+              el.style.webkitBoxReflect = 'below 10px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, ' + reflectVal + ')))';
             }
           </script>
         </div>
 
 
         <div class="slide styling" id="css-background">
+
           <header><span class="css">CSS</span> <h1>Background enhancements</h1></header>
           <section>
             <h2>Background sizing</h2>
@@ -2583,45 +2591,44 @@ window.addEventListener('<em>popstate</em>', function(event) {
           </section>
         </div>
 
-      </div> <!-- slides -->
-      <div id="speaker-note" class="invisible" style="display: none;">
-      </div> <!-- speaker note -->
-      <aside id="help" class="sidebar invisible" style="display: none;">
-        <table>
-          <caption>Help</caption>
-          <tbody>
-            <tr>
-              <th>Move Around</th>
-              <td>&larr;&nbsp;&rarr;</td>
-            </tr>
-            <tr>
-              <th>Source File</th>
-              <td>s</td>
-            </tr>
-            <tr>
-              <th>Change Theme</th>
-              <td>t</td>
-            </tr>
-            <tr>
-              <th>Syntax Highlight</th>
-              <td>h</td>
-            </tr>
-            <tr>
-              <th>Speaker Notes</th>
-              <td>n</td>
-            </tr>
-            <tr>
-              <th>Toggle 3D</th>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th>Help</th>
-              <td>0</td>
-            </tr>
-          </tbody>
-        </table>
-      </aside>
-    </div> <!-- presentation -->
+        <div id="speaker-note" class="invisible" style="display: none;"></div>
+        <aside id="help" class="sidebar invisible" style="display: none;">
+          <table>
+            <caption>Help</caption>
+            <tbody>
+              <tr>
+                <th>Move Around</th>
+                <td>&larr;&nbsp;&rarr;</td>
+              </tr>
+              <tr>
+                <th>Source File</th>
+                <td>s</td>
+              </tr>
+              <tr>
+                <th>Change Theme</th>
+                <td>t</td>
+              </tr>
+              <tr>
+                <th>Syntax Highlight</th>
+                <td>h</td>
+              </tr>
+              <tr>
+                <th>Speaker Notes</th>
+                <td>n</td>
+              </tr>
+              <tr>
+                <th>Toggle 3D</th>
+                <td>3</td>
+              </tr>
+              <tr>
+                <th>Help</th>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </aside>
+
+    </div> <!-- slides -->
 
     <!--[if lt IE 9]>
     <script 

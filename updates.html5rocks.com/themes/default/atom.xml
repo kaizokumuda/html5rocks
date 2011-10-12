@@ -20,9 +20,11 @@
         <updated>{{post.updated_tz|date:"Y-m-d\TH:i:s\Z"}}</updated>
         <published>{{post.published_tz|date:"Y-m-d\TH:i:s\Z"}}</published>
         <author>
-            <name>{{config.author_name}}</name>
+            <name>{{post.author_id}}</name>
             <uri>http://{{config.host}}{{config.url_prefix}}/</uri>
         </author>
+        {% for tag in post.tags %}<category scheme="http://{{config.host}}/atom/ns#" term="{{tag}}" />
+        {% endfor %}
         <content type="html">
             {{post.rendered|escape}}
         </content>

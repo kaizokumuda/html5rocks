@@ -25,6 +25,14 @@ html, body {
   background-color: #8797BC; 
 }
 
+#title img {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 5px;
+  left: -2px;
+}
+
 .new {
   color:red;
   font-size:10px;

@@ -6,6 +6,16 @@
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 })();
 
+// Show header box shadow on scroll.
+var docTop = $('html, body').offset().top;
+$(window).bind('scroll', function(event) {
+  var y = $(this).scrollTop();
+  if ((y - docTop) > 100) {
+   $('header').addClass('scroll');
+  $(this).unbind('scroll', event.handler); // Remove this listen for performance. 
+  }
+});
+
 // Page header pulldowns.
 
 $('#search_show').click(function(){
@@ -55,10 +65,10 @@ $('.subheader.features ul li a').click(function(){
 
 // Page grid navigation.
 
-$('a').click(function(){
-  page = $(this).attr('href').substr($(this).attr('href').indexOf('/')).replace(/\/en\//gi, '').replace(/\/([A-Za-z]+)/gi, '-$1').replace(/\/$/, '').replace(/^-/, '');
+$('a').click(function() {
+  page = $(this).attr('href').substr($(this).attr('href').indexOf('/')).replace(/\/\w{2,3}\//gi, '').replace(/\/([A-Za-z]+)/gi, '-$1').replace(/\/$/, '').replace(/^-/, '');
 
-  $('body').removeClass().addClass(page);
+  $('body').removeClass().attr('data-href', page);
   $('.page').removeClass('current');
 
   if ($('.page#' + page).hasClass('loaded'))

@@ -156,7 +156,9 @@ if (!Function.prototype.bind) {
   var Slide = function(node, idx) {
     this._node = node;
     var note = query('.note > section', node);
-    this._speakerNote = note ? note.innerHTML : '';
+    if (this._speakerNote) {
+      this._speakerNote = note ? note.innerHTML : '';
+    }
     if (idx >= 0) {
       this._count = idx + 1;
     }
@@ -350,7 +352,7 @@ if (!Function.prototype.bind) {
     _speakerNote: query('#speaker-note'),
     _help: query('#help'),
     _slides: [],
-    _themes: queryAll('.theme'),
+    _themes: ['default', 'moon', 'sand', 'sea_wave'],
     _getCurrentIndex: function() {
       var me = this;
       var slideCount = null;
@@ -384,13 +386,15 @@ if (!Function.prototype.bind) {
       }
       var docElem = document.documentElement;
       var elem = document.elementFromPoint( docElem.clientWidth / 2, docElem.clientHeight / 2);
-      if (elem && elem.className != 'presentation') {
+      if (elem && elem.className != 'slides') {
         this._presentationCounter.textContent = currentIndex;
         if (this._menuCounter) {
           this._menuCounter.textContent = currentIndex;          
         }
       }
-      this._speakerNote.innerHTML = this._slides[currentIndex - 1].getSpeakerNote();
+      if (this._speakerNote) {
+        this._speakerNote.innerHTML = this._slides[currentIndex - 1].getSpeakerNote();        
+      }
       if (history.pushState) {
         if (!dontPush) {
           history.pushState(this.current, 'Slide ' + this.current, '#' + this.current);
@@ -414,7 +418,7 @@ if (!Function.prototype.bind) {
       }
     },
     prev: function() {
-      var prev = query('.slide:nth-child(' + (this._getCurrentIndex() - 1) + ')');
+      var prev = query('.slide:nth-child(' + (this._getCurrentIndex()) + ')');
       //this.current = (prev) ? prev.id : this.current;
       this._update((prev) ? prev.id : this.current);
     },
@@ -427,8 +431,10 @@ if (!Function.prototype.bind) {
       if (disableNotes) {
         return;
       }
-      this._speakerNote.style.display = 'block';
-      this._speakerNote.classList.toggle('invisible');
+      if (this._speakerNote) {
+        this._speakerNote.style.display = 'block';
+        this._speakerNote.classList.toggle('invisible');
+      }
     },
     switch3D: function() {
       toggleClass(document.body, 'three-d');
@@ -439,14 +445,10 @@ if (!Function.prototype.bind) {
       sessionStorage['highlightOn'] = !link.disabled;
     },
     changeTheme: function() {
-      var sheetIndex = 0;
-      while (this._themes[sheetIndex].disabled) {
-        sheetIndex++;
-      }
-      this._themes[sheetIndex].disabled = true;
-      var nextSheet = this._themes[(sheetIndex + 1) % this._themes.length];
-      nextSheet.disabled = false;
-      sessionStorage['theme'] = nextSheet.getAttribute('link_href').split('/').pop();
+      var sheetIndex = this._themes.indexOf(sessionStorage['theme']);
+      var nextSheet = this._themes[sheetIndex + 1];
+      document.querySelector('html').className = nextSheet;
+      sessionStorage['theme'] = nextSheet;
     },
     toggleHelp: function() {
       this._help.style.display = 'block';
@@ -525,18 +527,18 @@ if (!Function.prototype.bind) {
 
   // disable style theme stylesheets
   var themeEls = queryAll('.theme');
-  var stylesheetPath = sessionStorage['theme'] || 'default.excss';
+  var stylesheetPath = sessionStorage['theme'] || 'default';
   var found = false;
-  themeEls.forEach( function(stylesheet) {
+  themeEls.forEach(function(stylesheet) {
     var preserved = stylesheet.getAttribute('link_href').indexOf(stylesheetPath) >= 0;
-    stylesheet.disabled = !preserved;
+    // hack. remove when we precompile excss
+    document.querySelector('html').className = stylesheetPath;
     if (preserved) {
       found = true;
     }
   });
   if (!found) {
-    themeEls[0].disabled = false;
-    sessionStorage['theme'] = themeEls[0].getAttribute('link_href').split('/').pop();
+    sessionStorage['theme'] = stylesheetPath;
   }
 
   // Initialize
