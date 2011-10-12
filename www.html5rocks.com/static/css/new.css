@@ -329,6 +329,7 @@ header nav.main ul li
 {
   float: left;
   font-size: 13px;
+  line-height: 1;
 }
 
 header nav.main ul li a
@@ -376,7 +377,7 @@ header h1
 {
   color: #fff;
   cursor: pointer !important;
-  padding: 4px 1em 5px;
+  padding: 5px 1em 5px;
   text-transform: uppercase;
 }
 
