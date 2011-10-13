@@ -183,13 +183,13 @@
   color: #000;
 }
 #latest_articles_feed li a {
-  max-width: 75%;
+  max-width: 73%;
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 #latest_articles_feed li span {
-  width: 30px;
+  width: 35px;
   display: inline-block;
 }
 
