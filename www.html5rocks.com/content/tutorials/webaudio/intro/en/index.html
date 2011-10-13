@@ -50,8 +50,9 @@ instance. This connection doesn't need to be direct, and can go through
 any number of intermediate <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioNode-section">AudioNodes</a> which act as processing
 modules for the audio signal. This <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#ModularRouting-section">routing</a> is described in greater
 detail at the Web Audio <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">specification</a>.</p>
-<p>In most cases, a single <code>AudioContext</code> should be created per page,
-however, multiple instances can be created if needed.</p>
+<p>A single instance of <code>AudioContext</code> can support multiple sound inputs
+and complex audio graphs, so we will only need one of these for each
+audio application we create.</p>
 <p>The following snippet creates an <code>AudioContext</code>:</p>
 <pre class="prettyprint"><code>var context;
 window.addEventListener('load', init, false);
@@ -73,10 +74,10 @@ AudioNodes and decoding audio file data are methods of <code>AudioContext</code>
 <p>The Web Audio API uses an AudioBuffer for short- to medium-length
 sounds.  The basic approach is to use <a href="https://developer.mozilla.org/En/XMLHttpRequest/Using_XMLHttpRequest">XMLHttpRequest</a> for
 fetching sound files.</p>
-<p>The API supports loading audio file data in multiple formats, such as WAV, MP3,
-AAC, OGG and <a href="http://en.wikipedia.org/wiki/Audio_file_format">others</a>. Please note that browser support for the
-different formats <a href="http://thebrowsereview.com/2010/html5-audio-tag-and-format-support/">varies</a>. The following snippet demonstrates loading a
-sound sample:</p>
+<p>The API supports loading audio file data in multiple formats, such as
+WAV, MP3, AAC, OGG and <a href="http://en.wikipedia.org/wiki/Audio_file_format">others</a>. Browser support for different
+audio formats <a href="http://thebrowsereview.com/2010/html5-audio-tag-and-format-support/">varies</a>. </p>
+<p>The following snippet demonstrates loading a sound sample:</p>
 <pre class="prettyprint"><code>var dogBarkingBuffer = null;
 var context = new webkitAudioContext();
 
@@ -126,7 +127,7 @@ function playSound(buffer) {
 </code></pre>
 <p>This <code>playSound()</code> function could be called every time somebody presses a key or
 clicks something with the mouse.</p>
-<p>Note that the <code>noteOn(time)</code> function makes it easy to schedule precise sound
+<p>The <code>noteOn(time)</code> function makes it easy to schedule precise sound
 playback for games and other time-critical applications. However, to get
 this scheduling working properly, ensure that your sound buffers are
 pre-loaded.</p>
@@ -175,7 +176,7 @@ function finishedLoading(bufferList) {
 <h2 id="toc-abstract">Dealing with time: playing sounds with rhythm</h2>
 
 <p>The Web Audio API lets developers precisely schedule playback. To
-demonstrate this, let's setup a simple rhythm track. Probably the
+demonstrate this, let's set up a simple rhythm track. Probably the
 most widely known drumkit pattern is the following:</p>
 <p><figure>
 <img alt="drumkit" src="diagrams/drum.png" />
@@ -395,7 +396,7 @@ Quality: <input type="range" min="0" max="1" step="0.01" value="0" onchange="Fil
 <p><a href="js/filter-sample.js">full source code</a></p>
 <p>In general, frequency controls need to be tweaked to work on a
 logarithmic scale since human hearing itself works on the same principle
-(that is A4 is 440hz, and A5 is 880hz). For more details, see the
+(that is, A4 is 440hz, and A5 is 880hz). For more details, see the
 <code>FilterSample.changeFrequency</code> function in the source code link above.</p>
 <p>Lastly, note that the sample code lets you connect and disconnect the
 filter, dynamically changing the AudioContext graph. We can disconnect

@@ -20,8 +20,9 @@ any number of intermediate [AudioNodes][] which act as processing
 modules for the audio signal. This [routing][] is described in greater
 detail at the Web Audio [specification][spec].
 
-In most cases, a single `AudioContext` should be created per page,
-however, multiple instances can be created if needed.
+A single instance of `AudioContext` can support multiple sound inputs
+and complex audio graphs, so we will only need one of these for each
+audio application we create.
 
 The following snippet creates an `AudioContext`:
 
@@ -53,10 +54,11 @@ The Web Audio API uses an AudioBuffer for short- to medium-length
 sounds.  The basic approach is to use [XMLHttpRequest][xhr] for
 fetching sound files.
 
-The API supports loading audio file data in multiple formats, such as WAV, MP3,
-AAC, OGG and [others][formats]. Please note that browser support for the
-different formats [varies][formats2]. The following snippet demonstrates loading a
-sound sample:
+The API supports loading audio file data in multiple formats, such as
+WAV, MP3, AAC, OGG and [others][formats]. Browser support for different
+audio formats [varies][formats2]. 
+
+The following snippet demonstrates loading a sound sample:
 
     var dogBarkingBuffer = null;
     var context = new webkitAudioContext();
@@ -113,7 +115,7 @@ this buffer with a the following code.
 This `playSound()` function could be called every time somebody presses a key or
 clicks something with the mouse.
 
-Note that the `noteOn(time)` function makes it easy to schedule precise sound
+The `noteOn(time)` function makes it easy to schedule precise sound
 playback for games and other time-critical applications. However, to get
 this scheduling working properly, ensure that your sound buffers are
 pre-loaded.
@@ -173,7 +175,7 @@ let's play them back at the same time.
 <h2 id="toc-abstract">Dealing with time: playing sounds with rhythm</h2>
 
 The Web Audio API lets developers precisely schedule playback. To
-demonstrate this, let's setup a simple rhythm track. Probably the
+demonstrate this, let's set up a simple rhythm track. Probably the
 most widely known drumkit pattern is the following:
 
 <figure>
@@ -441,7 +443,7 @@ Quality: <input type="range" min="0" max="1" step="0.01" value="0" onchange="Fil
 
 In general, frequency controls need to be tweaked to work on a
 logarithmic scale since human hearing itself works on the same principle
-(that is A4 is 440hz, and A5 is 880hz). For more details, see the
+(that is, A4 is 440hz, and A5 is 880hz). For more details, see the
 `FilterSample.changeFrequency` function in the source code link above.
 
 Lastly, note that the sample code lets you connect and disconnect the
