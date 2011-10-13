@@ -6,6 +6,7 @@
 {% block pagetitle %}"Offline": What does it mean and why should I care?{% endblock %}
 {% block pagebreadcrumb %}"Offline": What does it mean and why should I care?{% endblock %}
 {% block date %}August 2, 2010{% endblock %}
+{% block updated %}October 13, 2011{% endblock %}
 
 {% block browsersupport %}
 varies
@@ -46,6 +47,8 @@ varies
 <p>Imagine a game. Application caching would retain the initial HTML document, the JavaScript, the CSS, frequently used icons and images for game characters and scenes, and sound samples. Consequently, the next time the user visited the site, it would load immediately. To some extent, regular browser caching will already enable that capability, but browser caches are easily overwritten, whereas application caches are intended to enjoy special status on the user's hard drive, so they can't be displaced just because the user downloaded a large video. In addition, there are APIs to control what's cached and what's not, which is not the same as regular browser caching.</p>
 
 <p>In our game example, visiting the site the second time round would load the site instantly, but what if we wanted to let the user continue playing the game from a previous position, i.e. we'd like to restore the state of the game. The kind of data required is not held in the application cache, because it's user-specific, so this is a job for offline storage. Whenever the user hits save, we upload to the cloud but we also store game data on disk at the same time, i.e. store it offline (for example, we might save the player's health level and the states of all objects and characters inside the game universe). We might even keep a loop running to continuously store the game data offline. That way, the latest changes are still there if the user lost connectivity and had to shut down the browser before they could get online again. It also takes less bandwidth than continuously uploading state to the server, e.g. we might save data locally every 10 seconds, while uploading it only every 5 minutes as a bandwidth-saving measure.</p>
+
+<p><a href="/tutorials/#appcache">Read more</a> about AppCache.</p>
 
 <h2 id="toc-older-storage">Older Offline Storage Techniques</h2>
 
@@ -91,21 +94,25 @@ Browser-specific features are capabilities that are available, but outside the r
 
 <p>On the other hand, Web SQL Database also comes at the cost of complexity. Do you really need a full-blown database in your front-end web client? Do you really want to go through the effort of specifying a schema, and coding up SQL for every data access? Sometimes it's overkill. The other issue is compatibility. For now, Microsoft and Mozilla haven't put it in their plans and don't have any (public) plans to do so. You can still use it if you feel there will be advantages, but unless you only need to target a particular browser which supports it (e.g. a Chrome extension), don't use it in a way that assumes it's definitely present.</p>
 
+<p><a href="/tutorials/#webdatabase">Read more</a> about IndexedDB.</p>
+
 <h3 id="toc-indexedDB">IndexedDB</h3>
 
 <p><a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a> is a nice compromise between Web Storage and Web SQL Database. Like the former, it's relatively simple; and like the latter, it's capable of being very fast. The trick is to take a standard mapping, like LocalStorage, but index on certain fields inside the stored data. So if your game data was a structure including a "level" field, you could tell IndexedDB to index on "level". Consequently, you can make fast queries about game levels; your application won't have to trawl through all the game data structures, because it has a separate list of just the "level" fields. And it has a concept of cursors, so your application can quickly walk through result sets.</p>
 
 <p>As with Web SQL Database, you also have transactions available to protect against race conditions.</p>
 
-<p>IndexedDB is in a funny state right now; it's not supported on any browser right now, and yet it has all the indications that all the major browsers will support it in the future. One to watch.</p>
+<p><a href="/tutorials/#indexeddb">Read more</a> about IndexedDB.</p>
 
-<h3 id="toc-fileAPI">File API</h3>
+<h3 id="toc-fileAPI">Filesystem API</h3>
 
-<p><a href="http://www.w3.org/TR/FileAPI/">File</a> <a href="http://www.w3.org/TR/file-writer-api/">Storage</a></strong> fills a niche not supported by the other techniques. You get a way to store binary content (as well as plain-text), and a way to store potentially huge data structures. There are separate <a href="http://www.w3.org/TR/FileAPI/">"FileReader"</a> (what some now mean when they say "File API", because it's in the spec of that name) and <a href="http://www.w3.org/TR/file-writer-api/">FileWriter</a> APIs.</p>
+<p><a href="http://dev.w3.org/2009/dap/file-system/file-dir-sys.html">File API: Directories and System</a></strong> fills a niche not supported by the other techniques. It gives you a way to store binary content (as well as plain-text), create folder hierarchies, and a means to store potentially huge data structures. There are separate specifications for its other component APIs: <a href="http://www.w3.org/TR/FileAPI/">FileReader</a> and <a href="http://www.w3.org/TR/file-writer-api/">FileWriter</a>.</p>
 
-<p>File Reader is supported today in Chrome and File Writer should be there soon. A <a href="http://www.w3.org/TR/dap-api-reqs/#file-system">further File System capability</a> may come later, enabling access to an entire directory structure, allowing familiar calls like "create directory" and "delete all files in this directory".</p>
+<p>The Filesystem API is supported today in Chrome, enabling apps to create and access and entire sandbox directory structure.</p>
 
-<p>Use File storage (when it becomes available) to store large chunks of data, e.g. large text documents or even entire movies.</p>
+<p>If you need a directory structure, use this API to store large chunks of data, e.g. large text documents or even entire movies.</p>
+
+<p><a href="/tutorials/#file">Read more</a> about the File APIs.</p>
 
 <h2 id="toc-offline-technologies">How to Use the Offline Technologies</h2>
 
@@ -117,17 +124,14 @@ Browser-specific features are capabilities that are available, but outside the r
 
 <h3>Extracting binary resources</h3>
 
-<p>You will sometimes want to extract binary data from a server so it can be retained locally. You can download regular binary files, e.g. an image sitting on a server, with standard XMLHttpRequest calls, but you need to use the right header. As explained on <a href="https://developer.mozilla.org/en/using_xmlhttprequest">MDC</a>, the trick is to override the MIME type:</p>
-
-<pre class="prettyprint">
-  req.overrideMimeType('text/plain; charset=x-user-defined');
-</pre>
+<p>You will sometimes want to extract binary data from a server so it can be retained locally. You can download binary files very easily with data type improvements made to XMLHttpRequest 2.
+See <a href="/tutorials/file/xhr2/#toc-bin-data">Fetching data</a>.</p>
 
 <p>Note this isn't specifically about offline technologies, but it's a common task that will come up when you're using them. The section below explains how you can store binary data, once you've read it.</p>
 
 <h3 id="toc-binary-data">Storing binary data</h3>
 
-<p>You can store binary data directly or you can convert it to plain text. For direct binary storage, you can either use a Web SQL Database with a column of "BLOB" type or File Writer API, once it lands. Alternatively, you can convert the binary content to plain text using a binary encoding technique. The obvious choice is Base 64, since that's the format commonly used on the net and in HTML5, e.g. it's supported by browsers via data: URIs. When you come read back your base64-encoded content, you'll find you can include it in your web app using a data URI, e.g. <code>image.src = "data:image/jpg;base64," + base64data</code>.</p>
+<p>You can store binary data directly or you can convert it to plain text. For direct binary storage, you can either use a Web SQL Database with a column of "BLOB" type or the File Writer API. Alternatively, you can convert the binary content to plain text using a binary encoding technique. The obvious choice is Base 64, since that's the format commonly used on the net and in HTML5, e.g. it's supported by browsers via data: URIs. When you come read back your base64-encoded content, you'll find you can include it in your web app using a data URI, e.g. <code>image.src = "data:image/jpg;base64," + base64data</code>.</p>
 
 <p>Unfortunately, base64 encoding can be quite slow, so use the techniques described in the next section to ensure the system stays responsive to user events. Alternatively, it might be worthwhile exposing base64-encoded representations right on your server, so your app can download them and directly store them. It will take up a little more space, to the tune of <a href="http://www.phpied.com/uncompressed-data-in-base64-probably-not/">around 30%</a>, but the UI will run faster.</p>
 
@@ -135,7 +139,7 @@ Browser-specific features are capabilities that are available, but outside the r
 
 <p>When dealing with large amounts of data, there's a risk your JavaScript will get so busy processing data, it won't devote any time to the user interface. JavaScript is fundamentally single-threaded, meaning that only one thing happens at a time. If the user clicks a button, for instance, and the system is engaged in a long data activity, the click event will linger on a queue for several seconds and the user will be dismayed. Even longer delays will likely lead to the browser opening a dialog box asking the user if they want to stop the script. Best avoided.</p>
 
-<p>Assuming you can't (or don't want to) reduce the amount of data you're storing, the most important thing you can do is exploit asynchronous APIs. With these APIs, the browser will automatically create a new thread for you, do the work, and then return results back to the main thread. While the other thread is doing the work, your user-interface will keep chugging along nicely in the main thread. If you've made XMLHttpRequest before, you'll already know that it's almost always used in asynchronous mode, so you should do that for any Ajax calls. As for storage, most but not all of the APIs have asynchronous modes. LocalStorage is the exception; it's only synchronous, so large quantities of data I/O may slow things down. Web SQL Database, IndexedDB, and File Writer all (will) have both synchronous and asynchronous mode. You should generally favour asynchronous mode, even if it makes the programming model more complex.</p>
+<p>Assuming you can't (or don't want to) reduce the amount of data you're storing, the most important thing you can do is exploit asynchronous APIs. With these APIs, the browser will automatically create a new thread for you, do the work, and then return results back to the main thread. While the other thread is doing the work, your user-interface will keep chugging along nicely in the main thread. If you've made XMLHttpRequest before, you'll already know that it's almost always used in asynchronous mode, so you should do that for any Ajax calls. As for storage, most but not all of the APIs have asynchronous modes. LocalStorage is the exception; it's only synchronous, so large quantities of data I/O may slow things down. Web SQL Database, IndexedDB, and File Writer all have both synchronous and asynchronous modes. You should generally favour asynchronous mode, even if it makes the programming model more complex.</p>
 
 <p>The other way to do things asynchronously is to use <a href="/tutorials/workers/basics/">WebWorkers</a>, a way to introduce new threads into your JavaScript, with your own code running in the derivative thread. However, there are some major limitations; the storage APIs generally won't work inside a Worker thread, and messages passed in and out of Workers can take a long time; I've found transferring several MB to and from a worker will take several seconds and lock up the user interface. So only use WebWorkers if you can't achieve the same thing with an aysnchronous storage call. The situation will improve as more browsers support SharedWorkers, which have less limitations (though more complexity for the developer to deal with).</p>
 
@@ -151,13 +155,14 @@ Browser-specific features are capabilities that are available, but outside the r
 
 <h3 id="toc-detect-offline">Detecting if you're online</h3>
 
-<p>There's an HTML5 API to let you query if a browser is online: <code>navigator.onLine()</code>. It works on recent IE, Firefox, and Opera, with Chrome support <a href="http://code.google.com/p/chromium/issues/detail?id=7469#c7">coming soon</a>. You can also catch events using <tt>document.body.addEventListener("online", function () {...}</tt> and <tt>document.body.addEventListener("offline", function () {...}</tt>.</p>
+<p>There's an HTML5 API to let you query if a browser is online: <code>navigator.onLine()</code>. It works on recent IE, Firefox, Opera, and Chrome. You can also listen for these online/offline events using <code>document.body.addEventListener("online", function () {...}</code> and <code>document.body.addEventListener("offline", function () {...}</code>.</p>
 
 <p>You should generally assume the network is present and make calls as normal. It's only in the event of a server timeout or related error that you should invoke <tt>navigator.online</tt>. Doing so will serve two purposes: (a) you can decide if the error is caused by a network outage versus a server-specific outage, and if it's a network outage, inform the user so they can get back online; (b) you can start watching for the "online" event, and take action when the user's back online.</p>
 
 <h3 id="toc-structure">Structuring file data</h3>
 
-<p>IndexedDB and Web SQL Database support structured data and queries against that structure. So the general guideline would be to use one of those if you're in need of complex queries. But what if you need to store file data? You can use the BLOB type of Web SQL Database, but it's not intended for very large data items and it won't work on all browsers. An alternative is to store the content with File API, while indexing it with IndexedDB or Web SQL Database.</p>
+<p>The Filsystem API is designed for this use case. However, it is currently not supported everywhere.
+Alternatives include IndexedDB and Web SQL Database, which support structured data and queries against those structures. The general guideline would be to use one of those if you're in need of complex queries. But what if you need to store file data? You can use the BLOB type of Web SQL Database, but it's not intended for very large data items and it won't work on all browsers.</p>
 
 <h3 id="toc-compatibility">Ensuring cross-browser compatibility</h3>
 
