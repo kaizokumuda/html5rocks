@@ -117,6 +117,13 @@
           transform: $func($value);
 }
 
+@trait transformTriple(func1, value1, func2, value2, func3, value3) {
+  -webkit-transform: $func1($value1) $func2($value2) $func3($value3);
+     -moz-transform: $func1($value1) $func2($value2) $func3($value3);
+       -o-transform: $func1($value1) $func2($value2) $func3($value3);
+          transform: $func1($value1) $func2($value2) $func3($value3);
+}
+
 /* Selectors */
 body, html, .slides {
   width: 100%;
@@ -263,10 +270,7 @@ body {
   z-index: 8;
   display: block;
   opacity: 0;
-  -webkit-transform: translateZ(-600px) rotateY(-180deg) translateZ(600px);
-  -moz-transform: translateZ(-600px) rotateY(-180deg) translateZ(600px);
-  -o-transform: translateZ(-600px) rotateY(-180deg) translateZ(600px);
-  transform: translateZ(-600px) rotateY(-180deg) translateZ(600px);
+  @mixin transformTriple(translateZ, -600px, rotateY, -180deg, translateZ, 600px);
 }
 
 .slide.past {
@@ -274,10 +278,7 @@ body {
   visibility: visible;
   display: block;
   opacity: 0;
-  -webkit-transform: translateZ(-600px) rotateY(-90deg) translateZ(600px);
-  -moz-transform: translateZ(-600px) rotateY(-90deg) translateZ(600px);
-  -o-transform: translateZ(-600px) rotateY(-90deg) translateZ(600px);
-  transform: translateZ(-600px) rotateY(-90deg) translateZ(600px);
+  @mixin transformTriple(translateZ, -600px, rotateY, -90deg, translateZ, 600px);
 }
 
 .slide.current {
@@ -285,10 +286,7 @@ body {
   visibility: visible;
   display: block;
   opacity: 1;
-  -webkit-transform: translateZ(-600px) rotateY(0deg) translateZ(600px);
-  -moz-transform: translateZ(-600px) rotateY(0deg) translateZ(600px);
-  -o-transform: translateZ(-600px) rotateY(0deg) translateZ(600px);
-  transform: translateZ(-600px) rotateY(0deg) translateZ(600px);
+  @mixin transformTriple(translateZ, -600px, rotateY, 0deg, translateZ, 600px);
 }
 
 .slide.future {
@@ -296,28 +294,19 @@ body {
   visibility: visible;
   display: block;  
   opacity: 0;
-  -webkit-transform: translateZ(-600px) rotateY(90deg) translateZ(600px);
-  -moz-transform: translateZ(-600px) rotateY(90deg) translateZ(600px);
-  -o-transform: translateZ(-600px) rotateY(90deg) translateZ(600px);
-  transform: translateZ(-600px) rotateY(90deg) translateZ(600px);
+  @mixin transformTriple(translateZ, -600px, rotateY, 90deg, translateZ, 600px);
 }
 
 .slide.far-future {
   z-index: 8;
   display: block;
   opacity: 0;
-  -webkit-transform: translateZ(-600px) rotateY(180deg) translateZ(600px);
-  -moz-transform: translateZ(-600px) rotateY(180deg) translateZ(600px);
-  -o-transform: translateZ(-600px) rotateY(180deg) translateZ(600px);
-  transform: translateZ(-600px) rotateY(180deg) translateZ(600px);
+  @mixin transformTriple(translateZ, -600px, rotateY, 180deg, translateZ, 600px);
 }
 
 body.three-d {
   & .slides {
-    -webkit-transform: translateX(50px) scale(0.8) rotateY(10deg);
-    -moz-transform: translateX(50px) scale(0.8) rotateY(10deg);
-    -o-transform: translateX(50px) scale(0.8) rotateY(10deg);
-    transform: translateX(50px) scale(0.8) rotateY(10deg);
+    @mixin transformTriple(translateX, 50px, scale, 0.8, rotateY, 10deg);
   }
   & .presentation {
     -webkit-tranform-style: preserve-3d;
