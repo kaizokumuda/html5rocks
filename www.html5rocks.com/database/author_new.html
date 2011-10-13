@@ -4,21 +4,21 @@
 
 {% block head %}
 <style>
-  input[required] {
-    border-color: #88a;
-    -webkit-box-shadow: 0 0 1px rgba(0, 0, 255, 0.5);
-    -moz-box-shadow: 0 0 1px rgba(0, 0, 255, 0.5);
-    -o-box-shadow: 0 0 1px rgba(0, 0, 255, 0.5);
-    box-shadow: 0 0 1px rgba(0, 0, 255, 0.5);
+  input[required]:not(:invalid) {
+    border: 1px solid green;
+    -webkit-box-shadow: 0 0 3px green;
+    -moz-box-shadow: 0 0 3px green;
+    -o-box-shadow: 0 0 3px green;
+    box-shadow: 0 0 3px green;
   }
   input:invalid {
-    border-color: #e88;
-    -webkit-box-shadow: 0 0 1px rgba(255, 0, 0, 0.8);
-    -moz-box-shadow: 0 0 1px rgba(255, 0, 0, 0.8);
-    -o-box-shadow: 0 0 1px rgba(255, 0, 0, 0.8);
-    box-shadow: 0 0 1px rgba(255, 0, 0, 0.8);
+    border: 1px solid #e88;
+    -webkit-box-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
+    -o-box-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
+    box-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
   }
-  input[type="submit"] {
+  input[type='submit'] {
     margin: 15px auto 25px;
     padding: 2px 14px;
   }
@@ -27,13 +27,23 @@
 
 {% block body %}
 <div>
-  <h2>Add a new author information:</h2>
+  <h2>Add a new author:</h2>
   <form name="author_form" method="POST" action="/database/submit">
     <table>
-      <tr><th><label for="id_key_name">key_name:</label></th><td><input type="text" name="key_name" id="id_key_name" required /></td></tr>
+      <!--<tr><th><label for="id_key_name">key_name:</label></th><td><input type="text" name="key_name" id="id_key_name" required /></td></tr>-->
       {{ author_form }}
+      <tr><th><label for="id_lat">lat:</label></th><td><input type="text" name="lat" id="id_lat" required /></td></tr>
+      <tr><th><label for="id_lon">lon:</label></th><td><input type="text" name="lon" id="id_lon" required /></td></tr>
       <tr><td colspan="2" style="text-align: center;"><input type="submit" /></td></tr>
     </table>
   </form>
 </div>
+
+<p>Authors:</p>
+<ol>
+{% for profile in sorted_profiles %}
+<li>{{profile.given_name}} {{profile.family_name}} ({{profile.id}}) - {% firstof profile.org %}, {% firstof profile.unit %}</li>
+{% endfor %}
+</ol>
+
 {% endblock %}

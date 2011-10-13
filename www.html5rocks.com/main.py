@@ -23,7 +23,6 @@ import datetime
 import logging
 import os
 import re
-import yaml
 
 # Libraries
 import html5lib
@@ -54,6 +53,7 @@ import common
 template.register_template_library('templatetags.templatefilters')
 
 class ContentHandler(webapp.RequestHandler):
+
   def get_language(self):
     lang_match = re.match("^/(\w{2,3})(?:/|$)", self.request.path)
     self.locale = lang_match.group(1) if lang_match else settings.LANGUAGE_CODE
@@ -206,25 +206,33 @@ class ContentHandler(webapp.RequestHandler):
   def post(self, relpath):
     if (relpath == 'database/submit'):
       try:
-        sample = common.Author(key_name = self.request.get('key_name'),
-                               given_name = self.request.get('given_name'),
-                               family_name = self.request.get('family_name'),
-                               org = self.request.get('org'),
-                               unit = self.request.get('unit'),
-                               city = self.request.get('city'),
-                               state = self.request.get('state'),
-                               country = self.request.get('country'),
-                               geo_location = self.request.get('geo_location') or None,
-                               homepage = self.request.get('homepage') or None,
-                               google_account = self.request.get('google_account') or None,
-                               twitter_account = self.request.get('twitter_account') or None,
-                               email = self.request.get('email') or None,
-                               lanyrd = self.request.get('lanyrd') == 'on')
-        sample.put()
+        given_name = self.request.get('given_name')
+        family_name = self.request.get('family_name')
+        author = common.Author(
+            key_name=''.join([given_name, family_name]).lower(),
+            given_name=given_name,
+            family_name=family_name,
+            org=self.request.get('org'),
+            unit=self.request.get('unit'),
+            city=self.request.get('city'),
+            state=self.request.get('state'),
+            country=self.request.get('country'),
+            homepage=self.request.get('homepage') or None,
+            google_account=self.request.get('google_account') or None,
+            twitter_account=self.request.get('twitter_account') or None,
+            email=self.request.get('email') or None,
+            lanyrd=self.request.get('lanyrd') == 'on')
+        lat = self.request.get('lat')
+        lon = self.request.get('lon')
+        if lat and lon:
+          author.geo_location = db.GeoPt(float(lat), float(lon))
+        author.put()
       except db.Error:
         pass
       else:
-        return self.redirect('/database/edit')
+        #return self.redirect('/database/edit')
+        self.redirect('/database/new')
+
 
   def get(self, relpath):
 
@@ -238,8 +246,9 @@ class ContentHandler(webapp.RequestHandler):
     # (but still ensure it's dynamic, ie we can't just redirect to a static url)
     if (relpath == 'humans.txt'):
       self.response.headers['Content-Type'] = 'text/plain'
-      return self.render(data={'sorted_profiles': common.get_sorted_profiles(),
-                               'profile_amount': common.get_profile_amount() },
+      sorted_profiles = common.get_sorted_profiles()
+      return self.render(data={'sorted_profiles': sorted_profiles,
+                               'profile_amount': len(sorted_profiles)},
                          template_path='content/humans.txt',
                          relpath=relpath)
 
@@ -249,22 +258,26 @@ class ContentHandler(webapp.RequestHandler):
 
     elif (relpath == 'database/new'):
       # adds a new author information into DataStore
-      return self.render(data={'author_form': common.AuthorForm()},
+      template_data = {
+        'sorted_profiles': common.get_sorted_profiles(update_cache=True),
+        'author_form': common.AuthorForm()
+      }
+      return self.render(data=template_data,
                          template_path='database/author_new.html',
                          relpath=relpath)
 
-    elif (relpath == 'database/edit'):
-      if common.PROD:
-        datastore_console_url = 'https://appengine.google.com/datastore/admin?&app_id=%s&version_id=%s' % (os.environ['APPLICATION_ID'], os.environ['CURRENT_VERSION_ID'])
-      else:
-        datastore_console_url = 'http://%s/_ah/admin/datastore' % os.environ['HTTP_HOST']
+    #elif (relpath == 'database/edit'):
+    #  if common.PROD:
+    #    datastore_console_url = 'https://appengine.google.com/datastore/admin?&app_id=%s&version_id=%s' % (os.environ['APPLICATION_ID'], os.environ['CURRENT_VERSION_ID'])
+    #  else:
+    #    datastore_console_url = 'http://%s/_ah/admin/datastore' % os.environ['HTTP_HOST']
 
-      return self.redirect(datastore_console_url, permanent=True)
+    #  return self.redirect(datastore_console_url, permanent=True)
 
     # Get the locale: if it's "None", redirect to English
     locale = self.get_language()
     if not locale:
-      return self.redirect( "/en/%s" % relpath, permanent=True)
+      return self.redirect("/en/%s" % relpath, permanent=True)
 
     basedir = os.path.dirname(__file__)
 
@@ -302,7 +315,7 @@ class ContentHandler(webapp.RequestHandler):
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
       # Setup caching layer for this file i/o.
-      self.render(data={'sorted_profiles': common.get_sorted_profiles() },
+      self.render(data={'sorted_profiles': common.get_sorted_profiles()},
                   template_path='content/profiles.html', relpath=relpath)
 
     elif re.search('tutorials/casestudies', relpath) and not is_feed:
@@ -421,6 +434,7 @@ class ContentHandler(webapp.RequestHandler):
                            city = u'Oakland', state = u'California', country = u'USA',
                            geo_location = '37.8043637,-122.2711137')
     sample.put()
+
 
 def main():
   application = webapp.WSGIApplication([

@@ -1,5 +1,4 @@
 import os
-import yaml
 import logging
 
 from google.appengine.api import memcache
@@ -12,32 +11,34 @@ if 'SERVER_SOFTWARE' in os.environ:
 else:
   PROD = True
 
-def get_profiles():
+def get_profiles(update_cache=False):
   profiles = memcache.get('profiles')
-  if profiles is None:
+  if profiles is None or update_cache:
+    profiles = {}
+    authors = Author.all()
 
-    profiles = dict()
-    query = Author.all()
-
-    for profile in query:
-      id = profile.key().name()
-      profiles[id] = profile
-      profiles[id].id = id
+    for author in authors:
+      author_id = author.key().name()
+      profiles[author_id] = author.to_dict()
+      profiles[author_id]['id'] = author_id
 
     memcache.set('profiles', profiles)
 
   return profiles
 
-def get_sorted_profiles():
-  return sorted(get_profiles().values(),
-                key=lambda profile:profile.family_name)
+def get_sorted_profiles(update_cache=False):
+  return sorted(get_profiles(update_cache).values(),
+                key=lambda profile:profile['family_name'])
 
-def get_profile_amount():
-  return len(get_profiles())
 
-class Author(db.Model):
-  """Container for author information.
-  """
+class DictModel(db.Model):
+  def to_dict(self):
+    #unicode(getattr(self, p)) if p is not None else None
+    return dict([(p, getattr(self, p)) for p in self.properties()])
+
+
+class Author(DictModel):
+  """Container for author information."""
 
   given_name = db.StringProperty(required=True)
   family_name = db.StringProperty(required=True)
@@ -53,9 +54,12 @@ class Author(db.Model):
   email = db.EmailProperty()
   lanyrd = db.BooleanProperty(default=False)
 
+
 class AuthorForm(djangoforms.ModelForm):
   class Meta:
     model = Author
+    # exlucde geo_location field from form. Handle lat/lon separately
+    exclude = ['geo_location']
 
   def __init__(self, *args, **keyargs):
     super(AuthorForm, self).__init__(*args, **keyargs)
