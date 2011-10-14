@@ -5,10 +5,13 @@ CACHE:
 
 /static/js/prettify.min.js
 /static/js/profiles.min.js
-/static/js/modernizr-1.7.min.js
+/static/js/modernizr.custom.50849.js
+/static/js/feature.min.js
 
 /static/css/base.min.css
+/static/css/feature.min.css
 /static/css/mobile.min.css
+/static/css/profiles.min.css
 /static/css/index_page.min.css
 /static/css/index_page_mobile.min.css
 /static/css/samples_index.min.css
@@ -28,9 +31,5 @@ FALLBACK:
 
 NETWORK:
 *
-# Tue Jun 14 14:00:17 PDT 2011
-# Tue Jun 14 14:01:26 PDT 2011
-# Mon Jun 20 18:01:19 PDT 2011
-# Wed Oct 5 19:46:25 PDT 2011
-# Wed Oct 5 19:53:15 PDT 2011
-# Wed Oct 5 22:27:21 PDT 2011
+
+# Thu Oct 13 16:23:38 PDT 2011

@@ -1,29 +1,28 @@
-Before the HTML5 `<audio>` element, flash or another plugin was required
-to break the silence of the web. While the audio tag no longer requires a
-plugin, it brings significant limitations for implementing sophisticated
-games and interactive applications.
+Before the HTML5 `<audio>` element, Flash or another plugin was required
+to break the silence of the web. While audio on the web no longer
+requires a plugin, the audio tag brings significant limitations for
+implementing sophisticated games and interactive applications.
 
 The Web Audio API is a high-level JavaScript API for processing and
 synthesizing audio in web applications. The goal of this API is to
-include capabilities found in modern game audio engines as well as some
-of the mixing, processing, and filtering tasks that are found in modern
-desktop audio production applications.
+include capabilities found in modern game audio engines and some of the
+mixing, processing, and filtering tasks that are found in modern desktop
+audio production applications. What follows is a gentle introduction to
+using this powerful API.
 
-As of version 14, Google Chrome ships with a Web Audio API
-implementation. More recently, the Safari WebKit nightly build also
-supports it. What follows is a gentle introduction to using this
-powerful API.
+<h2 id="toc-context">Getting started with the AudioContext</h2>
 
-<h2 id="toc-context">The AudioContext</h2>
+An [AudioContext][] is for managing and playing all sounds. To produce
+a sound using the Web Audio API, create one or more sound sources
+and connect them to the sound destination provided by the `AudioContext`
+instance. This connection doesn't need to be direct, and can go through
+any number of intermediate [AudioNodes][] which act as processing
+modules for the audio signal. This [routing][] is described in greater
+detail at the Web Audio [specification][spec].
 
-An [AudioContext][] is used for managing and playing all sounds. In most cases a
-single AudioContext is created per page.
-
-To produce a sound using the Web Audio API, you create one or more sound
-sources and connect them to the sound destination provided by the AudioContext.
-This connection doesn't need to be direct, and can instead go through
-any number of intermediate [AudioNodes][]. This [routing][] is described in
-greater detail at the Web Audio [specification][spec].
+A single instance of `AudioContext` can support multiple sound inputs
+and complex audio graphs, so we will only need one of these for each
+audio application we create.
 
 The following snippet creates an `AudioContext`:
 
@@ -38,13 +37,11 @@ The following snippet creates an `AudioContext`:
       }
     }
 
-One thing to note in the above snippet is that for the WebKit
-implementation, the `'webkit'` prefix is used when creating the
-`AudioContext`. Also, we should be careful not to try to execute Web Audio
-code on a browser that doesn't support it.
+For WebKit-based browsers, use the `webkit` prefix, as with
+`webkitAudioContext`.
 
 Many of the interesting Web Audio API functionality such as creating
-AudioNodes and decoding audio file data are methods of the `AudioContext`.
+AudioNodes and decoding audio file data are methods of `AudioContext`.
 
 [AudioContext]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioContext-section
 [AudioNodes]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioNode-section
@@ -53,11 +50,14 @@ AudioNodes and decoding audio file data are methods of the `AudioContext`.
 
 <h2 id="toc-load">Loading sounds</h2>
 
-The Web Audio API uses an AudioBuffer for short to medium length sounds.
-The basic approach is to use `XMLHttpRequest` for fetching sound files.
+The Web Audio API uses an AudioBuffer for short- to medium-length
+sounds.  The basic approach is to use [XMLHttpRequest][xhr] for
+fetching sound files.
 
-The API supports loading audio file data in multiple formats, such as WAV, MP3,
-AAC, or OGG. Please note that browser support for the different formats varies.
+The API supports loading audio file data in multiple formats, such as
+WAV, MP3, AAC, OGG and [others][formats]. Browser support for different
+audio formats [varies][formats2]. 
+
 The following snippet demonstrates loading a sound sample:
 
     var dogBarkingBuffer = null;
@@ -77,19 +77,19 @@ The following snippet demonstrates loading a sound sample:
       request.send();
     }
 
-The audio file data is binary (not text) so we set the `responseType` of the
-request to `'arraybuffer'`. For more information about `ArrayBuffers`,
-see this [article about XHR2][xhr2].
+The audio file data is binary (not text), so we set the `responseType`
+of the request to `'arraybuffer'`. For more information about
+`ArrayBuffers`, see this [article about XHR2][xhr2].
 
-Once the (undecoded) audio file data has been received, it can be kept around
-for later decoding, or more normally, it can be decoded right away using the
-AudioContext `decodeAudioData()` method. This method takes the `ArrayBuffer` of
-audio file data stored in `request.response` and decodes it asynchronously (not
-blocking the main JavaScript execution).
+Once the (undecoded) audio file data has been received, it can be kept
+around for later decoding, or it can be decoded right away using the
+AudioContext `decodeAudioData()` method. This method takes the
+`ArrayBuffer` of audio file data stored in `request.response` and
+decodes it asynchronously (not blocking the main JavaScript execution
+thread).
 
-When `decodeAudioData()` is finished it calls a callback function which
+When `decodeAudioData()` is finished, it calls a callback function which
 provides the decoded PCM audio data as an `AudioBuffer`.
-
 
 <h2 id="toc-play">Playing sounds</h2>
 
@@ -98,11 +98,10 @@ provides the decoded PCM audio data as an `AudioBuffer`.
 <figcaption>A simple audio graph</figcaption>
 </figure>
 
-Once one or more `AudioBuffers` are loaded then we're ready to play sounds. Let's
-assume we've just loaded an `AudioBuffer` with the sound of a dog barking and
-that the loading has finished.
-
-Then we can play this buffer with a the following code.
+Once one or more `AudioBuffers` are loaded, then we're ready to play
+sounds. Let's assume we've just loaded an `AudioBuffer` with the sound
+of a dog barking and that the loading has finished. Then we can play
+this buffer with a the following code.
 
     var context = new webkitAudioContext();
 
@@ -116,24 +115,28 @@ Then we can play this buffer with a the following code.
 This `playSound()` function could be called every time somebody presses a key or
 clicks something with the mouse.
 
-Note that the `noteOn(time)` function makes it easy to schedule precise sound
+The `noteOn(time)` function makes it easy to schedule precise sound
 playback for games and other time-critical applications. However, to get
 this scheduling working properly, ensure that your sound buffers are
 pre-loaded.
 
 [simple-graph]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/modular-routing1.png
+[xhr]: https://developer.mozilla.org/En/XMLHttpRequest/Using_XMLHttpRequest
 [xhr2]: http://www.html5rocks.com/en/tutorials/file/xhr2/
+[formats]: http://en.wikipedia.org/wiki/Audio_file_format
+[formats2]: http://thebrowsereview.com/2010/html5-audio-tag-and-format-support/
 
 <h2 id="toc-abstract">Abstracting the Web Audio API</h2>
 
-Of course, it would be better to create a more general loading system which
-isn't hard-coded to loading this specific sound. There are many approaches for
-dealing with the many short to medium length sounds that an audio application
-or game would use - here's one way using a [BufferLoader class][BufferLoader].
+Of course, it would be better to create a more general loading system
+which isn't hard-coded to loading this specific sound. There are many
+approaches for dealing with the many short- to medium-length sounds that
+an audio application or game would use–here's one way using a
+[BufferLoader class][BufferLoader].
 
-Here's how the `BufferLoader` class can be used. In this simple example, two
-`AudioBuffers` are created and when they are finished loading, they are played
-back at the same time.
+The following is an example of how you can use the `BufferLoader` class.
+Let's create two `AudioBuffers`; and, as soon as they are loaded,
+let's play them back at the same time.
 
     window.onload = init;
     var context;
@@ -172,7 +175,7 @@ back at the same time.
 <h2 id="toc-abstract">Dealing with time: playing sounds with rhythm</h2>
 
 The Web Audio API lets developers precisely schedule playback. To
-demonstrate this, let's setup a simple rhythm track. Probably the
+demonstrate this, let's set up a simple rhythm track. Probably the
 most widely known drumkit pattern is the following:
 
 <figure>
@@ -180,7 +183,7 @@ most widely known drumkit pattern is the following:
 <figcaption>A simple rock drum pattern</figcaption>
 </figure>
 
-in which a hihat is played every eight note, and kick and snare are
+in which a hihat is played every eighth note, and kick and snare are
 played alternating every quarter, in 4/4 time.
 
 Supposing we have loaded the `kick`, `snare` and `hihat` buffers, the
@@ -257,7 +260,7 @@ Volume: <input type="range" min="0" max="100" value="100" onchange="VolumeSample
 <h2 id="toc-xfade">Cross-fading between two sounds</h2>
 
 Now, suppose we have a slightly more complex scenario, where we're
-playing multiple sounds, but want to cross fade between them. This is a
+playing multiple sounds but want to cross fade between them. This is a
 common case in a DJ-like application, where we have two turntables and
 want to be able to pan from one sound source to another.
 
@@ -291,8 +294,8 @@ each source through the nodes, using something like this function:
 
 <h3 id="toc-xfade-ep">Equal power crossfading</h3>
 
-Note that a naive linear crossfade approach will exhibit a volume dip as
-you pan between the samples.
+A naive linear crossfade approach exhibits a volume dip as you pan
+between the samples.
 
 <figure>
 ![linear-crossfade-graph][]
@@ -302,8 +305,8 @@ you pan between the samples.
 To address this issue, we use an equal power curve, in which the
 corresponding gain curves are non-linear, and intersect at a higher
 amplitude. This minimizes volume dips between audio regions, resulting
-in a more even crossfade between regions that may be slightly different
-in level.
+in a more even crossfade between regions that might be slightly
+different in level.
 
 <figure>
 ![equalpower-crossfade-graph][]
@@ -322,11 +325,11 @@ Drums <input type="range" min="0" max="100" value="100" onchange="CrossfadeSampl
 
 Another common crossfader application is for a music player application.
 When a song changes, we want to fade the current track out, and fade the
-new one in, to avoid a jarring transition. To do this, we need to
-schedule a crossfade into the future. While we could use `setTimeout` to
-do this scheduling, this is [quite inaccurate][jstimer]. With the Web
-Audio API, we can use the [AudioParam][] interface to schedule future
-values for parameters such as the gain value of an `AudioGainNode`.
+new one in, to avoid a jarring transition. To do this, schedule a
+crossfade into the future. While we could use `setTimeout` to do this
+scheduling, this is [not precise][jstimer]. With the Web Audio API, we
+can use the [AudioParam][] interface to schedule future values for
+parameters such as the gain value of an `AudioGainNode`.
 
 Thus, given a playlist, we can transition between tracks by scheduling a
 gain decrease on the currently playing track, and a gain increase on the
@@ -405,12 +408,12 @@ Supported types of filters include:
 * All pass filter
 
 And all of the filters include parameters to specify some amount of
-gain, the frequency at which to apply the filter, and a quality factor.
+[gain][], the frequency at which to apply the filter, and a quality factor.
 The low-pass filter keeps the lower frequency range, but discards high
-frequencies. The breakoff point is determined by the frequency value,
-and the Q factor is unitless, and determines the shape of the graph. The
-gain only affects certain filters, such as the low-shelf and peaking
-filters, and not this low-pass filter.
+frequencies. The break-off point is determined by the frequency value,
+and the [Q factor][qfactor] is unitless, and determines the shape of the
+graph. The gain only affects certain filters, such as the low-shelf and
+peaking filters, and not this low-pass filter.
 
 Let's setup a simple low-pass filter to extract only the bases from a
 sound sample:
@@ -440,7 +443,7 @@ Quality: <input type="range" min="0" max="1" step="0.01" value="0" onchange="Fil
 
 In general, frequency controls need to be tweaked to work on a
 logarithmic scale since human hearing itself works on the same principle
-(ie. A4 is 440hz, and A5 is 880hz). For more details, see the
+(that is, A4 is 440hz, and A5 is 880hz). For more details, see the
 `FilterSample.changeFrequency` function in the source code link above.
 
 Lastly, note that the sample code lets you connect and disconnect the
@@ -458,13 +461,15 @@ direct connection, we can do the following:
 
 [BiquadFilterNode]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#BiquadFilterNode-section
 [filter-graph]: diagrams/filter.png
+[gain]: http://en.wikipedia.org/wiki/Gain
+[qfactor]: http://en.wikipedia.org/wiki/Audio_filter#Self_oscillation
 
 <h2 id="toc-further">Further listening</h2>
 
 We've covered the basics of the API, including loading and playing audio
-samples. We've built audio graphs with gain nodes and filters and
+samples. We've built audio graphs with gain nodes and filters, and
 scheduled sounds and audio parameter tweaks to enable some common sound
-effects. At this point you are ready to go and build some sweet web
+effects. At this point, you are ready to go and build some sweet web
 audio applications!
 
 If you are seeking inspiration, many developers have already created
@@ -475,7 +480,7 @@ include:
   SoundCloud permalinks.
 * [ToneCraft][tcraft], a sound sequencer where sounds are created by
   stacking 3D blocks.
-* [Plink][plink], a collaborative music making game using Web Audio and Web
+* [Plink][plink], a collaborative music-making game using Web Audio and Web
   Sockets.
 
 [samples]: http://chromium.googlecode.com/svn/trunk/samples/audio/samples.html

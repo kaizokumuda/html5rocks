@@ -21,9 +21,10 @@ VolumeSample.play = function() {
 
 VolumeSample.changeVolume = function(element) {
   var volume = element.value;
-  var percent = parseInt(element.value) / parseInt(element.max);
-  // Volume is not linear, but exponential. Adjust the control.
-  this.gainNode.gain.value = percent * percent;
+  var fraction = parseInt(element.value) / parseInt(element.max);
+  // Let's use an x*x curve (x-squared) since simple linear (x) does not
+  // sound as good.
+  this.gainNode.gain.value = fraction * fraction;
 };
 
 VolumeSample.stop = function() {
