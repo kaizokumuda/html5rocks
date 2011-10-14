@@ -252,6 +252,10 @@ class ContentHandler(webapp.RequestHandler):
                          template_path='content/humans.txt',
                          relpath=relpath)
 
+    elif (relpath == 'database/load_resources'):
+      self.addResources()
+      return self.redirect('/database/edit')
+
     elif (relpath == 'database/load_author_information'):
       self.addAuthorInformations()
       return self.redirect('/database/edit')
@@ -396,6 +400,19 @@ class ContentHandler(webapp.RequestHandler):
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
+
+  def addResources(self):
+    author_key = common.Author.get_by_key_name(u'hanrui');
+    sample = common.Resource(title = u'A Beginner\'s Guide to Using the Application Cache',
+                             description = u'A beginner\'s guide to using the Application Cache.',
+                             author = author_key,
+                             url = u'tutorials/appcache/beginner/',
+                             browser_support = [u'chrome', u'safari', u'opera'],
+                             update_date = datetime.date(2011, 8, 25),
+                             publication_date = datetime.date(2011, 10, 1),
+                             tags = [u'offline'])
+    sample.put()
+
 
   def addAuthorInformations(self):
     sample = common.Author(key_name = 'hanrui', given_name = u'Hanrui', family_name = u'Gao',

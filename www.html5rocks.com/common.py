@@ -67,3 +67,16 @@ class AuthorForm(djangoforms.ModelForm):
     for field in self.fields:
       if (self.Meta.model.properties()[field].required):
         self.fields[field].widget.attrs['required'] = 'required'
+
+
+class Resource(db.Model):
+  """Container for all kinds of resource."""
+
+  title = db.StringProperty(required=True)
+  description = db.StringProperty()
+  author = db.ReferenceProperty(Author)
+  url = db.StringProperty()
+  browser_support = db.StringListProperty()
+  update_date = db.DateProperty()
+  publication_date = db.DateProperty()
+  tags = db.StringListProperty() #generic tags and html5 feature group tags('offline', 'multimedia', etc.)
