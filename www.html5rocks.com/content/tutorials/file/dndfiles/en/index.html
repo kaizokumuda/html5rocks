@@ -302,8 +302,8 @@ reader.readAsBinaryString(blob);</pre>
     }
 
     var file = files[0];
-    var start = opt_startByte || 0;
-    var stop = opt_stopByte || file.size - 1;
+    var start = parseInt(opt_startByte) || 0;
+    var stop = parseInt(opt_stopByte) || file.size - 1;
 
     var reader = new FileReader();
 
@@ -316,8 +316,12 @@ reader.readAsBinaryString(blob);</pre>
              ' of ', file.size, ' byte file'].join('');
       }
     };
-    var length =  (stop - start) + 1;
-    var blob = file.slice(start, length);
+
+    if (file.webkitSlice) {
+      var blob = file.webkitSlice(start, stop + 1);
+    } else if (file.mozSlice) {
+      var blob = file.mozSlice(start, stop + 1);
+    }
     reader.readAsBinaryString(blob);
   }
   
@@ -462,7 +466,7 @@ reader.readAsBinaryString(blob);</pre>
   </ul>
 
 <script>
-$ = function(id) { return document.getElementById(id); }
+var get = function(id) { return document.getElementById(id); }
 
 var example1 = example1 || {};
 example1.handleFileSelect = function(evt) {
@@ -474,9 +478,9 @@ example1.handleFileSelect = function(evt) {
                 f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
                 '</li>');
   }
-  $('file_list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  get('file_list').innerHTML = '<ul>' + output.join('') + '</ul>';
 }
-$('files1').addEventListener('change', example1.handleFileSelect, false);
+get('files1').addEventListener('change', example1.handleFileSelect, false);
 
 var example2 = example2 || {};
 example2.onDragOver = function(evt) {
@@ -496,12 +500,12 @@ example2.onDragFileDrop = function(evt) {
                 f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
                 '</li>');
   }
-  $('file_list2').innerHTML = '<ul>' + output.join('') + '</ul>';
+  get('file_list2').innerHTML = '<ul>' + output.join('') + '</ul>';
 }
 
 // Setup the dnd listeners.
-$('drop_zone').addEventListener('dragover', example2.onDragOver, false);
-$('drop_zone').addEventListener('drop', example2.onDragFileDrop, false);
+get('drop_zone').addEventListener('dragover', example2.onDragOver, false);
+get('drop_zone').addEventListener('drop', example2.onDragFileDrop, false);
 
 
 var example3 = example3 || {};
@@ -525,7 +529,7 @@ example3.handleFileSelect = function(evt) {
         var span = document.createElement('span');
         span.innerHTML = ['<img class="thumb" src="', e.target.result,
                           '" title="', theFile.name, '"/>'].join('');
-        $('thumbnails').insertBefore(span, null);
+        get('thumbnails').insertBefore(span, null);
       };
     })(f);
 
@@ -533,30 +537,35 @@ example3.handleFileSelect = function(evt) {
     reader.readAsDataURL(f);
   }
 }
-$('files3').addEventListener('change', example3.handleFileSelect, false);
+get('files3').addEventListener('change', example3.handleFileSelect, false);
 
 var example4 = example4 || {};
 example4.readBlob = function(opt_startByte, opt_stopByte) {
-  var files = $('file4').files;
+  var files = get('file4').files;
   if (!files.length) {
     alert('Please select a file!');
     return;
   }
 
   var file = files[0];
-  var start = opt_startByte || 0;
-  var stop = opt_stopByte || file.size - 1;
+  var start = parseInt(opt_startByte) || 0;
+  var stop = parseInt(opt_stopByte) || file.size - 1;
 
   var reader = new FileReader();
 
   reader.onloadend = function(evt) {
     if (evt.target.readyState == FileReader.DONE) { // DONE == 2
-      $('byte_content').textContent = evt.target.result;
-      $('byte_range').textContent = ['Read bytes: ', start + 1, ' - ', stop + 1,
-                                     ' of ', file.size, ' byte file'].join('');
+      get('byte_content').textContent = evt.target.result;
+      get('byte_range').textContent = ['Read bytes: ', start + 1, ' - ', stop + 1,
+                                       ' of ', file.size, ' byte file'].join('');
     }
   };
-  var blob = file.slice(start, (stop - start) + 1);
+  //var blob = file.slice(start, (stop - start) + 1);
+  if (file.webkitSlice) {
+    var blob = file.webkitSlice(start, stop + 1);
+  } else if (file.mozSlice) {
+    var blob = file.mozSlice(start, stop + 1);
+  }
   reader.readAsBinaryString(blob);
 };
 document.querySelector('.readBytesButtons').addEventListener('click', function(evt) {
@@ -615,20 +624,20 @@ function Example5(id) {
       alert('File read cancelled');
     };
     reader_.onloadstart = function(e) {
-      $('progress_bar').className = 'loading';
+      get('progress_bar').className = 'loading';
     };
     reader_.onload = function(e) {
       // Ensure that the progress bar displays 100% at the end.
       progress_.style.width = '100%';
       progress_.textContent = '100%';
-      setTimeout("$('progress_bar').className='';", 2000);
+      setTimeout("get('progress_bar').className='';", 2000);
     }
 
     // Read in the image file as binary string.
     reader_.readAsBinaryString(evt.target.files[0]);
   };
 
-  $(id).addEventListener('change', self.handleFileSelect, false);
+  get(id).addEventListener('change', self.handleFileSelect, false);
 };
 var example5 = new Example5('file5');
 </script>
