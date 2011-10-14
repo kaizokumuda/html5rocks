@@ -79,4 +79,5 @@ class Resource(db.Model):
   browser_support = db.StringListProperty()
   update_date = db.DateProperty()
   publication_date = db.DateProperty()
-  tags = db.StringListProperty() #generic tags and html5 feature group tags('offline', 'multimedia', etc.)
+  #generic tags and html5 feature group tags('offline', 'multimedia', etc.)
+  tags = db.StringListProperty()

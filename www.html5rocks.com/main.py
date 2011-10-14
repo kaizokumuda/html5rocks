@@ -254,11 +254,11 @@ class ContentHandler(webapp.RequestHandler):
 
     elif (relpath == 'database/load_resources'):
       self.addResources()
-      return self.redirect('/database/edit')
+      return self.redirect('/database/new')
 
     elif (relpath == 'database/load_author_information'):
       self.addAuthorInformations()
-      return self.redirect('/database/edit')
+      return self.redirect('/database/new')
 
     elif (relpath == 'database/new'):
       # adds a new author information into DataStore
