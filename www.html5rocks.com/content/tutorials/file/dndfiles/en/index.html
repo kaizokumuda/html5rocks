@@ -263,9 +263,16 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   would be to read and send the file in separate byte range chunks. The server component would then be responsible
   for reconstructing the file content in the correct order.</p>
   <p>Lucky for us, the <code>File</code> interface supports a slice method to support this use case.
-  The method takes a starting byte as its first argument and a byte offset (length) as its second:</p>
+  The method takes a starting byte as its first argument, ending byte as its second, and
+  an option content type string as a third. The semantics of this method changed recently,
+  so it has been vendor-prefixed:</p>
 
-  <pre class="prettyprint">var blob = file.slice(<var>startingByte</var>, <var>length</var>);
+  <pre class="prettyprint">
+if (file.webkitSlice) {
+  var blob = file.webkitSlice(<var>startingByte</var>, <var>endindByte</var>);
+} else if (file.mozSlice) {
+  var blob = file.mozSlice(<var>startingByte</var>, <var>endindByte</var>);
+}
 reader.readAsBinaryString(blob);</pre>
 
   <p>The following example demonstrates reading chunks of a file. Something worth noting is that it uses the
