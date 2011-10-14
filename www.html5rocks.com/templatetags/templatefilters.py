@@ -62,9 +62,9 @@ class ProfileLink(django.template.Node):
       if id in self.profiles:
         profile = self.profiles[id]
         names.append("<a href='/profiles/#!/%(id)s'>%(given)s %(family)s</a> - %(role)s, %(company)s" %
-            {'id': profile.id, 'given': profile.given_name,
-             'family': profile.family_name, 'role': profile.unit,
-             'company': profile.org})
+            {'id': profile['id'], 'given': profile['given_name'],
+             'family': profile['family_name'], 'role': profile['unit'],
+             'company': profile['org']})
     return ',<br> '.join(names)
 
 
@@ -86,9 +86,9 @@ class ProfileLinkSimple(ProfileLink):
       if id in self.profiles:
         profile = self.profiles[id]
         names.append("<a href='/profiles/#!/%(id)s' data-id='%(id)s'>%(given)s %(family)s</a>" %
-            {'id': profile.id,
-             'given': profile.given_name,
-             'family': profile.family_name})
+            {'id': profile['id'],
+             'given': profile['given_name'],
+             'family': profile['family_name']})
     return ', '.join(names)
 
 
