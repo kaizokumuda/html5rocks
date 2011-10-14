@@ -257,31 +257,25 @@
   </section>
 
   <div class="authors_wrapper">
-
     {% for profile in sorted_profiles %}
-
       <article class="profile mini" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
         <section>
-            <img itemprop="photo" alt="{{profile.name.given}} {{profile.name.family}}" title="{{profile.name.given}} {{profile.name.family}}" src="/static/images/profiles/{{profile.id}}.png">
-
-            <h2>
-              <div itemprop="fn">
-                <div itemprop="n" itemscope>
-                  <span itemprop="given-name">{{profile.name.given}}</span>
-                  <span itemprop="family-name">{{profile.name.family}}</span>
-                </div>
+          <img itemprop="photo" alt="{{profile.given_name}} {{profile.family_name}}" title="{{profile.given_name}} {{profile.family_name}}" src="/static/images/profiles/{{profile.id}}.png">
+          <h2>
+            <div itemprop="fn">
+              <div itemprop="n" itemscope>
+                <span itemprop="given-name">{{profile.given_name}}</span>
+                <span itemprop="family-name">{{profile.family_name}}</span>
               </div>
-            </h2>
-
-            <h3 itemprop="org" itemscope>
-              {% if profile.org.unit %}<div itemprop="organization-unit">{{profile.org.unit}}</div>{% endif %}
-              {% if profile.org.name %}<div itemprop="organization-name">{{profile.org.name}}</div>{% endif %}
-            </h3>
+            </div>
+          </h2>
+          <h3 itemprop="org" itemscope>
+            {% if profile.unit %}<div itemprop="organization-unit">{{profile.unit}}</div>{% endif %}
+            {% if profile.org %}<div itemprop="organization-name">{{profile.org}}</div>{% endif %}
+          </h3>
         </section>
       </article>
-
     {% endfor %}
-
   </div>
 
 </article>

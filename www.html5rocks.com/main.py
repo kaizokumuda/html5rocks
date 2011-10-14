@@ -271,7 +271,8 @@ class ContentHandler(webapp.RequestHandler):
 
     elif (relpath == 'database/load_author_information'):
       self.addAuthorInformations()
-      return self.redirect('/database/edit')
+      #return self.redirect('/database/edit')
+      return self.redirect('/database/new')
 
     elif (relpath == 'database/new'):
       # adds a new author information into DataStore
@@ -420,42 +421,30 @@ class ContentHandler(webapp.RequestHandler):
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
   def addAuthorInformations(self):
-    sample = common.Author(key_name = 'hanrui', given_name = u'Hanrui', family_name = u'Gao',
-                           org = u'Google', unit = u'Developer Relations',
-                           city = u'Beijing', state = u'Beijing', country = u'China',
-                           google_account = u'hanrui.gao', twitter_account = u'hanruigao',
-                           email = 'hanrui@google.com')
-    sample.put()
+    import yaml
 
-    sample = common.Author(key_name = 'ebidelman', given_name = u'Eric', family_name = u'Bidelman',
-                           org = u'Google', unit = u'Developer Relations',
-                           city = u'Mountain View', state = u'California', country = u'USA',
-                           geo_location = '37.42192,-122.087824', homepage = 'http://ebidel.com',
-                           google_account = u'ebidel', twitter_account = u'ebidel',
-                           email = 'e.bidelman@google.com')
-    sample.put()
-
-    sample = common.Author(key_name = 'ernestd', given_name = u'Ernest', family_name = u'Delgado',
-                           org = u'Google', unit = u'Developer Relations',
-                           city = u'Mountain View', state = u'California', country = u'USA',
-                           geo_location = '37.42192,-122.087824', homepage = 'http://ernestdelgado.com/',
-                           google_account = u'ernestd', twitter_account = u'edr',
-                           email = 'ernestd@google.com')
-    sample.put()
-
-    sample = common.Author(key_name = 'paulkinlan', given_name = u'Paul', family_name = u'Kinlan',
-                           org = u'Google', unit = u'Developer Relations',
-                           city = u'London', state = u'London', country = u'UK',
-                           geo_location = '51.4948,-0.1467', homepage = 'http://paul.kinlan.me',
-                           google_account = u'paul.kinlan', twitter_account = u'paul_kinlan',
-                           email = 'paul.kinlan@google.com', lanyrd = True)
-    sample.put()
-
-    sample = common.Author(key_name = 'michaeldewey', given_name = u'Mike', family_name = u'Dewey',
-                           org = u'deviantART', unit = u'Muro',
-                           city = u'Oakland', state = u'California', country = u'USA',
-                           geo_location = '37.8043637,-122.2711137')
-    sample.put()
+    f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
+    for profile in yaml.load_all(f):
+      logging.info(profile)
+      author = common.Author(
+          key_name=unicode(profile['id']),
+          given_name=unicode(profile['name']['given']),
+          family_name=unicode(profile['name']['family']),
+          org=unicode(profile['org']['name']),
+          unit=unicode(profile['org']['unit']),
+          city=profile['address']['locality'],
+          state=profile['address']['region'],
+          country=profile['address']['country'],
+          google_account=str(profile.get('google')),
+          twitter_account=profile.get('twitter'),
+          email=profile['email'],
+          lanyrd=profile.get('lanyrd', False),
+          homepage=profile['homepage'],
+          geo_location=db.GeoPt(profile['address']['lat'],
+                                profile['address']['lon'])
+          )
+      author.put()
+    f.close()
 
 
 def main():

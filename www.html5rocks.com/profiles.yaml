@@ -1,4 +1,4 @@
-id: ebidelman
+id: ericbidelman
 name:
   given: Eric
   family: Bidelman
@@ -373,6 +373,7 @@ org:
 address:
   locality: Washington
   region: DC
+  country: USA
   lat: 38.907245
   lon: -77.042317
 homepage: http://sunlightlabs.com/
