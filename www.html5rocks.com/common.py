@@ -1,31 +1,69 @@
 import os
-import yaml
 import logging
 
 from google.appengine.api import memcache
+from google.appengine.ext import db
+from google.appengine.ext.db import djangoforms
+from django import forms
 
 if 'SERVER_SOFTWARE' in os.environ:
   PROD = not os.environ['SERVER_SOFTWARE'].startswith('Development')
 else:
   PROD = True
 
-def get_profiles():
+def get_profiles(update_cache=False):
   profiles = memcache.get('profiles')
-  if profiles is None:
-    basedir = os.path.dirname(__file__)
-    f = file(basedir + '/profiles.yaml', 'r')
+  if profiles is None or update_cache:
+    profiles = {}
+    authors = Author.all()
 
-    profiles = dict()
-    for profile in yaml.load_all(f):
-      profiles[profile['id']] = profile
+    for author in authors:
+      author_id = author.key().name()
+      profiles[author_id] = author.to_dict()
+      profiles[author_id]['id'] = author_id
 
-    f.close()
     memcache.set('profiles', profiles)
 
   return profiles
 
-def get_sorted_profiles():
-  return sorted(get_profiles().values(), key=lambda profile:profile['name']['family'])
+def get_sorted_profiles(update_cache=False):
+  return sorted(get_profiles(update_cache).values(),
+                key=lambda profile:profile['family_name'])
 
-def get_profile_amount():
-  return len(get_profiles())
+
+class DictModel(db.Model):
+  def to_dict(self):
+    #unicode(getattr(self, p)) if p is not None else None
+    return dict([(p, getattr(self, p)) for p in self.properties()])
+
+
+class Author(DictModel):
+  """Container for author information."""
+
+  given_name = db.StringProperty(required=True)
+  family_name = db.StringProperty(required=True)
+  org = db.StringProperty(required=True)
+  unit = db.StringProperty(required=True)
+  city = db.StringProperty(required=True)
+  state = db.StringProperty(required=True)
+  country = db.StringProperty(required=True)
+  geo_location = db.GeoPtProperty()
+  homepage = db.LinkProperty()
+  google_account = db.StringProperty()
+  twitter_account = db.StringProperty()
+  email = db.EmailProperty()
+  lanyrd = db.BooleanProperty(default=False)
+
+
+class AuthorForm(djangoforms.ModelForm):
+  class Meta:
+    model = Author
+    # exlucde geo_location field from form. Handle lat/lon separately
+    exclude = ['geo_location']
+
+  def __init__(self, *args, **keyargs):
+    super(AuthorForm, self).__init__(*args, **keyargs)
+
+    for field in self.fields:
+      if (self.Meta.model.properties()[field].required):
+        self.fields[field].widget.attrs['required'] = 'required'
