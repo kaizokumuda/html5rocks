@@ -38,6 +38,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'django_settings'
 from django import http
 from django.conf import settings
 from django.utils import feedgenerator
+from django.utils import simplejson
 from django.utils import translation
 from django.utils.translation import ugettext as _
 
@@ -51,6 +52,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 import common
 
 template.register_template_library('templatetags.templatefilters')
+
 
 class ContentHandler(webapp.RequestHandler):
 
@@ -269,6 +271,7 @@ class ContentHandler(webapp.RequestHandler):
                          template_path='content/humans.txt',
                          relpath=relpath)
 
+    
     elif (relpath == 'database/load_author_information'):
       self.addAuthorInformations()
       #return self.redirect('/database/edit')
@@ -334,12 +337,6 @@ class ContentHandler(webapp.RequestHandler):
     if (relpath == 'profiles' or relpath == 'profiles/'):
       self.render(data={'sorted_profiles': common.get_sorted_profiles()},
                   template_path='content/profiles.html', relpath=relpath)
-
-    if (relpath == 'resources' or relpath == 'resources/'):
-      self.render(template_path='content/resources.html', relpath=relpath)
-
-    if (relpath == 'why' or relpath == 'why/'):
-      self.render(template_path='content/why.html', relpath=relpath)
 
     elif re.search('tutorials/casestudies', relpath) and not is_feed:
       # Case Studies look like this on the filesystem:
@@ -447,8 +444,26 @@ class ContentHandler(webapp.RequestHandler):
     f.close()
 
 
+class APIHandler(webapp.RequestHandler):
+
+  def get(self, relpath):
+    if (relpath == 'authors'):
+      profiles = {}
+      for p in common.get_sorted_profiles():
+        profile_id = p['id']
+        profiles[profile_id] = p
+        profiles[profile_id]['geo_location'] = str(profiles[profile_id]['geo_location'])
+
+      self.response.headers['Content-Type'] = 'application/json'
+      self.response.out.write(simplejson.dumps(profiles))
+      return
+    else:
+      self.redirect('/')
+
+
 def main():
   application = webapp.WSGIApplication([
+    ('/api/(.*)', APIHandler),
     ('/(.*)', ContentHandler)
   ], debug=True)
   run_wsgi_app(application)
