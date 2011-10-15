@@ -352,7 +352,8 @@ class ContentHandler(webapp.RequestHandler):
       #
       # So, to determine if an HTML page exists for the requested language
       # `split` the file's path, add in the locale, and check existance:
-      logging.info('Building request for casestudy `%s` in locale `%s`', path, locale)
+      logging.info('Building request for casestudy `%s` in locale `%s`',
+                   path, locale)
       potentialfile = re.sub('tutorials/casestudies',
                              'tutorials/casestudies/%s' % locale,
                              path)
@@ -371,10 +372,12 @@ class ContentHandler(webapp.RequestHandler):
       # for an english version of the file, and redirect the user there if
       # it's found:
       elif os.path.isfile( englishfile ):
-        return self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
+        return self.redirect("/en/%s?redirect_from_locale=%s" % (relpath,
+                                                                 locale))
 
 
-    elif ((re.search('tutorials/.+', relpath) or re.search('mobile/.+', relpath))
+    elif ((re.search('tutorials/.+', relpath) or
+           re.search('mobile/.+', relpath))
           and not is_feed):
       # If no trailing / (e.g. /tutorials/blah/blah), append index.html file.
       if (relpath[-1] != '/' and not relpath.endswith('.html')):
@@ -404,7 +407,8 @@ class ContentHandler(webapp.RequestHandler):
       # for an english version of the file, and redirect the user there if
       # it's found:
       elif os.path.isfile( os.path.join( dir, "en", filename ) ):
-        return self.redirect( "/en/%s?redirect_from_locale=%s" % (relpath, locale) )
+        return self.redirect("/en/%s?redirect_from_locale=%s" % (relpath,
+                                                                 locale))
     elif os.path.isfile(path):
       self.render(data={}, template_path=path, relpath=relpath)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
@@ -452,7 +456,8 @@ class APIHandler(webapp.RequestHandler):
       for p in common.get_sorted_profiles():
         profile_id = p['id']
         profiles[profile_id] = p
-        profiles[profile_id]['geo_location'] = str(profiles[profile_id]['geo_location'])
+        geo_location = profiles[profile_id]['geo_location']
+        profiles[profile_id]['geo_location'] = str(geo_location)
 
       self.response.headers['Content-Type'] = 'application/json'
       self.response.out.write(simplejson.dumps(profiles))
