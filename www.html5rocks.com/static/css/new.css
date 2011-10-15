@@ -228,16 +228,27 @@ header nav,
 .page
 {
   display: none;
-  position: relative;
-  top: -999999px;
+  position: absolute;
   margin: 4em auto;
+  margin-left: 200px;
   width: 1000px;
 }
 
 .page.current
 {
   display: block;
+  margin-left: 200px;
   top: 0;
+}
+
+.page.next {
+  display: block;
+  margin-left: 1000px;
+}
+
+.page.previous {
+  display: block;
+  margin-left: -600px;
 }
 
 section,
@@ -689,10 +700,10 @@ article.content section
 
 .page
 {
-  -webkit-transition: opacity, left, top 1s ease-in-out;
-  -moz-transition: opacity, left, top 1s ease-in-out;
-  -o-transition: opacity, left, top 1s ease-in-out;
-  transition: opacity, left, top 1s ease-in-out;
+  -webkit-transition: opacity, left, top 1s ease-in-out, margin 1s linear;
+  -moz-transition: opacity, left, top 1s ease-in-out, margin 1s linear;
+  -o-transition: opacity, left, top 1s ease-in-out, margin 1s linear;
+  transition: opacity, left, top 1s ease-in-out, margin 1s linear;
 }
 
 .nav,

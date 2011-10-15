@@ -74,7 +74,7 @@ $('a').click(function() {
   if ($('.page#' + page).hasClass('loaded'))
     $('.page#' + page).addClass('current');
   else
-    $('.page#' + page).addClass('current loaded').load($(this).attr('href') + ' .page');
+    $('.page#' + page).addClass('current loaded').load($(this).attr('href') + ' article');
 
   // $('.page#' + page).addClass('current').load($(this).attr('href') + ' .page', function(){
   //   $.scrollTo($('page#' + page), 800, {queue:true});
@@ -83,6 +83,25 @@ $('a').click(function() {
   return false;
 });
 
+$(document).keydown(function(e) {
+  currentId = $('.current').attr('id');
+  if (e.keyCode == 39) {
+    nextPage = $('.current').next();
+    nextPage.html('<p style="border: 4px solid red">Loading content...</p>');
+    nextPage.addClass('next');
+    nextPage.addClass('loaded');
+    setTimeout(function() {
+      $('.current').attr('class', $('.current').attr('class').replace(/current/, 'previous'));
+      $('.page.next').attr('class', $('.page.next').attr('class').replace(/next/, 'current'));
+    }, 10);
+    
+    $('.page.current').one('webkitTransitionEnd', function(e) {
+      e.target.classList.remove('previous');
+      $('.next').removeClass('next');
+    });
+  }
+
+});
 
 // Features navigation.
 
