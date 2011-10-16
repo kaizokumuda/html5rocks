@@ -9,100 +9,106 @@
 {% endblock %}
 
 {% block body %}
-  <article class="description clearfix">
-    <hgroup>
-      <h1>HTML5 Features</h1>
-      <h2>{% block h2title %}{% trans "Feature" %}{% endblock %}</h2>
-    </hgroup>
+  <div data-import-html>
+    <article class="description clearfix">
+      <hgroup>
+        <h1>HTML5 Features</h1>
+        <h2>{% block h2title %}{% trans "Feature" %}{% endblock %}</h2>
+      </hgroup>
 
-    <div class="feature_icon"></div>
+      <div class="feature_icon"></div>
 
-    {% block description %}{% endblock %}
+      {% block description %}{% endblock %}
 
-    <div class="plusone">
-      <div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div>
-    </div>
-  </article>
+      <div class="plusone">
+        <div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div>
+      </div>
+    </article>
 
-  <article class="two_columns">
-    {% block support %}
-      <section class="support {% block supportblockstyle %}{% endblock %}" style="display:none">
-        <h3>Browser Support</h3>
+    <article class="two_columns">
+      {% block support %}
+        <section class="support {% block supportblockstyle %}{% endblock %}" style="display:none">
+          <h3>Browser Support</h3>
 
-        <div class="clearfix">
-          <h4>{% trans "loading&hellip;" %}</h4>
+          <div class="clearfix">
+            <h4>{% trans "loading&hellip;" %}</h4>
 
-          <table>
-            <thead>
-              <tr>
-                <th class="chrome">{% trans "Chrome" %}</th>
-                <th class="firefox">{% trans "Firefox" %}</th>
-                <th class="safari">{% trans "Safari" %}</th>
-                <th class="opera">{% trans "Opera" %}</th>
-                <th class="ie">{% trans "IE" %}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="chrome">&mdash;</td>
-                <td class="firefox">&mdash;</td>
-                <td class="safari">&mdash;</td>
-                <td class="opera">&mdash;</td>
-                <td class="ie">&mdash;</td>
-              </tr>
-            </tbody>
-          </table>
+            <table>
+              <thead>
+                <tr>
+                  <th class="chrome">{% trans "Chrome" %}</th>
+                  <th class="firefox">{% trans "Firefox" %}</th>
+                  <th class="safari">{% trans "Safari" %}</th>
+                  <th class="opera">{% trans "Opera" %}</th>
+                  <th class="ie">{% trans "IE" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="chrome">&mdash;</td>
+                  <td class="firefox">&mdash;</td>
+                  <td class="safari">&mdash;</td>
+                  <td class="opera">&mdash;</td>
+                  <td class="ie">&mdash;</td>
+                </tr>
+              </tbody>
+            </table>
 
-          <table>
-            <thead>
-              <tr>
-                <th class="ios_saf">{% trans "iOS Safari" %}</th>
-                <th class="android">{% trans "Android" %}</th>
-                <th class="op_mini">{% trans "Opera Mini" %}</th>
-                <th class="op_mob">{% trans "Opera Mobile" %}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="ios_saf">&mdash;</td>
-                <td class="android">&mdash;</td>
-                <td class="op_mini">&mdash;</td>
-                <td class="op_mob">&mdash;</td>
-              </tr>
-            </tbody>
-          </table>
+            <table>
+              <thead>
+                <tr>
+                  <th class="ios_saf">{% trans "iOS Safari" %}</th>
+                  <th class="android">{% trans "Android" %}</th>
+                  <th class="op_mini">{% trans "Opera Mini" %}</th>
+                  <th class="op_mob">{% trans "Opera Mobile" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="ios_saf">&mdash;</td>
+                  <td class="android">&mdash;</td>
+                  <td class="op_mini">&mdash;</td>
+                  <td class="op_mob">&mdash;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.{% endblocktrans %}</p>
+        </section>
+      {% endblock %}
+
+      <section class="updates">
+        <h3>{% trans "What&rsquo;s New" %}</h3>
+
+        <div class="tutorials">
+          <h4>{% trans "Tutorials" %}</h4>
+          <ul>
+            {% block tutorials %}{% endblock %}
+          </ul>
         </div>
 
-        <p>{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.{% endblocktrans %}</p>
+        <div class="examples">
+          <h4>{% trans "Examples" %}</h4>
+          <ul>
+            {% block examples %}{% endblock %}
+          </ul>
+        </div>
       </section>
-    {% endblock %}
+    </article>
 
-    <section class="updates">
-      <h3>{% trans "What&rsquo;s New" %}</h3>
+    <article class="content">
+      {% block content %}{% endblock %}
+    </article>
+  </div>
 
-      <div class="tutorials">
-        <h4>{% trans "Tutorials" %}</h4>
-        <ul>
-          {% block tutorials %}{% endblock %}
-        </ul>
-      </div>
-
-      <div class="examples">
-        <h4>{% trans "Examples" %}</h4>
-        <ul>
-          {% block examples %}{% endblock %}
-        </ul>
-      </div>
-    </section>
-  </article>
-
-  <article class="content">
-    {% block content %}{% endblock %}
-  </article>
-
-  <script>
-   var caniusefeatures = '{% block caniuse %}{% endblock %}'.split(',');
-   var features = '{% block tuttags %}{% endblock %}';
+  <script class="import_script">
+    window.caniuse = {
+      caniusefeatures: '{% block caniuse %}{% endblock %}'.split(','),
+      features: '{% block tuttags %}{% endblock %}'
+    }
+    if (window.loadFeaturePanels) {
+      loadFeaturePanels();
+    }
   </script>
-  <script src="/static/js/feature{% if prod %}.min{% endif %}.js"></script>
 {% endblock %}

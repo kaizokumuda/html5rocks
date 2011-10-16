@@ -76,14 +76,33 @@ $('a').click(function() {
   $('body').removeClass().attr('data-href', page);
   $('.page').removeClass('current');
 
-  if ($('.page#' + page).hasClass('loaded'))
+  if ($('.page#' + page).hasClass('loaded')) {
     $('.page#' + page).addClass('current');
-  else
-    $('.page#' + page).addClass('current loaded').load($(this).attr('href') + ' article');
+  } else {
+    //$('.page#' + page).addClass('current loaded').load($(this).attr('href') + ' article');
+    $('.page#' + page).addClass('current loaded');
+    $.ajax({
+      url: $(this).attr('href'),
+      success: function(data, textStatus, jqXHR) {
+        var html = $(jqXHR.responseText);
+        // Filter out and load content section of the featur page.
+        $('.page#' + page).html(html.find('[data-import-html]'));
+
+        // Parse out the caniuse data scripts from the html and run them.
+        var scripts = html.filter('script.import_script');
+        $.each(scripts, function(i, script) {
+          eval(script.text); // TODO(ericbidelman): Figure out something better.
+        });
+      }
+    });
+  }
 
   // $('.page#' + page).addClass('current').load($(this).attr('href') + ' .page', function(){
   //   $.scrollTo($('page#' + page), 800, {queue:true});
   // });
+
+  // TODO(Google): record GA hit on new ajax page load.
+  // TODO(paulirish): add window.history.pushState
 
   return false;
 });
