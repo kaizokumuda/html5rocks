@@ -11,56 +11,52 @@ var docTop = $('html, body').offset().top;
 $(window).bind('scroll', function(event) {
   var y = $(this).scrollTop();
   if ((y - docTop) > 100) {
-   $('header').addClass('scroll');
-  $(this).unbind('scroll', event.handler); // Remove this listen for performance. 
+    $('header').addClass('scroll');
+    $(this).unbind('scroll', event.handler); // Remove this listen for performance. 
   }
 });
 
 // Page header pulldowns.
 
-$('#search_show').click(function(){
-  if($(this).hasClass('current'))
-  {
+$('#search_show').click(function() {
+  $('#features_hide').click(); // Hide features panel if it's out.
+
+  if ($(this).hasClass('current')) {
     $('.subheader.search').hide();
     $(this).removeClass('current');
-  }
-  else
-  {
-    $('.subheader.search').hide();
-    $('#features_show').removeClass('current');
+  } else {
+    $('nav.main .current').removeClass('current');
     $(this).addClass('current');
     $('.subheader.search').show();
     $('#q').focus();
   }
 });
 
-$('#search_hide').click(function(){
-  $('.subheader.search').hide();
+$('#search_hide').click(function() {
   $('#search_show').removeClass('current');
+  $('.subheader.search').hide();
 });
 
-$('#features_show').click(function(){
-  if($(this).hasClass('current'))
-  {
+$('#features_show').click(function() {
+  $('#search_hide').click(); // Hide search panel if it's out.
+
+  if ($(this).hasClass('current')) {
     $('.subheader.features').hide();
     $(this).removeClass('current');
-  }
-  else
-  {
-    $('#search_show').removeClass('current');
+  } else {
+    $('nav.main .current').removeClass('current');
     $(this).addClass('current');
     $('.subheader.features').show();
   }
 });
 
-$('#features_hide').click(function(){
+$('#features_hide').click(function() {
   $('#features_show').removeClass('current');
   $('.subheader.features').hide();
 });
 
-$('.subheader.features ul li a').click(function(){
-  $('#features_show').removeClass('current');
-  $('.subheader.features').slideUp();
+$('.subheader.features ul li a').click(function() {
+  $('nav.main .current').removeClass('current');
 });
 
 // Page grid navigation.
@@ -76,30 +72,34 @@ $('a').click(function() {
   $('body').removeClass().attr('data-href', page);
   $('.page').removeClass('current');
 
-  if ($('.page#' + page).hasClass('loaded')) {
-    $('.page#' + page).addClass('current');
+  var pagePanel = $('.page#' + page);
+  if (pagePanel.hasClass('loaded')) {
+    pagePanel.addClass('current');
   } else {
-    //$('.page#' + page).addClass('current loaded').load($(this).attr('href') + ' article');
-    $('.page#' + page).addClass('current loaded');
+    //pagePanel.addClass('current loaded').load($(this).attr('href') + ' article');
+    pagePanel.addClass('current loaded');
     $.ajax({
       url: $(this).attr('href'),
       success: function(data, textStatus, jqXHR) {
         var html = $(jqXHR.responseText);
+
         // Filter out and load content section of the featur page.
-        $('.page#' + page).html(html.find('[data-import-html]'));
+        pagePanel.html(html.find('[data-import-html]'));
 
         // Parse out the caniuse data scripts from the html and run them.
         var scripts = html.filter('script.import_script');
         $.each(scripts, function(i, script) {
           eval(script.text); // TODO(ericbidelman): Figure out something better.
         });
+
+        $('.subheader.features').slideUp();
       }
     });
   }
 
-  // $('.page#' + page).addClass('current').load($(this).attr('href') + ' .page', function(){
-  //   $.scrollTo($('page#' + page), 800, {queue:true});
-  // });
+  /*$('.page#' + page).addClass('current').load($(this).attr('href') + ' .page', function() {
+    $.scrollTo($('page#' + page), 800, {queue:true});
+  });*/
 
   // TODO(Google): record GA hit on new ajax page load.
   // TODO(paulirish): add window.history.pushState
@@ -123,8 +123,10 @@ $(document).keydown(function(e) {
       e.target.classList.remove('previous');
       $('.next').removeClass('next');
     });
+  } else if (e.keyCode == 27) { // ESC
+    $('#search_hide').click();
+    $('#features_hide').click();
   }
-
 });
 
 // Features navigation.

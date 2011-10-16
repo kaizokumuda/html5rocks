@@ -1020,6 +1020,45 @@ article.content section figure a[href^='http']:not([href*='html5rocks.'])
   background-position: 156px 5px;
 }
 
+/* RESOURCES PAGE */
+.resource-list {
+  list-style: none;
+  padding-left: 0;
+  overflow: hidden;
+}
+.resource-list li { 
+  padding-top: 10px;
+  width: 30%;
+  float: left;
+  height: 190px;
+  margin: -10px 10px 10px 0;
+}
+.resource-list img {
+  display: block;
+  width: 200px;
+  height: 89px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.book-list img {
+  width: auto;
+  height: 133px;
+}
+.section-header {
+  border-bottom: 1px solid #ddd;
+}
+
+@media only screen and (max-width: 640px) { /*iPhone, Android*/
+  .resource-list li {
+    float: none;
+    margin: 10px auto;
+    padding-top: 0;
+    width: auto;
+    height: auto;
+  }
+}
+/* ********************* */
 
 /* FEATURES: NAVIGATION */
 

@@ -5,12 +5,11 @@
 {% block headtitle %}Mobile{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" media="screen" href="/static/css/feature{% if prod %}.min{% endif %}.css" />
+<!--<link rel="stylesheet" media="screen" href="/static/css/feature{% if prod %}.min{% endif %}.css" />-->
 {% endblock %}
 
 {% block body %}
-
-<div>
+<div data-import-html>
   <div class="column">
     <section class="tutorials">
       <hgroup>
@@ -63,10 +62,13 @@
     </section>
   </div>
 </div>
-<script>
- var caniusefeatures = [];
- var features = 'mobile';
+<script  class="import_script">
+  window.caniuse = {
+    caniusefeatures: [],
+    features: 'mobile'
+  }
+  if (window.loadFeaturePanels) {
+    loadFeaturePanels();
+  }
 </script>
-<script src="/static/js/feature{% if prod %}.min{% endif %}.js"></script>
-
 {% endblock %}

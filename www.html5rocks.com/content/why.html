@@ -9,15 +9,14 @@
 {% endblock %}
 
 {% block body %}
-{% include "header.html" %}
-
-<article>
-  <section>
-    <h1>{% trans "Why HTML5 Rocks" %}</h1>
-    <p>{% trans "Lorem ipsum." %}</p>
-  </section>
-</article>
-
+<div data-import-html>
+  <article>
+    <section>
+      <h1>{% trans "Why HTML5 Rocks" %}</h1>
+      <p>{% trans "Lorem ipsum." %}</p>
+    </section>
+  </article>
+</div>
 {% include "footer.html" %}
 
 {% endblock %}

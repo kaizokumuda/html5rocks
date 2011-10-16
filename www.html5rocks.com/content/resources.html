@@ -5,49 +5,10 @@
 {% block headtitle %}{% trans "Resources" %}{% endblock %}
 
 {% block head %}
-  <style media="screen">
-    .resource-list {
-      list-style: none;
-      padding-left: 0;
-      overflow: hidden;
-    }
-    .resource-list li { 
-      padding-top: 10px;
-      width: 30%;
-      float: left;
-      height: 190px;
-      margin: -10px 10px 10px 0;
-    }
-    .resource-list img {
-      display: block;
-      width: 200px;
-      height: 89px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      margin-bottom: 10px;
-    }
-    .book-list img {
-      width: auto;
-      height: 133px;
-    }
-    .section-header {
-      border-bottom: 1px solid #ddd;
-    }
-
-    @media only screen and (max-width: 640px) { /*iPhone, Android*/
-      .resource-list li {
-        float: none;
-        margin: 10px auto;
-        padding-top: 0;
-        width: auto;
-        height: auto;
-      }
-    }
-  </style>
 {% endblock %}
 
 {% block body %}
-<div>
+<div data-import-html>
   <section>
   <h2 class="section-header">{% trans "Reference" %}</h2>
     <ul class="resource-list">
