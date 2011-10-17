@@ -160,6 +160,10 @@ body[data-href='home']
   background-size: cover;
 }
 
+body[data-href='home'] .features_outline_nav_toggle {
+  display: none;
+}
+
 @media only all and (max-width: 1024px) and (max-height: 768px)
 {
   body[data-href='home'] {
@@ -228,16 +232,17 @@ header nav,
 .page
 {
   display: none;
-  position: absolute;
+  position: relative;
   margin: 4em auto;
-  margin-left: 200px;
+  /*margin-left: 200px;*/
   width: 1000px;
+  /*top: -99999px;*/
 }
 
 .page.current
 {
   display: block;
-  margin-left: 200px;
+  /*margin-left: 200px;*/
   top: 0;
 }
 
@@ -1119,7 +1124,7 @@ nav.features_paginator .next     { top: 90px; }
 
 .features_outline_nav_toggle
 {
-  position: fixed;
+  /*position: fixed;
   left: 50%;
   top: 135px;
   margin-left: 735px;
@@ -1128,11 +1133,19 @@ nav.features_paginator .next     { top: 90px; }
   width: 30px;
   height: 30px;
   text-indent: -999999px;
+  cursor: pointer !important;*/
+  position: fixed;
+  left: 50%;
+  top: 25%;
+  margin-left: -650px;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
   cursor: pointer !important;
+  z-index: 10;
 }
 
-.features_outline_nav_toggle img
-{
+.features_outline_nav_toggle img {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -1140,6 +1153,7 @@ nav.features_paginator .next     { top: 90px; }
   -moz-transition: all .25s ease-in-out;
   -o-transition: all .25s ease-in-out;
   transition: all .25s ease-in-out;
+  z-index: 100;
 }
 
 .features_outline_nav_toggle img.show
@@ -1156,14 +1170,15 @@ nav.features_paginator .next     { top: 90px; }
   transform: rotate(90deg);
 }
 
-nav.features_outline
-{
+nav.features_outline {
   display: none;
   background: #bebebe url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ8AAACfCAIAAABoeZy3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjFCM0NEMkFFOEFCMTFFMDg2NkJGNDlCNjE5NENEMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjFCM0NEMkJFOEFCMTFFMDg2NkJGNDlCNjE5NENEMzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NzAyQzNBRkU4QTYxMUUwODY2QkY0OUI2MTk0Q0QzMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NzAyQzNCMEU4QTYxMUUwODY2QkY0OUI2MTk0Q0QzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnoZHVwAAANySURBVHja7NuLSutAFIXhpBf1/R+o7+RBPW1amzN20hyRGAtKnMu3EDo044ZtzGbyL1a72+0aKlQrf4Ly7+6p27+ejmFxDh/7l7Do+757eYpXD89/4iJc6s+vX+5PuVpVzbZxMoev2raNX43rWxbfufor1apqdnh2xx3v17csvnP1V6pV1ex1Mh8P4dF+u+3ho9vH+x+f9KDu7/O4GAbC7P6Uq1XV7CZ+rDd313+A1Xqzjfd/vR2+3Nzdx8X2/iFc/3J/ytWqarb1RlT+mTk81sMD3vfhYY9fxsNYPJiNcyNs+LA/Lt7vT7laVc1++r7bX7bf8g9yvmyb359ytYKbNZkrmMz9RcP6eufnFvP7E65WVbOr66Tuwk+8cDwMB+tTd/hwEA+X4m/O70+5WlXNmsxcBMrdRYin7TficXn8wwM+Muv90+NIsUd4PbM/5WpVNWsym8yU+2Tm75bXLH+Xv8vfzbPZ//5uZNa324oz+1OuVlWz/F3+LmV9Zubv8nenxd9NtprJjFURVoVVYVVYFVaFVckiNLIIsghYFWFVWBVWhVVhVbTUZJZFkEWQRZBFIC4CLeoiyCKU16zJbDJT7pOZv1tes/xd/i5/N89mZRFkEfi7eTbrjaiCMzN/l787Lf5ustVMZqyKsCqsCqvCqrAqrEoWoZFFkEXAqgirwqqwKqwKq6KlJrMsgiyCLIIsAnERaFEXQRahvGZNZpOZcp/M/N3ymuXv8nf5u3k2K4sgi8DfzbNZb0QVnJn5u/zdafF3k61mMmNV5O4SEolEIpFIJBKJREqaSJogkUgkIZFIJBKJRCKR9AOTWdJE0kTSRNKEuAi0qIsgaVJesyazyUy5T2b+bnnN8nf5u/zdPJuVNJE04e/m2aw3ogrOzPxd/u60+LvJVjOZsSrCqrAqrAqrwqqwKlmERhZBFgGrIqwKq8KqsCqsipaazLIIsgiyCLIIxEWgRV0EWYTymjWZTWbKfTLzd8trlr/L3+Xv5tmsLIIsAn83z2a9EVVwZubv8nenxd9NtprJjFURVoVVYVVYFVaFVckiNLIIsghYFWFVWBVWhVVhVbTUZJZFkEWQRZBFIC4CLeoiyCKU16zJbDJT7pOZv1tes/xd/i5/N89mZRFkEfi7eTbrjaiCMzN/l787Lf5ustVMZqyK8tQ/AQYAng7GvdAZiMQAAAAASUVORK5CYII=);
-  position: fixed;
+  /*position: fixed;*/
+  position: absolute;
   left: 50%;
-  top: 100px;
-  margin-left: 525px;
+  top: 20px;
+  /*top: 100px;
+  /*margin-left: 525px;*/
   padding: 20px;
   width: 130px;
   -webkit-border-radius: 10px;
