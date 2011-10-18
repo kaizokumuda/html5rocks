@@ -67,34 +67,29 @@ $('a').click(function() {
     return true;
   }
 
-  page = $(this).attr('href').substr($(this).attr('href').indexOf('/')).replace(/\/\w{2,3}\//gi, '').replace(/\/([A-Za-z]+)/gi, '-$1').replace(/\/$/, '').replace(/^-/, '');
+  window.page = this.pathname
+                  // remove locale
+                  .replace(/\/\w{2,3}\//gi, '')
+                  // slashes to dashes
+                  .replace(/\/([A-Za-z]+)/gi, '-$1')
+                  // remove trailing slashes and initial dashes
+                  .replace(/(\/$)|(^-)/g, '');
 
   $('body').removeClass().attr('data-href', page);
   $('.page').removeClass('current');
 
-  var pagePanel = $('.page#' + page);
+  window.pagePanel = $('.page#' + page);
+
   if (pagePanel.hasClass('loaded')) {
     pagePanel.addClass('current');
   } else {
-    //pagePanel.addClass('current loaded').load($(this).attr('href') + ' article');
-    pagePanel.addClass('current loaded');
-    $.ajax({
-      url: $(this).attr('href'),
-      success: function(data, textStatus, jqXHR) {
-        var html = $(jqXHR.responseText);
-
-        // Filter out and load content section of the featur page.
-        pagePanel.html(html.find('[data-import-html]'));
-
-        // Parse out the caniuse data scripts from the html and run them.
-        var scripts = html.filter('script.import_script');
-        $.each(scripts, function(i, script) {
-          eval(script.text); // TODO(ericbidelman): Figure out something better.
-        });
-
+    pagePanel
+      .addClass('current loaded')
+      .load($(this).attr('href') + ' article', function(){
         $('.subheader.features').slideUp();
-      }
-    });
+        route.init(page);
+      });
+
   }
 
   /*$('.page#' + page).addClass('current').load($(this).attr('href') + ' .page', function() {
@@ -152,3 +147,32 @@ $('nav.features_outline a.section_title').click(function(){
     $(this).siblings('ul').slideDown('fast');
   }
 });
+
+// basic routing setup based on the global page variable
+window.route = {
+  "features" : function(){
+    window.loadFeaturePanels && loadFeaturePanels();
+  },
+
+  // if 'features-offline' gets passed in we will execute both:
+  // route['features']() && route['features-offline']()
+  init : function(thing){
+    var commonfn = route[thing.split('-')[0]],
+        pagefn   = route[thing];
+    route.fire(commonfn);
+    if (pagefn != commonfn){
+      route.fire(pagefn);
+    }
+  }, 
+  fire : function(fn){
+    if (typeof fn == 'function'){
+      fn.call(route);
+    }
+  },
+  onload : function(){
+    // TODO(paulirish): be less hacky. just doing this to trigger our click handler above.
+    $('<a>').attr('href', location.href).click();
+  }
+};
+
+addEventListener('DOMContentLoaded', route.onload, false);

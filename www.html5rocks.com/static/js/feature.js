@@ -82,8 +82,14 @@ window.loadTutorials = function() {
 };
 
 window.loadFeaturePanels = function() {
-  if (window.caniuse) {
-    loadCanIUseData();
-    loadTutorials();
-  }
+  var elem = pagePanel.find('section.support')[0];
+
+  window.caniuse = {
+    caniusefeatures : elem.dataset.caniusefeatures.split(','),
+    features        : elem.dataset.features
+  };
+
+  loadCanIUseData();
+  loadTutorials();
+  
 };

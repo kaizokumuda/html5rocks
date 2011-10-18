@@ -27,7 +27,12 @@
 
     <article class="two_columns">
       {% block support %}
-        <section class="support {% block supportblockstyle %}{% endblock %}" style="display:none">
+        <section 
+          class="support {% block supportblockstyle %}{% endblock %}" 
+          style="display:none"
+          data-caniusefeatures="{% block caniuse %}{% endblock %}"
+          data-features="{% block tuttags %}{% endblock %}">
+          
           <h3>Browser Support</h3>
 
           <div class="clearfix">
@@ -102,13 +107,5 @@
     </article>
   </div>
 
-  <script class="import_script">
-    window.caniuse = {
-      caniusefeatures: '{% block caniuse %}{% endblock %}'.split(','),
-      features: '{% block tuttags %}{% endblock %}'
-    }
-    if (window.loadFeaturePanels) {
-      loadFeaturePanels();
-    }
-  </script>
+ 
 {% endblock %}
