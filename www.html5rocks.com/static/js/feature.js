@@ -95,14 +95,14 @@ window.loadTutorials = function() {
 };
 
 window.loadFeaturePanels = function() {
-  var elem = pagePanel.find('section.support')[0];
+  //var elem = pagePanel.find('section.support')[0];
+  var elem = $('.page.current').find('section.support')[0];
 
   window.caniuse = {
-    caniusefeatures : elem.dataset.caniusefeatures.split(','),
-    features        : elem.dataset.features
+    caniusefeatures: elem.dataset.caniusefeatures.split(','),
+    features: elem.dataset.features
   };
 
   loadCanIUseData();
   loadTutorials();
-  
 };
