@@ -51,34 +51,25 @@ $('.subheader.features ul li a').click(function() {
   $('nav.main .current').removeClass('current');
 });
 
+
+
 // Page grid navigation.
 
-
-// TODO(paulirish): right now this ambiguously named function kicks off page init
-// let's better incorporate into route{}
-function closeHeader() {
-  $('.subheader.features').slideUp();
-  route.init(page);
-  var loadPlusOneButton = opt_loadPlusOneButton || true;
-  if (loadPlusOneButton) {
-    gapi.plusone.go(pagePanel.find('.plusone').get(0));
-  }
-}
-
-
-function finishPanelLoad(pagePanel, opt_loadPlusOneButton) {
+function finishPanelLoad(pagePanel) {
   // TODO(Google): scrollTo needs to scroll to and element that is not display:none.
   // new.css applies this to .page elements. Not sure why pagePanel.addClass('current')
   // doesn't take care of this.
-  $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: closeHeader});
+  $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
+    $('.subheader.features').slideUp();
+    route.init(page);
+  }});
 }
 
-$('a').click(function() {
+$('a').live('click',function() {
   // Don't intercept external links
   if ($(this).attr('target')) {
     return true;
   }
-
 
   window.page = this.pathname
                   // remove locale
@@ -90,17 +81,22 @@ $('a').click(function() {
                   // drop the hash
                   .split('#')[0];
 
+  // special case for homepage
+  if (page == ''){
+    page = 'home';
+  }
+
   $('body').removeClass().attr('data-href', page);
   $('.page').removeClass('current');
 
 
-  window.pagePanel = $('.page#' + page);
+  window.pagePanel =  $('.page#' + page);
   pagePanel.addClass('current');
 
   // If we have an anchor, just scroll to it on the current page panel.
   var hash = $(this).attr('href').split('#')[1];
   if (hash) {
-    finishPanelLoad(pagePanel.find('.' + hash), false);
+    finishPanelLoad(pagePanel.find('.' + hash), true);
     return false;
   }
 
@@ -109,18 +105,11 @@ $('a').click(function() {
   } else {
     pagePanel
       .addClass('current loaded')
-      .load($(this).attr('href') + ' article', function(){
+      .load($(this).attr('href') + ' [data-import-html]', function(){
         finishPanelLoad(pagePanel);
         
       });
   }
-
-  /*$('.page#' + page).addClass('current').load($(this).attr('href') + ' .page', function() {
-    $.scrollTo($('page#' + page), 800, {queue:true});
-  });*/
-
-  // TODO(Google): record GA hit on new ajax page load.
-  // TODO(paulirish): add window.history.pushState
 
   return false;
 });
@@ -130,8 +119,7 @@ $(document).keydown(function(e) {
   if (e.keyCode == 39) {
     nextPage = $('.current').next();
     nextPage.html('<p style="border: 4px solid red">Loading content...</p>');
-    nextPage.addClass('next');
-    nextPage.addClass('loaded');
+    nextPage.addClass('next loaded');
     setTimeout(function() {
       $('.current').attr('class', $('.current').attr('class').replace(/current/, 'previous'));
       $('.page.next').attr('class', $('.page.next').attr('class').replace(/next/, 'current'));
@@ -142,10 +130,10 @@ $(document).keydown(function(e) {
       $('.next').removeClass('next');
     });
   } else if (e.keyCode == 27) { // ESC
-    $('#search_hide').click();
-    $('#features_hide').click();
+    $('#search_hide, #features_hide').click();
   }
 });
+
 
 // Features navigation.
 
@@ -168,17 +156,34 @@ $('nav.features_outline a.section_title').click(function() {
   }
 });
 
+
 // basic routing setup based on the global page variable
+// everything happens on the `page` variable
+
+// if it is equal to 'features-offline', then we will execute (in this order)
+// route.common();
+// route['features']();
+// route['features-offline']();
+
 window.route = {
+  common : function(){
+    gapi.plusone.go(pagePanel.find('.plusone').get(0));
+
+    // TODO(Google): record GA hit on new ajax page load.
+    // TODO(paulirish): add window.history.pushState
+
+  },
+
+
   "features" : function(){
     window.loadFeaturePanels && loadFeaturePanels();
   },
 
-  // if 'features-offline' gets passed in we will execute both:
-  // route['features']() && route['features-offline']()
   init : function(thing){
     var commonfn = route[thing.split('-')[0]],
         pagefn   = route[thing];
+    
+    route.fire(route.common);
     route.fire(commonfn);
     if (pagefn != commonfn){
       route.fire(pagefn);
@@ -190,9 +195,8 @@ window.route = {
     }
   },
   onload : function(){
-    // TODO(paulirish): be less hacky. just doing this to trigger our click handler above.
+    // TODO(paulirish): be less hacky. just doing this to trigger our global click handler above.
     $('<a>').attr('href', location.href).click();
   }
 };
-
 addEventListener('DOMContentLoaded', route.onload, false);
