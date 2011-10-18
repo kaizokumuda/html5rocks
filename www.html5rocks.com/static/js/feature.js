@@ -1,6 +1,11 @@
 window.caniusecallback = function(data) {
 
-  var dom = $('.page.current .support div');
+  var page = $('.page.current'),
+      dom  = page.find('.support div');
+
+  window.caniusedata = data;
+
+  if (page.hasClass('caniuseloaded')) return;
 
   $.each(caniuse.caniusefeatures, function(i, feature) {
 
@@ -32,6 +37,7 @@ window.caniusecallback = function(data) {
 
     // remove placeholder table
     dom.remove();
+    page.addClass('caniuseloaded');
 
     // Show names of browsers when hovering over the logo/version cells.
     // TODO(ericbidelman): This should be done with CSS, not JS.
@@ -52,6 +58,10 @@ window.loadCanIUseData = function() {
   if (caniuse.caniusefeatures[0] && caniuse.caniusefeatures[0].length) {
     $('.page.current .support').show();
 
+    if (window.caniusedata){
+      return caniusecallback(caniusedata);
+    }
+
     var myscript = document.createElement('script');
     myscript.src = 'http://caniuse.com/jsonp.php?callback=caniusecallback';
 
@@ -63,10 +73,12 @@ window.loadCanIUseData = function() {
 window.loadTutorials = function() {
 // Request associated tutorials and populate into this page.
   var lang = document.documentElement.getAttribute('lang') || 'en';
-  var div = $('<div>').load('/' + lang + '/tutorials/ #index', function() {
-    var MAX_NUM_TUTS = 5;
 
-    var ul = $('.page.current .tutorials ul');
+  var ul = $('.page.current .tutorials ul');
+  if (ul.hasClass('tutsloaded')) return;
+
+  var div = $('<div>').load('/' + lang + '/tutorials/ #index', function() {
+    var MAX_NUM_TUTS = 5;  
     var matches = $([]);
 
     $.each(caniuse.features.split(','), function(i, eachtag) {
@@ -77,6 +89,7 @@ window.loadTutorials = function() {
 
     matches.splice(MAX_NUM_TUTS);
 
+    ul.addClass('tutsloaded')
     $(matches).find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
   });
 };
