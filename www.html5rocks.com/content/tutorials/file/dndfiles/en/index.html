@@ -164,6 +164,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   function handleDragOver(evt) {
     evt.stopPropagation();
     evt.preventDefault();
+    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
   }
 
   // Setup the dnd listeners.
@@ -493,6 +494,7 @@ var example2 = example2 || {};
 example2.onDragOver = function(evt) {
   evt.stopPropagation();
   evt.preventDefault();
+  evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
 }
 
 example2.onDragFileDrop = function(evt) {
