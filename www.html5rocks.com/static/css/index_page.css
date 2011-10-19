@@ -183,7 +183,7 @@
   color: #000;
 }
 #latest_articles_feed li a {
-  max-width: 73%;
+  width: 73%;
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
