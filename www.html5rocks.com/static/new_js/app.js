@@ -67,7 +67,7 @@ function finishPanelLoad(pagePanel) {
 
 $('a').live('click',function() {
   // Don't intercept external links
-  if ($(this).attr('target')) {
+  if ($(this).attr('target') || $(this).is('nav.features_outline a.section_title')) {
     return true;
   }
 
@@ -144,7 +144,7 @@ $('.features_outline_nav_toggle').click(function() {
 });
 
 // A feature is clicked.
-$('nav.features_outline a.section_title').click(function() {
+$('nav.features_outline a.section_title').click(function(e) {
   if ($(this).parent('li').hasClass('current')) {
     $(this).parent('li').removeClass('current');
     $(this).siblings('ul').slideUp('fast');
@@ -154,6 +154,7 @@ $('nav.features_outline a.section_title').click(function() {
     $(this).parent('li').addClass('current');
     $(this).siblings('ul').slideDown('fast');
   }
+  e.stopPropagation();
 });
 
 
