@@ -65,7 +65,9 @@ function finishPanelLoad(pagePanel) {
   }});
 }
 
-$('a').live('click',function() {
+//$('a').live('click', function() {
+$('a').click(function() { // TODO: go back to event delgation. Currently breaks nav.
+
   // Don't intercept external links
   if ($(this).attr('target') || $(this).is('nav.features_outline a.section_title')) {
     return true;
@@ -89,7 +91,6 @@ $('a').live('click',function() {
   $('body').removeClass().attr('data-href', page);
   $('.page').removeClass('current');
 
-
   window.pagePanel =  $('.page#' + page);
   pagePanel.addClass('current');
 
@@ -105,9 +106,8 @@ $('a').live('click',function() {
   } else {
     pagePanel
       .addClass('current loaded')
-      .load($(this).attr('href') + ' [data-import-html]', function(){
+      .load($(this).attr('href') + ' [data-import-html]', function() {
         finishPanelLoad(pagePanel);
-        
       });
   }
 
@@ -138,7 +138,7 @@ $(document).keydown(function(e) {
 // Features navigation.
 
 // Toggle the feature nav.
-$('.features_outline_nav_toggle').click(function() {
+$('.features_outline_nav_toggle').click(function(e) {
   $(this).toggleClass('activated');
   $('nav.features_outline').fadeToggle('fast');
 });
@@ -176,7 +176,7 @@ window.route = {
   },
 
 
-  "features" : function(){
+  "features" : function() {
     window.loadFeaturePanels && loadFeaturePanels();
   },
 
@@ -186,18 +186,18 @@ window.route = {
     
     route.fire(route.common);
     route.fire(commonfn);
-    if (pagefn != commonfn){
+    if (pagefn != commonfn) {
       route.fire(pagefn);
     }
   }, 
   fire : function(fn){
-    if (typeof fn == 'function'){
+    if (typeof fn == 'function') {
       fn.call(route);
     }
   },
   onload : function(){
-    // TODO(paulirish): be less hacky. just doing this to trigger our global click handler above.
-    $('<a>').attr('href', location.href).click();
+    route.fire(route.features);
   }
 };
-addEventListener('DOMContentLoaded', route.onload, false);
+
+window.addEventListener('DOMContentLoaded', route.onload, false);
