@@ -131,7 +131,12 @@ $(document).keydown(function(e) {
       $('.next').removeClass('next');
     });
   } else if (e.keyCode == 27) { // ESC
+    // Hide search and/or feature bar.
     $('#search_hide, #features_hide').click();
+
+    // Hide +/- feature navigation.
+    $('.features_outline_nav_toggle').removeClass('activated');
+    $('nav.features_outline').fadeOut('fast');
   }
 });
 

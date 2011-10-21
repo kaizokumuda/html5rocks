@@ -1136,8 +1136,8 @@ nav.features_paginator .next     { top: 90px; }
   cursor: pointer !important;*/
   position: fixed;
   left: 50%;
-  top: 25%;
-  margin-left: -650px;
+  top: 45%;
+  margin-left: -586px;
   padding: 10px;
   width: 30px;
   height: 30px;
