@@ -788,12 +788,10 @@ body[data-href='home'] .watermark.teal
   display: none;
 }
 
-#start
-{
-  margin-top: -1.5em;
+#start {
   position: relative;
   width: 1000px;
-  height: 370px;
+  height: 428px;
 }
 
 #logo,
@@ -810,19 +808,11 @@ body[data-href='home'] .watermark.teal
   text-align: center;
 }
 
-#updates
-{
+#updates {
   left: 2500px;
-  margin: 2em auto;
 }
 
-#updates section
-{
-  height: 364px;
-}
-
-#updates_badge
-{
+#updates_badge {
   cursor: pointer !important;
   position: absolute;
   left: 55%;

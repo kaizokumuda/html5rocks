@@ -60,8 +60,9 @@ function finishPanelLoad(pagePanel) {
   // new.css applies this to .page elements. Not sure why pagePanel.addClass('current')
   // doesn't take care of this.
   $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
-    $('.subheader.features').slideUp();
-    route.init(page);
+    $('.subheader.features').slideUp('fast', function() {
+      route.init(page);
+    });
   }});
 }
 
@@ -82,9 +83,10 @@ $('a').click(function() { // TODO: go back to event delgation. Currently breaks 
                   // drop the hash
                   .split('#')[0];
 
-  // special case for homepage
-  if (page == ''){
-    page = 'home';
+  // Special case for homepage. Just redirect.
+  if (page == '') {
+    location.href = '/';
+    return false;
   }
 
   $('body').removeClass().attr('data-href', page);
@@ -173,20 +175,18 @@ $('nav.features_outline a.section_title').click(function(e) {
 // route['features-offline']();
 
 window.route = {
-  common : function(){
+  common : function() {
     gapi.plusone.go(pagePanel.find('.plusone').get(0));
 
     // TODO(Google): record GA hit on new ajax page load.
     // TODO(paulirish): add window.history.pushState
-
   },
-
 
   "features" : function() {
     window.loadFeaturePanels && loadFeaturePanels();
   },
 
-  init : function(thing){
+  init : function(thing) {
     var commonfn = route[thing.split('-')[0]],
         pagefn   = route[thing];
     
@@ -196,16 +196,23 @@ window.route = {
       route.fire(pagefn);
     }
   }, 
-  fire : function(fn){
+  fire : function(fn) {
     if (typeof fn == 'function') {
       fn.call(route);
     }
   },
-  onload : function(){
+  onload : function() {
     // due to the funky templating, we output into the same div, but we
     // want to move it into "correct" DOM order (in base.html)
     var curelem = $('.page.current'),
         curid   = curelem[0].id;
+
+    // Special case for the homepage. Prevent the DOM replacement
+    // causing a double load of the Y! pipe feed.
+    if (curid == 'home') {
+      return false;
+    }
+
     $('[id=' + curid + ']').eq(1).replaceWith(curelem);
 
     route.fire(route.features);
