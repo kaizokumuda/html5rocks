@@ -26,10 +26,10 @@ html, body {
 }
 
 #title img {
-  width: 30px;
-  height: 30px;
+  height: 22px;
+  width: 22px;
   position: relative;
-  top: 5px;
+  top: 1px;
   left: -2px;
 }
 

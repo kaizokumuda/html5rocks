@@ -126,11 +126,17 @@
 }
 
 /* Selectors */
-body, html, .slides {
+body, html, #flex-container, .slides {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+#flex-container {
+  @mixin displayAsBox;
+  @mixin boxPack(center);
+  @mixin boxAlign(center);
 }
 
 body {
@@ -138,9 +144,6 @@ body {
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   background: #778;
-  @mixin displayAsBox;
-  @mixin boxPack(center);
-  @mixin boxAlign(center);
 }
 
 .slides {
