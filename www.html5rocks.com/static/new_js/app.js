@@ -69,9 +69,8 @@ function finishPanelLoad(pagePanel) {
 $('a').click(function() { // TODO: go back to event delgation. Currently breaks nav.
 
   // Don't intercept external links
-  if ($(this).attr('target') || $(this).is('nav.features_outline a.section_title')) {
+  if ($(this).attr('target'))
     return true;
-  }
 
   window.page = this.pathname
                   // remove locale
@@ -97,7 +96,9 @@ $('a').click(function() { // TODO: go back to event delgation. Currently breaks 
   // If we have an anchor, just scroll to it on the current page panel.
   var hash = $(this).attr('href').split('#')[1];
   if (hash) {
-    finishPanelLoad(pagePanel.find('.' + hash), true);
+    var panelSegment = pagePanel.find('.' + hash);
+    if (panelSegment.length)
+      finishPanelLoad(panelSegment, true);
     return false;
   }
 
@@ -196,6 +197,12 @@ window.route = {
     }
   },
   onload : function(){
+    // due to the funky templating, we output into the same div, but we
+    // want to move it into "correct" DOM order (in base.html)
+    var curelem = $('.page.current'),
+        curid   = curelem[0].id;
+    $('[id=' + curid + ']').eq(1).replaceWith(curelem);
+
     route.fire(route.features);
   }
 };
