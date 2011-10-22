@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block headtitle %}New Tutorial{% endblock %}
+
+{% block head %}
+<style>
+  input[required]:not(:invalid) {
+    border: 1px solid green;
+    -webkit-box-shadow: 0 0 3px green;
+    -moz-box-shadow: 0 0 3px green;
+    -o-box-shadow: 0 0 3px green;
+    box-shadow: 0 0 3px green;
+  }
+  input:invalid {
+    border: 1px solid #e88;
+    -webkit-box-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
+    -o-box-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
+    box-shadow: 0 0 3px rgba(255, 0, 0, 0.8);
+  }
+  input[type='submit'] {
+    margin: 15px auto 25px;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div>
+  <h2>Add a new tutorial:</h2>
+  <form name="tutorial_form" method="POST" action="/database/resource">
+    <table>
+      {{ tutorial_form }}
+    </table>
+  </form>
+</div>
+
+{% endblock %}

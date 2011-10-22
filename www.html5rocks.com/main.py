@@ -147,7 +147,8 @@ class ContentHandler(webapp.RequestHandler):
 
     return articles
 
-  def render(self, data={}, template_path=None, status=None, message=None, relpath=None):
+  def render(self, data = {}, template_path = None, status = None, 
+             message = None, relpath = None):
     if status is not None and status != 200:
       self.response.set_status(status, message)
 
@@ -205,42 +206,43 @@ class ContentHandler(webapp.RequestHandler):
     logging.info(prefix)
 
     feed = feedgenerator.Atom1Feed(
-        title= _(u'HTML5Rocks - Tutorials'),  # TODO: make generic for any page.
-        link=prefix,
-        description= _(u'Take a guided tour through code that uses HTML5.'),
-        language=u'en'
+        # TODO: make title generic for any page.
+        title = _(u'HTML5Rocks - Tutorials'),
+        link = prefix,
+        description = _(u'Take a guided tour through code that uses HTML5.'),
+        language = u'en'
         )
     for tutorial in data:
       feed.add_item(
-          title=tutorial['title'],
-          link=prefix + tutorial['href'],
-          description=tutorial['description'],
-          pubdate=tutorial['pubdate'],
-          author_name=tutorial['author_id'],
-          categories=tutorial['categories']
+          title = tutorial['title'],
+          link = prefix + tutorial['href'],
+          description = tutorial['description'],
+          pubdate = tutorial['pubdate'],
+          author_name = tutorial['author_id'],
+          categories = tutorial['categories']
           )
     self.response.headers.add_header('Content-Type', 'application/atom+xml')
     self.response.out.write(feed.writeString('utf-8'))
 
   def post(self, relpath):
-    if (relpath == 'database/submit'):
+    if (relpath == 'database/author'):
       try:
         given_name = self.request.get('given_name')
         family_name = self.request.get('family_name')
         author = common.Author(
-            key_name=''.join([given_name, family_name]).lower(),
-            given_name=given_name,
-            family_name=family_name,
-            org=self.request.get('org'),
-            unit=self.request.get('unit'),
-            city=self.request.get('city'),
-            state=self.request.get('state'),
-            country=self.request.get('country'),
-            homepage=self.request.get('homepage') or None,
-            google_account=self.request.get('google_account') or None,
-            twitter_account=self.request.get('twitter_account') or None,
-            email=self.request.get('email') or None,
-            lanyrd=self.request.get('lanyrd') == 'on')
+            key_name = ''.join([given_name, family_name]).lower(),
+            given_name = given_name,
+            family_name = family_name,
+            org = self.request.get('org'),
+            unit = self.request.get('unit'),
+            city = self.request.get('city'),
+            state = self.request.get('state'),
+            country = self.request.get('country'),
+            homepage = self.request.get('homepage') or None,
+            google_account = self.request.get('google_account') or None,
+            twitter_account = self.request.get('twitter_account') or None,
+            email = self.request.get('email') or None,
+            lanyrd = self.request.get('lanyrd') == 'on')
         lat = self.request.get('lat')
         lon = self.request.get('lon')
         if lat and lon:
@@ -250,7 +252,11 @@ class ContentHandler(webapp.RequestHandler):
         pass
       else:
         #return self.redirect('/database/edit')
-        self.redirect('/database/new')
+        self.redirect('/database/author')
+    elif (relpath == 'database/resource'):
+      self.addResources()
+      return self.redirect('/database/resource')
+
 
 
   def get(self, relpath):
@@ -262,24 +268,33 @@ class ContentHandler(webapp.RequestHandler):
       self.request.cache = False
 
     # Handle humans before locale, to prevent redirect to /en/
-    # (but still ensure it's dynamic, ie we can't just redirect to a static url)
+    # (but still ensure it's dynamic, ie we can't just redirect to a static 
+    # url)
     if (relpath == 'humans.txt'):
       self.response.headers['Content-Type'] = 'text/plain'
       sorted_profiles = common.get_sorted_profiles()
-      return self.render(data={'sorted_profiles': sorted_profiles,
+      return self.render(data = {'sorted_profiles': sorted_profiles,
                                'profile_amount': len(sorted_profiles)},
-                         template_path='content/humans.txt',
-                         relpath=relpath)
+                         template_path = 'content/humans.txt',
+                         relpath = relpath)
 
     elif (relpath == 'database/load_resources'):
-      self.addResources()
-      return self.redirect('/database/new')
+      self.dumpResources()
+      return self.redirect('/database/resource')
 
     elif (relpath == 'database/load_author_information'):
-      self.addAuthorInformations()
-      return self.redirect('/database/new')
+      self.dumpAuthorInformations()
+      return self.redirect('/database/author')
 
-    elif (relpath == 'database/new'):
+    elif (relpath == 'database/resource'):
+      template_data = {
+        'tutorial_form': common.TutorialForm()
+      }
+      return self.render(data = template_data,
+                         template_path = 'database/resource_new.html',
+                         relpath = relpath)
+
+    elif (relpath == 'database/author'):
       # adds a new author information into DataStore
       template_data = {
         'sorted_profiles': common.get_sorted_profiles(update_cache=True),
@@ -313,8 +328,9 @@ class ContentHandler(webapp.RequestHandler):
     logging.info('relpath: ' + relpath)
 
     # Setup handling of redirected article URLs: If a user tries to access an
-    # article from a non-supported language, we'll redirect them to the English
-    # version (assuming it exists), with a `redirect_from_locale` GET param.
+    # article from a non-supported language, we'll redirect them to the 
+    # English version (assuming it exists), with a `redirect_from_locale` GET 
+    # param.
     redirect_from_locale = self.request.get('redirect_from_locale', '')
     if not re.match('[a-zA-Z]{2,3}$', redirect_from_locale):
       redirect_from_locale = False
@@ -322,13 +338,15 @@ class ContentHandler(webapp.RequestHandler):
       translation.activate(redirect_from_locale)
       redirect_from_locale = {
         'lang': redirect_from_locale,
-        'msg': _("Sorry, this article isn't available in your native language; we've redirected you to the English version.")
+        'msg': _('Sorry, this article isn\'t available in your native '
+                 'language; we\'ve redirected you to the English version.')
       }
       translation.activate(locale);
 
     # Landing page or /tutorials|features|mobile\/?
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
-       (relpath in ['mobile', 'tutorials', 'features'] and relpath[-1] != '/')):
+        (relpath in ['mobile', 'tutorials', 'features'] and
+        relpath[-1] != '/')):
       path = os.path.join(basedir, 'content', relpath, 'index.html')
     else:
       path = os.path.join(basedir, 'content', relpath)
@@ -337,8 +355,8 @@ class ContentHandler(webapp.RequestHandler):
     # the user is requesting has a corresponding .html page that exists.
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
-      self.render(data={'sorted_profiles': common.get_sorted_profiles()},
-                  template_path='content/profiles.html', relpath=relpath)
+      self.render(data = {'sorted_profiles': common.get_sorted_profiles()},
+                  template_path = 'content/profiles.html', relpath = relpath)
 
     elif re.search('tutorials/casestudies', relpath) and not is_feed:
       # Case Studies look like this on the filesystem:
@@ -423,16 +441,17 @@ class ContentHandler(webapp.RequestHandler):
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
-  def addResources(self):
+  def dumpResources(self):
     author_key = common.Author.get_by_key_name(u'hanrui');
-    sample = common.Resource(title = u'A Beginner\'s Guide to Using the Application Cache',
-                             description = u'A beginner\'s guide to using the Application Cache.',
-                             author = author_key,
-                             url = u'tutorials/appcache/beginner/',
-                             browser_support = [u'chrome', u'safari', u'opera'],
-                             update_date = datetime.date(2011, 8, 25),
-                             publication_date = datetime.date(2011, 10, 1),
-                             tags = [u'offline'])
+    sample = common.Resource(
+        title = u'A Beginner\'s Guide to Using the Application Cache',
+        description = u'A beginner\'s guide to using the Application Cache.',
+        author = author_key,
+        url = u'tutorials/appcache/beginner/',
+        browser_support = [u'chrome', u'safari', u'opera'],
+        update_date = datetime.date(2011, 8, 25),
+        publication_date = datetime.date(2011, 10, 1),
+        tags = [u'offline'])
     sample.put()
 
 
