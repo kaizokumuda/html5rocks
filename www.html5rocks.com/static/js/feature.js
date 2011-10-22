@@ -12,6 +12,8 @@ window.caniusecallback = function(data) {
     var featurestats = data.data[feature];
     var localdom = dom.clone();
 
+    if (!featurestats) return false;
+
     var url = 'http://caniuse.com/#search=' + feature;
     localdom.find('h4').html((featurestats.title).link(url));
 
