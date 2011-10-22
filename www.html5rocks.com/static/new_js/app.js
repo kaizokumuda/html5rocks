@@ -55,25 +55,36 @@ $('.subheader.features ul li a').click(function() {
 
 // Page grid navigation.
 
-function finishPanelLoad(pagePanel) {
+function finishPanelLoad(pagePanel, elemstate) {
   // TODO(Google): scrollTo needs to scroll to and element that is not display:none.
   // new.css applies this to .page elements. Not sure why pagePanel.addClass('current')
   // doesn't take care of this.
   $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
     $('.subheader.features').slideUp('fast', function() {
+
+      if (elemstate.popped != 'popped') 
+        state.push( elemstate );
+
       route.init(page);
     });
   }});
 }
 
 //$('a').live('click', function() {
-$('a').click(function() { // TODO: go back to event delgation. Currently breaks nav.
+// TODO: go back to event delgation. Currently breaks nav.
+$('a').click(function() { 
 
   // Don't intercept external links
-  if ($(this).attr('target'))
-    return true;
+  if ($(this).attr('target')) return true;
 
-  window.page = this.pathname
+  loadContent(this);
+
+  return false;
+});
+
+function loadContent(elem, popped){
+  
+  window.page = elem.pathname
                   // remove locale
                   .replace(/\/\w{2,3}\//gi, '')
                   // slashes to dashes
@@ -83,39 +94,46 @@ $('a').click(function() { // TODO: go back to event delgation. Currently breaks 
                   // drop the hash
                   .split('#')[0];
 
+  window.pagePanel =  $('.page#' + page);
+
+  var href = elem.href,
+      hash = href.split('#')[1],
+      elemstate = { href    : href
+                  , hash    : hash
+                  , popped  : popped
+      };
+
   // Special case for homepage. Just redirect.
   if (page == '') {
     location.href = '/';
     return false;
   }
 
-  $('body').removeClass().attr('data-href', page);
+  $('body').attr('data-href', page);
   $('.page').removeClass('current');
 
-  window.pagePanel =  $('.page#' + page);
   pagePanel.addClass('current');
 
+
   // If we have an anchor, just scroll to it on the current page panel.
-  var hash = $(this).attr('href').split('#')[1];
   if (hash) {
     var panelSegment = pagePanel.find('.' + hash);
     if (panelSegment.length)
-      finishPanelLoad(panelSegment, true);
+      finishPanelLoad(panelSegment, elemstate);
     return false;
   }
 
   if (pagePanel.hasClass('loaded')) {
-    finishPanelLoad(pagePanel);
+    finishPanelLoad(pagePanel, elemstate);
   } else {
     pagePanel
       .addClass('current loaded')
-      .load($(this).attr('href') + ' [data-import-html]', function() {
-        finishPanelLoad(pagePanel);
+      .load(href + ' [data-import-html]', function() {
+        finishPanelLoad(pagePanel, elemstate);
       });
   }
 
-  return false;
-});
+}; // eo loadContent()
 
 $(document).keydown(function(e) {
   currentId = $('.current').attr('id');
@@ -220,3 +238,31 @@ window.route = {
 };
 
 window.addEventListener('DOMContentLoaded', route.onload, false);
+
+
+
+
+
+window.state = {
+  push : function(obj){
+    if (!Modernizr.history) return;
+    history.pushState(obj,'', obj.href)
+  },
+
+  popstate : function(e){
+    if (!(e && e.state)) return;
+
+    var elem = document.createElement('a');
+    elem.href = e.state.href;
+
+    // trigger a click to kick off our navigation loop
+    loadContent(elem, 'popped');
+  },
+  handleEvent : function(e){
+    state[e.type].call(state, e);
+  }
+
+};
+
+window.addEventListener('popstate', state, false);
+
