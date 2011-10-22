@@ -136,7 +136,7 @@ function loadContent(elem, popped){
 }; // eo loadContent()
 
 $(document).keydown(function(e) {
-  currentId = $('.current').attr('id');
+  /*currentId = $('.current').attr('id');
   if (e.keyCode == 39) {
     nextPage = $('.current').next();
     nextPage.html('<p style="border: 4px solid red">Loading content...</p>');
@@ -150,7 +150,7 @@ $(document).keydown(function(e) {
       e.target.classList.remove('previous');
       $('.next').removeClass('next');
     });
-  } else if (e.keyCode == 27) { // ESC
+  } else */if (e.keyCode == 27) { // ESC
     // Hide search and/or feature bar.
     $('#search_hide, #features_hide').click();
 
@@ -183,6 +183,10 @@ $('nav.features_outline a.section_title').click(function(e) {
   e.stopPropagation();
 });
 
+$('nav.main li a').click(function(e) {
+  $('nav.main .current').removeClass('current');
+  $(this).addClass('current');
+});
 
 // basic routing setup based on the global page variable
 // everything happens on the `page` variable
