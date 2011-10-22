@@ -8,7 +8,6 @@
 {% endblocktrans %}
 </p>
 
-<script src="/static/js/modernizr.custom.50849.js"></script>
 <script async src="/static/js/prettify{% if prod %}.min{% endif %}.js"></script>
 
 {% if not is_mobile %}
@@ -21,7 +20,6 @@
   </p>
 </noscript>
 
-<script async src="https://apis.google.com/js/plusone.js"></script>
 <script async src="http://platform.twitter.com/widgets.js"></script>
 <script>
   var disqus_shortname = 'html5rocks';
@@ -39,8 +37,11 @@
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; 
     dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
 
+    var po = document.createElement('script'); po.type = 'text/javascript';
+    po.src = 'https://apis.google.com/js/plusone.js';
+
     var s = document.getElementsByTagName('script')[0], sp = s.parentNode;
-    sp.insertBefore(c, s); sp.insertBefore(dsq, s);
+    sp.insertBefore(po, s); sp.insertBefore(c, s); sp.insertBefore(dsq, s);
      
   }, false);
 </script>
