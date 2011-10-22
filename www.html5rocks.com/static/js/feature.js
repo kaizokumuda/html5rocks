@@ -100,7 +100,9 @@ window.loadFeaturePanels = function() {
   //var elem = pagePanel.find('section.support')[0];
   var elem = $('.page.current').find('section.support')[0];
 
-  if (!elem) return;
+  if (!elem) {
+    return;
+  }
 
   window.caniuse = {
     caniusefeatures: elem.dataset.caniusefeatures.split(','),

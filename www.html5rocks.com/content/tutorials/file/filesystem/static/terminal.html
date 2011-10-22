@@ -169,6 +169,7 @@ body.cream {
   body.addEventListener('dragover', function(e) {
     e.stopPropagation();
     e.preventDefault();
+    e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
   }, false);
 
   body.addEventListener('drop', function(e) {

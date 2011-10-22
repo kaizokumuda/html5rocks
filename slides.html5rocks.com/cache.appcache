@@ -82,14 +82,13 @@ CACHE MANIFEST
 /src/webworkers/points.js
 /src/webworkers/prime.js
 /src/webworkers/Worker.js
-/styles/common.excss
-/styles/default.excss
+/styles/common.css
+/styles/default.css
 /styles/fonts.css
-/styles/moon.excss
-/styles/presentation.excss
-/styles/sand.excss
-/styles/sea_wave.excss
-/js/excss.js
+/styles/moon.css
+/styles/presentation.css
+/styles/sand.css
+/styles/sea_wave.css
 /js/utils.js
 
 NETWORK:

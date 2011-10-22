@@ -352,7 +352,7 @@ if (!Function.prototype.bind) {
     _speakerNote: query('#speaker-note'),
     _help: query('#help'),
     _slides: [],
-    _themes: ['default', 'moon', 'sand', 'sea_wave'],
+    _themes: queryAll('.theme'),
     _getCurrentIndex: function() {
       var me = this;
       var slideCount = null;
@@ -445,10 +445,14 @@ if (!Function.prototype.bind) {
       sessionStorage['highlightOn'] = !link.disabled;
     },
     changeTheme: function() {
-      var sheetIndex = this._themes.indexOf(sessionStorage['theme']);
-      var nextSheet = this._themes[sheetIndex + 1];
-      document.querySelector('html').className = nextSheet;
-      sessionStorage['theme'] = nextSheet;
+      var sheetIndex = 0;
+      while (this._themes[sheetIndex].disabled) {
+        sheetIndex++;
+      }
+      this._themes[sheetIndex].disabled = true;
+      var nextSheet = this._themes[(sheetIndex + 1) % this._themes.length];
+      nextSheet.disabled = false;
+      sessionStorage['theme'] = nextSheet.getAttribute('href').split('/').pop();
     },
     toggleHelp: function() {
       this._help.style.display = 'block';
@@ -526,21 +530,12 @@ if (!Function.prototype.bind) {
   query('#prettify-link').disabled = !(sessionStorage['highlightOn'] == 'true');
 
   // disable style theme stylesheets
-  var themeEls = queryAll('.theme');
-  var stylesheetPath = sessionStorage['theme'] || 'default';
-  var found = false;
-  themeEls.forEach(function(stylesheet) {
-    var preserved = stylesheet.getAttribute('link_href').indexOf(stylesheetPath) >= 0;
-    // hack. remove when we precompile excss
-    document.querySelector('html').className = stylesheetPath;
-    if (preserved) {
-      found = true;
-    }
+  var linkEls = queryAll('link.theme');
+  var stylesheetPath = sessionStorage['theme'] || 'styles/default.css';
+  linkEls.forEach(function(stylesheet) {
+    stylesheet.disabled = !(stylesheet.href.indexOf(stylesheetPath) != -1);
   });
-  if (!found) {
-    sessionStorage['theme'] = stylesheetPath;
-  }
-
+        
   // Initialize
   var li_array = [];
   var transitionSlides = queryAll('.transitionSlide').forEach(function(el) {

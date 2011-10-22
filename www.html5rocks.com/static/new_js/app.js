@@ -60,12 +60,13 @@ function finishPanelLoad(pagePanel, elemstate) {
   // new.css applies this to .page elements. Not sure why pagePanel.addClass('current')
   // doesn't take care of this.
   $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
-    $('.subheader.features').slideUp();
+    $('.subheader.features').slideUp('fast', function() {
 
-    if (elemstate.popped != 'popped') 
-      state.push( elemstate ) ;
-    
-    route.init(page);
+      if (elemstate.popped != 'popped') 
+        state.push( elemstate );
+
+      route.init(page);
+    });
   }});
 }
 
@@ -102,8 +103,11 @@ function loadContent(elem, popped){
                   , popped  : popped
       };
 
-  // special case for homepage
-  if (page == '') page = 'home';
+  // Special case for homepage. Just redirect.
+  if (page == '') {
+    location.href = '/';
+    return false;
+  }
 
   $('body').attr('data-href', page);
   $('.page').removeClass('current');
@@ -147,7 +151,12 @@ $(document).keydown(function(e) {
       $('.next').removeClass('next');
     });
   } else if (e.keyCode == 27) { // ESC
+    // Hide search and/or feature bar.
     $('#search_hide, #features_hide').click();
+
+    // Hide +/- feature navigation.
+    $('.features_outline_nav_toggle').removeClass('activated');
+    $('nav.features_outline').fadeOut('fast');
   }
 });
 
@@ -184,20 +193,18 @@ $('nav.features_outline a.section_title').click(function(e) {
 // route['features-offline']();
 
 window.route = {
-  common : function(){
+  common : function() {
     gapi.plusone.go(pagePanel.find('.plusone').get(0));
 
     // TODO(Google): record GA hit on new ajax page load.
     // TODO(paulirish): add window.history.pushState
-
   },
-
 
   "features" : function() {
     window.loadFeaturePanels && loadFeaturePanels();
   },
 
-  init : function(thing){
+  init : function(thing) {
     var commonfn = route[thing.split('-')[0]],
         pagefn   = route[thing];
     
@@ -207,16 +214,23 @@ window.route = {
       route.fire(pagefn);
     }
   }, 
-  fire : function(fn){
+  fire : function(fn) {
     if (typeof fn == 'function') {
       fn.call(route);
     }
   },
-  onload : function(){
+  onload : function() {
     // due to the funky templating, we output into the same div, but we
     // want to move it into "correct" DOM order (in base.html)
     var curelem = $('.page.current'),
         curid   = curelem[0].id;
+
+    // Special case for the homepage. Prevent the DOM replacement
+    // causing a double load of the Y! pipe feed.
+    if (curid == 'home') {
+      return false;
+    }
+
     $('[id=' + curid + ']').eq(1).replaceWith(curelem);
 
     route.fire(route.features);
