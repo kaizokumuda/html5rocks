@@ -77,6 +77,9 @@ $('a').click(function() {
   // Don't intercept external links
   if ($(this).attr('target')) return true;
 
+  // Only cool browsers get cool behavior
+  if (!Modernizr.history) return true;
+
   loadContent(this);
 
   return false;
