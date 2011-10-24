@@ -32,7 +32,7 @@
 {% endblock %}
 {% block pagebreadcrumb %}Exploring the FileSystem APIs{% endblock %}
 {% block date %}January 4, 2011{% endblock %}
-{% block updated %}{% endblock %}
+{% block updated %}October 24, 2011{% endblock %}
 {% block onload %}document.querySelector('#terminal-iframe').style.display='block';{% endblock %}
 
 {% block browsersupport %}
@@ -76,14 +76,13 @@
 
   <h3 id="toc-support">Browser support &amp; storage limitations</h3>
 
-  <p>At the time of writing this article, Google Chrome 9+ has the only working implementation of the
-  FileSystem API. Since a dedicated browser UI does not yet exist for file/quota
-  management, the API cannot be used without running Chrome with the
-  <code>--unlimited-quota-for-files</code> flag (Note: if you're building an app
-  or extension for the Chrome Web Store, the <code>unlimitedStorage</code> <a href="http://code.google.com/chrome/extensions/manifest.html">manifest file</a>
-  permission will suffice). This means there is currently no storage cap in place for apps,
-  but that will change. Users will eventually receive a permission
-  dialog to grant, deny, or increase storage for an app.
+  <p>At the time of writing this article, Google Chrome has the only working implementation of the
+  FileSystem API. A dedicated browser UI does not yet exist for file/quota
+  management. To store data on the user's system, may require your app to <a href="#toc-requesting-quota">request quota</a>.
+  However, for testing, Chrome can be run with the <code>--unlimited-quota-for-files</code> flag.
+  Furthermore, if you're building an app or extension for the Chrome Web Store, the <code>unlimitedStorage</code> <a href="http://code.google.com/chrome/extensions/manifest.html">manifest file</a>
+  permission can be used in place of requesting quota. Eventually, users will receive a permission
+  dialog to grant, deny, or increase storage for an app.</p>
 
   <p>You may need the <code>--allow-file-access-from-files</code> flag if you're debugging
   your app from <code>file://</code>. Not using these flags will result in
@@ -108,7 +107,7 @@ window.requestFileSystem(<var>type</var>, <var>size</var>, <var>successCallback<
     Data stored using <code>TEMPORARY</code> can be removed at the browser's discretion
     (for example if more space is needed). <code>PERSISTENT</code> storage cannot cleared
     unless explicitly authorized by the user or the app and requires the user to grant
-    quota to your app.</dd>
+    quota to your app. See <a href="#toc-requesting-quota">requesting quota</a>.</dd>
     <dt><var>size</var></dt>
     <dd>Size (in bytes) the app will require for storage.</dd>
     <dt><var>successCallback</var></dt>
@@ -173,6 +172,29 @@ function errorHandler(e) {
 
   <p>Granted, this error callback is very generic, but you get the idea. You'll want to
   provide human-readable messages to users instead.</p>
+
+  <h3 id="toc-requesting-quota">Requesting storage quota</h3>
+
+  <p>To use <code>PERSISTENT</code> storage, you must obtain permission from the user
+  to store peristent data. The same restriction doesn't apply to <code>TEMPORARY</code> storage
+  because the browser may choose to evict temporarily stored data at its discretion.</p>
+
+  <p>To use <code>PERSISTENT</code> storage with the FileSystem API, Chrome exposes a new
+  API under <code>window.webkitStorageInfo</code> to request storage:</p>
+
+  <pre class="prettyprint">
+window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
+  window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+}, function(e) {
+  console.log('Error', e);
+});
+</pre>
+
+  <p>Once the user has granted permission, there's no need to call <code>requestQuota()</code>
+  in the future. Subsequent calls are a noop.</p>
+
+  <p>There is also <a href="https://groups.google.com/a/chromium.org/group/chromium-html5/browse_thread/thread/9be7a2dc04d9af67">an API</a> to query an origin's current quota
+  usage and allocation: <code>window.webkitStorageInfo.queryUsageAndQuota()</code></p>
 
   <h2 id="toc-file">Working with files</h2>
 

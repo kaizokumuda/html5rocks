@@ -26,7 +26,7 @@ html5rocks.indexedDB.open = function() {
       var setVrequest = db.setVersion(v);
 
       // onsuccess is the only place we can create Object Stores
-      setVrequest.onfailure = html5rocks.indexedDB.onerror;
+      setVrequest.onerror = html5rocks.indexedDB.onerror;
       setVrequest.onsuccess = function(e) {
         if(db.objectStoreNames.contains("todo")) {
           db.deleteObjectStore("todo");
@@ -43,7 +43,7 @@ html5rocks.indexedDB.open = function() {
     }
   };
 
-  request.onfailure = html5rocks.indexedDB.onerror;
+  request.onerror = html5rocks.indexedDB.onerror;
 }
 
 html5rocks.indexedDB.addTodo = function(todoText) {
@@ -133,4 +133,4 @@ function init() {
   html5rocks.indexedDB.open();
 }
 
-window.addEventListener("DOMContentLoaded", init(), false);
+window.addEventListener("DOMContentLoaded", init, false);
