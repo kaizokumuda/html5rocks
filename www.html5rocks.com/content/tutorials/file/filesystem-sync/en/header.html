@@ -1,0 +1,31 @@
+{% extends "sample.html" %}
+
+{% block headauthor %}Eric Bidelman{% endblock %}
+{% block pageauthor %}{% profilelinks ebidelman %}{% endblock %}
+{% block headtitle %}The Synchronous FileSystem API for Workers{% endblock %}
+{% block pagetitle %}The Synchronous FileSystem API for Workers{% endblock %}
+{% block pagebreadcrumb %}Synchronous FileSystem{% endblock %}
+{% block date %}November 1, 2011{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block browsersupport %}
+<span class="opera"></span>
+<span class="ie"></span>
+<span class="safari"></span>
+<span class="ff"></span>
+<span class="chrome supported"></span>
+{% endblock %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-storage.png" width="133" height="64" alt="This article is powered by HTML5 Offline &amp; Storage" title="This article is powered by HTML5 Offline &amp; Storage" />
+{% endblock %}
+
+{% block iscompatible %}
+  return !!(window.requestFileSystem || window.webkitRequestFileSystem);
+{% endblock %}
+
+{% block content %}
+
