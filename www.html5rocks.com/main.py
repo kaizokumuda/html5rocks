@@ -147,8 +147,8 @@ class ContentHandler(webapp.RequestHandler):
 
     return articles
 
-  def render(self, data = {}, template_path = None, status = None, 
-             message = None, relpath = None):
+  def render(self, data={}, template_path=None, status=None, 
+             message=None, relpath=None):
     if status is not None and status != 200:
       self.response.set_status(status, message)
 
@@ -273,26 +273,26 @@ class ContentHandler(webapp.RequestHandler):
     if (relpath == 'humans.txt'):
       self.response.headers['Content-Type'] = 'text/plain'
       sorted_profiles = common.get_sorted_profiles()
-      return self.render(data = {'sorted_profiles': sorted_profiles,
+      return self.render(data={'sorted_profiles': sorted_profiles,
                                'profile_amount': len(sorted_profiles)},
-                         template_path = 'content/humans.txt',
-                         relpath = relpath)
+                         template_path='content/humans.txt',
+                         relpath=relpath)
 
     elif (relpath == 'database/load_resources'):
-      self.dumpResources()
+      self.addTestResources()
       return self.redirect('/database/resource')
 
     elif (relpath == 'database/load_author_information'):
-      self.dumpAuthorInformations()
+      self.addTestAuthors()
       return self.redirect('/database/author')
 
     elif (relpath == 'database/resource'):
       template_data = {
         'tutorial_form': common.TutorialForm()
       }
-      return self.render(data = template_data,
-                         template_path = 'database/resource_new.html',
-                         relpath = relpath)
+      return self.render(data=template_data,
+                         template_path='database/resource_new.html',
+                         relpath=relpath)
 
     elif (relpath == 'database/author'):
       # adds a new author information into DataStore
@@ -355,8 +355,8 @@ class ContentHandler(webapp.RequestHandler):
     # the user is requesting has a corresponding .html page that exists.
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
-      self.render(data = {'sorted_profiles': common.get_sorted_profiles()},
-                  template_path = 'content/profiles.html', relpath = relpath)
+      self.render(data={'sorted_profiles': common.get_sorted_profiles()},
+                  template_path='content/profiles.html', relpath=relpath)
 
     elif re.search('tutorials/casestudies', relpath) and not is_feed:
       # Case Studies look like this on the filesystem:
@@ -441,7 +441,7 @@ class ContentHandler(webapp.RequestHandler):
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
-  def dumpResources(self):
+  def addTestResources(self):
     author_key = common.Author.get_by_key_name(u'hanrui');
     sample = common.Resource(
         title = u'A Beginner\'s Guide to Using the Application Cache',
@@ -455,7 +455,7 @@ class ContentHandler(webapp.RequestHandler):
     sample.put()
 
 
-  def addAuthorInformations(self):
+  def addTestAuthors(self):
     import yaml
 
     f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
