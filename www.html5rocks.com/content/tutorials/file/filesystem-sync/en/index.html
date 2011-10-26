@@ -160,7 +160,7 @@ described in <a href="/tutorials/workers/basics/">Basics of Web Workers</a>.</p>
 &lt;script&gt;
 document.querySelector('input[type="file"]').addEventListener('change', function(e) {
   var files = this.files;
-  loadInlineWorker('fileListWorker', function(worker) {
+  loadInlineWorker('#fileListWorker', function(worker) {
 
     worker.onmessage = function(e) {
       console.log(e.data);
@@ -416,4 +416,12 @@ onmessage = function(e) {
   }
 };
 </code></pre>
+<h2 id="toc-conclusion">Conclusion</h2>
+
+<p>In my opinion, Web Workers are an under utilized and under-appreciated feature
+of HTML5. Most developers I talk to don't need the extra computational benefits.
+But they can be used for more than just pure computation.
+If you're skeptical (as I was), I hope this article has helped change your mind.
+Using the HTML5 File APIs inside of workers opens a whole new can of awesomeness
+for web apps that a lot of folks haven't explored.</p>
 {% endblock %}
