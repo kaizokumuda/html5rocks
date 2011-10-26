@@ -9,20 +9,20 @@ used to build some truly interesting apps.
 <h3 id="toc-getting-started">Getting started</h3>
 
 This tutorial provides a guide and code examples for leveraging the HTML5
-FileSystem inside of a Web Worker. However, it assumes a working knowledge of
-both APIs. If you're interested in learning more about these APIs, I've written
+FileSystem inside of a Web Worker. It assumes a working knowledge of
+both APIs. If you're not quite ready to dive in or are interested in learning
+more about those APIs, I've written
 two great tutorials that discuss the basics:
 [Exploring the FileSystem APIs](/tutorials/file/filesystem/) and
 [Basics of Web Workers](/tutorials/workers/basics/).
 
 <h2 id="toc-intro">Introduction</h2>
 
-Asynchronous JS APIs can be tough to use. They're often large, complex, and offer
-plenty of opportunities for things to go wrong. The last thing you want when
-building a new app is attempting to use and debug an async API (FileSystem)
+Asynchronous JS APIs can be tough to use. They're large. They're complex.
+But what's most frustrating is that they offer plenty of opportunities for things to go wrong.
+The last thing you want to deal with as a developer is layering on a complex asynchronous API (FileSystem)
 in an already asynchronous world (Workers)! The good news is that the
-[FileSystem API][fs-spec] API defines a synchronous version for exclusive use in
-Web Workers.
+[FileSystem API][fs-spec] API defines a synchronous version to ease the pain in Web Workers.
 
 For the most part, the synchronous API is exactly the same as its asynchronous cousin.
 The methods, properties, features, and functionality will be familiar. The major deviations are:
@@ -48,7 +48,7 @@ is exposed to the worker's global scope:
 Notice the new return value now that we're using the sync API and absence of success
 and error callbacks.
 
-As with the normal FileSystem API, methods are prefixed:
+As with the normal FileSystem API, methods are prefixed at the moment:
 
     self.requestFileSystemSync = self.webkitRequestFileSystemSync ||
                                  self.requestFileSystemSync;
@@ -61,7 +61,7 @@ The process could look like something this:
 
 1.  worker.js: wrap any FileSystem API code in a `try/catch` so any
 `QUOTA_EXCEED_ERR` errors will be caught.
-2. worker.js: If you catch a `QUOTA_EXCEED_ERR`, send a `postMessage('get me more quota')` back to the main app.
+2. worker.js: if you catch a `QUOTA_EXCEED_ERR`, send a `postMessage('get me more quota')` back to the main app.
 3. main app: go through the `window.webkitStorageInfo.requestQuota()` dance when #2 is received.
 4. main app: after the user grants more quota, send `postMessage('resume writes')` back
 to the worker to inform it of additional storage space.
@@ -89,8 +89,8 @@ If you've never had to debug Web Worker code, I envy you! It can be a real pain
 to figure out what is going wrong.
 
 The lack of error callbacks in the synchronous world makes dealing with problems
-trickier than they should be. If we add the general complexity debugging in a worker,
-you'll frustrated in no time. One thing that can make life easier is to wrap all
+trickier than they should be. If we add the general complexity debugging worker code,
+you'll be frustrated in no time. One thing that can make life easier is to wrap all
 of your relevant worker code in a try/catch. Then, if any errors occur, forward
 the error to the main app using `postMessage()`:
 
@@ -114,16 +114,16 @@ meant passing a JSON object was possible. Recently however, some browsers like C
 accept more complex data types to be passed through `postMessage()` using the
 [structured clone algorithm][structuredclone].
 
-What does this really mean? It means that it's now a heck-of-a-lot easier to pass
+What does this really mean? It means that it's a heck-of-a-lot easier to pass
 binary data between main app and worker thread. Browsers that support structured cloning
-for workers allow you to pass a Typed Array, `ArrayBuffer`, `File`, or `Blob`
-into a worker. Although the data is still a copy, being able to pass a `File` means
+for workers allow you to pass Typed Arrays, `ArrayBuffer`s, `File`s, or `Blob`s
+into workers. Although the data is still a copy, being able to pass a `File` means
 a performance benefit over the former approach, which involved base64ing the file
 before passing it into `postMessage()`.
 
-The following example passes a user-selected list of files to an inline web worker.
-The worker simply passes through the file list and the main app reads each file
-as an `ArrayBuffer`. This shows the returned data is a `FileList`.
+The following example passes a user-selected list of files to an dedicated worker.
+The worker simply passes through the file list (simple to show the returned data
+is actually a `FileList`) and the main app reads each file as an `ArrayBuffer`.
 
 The sample also uses an improved version of the [inline web worker technique](/tutorials/workers/basics/#toc-inlineworkers)
 described in [Basics of Web Workers](/tutorials/workers/basics/).
@@ -188,8 +188,8 @@ described in [Basics of Web Workers](/tutorials/workers/basics/).
 
 <h2 id="toc-readingsync">Reading files in a worker</h2>
 
-It's perfectly acceptable to use the asynchronous [`FileReader` API to read files](/tutorials/file/dndfiles/#toc-reading-files) in a worker. However, there's a streamlined synchronous API (`FileReaderSync`)
-for workers that we can take advantage of instead:
+It's perfectly acceptable to use the asynchronous [`FileReader` API to read files](/tutorials/file/dndfiles/#toc-reading-files) in a worker. However, there's a better way. In workers, there's a
+synchronous API (`FileReaderSync`) that streamlines reading files:
 
 *Main app:*
 
@@ -213,8 +213,7 @@ for workers that we can take advantage of instead:
 
       worker.onerror = function(e) {
         document.querySelector('#error').textContent = [
-            'ERROR: Line ', e.lineno, ' in ', e.filename, ': ',
-            e.message].join('');
+            'ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message].join('');
       };
 
       document.querySelector('input[type="file"]').addEventListener('change', function(e) {
@@ -234,7 +233,7 @@ for workers that we can take advantage of instead:
       // Read each file synchronously as an ArrayBuffer and
       // stash it in a global array to return to the main app.
       [].forEach.call(files, function(file) {
-        <b>var reader = new FileReaderSync();</b>
+        var reader = new FileReaderSync();
         buffers.push(reader.readAsArrayBuffer(file));
       });
 
@@ -242,23 +241,23 @@ for workers that we can take advantage of instead:
     }, false);
 
 As expected, callbacks are gone with the synchronous `FileReader`. This simplifies
-the amount of callback nesting when reading files. Instead, the read data is
-returned by the readAs* methods, directly.
+the amount of callback nesting when reading files. Instead, the readAs* methods
+returns the read file.
 
 <h2 id="toc-listing">Example: Fetching all entries</h2>
 
-In some cases, the synchronous API is much cleaner for some tasks. Fewer callbacks
-are nice and certainly make things more readable. The real disadvantage of the
-synchronous API is due to the limitations of web workers.
+In some cases, the synchronous API is much cleaner for certain tasks. Fewer callbacks
+are nice and certainly make things more readable. The real downside of the
+synchronous API steams from the limitations of web workers.
 
 For security reasons, data between the calling app and a web worker thread is
-never shared. This going to
+never shared. This is going to
 [change in the future](https://bugs.webkit.org/show_bug.cgi?id=65209), but for
 now, data is always copied to and from the worker when `postMessage()` is called.
 As a result, not every data type can be passed.
 
-Unfortunately, the `FileEntrySync` and `DirectoryEntrySync` types are not
-currently acceptable types. So how can you get entries back to the calling app?
+Unfortunately, `FileEntrySync` and `DirectoryEntrySync` don't currently fall
+into the accepted types. So how can you get entries back to the calling app?
 One way to circumvent the limitation is to return a list of [filesystem: URLs](/tutorials/file/filesystem/#toc-filesystemurls) instead of a list of entries. `filesystem:` URLs are just strings,
 so they're super easy to pass around. Furthermore, they can be resolved to 
 entries in the main app using `resolveLocalFileSystemURL()`. That'll get you back
@@ -340,7 +339,7 @@ to a `FileEntrySync`/`DirectoryEntrySync` object.
 <h2 id="toc-download-xhr2">Example: Downloading files using XHR2</h2>
 
 A common use case for using web workers is to download a bunch of files using XHR2,
-and write those files to the HTML5 FileSystem. A perfect task for a worker thread!
+and write those files to the HTML5 FileSystem. This is a perfect task for a worker thread!
 
 The following example only fetches and writes one file, but you can image
 expanding it to download a set of files.
