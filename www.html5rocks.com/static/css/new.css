@@ -724,8 +724,8 @@ article.content section
 .arrow_right,
 .arrow_down,
 .arrow_left,
-nav.features_paginator a.previous,
-nav.features_paginator a.next
+nav.paginator a.previous,
+nav.paginator a.next
 {
   background-image: url(/static/new_images/nav_arrows.png);
   background-repeat: no-repeat;
@@ -758,8 +758,39 @@ nav.features_paginator a.next
   background-position: center -300px;
 }
 
-nav.features_paginator a.previous,
-nav.features_paginator a.next
+nav.paginator
+{
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 100px;
+  margin-left: 530px;
+  width: 100px;
+  height: 250px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+nav.paginator ul
+{
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav.paginator a
+{
+  color: #555;
+  position: absolute;
+}
+
+nav.paginator a:hover
+{
+  color: #000;
+}
+
+nav.paginator a.previous,
+nav.paginator a.next
 {
   display: block;
   text-shadow: 0 0 3px #bbb;
@@ -768,16 +799,49 @@ nav.features_paginator a.next
   width: 100px;
 }
 
-nav.features_paginator a.previous
+nav.paginator a.previous
 {
   background-position: center -380px;
   padding: 0 0 55px 0;
 }
 
-nav.features_paginator a.next
+nav.paginator a.next
 {
   background-position: center -605px;
   padding: 55px 0 0 0;
+  top: 135px;
+}
+
+body[data-href='home']       nav.paginator.home,
+body[data-href='mobile']     nav.paginator.home,
+body[data-href='gaming']     nav.paginator.home,
+body[data-href='enterprise'] nav.paginator.home,
+body[data-href='home']       nav.paginator.home ul.home,
+body[data-href='mobile']     nav.paginator.home ul.mobile,
+body[data-href='gaming']     nav.paginator.home ul.gaming,
+body[data-href='enterprise'] nav.paginator.home ul.enterprise,
+body[data-href='features-offline']        nav.paginator.features,
+body[data-href='features-storage']        nav.paginator.features,
+body[data-href='features-connectivity']   nav.paginator.features,
+body[data-href='features-file']           nav.paginator.features,
+body[data-href='features-semantics']      nav.paginator.features,
+body[data-href='features-multimedia']     nav.paginator.features,
+body[data-href='features-graphics']       nav.paginator.features,
+body[data-href='features-presentation']   nav.paginator.features,
+body[data-href='features-performance']    nav.paginator.features,
+body[data-href='features-nuts_and_bolts'] nav.paginator.features,
+body[data-href='features-offline']        nav.paginator.features ul.offline,
+body[data-href='features-storage']        nav.paginator.features ul.storage,
+body[data-href='features-connectivity']   nav.paginator.features ul.connectivity,
+body[data-href='features-file']           nav.paginator.features ul.file_access,
+body[data-href='features-semantics']      nav.paginator.features ul.semantics,
+body[data-href='features-multimedia']     nav.paginator.features ul.multimedia,
+body[data-href='features-graphics']       nav.paginator.features ul.graphics,
+body[data-href='features-presentation']   nav.paginator.features ul.presentation,
+body[data-href='features-performance']    nav.paginator.features ul.performance,
+body[data-href='features-nuts_and_bolts'] nav.paginator.features ul.nuts_and_bolts
+{
+  display: block;
 }
 
 
@@ -1025,7 +1089,7 @@ article.content section figure a[href^='http']:not([href*='html5rocks.'])
   padding-left: 0;
   overflow: hidden;
 }
-.resource-list li { 
+.resource-list li {
   padding-top: 10px;
   width: 30%;
   float: left;
@@ -1059,84 +1123,35 @@ article.content section figure a[href^='http']:not([href*='html5rocks.'])
 }
 /* ********************* */
 
-/* FEATURES: NAVIGATION */
+/* FEATURES: OUTLINE NAVIGATION */
 
-nav.features_paginator
-{
-  position: fixed;
-  left: 50%;
-  top: 100px;
-  margin-left: 710px;
-  width: 100px;
-}
-
-nav.features_paginator ul
-{
-  display: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav.features_paginator a
-{
-  color: #555;
-  position: absolute;
-}
-
-nav.features_paginator a:hover
-{
-  color: #000;
-}
-
-nav.features_paginator .previous { top: -40px; }
-nav.features_paginator .next     { top: 90px; }
-
-.features-offline        nav.features_paginator ul.offline        { display: block; }
-.features-storage        nav.features_paginator ul.storage        { display: block; }
-.features-connectivity   nav.features_paginator ul.connectivity   { display: block; }
-.features-file           nav.features_paginator ul.file_access    { display: block; }
-.features-semantics      nav.features_paginator ul.semantics      { display: block; }
-.features-multimedia     nav.features_paginator ul.multimedia     { display: block; }
-.features-graphics       nav.features_paginator ul.graphics       { display: block; }
-.features-presentation   nav.features_paginator ul.presentation   { display: block; }
-.features-performance    nav.features_paginator ul.performance    { display: block; }
-.features-nuts_and_bolts nav.features_paginator ul.nuts_and_bolts { display: block; }
-
-.features-offline .features_outline_nav_toggle,
-.features-storage .features_outline_nav_toggle,
-.features-connectivity .features_outline_nav_toggle,
-.features-file .features_outline_nav_toggle,
-.features-semantics .features_outline_nav_toggle,
-.features-multimedia .features_outline_nav_toggle,
-.features-graphics .features_outline_nav_toggle,
-.features-presentation .features_outline_nav_toggle,
-.features-performance .features_outline_nav_toggle,
-.features-nuts_and_bolts .features_outline_nav_toggle
+body[data-href='features-offline'] .features_outline_nav_toggle,
+body[data-href='features-storage'] .features_outline_nav_toggle,
+body[data-href='features-connectivity'] .features_outline_nav_toggle,
+body[data-href='features-file'] .features_outline_nav_toggle,
+body[data-href='features-semantics'] .features_outline_nav_toggle,
+body[data-href='features-multimedia'] .features_outline_nav_toggle,
+body[data-href='features-graphics'] .features_outline_nav_toggle,
+body[data-href='features-presentation'] .features_outline_nav_toggle,
+body[data-href='features-performance'] .features_outline_nav_toggle,
+body[data-href='features-nuts_and_bolts'] .features_outline_nav_toggle
 {
   display: block;
 }
 
 .features_outline_nav_toggle
 {
-  /*position: fixed;
-  left: 50%;
-  top: 135px;
-  margin-left: 735px;
   display: none;
-  padding: 10px;
-  width: 30px;
-  height: 30px;
-  text-indent: -999999px;
-  cursor: pointer !important;*/
   position: fixed;
   left: 50%;
-  top: 45%;
-  margin-left: -586px;
-  padding: 10px;
+  top: 180px;
+  margin-left: 555px;
   width: 30px;
   height: 30px;
+  z-index: 999;
   cursor: pointer !important;
-  z-index: 10;
+  padding: 10px;
+  z-index: 20;
 }
 
 .features_outline_nav_toggle img {
@@ -1167,12 +1182,9 @@ nav.features_paginator .next     { top: 90px; }
 nav.features_outline {
   display: none;
   background: #bebebe url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ8AAACfCAIAAABoeZy3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjFCM0NEMkFFOEFCMTFFMDg2NkJGNDlCNjE5NENEMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjFCM0NEMkJFOEFCMTFFMDg2NkJGNDlCNjE5NENEMzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NzAyQzNBRkU4QTYxMUUwODY2QkY0OUI2MTk0Q0QzMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NzAyQzNCMEU4QTYxMUUwODY2QkY0OUI2MTk0Q0QzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnoZHVwAAANySURBVHja7NuLSutAFIXhpBf1/R+o7+RBPW1amzN20hyRGAtKnMu3EDo044ZtzGbyL1a72+0aKlQrf4Ly7+6p27+ejmFxDh/7l7Do+757eYpXD89/4iJc6s+vX+5PuVpVzbZxMoev2raNX43rWxbfufor1apqdnh2xx3v17csvnP1V6pV1ex1Mh8P4dF+u+3ho9vH+x+f9KDu7/O4GAbC7P6Uq1XV7CZ+rDd313+A1Xqzjfd/vR2+3Nzdx8X2/iFc/3J/ytWqarb1RlT+mTk81sMD3vfhYY9fxsNYPJiNcyNs+LA/Lt7vT7laVc1++r7bX7bf8g9yvmyb359ytYKbNZkrmMz9RcP6eufnFvP7E65WVbOr66Tuwk+8cDwMB+tTd/hwEA+X4m/O70+5WlXNmsxcBMrdRYin7TficXn8wwM+Muv90+NIsUd4PbM/5WpVNWsym8yU+2Tm75bXLH+Xv8vfzbPZ//5uZNa324oz+1OuVlWz/F3+LmV9Zubv8nenxd9NtprJjFURVoVVYVVYFVaFVckiNLIIsghYFWFVWBVWhVVhVbTUZJZFkEWQRZBFIC4CLeoiyCKU16zJbDJT7pOZv1tes/xd/i5/N89mZRFkEfi7eTbrjaiCMzN/l787Lf5ustVMZqyKsCqsCqvCqrAqrEoWoZFFkEXAqgirwqqwKqwKq6KlJrMsgiyCLIIsAnERaFEXQRahvGZNZpOZcp/M/N3ymuXv8nf5u3k2K4sgi8DfzbNZb0QVnJn5u/zdafF3k61mMmNV5O4SEolEIpFIJBKJREqaSJogkUgkIZFIJBKJRCKR9AOTWdJE0kTSRNKEuAi0qIsgaVJesyazyUy5T2b+bnnN8nf5u/zdPJuVNJE04e/m2aw3ogrOzPxd/u60+LvJVjOZsSrCqrAqrAqrwqqwKlmERhZBFgGrIqwKq8KqsCqsipaazLIIsgiyCLIIxEWgRV0EWYTymjWZTWbKfTLzd8trlr/L3+Xv5tmsLIIsAn83z2a9EVVwZubv8nenxd9NtprJjFURVoVVYVVYFVaFVckiNLIIsghYFWFVWBVWhVVhVbTUZJZFkEWQRZBFIC4CLeoiyCKU16zJbDJT7pOZv1tes/xd/i5/N89mZRFkEfi7eTbrjaiCMzN/l787Lf5ustVMZqyK8tQ/AQYAng7GvdAZiMQAAAAASUVORK5CYII=);
-  /*position: fixed;*/
   position: absolute;
-  left: 50%;
+  right: 50%;
   top: 20px;
-  /*top: 100px;
-  /*margin-left: 525px;*/
   padding: 20px;
   width: 130px;
   -webkit-border-radius: 10px;
@@ -1255,19 +1267,19 @@ nav.features_outline ul ul a
   padding: .3em 0 .3em 18px;
 }
 
-.features-offline        nav.features_outline .offline        ul { display: block; }
-.features-storage        nav.features_outline .storage        ul { display: block; }
-.features-connectivity   nav.features_outline .connectivity   ul { display: block; }
-.features-file           nav.features_outline .file_access    ul { display: block; }
-.features-semantics      nav.features_outline .semantics      ul { display: block; }
-.features-multimedia     nav.features_outline .multimedia     ul { display: block; }
-.features-graphics       nav.features_outline .graphics       ul { display: block; }
-.features-presentation   nav.features_outline .presentation   ul { display: block; }
-.features-performance    nav.features_outline .performance    ul { display: block; }
-.features-nuts_and_bolts nav.features_outline .nuts_and_bolts ul { display: block; }
+body[data-href='features-offline']        nav.features_outline .offline        ul { display: block; }
+body[data-href='features-storage']        nav.features_outline .storage        ul { display: block; }
+body[data-href='features-connectivity']   nav.features_outline .connectivity   ul { display: block; }
+body[data-href='features-file']           nav.features_outline .file_access    ul { display: block; }
+body[data-href='features-semantics']      nav.features_outline .semantics      ul { display: block; }
+body[data-href='features-multimedia']     nav.features_outline .multimedia     ul { display: block; }
+body[data-href='features-graphics']       nav.features_outline .graphics       ul { display: block; }
+body[data-href='features-presentation']   nav.features_outline .presentation   ul { display: block; }
+body[data-href='features-performance']    nav.features_outline .performance    ul { display: block; }
+body[data-href='features-nuts_and_bolts'] nav.features_outline .nuts_and_bolts ul { display: block; }
 
 
-/* FEATURES: CONTENT  */
+/* FEATURES: CONTENT */
 
 .description
 {
