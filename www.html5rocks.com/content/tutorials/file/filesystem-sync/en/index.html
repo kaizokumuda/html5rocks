@@ -5,7 +5,7 @@
 {% block headtitle %}The Synchronous FileSystem API for Workers{% endblock %}
 {% block pagetitle %}The Synchronous FileSystem API for Workers{% endblock %}
 {% block pagebreadcrumb %}Synchronous FileSystem{% endblock %}
-{% block date %}November 1, 2011{% endblock %}
+{% block date %}October 25, 2011{% endblock %}
 
 {% block head %}
 
@@ -137,8 +137,8 @@ before passing it into <code>postMessage()</code>.</p>
 <p>The following example passes a user-selected list of files to an inline web worker.
 The worker simply passes through the file list and the main app reads each file
 as an <code>ArrayBuffer</code>. This shows the returned data is a <code>FileList</code>.</p>
-<p>The sample also uses an improved version of the inline web worker technique
-described in <a href="/tutorials/workers/basics/#toc-inlineworkers">Basics of Web Workers</a>.</p>
+<p>The sample also uses an improved version of the <a href="/tutorials/workers/basics/#toc-inlineworkers">inline web worker technique</a>
+described in <a href="/tutorials/workers/basics/">Basics of Web Workers</a>.</p>
 <pre class="prettyprint"><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -147,6 +147,7 @@ described in <a href="/tutorials/workers/basics/#toc-inlineworkers">Basics of We
   &lt;title&gt;Passing a FileList to a Worker&lt;/title&gt;
   &lt;script type="javascript/worker" id="fileListWorker"&gt;
   self.onmessage = function(e) {
+    // TODO: do something interesting with the files.
     postMessage(e.data); // Pass through.
   };
   &lt;/script&gt;
@@ -193,6 +194,60 @@ function loadInlineWorker(selector, callback) {
 &lt;/script&gt;
 &lt;/html&gt;
 </code></pre>
+<h2 id="toc-readingsync">Reading files in a worker</h2>
+
+<p>It's perfectly acceptable to use the asynchronous <a href="/tutorials/file/dndfiles/#toc-reading-files"><code>FileReader</code> API to read files</a> in a worker. However, there's a streamlined synchronous API (<code>FileReaderSync</code>)
+for workers that we can take advantage of instead:</p>
+<p><em>Main app:</em></p>
+<pre class="prettyprint"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Using FileReaderSync Example&lt;/title&gt;
+  &lt;style&gt;
+    #error { color: red; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;input type="file" multiple /&gt;
+&lt;output id="error"&gt;&lt;/output&gt;
+&lt;script&gt;
+  var worker = new Worker('worker.js');
+
+  worker.onmessage = function(e) {
+    console.log(e.data); // e.data should be an array of ArrayBuffers.
+  };
+
+  worker.onerror = function(e) {
+    document.querySelector('#error').textContent = [
+        'ERROR: Line ', e.lineno, ' in ', e.filename, ': ',
+        e.message].join('');
+  };
+
+  document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+    worker.postMessage(this.files);
+  }, false);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><em>worker.js</em></p>
+<pre class="prettyprint"><code>self.addEventListener('message', function(e) {
+  var files = e.data;
+  var buffers = [];
+
+  // Read each file synchronously as an ArrayBuffer and
+  // stash it in a global array to return to the main app.
+  [].forEach.call(files, function(file) {
+    &lt;b&gt;var reader = new FileReaderSync();&lt;/b&gt;
+    buffers.push(reader.readAsArrayBuffer(file));
+  });
+
+  postMessage(buffers);
+}, false);
+</code></pre>
+<p>As expected, callbacks are gone with the synchronous <code>FileReader</code>. This simplifies
+the amount of callback nesting when reading files. Instead, the read data is
+returned by the readAs* methods, directly.</p>
 <h2 id="toc-listing">Example: Fetching all entries</h2>
 
 <p>In some cases, the synchronous API is much cleaner for some tasks. Fewer callbacks
@@ -209,6 +264,34 @@ One way to circumvent the limitation is to return a list of <a href="/tutorials/
 so they're super easy to pass around. Furthermore, they can be resolved to 
 entries in the main app using <code>resolveLocalFileSystemURL()</code>. That'll get you back
 to a <code>FileEntrySync</code>/<code>DirectoryEntrySync</code> object.</p>
+<p><em>Main app:</em></p>
+<pre class="prettyprint"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8" /&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="chrome=1"&gt;
+&lt;title&gt;Listing filesystem entries using the synchronous API&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+  window.resolveLocalFileSystemURL = window.resolveLocalFileSystemURL ||
+                                     window.webkitResolveLocalFileSystemURL;
+
+  var worker = new Worker('worker.js');
+  worker.onmessage = function(e) {
+    var urls = e.data.entries;
+    urls.forEach(function(url, i) {
+      window.resolveLocalFileSystemURL(url, function(fileEntry) {
+        console.log(fileEntry.name); // Print out file's name.
+      });
+    });
+  };
+
+  worker.postMessage({'cmd': 'list'});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 <p><em>worker.js</em></p>
 <pre class="prettyprint"><code>self.requestFileSystemSync = self.webkitRequestFileSystemSync ||
                              self.requestFileSystemSync;
@@ -251,40 +334,32 @@ self.onmessage = function(e) {
   }
 };
 </code></pre>
-<p><em>Main app:</em></p>
-<pre class="prettyprint"><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset="utf-8" /&gt;
-&lt;meta http-equiv="X-UA-Compatible" content="chrome=1"&gt;
-&lt;title&gt;Listing filesystem entries using the synchronous API&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;script&gt;
-  window.resolveLocalFileSystemURL = window.resolveLocalFileSystemURL ||
-                                     window.webkitResolveLocalFileSystemURL;
-
-  var worker = new Worker('worker.js');
-  worker.onmessage = function(e) {
-    var urls = e.data.entries;
-    urls.forEach(function(url, i) {
-      window.resolveLocalFileSystemURL(url, function(fileEntry) {
-        console.log(fileEntry.name); // Print out file's name.
-      });
-    });
-  };
-
-  worker.postMessage({'cmd': 'list'});
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
 <h2 id="toc-download-xhr2">Example: Downloading files using XHR2</h2>
 
 <p>A common use case for using web workers is to download a bunch of files using XHR2,
 and write those files to the HTML5 FileSystem. A perfect task for a worker thread!</p>
 <p>The following example only fetches and writes one file, but you can image
 expanding it to download a set of files.</p>
+<p><em>Main app:</em></p>
+<pre class="prettyprint"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8" /&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="chrome=1"&gt;
+&lt;title&gt;Download files using a XHR2, a worker, and saving to filesystem&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+  var worker = new Worker('downloader.js');
+  worker.onmessage = function(e) {
+    console.log(e.data);
+  };
+  worker.postMessage({fileName: 'GoogleLogo',
+                      url: 'googlelogo.png', type: 'image/png'});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 <p><em>downloader.js:</em></p>
 <pre class="prettyprint"><code>self.requestFileSystemSync = self.webkitRequestFileSystemSync ||
                              self.requestFileSystemSync;
@@ -341,25 +416,5 @@ onmessage = function(e) {
     onError(e);
   }
 };
-</code></pre>
-<p><em>Main app:</em></p>
-<pre class="prettyprint"><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset="utf-8" /&gt;
-&lt;meta http-equiv="X-UA-Compatible" content="chrome=1"&gt;
-&lt;title&gt;Download files using a XHR2, a worker, and saving to filesystem&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;script&gt;
-  var worker = new Worker('downloader.js');
-  worker.onmessage = function(e) {
-    console.log(e.data);
-  };
-  worker.postMessage({fileName: 'GoogleLogo',
-                      url: 'googlelogo.png', type: 'image/png'});
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
 </code></pre>
 {% endblock %}

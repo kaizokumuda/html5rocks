@@ -125,8 +125,8 @@ The following example passes a user-selected list of files to an inline web work
 The worker simply passes through the file list and the main app reads each file
 as an `ArrayBuffer`. This shows the returned data is a `FileList`.
 
-The sample also uses an improved version of the inline web worker technique
-described in [Basics of Web Workers](/tutorials/workers/basics/#toc-inlineworkers).
+The sample also uses an improved version of the [inline web worker technique](/tutorials/workers/basics/#toc-inlineworkers)
+described in [Basics of Web Workers](/tutorials/workers/basics/).
 
     <!DOCTYPE html>
     <html>
@@ -136,6 +136,7 @@ described in [Basics of Web Workers](/tutorials/workers/basics/#toc-inlineworker
       <title>Passing a FileList to a Worker</title>
       <script type="javascript/worker" id="fileListWorker">
       self.onmessage = function(e) {
+        // TODO: do something interesting with the files.
         postMessage(e.data); // Pass through.
       };
       </script>
@@ -185,6 +186,64 @@ described in [Basics of Web Workers](/tutorials/workers/basics/#toc-inlineworker
 
 [structuredclone]: https://developer.mozilla.org/en/DOM/The_structured_clone_algorithm
 
+<h2 id="toc-readingsync">Reading files in a worker</h2>
+
+It's perfectly acceptable to use the asynchronous [`FileReader` API to read files](/tutorials/file/dndfiles/#toc-reading-files) in a worker. However, there's a streamlined synchronous API (`FileReaderSync`)
+for workers that we can take advantage of instead:
+
+*Main app:*
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Using FileReaderSync Example</title>
+      <style>
+        #error { color: red; }
+      </style>
+    </head>
+    <body>
+    <input type="file" multiple />
+    <output id="error"></output>
+    <script>
+      var worker = new Worker('worker.js');
+
+      worker.onmessage = function(e) {
+        console.log(e.data); // e.data should be an array of ArrayBuffers.
+      };
+
+      worker.onerror = function(e) {
+        document.querySelector('#error').textContent = [
+            'ERROR: Line ', e.lineno, ' in ', e.filename, ': ',
+            e.message].join('');
+      };
+
+      document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+        worker.postMessage(this.files);
+      }, false);
+    </script>
+    </body>
+    </html>
+
+
+*worker.js*
+
+    self.addEventListener('message', function(e) {
+      var files = e.data;
+      var buffers = [];
+
+      // Read each file synchronously as an ArrayBuffer and
+      // stash it in a global array to return to the main app.
+      [].forEach.call(files, function(file) {
+        <b>var reader = new FileReaderSync();</b>
+        buffers.push(reader.readAsArrayBuffer(file));
+      });
+
+      postMessage(buffers);
+    }, false);
+
+As expected, callbacks are gone with the synchronous `FileReader`. This simplifies
+the amount of callback nesting when reading files. Instead, the read data is
+returned by the readAs* methods, directly.
 
 <h2 id="toc-listing">Example: Fetching all entries</h2>
 
@@ -204,6 +263,35 @@ One way to circumvent the limitation is to return a list of [filesystem: URLs](/
 so they're super easy to pass around. Furthermore, they can be resolved to 
 entries in the main app using `resolveLocalFileSystemURL()`. That'll get you back
 to a `FileEntrySync`/`DirectoryEntrySync` object.
+
+*Main app:*
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Listing filesystem entries using the synchronous API</title>
+    </head>
+    <body>
+    <script>
+      window.resolveLocalFileSystemURL = window.resolveLocalFileSystemURL ||
+                                         window.webkitResolveLocalFileSystemURL;
+
+      var worker = new Worker('worker.js');
+      worker.onmessage = function(e) {
+        var urls = e.data.entries;
+        urls.forEach(function(url, i) {
+          window.resolveLocalFileSystemURL(url, function(fileEntry) {
+            console.log(fileEntry.name); // Print out file's name.
+          });
+        });
+      };
+
+      worker.postMessage({'cmd': 'list'});
+    </script>
+    </body>
+    </html>
 
 *worker.js*
 
@@ -248,35 +336,6 @@ to a `FileEntrySync`/`DirectoryEntrySync` object.
       }
     };
 
-*Main app:*
-
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Listing filesystem entries using the synchronous API</title>
-    </head>
-    <body>
-    <script>
-      window.resolveLocalFileSystemURL = window.resolveLocalFileSystemURL ||
-                                         window.webkitResolveLocalFileSystemURL;
-
-      var worker = new Worker('worker.js');
-      worker.onmessage = function(e) {
-        var urls = e.data.entries;
-        urls.forEach(function(url, i) {
-          window.resolveLocalFileSystemURL(url, function(fileEntry) {
-            console.log(fileEntry.name); // Print out file's name.
-          });
-        });
-      };
-
-      worker.postMessage({'cmd': 'list'});
-    </script>
-    </body>
-    </html>
-
 
 <h2 id="toc-download-xhr2">Example: Downloading files using XHR2</h2>
 
@@ -285,6 +344,27 @@ and write those files to the HTML5 FileSystem. A perfect task for a worker threa
 
 The following example only fetches and writes one file, but you can image
 expanding it to download a set of files.
+
+*Main app:*
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Download files using a XHR2, a worker, and saving to filesystem</title>
+    </head>
+    <body>
+    <script>
+      var worker = new Worker('downloader.js');
+      worker.onmessage = function(e) {
+        console.log(e.data);
+      };
+      worker.postMessage({fileName: 'GoogleLogo',
+                          url: 'googlelogo.png', type: 'image/png'});
+    </script>
+    </body>
+    </html>
 
 *downloader.js:*
 
@@ -343,27 +423,6 @@ expanding it to download a set of files.
         onError(e);
       }
     };
-
-*Main app:*
-
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Download files using a XHR2, a worker, and saving to filesystem</title>
-    </head>
-    <body>
-    <script>
-      var worker = new Worker('downloader.js');
-      worker.onmessage = function(e) {
-        console.log(e.data);
-      };
-      worker.postMessage({fileName: 'GoogleLogo',
-                          url: 'googlelogo.png', type: 'image/png'});
-    </script>
-    </body>
-    </html>
 
 [fs-spec]: http://dev.w3.org/2009/dap/file-system/file-dir-sys.html
 [workers-spec]: http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html
