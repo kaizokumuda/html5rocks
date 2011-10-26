@@ -112,7 +112,7 @@ source.addEventListener('open', function(e) {
 }, false);
 
 source.addEventListener('error', function(e) {
-  if (e.eventPhase == EventSource.CLOSED) {
+  if (e.readyState == EventSource.CLOSED) {
     // Connection was closed.
   }
 }, false);
