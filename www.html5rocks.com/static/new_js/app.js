@@ -56,6 +56,9 @@ $('.subheader.features ul li a').click(function() {
 // Page grid navigation.
 
 function finishPanelLoad(pagePanel, elemstate) {
+  //document.body.className = '';
+  //$('body').addClass(page);
+
   // TODO(Google): scrollTo needs to scroll to and element that is not display:none.
   // new.css applies this to .page elements. Not sure why pagePanel.addClass('current')
   // doesn't take care of this.
