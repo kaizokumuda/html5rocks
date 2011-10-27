@@ -864,7 +864,10 @@ body[data-href='features-nuts_and_bolts'] nav.paginator.features ul.nuts_and_bol
 
 /* HOMEPAGE */
 
-body[data-href='home'] .watermark.teal
+body[data-href='home'] .watermark.teal,
+body[data-href='mobile'] .watermark.teal,
+body[data-href='gaming'] .watermark.teal,
+body[data-href='business'] .watermark.teal
 {
   display: none;
 }
