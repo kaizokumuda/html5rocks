@@ -343,9 +343,9 @@ class ContentHandler(webapp.RequestHandler):
       }
       translation.activate(locale);
 
-    # Landing page or /tutorials|features|mobile\/?
+    # Landing page or /tutorials|features|mobile|gaming|business\/?
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
-        (relpath in ['mobile', 'tutorials', 'features'] and
+        (relpath in ['mobile', 'tutorials', 'features', 'gaming', 'business'] and
         relpath[-1] != '/')):
       path = os.path.join(basedir, 'content', relpath, 'index.html')
     else:
@@ -397,7 +397,9 @@ class ContentHandler(webapp.RequestHandler):
 
 
     elif ((re.search('tutorials/.+', relpath) or
-           re.search('mobile/.+', relpath))
+           re.search('mobile/.+', relpath) or
+           re.search('gaming/.+', relpath) or
+           re.search('business/.+', relpath))
           and not is_feed):
       # If no trailing / (e.g. /tutorials/blah/blah), append index.html file.
       if (relpath[-1] != '/' and not relpath.endswith('.html')):
