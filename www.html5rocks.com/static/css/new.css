@@ -367,7 +367,7 @@ header nav.main ul li
 header nav.main ul li a
 {
   float: left;
-  padding: 5px 1em 6px;
+  padding: 6px 1em;
 }
 
 header nav.main .current
@@ -409,7 +409,7 @@ header h1
 {
   color: #fff;
   cursor: pointer !important;
-  padding: 5px 1em 5px;
+  padding: 6px 1em 5px;
   text-transform: uppercase;
 }
 
