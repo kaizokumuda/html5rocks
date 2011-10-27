@@ -4,7 +4,7 @@ $(window).bind('scroll', function(event) {
   var y = $(this).scrollTop();
   if ((y - docTop) > 100) {
     $('header').addClass('scroll');
-    $(this).unbind('scroll', event.handler); // Remove this listen for performance. 
+    $(this).unbind('scroll', event.handler); // Remove this listen for performance.
   }
 });
 
@@ -16,17 +16,20 @@ $('#search_show').click(function() {
   if ($(this).hasClass('current')) {
     $('.subheader.search').hide();
     $(this).removeClass('current');
+    $('.watermark').css('top', '30px')
   } else {
     $('nav.main .current').removeClass('current');
     $(this).addClass('current');
     $('.subheader.search').show();
     $('#q').focus();
+    $('.watermark').css('top', '100px')
   }
 });
 
 $('#search_hide').click(function() {
   $('#search_show').removeClass('current');
   $('.subheader.search').hide();
+    $('.watermark').css('top', '30px')
 });
 
 $('#features_show').click(function() {
@@ -35,16 +38,19 @@ $('#features_show').click(function() {
   if ($(this).hasClass('current')) {
     $('.subheader.features').hide();
     $(this).removeClass('current');
+    $('.watermark').css('top', '30px')
   } else {
     $('nav.main .current').removeClass('current');
     $(this).addClass('current');
     $('.subheader.features').show();
+    $('.watermark').css('top', '100px')
   }
 });
 
 $('#features_hide').click(function() {
   $('#features_show').removeClass('current');
   $('.subheader.features').hide();
+    $('.watermark').css('top', '30px')
 });
 
 $('.subheader.features ul li a').click(function() {
@@ -65,7 +71,7 @@ function finishPanelLoad(pagePanel, elemstate) {
   $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
     $('.subheader.features').slideUp('fast', function() {
 
-      if (elemstate.popped != 'popped') 
+      if (elemstate.popped != 'popped')
         state.push( elemstate );
 
       route.init(page);
@@ -75,7 +81,7 @@ function finishPanelLoad(pagePanel, elemstate) {
 
 //$('a').live('click', function() {
 // TODO: go back to event delgation. Currently breaks nav.
-$('a').click(function() { 
+$('a').click(function() {
 
   // Don't intercept external links
   if ($(this).attr('target')) return true;
@@ -89,7 +95,7 @@ $('a').click(function() {
 });
 
 function loadContent(elem, popped){
-  
+
   window.page = elem.pathname
                   // remove locale
                   .replace(/\/\w{2,3}\//gi, '')
@@ -151,7 +157,7 @@ $(document).keydown(function(e) {
       $('.current').attr('class', $('.current').attr('class').replace(/current/, 'previous'));
       $('.page.next').attr('class', $('.page.next').attr('class').replace(/next/, 'current'));
     }, 10);
-    
+
     $('.page.current').one('webkitTransitionEnd', function(e) {
       e.target.classList.remove('previous');
       $('.next').removeClass('next');
@@ -217,13 +223,13 @@ window.route = {
   init : function(thing) {
     var commonfn = route[thing.split('-')[0]],
         pagefn   = route[thing];
-    
+
     route.fire(route.common);
     route.fire(commonfn);
     if (pagefn != commonfn) {
       route.fire(pagefn);
     }
-  }, 
+  },
   fire : function(fn) {
     if (typeof fn == 'function') {
       fn.call(route);
