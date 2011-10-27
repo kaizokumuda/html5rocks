@@ -4,7 +4,7 @@ $(window).bind('scroll', function(event) {
   var y = $(this).scrollTop();
   if ((y - docTop) > 100) {
     $('header').addClass('scroll');
-    $(this).unbind('scroll', event.handler); // Remove this listen for performance.
+    $(this).unbind('scroll', event.handler); // Remove this listen for performance. 
   }
 });
 
@@ -16,20 +16,17 @@ $('#search_show').click(function() {
   if ($(this).hasClass('current')) {
     $('.subheader.search').hide();
     $(this).removeClass('current');
-    $('.watermark').css('top', '30px')
   } else {
     $('nav.main .current').removeClass('current');
     $(this).addClass('current');
     $('.subheader.search').show();
     $('#q').focus();
-    $('.watermark').css('top', '100px')
   }
 });
 
 $('#search_hide').click(function() {
   $('#search_show').removeClass('current');
   $('.subheader.search').hide();
-    $('.watermark').css('top', '30px')
 });
 
 $('#features_show').click(function() {
@@ -38,19 +35,16 @@ $('#features_show').click(function() {
   if ($(this).hasClass('current')) {
     $('.subheader.features').hide();
     $(this).removeClass('current');
-    $('.watermark').css('top', '30px')
   } else {
     $('nav.main .current').removeClass('current');
     $(this).addClass('current');
     $('.subheader.features').show();
-    $('.watermark').css('top', '100px')
   }
 });
 
 $('#features_hide').click(function() {
   $('#features_show').removeClass('current');
   $('.subheader.features').hide();
-    $('.watermark').css('top', '30px')
 });
 
 $('.subheader.features ul li a').click(function() {
@@ -71,7 +65,7 @@ function finishPanelLoad(pagePanel, elemstate) {
   $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
     $('.subheader.features').slideUp('fast', function() {
 
-      if (elemstate.popped != 'popped')
+      if (elemstate.popped != 'popped') 
         state.push( elemstate );
 
       route.init(page);
@@ -81,7 +75,7 @@ function finishPanelLoad(pagePanel, elemstate) {
 
 //$('a').live('click', function() {
 // TODO: go back to event delgation. Currently breaks nav.
-$('a').click(function() {
+$('a').click(function() { 
 
   // Don't intercept external links
   if ($(this).attr('target')) return true;
@@ -95,7 +89,7 @@ $('a').click(function() {
 });
 
 function loadContent(elem, popped){
-
+  
   window.page = elem.pathname
                   // remove locale
                   .replace(/\/\w{2,3}\//gi, '')
@@ -108,12 +102,14 @@ function loadContent(elem, popped){
 
   window.pagePanel =  $('.page#' + page);
 
-  var href = elem.href,
-      hash = href.split('#')[1],
-      elemstate = { href    : href
-                  , hash    : hash
-                  , popped  : popped
-      };
+  var href = elem.href;
+  var hash = href.split('#')[1];
+  var elemstate = {
+    href: href,
+    hash: hash,
+    popped: popped,
+    title: page[0].toUpperCase() + page.substring(1)
+  };
 
   // Special case for homepage. Just redirect.
   if (page == '') {
@@ -157,7 +153,7 @@ $(document).keydown(function(e) {
       $('.current').attr('class', $('.current').attr('class').replace(/current/, 'previous'));
       $('.page.next').attr('class', $('.page.next').attr('class').replace(/next/, 'current'));
     }, 10);
-
+    
     $('.page.current').one('webkitTransitionEnd', function(e) {
       e.target.classList.remove('previous');
       $('.next').removeClass('next');
@@ -213,7 +209,6 @@ window.route = {
     gapi.plusone.go(pagePanel.find('.plusone').get(0));
 
     // TODO(Google): record GA hit on new ajax page load.
-    // TODO(paulirish): add window.history.pushState
   },
 
   "features" : function() {
@@ -223,13 +218,13 @@ window.route = {
   init : function(thing) {
     var commonfn = route[thing.split('-')[0]],
         pagefn   = route[thing];
-
+    
     route.fire(route.common);
     route.fire(commonfn);
     if (pagefn != commonfn) {
       route.fire(pagefn);
     }
-  },
+  }, 
   fire : function(fn) {
     if (typeof fn == 'function') {
       fn.call(route);
@@ -261,8 +256,11 @@ window.addEventListener('DOMContentLoaded', route.onload, false);
 
 window.state = {
   push : function(obj){
-    if (!Modernizr.history) return;
-    history.pushState(obj,'', obj.href)
+    if (!Modernizr.history) {
+      return;
+    }
+    history.pushState(obj, '', obj.href);
+    document.title = 'HTML5 Rocks - ' + obj.title;
   },
 
   popstate : function(e){
@@ -270,6 +268,8 @@ window.state = {
 
     var elem = document.createElement('a');
     elem.href = e.state.href;
+
+    document.title = 'HTML5 Rocks - ' + e.state.title;
 
     // trigger a click to kick off our navigation loop
     loadContent(elem, 'popped');
