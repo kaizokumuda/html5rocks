@@ -593,11 +593,11 @@ input[type="search"]::-webkit-search-results-decoration
   -ms-transition: opacity 600ms ease-in-out;
   -o-transition: opacity 600ms ease-in-out;
   transition: opacity 600ms ease-in-out;
-  -webkit-transition: top 200ms ease-in-out;
-  -moz-transition: top 200ms ease-in-out;
-  -ms-transition: top 200ms ease-in-out;
-  -o-transition: top 200ms ease-in-out;
-  transition: top 200ms ease-in-out;
+  -webkit-transition: top 150ms ease-in-out;
+  -moz-transition: top 150ms ease-in-out;
+  -ms-transition: top 150ms ease-in-out;
+  -o-transition: top 150ms ease-in-out;
+  transition: top 150ms ease-in-out;
 }
 
 .watermark.white
