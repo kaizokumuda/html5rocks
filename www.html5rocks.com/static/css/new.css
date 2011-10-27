@@ -1308,28 +1308,28 @@ body[data-href='features-nuts_and_bolts'] nav.features_outline .nuts_and_bolts u
 
 .description .feature_icon
 {
+  background: url(/static/new_images/feature_icons.png), url(/static/new_images/feature_icon_background.png);
   background-repeat: no-repeat;
-  background-position: left top;
+  background-position: center top, left top;
   position: absolute;
   z-index: 1;
   top: -15px;
   left: -50px;
-  width: 460px;
-  height: 375px;
+  width: 453px;
+  height: 372px;
 }
 
-/* TODO: since the background for these badges is always the same, use multiple backgrounds. */
 
-body[data-href='features-offline']        .description .feature_icon { background-image: url(/static/new_images/feature-01-offline.png); }
-body[data-href='features-storage']        .description .feature_icon { background-image: url(/static/new_images/feature-02-storage.png); }
-body[data-href='features-connectivity']   .description .feature_icon { background-image: url(/static/new_images/feature-03-connectivity.png); }
-body[data-href='features-file']           .description .feature_icon { background-image: url(/static/new_images/feature-04-file.png); }
-body[data-href='features-semantics']      .description .feature_icon { background-image: url(/static/new_images/feature-05-semantics.png); }
-body[data-href='features-multimedia']     .description .feature_icon { background-image: url(/static/new_images/feature-06-multimedia.png); }
-body[data-href='features-graphics']       .description .feature_icon { background-image: url(/static/new_images/feature-07-graphics.png); }
-body[data-href='features-presentation']   .description .feature_icon { background-image: url(/static/new_images/feature-08-presentation.png); }
-body[data-href='features-performance']    .description .feature_icon { background-image: url(/static/new_images/feature-09-performance.png); }
-body[data-href='features-nuts_and_bolts'] .description .feature_icon { background-image: url(/static/new_images/feature-10-nuts_and_bolts.png); }
+body[data-href='features-offline']        .description .feature_icon { background-position: center    76px, left top; }
+body[data-href='features-storage']        .description .feature_icon { background-position: 140px   -298px, left top; }
+body[data-href='features-connectivity']   .description .feature_icon { background-position: center  -672px, left top; }
+body[data-href='features-file']           .description .feature_icon { background-position: center -1046px, left top; }
+body[data-href='features-semantics']      .description .feature_icon { background-position: center -1416px, left top; }
+body[data-href='features-multimedia']     .description .feature_icon { background-position: center -1790px, left top; }
+body[data-href='features-graphics']       .description .feature_icon { background-position: center -2164px, left top; }
+body[data-href='features-presentation']   .description .feature_icon { background-position: center -2912px, left top; }
+body[data-href='features-performance']    .description .feature_icon { background-position: center -3286px, left top; }
+body[data-href='features-nuts_and_bolts'] .description .feature_icon { background-position: center -3660px, left top; }
 
 .description hgroup
 {
