@@ -794,17 +794,6 @@ nav.paginator ul
   padding: 0;
 }
 
-nav.paginator a
-{
-  color: #ddd;
-  position: absolute;
-}
-
-nav.paginator a:hover
-{
-  color: #fff;
-}
-
 nav.paginator a.previous,
 nav.paginator a.next
 {
@@ -812,6 +801,7 @@ nav.paginator a.next
   text-shadow: 0 0 3px #bbb;
   cursor: pointer !important;
   overflow: hidden;
+  position: absolute;
   width: 100px;
 }
 
@@ -827,6 +817,12 @@ nav.paginator a.next
   padding: 55px 0 0 0;
   top: 135px;
 }
+
+nav.paginator.home a       { color: #ddd; }
+nav.paginator.home a:hover { color: #fff; }
+
+nav.paginator.features a       { color: #555; }
+nav.paginator.features a:hover { color: #000; }
 
 body[data-href='home']       nav.paginator.home,
 body[data-href='mobile']     nav.paginator.home,
@@ -1318,7 +1314,6 @@ body[data-href='features-nuts_and_bolts'] nav.features_outline .nuts_and_bolts u
   width: 453px;
   height: 372px;
 }
-
 
 body[data-href='features-offline']        .description .feature_icon { background-position: center    76px, left top; }
 body[data-href='features-storage']        .description .feature_icon { background-position: 140px   -298px, left top; }
