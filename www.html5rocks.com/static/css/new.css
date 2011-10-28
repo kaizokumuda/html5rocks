@@ -1383,9 +1383,9 @@ body[data-href='features-nuts_and_bolts'] nav.features_outline .nuts_and_bolts u
   height: 372px;
 }
 
-body[data-href='features-offline']        .description .feature_icon { background-position: center    76px, left top; }
-body[data-href='features-storage']        .description .feature_icon { background-position: 140px   -298px, left top; }
-body[data-href='features-connectivity']   .description .feature_icon { background-position: center  -672px, left top; }
+body[data-href='features-offline']        .description .feature_icon { background-position: center 76px, left top; }
+body[data-href='features-storage']        .description .feature_icon { background-position: 140px -298px, left top; }
+body[data-href='features-connectivity']   .description .feature_icon { background-position: center -672px, left top; }
 body[data-href='features-file']           .description .feature_icon { background-position: center -1046px, left top; }
 body[data-href='features-semantics']      .description .feature_icon { background-position: center -1416px, left top; }
 body[data-href='features-multimedia']     .description .feature_icon { background-position: center -1790px, left top; }
