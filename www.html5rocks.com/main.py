@@ -207,19 +207,19 @@ class ContentHandler(webapp.RequestHandler):
 
     feed = feedgenerator.Atom1Feed(
         # TODO: make title generic for any page.
-        title = _(u'HTML5Rocks - Tutorials'),
-        link = prefix,
-        description = _(u'Take a guided tour through code that uses HTML5.'),
-        language = u'en'
+        title=_(u'HTML5Rocks - Tutorials'),
+        link=prefix,
+        description=_(u'Take a guided tour through code that uses HTML5.'),
+        language=u'en'
         )
     for tutorial in data:
       feed.add_item(
-          title = tutorial['title'],
-          link = prefix + tutorial['href'],
-          description = tutorial['description'],
-          pubdate = tutorial['pubdate'],
-          author_name = tutorial['author_id'],
-          categories = tutorial['categories']
+          title=tutorial['title'],
+          link=prefix + tutorial['href'],
+          description=tutorial['description'],
+          pubdate=tutorial['pubdate'],
+          author_name=tutorial['author_id'],
+          categories=tutorial['categories']
           )
     self.response.headers.add_header('Content-Type', 'application/atom+xml')
     self.response.out.write(feed.writeString('utf-8'))
@@ -230,19 +230,19 @@ class ContentHandler(webapp.RequestHandler):
         given_name = self.request.get('given_name')
         family_name = self.request.get('family_name')
         author = common.Author(
-            key_name = ''.join([given_name, family_name]).lower(),
-            given_name = given_name,
-            family_name = family_name,
-            org = self.request.get('org'),
-            unit = self.request.get('unit'),
-            city = self.request.get('city'),
-            state = self.request.get('state'),
-            country = self.request.get('country'),
-            homepage = self.request.get('homepage') or None,
-            google_account = self.request.get('google_account') or None,
-            twitter_account = self.request.get('twitter_account') or None,
-            email = self.request.get('email') or None,
-            lanyrd = self.request.get('lanyrd') == 'on')
+            key_name=''.join([given_name, family_name]).lower(),
+            given_name=given_name,
+            family_name=family_name,
+            org=self.request.get('org'),
+            unit=self.request.get('unit'),
+            city=self.request.get('city'),
+            state=self.request.get('state'),
+            country=self.request.get('country'),
+            homepage=self.request.get('homepage') or None,
+            google_account=self.request.get('google_account') or None,
+            twitter_account=self.request.get('twitter_account') or None,
+            email=self.request.get('email') or None,
+            lanyrd=self.request.get('lanyrd') == 'on')
         lat = self.request.get('lat')
         lon = self.request.get('lon')
         if lat and lon:
@@ -254,10 +254,9 @@ class ContentHandler(webapp.RequestHandler):
         #return self.redirect('/database/edit')
         self.redirect('/database/author')
     elif (relpath == 'database/resource'):
-      self.addResources()
+      #self.addResources()
+      logging.info(self.request)
       return self.redirect('/database/resource')
-
-
 
   def get(self, relpath):
 
@@ -295,22 +294,16 @@ class ContentHandler(webapp.RequestHandler):
                          relpath=relpath)
 
     elif (relpath == 'database/author'):
-      # adds a new author information into DataStore
+      # adds a new author information into DataStore.
+      sorted_profiles = common.get_sorted_profiles(update_cache=True)
       template_data = {
-        'sorted_profiles': common.get_sorted_profiles(update_cache=True),
+        'sorted_profiles': sorted_profiles,
+        'profile_amount': len(sorted_profiles),
         'author_form': common.AuthorForm()
       }
       return self.render(data=template_data,
                          template_path='database/author_new.html',
                          relpath=relpath)
-
-    #elif (relpath == 'database/edit'):
-    #  if common.PROD:
-    #    datastore_console_url = 'https://appengine.google.com/datastore/admin?&app_id=%s&version_id=%s' % (os.environ['APPLICATION_ID'], os.environ['CURRENT_VERSION_ID'])
-    #  else:
-    #    datastore_console_url = 'http://%s/_ah/admin/datastore' % os.environ['HTTP_HOST']
-
-    #  return self.redirect(datastore_console_url, permanent=True)
 
     # Get the locale: if it's "None", redirect to English
     locale = self.get_language()
@@ -446,14 +439,14 @@ class ContentHandler(webapp.RequestHandler):
   def addTestResources(self):
     author_key = common.Author.get_by_key_name(u'hanrui');
     sample = common.Resource(
-        title = u'A Beginner\'s Guide to Using the Application Cache',
-        description = u'A beginner\'s guide to using the Application Cache.',
-        author = author_key,
-        url = u'tutorials/appcache/beginner/',
-        browser_support = [u'chrome', u'safari', u'opera'],
-        update_date = datetime.date(2011, 8, 25),
-        publication_date = datetime.date(2011, 10, 1),
-        tags = [u'offline'])
+        title=u'A Beginner\'s Guide to Using the Application Cache',
+        description=u'A beginner\'s guide to using the Application Cache.',
+        author=author_key,
+        url=u'tutorials/appcache/beginner/',
+        browser_support=[u'chrome', u'safari', u'opera'],
+        update_date=datetime.date(2011, 8, 25),
+        publication_date=datetime.date(2011, 10, 1),
+        tags=[u'offline'])
     sample.put()
 
 
