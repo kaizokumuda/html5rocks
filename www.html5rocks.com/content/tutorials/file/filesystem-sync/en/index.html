@@ -34,8 +34,8 @@
 <p>The HTML5 <a href="http://dev.w3.org/2009/dap/file-system/file-dir-sys.html">FileSystem API</a> and <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html">Web Workers</a> are massively
 powerful in their own regard. Workers bring true asynchronous 'multi-threading'
 to JavaScript and the FileSystem API finally brings hierarchical storage and
-file I/O to web applications. However, when used in together, these APIs can be
-used to build some truly interesting apps. </p>
+file I/O to web applications. However, when put together, these APIs can be used
+to build some truly interesting apps. </p>
 <h3 id="toc-getting-started">Getting started</h3>
 
 <p>This tutorial provides a guide and code examples for leveraging the HTML5
@@ -51,7 +51,7 @@ two great tutorials that discuss the basics:
 But what's most frustrating is that they offer plenty of opportunities for things to go wrong.
 The last thing you want to deal with as a developer is layering on a complex asynchronous API (FileSystem)
 in an already asynchronous world (Workers)! The good news is that the
-<a href="http://dev.w3.org/2009/dap/file-system/file-dir-sys.html">FileSystem API</a> API defines a synchronous version to ease the pain in Web Workers.</p>
+<a href="http://dev.w3.org/2009/dap/file-system/file-dir-sys.html">FileSystem API</a> defines a synchronous version to ease the pain in Web Workers.</p>
 <p>For the most part, the synchronous API is exactly the same as its asynchronous cousin.
 The methods, properties, features, and functionality will be familiar. The major deviations are:</p>
 <ul>
@@ -67,7 +67,7 @@ worker's global scope, not the <code>window</code> object.</li>
 <h2 id="toc-requesting">Requesting a filesystem</h2>
 
 <p>A web application obtains access to the synchronous filesystem by requesting a
-<code>LocalFileSystemSync</code> object from within a web worker. The <code>requestFileSystemSync()</code>
+<code>LocalFileSystemSync</code> object from within a Web Worker. The <code>requestFileSystemSync()</code>
 is exposed to the worker's global scope:</p>
 <pre class="prettyprint"><code>var fs = requestFileSystemSync(TEMPORARY, 1024*1024 /*1MB*/);
 </code></pre>
@@ -137,7 +137,7 @@ before passing it into <code>postMessage()</code>.</p>
 <p>The following example passes a user-selected list of files to an dedicated worker.
 The worker simply passes through the file list (simple to show the returned data
 is actually a <code>FileList</code>) and the main app reads each file as an <code>ArrayBuffer</code>.</p>
-<p>The sample also uses an improved version of the <a href="/tutorials/workers/basics/#toc-inlineworkers">inline web worker technique</a>
+<p>The sample also uses an improved version of the <a href="/tutorials/workers/basics/#toc-inlineworkers">inline Web Worker technique</a>
 described in <a href="/tutorials/workers/basics/">Basics of Web Workers</a>.</p>
 <pre class="prettyprint"><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -251,8 +251,8 @@ returns the read file.</p>
 
 <p>In some cases, the synchronous API is much cleaner for certain tasks. Fewer callbacks
 are nice and certainly make things more readable. The real downside of the
-synchronous API steams from the limitations of web workers.</p>
-<p>For security reasons, data between the calling app and a web worker thread is
+synchronous API stems from the limitations of Workers.</p>
+<p>For security reasons, data between the calling app and a Web Worker thread is
 never shared. This is going to
 <a href="https://bugs.webkit.org/show_bug.cgi?id=65209">change in the future</a>, but for
 now, data is always copied to and from the worker when <code>postMessage()</code> is called.
@@ -335,7 +335,7 @@ self.onmessage = function(e) {
 </code></pre>
 <h2 id="toc-download-xhr2">Example: Downloading files using XHR2</h2>
 
-<p>A common use case for using web workers is to download a bunch of files using XHR2,
+<p>A common use case for Workers is to download a bunch of files using XHR2,
 and write those files to the HTML5 FileSystem. This is a perfect task for a worker thread!</p>
 <p>The following example only fetches and writes one file, but you can image
 expanding it to download a set of files.</p>

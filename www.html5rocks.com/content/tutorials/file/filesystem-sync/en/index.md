@@ -3,8 +3,8 @@
 The HTML5 [FileSystem API][fs-spec] and [Web Workers][workers-spec] are massively
 powerful in their own regard. Workers bring true asynchronous 'multi-threading'
 to JavaScript and the FileSystem API finally brings hierarchical storage and
-file I/O to web applications. However, when used in together, these APIs can be
-used to build some truly interesting apps. 
+file I/O to web applications. However, when put together, these APIs can be used
+to build some truly interesting apps. 
 
 <h3 id="toc-getting-started">Getting started</h3>
 
@@ -22,7 +22,7 @@ Asynchronous JS APIs can be tough to use. They're large. They're complex.
 But what's most frustrating is that they offer plenty of opportunities for things to go wrong.
 The last thing you want to deal with as a developer is layering on a complex asynchronous API (FileSystem)
 in an already asynchronous world (Workers)! The good news is that the
-[FileSystem API][fs-spec] API defines a synchronous version to ease the pain in Web Workers.
+[FileSystem API][fs-spec] defines a synchronous version to ease the pain in Web Workers.
 
 For the most part, the synchronous API is exactly the same as its asynchronous cousin.
 The methods, properties, features, and functionality will be familiar. The major deviations are:
@@ -40,7 +40,7 @@ Apart from these exceptions, the APIs are the same. We're good to go!
 <h2 id="toc-requesting">Requesting a filesystem</h2>
 
 A web application obtains access to the synchronous filesystem by requesting a
-`LocalFileSystemSync` object from within a web worker. The `requestFileSystemSync()`
+`LocalFileSystemSync` object from within a Web Worker. The `requestFileSystemSync()`
 is exposed to the worker's global scope:
 
     var fs = requestFileSystemSync(TEMPORARY, 1024*1024 /*1MB*/);
@@ -125,7 +125,7 @@ The following example passes a user-selected list of files to an dedicated worke
 The worker simply passes through the file list (simple to show the returned data
 is actually a `FileList`) and the main app reads each file as an `ArrayBuffer`.
 
-The sample also uses an improved version of the [inline web worker technique](/tutorials/workers/basics/#toc-inlineworkers)
+The sample also uses an improved version of the [inline Web Worker technique](/tutorials/workers/basics/#toc-inlineworkers)
 described in [Basics of Web Workers](/tutorials/workers/basics/).
 
     <!DOCTYPE html>
@@ -248,9 +248,9 @@ returns the read file.
 
 In some cases, the synchronous API is much cleaner for certain tasks. Fewer callbacks
 are nice and certainly make things more readable. The real downside of the
-synchronous API steams from the limitations of web workers.
+synchronous API stems from the limitations of Workers.
 
-For security reasons, data between the calling app and a web worker thread is
+For security reasons, data between the calling app and a Web Worker thread is
 never shared. This is going to
 [change in the future](https://bugs.webkit.org/show_bug.cgi?id=65209), but for
 now, data is always copied to and from the worker when `postMessage()` is called.
@@ -338,7 +338,7 @@ to a `FileEntrySync`/`DirectoryEntrySync` object.
 
 <h2 id="toc-download-xhr2">Example: Downloading files using XHR2</h2>
 
-A common use case for using web workers is to download a bunch of files using XHR2,
+A common use case for Workers is to download a bunch of files using XHR2,
 and write those files to the HTML5 FileSystem. This is a perfect task for a worker thread!
 
 The following example only fetches and writes one file, but you can image
