@@ -346,6 +346,22 @@ section.one_third + section.two_thirds + section
   clear: both;
 }
 
+.one_half,
+.one_quarter
+{
+  float: left;
+}
+
+.one_half
+{
+  width: 50%;
+}
+
+.one_quarter
+{
+  width: 25%;
+}
+
 
 /* BASE */
 
@@ -1843,6 +1859,64 @@ article.content ul
   margin-left: 1.75em;
   padding-left: 0;
 }
+
+
+/* UPDATES  */
+
+.filter p
+{
+  font-size: 17px;
+  margin-top: 1em;
+  text-transform: uppercase;
+}
+
+.filter h3
+{
+  font-size: 16px;
+  margin-bottom: .75em;
+}
+
+.filter ul
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filter li
+{
+  display: block;
+  margin: .75em 0;
+}
+
+.filter li input
+{
+  margin-right: 5px;
+}
+
+.filter .one_half ul li
+{
+  float: left;
+  margin-top: 0;
+  width: 50%;
+}
+
+.filter div + p
+{
+  clear: both;
+  float: left;
+  padding-top: .5em;
+}
+
+.filter p + input
+{
+  background: #eee;
+  border: 0;
+  float: left;
+  font-size: 24px;
+  margin: .75em 0 0 .5em;
+}
+
 
 
 /* DISABLE SELECTION  */
