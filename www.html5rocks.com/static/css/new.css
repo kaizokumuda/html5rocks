@@ -1154,7 +1154,7 @@ article.content ul.authors li h3
 }
 
 /* originally from prettify.css */
-.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun{color:#660}.pln{color:#000}.tag{color:#008;text-decoration:none;font-size: inherit; padding:0;}.atn{color:#606}.atv{color:#080}.dec{color:#606}@media print{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun{color:#440}.pln{color:#000}.tag{color:#006;font-weight:bold;}.atn{color:#404}.atv{color:#060}}
+.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun{color:#660}.pln{color:#000}.atn{color:#606}.atv{color:#080}.dec{color:#606}@media print{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun{color:#440}.pln{color:#000}.atn{color:#404}.atv{color:#060}}
 /* end prettify */
 
 .description a[href^='http']:not([href*='html5rocks.']),
@@ -1914,7 +1914,45 @@ article.content ul
   border: 0;
   float: left;
   font-size: 24px;
+  font-style: italic;
   margin: .75em 0 0 .5em;
+  padding: .2em .3em;
+}
+
+.sample
+{
+  margin: 1.5em 0 2.5em;
+}
+
+.sample h3
+{
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 600;
+  margin: 0 0 .5em 0;
+}
+
+.sample .date
+{
+  margin-right: .75em;
+}
+
+.sample .tag
+{
+  color: #888;
+  font-size: 11px;
+  margin: 0 .5em;
+  text-transform: uppercase;
+}
+
+.sample .summary
+{
+  margin-top: .5em;
+}
+
+.sample .buttonlink
+{
+  display: none;
 }
 
 
