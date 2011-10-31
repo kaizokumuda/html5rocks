@@ -23,16 +23,16 @@
       <div class="plusone">
         <div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div>
       </div>
-    </article>
+    </header>
 
     <article class="two_columns">
       {% block support %}
-        <section 
-          class="support {% block supportblockstyle %}{% endblock %}" 
+        <section
+          class="support {% block supportblockstyle %}{% endblock %}"
           style="display:none"
           data-caniusefeatures="{% block caniuse %}{% endblock %}"
           data-features="{% block tuttags %}{% endblock %}">
-          
+
           <h3>Browser Support</h3>
 
           <div class="clearfix">
@@ -107,5 +107,5 @@
     </article>
   </div>
 
- 
+
 {% endblock %}
