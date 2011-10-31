@@ -3,60 +3,40 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body %}
-  <nav>
-      <p class="breadcrumb">
-        <a class="buttonlink" href="/{{LANGUAGE_CODE}}/">
-          <span>{% trans "Home" %}</span>
-        </a >&gt;
-        <a class="buttonlink" href="/{{LANGUAGE_CODE}}/tutorials/">
-          <span>{% trans "Tutorials" %}</span>
-        </a> &gt; {% block pagebreadcrumb %}{% endblock %}
-     </p>
-  </nav>
-  <article>
-    <header>
-      <h1>{% block pagetitle %}{% endblock %}</h1>
-      {% if redirect_from_locale %}
-      <p class="redirect_notification" lang="{{ redirect_from_locale.lang }}">{{ redirect_from_locale.msg }}</p>
-      {% endif %}
+  <header class="description clearfix">
+    <hgroup>
+      <h1>HTML5 Rocks</h1>
+      <h2><a href="/{{LANGUAGE_CODE}}/tutorials/">{% trans "Tutorials" %}</a></h2>
+    </hgroup>
+
+    <h1>{% block pagetitle %}{% endblock %}</h1>
+
+    <span class="date">
+      {% block pageauthor %}{% endblock %}
       <div>
-        <span class="date">
-          {% block pageauthor %}{% endblock %}
-          <div>
-            <time pubdate>{% block date %}{% endblock %}</time>
-            <time class="updated">{% block updated %}{% endblock %}</time>
-          </div>
-        </span>
-        {% if not is_mobile %}
-        <span id="share_buttons">
-          <ul>
-            <li><div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div></li>
-            <li><iframe src="http://www.facebook.com/plugins/like.php?href={{disqus_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
-            <li><a href="http://twitter.com/share" class="twitter-share-button" data-url="{{disqus_url}}" data-count="horizontal" data-via="ChromiumDev" data-lang="{{LANGUAGE_CODE}}">{% trans "Tweet" %}</a></li>
-          </ul>
-          <a href="#disqus_thread" data-disqus-identifier="{{disqus_url}}" class="disqus_comments">{% trans "Leave a comment" %}</a>
-        </span>
-        {% endif %}
+        <time pubdate>{% block date %}{% endblock %}</time>
+        <time class="updated">{% block updated %}{% endblock %}</time>
       </div>
-      <span class="browser_support">
-        <span>{% trans "Supported browsers:" %}</span>
-        <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
-      </span>
-    </header>
-    <section>
-      <div class="compatible-block">
-        <p id="notcompatible" class="hidden">
-          {% block notcompatible_text %}
-          {% trans "Your browser may not support all of the functionality used in this article." %}
-          {% endblock %}
-        </p>
-        <p id="compatible" class="hidden">
-          {% block compatible_text %}
-          {% trans "Your browser appears to support all of the functionality used in this article." %}
-          {% endblock %}
-        </p>
-      </div>
-    </section>
+    </span>
+
+    <span class="browser_support">
+      <span>{% trans "Supported browsers:" %}</span>
+      <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
+    </span>
+
+    <div class="compatible-block">
+      <p id="notcompatible" class="hidden">
+        {% block notcompatible_text %}
+        {% trans "Your browser may not support all of the functionality used in this article." %}
+        {% endblock %}
+      </p>
+      <p id="compatible" class="hidden">
+        {% block compatible_text %}
+        {% trans "Your browser appears to support all of the functionality used in this article." %}
+        {% endblock %}
+      </p>
+    </div>
+
     {% if not is_mobile %}
     <aside id="html5badge">
       <a href="http://www.w3.org/html/logo/">
@@ -66,6 +46,24 @@
       </a>
     </aside>
     {% endif %}
+
+    {% if not is_mobile %}
+    <span id="share_buttons">
+      <ul>
+        <li><div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div></li>
+        <li><iframe src="http://www.facebook.com/plugins/like.php?href={{disqus_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
+        <li><a href="http://twitter.com/share" class="twitter-share-button" data-url="{{disqus_url}}" data-count="horizontal" data-via="ChromiumDev" data-lang="{{LANGUAGE_CODE}}">{% trans "Tweet" %}</a></li>
+      </ul>
+      <a href="#disqus_thread" data-disqus-identifier="{{disqus_url}}" class="disqus_comments">{% trans "Leave a comment" %}</a>
+    </span>
+    {% endif %}
+
+    {% if redirect_from_locale %}
+    <p class="redirect_notification" lang="{{ redirect_from_locale.lang }}">{{ redirect_from_locale.msg }}</p>
+    {% endif %}
+  </header>
+
+  <article>
     <nav>
       {% toc %}
     </nav>
