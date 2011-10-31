@@ -3,12 +3,15 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% block headtitle %}{% trans "Author Profiles" %}{% endblock %}
 {% block head %}
+<!--
 <link href="http://fonts.googleapis.com/css?family=Tangerine:regular,bold|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="/static/css/profiles{% if prod %}.min{% endif %}.css"/>
 <script src="/static/js/profiles{% if prod %}.min{% endif %}.js"></script>
+-->
 {% endblock %}
 {% block onload %}scrollToProfile();{% endblock %}
 {% block body %}
+<div data-import-html>
   <nav>
     <p class="breadcrumb">
       <a class="buttonlink" href="/{{LANGUAGE_CODE}}/">
@@ -88,5 +91,6 @@
 
     </div>
   </article>
+</div>
 {% endblock %}
 
