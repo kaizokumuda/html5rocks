@@ -18,7 +18,7 @@ html5rocks.indexedDB.open = function() {
   var request = indexedDB.open("todos");
 
   request.onsuccess = function(e) {
-    var v = "1.98";
+    var v = "1.99";
     html5rocks.indexedDB.db = e.target.result;
     var db = html5rocks.indexedDB.db;
     // We can only create Object stores in a setVersion transaction;
