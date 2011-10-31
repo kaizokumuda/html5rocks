@@ -9,8 +9,33 @@
 
 {% block body %}
 <div data-import-html>
+  <header class="description clearfix">
+    <hgroup>
+      <h1>HTML5 Rocks</h1>
+      <h2>{% trans "Resources" %}</a></h2>
+    </hgroup>
+
+    <section class="intro">
+      <p>
+        {% blocktrans %}
+          Sed purus ante, congue eget convallis at, aliquet ut diam. Pellentesque volutpat posuere lectus, eu venenatis enim molestie nec. Sed ac eros lorem. Nulla egestas mauris a quam tincidunt ac lacinia ipsum commodo. Phasellus fermentum est sed arcu rhoncus eget ornare quam lobortis. Morbi. elit massa, molestie vitae adipiscing non, gravida vitae dolor. Praesent id tellus scelerisque libero posuere malesuada.
+        {% endblocktrans %}
+      </p>
+    </section>
+
+    {% if not is_mobile %}
+    <span class="share">
+      <ul>
+        <li class="googleplus"><div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div></li>
+        <li class="facebook"><iframe src="http://www.facebook.com/plugins/like.php?href={{disqus_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
+        <li class="twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-url="{{disqus_url}}" data-via="ChromiumDev" data-lang="{{LANGUAGE_CODE}}" data-related="ChromiumDev:News and announcements for developers from the Google Chrome team and makers of HTML5 Rocks.">{% trans "Tweet" %}</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></li>
+      </ul>
+    </span>
+    {% endif %}
+  </header>
+
   <section>
-  <h2 class="section-header">{% trans "Reference" %}</h2>
+    <h2>{% trans "Reference" %}</h2>
     <ul class="resource-list">
       <li>
         <a href="http://html5readiness.com"><img data-resource="http://html5readiness.com" src="/static/images/screenshots/html5readiness.png" /></a>
@@ -69,7 +94,7 @@
   </section>
 
   <section>
-  <h2 class="section-header">{% trans "Documentation" %}</h2>
+  <h2>{% trans "Documentation" %}</h2>
   <ul class="resource-list">
     <li>
       <a href="http://dev.w3.org/html5/spec-author-view/"><img data-resource="http://dev.w3.org/html5/spec-author-view/" src="/static/images/screenshots/w3devview.png" /></a>
@@ -102,7 +127,7 @@
   </section>
 
   <section>
-  <h2 class="section-header">{% trans "Tools" %}</h2>
+  <h2>{% trans "Tools" %}</h2>
     <ul class="resource-list">
       <li>
         <a href="http://www.modernizr.com/"><img data-resource="http://www.modernizr.com/" src="/static/images/screenshots/modernizr.png" /></a>
@@ -168,7 +193,7 @@
   </section>
 
   <section>
-    <h2 class="section-header">{% trans "Community" %}</h2>
+    <h2>{% trans "Community" %}</h2>
     <ul class="resource-list">
       <!--<li>
         <a href="http://html5watch.tumblr.com/"><img data-resource="http://html5watch.tumblr.com/" src="/static/images/screenshots/html5watch.png" /></a>
@@ -219,7 +244,7 @@
     </ul>
   </section>
   <section>
-    <h2 class="section-header">{% trans "Books" %}</h2>
+    <h2>{% trans "Books" %}</h2>
     <ul class="resource-list book-list">
       <li>
         <a href="http://shop.oreilly.com/product/0636920021360.do"><img data-resource="http://shop.oreilly.com/product/0636920021360.do" src="/static/images/screenshots/book-bidelman.png" /></a>
