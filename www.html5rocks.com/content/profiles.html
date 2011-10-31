@@ -12,17 +12,32 @@
 {% block onload %}scrollToProfile();{% endblock %}
 {% block body %}
 <div data-import-html>
-  <nav>
-    <p class="breadcrumb">
-      <a class="buttonlink" href="/{{LANGUAGE_CODE}}/">
-        <span>{% trans "Home" %}</span>
-      </a >&gt; {{ current.capitalize }}
-    </p>
-  </nav>
+  <header class="description clearfix">
+    <hgroup>
+      <h1>HTML5 Rocks</h1>
+      <h2>{% trans "Authors" %}</a></h2>
+    </hgroup>
+
+    <section class="intro">
+      <p>
+        {% blocktrans %}
+          Sed purus ante, congue eget convallis at, aliquet ut diam. Pellentesque volutpat posuere lectus, eu venenatis enim molestie nec. Sed ac eros lorem. Nulla egestas mauris a quam tincidunt ac lacinia ipsum commodo. Phasellus fermentum est sed arcu rhoncus eget ornare quam lobortis. Morbi. elit massa, molestie vitae adipiscing non, gravida vitae dolor. Praesent id tellus scelerisque libero posuere malesuada.
+        {% endblocktrans %}
+      </p>
+    </section>
+
+    {% if not is_mobile %}
+    <span class="share">
+      <ul>
+        <li class="googleplus"><div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div></li>
+        <li class="facebook"><iframe src="http://www.facebook.com/plugins/like.php?href={{disqus_url}}&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
+        <li class="twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-url="{{disqus_url}}" data-via="ChromiumDev" data-lang="{{LANGUAGE_CODE}}" data-related="ChromiumDev:News and announcements for developers from the Google Chrome team and makers of HTML5 Rocks.">{% trans "Tweet" %}</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></li>
+      </ul>
+    </span>
+    {% endif %}
+  </header>
+
   <article>
-    <header>
-      <h1></h1>
-    </header>
     <!-- see http://microformats.org/wiki/microdata -->
     <!-- http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#vcard -->
 
