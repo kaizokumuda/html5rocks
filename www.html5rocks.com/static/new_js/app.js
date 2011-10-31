@@ -231,14 +231,16 @@ window.route = {
     }
   },
   onload : function() {
+
     // due to the funky templating, we output into the same div, but we
     // want to move it into "correct" DOM order (in base.html)
     var curelem = $('.page.current'),
         curid   = curelem[0].id;
 
-    // Special case for the homepage. Prevent the DOM replacement
-    // causing a double load of the Y! pipe feed.
-    if (curid == 'home') {
+    // Special case for the homepage and profiles.
+    // Former prevents the DOM replacement causing a double load of the Y!
+    // pipe feed.
+    if (curid == 'home' || curid == 'profiles') {
       return false;
     }
 

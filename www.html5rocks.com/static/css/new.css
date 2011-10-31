@@ -974,7 +974,7 @@ body[data-href='business'] .watermark.teal
   margin: 1em 0 !important;
   padding: 0;
   overflow: hidden;
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .feed li
