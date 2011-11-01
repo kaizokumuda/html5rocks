@@ -10,7 +10,7 @@
 
 {% block body %}
   <div data-import-html>
-    <header class="description clearfix">
+    <header class="clearfix">
       <hgroup>
         <h1>HTML5 Features</h1>
         <h2>{% block h2title %}{% trans "Feature" %}{% endblock %}</h2>
@@ -29,7 +29,7 @@
       </span>
     </header>
 
-    <article class="two_columns">
+    <article class="sectioned">
       {% block support %}
         <section
           class="support {% block supportblockstyle %}{% endblock %}"
@@ -104,9 +104,7 @@
           </ul>
         </div>
       </section>
-    </article>
 
-    <article class="content">
       {% block content %}{% endblock %}
     </article>
   </div>

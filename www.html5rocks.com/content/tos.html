@@ -6,16 +6,18 @@
 
 {% block body %}
 <div data-import-html>
+
   <article>
-    <header>
-      <h1>{% block pagetitle %}{% endblock %}</h1>
-    </header>
-    <section>
+    <hgroup>
+      <h1>HTML5 Rocks <span>Terms of Service</span></h1>
+    </hgroup>
+
+    <p>
       {% blocktrans %}
-      <p>The HTML5ROCKS website (the "Website") is hosted by Google. By using and/or visiting the Website, you consent
-      to be bound by these terms of service as well as Google's general <a href="http://www.google.com/accounts/TOS">Terms of Service</a> and Google's general <a href="http://www.google.com/privacy.html">Privacy Policy</a>.</p>
+        The HTML5ROCKS website (the "Website") is hosted by Google. By using and/or visiting the Website, you consent to be bound by these terms of service as well as Google's general <a href="http://www.google.com/accounts/TOS">Terms of Service</a> and Google's general <a href="http://www.google.com/privacy.html">Privacy Policy</a>.
       {% endblocktrans %}
-    </section>
+    </p>
   </article>
+
 </div>
 {% endblock %}

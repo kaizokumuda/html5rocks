@@ -10,15 +10,16 @@
 
 {% block body %}
 <div data-import-html>
-  <article>
-    <section class="topic">
-      <hgroup>
-        <img src="/static/new_images/gaming_header.png">
-        <h2>
-          HTML5 Is Everywhere<br>
-          <span>Get Mobile!</span>
-        </h2>
-      </hgroup>
+  <header class="two_columns clearfix">
+    <hgroup>
+      <img src="/static/new_images/gaming_header.png">
+      <h2>
+        HTML5 Is Everywhere<br>
+        <span>Get Mobile!</span>
+      </h2>
+    </hgroup>
+
+    <section>
       <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet! Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris!</p>
 
       <p>Nisi adipiscing rhoncus elementum aliquet quis quis! Amet ac nec vel magna elementum lundium mus, velit sagittis facilisis!</p>
@@ -29,10 +30,10 @@
 
       <p><a href="/{{LANGUAGE_CODE}}/tutorials#mobile">{% trans "View all HTML5Rocks mobile tutorials" %}</a> &rarr;</p>
     </section>
-  </article>
+  </header>
 
-  <article class="content two_columns">
-    <section class="tutorials">
+  <article class="sectioned">
+    <section class="tutorials one_half">
       <h3>{% trans "Mobile" %} {% trans "Tutorials" %}</h3>
       <figure>
         <a href="#">
@@ -54,7 +55,7 @@
       </figure>
     </section>
 
-    <section class="feed">
+    <section class="feed one_half">
       <h3>{% trans "Mobile" %} {% trans "Updates" %}</h3>
       <ul>
         <li><span class="date">10/27</span> <span class="author"><img src="/static/images/profiles/sethladd.png"></span><span class="title"><a href="http://updates.html5rocks.com/2011/10/Spooktacular-HTML5-Pumpkin">Spooktacular HTML5 Pumpkin</a></span><span class="classes"><span class="classesClass halloween">halloween</span><span class="classesClass html5">html5</span></span></li>
@@ -68,9 +69,7 @@
         <li><span class="date">9/19</span> <span class="author"><img src="/static/images/profiles/wesleyhales.png"></span><span class="title"><a href="http://htmlfiverocks.appspot.com/mobile/optimization-and-performance.html">HTML5 Techniques for Optimizing Mobile Performance</a></span><span class="classes"><span class="classesClass mobile">mobile</span><span class="classesClass performance">performance</span></span></li>
       </ul>
     </section>
-  </article>
 
-  <article class="content">
     <section class="two_thirds">
       <hgroup>
         <h3>{% trans "Mobile" %} {% trans "Examples" %}</h3>
@@ -175,12 +174,8 @@
         </li>
       </ul>
     </section>
-  </article>
 
-  <!-- TODO: Separation by <article> to achieve the columns is semantically wrong; the column classes should apply to the sections, not their containers. [matthewmcvickar] -->
-
-  <article class="content two_columns">
-    <section class="demos">
+    <section class="demos one_half">
       <hgroup>
         <h3>{% trans "Tools" %}</h3>
       </hgroup>
@@ -196,25 +191,25 @@
         <li><a href="http://pmuellr.github.com/weinre/">Weinre</a> - remote web inspector debugging</li>
       </ul>
     </section>
+
     <section class="resources">
       <hgroup>
         <h3>{% trans "Additional Resources" %}</h3>
       </hgroup>
-      <div>
-        <ul>
-          <li><a href="http://code.google.com/mobile/">Google Mobile Developer Products</a></li>
-          <li><a href="http://mobile.yahoo.com/developers">Yahoo! Mobile Developers Home</a></li>
-          <li><a href="https://developer.mozilla.org/En/Mobile">Mozilla Mobile Docs</a></li>
-          <li><a href="http://www.w3.org/TR/mobile-bp/">W3C Mobile Best Practices</a></li>
-          <li><a href="http://developer.android.com/guide/webapps/index.html">Android Web Apps Overview</a></li>
-          <li><a href="http://www.mobileawesomeness.com/">mobileawesomeness.com</a> - Get inspired</li>
-          <li><a href="http://mobile-patterns.com/">mobile-patterns.com</a> - Examples of mobile UI patterns</li>
-          <li><a href="http://www.mobilexweb.com/emulators">List of Mobile Browser Emulators</a></li>
-          <li><a href="http://webpro.host.adobe.com/people/jblas/research/">Research and test cases on Touch-Events and Mobile</a></li>
-        </ul>
-      </div>
+      <ul>
+        <li><a href="http://code.google.com/mobile/">Google Mobile Developer Products</a></li>
+        <li><a href="http://mobile.yahoo.com/developers">Yahoo! Mobile Developers Home</a></li>
+        <li><a href="https://developer.mozilla.org/En/Mobile">Mozilla Mobile Docs</a></li>
+        <li><a href="http://www.w3.org/TR/mobile-bp/">W3C Mobile Best Practices</a></li>
+        <li><a href="http://developer.android.com/guide/webapps/index.html">Android Web Apps Overview</a></li>
+        <li><a href="http://www.mobileawesomeness.com/">mobileawesomeness.com</a> - Get inspired</li>
+        <li><a href="http://mobile-patterns.com/">mobile-patterns.com</a> - Examples of mobile UI patterns</li>
+        <li><a href="http://www.mobilexweb.com/emulators">List of Mobile Browser Emulators</a></li>
+        <li><a href="http://webpro.host.adobe.com/people/jblas/research/">Research and test cases on Touch-Events and Mobile</a></li>
+      </ul>
     </section>
-  </div>
+  </article>
+
 </div>
 <!--<script  class="import_script">
   window.caniuse = {
