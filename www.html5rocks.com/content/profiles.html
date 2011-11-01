@@ -69,14 +69,14 @@ $(document).ready(function() {
     {% endif %}
   </header>
 
-  <article>
+  <article class="sectioned">
     <!-- see http://microformats.org/wiki/microdata -->
     <!-- http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#vcard -->
 
     <div id="profiles">
       {% for profile in sorted_profiles %}
 
-      <article class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
+      <article class="profile one_third" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
         <section>
           <img itemprop="photo" alt="{{profile.given_name}} {{profile.family_name}}" title="{{profile.given_name}} {{profile.family_name}}" src="/static/images/profiles/{{profile.id}}.png">
           <hgroup>
@@ -117,7 +117,7 @@ $(document).ready(function() {
 
             {% if profile.geo_location %}
             <div itemprop="geo" class="map active">
-              <img src="http://maps.google.com/maps/api/staticmap?center={{profile.geo_location}}&markers=color:red|label:|{{profile.geo_location}}&zoom=14&size=278x100&sensor=false"/>
+              <img src="http://maps.google.com/maps/api/staticmap?center={{profile.geo_location}}&markers=color:red|label:|{{profile.geo_location}}&zoom=14&size=278x125&sensor=false"/>
             </div>
             {% endif %}
 
