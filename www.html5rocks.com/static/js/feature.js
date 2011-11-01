@@ -92,7 +92,7 @@ window.loadTutorials = function() {
     matches.splice(MAX_NUM_TUTS);
 
     ul.addClass('tutsloaded')
-    $(matches).find('h2 a').clone().wrap('<li>').parent().prependTo(ul);
+    $(matches).find('h3 a').clone().wrap('<li>').parent().prependTo(ul);
   });
 };
 

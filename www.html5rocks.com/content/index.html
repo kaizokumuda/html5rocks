@@ -260,10 +260,11 @@
   </section>
 
   <div class="authors_wrapper">
-    {% for profile in sorted_profiles %}
-      <article class="profile mini" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
-        <section>
-          <img itemprop="photo" alt="{{profile.given_name}} {{profile.family_name}}" title="{{profile.given_name}} {{profile.family_name}}" src="/static/images/profiles/{{profile.id}}.png">
+  {% for profile in sorted_profiles %}
+    <article class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
+      <section>
+        <img itemprop="photo" alt="{{profile.given_name}} {{profile.family_name}}" title="{{profile.given_name}} {{profile.family_name}}" src="/static/images/profiles/{{profile.id}}.png">
+        <hgroup>
           <h2>
             <div itemprop="fn">
               <div itemprop="n" itemscope>
@@ -276,9 +277,10 @@
             {% if profile.unit %}<div itemprop="organization-unit">{{profile.unit}}</div>{% endif %}
             {% if profile.org %}<div itemprop="organization-name">{{profile.org}}</div>{% endif %}
           </h3>
-        </section>
-      </article>
-    {% endfor %}
+        </hgroup>
+      </section>
+    </article>
+  {% endfor %}
   </div>
 
 </article>
