@@ -468,11 +468,12 @@ header.main h1
 
 .subheader
 {
-  /*background: url(/static/new_images/subheader.gif) repeat-x top;*/
   background: #65A8A5;
   height: 82px;
 }
-.subheader::before {
+
+.subheader::before
+{
   -webkit-box-shadow: 0 1px 10px 1px black;
   -moz-box-shadow: 0 1px 10px 1px black;
   -ms-box-shadow: 0 1px 10px 1px black;
@@ -482,7 +483,9 @@ header.main h1
   display: block;
   z-index: -1;
 }
-.subheader::after {
+
+.subheader::after
+{
   -moz-box-shadow: 0 3px 12px 5px black;
   -webkit-box-shadow: 0 3px 12px 5px black;
   -o-box-shadow: 0 3px 12px 5px black;
@@ -494,6 +497,7 @@ header.main h1
   position: relative;;
   top: -10px;
 }
+
 .subheader .search
 {
   font-size: 48px;
