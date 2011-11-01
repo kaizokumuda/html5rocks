@@ -81,11 +81,11 @@
     </h1>
     <nav>
       <ul>
-        <li><a href="/why">Why HTML5</a></li>
+        <li><a class="why" href="/why">Why HTML5</a></li>
         <li id="features_show">HTML5 Features</li>
-        <li><a href="/{{LANGUAGE_CODE}}/tutorials/" {% if current == 'tutorials' or current == 'mobile' %}class="current"{% endif %}>{% trans "Updates" %}</a></li>
-        <li><a href="/{{LANGUAGE_CODE}}/resources" {% if current == 'resources' %}class="current"{% endif %}>{% trans "Resources" %}</a></li>
-        <li><a href="/{{LANGUAGE_CODE}}/profiles" {% if current == 'profiles' %}class="current"{% endif %}>{% trans "Who We Are" %}</a></li>
+        <li><a href="/{{LANGUAGE_CODE}}/tutorials/" class="tutorials">{% trans "Updates" %}</a></li>
+        <li><a href="/{{LANGUAGE_CODE}}/resources" class="resources">{% trans "Resources" %}</a></li>
+        <li><a href="/{{LANGUAGE_CODE}}/profiles" class="profiles"}>{% trans "Who We Are" %}</a></li>
         <li><a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">Contribute</a></li>
         <li id="search_show">
           Search
