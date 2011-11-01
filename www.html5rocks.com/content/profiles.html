@@ -4,10 +4,9 @@
 {% block headtitle %}{% trans "Author Profiles" %}{% endblock %}
 {% block head %}
 <!--
-<link href="http://fonts.googleapis.com/css?family=Tangerine:regular,bold|Josefin+Slab:100,100italic,light,lightitalic,regular,regularitalic,600,600italic,bold,bolditalic" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="/static/css/profiles{% if prod %}.min{% endif %}.css"/>
-<script src="/static/js/profiles{% if prod %}.min{% endif %}.js"></script>
 -->
+<script src="/static/js/profiles{% if prod %}.min{% endif %}.js"></script>
 {% endblock %}
 {% block onload %}scrollToProfile();{% endblock %}
 {% block body %}
@@ -45,8 +44,9 @@
       {% for profile in sorted_profiles %}
 
       <article class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
-        <section class="card">
-          <div class="face front">
+        <section>
+          <img itemprop="photo" alt="{{profile.given_name}} {{profile.family_name}}" title="{{profile.given_name}} {{profile.family_name}}" src="/static/images/profiles/{{profile.id}}.png">
+          <hgroup>
             <h2>
               <div itemprop="fn">
                 <div itemprop="n" itemscope>
@@ -55,51 +55,42 @@
                 </div>
               </div>
             </h2>
-
-            <div class="photoZone">
-              <img itemprop="photo" alt="{{profile.given_name}} {{profile.family_name}}" title="{{profile.given_name}} {{profile.family_name}}" src="/static/images/profiles/{{profile.id}}.png">
-              <ul class="urls">
-                {% if profile.homepage %}
-                <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
-                {% endif %}
-                {% if profile.google_account %}
-                <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google_account}}">&nbsp;</a></li>
-                {% endif %}
-                {% if profile.twitter_account %}
-                <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter_account}}">&nbsp;</a></li>
-                {% endif %}
-                {% if profile.lanyrd %}
-                <li><a data-type="lanyrd" itemprop="url" href="http://www.lanyrd.com/people/{{profile.twitter_account}}">&nbsp;</a></li>
-                {% endif %}
-              </ul>
-            </div>
-
-            <div itemprop="org" itemscope>
+            <h3 itemprop="org" itemscope>
               {% if profile.unit %}<div itemprop="organization-unit">{{profile.unit}}</div>{% endif %}
               {% if profile.org %}<div itemprop="organization-name">{{profile.org}}</div>{% endif %}
+            </h3>
+            <h3 itemprop="adr" itemscope>
+              {% if profile.city %}<span itemprop="city">{{profile.city}},</span>{% endif %}
+              {% if profile.state %}<span itemprop="state">{{profile.state}},</span>{% endif %}
+              {% if profile.country %}<span itemprop="country-name">{{profile.country}}</span>{% endif %}
+            </h3>
+          </hgroup>
+          <ul class="urls">
+            {% if profile.homepage %}
+            <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
+            {% endif %}
+            {% if profile.google_account %}
+            <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google_account}}">&nbsp;</a></li>
+            {% endif %}
+            {% if profile.twitter_account %}
+            <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter_account}}">&nbsp;</a></li>
+            {% endif %}
+            {% if profile.lanyrd %}
+            <li><a data-type="lanyrd" itemprop="url" href="http://www.lanyrd.com/people/{{profile.twitter_account}}">&nbsp;</a></li>
+            {% endif %}
+          </ul>
+          {% if not is_mobile %}
+            <div class="list-articles">{% trans "Articles" %} <span>&rarr;</span></div>
+
+            {% if profile.geo_location %}
+            <div itemprop="geo" class="map active">
+              <img src="http://maps.google.com/maps/api/staticmap?center={{profile.geo_location}}&markers=color:red|label:|{{profile.geo_location}}&zoom=14&size=278x100&sensor=false"/>
             </div>
-            <div class="details">
-              <div itemprop="adr" itemscope>
-                {% if profile.city %}<span itemprop="city">{{profile.city}},</span>{% endif %}
-                {% if profile.state %}<span itemprop="state">{{profile.state}},</span>{% endif %}
-                {% if profile.country %}<span itemprop="country-name">{{profile.country}}</span>{% endif %}
-              </div>
-            </div>
-            <div class="list-articles">{% trans "Articles" %}</div>
-          </div>
-          <div class="face back">
+            {% endif %}
+
             <ul class="articles"></ul>
-          </div>
-        </section>
-        {% if not is_mobile %}
-        <section class="map">
-          {% if profile.geo_location %}
-          <div itemprop="geo">
-            <img src="http://maps.google.com/maps/api/staticmap?center={{profile.geo_location}}&markers=color:red|label:|{{profile.geo_location}}&zoom=14&size=200x175&sensor=false"/>
-          </div>
           {% endif %}
         </section>
-        {% endif %}
       </article>
 
       {% endfor %}

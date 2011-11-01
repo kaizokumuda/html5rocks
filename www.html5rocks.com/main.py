@@ -147,7 +147,7 @@ class ContentHandler(webapp.RequestHandler):
 
     return articles
 
-  def render(self, data={}, template_path=None, status=None, 
+  def render(self, data={}, template_path=None, status=None,
              message=None, relpath=None):
     if status is not None and status != 200:
       self.response.set_status(status, message)
@@ -171,7 +171,7 @@ class ContentHandler(webapp.RequestHandler):
     if (path_no_lang == ''):
       pagename = 'home'
     else:
-      pagename = re.sub('\/', '-', path_no_lang)
+      pagename = re.sub('\/', '-$1', path_no_lang)
 
     # Add template data to every request.
     template_data = {
@@ -267,7 +267,7 @@ class ContentHandler(webapp.RequestHandler):
       self.request.cache = False
 
     # Handle humans before locale, to prevent redirect to /en/
-    # (but still ensure it's dynamic, ie we can't just redirect to a static 
+    # (but still ensure it's dynamic, ie we can't just redirect to a static
     # url)
     if (relpath == 'humans.txt'):
       self.response.headers['Content-Type'] = 'text/plain'
@@ -321,8 +321,8 @@ class ContentHandler(webapp.RequestHandler):
     logging.info('relpath: ' + relpath)
 
     # Setup handling of redirected article URLs: If a user tries to access an
-    # article from a non-supported language, we'll redirect them to the 
-    # English version (assuming it exists), with a `redirect_from_locale` GET 
+    # article from a non-supported language, we'll redirect them to the
+    # English version (assuming it exists), with a `redirect_from_locale` GET
     # param.
     redirect_from_locale = self.request.get('redirect_from_locale', '')
     if not re.match('[a-zA-Z]{2,3}$', redirect_from_locale):
