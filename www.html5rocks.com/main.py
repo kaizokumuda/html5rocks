@@ -172,7 +172,7 @@ class ContentHandler(webapp.RequestHandler):
       pagename = 'home'
     else:
       pagename = re.sub('\/', '-', path_no_lang)
-      pagename = re.sub('/$|-$', '', path_no_lang)
+      pagename = re.sub('/$|-$', '', pagename)
 
     # Add template data to every request.
     template_data = {
