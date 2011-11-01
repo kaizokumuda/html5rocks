@@ -657,6 +657,21 @@ input[type="search"]::-webkit-search-results-decoration
   opacity: 1;
 }
 
+body[data-href='home'] .watermark.teal,
+body[data-href='mobile'] .watermark.teal,
+body[data-href='gaming'] .watermark.teal,
+body[data-href='business'] .watermark.teal
+{
+  display: none;
+}
+
+body[data-href='mobile'] .watermark.white,
+body[data-href='gaming'] .watermark.white,
+body[data-href='business'] .watermark.white
+{
+  opacity: 1;
+}
+
 h1,
 h2,
 h3,
@@ -916,14 +931,6 @@ body[data-href='features-nuts_and_bolts'] nav.paginator.features ul.nuts_and_bol
 
 
 /* HOMEPAGE */
-
-body[data-href='home'] .watermark.teal,
-body[data-href='mobile'] .watermark.teal,
-body[data-href='gaming'] .watermark.teal,
-body[data-href='business'] .watermark.teal
-{
-  display: none;
-}
 
 #start {
   position: relative;
