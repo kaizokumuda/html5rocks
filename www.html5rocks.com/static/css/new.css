@@ -640,20 +640,16 @@ input[type="search"]::-webkit-search-results-decoration
   z-index: 2;
   padding: 20px;
   opacity: .85;
-  -webkit-transition: opacity 600ms ease-in-out;
-  -moz-transition: opacity 600ms ease-in-out;
-  -ms-transition: opacity 600ms ease-in-out;
-  -o-transition: opacity 600ms ease-in-out;
-  transition: opacity 600ms ease-in-out;
-  -webkit-transition: top 150ms ease-in-out;
-  -moz-transition: top 150ms ease-in-out;
-  -ms-transition: top 150ms ease-in-out;
-  -o-transition: top 150ms ease-in-out;
-  transition: top 150ms ease-in-out;
+  -webkit-transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
+  -moz-transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
+  -ms-transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
+  -o-transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
+  transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
 }
 
 .watermark.white
 {
+  display: none;
   opacity: 0;
 }
 
@@ -673,6 +669,14 @@ body[data-href='gaming'] .watermark.teal,
 body[data-href='business'] .watermark.teal
 {
   display: none;
+}
+
+body[data-href='home'] .watermark.white,
+body[data-href='mobile'] .watermark.white,
+body[data-href='gaming'] .watermark.white,
+body[data-href='business'] .watermark.white
+{
+  display: block;
 }
 
 body[data-href='mobile'] .watermark.white,
