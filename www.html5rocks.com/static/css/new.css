@@ -1588,6 +1588,7 @@ body[data-href='features-nuts_and_bolts'] .page header .feature_icon { backgroun
   margin: 0;
 }
 
+.page header hgroup h1 span,
 .page header hgroup h2
 {
   color: #5fa4a0;
