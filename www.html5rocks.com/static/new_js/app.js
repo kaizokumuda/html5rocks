@@ -78,7 +78,9 @@ function finishPanelLoad(pagePanel, elemstate) {
 $('a').click(function() { 
 
   // Don't intercept external links
-  if ($(this).attr('target')) return true;
+  if ($(this).attr('target')) {
+    return true;
+  }
 
   // Only cool browsers get cool behavior
   if (!Modernizr.history) return true;
@@ -126,8 +128,9 @@ function loadContent(elem, popped){
   // If we have an anchor, just scroll to it on the current page panel.
   if (hash) {
     var panelSegment = pagePanel.find('.' + hash);
-    if (panelSegment.length)
+    if (panelSegment.length) {
       finishPanelLoad(panelSegment, elemstate);
+    }
     return false;
   }
 
