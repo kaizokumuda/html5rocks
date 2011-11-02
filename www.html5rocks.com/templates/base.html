@@ -83,7 +83,7 @@
       <ul>
         <li><a class="why" href="/why">Why HTML5</a></li>
         <li id="features_show">HTML5 Features</li>
-        <li><a href="/{{LANGUAGE_CODE}}/tutorials/" class="tutorials">{% trans "Updates" %}</a></li>
+        <li><a href="/{{LANGUAGE_CODE}}/tutorials/" class="tutorials" onclick="clearFilter()">{% trans "Updates" %}</a></li>
         <li><a href="/{{LANGUAGE_CODE}}/resources" class="resources">{% trans "Resources" %}</a></li>
         <li><a href="/{{LANGUAGE_CODE}}/profiles" class="profiles"}>{% trans "Who We Are" %}</a></li>
         <li><a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">Contribute</a></li>
@@ -424,6 +424,7 @@
   <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
     {lang: '{{LANGUAGE_CODE}}', parsetags: 'explicit'}
   </script>
+  <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
   <script>
   gapi.plusone.go();
 

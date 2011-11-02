@@ -210,6 +210,7 @@ $('nav.main li a').click(function(e) {
 window.route = {
   common : function() {
     gapi.plusone.go(pagePanel.find('.plusone').get(0));
+    twttr.widgets.load();
 
     // TODO(Google): record GA hit on new ajax page load.
   },
