@@ -121,12 +121,12 @@ class ContentHandler(webapp.RequestHandler):
       for element in article_elements:
         if (element.getAttribute('class') == 'sample'):
           article = {}
-          h2 = element.getElementsByTagName('h2')[0]
-          a = h2.getElementsByTagName('a')[0]
+          h = element.getElementsByTagName('h3')[0]
+          a = h.getElementsByTagName('a')[0]
           article['title'] = __get_text(a.childNodes)
-          article['id'] = h2.getAttribute('id')
+          article['id'] = h.getAttribute('id')
           article['href'] = a.getAttribute('href')
-          article['pubdate'] = h2.getAttribute('data-pubdate')
+          article['pubdate'] = h.getAttribute('data-pubdate')
           if article['pubdate'] is not None:
             article['pubdate'] = datetime.datetime.strptime(
                 article['pubdate'], '%Y-%m-%d')

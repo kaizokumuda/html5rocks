@@ -10,12 +10,15 @@ $(function() {
   });
 
   function updateHash(e) {
-    $activeProfile = $(".active");
+    $activeProfile = $('.profile.active');
+    var lang = document.documentElement.lang || 'en';
     if ($activeProfile.length) {
-      history.replaceState({}, document.title, '/profiles/#!/' + $activeProfile.attr("id"));
+      var profileID = $activeProfile.attr('id');
+      history.replaceState({}, document.title, '/' + lang + '/profiles/#!/' +
+                           profileID);
     } else {
       if (!!window.history) {
-        history.replaceState({}, document.title, '/profiles');
+        history.replaceState({}, document.title, '/' + lang + '/profiles');
       } else {
         location.hash = "/#!/"; // oh well, old browsers have to live with a #
       }
@@ -41,7 +44,7 @@ $(function() {
   window.scrollToProfile = function(opt_profileID) {
     var profileID = opt_profileID || null;
     if (!profileID && location.hash.length) {
-      profileID = '#' + location.hash.split('#!/')[1];
+      profileID = '#' + location.hash.split('#!\/')[1];
     }
     if (profileID) {
       $.scrollTo(profileID, 800, {offset: {top: -12}, onAfter: function() {
@@ -69,7 +72,7 @@ $(function() {
     if (!location.hash.length) {
       return;
     }
-    onHashChange('#' + location.hash.split('/#!/')[1]);
+    onHashChange('#' + location.hash.split('#!\/')[1]);
   };
 
 });
