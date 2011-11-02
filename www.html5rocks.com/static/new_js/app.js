@@ -287,3 +287,51 @@ window.state = {
 
 window.addEventListener('popstate', state, false);
 
+
+$(document).ready(function() {
+  $('.tag').live('click', filterTag);
+  if (document.location.hash) {
+    // Hide all samples as soon as DOM is loaded to prevent flicker effect.
+    var samples = $('.sample');
+    samples.addClass('hidden');
+    filterTag(document.location.hash.substring(1));
+  }
+});
+
+function clearFilter() {
+  $('.sample.hidden').removeClass('hidden');
+  $('#filter').addClass('hidden');
+  if (!!window.history) {
+    var lang = document.documentElement.lang || 'en';
+    history.replaceState({}, document.title, '/' + lang + '/tutorials');
+  } else {
+    document.location.hash = '';
+  }
+};
+
+function filterTag(opt_tag) {
+  var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
+  document.location.hash = tag;
+
+  var samples = $('.sample');
+
+  if (tag) {
+    samples.addClass('hidden');
+    $.each(tag.split(','), function(i, eachtag) {
+      samples.find('span.tag:contains("' + eachtag + '")').closest('.sample').removeClass('hidden');
+    });
+    $('#filter_tag').text(tag);
+    $('#filter').removeClass('hidden');
+    window.scrollTo(0, 0);
+  } else {
+    clearFilter();
+  }
+};
+
+// Adds back button support.
+window.addEventListener('hashchange', function(e) {
+  filterTag(document.location.hash.substring(1));
+  if (window._gaq) {
+    _gaq.push(['_trackPageview', document.location.href]);
+  }
+}, false);

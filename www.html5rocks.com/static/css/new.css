@@ -2178,6 +2178,7 @@ section ul
   font-size: 11px;
   margin: 0 .5em;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .sample .summary
