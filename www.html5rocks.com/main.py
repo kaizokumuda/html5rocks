@@ -130,7 +130,7 @@ class ContentHandler(webapp.RequestHandler):
           if article['pubdate'] is not None:
             article['pubdate'] = datetime.datetime.strptime(
                 article['pubdate'], '%Y-%m-%d')
-
+                          
           divs = element.getElementsByTagName('div')
 
           article['description'] = __get_text(divs[1].childNodes)
@@ -256,8 +256,26 @@ class ContentHandler(webapp.RequestHandler):
         #return self.redirect('/database/edit')
         self.redirect('/database/author')
     elif (relpath == 'database/resource'):
-      #self.addResources()
-      logging.info(self.request)
+      form = common.TutorialForm(data=self.request.POST)
+      try:
+        author_key = common.Author.get_by_key_name(
+            self.request.get('author'));
+        tutorial = common.Resource(
+            title = self.request.get('title'),
+            description = self.request.get('description'),
+            author = author_key,
+            url = u'/url/test',
+            browser_support = [u'chrome', u'safari', u'opera'],
+            update_date = datetime.date.today(),
+            publication_date = datetime.date.today(),
+            tags = [u'offline'])
+        tutorial.put()        
+      except db.Error:
+        pass
+      else:
+        #return self.redirect('/database/edit')
+        self.redirect('/database/resource')
+      # logging.info(self.request)
       return self.redirect('/database/resource')
 
   def get(self, relpath):

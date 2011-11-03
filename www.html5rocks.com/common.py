@@ -28,7 +28,7 @@ def get_profiles(update_cache=False):
 
 def get_sorted_profiles(update_cache=False):
   return sorted(get_profiles(update_cache).values(),
-                key = lambda profile:profile['family_name'])
+                key=lambda profile:profile['family_name'])
 
 
 class DictModel(db.Model):
@@ -82,12 +82,11 @@ class Resource(DictModel):
   #generic tags and html5 feature group tags('offline', 'multimedia', etc.)
   tags = db.StringListProperty()
 
-
 class TutorialForm(djangoforms.ModelForm):
   class Meta:
     model = Resource
     exclude = ['url', 'update_date', 'publication_date']
-    
+
   def __init__(self, *args, **keyargs):
     super(TutorialForm, self).__init__(*args, **keyargs)
 
@@ -102,4 +101,10 @@ class TutorialForm(djangoforms.ModelForm):
           profiles[profile['id']] = (profile['given_name'] + ' ' +
                                      profile['family_name'])
         self.fields[field].widget.choices = tuple(profiles.items())
-      
+        
+      if (field == 'browser_support'):
+        self.fields[field].widget = forms.CheckboxSelectMultiple(
+            choices=(
+                ('safari', 'Safari'),
+                ('ie', 'Internet Explorer'),
+                ('chrome', 'Google Chrome')))
