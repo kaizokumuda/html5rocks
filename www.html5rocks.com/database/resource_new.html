@@ -36,7 +36,7 @@ input[type='submit'] {
 ul {
   padding-left: 0;
 }
-li {
+form li {
   list-style: none;
   display: inline-block;
 }
@@ -53,5 +53,12 @@ li {
     </table>
   </form>
 </div>
+
+<p>Current resources:</p>
+<ol>
+{% for r in resources %}
+<li><a href="{{r.url}}" target="_blank">{{r.title}}</a> - {% for tag in r.tags %}{{tag}}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+{% endfor %}
+</ol>
 
 {% endblock %}

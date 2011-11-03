@@ -254,30 +254,35 @@ class ContentHandler(webapp.RequestHandler):
       except db.Error:
         pass
       else:
-        #return self.redirect('/database/edit')
         self.redirect('/database/author')
 
     elif relpath == 'database/resource':
       #form = common.TutorialForm(data=self.request.POST)
-      try:
-        author_key = common.Author.get_by_key_name(self.request.get('author'))
-        tutorial = common.Resource(
-            title=self.request.get('title'),
-            description=self.request.get('description'),
-            author=author_key,
-            url=self.request.get('url') or None,
-            browser_support=self.request.get('browser_support') or [],
-            update_date=datetime.date.today(),
-            publication_date=datetime.date.today(),
-            tags=[u'offline'])
-        tutorial.put()        
-      except db.Error:
-        pass
-      else:
-        #return self.redirect('/database/edit')
-        self.redirect('/database/resource')
-      # logging.info(self.request)
+      author_key = common.Author.get_by_key_name(self.request.get('author'))
+
+      tags = (self.request.get('tags') or '').split(',')
+      tags = [x.strip() for x in tags if x.strip()]
+
+      browser_support = [x.lower() for x in
+                         (self.request.get_all('browser_support') or [])]
+
+      pub = datetime.datetime.strptime(
+          self.request.get('publication_date'), '%Y-%m-%d')
+
+      tutorial = common.Resource(
+          title=self.request.get('title'),
+          description=self.request.get('description'),
+          author=author_key,
+          url=self.request.get('url') or None,
+          browser_support=browser_support,
+          update_date=datetime.date.today(),
+          publication_date=datetime.date(pub.year, pub.month, pub.day),
+          tags=tags)
+      tutorial.put()       
+
       return self.redirect('/database/resource')
+
+    return '/'
 
   def get(self, relpath):
 
@@ -308,7 +313,8 @@ class ContentHandler(webapp.RequestHandler):
 
     elif (relpath == 'database/resource'):
       template_data = {
-        'tutorial_form': common.TutorialForm()
+        'tutorial_form': common.TutorialForm(),
+        'resources': common.Resource.all().order('-publication_date')
       }
       return self.render(data=template_data,
                          template_path='database/resource_new.html',
@@ -503,7 +509,7 @@ class APIHandler(webapp.RequestHandler):
   def get(self, relpath):
     if (relpath == 'authors'):
       profiles = {}
-      for p in common.get_sorted_profiles():
+      for p in common.get_sorted_profiles(): # This query is memcached.
         profile_id = p['id']
         profiles[profile_id] = p
         geo_location = profiles[profile_id]['geo_location']
@@ -516,9 +522,32 @@ class APIHandler(webapp.RequestHandler):
       self.redirect('/')
 
 
+class TagsHandler(webapp.RequestHandler):
+
+  def get(self, tag):
+    #TODO(ericbidelman): memcache this
+    query = common.Resource.all()
+    query.filter('tags =', tag)
+
+    #dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime.date) else None
+
+    resources = []
+    for r in query:
+      resources.append(r.to_dict())
+      resources[-1]['publication_date'] = r.publication_date.isoformat()
+      resources[-1]['update_date'] = r.update_date.isoformat()
+      resources[-1]['author'] = r.author.key().name()
+
+    self.response.headers['Content-Type'] = 'application/json'
+    self.response.out.write(simplejson.dumps(resources))
+    #self.response.out.write(resources)
+    return
+
+
 def main():
   application = webapp.WSGIApplication([
     ('/api/(.*)', APIHandler),
+    ('/tags/(.*)', TagsHandler),
     ('/(.*)', ContentHandler)
   ], debug=True)
   run_wsgi_app(application)
