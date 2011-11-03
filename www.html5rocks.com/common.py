@@ -88,7 +88,7 @@ class TutorialForm(djangoforms.ModelForm):
 
   class Meta:
     model = Resource
-    exclude = ['update_date']
+    #exclude = ['update_date']
     #fields = ['title', 'url', 'author', 'description', 'tags']
 
   sorted_profiles = get_sorted_profiles()
@@ -107,6 +107,8 @@ class TutorialForm(djangoforms.ModelForm):
                  'tutorial. <br>Can include markup.'))
   publication_date = forms.DateField(label='Publish date',
                                      initial=datetime.date.today)
+  update_date = forms.DateField(label='Updated date',
+                                initial=datetime.date.today)
   url = forms.CharField(label='URL',
       help_text='An abs. or relative url (e.g. /tutorials/feature/something)')
 
