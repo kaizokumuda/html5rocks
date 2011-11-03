@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2010 Google Inc.
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
+# Licensed under the Apache License, Version 2.0 (the "License")
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
@@ -76,7 +76,7 @@ class ContentHandler(webapp.RequestHandler):
 
     toc = memcache.get('toc|%s' % path)
     if toc is None or not self.request.cache:
-      template_text = template.render(path, {});
+      template_text = template.render(path, {})
       parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("dom"))
       dom_tree = parser.parse(template_text)
       walker = treewalkers.getTreeWalker("dom")
@@ -104,7 +104,7 @@ class ContentHandler(webapp.RequestHandler):
   def get_feed(self, path):
     articles = memcache.get('feed|%s' % path)
     if articles is None or not self.request.cache:
-      template_text = template.render(path, {});
+      template_text = template.render(path, {})
       parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder('dom'))
       dom_tree = parser.parse(template_text)
 
@@ -227,7 +227,8 @@ class ContentHandler(webapp.RequestHandler):
     self.response.out.write(feed.writeString('utf-8'))
 
   def post(self, relpath):
-    if (relpath == 'database/author'):
+
+    if relpath == 'database/author':
       try:
         given_name = self.request.get('given_name')
         family_name = self.request.get('family_name')
@@ -255,20 +256,20 @@ class ContentHandler(webapp.RequestHandler):
       else:
         #return self.redirect('/database/edit')
         self.redirect('/database/author')
-    elif (relpath == 'database/resource'):
-      form = common.TutorialForm(data=self.request.POST)
+
+    elif relpath == 'database/resource':
+      #form = common.TutorialForm(data=self.request.POST)
       try:
-        author_key = common.Author.get_by_key_name(
-            self.request.get('author'));
+        author_key = common.Author.get_by_key_name(self.request.get('author'))
         tutorial = common.Resource(
-            title = self.request.get('title'),
-            description = self.request.get('description'),
-            author = author_key,
-            url = u'/url/test',
-            browser_support = [u'chrome', u'safari', u'opera'],
-            update_date = datetime.date.today(),
-            publication_date = datetime.date.today(),
-            tags = [u'offline'])
+            title=self.request.get('title'),
+            description=self.request.get('description'),
+            author=author_key,
+            url=self.request.get('url') or None,
+            browser_support=self.request.get('browser_support') or [],
+            update_date=datetime.date.today(),
+            publication_date=datetime.date.today(),
+            tags=[u'offline'])
         tutorial.put()        
       except db.Error:
         pass
@@ -354,7 +355,7 @@ class ContentHandler(webapp.RequestHandler):
         'msg': _('Sorry, this article isn\'t available in your native '
                  'language; we\'ve redirected you to the English version.')
       }
-      translation.activate(locale);
+      translation.activate(locale)
 
     # Landing page or /tutorials|features|mobile|gaming|business\/?
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
@@ -457,7 +458,7 @@ class ContentHandler(webapp.RequestHandler):
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
   def addTestResources(self):
-    author_key = common.Author.get_by_key_name(u'hanrui');
+    author_key = common.Author.get_by_key_name(u'hanrui')
     sample = common.Resource(
         title=u'A Beginner\'s Guide to Using the Application Cache',
         description=u'A beginner\'s guide to using the Application Cache.',

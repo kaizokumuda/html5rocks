@@ -82,29 +82,37 @@ class Resource(DictModel):
   #generic tags and html5 feature group tags('offline', 'multimedia', etc.)
   tags = db.StringListProperty()
 
+
 class TutorialForm(djangoforms.ModelForm):
+  import datetime
+
   class Meta:
     model = Resource
-    exclude = ['url', 'update_date', 'publication_date']
+    exclude = ['update_date']
+    #fields = ['title', 'url', 'author', 'description', 'tags']
+
+  sorted_profiles = get_sorted_profiles()
+  author = forms.ChoiceField(choices=[(p['id'],
+      '%s %s' % (p['given_name'], p['family_name'])) for p in sorted_profiles])
+
+  browsers = ['Chrome', 'FF', 'Safari', 'Opera', 'IE']
+  browser_support = forms.MultipleChoiceField(
+      widget=forms.CheckboxSelectMultiple, choices=[(b,b) for b in browsers])
+
+  tags = forms.CharField(
+      help_text='Comma separated list (e.g. offline, performance, demo, ...)')
+  description = forms.CharField(
+      widget=forms.Textarea(attrs={'rows': 5, 'cols': 20}),
+      help_text=('Description for this resource. If tutorial, a summary of the '
+                 'tutorial. <br>Can include markup.'))
+  publication_date = forms.DateField(label='Publish date',
+                                     initial=datetime.date.today)
+  url = forms.CharField(label='URL',
+      help_text='An abs. or relative url (e.g. /tutorials/feature/something)')
 
   def __init__(self, *args, **keyargs):
     super(TutorialForm, self).__init__(*args, **keyargs)
 
     for field in self.fields:
-      if (self.Meta.model.properties()[field].required):
+      if self.Meta.model.properties()[field].required and field != 'browser_support':
         self.fields[field].widget.attrs['required'] = 'required'
-      
-      if (field == 'author'):
-        sorted_profiles = get_sorted_profiles(update_cache=False)
-        profiles = {}
-        for profile in sorted_profiles:
-          profiles[profile['id']] = (profile['given_name'] + ' ' +
-                                     profile['family_name'])
-        self.fields[field].widget.choices = tuple(profiles.items())
-        
-      if (field == 'browser_support'):
-        self.fields[field].widget = forms.CheckboxSelectMultiple(
-            choices=(
-                ('safari', 'Safari'),
-                ('ie', 'Internet Explorer'),
-                ('chrome', 'Google Chrome')))
