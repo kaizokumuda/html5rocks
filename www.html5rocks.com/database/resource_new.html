@@ -57,7 +57,7 @@ form li {
 <p>Current resources:</p>
 <ol>
 {% for r in resources %}
-<li><a href="{{r.url}}" target="_blank">{{r.title}}</a> - {% for tag in r.tags %}{{tag}}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+<li><a href="{{r.url}}" target="_blank">{{r.title}}</a> - {% for tag in r.tags %}{{tag}}{% if not forloop.last %}, {% endif %}{% endfor %} - <a href="/database/resource/{{r.key.id}}" target="_blank">[Edit]</a></li>
 {% endfor %}
 </ol>
 
