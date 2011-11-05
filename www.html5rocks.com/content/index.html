@@ -80,14 +80,14 @@
       var y = $(this).scrollTop();
 
       if (y > top) {
-        document.querySelector('.watermark.white').classList.add('fadeIn');
+        document.querySelector('.watermark').classList.add('fadeIn');
 
         if (!$('body').hasClass('scrolled')) {
           hideScrollToTechnologyArrow();
           $('body').addClass('scrolled');
         }
       } else {
-        document.querySelector('.watermark.white').classList.remove('fadeIn');
+        document.querySelector('.watermark').classList.remove('fadeIn');
 
         $('body').removeClass('scrolled');
 
