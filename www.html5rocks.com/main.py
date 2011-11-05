@@ -310,10 +310,18 @@ class ContentHandler(webapp.RequestHandler):
     elif (relpath == 'database/load_author_information'):
       self.addTestAuthors()
       return self.redirect('/database/author')
-
-    elif (relpath == 'database/resource'):
+      
+    elif 'database/resource' in relpath:
+      regex = re.compile("/[^/]+/(\d+)")
+      postid = regex.findall(relpath)
+      if len(postid) > 0: # /database/resource/1234
+        post = common.Resource.get_by_id(int(postid[0]))
+        tutorial_form = common.TutorialForm(instance=post)
+      else: # /database/resource
+        tutorial_form = common.TutorialForm()
+        
       template_data = {
-        'tutorial_form': common.TutorialForm(),
+        'tutorial_form': tutorial_form,
         'resources': common.Resource.all().order('-publication_date')
       }
       return self.render(data=template_data,
@@ -545,7 +553,6 @@ class TagsHandler(webapp.RequestHandler):
     self.response.out.write(simplejson.dumps(resources))
     #self.response.out.write(resources)
     return
-
 
 def main():
   application = webapp.WSGIApplication([
