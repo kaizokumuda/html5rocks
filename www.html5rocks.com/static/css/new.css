@@ -171,7 +171,7 @@ body[data-href='business'] {
               url(/static/new_images/background-mobile.jpg),
               url(/static/new_images/background-gaming.jpg),
               url(/static/new_images/background-business.jpg);*/
-  
+
   background-repeat: no-repeat;
   -moz-background-size: cover;
   background-size: cover;
@@ -2184,6 +2184,11 @@ section ul
 .sample .buttonlink
 {
   display: none;
+}
+
+header.sample section
+{
+  float: left;
 }
 
 

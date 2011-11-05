@@ -3,7 +3,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block body %}
-  <header class="clearfix">
+  <header class="sample clearfix">
     <hgroup>
       <h1>HTML5 Rocks</h1>
       <h2><a href="/{{LANGUAGE_CODE}}/tutorials/">{% trans "Tutorials" %}</a></h2>
@@ -11,32 +11,34 @@
 
     <h1>{% block pagetitle %}{% endblock %}</h1>
 
-    <span class="date">
-      {% block pageauthor %}{% endblock %}
-      <div>
-        <time pubdate>{% block date %}{% endblock %}</time>
-        <time class="updated">{% block updated %}{% endblock %}</time>
+    <section>
+      <span class="date">
+        {% block pageauthor %}{% endblock %}
+        <div>
+          <time pubdate>{% block date %}{% endblock %}</time>
+          <time class="updated">{% block updated %}{% endblock %}</time>
+        </div>
+      </span>
+
+      <span class="browser_support">
+        <span>{% trans "Supported browsers:" %}</span>
+        <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
+      </span>
+
+      <div class="compatible-block">
+        <p id="notcompatible" class="hidden">
+          {% block notcompatible_text %}
+          {% trans "Your browser may not support all of the functionality used in this article." %}
+          {% endblock %}
+        </p>
+        <p id="compatible" class="hidden">
+          {% block compatible_text %}
+          {% trans "Your browser appears to support all of the functionality used in this article." %}
+          {% endblock %}
+        </p>
       </div>
-    </span>
-
-    <span class="browser_support">
-      <span>{% trans "Supported browsers:" %}</span>
-      <span class="browser_logos">{% block browsersupport %}{% endblock %}</span>
-    </span>
-
-    <div class="compatible-block">
-      <p id="notcompatible" class="hidden">
-        {% block notcompatible_text %}
-        {% trans "Your browser may not support all of the functionality used in this article." %}
-        {% endblock %}
-      </p>
-      <p id="compatible" class="hidden">
-        {% block compatible_text %}
-        {% trans "Your browser appears to support all of the functionality used in this article." %}
-        {% endblock %}
-      </p>
-    </div>
-
+    </section>
+    
     {% if not is_mobile %}
     <aside id="html5badge">
       <a href="http://www.w3.org/html/logo/">
