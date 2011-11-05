@@ -452,7 +452,10 @@ class ContentHandler(webapp.RequestHandler):
         return self.redirect("/en/%s?redirect_from_locale=%s" % (relpath,
                                                                  locale))
     elif os.path.isfile(path):
-      self.render(data={}, template_path=path, relpath=relpath)
+      data = {
+        'tutorials': common.Resource.all() #TODO(ericbidelman): memcache this!
+      }
+      self.render(data=data, template_path=path, relpath=relpath)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
       self.render(data={}, template_path=path[:path.rfind('.')] + '.html',
                   relpath=relpath)

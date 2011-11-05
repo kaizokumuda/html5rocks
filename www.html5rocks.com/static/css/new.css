@@ -2148,10 +2148,13 @@ section ul
   padding: .2em .3em;
 }
 
-.sample
-{
+.sample {
   margin: 1.5em 0 2.5em;
   padding: 0;
+}
+
+.sample:hover .browser_logos {
+  visibility: visible;
 }
 
 .sample h3
@@ -2186,7 +2189,35 @@ section ul
   display: none;
 }
 
-
+.browser_logos {
+  visibility: hidden;
+}
+.browser_logos span {
+  float: right;
+  height: 17px;
+  width: 17px;
+  background: transparent url('/static/images/browser_logos.png') no-repeat left top;
+  opacity: 0.25;
+  margin-top: -2px;
+}
+.browser_logos .chrome {
+  background-position: left top;
+}
+.browser_logos .ff {
+  background-position: -17px top;
+}
+.browser_logos .safari {
+  background-position: -35px top;
+}
+.browser_logos .ie {
+  background-position: -52px top;
+}
+.browser_logos .opera {
+  background-position: -69px top;
+}
+.browser_logos .supported {
+  opacity: 1;
+}
 
 /* DISABLE SELECTION  */
 

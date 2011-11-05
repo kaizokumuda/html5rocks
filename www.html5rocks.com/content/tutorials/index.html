@@ -142,6 +142,32 @@
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJpSURBVDjLfVNJT1NRGL0/wY0/wonaEesOAxoTF4bEpY1GFGGBqEUhggjYaCVIcIKC1TiHiCEBiXEhVdm4EDaaKI2WofTRlqbYR8sbOhzfd5v3tEK8i5d3F+fcM3wf+3x065bZc9t6F5rNCLeYsXTJgkibBUK7FcsdVkS7bIh57Ihfs2PFa0fihgOx6w4QhrCMfmKXnYi4y7DcbEK8zYxEhwVJjxW/vDaIPXak+xxYv1MOqX8PlEEn1PtOKP4KTsLoZQLH  vQeRfjeAzPsBiE9O/Rec9e+F7HMiqiljJJteXvXX4O9TkEUon4awPlS5KThzq5xbY+SZZCf7DkGa8kH9Mo58SvjDpKwh+/biBnCq245opw2MAtvMszxah0IiaPDkPl4tASc9Nh40ow+B089ruexceBrqVC/kB5Vcdj44YZDIr5sM8Eq71larBYyqopczw6dLMuDSR11cdm52wshltaeCg6MtVLtGQD3rsqVHh6FOdqEgCgaJOuLisvVcMgEfBwtuExYvmMEoyQ1VPd5vSC9oQPH2PqRHzhfvksjB4YYyLLh3g9GE6eD83AcUhBkemPKwylCSHrvCZROYTtR7BPP1uzB3ViOg8SSwOl5v2M9HprlsOXCz6ORbgMuWvk7ye/KlF6GTOxE6YwKj2SbZ2eFq7pmOOvOCp732tJbfs8J3Ljv1pr9IMHYXP47vwM8GjYAWQx8S5Vk1pFd1JVUlB2uQuHeCe15qPQCh+xjmm6oQdG1HqFGzQAtBi/HvkOhV6YGRZ5JNLxN4sbG4kUxfZ1oMaoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height="16" />
         </a> -->
 
+{% for tut in tutorials %}
+
+<article class="sample">
+  <h3 id="sync-fs-api-intro" data-pubdate="{{tut.publication_date}}">
+    <a href="{{tut.url}}">{{tut.title}}</a>
+  </h3>
+  <span class="browser_logos">
+      <span class="opera {% if 'opera' in tut.browser_support %}supported{% endif %}"></span>
+      <span class="ie {% if 'ie' in tut.browser_support %}supported{% endif %}"></span>
+      <span class="safari {% if 'safari' in tut.browser_support %}supported{% endif %}"></span>
+      <span class="ff {% if 'ff' in tut.browser_support %}supported{% endif %}"></span>
+      <span class="chrome {% if 'chrome' in tut.browser_support %}supported{% endif %}"></span>
+    </span>
+  <div>
+    <span class="date">{{tut.publication_date}} &nbsp; By: <a href="/profiles/#!/{{ tut.author.given_name|lower }}{{ tut.author.family_name|lower }}">{{ tut.author.given_name }} {{ tut.author.family_name }}</a></span>
+    {% for tag in tut.tags %}
+      <span class="tag">{{tag}}</span>
+    {% endfor %}
+  </div>
+  <div class="summary">
+    {{tut.description}}
+  </div>
+</article>
+
+{% endfor %}
+
         <!-- ___H5R_NEW_SAMPLE___ -->
 
         <article class="sample">
