@@ -389,6 +389,13 @@ section.link_target a
   width: 316px;
 }
 
+body[data-href='mobile'] .page header,
+body[data-href='gaming'] .page header,
+body[data-href='business'] .page header
+{
+  padding-bottom: 0;
+}
+
 .page header hgroup h1
 {
   font-weight: 300;
@@ -416,6 +423,10 @@ section.link_target a
   background: none;
   font-size: 15px;
   margin: 0;
+}
+
+body[data-href='*feature'] .page header section
+{
   width: 632px;
 }
 
