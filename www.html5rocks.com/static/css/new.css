@@ -396,6 +396,13 @@ body[data-href='business'] .page header
   padding-bottom: 0;
 }
 
+body[data-href='mobile'] .page header.two_columns p:first-child,
+body[data-href='gaming'] .page header.two_columns p:first-child,
+body[data-href='business'] .page header.two_columns p:first-child
+{
+  margin-top: 0;
+}
+
 .page header hgroup h1
 {
   font-weight: 300;
