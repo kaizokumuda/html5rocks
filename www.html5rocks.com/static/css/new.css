@@ -592,14 +592,6 @@ header.main
   left: 0;
   top: 0;
   z-index: 10;
-  -webkit-transition: box-shadow 0.6s linear;
-  -moz-transition: box-shadow 0.6s linear;
-  -o-transition: box-shadow 0.6s linear;
-  -ms-transition: box-shadow 0.6s linear;
-}
-
-header.main.scroll {
-  box-shadow: 0 3px 10px #888;
 }
 
 header.main nav
