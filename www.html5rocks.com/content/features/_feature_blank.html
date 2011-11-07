@@ -8,35 +8,30 @@
 {% block caniuse   %}{% endblock %}
 {% block supportblockstyle %}{% endblock %} <!-- 'multiple' if more than one caniuse class, 'none' if none. TODO: This logic should be moved out of the view!! -->
 
-{% block description %}
-  <section class="column intro">
-    <p>
+{% block header %}
+  <section>
+    <p class="intro">
       {% blocktrans %}
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit.
       {% endblocktrans %}
     </p>
   </section>
+{% endblock %}
 
-  <section class="column">
-    <p>
-      {% blocktrans %}
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue.
-      {% endblocktrans %}
-    </p>
 
-    <ul>
-      <li>{% blocktrans %}<a href="http://example.com/">Foo</a> bar baz.{% endblocktrans %}</li>
-      <li>{% blocktrans %}<a href="http://example.com/">Foo</a> bar baz.{% endblocktrans %}</li>
-      <li>{% blocktrans %}<a href="http://example.com/">Foo</a> bar baz.{% endblocktrans %}</li>
-    </ul>
-  </section>
-
+{% block description %}
   <section>
+    <h3>Lorem Ipsum</h3>
     <p>{% blocktrans %}Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum est. Cras felis diam, malesuada in, pellentesque vel, ornare ut, purus. Suspendisse eget libero.{% endblocktrans %}</p>
 
     <h3>{% trans "Foo" %}</h3>
     <p>{% blocktrans %}Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum est. Cras felis diam, malesuada in, pellentesque vel, ornare ut, purus. Suspendisse eget libero.{% endblocktrans %}</p>
   </section>
+{% endblock %}
+
+
+{% block support_details %}
+  <!-- <p>Lorem ipsum.</p>  -->
 {% endblock %}
 
 

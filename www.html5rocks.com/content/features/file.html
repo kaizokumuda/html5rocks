@@ -8,16 +8,14 @@
 {% block caniuse   %}bloburls,blobbuilder,filesystem,filereader,fileapi{% endblock %}
 {% block supportblockstyle %}multiple{% endblock %}
 
-{% block description %}
-  <section class="column intro">
-    <p>
+{% block header %}
+  <section>
+    <p class="column intro">
       {% blocktrans %}
         HTML5 provides very powerful APIs to interact with binary data and a user's local file system. The File APIs give web applications the ability to do things like read files [a]synchronously, create arbitrary Blobs, write files to a temporary location, recursively read a file directory, perform file drag and drop from the desktop to the browser, and upload binary data using <code>XMLHttpRequest2</code>.
       {% endblocktrans %}
     </p>
-  </section>
-  <section class="column">
-    <p>
+    <p class="column">
       {% blocktrans %}
         As examples, the File APIs can be used to create a thumbnail preview of images as they're being sent to the server, or allow an app to save a file reference while the user is offline. Using the <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API</a>, your app could read an .mp3 file and display a visualization of the song as it plays. Additionally, you could use client-side logic to verify an upload's mimetype matches its file extension or restrict the size of an upload.
       {% endblocktrans %}

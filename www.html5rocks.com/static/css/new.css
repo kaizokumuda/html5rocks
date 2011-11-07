@@ -385,7 +385,8 @@ section.link_target a
 .page header hgroup
 {
   float: left;
-  width: 300px;
+  margin-bottom: 1.25em;
+  width: 316px;
 }
 
 .page header hgroup h1
@@ -414,32 +415,39 @@ section.link_target a
 {
   background: none;
   font-size: 15px;
+  margin: 0;
+  width: 632px;
 }
 
-.page header section.column
+.page header section p
+{
+  margin: .25em 0 1em;
+}
+
+.page header section .column
 {
   float: left;
   margin: 0;
-  width: 295px;
+  width: 300px;
 }
 
-.page header section.column + section.column
+.page header section .column + .column
 {
   padding-left: 2em;
 }
 
-.page header section.intro
+.page header section .column p
 {
-  margin: 0 0 1em;
+  margin-top: 0;
 }
 
-.page header section.intro p
+.page header section p.intro
 {
   font-size: 15px;
   font-style: italic;
 }
 
-.page header section.column + section.column + section
+.page header section .column + .column + p
 {
   clear: left;
   padding-top: 3em;
@@ -447,9 +455,9 @@ section.link_target a
 
 .page header section ul
 {
-  line-height: 1.6;
+  line-height: 1.3;
   list-style: square;
-  margin-left: 1.25em;
+  margin: -.5em 0 0 2em;
 }
 
 .page header section li a
@@ -457,11 +465,19 @@ section.link_target a
   font-weight: 600;
 }
 
-.page header section ul.three_columns
+.page section ul.three_columns
 {
   -moz-column-count: 3;
   -webkit-column-count: 3;
   column-count: 3;
+}
+
+.page section ul.five_columns
+{
+  list-style: square;
+  -moz-column-count: 5;
+  -webkit-column-count: 5;
+  column-count: 5;
 }
 
 .page header section ul.three_columns li
@@ -471,7 +487,8 @@ section.link_target a
 
 .page header hgroup,
 .page header section,
-.page header .share
+.page header .share,
+.page section
 {
   position: relative;
   z-index: 2;
@@ -1730,6 +1747,18 @@ body[data-href='features-presentation']   .feature_icon { background-position: c
 body[data-href='features-performance']    .feature_icon { background-position: center -3286px, left top; }
 body[data-href='features-nuts_and_bolts'] .feature_icon { background-position: center -3660px, left top; }
 
+div.description p
+{
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 1em;
+}
+
+div.description + section.support.none
+{
+  margin-top: 0;
+}
+
 section.support,
 section.updates
 {
@@ -1824,7 +1853,7 @@ section.support tbody td.android { background-position: center -966px; }
 section.support tbody td.op_mini { background-position: center -1125px; }
 section.support tbody td.op_mob  { background-position: center -1287px; }
 
-section.support p
+section.support p.credit
 {
   color: #888;
   font-size: 13px;
@@ -1832,9 +1861,23 @@ section.support p
   text-align: center;
 }
 
-section.support p a
+section.support p.credit a
 {
   color: #333;
+}
+
+section.support aside.support_details p
+{
+  border-top: 1px solid #ccc;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 1.5em 0 0;
+  padding: 1.5em 0 0;
+}
+
+section.support.none
+{
+  display: none !important;
 }
 
 section.support.multiple,
@@ -1920,67 +1963,41 @@ section.support.multiple p
   text-align: left;
 }
 
-section.updates h3
-{
-  margin-bottom: .75em !important;
-}
-
-section.updates h4
-{
-  clear: left;
-  float: left;
-  font-size: 20px;
-  font-weight: 300;
-  margin: 0 0 2em;
-  text-transform: uppercase;
-  width: 130px;
-}
-
-section.updates div:last-child h4,
-section.updates div:last-child ul
-{
-  margin-bottom: .25em;
-}
-
-section.support.none + section.updates h4,
-section.support.multiple + section.updates h4
-{
-  width: 174px;
-}
-
-section.support.none + section.updates div,
-section.support.multiple + section.updates div
-{
-  float: left;
-  width: 50%;
-}
-
 section.support.none + section.updates ul,
 section.support.multiple + section.updates ul
 {
-  float: left;
-  padding-right: 25px;
-  width: 275px;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+  -moz-column-gap: 20px;
+  -webkit-column-gap: 20px;
+  column-gap: 20px;
 }
 
 section.updates ul
 {
-  float: left;
   list-style: none;
-  margin: .4em 0 2em;
+  margin: 1em 0 0 0;
   padding: 0;
-  width: 305px;
 }
 
 section.updates li
 {
   margin: 0 0 .5em;
+  -moz-column-break-after: avoid;
+  -webkit-column-break-after: avoid;
+  column-break-after: avoid;
 }
 
 section.support h3,
 body[data-href*='features'] article section h3
 {
-  margin: 0;
+  margin: 0 0 .5em;
+}
+
+section.updates + section
+{
+  clear: both;
 }
 
 section figure
@@ -1988,7 +2005,7 @@ section figure
   float: left;
   width: 50%;
   min-height: 100px;
-  margin-top: 1.5em;
+  margin: .5em 0;
 }
 
 section figure a
@@ -2036,7 +2053,7 @@ ul.definitions
 {
   line-height: 1.5;
   list-style: none;
-  margin: 1em 0 0;
+  margin: -.75em 0 0 0;
   padding: 0;
   -moz-column-count: 2;
   -webkit-column-count: 2;
@@ -2048,29 +2065,29 @@ ul.definitions
 
 ul.definitions li
 {
-  margin: 0;
-  padding: 0;
   font-size: 14px;
-  -moz-column-break-after: avoid;
-  -webkit-column-break-after: avoid;
-  column-break-after: avoid;
-}
-
-ul.definitions li + li,
-ul.definitions li
-{
-  margin: 0 0 1.25em;
-  padding: 0;
+  margin: 0;
+  padding: .75em 0;
   -moz-column-break-inside: avoid;
   -webkit-column-break-inside: avoid;
   column-break-inside: avoid;
 }
 
 ul.definitions li strong:after,
-ul.definitions li a:after
+ul.definitions li a:first-child:after
 {
   content: "\A";
   white-space: pre;
+}
+
+ul.definitions li strong a:first-child:after
+{
+  content: none;
+}
+
+ul.definitions li a
+{
+  font-weight: 600;
 }
 
 section ul
@@ -2080,6 +2097,11 @@ section ul
   list-style: square;
   margin-left: 1.75em;
   padding-left: 0;
+}
+
+section li
+{
+  margin-bottom: .75em;
 }
 
 
