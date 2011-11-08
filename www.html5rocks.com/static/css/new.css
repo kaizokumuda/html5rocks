@@ -157,9 +157,9 @@ body
   -o-transition: background-position .5s ease-in-out;
   transition: background-position .5s ease-in-out;
 
-  background: url(/static/new_images/background.png) repeat;
+  background: url(/static/images/background.png) repeat;
   background-position: 50% 50%, 50% 50%, 50% 50%, 50% 50%;*/
-  background: url(/static/new_images/background.png) repeat;
+  background: url(/static/images/background.png) repeat;
 }
 
 body[data-href='home'],
@@ -167,10 +167,10 @@ body[data-href='mobile'],
 body[data-href='gaming'],
 body[data-href='business'] {
   background-color: #aaa;
-  /*background: url(/static/new_images/background-home.jpg),
-              url(/static/new_images/background-mobile.jpg),
-              url(/static/new_images/background-gaming.jpg),
-              url(/static/new_images/background-business.jpg);*/
+  /*background: url(/static/images/background-home.jpg),
+              url(/static/images/background-mobile.jpg),
+              url(/static/images/background-gaming.jpg),
+              url(/static/images/background-business.jpg);*/
 
   background-repeat: no-repeat;
   -moz-background-size: cover;
@@ -184,25 +184,25 @@ body[data-href='business'] { background-position: 50% -9999px, 50% -9999px, 50% 
 */
 
 body[data-href='home'] {
-  background: url(/static/new_images/background-home.jpg) no-repeat;
+  background: url(/static/images/background-home.jpg) no-repeat;
   background-attachment: fixed;
   -moz-background-size: cover;
   background-size: cover;
 }
 body[data-href='mobile'] {
-  background: url(/static/new_images/background-mobile.jpg) no-repeat;
+  background: url(/static/images/background-mobile.jpg) no-repeat;
   background-attachment: fixed;
   -moz-background-size: cover;
   background-size: cover;
 }
 body[data-href='gaming'] {
-  background: url(/static/new_images/background-gaming.jpg) no-repeat;
+  background: url(/static/images/background-gaming.jpg) no-repeat;
   background-attachment: fixed;
   -moz-background-size: cover;
   background-size: cover;
 }
 body[data-href='business'] {
-  background: url(/static/new_images/background-business.jpg) no-repeat;
+  background: url(/static/images/background-business.jpg) no-repeat;
   background-attachment: fixed;
   -moz-background-size: cover;
   background-size: cover;
@@ -991,7 +991,7 @@ input[type="search"]::-webkit-search-results-decoration
 
 .subheader .features ul li a
 {
-  background-image: url(/static/new_images/subheader_classes.png);
+  background-image: url(/static/images/subheader_classes.png);
   background-repeat: no-repeat;
   color: #fff;
   float: left;
@@ -1093,7 +1093,7 @@ body[data-href='business'] .watermark
 nav.paginator a.previous,
 nav.paginator a.next
 {
-  background-image: url(/static/new_images/nav_arrows.png);
+  background-image: url(/static/images/nav_arrows.png);
   background-repeat: no-repeat;
   font-size: 15px;
   font-style: italic;
@@ -1827,7 +1827,7 @@ body[data-href='features-nuts_and_bolts'] nav.outline.features .nuts_and_bolts u
 
 .feature_icon
 {
-  background: url(/static/new_images/feature_icons.png), url(/static/new_images/feature_icon_background.png);
+  background: url(/static/images/feature_icons.png), url(/static/images/feature_icon_background.png);
   background-repeat: no-repeat;
   background-position: center top, left top;
   position: absolute;
@@ -1942,7 +1942,7 @@ section.support thead th:nth-child(5) { left: 348px; }
 
 section.support tbody td
 {
-  background-image: url(/static/new_images/browsers.png);
+  background-image: url(/static/images/browsers.png);
   background-repeat: no-repeat;
   font-size: 24px;
   padding-top: 50px;
