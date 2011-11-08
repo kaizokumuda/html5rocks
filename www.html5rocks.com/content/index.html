@@ -308,7 +308,7 @@ function processPipeFeed(result) {
     var classes = '<span class="classes">';
     if (entry.category && entry.category.length) {
       entry.category.forEach(function(cat) {
-        classes += '<span class="classesClass ' + cat.term + '">' + cat.term + '</span>';
+        classes += '<span class="class ' + cat.term + '">' + cat.term + '</span>';
         //TODO: use each cat.term
         //TODO: do categories correspond to classes?
       });
