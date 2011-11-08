@@ -1633,7 +1633,7 @@ body[data-href='features-graphics'] .outline_nav_toggle,
 body[data-href='features-presentation'] .outline_nav_toggle,
 body[data-href='features-performance'] .outline_nav_toggle,
 body[data-href='features-nuts_and_bolts'] .outline_nav_toggle,
-body[data-href*='tutorials'] .outline_nav_toggle
+body[data-href*='tutorials-'] .outline_nav_toggle
 {
   display: block;
 }
