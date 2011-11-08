@@ -181,7 +181,7 @@ $(document).keydown(function(e) {
 // Toggle the feature nav.
 $('.outline_nav_toggle').click(function(e) {
   $(this).toggleClass('activated');
-  $('nav.features_outline').fadeToggle('fast');
+  $(this).find('nav.outline').fadeToggle('fast');
 });
 
 // A feature is clicked.
