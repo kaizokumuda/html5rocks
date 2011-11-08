@@ -1510,6 +1510,7 @@ body[data-href='home'] .profile
 body[data-href='home'] .profile section
 {
   height: 75px;
+  padding: 1.5em;
 }
 
 body[data-href='home'] .profile:first-child,
@@ -1520,6 +1521,7 @@ body[data-href='home'] .profile:nth-child(4n + 1)
 
 body[data-href='home'] .profile h3
 {
+  color: #333;
   font-size: 10px;
 }
 
