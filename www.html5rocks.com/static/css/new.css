@@ -999,16 +999,16 @@ input[type="search"]::-webkit-search-results-decoration
   width: 112px;
 }
 
-.subheader .features ul li a.offline      { background-position: 0    2px; }
-.subheader .features ul li a.storage      { background-position: 0  -48px; }
-.subheader .features ul li a.file         { background-position: 0  -98px; }
-.subheader .features ul li a.connectivity { background-position: 0 -149px; }
-.subheader .features ul li a.semantics    { background-position: 0 -198px; }
-.subheader .features ul li a.multimedia   { background-position: 0 -248px; }
-.subheader .features ul li a.graphics     { background-position: 0 -298px; }
-.subheader .features ul li a.presentation { background-position: 0 -348px; }
-.subheader .features ul li a.performance  { background-position: 0 -398px; }
-.subheader .features ul li a.mobile       { background-position: 0 -448px; }
+.subheader .features ul li a.offline        { background-position: 0    2px; }
+.subheader .features ul li a.storage        { background-position: 0  -48px; }
+.subheader .features ul li a.connectivity   { background-position: 0  -98px; }
+.subheader .features ul li a.file           { background-position: 0 -149px; }
+.subheader .features ul li a.semantics      { background-position: 0 -198px; }
+.subheader .features ul li a.multimedia     { background-position: 0 -248px; }
+.subheader .features ul li a.graphics       { background-position: 0 -298px; }
+.subheader .features ul li a.presentation   { background-position: 0 -348px; }
+.subheader .features ul li a.performance    { background-position: 0 -398px; }
+.subheader .features ul li a.nuts_and_bolts { background-position: 0 -448px; }
 
 .subheader .features ul li a h3
 {
@@ -1176,11 +1176,11 @@ nav.paginator.features a:hover { color: #000; }
 body[data-href='home']       nav.paginator.home,
 body[data-href='mobile']     nav.paginator.home,
 body[data-href='gaming']     nav.paginator.home,
-body[data-href='business'] nav.paginator.home,
+body[data-href='business']   nav.paginator.home,
 body[data-href='home']       nav.paginator.home ul.home,
 body[data-href='mobile']     nav.paginator.home ul.mobile,
 body[data-href='gaming']     nav.paginator.home ul.gaming,
-body[data-href='business'] nav.paginator.home ul.business,
+body[data-href='business']   nav.paginator.home ul.business,
 body[data-href='features-offline']        nav.paginator.features,
 body[data-href='features-storage']        nav.paginator.features,
 body[data-href='features-connectivity']   nav.paginator.features,
@@ -1828,9 +1828,9 @@ body[data-href='features-file']           .feature_icon { background-position: c
 body[data-href='features-semantics']      .feature_icon { background-position: center -1416px, left top; }
 body[data-href='features-multimedia']     .feature_icon { background-position: center -1790px, left top; }
 body[data-href='features-graphics']       .feature_icon { background-position: center -2164px, left top; }
-body[data-href='features-presentation']   .feature_icon { background-position: center -2912px, left top; }
-body[data-href='features-performance']    .feature_icon { background-position: center -3286px, left top; }
-body[data-href='features-nuts_and_bolts'] .feature_icon { background-position: center -3660px, left top; }
+body[data-href='features-presentation']   .feature_icon { background-position: center -2538px, left top; }
+body[data-href='features-performance']    .feature_icon { background-position: center -2912px, left top; }
+body[data-href='features-nuts_and_bolts'] .feature_icon { background-position: center -3286px, left top; }
 
 div.description p
 {
