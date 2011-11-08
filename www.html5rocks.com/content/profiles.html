@@ -52,8 +52,19 @@ $(document).ready(function() {
 
     <section>
       <p class="intro">
+        {% blocktrans %}Our honorable contributors.{% endblocktrans %}
+      </p>
+      <p>
         {% blocktrans %}
-          Sed purus ante, congue eget convallis at, aliquet ut diam. Pellentesque volutpat posuere lectus, eu venenatis enim molestie nec. Sed ac eros lorem. Nulla egestas mauris a quam tincidunt ac lacinia ipsum commodo. Phasellus fermentum est sed arcu rhoncus eget ornare quam lobortis. Morbi. elit massa, molestie vitae adipiscing non, gravida vitae dolor. Praesent id tellus scelerisque libero posuere malesuada.
+          You can <a href="http://twitter.com/ChromiumDev">follow us on Twitter</a>,
+          read the <a href="/{{LANGUAGE_CODE}}/tos">Terms of Service</a> or <a href="/{{LANGUAGE_CODE}}/privacy">Privacy Policy</a>,
+          or <a href="http://code.google.com/p/html5rocks/issues/entry">report a bug or request a feature</a>.
+          <small>This site contains information on APIs that are not part of the W3C HTML5 specification.</small>
+        {% endblocktrans %}
+      </p>
+      <p>
+        {% blocktrans %}
+          <strong>HTML5 Rocks</strong> is a <strong><img src="/static/images/google_logo_small.png" alt="Google logo" title="Google"></strong> project.
         {% endblocktrans %}
       </p>
     </section>
