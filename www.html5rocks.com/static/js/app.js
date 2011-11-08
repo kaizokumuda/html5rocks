@@ -64,7 +64,7 @@ function finishPanelLoad(pagePanel, elemstate) {
   //$('body').addClass(page);
 
   // TODO(Google): scrollTo needs to scroll to and element that is not display:none.
-  // new.css applies this to .page elements. Not sure why pagePanel.addClass('current')
+  // base.css applies this to .page elements. Not sure why pagePanel.addClass('current')
   // doesn't take care of this.
   $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
     $('.subheader.features').slideUp('fast', function() {
