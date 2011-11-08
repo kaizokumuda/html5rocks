@@ -14,6 +14,53 @@
       <h2>{% trans "Updates" %}</h2>
     </hgroup>
 
+    <section class="filter">
+      <form>
+        <div class="one_quarter">
+          <h3>Format:</h3>
+          <ul>
+            <li><label><input type="checkbox"> Tutorial</label></li>
+            <li><label><input type="checkbox"> Article</label></li>
+            <li><label><input type="checkbox"> Case Study</label></li>
+            <li><label><input type="checkbox"> News</label></li>
+            <li><label><input type="checkbox"> Presentation</label></li>
+            <li><label><input type="checkbox"> Video</label></li>
+          </ul>
+        </div>
+        <div class="one_quarter">
+          <h3>Audience:</h3>
+          <ul>
+            <li><label><input type="checkbox"> General</label></li>
+            <li><label><input type="checkbox"> Mobile</label></li>
+            <li><label><input type="checkbox"> Gaming</label></li>
+            <li><label><input type="checkbox"> Business</label></li>
+          </ul>
+        </div>
+        <div class="one_half">
+          <h3>Technology:</h3>
+          <ul>
+            <li><label><input type="checkbox"> Offline</label></li>
+            <li><label><input type="checkbox"> Storage</label></li>
+            <li><label><input type="checkbox"> Connectivity</label></li>
+            <li><label><input type="checkbox"> File Access</label></li>
+            <li><label><input type="checkbox"> Semantics</label></li>
+            <li><label><input type="checkbox"> Audio/Video</label></li>
+            <li><label><input type="checkbox"> 3D/Graphics</label></li>
+            <li><label><input type="checkbox"> Presentation</label></li>
+            <li><label><input type="checkbox"> Performance</label></li>
+            <li><label><input type="checkbox"> Nuts &amp; Bolts</label></li>
+          </ul>
+        </div>
+
+        <div class="tag_filter">
+          <label>
+            Tags:
+            <input type="text">
+          </label>
+        </div>
+      </form>
+    </section>
+
     <span class="share">
       <ul>
         <li class="googleplus"><div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div></li>
@@ -22,51 +69,6 @@
       </ul>
     </span>
   </header>
-
-  <section class="filter clearfix">
-    <h2>Build Your Update Stream</h2>
-    <p>Pick your setlist &mdash; filter content by:</p>
-    <form>
-      <div class="one_quarter">
-        <h3>Format:</h3>
-        <ul>
-          <li><label><input type="checkbox"> Tutorial</label></li>
-          <li><label><input type="checkbox"> Article</label></li>
-          <li><label><input type="checkbox"> Case Study</label></li>
-          <li><label><input type="checkbox"> News</label></li>
-          <li><label><input type="checkbox"> Presentation</label></li>
-          <li><label><input type="checkbox"> Video</label></li>
-        </ul>
-      </div>
-      <div class="one_quarter">
-        <h3>Audience:</h3>
-        <ul>
-          <li><label><input type="checkbox"> General</label></li>
-          <li><label><input type="checkbox"> Mobile</label></li>
-          <li><label><input type="checkbox"> Gaming</label></li>
-          <li><label><input type="checkbox"> Business</label></li>
-        </ul>
-      </div>
-      <div class="outline_nav_toggle">
-        <h3>Technology:</h3>
-        <ul>
-          <li><label><input type="checkbox"> Offline</label></li>
-          <li><label><input type="checkbox"> Storage</label></li>
-          <li><label><input type="checkbox"> Connectivity</label></li>
-          <li><label><input type="checkbox"> File Access</label></li>
-          <li><label><input type="checkbox"> Semantics</label></li>
-          <li><label><input type="checkbox"> Audio/Video</label></li>
-          <li><label><input type="checkbox"> 3D/Graphics</label></li>
-          <li><label><input type="checkbox"> Presentation</label></li>
-          <li><label><input type="checkbox"> Performance</label></li>
-          <li><label><input type="checkbox"> Nuts &amp; Bolts</label></li>
-        </ul>
-      </div>
-
-      <p>Bonus &mdash; Filter by tags as well:</p>
-      <input type="text">
-    </form>
-  </section>
 
   <!--
     <section>

@@ -2261,62 +2261,73 @@ section li
 }
 
 
-/* UPDATES  */
+/* UPDATES & TUTORIALS */
 
-.filter p
+body[data-href='tutorials'] .page header .share
 {
-  font-size: 17px;
-  margin-top: 1em;
-  text-transform: uppercase;
+  bottom: 47px;
 }
 
-.filter h3
+.page header section.filter
+{
+  margin-top: .5em;
+}
+
+.page header section.filter h3
 {
   font-size: 16px;
-  margin-bottom: .75em;
+  font-weight: 600;
+  margin-bottom: .35em;
 }
 
-.filter ul
+.page header section.filter ul
 {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.filter li
+.page header section.filter li
 {
   display: block;
-  margin: .75em 0;
+  margin: .3em 0;
 }
 
-.filter li input
+.page header section.filter li input
 {
   margin-right: 5px;
 }
 
-.filter .one_half ul li
+.page header section.filter .one_half ul li
 {
   float: left;
   margin-top: 0;
   width: 50%;
 }
 
-.filter div + p
+.page header section.filter div.tag_filter
 {
   clear: both;
   float: left;
-  padding-top: .5em;
+  padding-top: 1em;
 }
 
-.filter p + input
+.page header section.filter div.tag_filter label
+{
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.page header section.filter div.tag_filter input
 {
   background: #eee;
   border: 0;
-  float: left;
-  font-size: 24px;
+  font-size: 18px;
   font-style: italic;
-  margin: .75em 0 0 .5em;
+  margin: 0 0 0 .5em;
   padding: .2em .3em;
+  vertical-align: -2px;
+  width: 565px;
 }
 
 .sample
