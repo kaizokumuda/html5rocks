@@ -415,7 +415,7 @@ body[data-href='business'] .page header.two_columns p:first-child
 .page header hgroup h1
 {
   font-weight: 300;
-  margin: 0;
+  margin-bottom: .5em;
 }
 
 .page header hgroup h1 span,
@@ -547,6 +547,11 @@ body[data-href='*feature'] .page header section
 .page header .share li.facebook   { left: 85px; width: 47px; overflow: hidden; }
 .page header .share li.twitter    { left: 158px; }
 .page header .share li.twitter a  { color: #5cd6ff; }
+
+.page header.two_columns hgroup
+{
+  margin-bottom: 0;
+}
 
 .page header.two_columns hgroup,
 .page header.two_columns p
