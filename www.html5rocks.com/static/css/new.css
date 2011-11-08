@@ -1226,7 +1226,7 @@ body[data-href='home'] #start article
 }
 
 body[data-href='home'] #logo,
-body[data-href='home'] #updates
+body[data-href='home'] section#updates
 {
   position: absolute;
 }
@@ -1249,6 +1249,11 @@ body[data-href='home'] section#updates
 body[data-href='home'] section#updates h2
 {
   margin-top: 0;
+}
+
+body[data-href='home'] section#updates h2 a
+{
+  background: none !important;
 }
 
 body[data-href='home'] #updates_badge
