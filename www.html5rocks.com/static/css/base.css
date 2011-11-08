@@ -2315,23 +2315,49 @@ section li
   font-weight: 600;
 }
 
+.sample .date,
+.sample .tag,
+.sample .author
+{
+  float: left;
+}
+
 .sample .date
 {
-  margin-right: .75em;
+  margin: .2em 1.5em 0 0;
+}
+
+.sample .author
+{
+  margin-right: 1.5em;
+}
+
+.sample .author img.author_image
+{
+  width: 20px;
+  height: 20px;
+  margin-left: .25em;
+  vertical-align: -5px;
 }
 
 .sample .tag
 {
   color: #888;
   font-size: 11px;
-  margin: 0 .5em;
+  margin: .4em .5em 0 .5em;
   text-transform: uppercase;
   cursor: pointer;
 }
 
+.sample .browser_logos
+{
+  margin: .25em 0 0 1.5em;
+}
+
 .sample .summary
 {
-  margin-top: .5em;
+  clear: left;
+  padding-top: .5em;
 }
 
 .sample .buttonlink

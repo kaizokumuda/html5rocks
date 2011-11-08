@@ -4,9 +4,7 @@
 
 {% block headtitle %}{% trans "Tutorials" %}{% endblock %}
 
-{% block head %}
-  <!--<link rel="stylesheet" media="screen" href="/static/css/samples_index{% if prod %}.min{% endif %}.css" />-->
-{% endblock %}
+{% block head %}{% endblock %}
 
 {% block body %}
 <div data-import-html>
@@ -136,16 +134,25 @@
 
         <!-- ___H5R_NEW_SAMPLE___ -->
 
+        <!-- TODO: All of the samples should follow this syntax. I have not converted them because of the new database setup. [matthewmcvickar] -->
         <article class="sample">
           <h3 id="sync-fs-api-intro" data-pubdate="2011-10-25">
             <a href="/tutorials/file/filesystem-sync/">The Synchronous FileSystem API for Workers</a>
           </h3>
           <div>
-            <span class="date">October 25, 2011 &nbsp; By: {% simpleprofilelink ericbidelman %}</span>
+            <span class="date">October 25, 2011</span>
+            <span class="author">By: <img class="author_image" src="/static/images/profiles/ericbidelman.png"> <!-- TODO: Bring in real author images. --> {% simpleprofilelink ericbidelman %}</span>
             <span class="tag">file</span>
             <span class="tag">filesystem</span>
             <span class="tag">storage</span>
             <span class="tag">workers</span>
+            <span class="browser_logos">
+              <span class="opera"></span>
+              <span class="ie"></span>
+              <span class="safari"></span>
+              <span class="ff"></span>
+              <span class="chrome supported"></span>
+            </span>
           </div>
           <div class="summary">
             The HTML5 FileSystem API offers an synchronous version to be used in
@@ -155,13 +162,6 @@
           <div class="footer_links">
             <span class="buttonlink">
               <a href="/tutorials/file/filesystem-sync/">View guide</a> &rArr;
-            </span>
-            <span class="browser_logos">
-              <span class="opera"></span>
-              <span class="ie"></span>
-              <span class="safari"></span>
-              <span class="ff"></span>
-              <span class="chrome supported"></span>
             </span>
           </div>
         </article>
