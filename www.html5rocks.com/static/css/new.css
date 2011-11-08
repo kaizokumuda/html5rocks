@@ -1245,6 +1245,11 @@ body[data-href='home'] section#updates
   width: 940px;
 }
 
+body[data-href='home'] section#updates h2
+{
+  margin-top: 0;
+}
+
 body[data-href='home'] #updates_badge
 {
   cursor: pointer !important;
