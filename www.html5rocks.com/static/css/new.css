@@ -279,7 +279,7 @@ header.main nav,
 
 .page
 {
-  display: none;
+  display: block;
   position: relative;
   margin: 4em auto;
   width: 1000px;
@@ -287,21 +287,8 @@ header.main nav,
 
 .page.current
 {
-  display: block;
   top: 0;
 }
-
-/*.page.next
-{
-  display: block;
-  margin-left: 1000px;
-}
-
-.page.previous
-{
-  display: block;
-  margin-left: -600px;
-}*/
 
 article article,
 article.sectioned,
@@ -938,10 +925,10 @@ a
 
 .page
 {
-  -webkit-transition: opacity, left, top 1s ease-in-out, margin 1s linear;
-  -moz-transition: opacity, left, top 1s ease-in-out, margin 1s linear;
-  -o-transition: opacity, left, top 1s ease-in-out, margin 1s linear;
-  transition: opacity, left, top 1s ease-in-out, margin 1s linear;
+  -webkit-transition: opacity, left, top 1s ease-in-out;
+  -moz-transition: opacity, left, top 1s ease-in-out;
+  -o-transition: opacity, left, top 1s ease-in-out;
+  transition: opacity, left, top 1s ease-in-out;
 }
 
 .nav,
