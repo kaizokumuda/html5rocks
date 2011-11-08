@@ -9,7 +9,7 @@
 {% block supportblockstyle %}multiple{% endblock %}
 
 {% block header %}
-  <section>
+  <section id="intro">
     <p class="column intro">
       {% blocktrans %}
         HTML5 provides very powerful APIs to interact with binary data and a user's local file system. The File APIs give web applications the ability to do things like read files [a]synchronously, create arbitrary Blobs, write files to a temporary location, recursively read a file directory, perform file drag and drop from the desktop to the browser, and upload binary data using <code>XMLHttpRequest2</code>.
@@ -33,7 +33,7 @@
 
 
 {% block content %}
-  <section class="demos">
+  <section id="demos">
     <h3>Demos</h3>
     <figure>
       <a href="http://studio.html5rocks.com/#Photos">
@@ -49,7 +49,7 @@
     </figure>
   </section>
 
-  <section class="inthewild">
+  <section id="in_the_wild">
     <h3>In the Wild</h3>
     <figure>
       <a href="http://gmailblog.blogspot.com/2010/04/drag-and-drop-attachments-onto-messages.html">
@@ -65,7 +65,7 @@
     </figure>
   </section>
 
-  <section class="resources">
+  <section id="resources">
     <h3>Resources</h3>
     <ul class="definitions">
       <li>

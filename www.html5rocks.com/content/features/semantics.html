@@ -9,7 +9,7 @@
 {% block supportblockstyle %}none{% endblock %} <!-- 'multiple' if more than one caniuse class, 'none' if none. TODO: This logic should be moved out of the view!! -->
 
 {% block header %}
-  <section>
+  <section id="intro">
     <p class="intro">
       {% blocktrans %}
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit.
@@ -20,7 +20,7 @@
 
 
 {% block description %}
-  <section>
+  <section id="description">
    <h3>Lorem Ipsum</h3>
    <p>
       {% blocktrans %}
@@ -54,7 +54,7 @@
 
 
 {% block content %}
-  <section>
+  <section id="demos">
     <h3>Demos</h3>
     <figure>
       <a href="">
@@ -64,7 +64,7 @@
     </figure>
   </section>
 
-  <section>
+  <section id="in_the_wild">
     <h3>In the Wild</h3>
     <figure>
       <a href="">
@@ -74,7 +74,7 @@
     </figure>
   </section>
 
-  <section>
+  <section id="resources">
     <h3>Resources</h3>
     <ul class="definitions">
       <li>

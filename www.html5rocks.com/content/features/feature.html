@@ -4,9 +4,7 @@
 
 {% block headtitle %}{% trans "Feature" %}{% endblock %}
 
-{% block head %}
-<!-- <link rel="stylesheet" href="/static/css/feature{% if prod %}.min{% endif %}.css"> -->
-{% endblock %}
+{% block head %}{% endblock %}
 
 {% block body %}
   <div data-import-html>
@@ -36,6 +34,7 @@
 
       {% block support %}
         <section
+          id="support"
           class="support {% block supportblockstyle %}{% endblock %}"
           style="display:none"
           data-caniusefeatures="{% block caniuse %}{% endblock %}"
@@ -95,7 +94,7 @@
         </section>
       {% endblock %}
 
-      <section class="updates">
+      <section id="updates" class="updates">
         <h3>{% trans "What&rsquo;s New" %}</h3>
 
         <ul>

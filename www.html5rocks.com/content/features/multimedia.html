@@ -9,7 +9,7 @@
 {% block supportblockstyle %}multiple{% endblock %}
 
 {% block header %}
-  <section>
+  <section id="intro">
     <p class="column intro">
       {% blocktrans %}
         Audio and Video became first-class citizens on the Web with HTML5 the same way that other media types like images did in the past. Through their new APIs you can access, control and manipulate timeline data and network states of the files. With the coming additions to the APIs you will be able to read and write raw data to audio files (Audio Data API) or manipulate captions in videos (Timed Track API). But the real power of these new HTML elements stands out when they are combined with the other technologies of the web stack, be it Canvas, SVG, CSS or even WebGL.
@@ -31,7 +31,7 @@
 
 
 {% block content %}
-  <section class="demos">
+  <section id="demos">
     <h3>Demos</h3>
     <figure>
       <a href="http://studio.html5rocks.com/#PiP">
@@ -47,7 +47,7 @@
     </figure>
   </section>
 
-  <section class="inthewild">
+  <section id="in_the_wild">
     <h3>In the Wild</h3>
     <figure>
       <a href="http://extension.fm">
@@ -63,7 +63,7 @@
     </figure>
   </section>
 
-  <section class="resources">
+  <section id="resources">
     <h3>Resources</h3>
     <ul class="definitions">
       <li>
