@@ -417,7 +417,8 @@ article.sectioned section.one_third + section.two_thirds + section + section
 }
 
 article.sectioned section.one_half:nth-child(2n + 1),
-.thirds section.one_third:nth-child(3n + 1)
+.thirds section.one_third:nth-child(3n + 1),
+article.sectioned section.one_third:first-child
 {
   margin-left: 0;
 }
