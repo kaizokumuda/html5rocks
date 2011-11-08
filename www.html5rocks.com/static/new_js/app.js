@@ -77,20 +77,6 @@ function finishPanelLoad(pagePanel, elemstate) {
   }});
 }
 
-
-$(document).keydown(function(e) {
-  var goFeature = '';
-  if (e.keyCode == 37) {
-    goFeature = $('.current').prev().attr('id').replace(/features-/, '');
-  }
-  if (e.keyCode == 39) {
-    goFeature = $('.current').next().attr('id').replace(/features-/, '');
-  }
-  if (goFeature) {
-    loadContent($('div.features a.' + goFeature)[0])
-  }
-});
-
 //$('a').live('click', function() {
 // TODO: go back to event delgation. Currently breaks nav.
 $('a').click(function() {
@@ -184,7 +170,7 @@ $(document).keydown(function(e) {
     $('#search_hide, #features_hide').click();
 
     // Hide +/- feature navigation.
-    $('.features_outline_nav_toggle').removeClass('activated');
+    $('.outline_nav_toggle').removeClass('activated');
     $('nav.features_outline').fadeOut('fast');
   }
 });
@@ -193,7 +179,7 @@ $(document).keydown(function(e) {
 // Features navigation.
 
 // Toggle the feature nav.
-$('.features_outline_nav_toggle').click(function(e) {
+$('.outline_nav_toggle').click(function(e) {
   $(this).toggleClass('activated');
   $('nav.features_outline').fadeToggle('fast');
 });

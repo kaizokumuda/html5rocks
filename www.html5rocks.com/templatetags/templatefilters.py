@@ -61,7 +61,7 @@ class ProfileLink(django.template.Node):
     for id in self.ids:
       if id in self.profiles:
         profile = self.profiles[id]
-        names.append("<a href='/profiles/#!/%(id)s'>%(given)s %(family)s</a> - %(role)s, %(company)s" %
+        names.append("<a href='/profiles/#!/%(id)s'>%(given)s %(family)s</a> <span>%(role)s, %(company)s</span>" %
             {'id': profile['id'], 'given': profile['given_name'],
              'family': profile['family_name'], 'role': profile['unit'],
              'company': profile['org']})
