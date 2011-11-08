@@ -77,6 +77,20 @@ function finishPanelLoad(pagePanel, elemstate) {
   }});
 }
 
+
+$(document).keydown(function(e) {
+  var goFeature = '';
+  if (e.keyCode == 37) {
+    goFeature = $('.current').prev().attr('id').replace(/features-/, '');
+  }
+  if (e.keyCode == 39) {
+    goFeature = $('.current').next().attr('id').replace(/features-/, '');
+  }
+  if (goFeature) {
+    loadContent($('div.features a.' + goFeature)[0])
+  }
+});
+
 //$('a').live('click', function() {
 // TODO: go back to event delgation. Currently breaks nav.
 $('a').click(function() {
