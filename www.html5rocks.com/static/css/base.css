@@ -830,6 +830,11 @@ div.one_half    { width: 50%; }
 .browser.opera     { background-position: -69px top; }
 .browser.supported { opacity: 1; }
 
+.browser .support
+{
+  display: none;
+}
+
 
 /* PRETTIFY */
 
@@ -850,7 +855,7 @@ a[rel='external']
   padding-right: 16px;
 }
 
-.support p a[href^='http']:not([href*='html5rocks'])
+section.support p a[href^='http']:not([href*='html5rocks'])
 {
   margin-right: 5px;
   padding-right: 12px;
