@@ -12,13 +12,11 @@
     <div class="right_side">
       <h1>{% block pagetitle %}{% endblock %}</h1>
 
-      <section>
-        <div class="author">
-          <img src="/static/images/profiles/ericbidelman.png"> <!-- TODO: Bring in real author images. -->
-          <hgroup>
-            <h2>By <strong>{% block pageauthor %}{% endblock %}</strong></h2>
-          </hgroup>
-        </div>
+      <section class="byline">
+        <img src="/static/images/profiles/ericbidelman.png"> <!-- TODO: Bring in real author images. -->
+        <hgroup>
+          <h2>By <strong>{% block pageauthor %}{% endblock %}</strong></h2>
+        </hgroup>
         <div class="date">
           <time pubdate>Published <strong>{% block date %}{% endblock %}</strong></time>
           <time class="updated">{% block updated %}{% endblock %}</time>

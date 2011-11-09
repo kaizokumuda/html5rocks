@@ -291,7 +291,7 @@ class TutorialFactory(object):
     if self.article.article_type == Article.CASE_STUDY:
       template = template.replace(
           '{% extends "sample.html" %}',
-          '{% extends "casestudy.html" %}')
+          '{% extends "sample.html" %}')
     elif self.article.article_type == Article.MOBILE:
       template = template.replace(
           '{% extends "sample.html" %}',

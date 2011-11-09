@@ -2418,10 +2418,6 @@ body[data-href='tutorials'] .page header .share
   float: left;
 }
 
-.sample .date
-{
-  margin: .2em 1.5em 0 0;
-}
 
 .sample .author,
 .sample .tags
@@ -2499,18 +2495,18 @@ header.sample section
   text-transform: none;
 }
 
-header.sample .author
+header.sample .byline
 {
   margin-top: .75em;
 }
 
-header.sample .author hgroup
+header.sample .byline hgroup
 {
   float: none;
   padding: 0;
 }
 
-header.sample .author img
+header.sample .byline img
 {
   float: left;
   width: 50px;
@@ -2518,19 +2514,19 @@ header.sample .author img
   margin: .2em .75em 0 0;
 }
 
-header.sample .author h2
+header.sample .byline h2
 {
   font-weight: 300;
   line-height: 1.5;
   margin: 0 0 .15em;
 }
 
-header.sample .author h2 strong
+header.sample .byline h2 strong
 {
   font-weight: 600;
 }
 
-header.sample .author h2 span
+header.sample .byline h2 span
 {
   color: #333;
   display: block;
@@ -2542,6 +2538,11 @@ header.sample .browser_support
   font-size: 12px;
   margin-top: 1.25em;
   width: 632px;
+}
+
+header.sample .browser_support .browsers
+{
+  margin: 0 .75em 0 .25em;
 }
 
 header.sample aside
