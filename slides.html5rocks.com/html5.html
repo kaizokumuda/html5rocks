@@ -1573,24 +1573,24 @@ document.getElementById("video").<b>play</b>();
           </script>
         </div>
         
-      <div class="slide multimedia" id="video-track">
-        <style>
-          #video-column {
-            float: left;
-            width: 50%;
-            margin-top: 20px;
-          }
-          #reflection-button {
-            margin: 20px 0;
-          }
-          #track-column {
-            float: left;
-            width: 45%;
-            margin-top: 20px;
-          }
-        </style>
-        <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Track Element</h1></header>
-        <section>
+        <div class="slide multimedia" id="video-track">
+          <style>
+            #video-column {
+              float: left;
+              width: 50%;
+              margin-top: 20px;
+            }
+            #reflection-button {
+              margin: 20px 0;
+            }
+            #track-column {
+              float: left;
+              width: 45%;
+              margin-top: 20px;
+            }
+          </style>
+          <header><span class="html">HTML</span> <span class="js">JS</span> <h1>Track Element</h1></header>
+          <section>
 <pre>
 &lt;<b>video</b> width="390" id="clip" <b>controls</b>>
   &lt;<b>source</b> src="Google_Developer_Stories.webm"
@@ -1599,16 +1599,16 @@ document.getElementById("video").<b>play</b>();
          src="<em>video-subtitles-en.vtt</em>" default />
 &lt;/<b>video</b>>
 </pre>
-        <div id="video-column" class="center">
-          <video width="390" id="clip" class="playr_video" controls>
-            <source src="src/Google_Developer_Stories.webm" type='video/webm; codecs="vp8, vorbis"' />
-            <track label="English subtitles" kind="subtitles" srclang="en" src="src/video-subtitles-en.vtt" default />
-            Your browser does not support the video tag
-          </video>
-        </div>
+          <div id="video-column" class="center">
+            <video width="390" id="clip" class="playr_video" controls>
+              <source src="src/Google_Developer_Stories.webm" type='video/webm; codecs="vp8, vorbis"' />
+              <track label="English subtitles" kind="subtitles" srclang="en" src="src/video-subtitles-en.vtt" default />
+              Your browser does not support the video tag
+            </video>
+          </div>
 
-        <div id="track-column" class="center">
-          <textarea style="font-size: 13px; font-family: monospace, courier; width: 380px; height: 250px" readonly>
+          <div id="track-column" class="center">
+            <textarea style="font-size: 13px; font-family: monospace, courier; width: 380px; height: 250px" readonly>
 WEBVTT FILE
 
 1
@@ -1698,7 +1698,8 @@ developers.google.com/stories
 21
 00:01:00.500 --> 00:01:04.000 
 Change is important to the Web. Help us keep changing it together
-          </textarea>
+            </textarea>
+          </section>
         </div>
         
         <div class="slide effects" id="canvas-2d">
