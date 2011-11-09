@@ -310,7 +310,9 @@ function processPipeFeed(result) {
       entry.category.forEach(function(cat) {
         classes += '<span class="class ' + cat.term + '"><span class="class_name">' + cat.term + '</span></span>';
         //TODO: use each cat.term
-        //TODO: do categories correspond to classes?
+        //TODO: do categories correspond to classes? No -- categories are formats: Tutorial, Article, Case Study, News, Presentation, Video
+        //                                                 classes are technologies: Offline, Storage, Connectivity, File, Access, Semantics, Audio/Video, 3D/Graphics, Presentation, Performance, Nuts & Bolts
+        //                                                 audiences/personas: General, Mobile, Gaming, Business
       });
     }
     classes += '</span>';
