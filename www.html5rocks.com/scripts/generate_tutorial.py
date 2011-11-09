@@ -290,12 +290,12 @@ class TutorialFactory(object):
 
     if self.article.article_type == Article.CASE_STUDY:
       template = template.replace(
-          '{% extends "sample.html" %}',
-          '{% extends "sample.html" %}')
+          '{% extends "tutorial.html" %}',
+          '{% extends "tutorial.html" %}')
     elif self.article.article_type == Article.MOBILE:
       template = template.replace(
-          '{% extends "sample.html" %}',
-          '{% extends "sample.html" %}')
+          '{% extends "tutorial.html" %}',
+          '{% extends "tutorial.html" %}')
 
     if filename is not None:
       print '== Including tutorial body from existing file.' 
