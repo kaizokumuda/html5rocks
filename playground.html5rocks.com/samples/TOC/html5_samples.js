@@ -22,8 +22,8 @@ var tempJSON = [
     "category":"JavaScript APIs-Web Storage",
     "samples":[
       {
-        "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
-        "files": ["samples/js/html5/local_storage.js"],
+        "boilerplateLoc": "samples/boilerplateHTML/html5/local_storage.html",
+        "files": ["samples/js/html5/local_storage.js", "samples/css/html5/basic.css"],
         "editor": "js",
         "sampleName": "localStorage",
         "tags": "",
