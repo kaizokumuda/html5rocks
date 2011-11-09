@@ -214,7 +214,7 @@ class TutorialFactory(object):
           <span class="buttonlink">
             <a href="%(href)s">View tutorial</a> &rArr;
           </span>
-          <span class="browser_logos">
+          <span class="browsers">
             %(browser_support)s
           </span>
         </div>
