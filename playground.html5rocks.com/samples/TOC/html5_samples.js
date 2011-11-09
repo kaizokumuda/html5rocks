@@ -190,7 +190,7 @@ var tempJSON = [
         "boilerplateLoc": "samples/boilerplateHTML/html5/audio_tag.html",
         "files": ["samples/js/html5/audio_tag.js"],
         "editor": "mixed",
-        "sampleName": "Audio Tag",
+        "sampleName": "Audio Element",
         "tags": "",
         "spec": "http://www.whatwg.org/specs/web-apps/current-work/multipage/video.html#audio",
         "tutorial": "http://tutorials.html5rocks.com/tutorials/audio/quick/"
@@ -199,15 +199,23 @@ var tempJSON = [
         "boilerplateLoc": "samples/boilerplateHTML/html5/video_tag.html",
         "files": ["samples/js/html5/video_tag.js"],
         "editor": "mixed",
-        "sampleName": "Video Tag",
+        "sampleName": "Video Element",
         "tags": "",
         "spec": "http://www.whatwg.org/specs/web-apps/current-work/multipage/video.html#video"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/track_tag.html",
+        "files": ["samples/css/html5/basic.css"],
+        "editor": "mixed",
+        "sampleName": "Track Element",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/html5/video.html#the-track-element"
       },
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/canvas_tag.html",
         "files": ["samples/js/html5/canvas_tag.js"],
         "editor": "js",
-        "sampleName": "Canvas Tag",
+        "sampleName": "Canvas Element",
         "tags": "",
         "spec": "http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html"
       },
@@ -215,7 +223,7 @@ var tempJSON = [
         "boilerplateLoc": "samples/boilerplateHTML/html5/webgl.html",
         "files": ["samples/js/html5/webgl.js"],
         "editor": "js",
-        "sampleName": "Canvas Tag 3d (WebGL)",
+        "sampleName": "Canvas Element 3d (WebGL)",
         "tags": "",
         "spec": "https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/WebGL-spec.html"
       },
@@ -223,7 +231,7 @@ var tempJSON = [
         "boilerplateLoc": "samples/boilerplateHTML/html5/ruby_tag.html",
         "files": ["samples/js/html5/blank.js"],
         "editor": "mixed",
-        "sampleName": "Ruby Tag",
+        "sampleName": "Ruby Element",
         "tags": "http://www.w3.org/TR/ruby/"
       },
       {
