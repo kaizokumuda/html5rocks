@@ -861,7 +861,8 @@ section.support p a[href^='http']:not([href*='html5rocks'])
   padding-right: 12px;
 }
 
-article section figure a[href^='http']:not([href*='html5rocks.']),
+article.feature figure a[href^='http']:not([href*='html5rocks.']),
+section.figures figure a[href^='http']:not([href*='html5rocks.']),
 ul.figures li a[href^='http']:not([href*='html5rocks.'])
 {
   background-position: 156px 5px;
@@ -2173,7 +2174,8 @@ ul.figures
   padding: 0;
 }
 
-section figure,
+article.feature figure,
+section.figures figure,
 ul.figures li
 {
   float: left;
@@ -2187,21 +2189,26 @@ ul.figures li
   min-height: 85px;
 }
 
-section figure,
+article.feature figure,
+section.figures figure,
 ul.figures.books li
 {
   min-height: 100px;
 }
 
-article.sectioned section.one_half figure,
-article.sectioned section.one_third figure,
-article.sectioned section.two_thirds figure
+article.feature figure section.one_half figure,
+article.feature figure section.one_third figure,
+article.feature figure section.two_thirds figure,
+section.figures.one_half figure,
+section.figures.one_third figure,
+section.figures.two_thirds figure
 {
   float: none;
   width: 100%;
 }
 
-section figure a,
+article.feature figure a,
+section.figures figure a,
 ul.figures li a
 {
   display: block;
@@ -2212,7 +2219,8 @@ ul.figures li a
   overflow: hidden;
 }
 
-section figure a p,
+article.feature figure a p,
+section.figures figure a p,
 ul.figures li a p
 {
   color: #333;
@@ -2221,14 +2229,16 @@ ul.figures li a p
   margin: .25em 0;
 }
 
-section figure img,
+article.feature figure img,
+section.figures figure img,
 ul.figures li a img
 {
   float: left;
   max-width: 150px;
 }
 
-section figcaption,
+article.feature figcaption,
+section.figures figcaption,
 ul.figures li a strong,
 ul.figures li a p
 {
@@ -2396,36 +2406,36 @@ body[data-href='tutorials'] .page header .share
   width: 565px;
 }
 
-.sample
+.tutorial_listing
 {
   margin: 1.5em 0 2.5em;
   padding: 0;
 }
 
-.sample h3
+.tutorial_listing h3
 {
   font-size: 16px;
   font-style: italic;
   font-weight: 600;
 }
 
-.sample .date,
-.sample .author,
-.sample .tags,
-.sample .tag,
-.sample .classes
+.tutorial_listing .date,
+.tutorial_listing .author,
+.tutorial_listing .tags,
+.tutorial_listing .tag,
+.tutorial_listing .classes
 {
   float: left;
 }
 
 
-.sample .author,
-.sample .tags
+.tutorial_listing .author,
+.tutorial_listing .tags
 {
   margin-right: 1.5em;
 }
 
-.sample .author img.author_image
+.tutorial_listing .author img.author_image
 {
   width: 20px;
   height: 20px;
@@ -2433,7 +2443,7 @@ body[data-href='tutorials'] .page header .share
   vertical-align: -5px;
 }
 
-.sample .tag
+.tutorial_listing .tag
 {
   color: #888;
   font-size: 11px;
@@ -2442,71 +2452,71 @@ body[data-href='tutorials'] .page header .share
   cursor: pointer;
 }
 
-.sample .tag:hover
+.tutorial_listing .tag:hover
 {
   color: #333;
 }
 
-.sample .classes
+.tutorial_listing .classes
 {
   margin-top: .3em;
 }
 
-.sample .browsers
+.tutorial_listing .browsers
 {
   margin: .25em 0 0 1.5em;
 }
 
-.sample .summary
+.tutorial_listing .summary
 {
   clear: left;
   padding-top: .5em;
 }
 
-.sample .buttonlink
+.tutorial_listing .buttonlink
 {
   display: none;
 }
 
-header.sample div.right_side
+header.tutorial div.right_side
 {
   float: left;
   width: 632px;
 }
 
-header.sample section,
-header.sample aside
+header.tutorial section,
+header.tutorial aside
 {
   float: left;
   width: 316px;
   overflow: hidden;
 }
 
-header.sample aside
+header.tutorial aside
 {
   margin-left: 0;
 }
 
-header.sample section h2,
-header.sample section
+header.tutorial section h2,
+header.tutorial section
 {
   color: #333;
   font-size: 13px;
   text-transform: none;
 }
 
-header.sample .byline
+header.tutorial .byline
 {
   margin-top: .75em;
 }
 
-header.sample .byline hgroup
+header.tutorial .byline hgroup
 {
   float: none;
   padding: 0;
 }
 
-header.sample .byline img
+header.tutorial .byline img
 {
   float: left;
   width: 50px;
@@ -2514,48 +2524,48 @@ header.sample .byline img
   margin: .2em .75em 0 0;
 }
 
-header.sample .byline h2
+header.tutorial .byline h2
 {
   font-weight: 300;
   line-height: 1.5;
   margin: 0 0 .15em;
 }
 
-header.sample .byline h2 strong
+header.tutorial .byline h2 strong
 {
   font-weight: 600;
 }
 
-header.sample .byline h2 span
+header.tutorial .byline h2 span
 {
   color: #333;
   display: block;
   font-weight: 300;
 }
 
-header.sample .browser_support
+header.tutorial .browser_support
 {
   font-size: 12px;
   margin-top: 1.25em;
   width: 632px;
 }
 
-header.sample .browser_support .browsers
+header.tutorial .browser_support .browsers
 {
   margin: 0 .75em 0 .25em;
 }
 
-header.sample aside
+header.tutorial aside
 {
   margin-top: .5em;
 }
 
-header.sample aside a
+header.tutorial aside a
 {
   background: none !important;
 }
 
-header.sample .browser_support h2
+header.tutorial .browser_support h2
 {
   float: left;
   font-size: 12px;
@@ -2565,7 +2575,7 @@ header.sample .browser_support h2
   text-transform: uppercase;
 }
 
-header.sample .browser_support p
+header.tutorial .browser_support p
 {
   float: left;
   font-size: 12px;
@@ -2573,7 +2583,22 @@ header.sample .browser_support p
   margin: 0;
 }
 
+article.tutorial figure
+{
+  display: block;
+  text-align: center;
+}
 
+article.tutorial figure img
+{
+  max-width: 100%;
+}
+
+article.tutorial figcaption
+{
+  margin-top: 1em;
+  font-style: italic;
+}
 
 .page header .disqus_comments
 {
