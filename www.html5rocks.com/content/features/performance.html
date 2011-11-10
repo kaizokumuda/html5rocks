@@ -7,18 +7,23 @@
 {% block tuttags   %}performance{% endblock %}
 {% block supportblockstyle %}none{% endblock %}
 
-{% block description %}
-  <section class="column intro">
-    <p>
+{% block header %}
+  <section id="intro">
+    <p class="intro">
       {% blocktrans %}
-        Web apps are now able to rival performance of native and desktop applications. By using a variety of techniques and technologies, your sites and apps can feel more responsive and your users will get more done.  Performance is important, it's a constant theme across all aspects of your development and product.
+        Web apps are now able to rival performance of native and desktop applications. By using a variety of techniques and technologies, your sites and apps can feel more responsive and your users will get more done. Performance is important, it's a constant theme across all aspects of your development and product.
       {% endblocktrans %}
     </p>
   </section>
-  <section class="column">
+{% endblock %}
+
+
+{% block description %}
+  <section id="description">
+    <h3>Performance Is a Feature</h3>
     <p>
       {% blocktrans %}
-        Writing fast and responsive apps isn't just important for your users, it's important for your bottom line.  For example,<a href="http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html">Google now incorporates site speed in page ranking</a>.  <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Amazon has found that every 100 ms increase in page load time decreased sales by 1%</a>. Also, <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Microsoft found that slowing a page by 2 seconds decreased ad clicks by 4%</a>.
+        Writing fast and responsive apps isn't just important for your users, it's important for your bottom line. For example, <a href="http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html">Google now incorporates site speed in page ranking</a>.  <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Amazon has found that every 100 ms increase in page load time decreased sales by 1%</a>. Also, <a href="http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf">Microsoft found that slowing a page by 2 seconds decreased ad clicks by 4%</a>.
       {% endblocktrans %}
     </p>
 
@@ -36,7 +41,7 @@
 
 
 {% block content %}
-  <section>
+  <section id="themes">
     <h3>Themes</h3>
     <ul class="definitions">
       <li>
@@ -57,11 +62,12 @@
       </li>
     </ul>
   </section>
-  <section>
+
+  <section id="technologies">
     <h3>Technologies</h3>
     <ul class="definitions">
       <li>
-        <strong><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html">{% trans "HTTP caching" %}</a><strong>
+        <strong><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html">{% trans "HTTP caching" %}</a></strong>
         {% trans "Allow clients and servers to reduce connections and bandwidth." %}
       </li>
       <li>
@@ -69,60 +75,61 @@
         {% blocktrans %}Servers like <a href="http://www.varnish-cache.org/">Varnish</a> and <a href="http://www.squid-cache.org/">Squid</a> can cache your content.{% endblocktrans %}
       </li>
       <li>
-        <strong><a href="http://memcached.org/">{% trans "Memcache" %}</a><strong>
+        <strong><a href="http://memcached.org/">{% trans "Memcache" %}</a></strong>
         {% trans "Efficient server side storage and retrieval of key/value data" %}
       </li>
       <li>
-        <strong><a href="http://www.whatwg.org/specs/web-workers/current-work/">{% trans "Web workers" %}</a><strong>
+        <strong><a href="http://www.whatwg.org/specs/web-workers/current-work/">{% trans "Web workers" %}</a></strong>
         {% trans "Run JavaScript in the background, in parallel with the main window" %}
       </li>
       <li>
-        <strong><a href="http://dev.w3.org/html5/websockets/">{% trans "Web sockets" %}</a><strong>
+        <strong><a href="http://dev.w3.org/html5/websockets/">{% trans "Web sockets" %}</a></strong>
         {% trans "Efficient bi-directional streaming communication" %}
       </li>
       <li>
-        <strong><a href="http://dev.w3.org/html5/webstorage/">{% trans "Local storage" %}</a><strong>
+        <strong><a href="http://dev.w3.org/html5/webstorage/">{% trans "Local storage" %}</a></strong>
         {% trans "Client side key/value data storage" %}
       </li>
       <li>
-        <strong><a href="http://www.w3.org/TR/IndexedDB/">{% trans "Indexed database" %}</a><strong>
+        <strong><a href="http://www.w3.org/TR/IndexedDB/">{% trans "Indexed database" %}</a></strong>
         {% trans "Client side simple object storage" %}
       </li>
       <li>
-        <strong><a href="http://dev.w3.org/html5/spec/offline.html#offline">{% trans "App cache" %}</a><strong>
+        <strong><a href="http://dev.w3.org/html5/spec/offline.html#offline">{% trans "App cache" %}</a></strong>
         {% trans "Caching web app assets locally for offline use" %}
       </li>
       <li>
-        <strong><a href="http://dev.w3.org/csswg/css3-transitions/">{% trans "CSS3 transitions and animations" %}</a><strong>
+        <strong><a href="http://dev.w3.org/csswg/css3-transitions/">{% trans "CSS3 transitions and animations" %}</a></strong>
         {% trans "Native (and possibly hardware accelerated) property changes for elements" %}
       </li>
       <li>
-        <strong><a href="http://css-tricks.com/css-sprites/">{% trans "CSS sprites" %}</a><strong>
+        <strong><a href="http://css-tricks.com/css-sprites/">{% trans "CSS sprites" %}</a></strong>
         {% trans "Combining many small images into one image, reduce downloads" %}
       </li>
       <li>
-        <strong><a href="http://www.whatwg.org/specs/web-apps/current-work/#link-type-prefetch">{% trans "Link prefetching" %}</a><strong>
+        <strong><a href="http://www.whatwg.org/specs/web-apps/current-work/#link-type-prefetch">{% trans "Link prefetching" %}</a></strong>
         {% trans "Ask the browser to download other pages in the background" %}
       </li>
       <li>
-        <strong><a href="http://code.google.com/p/nativeclient/">{% trans "Native client" %}</a><strong>
+        <strong><a href="http://code.google.com/p/nativeclient/">{% trans "Native client" %}</a></strong>
         {% trans "Run native code (C/C++) in a browser sandbox" %}
       </li>
       <li>
-        <strong><a href="http://tools.ietf.org/html/rfc2616#section-8.1">{% trans "HTTP persistent connections" %}</a><strong>
+        <strong><a href="http://tools.ietf.org/html/rfc2616#section-8.1">{% trans "HTTP persistent connections" %}</a></strong>
         {% trans "send multiple resources over the same connection" %}
       </li>
       <li>
-        <strong><a href="http://code.google.com/apis/webfonts/">{% trans "Web fonts" %}</a><strong>
+        <strong><a href="http://code.google.com/apis/webfonts/">{% trans "Web fonts" %}</a></strong>
         {% trans "natively render text instead of download images" %}
       </li>
       <li>
-        <strong><a href="http://en.wikipedia.org/wiki/Data_URI_scheme">{% trans "Data URI" %}</a><strong>
+        <strong><a href="http://en.wikipedia.org/wiki/Data_URI_scheme">{% trans "Data URI" %}</a></strong>
         {% trans "Embed binary data such as images into HTML, reducing HTTP requests" %}
       </li>
     </ul>
   </section>
-  <section>
+
+  <section id="techniques">
     <h3>Techniques</h3>
     <ul class="definitions">
       <li>
@@ -199,7 +206,8 @@
       </li>
     </ul>
   </section>
-  <section>
+
+  <section id="tools">
     <h3>Tools</h3>
     <ul class="definitions">
       <li>
@@ -240,7 +248,8 @@
       </li>
     </ul>
   </section>
-  <section>
+
+  <section id="further_reading">
     <h3>Further Reading</h3>
     <ul>
       <li><a href="http://code.google.com/speed/">Let's make the web faster</a></li>

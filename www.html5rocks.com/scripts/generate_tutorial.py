@@ -214,7 +214,7 @@ class TutorialFactory(object):
           <span class="buttonlink">
             <a href="%(href)s">View tutorial</a> &rArr;
           </span>
-          <span class="browser_logos">
+          <span class="browsers">
             %(browser_support)s
           </span>
         </div>
@@ -290,12 +290,12 @@ class TutorialFactory(object):
 
     if self.article.article_type == Article.CASE_STUDY:
       template = template.replace(
-          '{% extends "sample.html" %}',
-          '{% extends "casestudy.html" %}')
+          '{% extends "tutorial.html" %}',
+          '{% extends "tutorial.html" %}')
     elif self.article.article_type == Article.MOBILE:
       template = template.replace(
-          '{% extends "sample.html" %}',
-          '{% extends "mobile_tutorial.html" %}')
+          '{% extends "tutorial.html" %}',
+          '{% extends "tutorial.html" %}')
 
     if filename is not None:
       print '== Including tutorial body from existing file.' 

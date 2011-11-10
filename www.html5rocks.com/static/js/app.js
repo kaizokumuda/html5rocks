@@ -1,12 +1,3 @@
-// Show header box shadow on scroll.
-var docTop = $('html, body').offset().top;
-$(window).bind('scroll', function(event) {
-  var y = $(this).scrollTop();
-  if ((y - docTop) > 100) {
-    $('header').addClass('scroll');
-    $(this).unbind('scroll', event.handler); // Remove this listen for performance. 
-  }
-});
 
 // Page header pulldowns.
 
@@ -16,17 +7,20 @@ $('#search_show').click(function() {
   if ($(this).hasClass('current')) {
     $('.subheader.search').hide();
     $(this).removeClass('current');
+    $('.watermark').css('top', '30px');
   } else {
-    $('nav.main .current').removeClass('current');
+    $('.main nav .current').removeClass('current');
     $(this).addClass('current');
     $('.subheader.search').show();
     $('#q').focus();
+    $('.watermark').css('top', '100px');
   }
 });
 
 $('#search_hide').click(function() {
   $('#search_show').removeClass('current');
   $('.subheader.search').hide();
+  $('.watermark').css('top', '30px');
 });
 
 $('#features_show').click(function() {
@@ -35,21 +29,31 @@ $('#features_show').click(function() {
   if ($(this).hasClass('current')) {
     $('.subheader.features').hide();
     $(this).removeClass('current');
+    $('.watermark').css('top', '30px');
   } else {
-    $('nav.main .current').removeClass('current');
+    $('.main nav .current').removeClass('current');
     $(this).addClass('current');
     $('.subheader.features').show();
+    $('.watermark').css('top', '100px');
   }
 });
 
 $('#features_hide').click(function() {
   $('#features_show').removeClass('current');
   $('.subheader.features').hide();
+  $('.watermark').css('top', '30px');
+});
+
+$('.main nav ul li a').click(function() {
+  $('.main nav .current').removeClass('current');
+  setTimeout("$('.watermark').css('top', '30px')", 1000);
 });
 
 $('.subheader.features ul li a').click(function() {
-  $('nav.main .current').removeClass('current');
+  $('.main nav .current').removeClass('current');
+  setTimeout("$('.watermark').css('top', '30px')", 1000);
 });
+
 
 
 
@@ -60,12 +64,12 @@ function finishPanelLoad(pagePanel, elemstate) {
   //$('body').addClass(page);
 
   // TODO(Google): scrollTo needs to scroll to and element that is not display:none.
-  // new.css applies this to .page elements. Not sure why pagePanel.addClass('current')
+  // base.css applies this to .page elements. Not sure why pagePanel.addClass('current')
   // doesn't take care of this.
   $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
     $('.subheader.features').slideUp('fast', function() {
 
-      if (elemstate.popped != 'popped') 
+      if (elemstate.popped != 'popped')
         state.push( elemstate );
 
       route.init(page);
@@ -75,7 +79,7 @@ function finishPanelLoad(pagePanel, elemstate) {
 
 //$('a').live('click', function() {
 // TODO: go back to event delgation. Currently breaks nav.
-$('a').click(function() { 
+$('a').click(function() {
 
   // Don't intercept external links
   if ($(this).attr('target')) {
@@ -91,7 +95,7 @@ $('a').click(function() {
 });
 
 function loadContent(elem, popped){
-  
+
   window.page = elem.pathname
                   // remove locale
                   .replace(/\/\w{2,3}\//gi, '')
@@ -156,7 +160,7 @@ $(document).keydown(function(e) {
       $('.current').attr('class', $('.current').attr('class').replace(/current/, 'previous'));
       $('.page.next').attr('class', $('.page.next').attr('class').replace(/next/, 'current'));
     }, 10);
-    
+
     $('.page.current').one('webkitTransitionEnd', function(e) {
       e.target.classList.remove('previous');
       $('.next').removeClass('next');
@@ -166,7 +170,7 @@ $(document).keydown(function(e) {
     $('#search_hide, #features_hide').click();
 
     // Hide +/- feature navigation.
-    $('.features_outline_nav_toggle').removeClass('activated');
+    $('.outline_nav_toggle').removeClass('activated');
     $('nav.features_outline').fadeOut('fast');
   }
 });
@@ -175,9 +179,9 @@ $(document).keydown(function(e) {
 // Features navigation.
 
 // Toggle the feature nav.
-$('.features_outline_nav_toggle').click(function(e) {
+$('.outline_nav_toggle').click(function(e) {
   $(this).toggleClass('activated');
-  $('nav.features_outline').fadeToggle('fast');
+  $(this).find('nav.outline').fadeToggle('fast');
 });
 
 // A feature is clicked.
@@ -194,8 +198,8 @@ $('nav.features_outline a.section_title').click(function(e) {
   e.stopPropagation();
 });
 
-$('nav.main li a').click(function(e) {
-  $('nav.main .current').removeClass('current');
+$('.main nav li a').click(function(e) {
+  $('.main nav .current').removeClass('current');
   $(this).addClass('current');
 });
 
@@ -222,13 +226,13 @@ window.route = {
   init : function(thing) {
     var commonfn = route[thing.split('-')[0]],
         pagefn   = route[thing];
-    
+
     route.fire(route.common);
     route.fire(commonfn);
     if (pagefn != commonfn) {
       route.fire(pagefn);
     }
-  }, 
+  },
   fire : function(fn) {
     if (typeof fn == 'function') {
       fn.call(route);

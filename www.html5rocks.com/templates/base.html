@@ -29,12 +29,9 @@
   <title>{% trans "HTML5 Rocks" %} - {% block headtitle %}{% trans "A resource for open web HTML5 developers" %}{% endblock %}</title>
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="alternate" type="application/rss+xml" title="HTML5Rocks" href="http://feeds.feedburner.com/html5rocks" />
-  <!-- <link rel="stylesheet" media="all" href="/static/css/base{% if prod %}.min{% endif %}.css"> -->
 
-  <!-- <link rel="stylesheet" media="all" href="/static/css/GGS.css"> -->
-  <link rel="stylesheet" media="all" href="/static/css/new{% if prod %}.min{% endif %}.css"> <!-- TODO: merge into base stylesheet. -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800' rel='stylesheet' type='text/css'> <!-- TODO: find out how this font should be requested/included -->
-
+  <link rel="stylesheet" media="all" href="/static/css/base{% if prod %}.min{% endif %}.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800' rel='stylesheet' type='text/css'>
 
   <script src="/static/js/modernizr.custom.18773.js"></script>
 
@@ -46,7 +43,7 @@
   <script defer src="/static/js/jquery.scrollTo-min.js"></script>
 
   <!-- Site-wide scripts -->
-  <script defer src="/static/new_js/app.js"></script>
+  <script defer src="/static/js/app.js"></script>
 
   <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css">
 
@@ -75,10 +72,9 @@
       <ul>
         <li><a class="why" href="/why">Why HTML5</a></li>
         <li id="features_show">HTML5 Features</li>
-        <li><a href="/{{LANGUAGE_CODE}}/tutorials/" class="tutorials" onclick="clearFilter()">{% trans "Updates" %}</a></li>
+        <li><a href="/{{LANGUAGE_CODE}}/tutorials/" class="tutorials" onclick="clearFilter()">{% trans "Updates &amp; Tutorials" %}</a></li>
         <li><a href="/{{LANGUAGE_CODE}}/resources" class="resources">{% trans "Resources" %}</a></li>
         <li><a href="/{{LANGUAGE_CODE}}/profiles" class="profiles"}>{% trans "Who We Are" %}</a></li>
-        <li><a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">Contribute</a></li>
         <li id="search_show">
           Search
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjM0OTMyOUNEN0FEMTFFMEJDMEZDMjAwMjNDNjc0MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjM0OTMyOUREN0FEMTFFMEJDMEZDMjAwMjNDNjc0MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFNzMzOTM2MUQ3OTkxMUUwQkMwRkMyMDAyM0M2NzQwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFNzMzOTM2MkQ3OTkxMUUwQkMwRkMyMDAyM0M2NzQwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pj/umaQAAACdSURBVHjanFLbDQMhDAtMwAiM0lFuBEa4DW4ERmk7ASPQDRghTSSfRKvAPSz5J45D5ODJADM/hE/+RRUuNIKKaGzCDUNSNyhbpgixCIOhZ+jrSIiTjfTl5v/qang55z40xlsYvCEEugqEcbSqplutcBrCiZNw0ugU+zm0cQWreY7OVHC7DDN39WVmCmcDyZdNMBbzGx3AiYnu4CvAALKABcbyDrXxAAAAAElFTkSuQmCC" width="14" height="14">
@@ -157,8 +153,7 @@
     </div>
   </header>
 
-  <a class="watermark teal" href="/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAABeCAYAAAC3rJ31AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6N0IyMDY1QzdFMzI5MTFFMDk2ODE5Q0EwNTZCODEwRTIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6N0IyMDY1QzhFMzI5MTFFMDk2ODE5Q0EwNTZCODEwRTIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3QjIwNjVDNUUzMjkxMUUwOTY4MTlDQTA1NkI4MTBFMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3QjIwNjVDNkUzMjkxMUUwOTY4MTlDQTA1NkI4MTBFMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pqkos4EAAAUdSURBVHja7Js9dtpAEIBXPFodAA6gC8h1LPfgnqSHLgW4B3qTIh3qY3qbA8ipowNEB0AH4ADObjzrTOatVitptZIT5r19MjJI347mdxc8ppEPX7+M+WHOxzUfPpw+8/HMx+775+WZdSCeBjjghz2CpSKAFxw86wU0aPgbAk75SOB1CEOC37rW+LDg/BwBCzM4kElt+GEC75nxEbuEHhScl5rMKLAQfk5A5+S9nUOP4JhoPpt2BT1s8NlTW1Dc/LDfiCeaYL8Zsh4Jh434YYWetJQ1/1/MwWOdeXQBPOWHewXwW3CAANAPaAixS3RKaPSGa/aKH7cQWoVMxOT6oulrEmJjacP8+MQPnxD4rC/QkXS6ghArnP4IL4MB65foItK5LE73Wi7QF+iW0jjNZBMUBWSjEIPn44YiRAkkRVHBLTRkMiw+TEIkgy2cWyoairBOwWWz9pDaPRGYtaI6FGNMkopz6BxarxOpJSjwFjKcfI8PLV3QqiOKG/EhupUpOv1TkcUEHM5uRwwM7xFP567V6AF17qOifBQO+AjaxZIU/E1TdNYKNADh7jwH28xJ3TstS8MV/1fPphX2+VezCyFvDRNa8tdJmx36oAbwllZi/HWCOnIfxetOoCMF8FPBe4+KxrgT6MAQmLlcsDF1RC0wsutajtUYWuH9JsABMaNnZ9AFTmcCjENhjDNjq9CWgI9ybaJ1aIvAGyeOqLDHXgNLTc8bAjOXwBJahqqkDnDXPWJWEfjcB+gy2WEbxrUyFPMqGRdk16LMezaFlqXlVHNzvPojnQ4/mZWqWSD+Mlddn5/DWyW6pORj6CdU5OyLwDnogr2uZG5QZScnLBrYezAhmdL3pHAS132Q6V5053ys0MTOTL/zIJ9G5sEFHvBJ6PdKH5WhY2YAVNZ1i3ummnv9kE9a2vQCPe5Ap3Gi/Qw+m2rK1QU8pYOmKf5YAoyLsdTTdMbGGkdaD0Hrv1sxWoPAPSJkNonJ5inaAhRy6ykuWhu8DYGVqUc0ybuBopCvZSotCo5AB2Wc7hM4LFlIs0il3Q80rVOn4HCvDUlu+ozYJTjyLemwB+ywg5KQ5hwcrr3GwYBz7CrVHhrwoEUNRzh61SqYEHhKwGcWgSMIbaXh1qtxcRzoZUbbQS1SN0LMFWm+MK17NW+0V9wkh4LnUNaNgxmIiU81JWshdNONojNZCpuBTZbJBMrZgNQpRvsvTaGF3d2w18XHvEIhn6OjyHK3UPIarZc03r4ARxHQsagTTBZqwP6vXLRbJhNodWWpFeg+Nra9EaOQB7GUkUY2AEfcWeSZohywI81zLs3P1BH3mmZz35JCaYcfw7jY9AX6n4O2saGfWuQZM4PtPBtpfGGxpp6T7vtdmMfYiU0rEk8TGbmyaTyBKau4xVxnN8wGtE80Na/4+ZhkWCchz2ZX7js3D9K1HJh+kbzTOD0m7dfbBHRrzk0cetiix4cQd7W9Ytk2oAvzwN9nMvmiYFzVnq07YsMeMXCpaaqhsrQewfqI6XJD6+bBGFrigh8i6Bwuq5rCrdUellL5qEtN48ncQ+masT+/sIsKHNe5efikvg6R/UaauuNUxxFtlab4hiILHku0mCqWHvzOzAP2RjZgHgGK13JDtHFqtwU91kwgY8VbzLUc2ZZ5hHUjCOzIhl1oWn7tQtq0sNlnVYaEXYAQRZJRV+ZBM54YKw4ov2OdgLPW+uGC0zgNWpywvzeW/s/Fmgv0BVoj3svLy7uD/iXAAL0lPkYtfrhFAAAAAElFTkSuQmCC" width="45" height="94"></a>
-  <a class="watermark white" href="/"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAABeCAYAAAC3rJ31AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEEzMEVDN0REODBGMTFFMEJDMEZDMjAwMjNDNjc0MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEEzMEVDN0VEODBGMTFFMEJDMEZDMjAwMjNDNjc0MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0QTMwRUM3QkQ4MEYxMUUwQkMwRkMyMDAyM0M2NzQwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0QTMwRUM3Q0Q4MEYxMUUwQkMwRkMyMDAyM0M2NzQwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ppgva2QAAAS5SURBVHja7FuLceIwELUzKcCpANOBO4hTQbgKDjogFcRUwF0F0EGgAkMF5iqAVBBSgU+aWZFlT7JkW5I1FzSjMRjbelq//UrEdV1H/1VjE0pZX7H+UX+1DziXhAg4I2Bp479lQ2CLVRJmh4p1Ic0d61v4/sh6DufPrI/jOD6HIOUVkuhc83sRCjWOAKgyuKb0je9OcT6F47bh3h0cc9+g73vc++7wTedIGCfWN1q9MeEr/01cZBHsBNGOtkJHjyH0aMoOb4iatL1yAxAMaDCxS3RqwfoDowQ3yTMwrbxNYXLD04ObVY2JTZGjq0Khx7NQOibcX/94wDjmyriGr1kwnEaWQtU+g1NEG87lBvoG2hZo8GRvkkQhlSQU2OOVSrvrKPbA7Y1853H3FJzBDM4tUXweoWArHwq0SAg2EEjhRGEliQ73rI9Yn0gm4g00t69P4ARwLEEBz9g1a3TNCzvweDxzymme0IKr/YlOHyRejIPD3m2NAcM1/O38cKqIEOcegZ84GuOv+ShRqq3iM3XRByegAVCJOHgCfmLXu2qwBmeNPtgFLeHnC5MQz8I5j8fwisXAS9c1kbsOgGc0EmPfNxADC3M3GRL0swTwWnHtWpIYDwI6MwQc+SzYmCpiI2DhyrsqVm/QEu03AZwRGm28gVYonQlgbAoX2DM6BW0JMPd6hRdOWwQ886KIEj4GDVhI+rUn4MgnYAFamKpNF8BDp1t/WgI+hwDaJKVKkMv+jWNsxT2pwruqPK+ZIFCieWyKziAJrUXlEpLZGp+TJAtHkuwmkusKdM20YfzlpXZIbqo0wBPFhGvIxjM0oUpSYz4Kdw/Z+VI3KYnQKnGiMgVOea5ZthPPK2t9yzVjXb9VeJV9gKtAXRZJiVSp9DODusqFQjF59TgzPkCGfTYFD2WDRKRiNAaBMSZIQbmZPRg8ewV1FN7GMuXpJHFXDbh/0ZumEkEwwMlCa66rbQwOnIPEdT/TosxgwCV2Pmtzo3fgknGXfR/gFDiMh8vGla2ZVy72elgXEDywJG53bhHwhHhXe2+UmKCreKKHhSjbuvUuA5UKd7zESxaatzZXBFXOQcuCpaPB/XNFnGLkSPouFPG44QGKj6cWgfwJHXkxcwx55rtLO1rKvJQJNTTPLXxImhYhnVaWnIAOMbENpt0bco3ySxj9xLJpGuEMnex/OQn6xYagQ9hFuxDFzRunb6C/pfXQtJ1FPGlkazmvqSxkOTwoGoYqQqXHyAunLTuX1Ben8QSmbTnZZTXMBuiESOq15f0YdOaFHlHLrTwtBOCHHiRr4RnJNlQ7PSLpl2ifjK87Fwp971DjHw3+TnLSLQP6oAdOt/JIv1Fw0ZbP1hWxZ46Y+ZQ0ldCT5nq+xWjeotzgnB4R2OkcJB9rFO7Q1oVbiz0sufJ0SEnjyfCFnT1IVPzDbqJQXO/0wLzeI6sxiRr26BHFzbzSgwzIN12tNVLkTueliwt3Qg9YzJwBPcSC6CNMYg+7JQd340rNhwkcoustyb0V2RY98q4WBCqt+RCS5gOXkDJuQBk3Mg8J6yg5siStE1nXZbFT9PWn4iy6/q9A23Ypizm10yDFafS1g+D7FmtuoG+gG9pfAQYAKw5GgTJkaHIAAAAASUVORK5CYII=" width="45" height="94"></a>
+  <a class="watermark" href="/"></a>
 
   <nav class="paginator home">
     <ul class="home">
@@ -218,11 +213,11 @@
     </ul>
   </nav>
 
-  <div class="features_outline_nav_toggle deactivated">
+  <div class="outline_nav_toggle deactivated">
     <img class="show" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAeCAYAAADU8sWcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTAyRDZFQUJFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTAyRDZFQUNFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5MDJENkVBOUU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5MDJENkVBQUU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pprl4SwAAAIcSURBVHjazFfNasJAEI6ptiIGBCUQbfAWxWu96EUfwAY8tg+gD1A8F+99gfoA9ijoA9he9GKvIt5EMRJyEFKKDQidlaSIyW5iYkgHhiyZzX4zk/nbEOWAJpNJGh4V4DudGYttn8Bz4EGxWJw7OTfkALQBXKPOIwTeASXeXYEDcEMH9kLIG21QYu0IHECRS1+BBeoypAI3rX4F7TMwpcdHF86uEsF9AD6mZ1BAsHQ7CJ7g8WB3wmazia1Wq7imaWHjXSaTUbPZrOpAAQn4EX6B+geuR3Wf9NVisWBGo9HtdruNWckjkci+UCjI5XJ5baMAyoLOMfgLPKq43cPhkJ/NZqwT3yYSie96vT6PRqN7QgCKyHpat/ps4FwuR7VaLdN+5JleryfsdrsrQgDWjICrkFzt1OJTBcbjcZqw5d4ArxIKDec2tJHSoMQ1RiygtKZxqYU+lGWZ8ZJb0+k0RRALNKZJUMvlkvGa2JIkxUngYWxNVNUbYy2KokmeSqUObCWDlKQURbGtfDQVIGEtZxjmx1j3++b6g1ItmUxaypw2HFpPehPxPK96tYzjuC9Sz6f1xm9VqTSWZT0pAOVWsQPHThtQAiW3wPl8XkYG4IAP5RUWH7gDUKdCh5wLjOp7qVQiNZhB4I3FAEdVrhtISw10mDhSoOvjGGUaJE8rXBOXeheg9ukEG+jo/L8uDRe8Lr0B6MD1Xc3vi+KvAAMAMUEG36eXLzcAAAAASUVORK5CYII=">
     <img class="hide" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAeCAYAAADU8sWcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTAyRDZFQUZFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTAyRDZFQjBFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5MDJENkVBREU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5MDJENkVBRUU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlXiDkoAAAIdSURBVHjaxFfNasJAEN6sSkUIBOLBFktF0Junek+96wOU3tt76716tw/Q3msfQO8a8GhP3iKIpdJ6MBAIiEWE7shaos1m18SfD4ZFd2a/mc3szqyEBNHtdq/IAJKlsgmDSjufz7dF1pQESG/JcE1ERuL4JtIgTrz4IiekEN0TkVPkH+BEhTjx7jaJGcQlMtQDEiNq/0zX40dOFR/R7lElO9Bgku+ReIWyMxklB/EZGV55iTWbzUL9fl+xbftk9Z8syz+ZTMaKRqMLDrlN5IY48AU/wo6Jey9iINV1/XwwGKhu851OB6XTaVPTtE8PJ2TKU/6LnER9CYnBIh6Px7Fms5mdz+ch3r5GIpFFsVg0EonE1EPtDk7AKttLuyAGgB7og52HWsl51DSWVqvVuhAldjoAdh4qSz5Mt9z1W/d6PdWyrJiftAY7sGd9e+DFjHt6ieFwqAQ5Vxz7LPbK8NFoFIicYy+HRRaJx+NIVVVhUtM00WQy4ephdEQIRQ5RiESyLTC98lyRTCatIItz7G1Muw9XpFKpQOQcewPTQu8afS6XMxVFmfohBjuwZ0XtvF511iKFQuED7uttiEEf7DxUdGe2N1haUCCgUIg6IFhY6pv1vEa7U18lFSBQUhHtbstHbyYkl968tsd7Za2PW7vhaH9VPQQxs2/fQyP5j5j3aIA6X9nBo+GBEBtBnkulLZ2AxHrz/Vw6xEPxV4ABAB9p/+75XTbuAAAAAElFTkSuQmCC">
 
-    <nav class="features_outline">
+    <nav class="outline features">
       <h3>HTML5 Features</h3>
 
       <ul>
@@ -230,12 +225,10 @@
           <a href="/{{LANGUAGE_CODE}}/features/offline" class="section_title offline">{% trans "Offline" %}</a>
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/offline#intro">Intro</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/offline#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/offline#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/offline#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/offline#examples">Examples</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/offline#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/offline#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/offline#inthewild">In the Wild</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/offline#in_the_wild">In the Wild</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/offline#resources">Resources</a></li>
           </ul>
         </li>
@@ -243,12 +236,10 @@
           <a href="/{{LANGUAGE_CODE}}/features/storage" class="section_title storage">{% trans "Storage" %}</a>
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/storage#intro">Intro</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/storage#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/storage#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/storage#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/storage#examples">Examples</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/storage#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/storage#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/storage#inthewild">In the Wild</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/storage#in_the_wild">In the Wild</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/storage#resources">Resources</a></li>
           </ul>
         </li>
@@ -256,12 +247,10 @@
           <a href="/{{LANGUAGE_CODE}}/features/connectivity" class="section_title connectivity">{% trans "Connectivity" %}</a>
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#intro">Intro</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#examples">Examples</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#inthewild">In the Wild</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#in_the_wild">In the Wild</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/connectivity#resources">Resources</a></li>
           </ul>
         </li>
@@ -269,12 +258,10 @@
           <a href="/{{LANGUAGE_CODE}}/features/file" class="section_title file_access">{% trans "File Access" %}</a>
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/file#intro">Intro</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/file#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/file#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/file#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/file#examples">Examples</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/file#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/file#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/file#inthewild">In the Wild</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/file#in_the_wild">In the Wild</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/file#resources">Resources</a></li>
           </ul>
         </li>
@@ -282,12 +269,10 @@
           <a href="/{{LANGUAGE_CODE}}/features/semantics" class="section_title semantics">{% trans "Semantics" %}</a>
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/semantics#intro">Intro</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/semantics#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/semantics#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/semantics#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/semantics#examples">Examples</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/semantics#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/semantics#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/semantics#inthewild">In the Wild</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/semantics#in_the_wild">In the Wild</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/semantics#resources">Resources</a></li>
           </ul>
         </li>
@@ -295,12 +280,10 @@
           <a href="/{{LANGUAGE_CODE}}/features/multimedia" class="section_title multimedia">{% trans "Audio/Video" %}</a>
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#intro">Intro</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#examples">Examples</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#inthewild">In the Wild</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#in_the_wild">In the Wild</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/multimedia#resources">Resources</a></li>
           </ul>
         </li>
@@ -308,12 +291,10 @@
           <a href="/{{LANGUAGE_CODE}}/features/graphics" class="section_title graphics">{% trans "3D/Graphics" %}</a>
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/graphics#intro">Intro</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/graphics#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/graphics#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/graphics#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/graphics#examples">Examples</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/graphics#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/graphics#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/graphics#inthewild">In the Wild</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/graphics#in_the_wild">In the Wild</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/graphics#resources">Resources</a></li>
           </ul>
         </li>
@@ -321,12 +302,10 @@
           <a href="/{{LANGUAGE_CODE}}/features/presentation" class="section_title presentation">{% trans "Presentation" %}</a>
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/presentation#intro">Intro</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/presentation#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/presentation#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/presentation#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/presentation#examples">Examples</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/presentation#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/presentation#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/presentation#inthewild">In the Wild</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/presentation#in_the_wild">In the Wild</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/presentation#resources">Resources</a></li>
           </ul>
         </li>
@@ -335,24 +314,21 @@
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/performance#intro">Intro</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/performance#updates">What&rsquo;s New</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/performance#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/performance#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/performance#examples">Examples</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/performance#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/performance#inthewild">In the Wild</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/performance#resources">Resources</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/performance#themes">Themes</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/performance#technologies">Technologies</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/performance#techniques">Techniques</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/performance#tools">Tools</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/performance#further_reading">Further Reading</a></li>
           </ul>
         </li>
         <li class="nuts_and_bolts">
           <a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts" class="section_title nuts_and_bolts">{% trans "Nuts &amp; Bolts" %}</a>
           <ul>
             <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#intro">Intro</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#support">Browser Support</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#tutorials">Tutorials</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#examples">Examples</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#updates">What&rsquo;s New</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#demos">Demos</a></li>
-            <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#inthewild">In the Wild</a></li>
+            <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#in_the_wild">In the Wild</a></li>
             <li><a href="/{{LANGUAGE_CODE}}/features/nuts_and_bolts#resources">Resources</a></li>
           </ul>
         </li>
@@ -386,7 +362,7 @@
   <div class="page" id="features-nuts_and_bolts"></div>
 
   <div class="page" id="why"></div>
-  <div class="page" id="tutorials"></div> <!-- TODO: is this 'updates'? -->
+  <div class="page" id="tutorials"></div>
   <div class="page" id="resources"></div>
   <div class="page" id="profiles"></div>
 

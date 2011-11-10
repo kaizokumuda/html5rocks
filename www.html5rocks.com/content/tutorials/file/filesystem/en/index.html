@@ -1,4 +1,4 @@
-{% extends "sample.html" %}
+{% extends "tutorial.html" %}
 
 {% block headauthor %}Eric Bidelman <e.bidelman@chromium.org>{% endblock %}
 {% block pageauthor %}{% profilelinks ericbidelman %}{% endblock %}
@@ -36,11 +36,11 @@
 {% block onload %}document.querySelector('#terminal-iframe').style.display='block';{% endblock %}
 
 {% block browsersupport %}
-<span class="opera"></span>
-<span class="ie"></span>
-<span class="safari"></span>
-<span class="ff"></span>
-<span class="chrome supported"></span>
+<span class="browser opera"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
+<span class="browser ie"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
+<span class="browser safari"><span class="browser_name">Safari</span><span class="support">unsupported</span></span>
+<span class="browser ff"><span class="browser_name">Firefox</span><span class="support">unsupported</span></span>
+<span class="browser chrome supported"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
 {% endblock %}
 
 {% block html5badge %}
@@ -446,7 +446,7 @@ dirEntry.removeRecursively(successCallback, opt_errorCallback);
 
   <h3 id="toc-dir-creating">Creating directories</h3>
 
-  <p>Use the <code>getDirectory()</code> method of <code>DirectoryEntry</code> 
+  <p>Use the <code>getDirectory()</code> method of <code>DirectoryEntry</code>
   to read or create directories. You can pass either a name or path as
   the directory to look up or create.</p>
 
@@ -635,7 +635,7 @@ window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
 
   <p>The <code>FileEntry</code> and <code>DirectoryEntry</code> <code>moveTo()</code>
   allows you to move or rename a file or directory.
-  Its first argument is the parent directory to move the file under, and its second 
+  Its first argument is the parent directory to move the file under, and its second
   is an optional new name for the file. If a new name isn't provided, the file's
   original name is used.</p>
 
@@ -866,8 +866,8 @@ function initFS() {
 
       var fragment = document.createDocumentFragment();
       for (var i = 0, entry; entry = entries[i]; ++i) {
-        var img = entry.isDirectory ? '<img src="/static/images/icon-folder.gif">' :
-                                      '<img src="/static/images/icon-file.gif">';
+        var img = entry.isDirectory ? '<img src="/static/images/tutorials/icon-folder.gif">' :
+                                      '<img src="/static/images/tutorials/icon-file.gif">';
         var li = document.createElement('li');
         li.innerHTML = [img, '<span>', entry.name, '</span>'].join('');
         fragment.appendChild(li);

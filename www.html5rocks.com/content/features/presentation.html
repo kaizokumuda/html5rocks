@@ -8,9 +8,9 @@
 {% block caniuse   %}css-transitions,css-animation,transforms2d,transforms3d{% endblock %}
 {% block supportblockstyle %}multiple{% endblock %}
 
-{% block description %}
-  <section class="intro">
-    <p>
+{% block header %}
+  <section id="intro">
+    <p class="intro">
       {% blocktrans %}
         With the introduction of CSS3 it has never been easier to create rich and beautiful sites and applications in HTML. There are many new technologies and extensions to CSS3 including:
         <a href="http://www.w3.org/TR/css3-2d-transforms">2D Transformations</a>,
@@ -26,10 +26,14 @@
       {% endblocktrans %}
     </p>
   </section>
+{% endblock %}
 
-  <section>
+
+{% block description %}
+  <section id="description">
+    <h3>Try This!</h3>
     <style>
-    pre         { margin: 1em 2em; }
+    pre         { margin: 1em 2em 2em; }
 
     #pre1       { -webkit-transform: rotate(-1deg) skewX(5deg); }
 
@@ -46,7 +50,7 @@
 transform: rotate(-1deg) skewX(5deg);
 }</pre>
 
-    <p>{% blocktrans %}Transitions allow you to specify how the style on a DOM element will animate between transformed states.  For example, you can animate the background color when the user hovers over an element.{% endblocktrans %}</p>
+    <p>{% blocktrans %}Transitions allow you to specify how the style on a DOM element will animate between transformed states.  For example, you can animate the background color when the user hovers over an element. <strong>Hover over this code!</strong>{% endblocktrans %}</p>
 
 <pre class="prettyprint" id="pre2">pre {
   transition: all 1s ease-inout;
@@ -57,7 +61,7 @@ pre:hover {
   border-color: black;
 }</pre>
 
-    <p>{% blocktrans %}Applying 3D transforms is simple too.  Just specify the transformation in 3d co-ordinates and you are ready.{% endblocktrans %}</p>
+    <p>{% blocktrans %}Applying 3D transforms is simple too.  Just specify the transformation in 3d co-ordinates and you are ready. <strong>Hover over this code!</strong>{% endblocktrans %}</p>
 
     <div id="pre3container">
 <pre class="prettyprint" id="pre3">div {
@@ -78,7 +82,7 @@ pre:hover {
 
 
 {% block content %}
-  <section class="demos">
+  <section id="demos">
     <h3>Demos</h3>
     <figure>
       <a href="http://www.thewildernessdowntown.com/">
@@ -95,7 +99,7 @@ pre:hover {
     </figure>
   </section>
 
-  <section class="inthewild">
+  <section id="in_the_wild">
     <h3>In the Wild</h3>
     <figure>
       <a href="http://typekit.com/">
@@ -111,7 +115,7 @@ pre:hover {
     </figure>
   </section>
 
-  <section class="resources">
+  <section id="resources">
     <h3>Resources</h3>
     <ul class="definitions">
       <li>

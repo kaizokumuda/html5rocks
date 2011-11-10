@@ -1,4 +1,4 @@
-{% extends "sample.html" %}
+{% extends "tutorial.html" %}
 
 {% block headauthor %}Eric Bidelman <ericbidelman@chromium.org>{% endblock %}
 {% block pageauthor %}{% profilelinks ericbidelman %}{% endblock %}
@@ -79,11 +79,11 @@ dd {
 {% endblock %}
 
 {% block browsersupport %}
-<span class="opera"></span>
-<span class="ie supported"></span>
-<span class="safari supported"></span>
-<span class="ff supported"></span>
-<span class="chrome supported"></span>
+<span class="browser opera"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
+<span class="browser ie supported"><span class="browser_name">Internet Explorer</span><span class="support">supported</span></span>
+<span class="browser safari supported"><span class="browser_name">Safari</span><span class="support">supported</span></span>
+<span class="browser ff supported"><span class="browser_name">Firefox</span><span class="support">supported</span></span>
+<span class="browser chrome supported"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
 {% endblock %}
 
 {% block html5badge %}

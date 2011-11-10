@@ -7,22 +7,25 @@
 {% block tuttags   %}graphics,canvas,svg{% endblock %}
 {% block supportblockstyle %}none{% endblock %}
 
-{% block description %}
-  <section class="column intro">
-    <p>
+{% block header %}
+  <section id="intro">
+    <p class="intro">
       {% blocktrans %}
-        The web has always been a visual medium, but a restricted one at best. Until recently, HTML developers were limited to CSS and JavaScript in order to produce animations or visual effects for their websites, or they would have to rely on a plugin like Flash.  With the addition of technologies like the canvas element, Web GL, and SVG images, this is no longer the case! In fact, there are many new features which deal with graphics on the web:
+        The web has always been a visual medium, but a restricted one at best. Until recently, HTML developers were limited to CSS and JavaScript in order to produce animations or visual effects for their websites, or they would have to rely on a plugin like Flash.
       {% endblocktrans %}
     </p>
-    <ul>
-      <li>{% trans "2D Canvas" %}</li>
-      <li>{% trans "WebGL" %}</li>
-      <li>{% trans "SVG" %}</li>
-      <li>{% trans "3D CSS transforms" %}</li>
-      <li>{% trans "SMIL" %}</li>
-    </ul>
+    <p>
+      {% blocktrans %}
+        With the addition of technologies like the canvas element, Web GL, and SVG images, this is no longer the case! In fact, there are many new features which deal with graphics on the web: 2D Canvas, WebGL, SVG, 3D CSS transforms, and SMIL.
+      {% endblocktrans %}
+    </p>
   </section>
-  <section class="column">
+{% endblock %}
+
+
+{% block description %}
+  <section id="description">
+    <h3>The Future is Now!</h3>
     <p>
       {% blocktrans %}
         Of course, none of these new technologies would be useful if they weren’t capable of running fast. Thankfully, JavaScript engines have become fast enough to run 3D games and manipulate video in realtime. Hardware accelerated compositing is also being implemented in many browsers, meaning that even CSS transitions and transforms will be butter-smooth.
@@ -35,7 +38,7 @@
     </p>
   </section>
   <section>
-    <h3>{% trans "Browser support" %}</h3>
+    <h3>{% trans "Browser Support" %}</h3>
     <p>
       {% blocktrans %}
         &ldquo;Graphics&rdquo; is such a wide topic that there are several specifications being worked on. A comprehensive graphics demo may use several of the following:
@@ -76,7 +79,7 @@
 
 
 {% block content %}
-  <section class="demos">
+  <section id="demos">
     <h3>Demos</h3>
     <ul class="definitions">
       <li>
@@ -110,7 +113,7 @@
     </ul>
   </section>
 
-  <section class="inthewild">
+  <section id="in_the_wild">
     <h3>In the Wild</h3>
     <figure>
       <a href="http://ro.me">
@@ -138,7 +141,7 @@
     </figure>
   </section>
 
-  <section class="resources">
+  <section id="resources">
     <h3>Resources</h3>
     <ul class="definitions">
       <li>

@@ -1,0 +1,14 @@
+title: The Synchronous FileSystem API for Workers
+url: /tutorials/file/filesystem-sync/
+author_id: ericbidelman
+publication_date: 2011-10-25
+description: The HTML5 FileSystem API offers an synchronous version to be used in the context of Web Workers. The tutorial introduces the Synchronous API, and gives practical examples of using it.
+browser_support:
+- chrome
+tags:
+- file
+- filesystem
+- storage
+- workers
+
+---

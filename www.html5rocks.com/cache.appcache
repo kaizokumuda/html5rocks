@@ -3,23 +3,14 @@ CACHE MANIFEST
 CACHE:
 /favicon.ico
 
+/static/js/app.min.js
 /static/js/prettify.min.js
 /static/js/profiles.min.js
 /static/js/modernizr.custom.18773.js
 /static/js/feature.min.js
 
 /static/css/base.min.css
-/static/css/feature.min.css
 /static/css/mobile.min.css
-/static/css/profiles.min.css
-/static/css/index_page.min.css
-/static/css/index_page_mobile.min.css
-/static/css/samples_index.min.css
-
-/static/images/html5rocks-presentation.png
-/static/images/html5rocks-playground.png
-/static/images/html5rocks-studio.png
-/static/images/html5rocks-tutorials.png
 
 /static/images/google_logo_small.png
 /static/images/browser_logos.png

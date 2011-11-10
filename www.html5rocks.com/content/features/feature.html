@@ -4,9 +4,7 @@
 
 {% block headtitle %}{% trans "Feature" %}{% endblock %}
 
-{% block head %}
-<!-- <link rel="stylesheet" href="/static/css/feature{% if prod %}.min{% endif %}.css"> -->
-{% endblock %}
+{% block head %}{% endblock %}
 
 {% block body %}
   <div data-import-html>
@@ -18,7 +16,7 @@
 
       <div class="feature_icon"></div>
 
-      {% block description %}{% endblock %}
+      {% block header %}{% endblock %}
 
       <span class="share">
         <ul>
@@ -29,9 +27,14 @@
       </span>
     </header>
 
-    <article class="sectioned">
+    <article class="sectioned feature">
+      <div class="description">
+        {% block description %}{% endblock %}
+      </div>
+
       {% block support %}
         <section
+          id="support"
           class="support {% block supportblockstyle %}{% endblock %}"
           style="display:none"
           data-caniusefeatures="{% block caniuse %}{% endblock %}"
@@ -83,26 +86,20 @@
             </table>
           </div>
 
-          <p>{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.{% endblocktrans %}</p>
+          <p class="credit">{% blocktrans %}Data courtesy of <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://dev.chromium.org/developers/web-platform-status">Chrome Platform Status</a>.{% endblocktrans %}</p>
+
+          <aside class="support_details">
+            {% block support_details %}{% endblock %}
+          </aside>
         </section>
       {% endblock %}
 
-      <section class="updates">
+      <section id="updates" class="updates">
         <h3>{% trans "What&rsquo;s New" %}</h3>
 
-        <div class="tutorials">
-          <h4>{% trans "Tutorials" %}</h4>
-          <ul>
-            {% block tutorials %}{% endblock %}
-          </ul>
-        </div>
-
-        <div class="examples">
-          <h4>{% trans "Examples" %}</h4>
-          <ul>
-            {% block examples %}{% endblock %}
-          </ul>
-        </div>
+        <ul>
+          {% block tutorials %}{% endblock %}
+        </ul>
       </section>
 
       {% block content %}{% endblock %}
