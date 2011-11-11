@@ -4,6 +4,9 @@
 
 {% block head %}
 <style>
+.page.current {
+  margin: 2em auto;
+}
 th {
   text-align: right;
 }
@@ -37,7 +40,7 @@ input[type='submit'] {
 {% endblock %}
 
 {% block body %}
-<div>
+<section>
   <h2>Add a new author:</h2>
   <form name="author_form" method="POST" action="/database/author">
     <table>
@@ -48,13 +51,13 @@ input[type='submit'] {
       <tr><td colspan="2" style="text-align: right;"><input type="submit" /></td></tr>
     </table>
   </form>
-</div>
-
-<p>Current authors ({{profile_amount}}):</p>
-<ol>
-{% for profile in sorted_profiles %}
-<li>{{profile.given_name}} {{profile.family_name}} ({{profile.id}}) - {% firstof profile.org %}, {% firstof profile.unit %}</li>
-{% endfor %}
-</ol>
-
+</section>
+  <section>
+  <p>Current authors ({{profile_amount}}):</p>
+  <ol>
+  {% for profile in sorted_profiles %}
+  <li>{{profile.given_name}} {{profile.family_name}} ({{profile.id}}) - {% firstof profile.org %}, {% firstof profile.unit %}</li>
+  {% endfor %}
+  </ol>
+</section>
 {% endblock %}

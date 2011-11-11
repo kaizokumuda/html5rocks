@@ -23,6 +23,7 @@ import datetime
 import logging
 import os
 import re
+import yaml
 
 # Libraries
 import html5lib
@@ -460,8 +461,21 @@ class ContentHandler(webapp.RequestHandler):
         return self.redirect("/en/%s?redirect_from_locale=%s" % (relpath,
                                                                  locale))
     elif os.path.isfile(path):
+      tutorials = memcache.get('tutorials')
+      if tutorials is None:
+        tutorials = []
+        result = common.Resource.all()
+
+        for r in result:
+          tutorials.append(r)
+          tutorials[-1].classes = [x.replace('class:', '') for x in r.tags if x.startswith('class:')]
+          tutorials[-1].tags = [x for x in r.tags if not x.startswith('class:')]
+          tutorials[-1].type = [x for x in r.tags if x.startswith('type:')][0]
+
+        memcache.set('tutorials', tutorials)
+
       data = {
-        'tutorials': common.Resource.all() #TODO(ericbidelman): memcache this!
+        'tutorials': tutorials
       }
       self.render(data=data, template_path=path, relpath=relpath)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
@@ -475,22 +489,30 @@ class ContentHandler(webapp.RequestHandler):
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
   def addTestResources(self):
-    author_key = common.Author.get_by_key_name(u'hanrui')
-    sample = common.Resource(
-        title=u'A Beginner\'s Guide to Using the Application Cache',
-        description=u'A beginner\'s guide to using the Application Cache.',
-        author=author_key,
-        url=u'tutorials/appcache/beginner/',
-        browser_support=[u'chrome', u'safari', u'opera'],
-        update_date=datetime.date(2011, 8, 25),
-        publication_date=datetime.date(2011, 10, 1),
-        tags=[u'offline'])
-    sample.put()
+    memcache.delete('tutorials')
 
+    f = file(os.path.dirname(__file__) + '/tutorials.yaml', 'r')
+    for tut in yaml.load_all(f):
+      try:
+        author_key = common.Author.get_by_key_name(tut['author_id'])
+
+        logging.info(author_key)
+
+        sample = common.Resource(
+          title=tut['title'],
+          description=tut['description'],
+          author=author_key,
+          url=tut['url'],
+          browser_support=tut['browser_support'],
+          update_date=datetime.date.today(),
+          publication_date=tut['publication_date'],
+          tags=tut['tags'])
+        sample.put()
+      except TypeError:
+        pass # TODO(ericbidelman): Not sure why this is throwing an error, but ignore it.
+    f.close()
 
   def addTestAuthors(self):
-    import yaml
-
     f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
     for profile in yaml.load_all(f):
       logging.info(profile)

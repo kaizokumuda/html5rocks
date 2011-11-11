@@ -4,6 +4,9 @@
 
 {% block head %}
 <style>
+.page.current {
+  margin: 2em auto;
+}
 th {
   text-align: right;
 }
@@ -44,7 +47,7 @@ form li {
 {% endblock %}
 
 {% block body %}
-<div>
+<section>
   <h2>Add a new tutorial:</h2>
   <form name="tutorial_form" method="POST" action="/database/resource">
     <table>
@@ -52,13 +55,13 @@ form li {
       <tr><td colspan="2" style="text-align: right;"><input type="submit" /></td></tr>
     </table>
   </form>
-</div>
-
-<p>Current resources:</p>
-<ol>
-{% for r in resources %}
-<li><a href="{{r.url}}" target="_blank">{{r.title}}</a> - {% for tag in r.tags %}{{tag}}{% if not forloop.last %}, {% endif %}{% endfor %} - <a href="/database/resource/{{r.key.id}}" target="_blank">[Edit]</a></li>
-{% endfor %}
-</ol>
-
+</section>
+<section>
+  <p>Current resources:</p>
+  <ol>
+  {% for r in resources %}
+  <li><a href="{{r.url}}" target="_blank">{{r.title}}</a> - {% for tag in r.tags %}{{tag}}{% if not forloop.last %}, {% endif %}{% endfor %} - <a href="/database/resource/{{r.key.id}}" target="_blank">[Edit]</a></li>
+  {% endfor %}
+  </ol>
+</section>
 {% endblock %}
