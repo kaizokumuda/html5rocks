@@ -314,14 +314,14 @@ $(document).ready(function() {
   $('.tag').live('click', filterTag);
   if (document.location.hash) {
     // Hide all samples as soon as DOM is loaded to prevent flicker effect.
-    var samples = $('.sample');
+    var samples = $('.tutorial_listing');
     samples.addClass('hidden');
     filterTag(document.location.hash.substring(1));
   }
 });
 
 function clearFilter() {
-  $('.sample.hidden').removeClass('hidden');
+  $('.tutorial_listing.hidden').removeClass('hidden');
   $('#filter').addClass('hidden');
   if (!!window.history) {
     var lang = document.documentElement.lang || 'en';
@@ -335,12 +335,12 @@ function filterTag(opt_tag) {
   var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
   document.location.hash = tag;
 
-  var samples = $('.sample');
+  var samples = $('.tutorial_listing');
 
   if (tag) {
     samples.addClass('hidden');
     $.each(tag.split(','), function(i, eachtag) {
-      samples.find('span.tag:contains("' + eachtag + '")').closest('.sample').removeClass('hidden');
+      samples.find('span.tag:contains("' + eachtag + '")').closest('.tutorial_listing').removeClass('hidden');
     });
     $('#filter_tag').text(tag);
     $('#filter').removeClass('hidden');

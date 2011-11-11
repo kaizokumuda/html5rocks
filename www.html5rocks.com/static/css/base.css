@@ -2394,19 +2394,23 @@ body[data-href='tutorials'] .page header .share
   margin-right: 1.5em;
 }
 
+.tutorial_listing .author {
+  margin-left: 1em;
+}
+
 .tutorial_listing .author img.author_image
 {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   margin-left: .25em;
-  vertical-align: -5px;
+  margin-top: -4px;
 }
 
 .tutorial_listing .tag
 {
   color: #888;
   font-size: 11px;
-  margin: .4em .5em 0 .5em;
+  margin: 2px 0.5em 0 0.5em;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -2418,12 +2422,12 @@ body[data-href='tutorials'] .page header .share
 
 .tutorial_listing .classes
 {
-  margin-top: .3em;
+
 }
 
 .tutorial_listing .browsers
 {
-  margin: .25em 0 0 1.5em;
+  margin: 0 0 0 1.5em;
 }
 
 .tutorial_listing .summary

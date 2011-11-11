@@ -91,7 +91,7 @@ class TutorialForm(djangoforms.ModelForm):
     #exclude = ['update_date']
     #fields = ['title', 'url', 'author', 'description', 'tags']
 
-  sorted_profiles = get_sorted_profiles()
+  sorted_profiles = get_sorted_profiles(update_cache=True)
   author = forms.ChoiceField(choices=[(p['id'],
       '%s %s' % (p['given_name'], p['family_name'])) for p in sorted_profiles])
 
