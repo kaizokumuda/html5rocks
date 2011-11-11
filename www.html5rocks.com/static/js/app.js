@@ -62,30 +62,48 @@ $('.subheader.features ul li a').click(function() {
 function finishPanelLoad(pagePanel, elemstate) {
   //document.body.className = '';
   //$('body').addClass(page);
+  if (pagePanel.hasClass('next')) {
+    pagePanel.removeClass('next');
+    pagePanel.prev().addClass('previous');    
+  } else if (pagePanel.hasClass('previous')) {
+    pagePanel.removeClass('previous');
+    pagePanel.next().addClass('next');
+  }
+  $('.page').removeClass('current');
+  pagePanel.addClass('current');    
 
   // TODO(Google): scrollTo needs to scroll to and element that is not display:none.
   // base.css applies this to .page elements. Not sure why pagePanel.addClass('current')
   // doesn't take care of this.
-  $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
-    $('.subheader.features').slideUp('fast', function() {
+  // $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
+  $('.subheader.features').slideUp('fast', function() {
 
-      if (elemstate.popped != 'popped')
-        state.push( elemstate );
+    if (elemstate.popped != 'popped')
+      state.push( elemstate );
 
-      route.init(page);
-    });
-  }});
+    route.init(page);
+  });
+  // }});
 }
 
 $(document).keydown(function(e) {
   var goFeature = '';
+  var currentPage = $('.page.current');
   if (e.keyCode == 37) {
-    goFeature = $('.current').prev().attr('id').replace(/features-/, '');
+    goFeature = currentPage.prev().attr('id').replace(/features-/, '');
+    currentPage.prev().addClass('previous')
   }
   if (e.keyCode == 39) {
-    goFeature = $('.current').next().attr('id').replace(/features-/, '');
+    goFeature = currentPage.next().attr('id').replace(/features-/, '');
+    currentPage.next().addClass('next')
   }
   if (goFeature) {
+    currentPage.one('webkitTransitionEnd', function(e) {
+      $('.page').removeClass('previous');
+      $('.page').removeClass('next');
+
+    });
+
     loadContent($('div.features a.' + goFeature)[0])
   }
 });
@@ -137,9 +155,9 @@ function loadContent(elem, popped){
   }
 
   $('body').attr('data-href', page);
-  $('.page').removeClass('current');
+  // $('.page').removeClass('current');
 
-  pagePanel.addClass('current');
+  // pagePanel.addClass('current');
 
 
   // If we have an anchor, just scroll to it on the current page panel.
@@ -155,7 +173,7 @@ function loadContent(elem, popped){
     finishPanelLoad(pagePanel, elemstate);
   } else {
     pagePanel
-      .addClass('current loaded')
+      .addClass('loaded')
       .load(href + ' [data-import-html]', function() {
         finishPanelLoad(pagePanel, elemstate);
       });
@@ -164,21 +182,7 @@ function loadContent(elem, popped){
 }; // eo loadContent()
 
 $(document).keydown(function(e) {
-  /*currentId = $('.current').attr('id');
-  if (e.keyCode == 39) {
-    nextPage = $('.current').next();
-    nextPage.html('<p style="border: 4px solid red">Loading content...</p>');
-    nextPage.addClass('next loaded');
-    setTimeout(function() {
-      $('.current').attr('class', $('.current').attr('class').replace(/current/, 'previous'));
-      $('.page.next').attr('class', $('.page.next').attr('class').replace(/next/, 'current'));
-    }, 10);
-
-    $('.page.current').one('webkitTransitionEnd', function(e) {
-      e.target.classList.remove('previous');
-      $('.next').removeClass('next');
-    });
-  } else */if (e.keyCode == 27) { // ESC
+  if (e.keyCode == 27) { // ESC
     // Hide search and/or feature bar.
     $('#search_hide, #features_hide').click();
 
