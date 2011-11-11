@@ -361,7 +361,7 @@
     <div class="page" id="features-graphics"></div>
     <div class="page" id="features-presentation"></div>
     <div class="page" id="features-performance"></div>
-    <div class="page" id="features-nuts_and_bolts"></div>    
+    <div class="page" id="features-nuts_and_bolts"></div>
 
     <div class="page" id="why"></div>
     <div class="page" id="tutorials"></div>
@@ -449,6 +449,21 @@
         window.history.replaceState) {
       window.history.replaceState(
           {}, '', document.location.href.replace(/\?utm_.*/, ''));
+    }
+
+    if ($(window).width() < '1200' && $(window).width() > '1000' && $('.toc')) {
+    	// Fix the TOC if our scroll position is below the top of the page.
+    	var top = $('.toc').offset().top - 50;
+
+    	$(window).scroll(function (event) {
+    		// Get the position of the vertical scroll.
+    		var y = $(this).scrollTop();
+
+    		if (y >= top)
+    			$('.toc').addClass('fixed').removeClass('bottom');
+    		else
+    			$('.toc').removeClass('fixed').removeClass('bottom');
+    	});
     }
   })();
 
