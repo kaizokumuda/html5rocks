@@ -2387,7 +2387,6 @@ body[data-href='tutorials'] .page header .share
   float: left;
 }
 
-
 .tutorial_listing .author,
 .tutorial_listing .tags
 {
@@ -2422,7 +2421,7 @@ body[data-href='tutorials'] .page header .share
 
 .tutorial_listing .classes
 {
-
+  margin-left: 1em;
 }
 
 .tutorial_listing .browsers
