@@ -2387,23 +2387,21 @@ body[data-href='tutorials'] .page header .share
   float: left;
 }
 
-
-.tutorial_listing .author,
 .tutorial_listing .tags
 {
   margin-right: 1.5em;
 }
 
 .tutorial_listing .author {
-  margin-left: 1em;
+  margin-left: 1.5em;
 }
 
 .tutorial_listing .author img.author_image
 {
   width: 18px;
   height: 18px;
-  margin-left: .25em;
-  margin-top: -4px;
+  margin-left: 0.25em;
+  vertical-align: top;
 }
 
 .tutorial_listing .tag
@@ -2427,7 +2425,7 @@ body[data-href='tutorials'] .page header .share
 
 .tutorial_listing .browsers
 {
-  margin: 0 0 0 1.5em;
+  margin: 0 1.5em;
 }
 
 .tutorial_listing .summary
