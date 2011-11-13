@@ -489,8 +489,12 @@ class ContentHandler(webapp.RequestHandler):
       self.render(data={}, template_path=path[:path.rfind('.')] + '.html',
                   relpath=relpath)
     elif os.path.isfile(path + '.html'):
-      self.render(data={'category': relpath.replace('features/', '')},
-                  template_path=path + '.html', relpath=relpath)
+      category = relpath.replace('features/', '')
+      data = {
+        'category': category,
+        'results': TagsHandler().get_as_db('class:' + category)
+      }
+      self.render(data=data, template_path=path + '.html', relpath=relpath)
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
@@ -565,36 +569,50 @@ class APIHandler(webapp.RequestHandler):
 
 class TagsHandler(webapp.RequestHandler):
 
-  def get(self, tag):
+  def _get(self, tag):
     tag = urllib2.unquote(tag)
 
     resources = memcache.get('tag|' + tag)
 
     if resources is None:
-      query = common.Resource.all().filter('tags =', tag).order('-publication_date')
-
-      resources = []
-      for r in query:
-        second_author = None
-        if r.second_author:
-          second_author = r.second_author.key().name()
-        resources.append(r.to_dict())
-        resources[-1]['publication_date'] = r.publication_date.isoformat()
-        resources[-1]['update_date'] = r.update_date.isoformat()
-        resources[-1]['author'] = r.author.key().name()
-        resources[-1]['second_author'] = second_author
-
+      resources = common.Resource.all().filter('tags =', tag).order('-publication_date')
       memcache.set('tag|' + tag, resources)
+
+    return resources
+
+  def get(self, format, tag):
+    if format == 'json':
+      return self.get_as_json(tag)
+    elif format == 'db':
+      return self.get_as_db(tag)
+
+  def get_as_json(self, tag):
+    query = self._get(tag)
+
+    resources = []
+    for r in query:
+      second_author = None
+      if r.second_author:
+        second_author = r.second_author.key().name()
+      resources.append(r.to_dict())
+      resources[-1]['publication_date'] = r.publication_date.isoformat()
+      resources[-1]['update_date'] = r.update_date.isoformat()
+      resources[-1]['author'] = r.author.key().name()
+      resources[-1]['second_author'] = second_author
 
     self.response.headers['Content-Type'] = 'application/json'
     self.response.out.write(simplejson.dumps(resources))
     #self.response.out.write(resources)
     return
 
+  def get_as_db(self, tag):
+    return self._get(tag)
+
+
 def main():
   application = webapp.WSGIApplication([
     ('/api/(.*)', APIHandler),
-    ('/tags/(.*)', TagsHandler),
+    ('/tags/(.*)/(.*)', TagsHandler),
     ('/(.*)', ContentHandler)
   ], debug=True)
   run_wsgi_app(application)

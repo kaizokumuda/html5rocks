@@ -1083,7 +1083,7 @@ input[type="search"]::-webkit-search-results-decoration
 .subheader .features ul li a.offline        { background-position: 0    2px; }
 .subheader .features ul li a.storage        { background-position: 0  -48px; }
 .subheader .features ul li a.connectivity   { background-position: 0  -98px; }
-.subheader .features ul li a.file           { background-position: 0 -149px; }
+.subheader .features ul li a.file_access    { background-position: 0 -149px; }
 .subheader .features ul li a.semantics      { background-position: 0 -198px; }
 .subheader .features ul li a.multimedia     { background-position: 0 -248px; }
 .subheader .features ul li a.graphics       { background-position: 0 -298px; }
@@ -1265,7 +1265,7 @@ body[data-href='business']   nav.paginator.home ul.business,
 body[data-href='features-offline']        nav.paginator.features,
 body[data-href='features-storage']        nav.paginator.features,
 body[data-href='features-connectivity']   nav.paginator.features,
-body[data-href='features-file']           nav.paginator.features,
+body[data-href='features-file_access']    nav.paginator.features,
 body[data-href='features-semantics']      nav.paginator.features,
 body[data-href='features-multimedia']     nav.paginator.features,
 body[data-href='features-graphics']       nav.paginator.features,
@@ -1275,7 +1275,7 @@ body[data-href='features-nuts_and_bolts'] nav.paginator.features,
 body[data-href='features-offline']        nav.paginator.features ul.offline,
 body[data-href='features-storage']        nav.paginator.features ul.storage,
 body[data-href='features-connectivity']   nav.paginator.features ul.connectivity,
-body[data-href='features-file']           nav.paginator.features ul.file_access,
+body[data-href='features-file_access']    nav.paginator.features ul.file_access,
 body[data-href='features-semantics']      nav.paginator.features ul.semantics,
 body[data-href='features-multimedia']     nav.paginator.features ul.multimedia,
 body[data-href='features-graphics']       nav.paginator.features ul.graphics,
@@ -1670,7 +1670,7 @@ pre.prettyprint.small
 body[data-href='features-offline'] .outline_nav_toggle,
 body[data-href='features-storage'] .outline_nav_toggle,
 body[data-href='features-connectivity'] .outline_nav_toggle,
-body[data-href='features-file'] .outline_nav_toggle,
+body[data-href='features-file_access'] .outline_nav_toggle,
 body[data-href='features-semantics'] .outline_nav_toggle,
 body[data-href='features-multimedia'] .outline_nav_toggle,
 body[data-href='features-graphics'] .outline_nav_toggle,
@@ -1838,7 +1838,7 @@ nav.outline.features ul ul a
 body[data-href='features-offline']        nav.outline.features .offline        ul { display: block; }
 body[data-href='features-storage']        nav.outline.features .storage        ul { display: block; }
 body[data-href='features-connectivity']   nav.outline.features .connectivity   ul { display: block; }
-body[data-href='features-file']           nav.outline.features .file_access    ul { display: block; }
+body[data-href='features-file_access']    nav.outline.features .file_access    ul { display: block; }
 body[data-href='features-semantics']      nav.outline.features .semantics      ul { display: block; }
 body[data-href='features-multimedia']     nav.outline.features .multimedia     ul { display: block; }
 body[data-href='features-graphics']       nav.outline.features .graphics       ul { display: block; }
@@ -1866,7 +1866,7 @@ body[data-href='features-nuts_and_bolts'] nav.outline.features .nuts_and_bolts u
 body[data-href='features-offline']        .feature_icon { background-position: center 76px, left top; }
 body[data-href='features-storage']        .feature_icon { background-position: 140px -298px, left top; }
 body[data-href='features-connectivity']   .feature_icon { background-position: center -672px, left top; }
-body[data-href='features-file']           .feature_icon { background-position: center -1046px, left top; }
+body[data-href='features-file_access']    .feature_icon { background-position: center -1046px, left top; }
 body[data-href='features-semantics']      .feature_icon { background-position: center -1416px, left top; }
 body[data-href='features-multimedia']     .feature_icon { background-position: center -1790px, left top; }
 body[data-href='features-graphics']       .feature_icon { background-position: center -2164px, left top; }

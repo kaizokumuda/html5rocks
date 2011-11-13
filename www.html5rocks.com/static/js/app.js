@@ -75,15 +75,14 @@ function finishPanelLoad(pagePanel, elemstate) {
   // TODO(Google): scrollTo needs to scroll to and element that is not display:none.
   // base.css applies this to .page elements. Not sure why pagePanel.addClass('current')
   // doesn't take care of this.
-  // $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
-  $('.subheader.features').slideUp('fast', function() {
+  $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
+    $('.subheader.features').slideUp('fast', function() {
+      if (elemstate.popped != 'popped')
+        state.push( elemstate );
 
-    if (elemstate.popped != 'popped')
-      state.push( elemstate );
-
-    route.init(page);
-  });
-  // }});
+      route.init(page);
+    });
+  }});
 }
 
 $(document).keydown(function(e) {
@@ -276,10 +275,6 @@ window.route = {
 };
 
 window.addEventListener('DOMContentLoaded', route.onload, false);
-
-
-
-
 
 window.state = {
   push : function(obj){
