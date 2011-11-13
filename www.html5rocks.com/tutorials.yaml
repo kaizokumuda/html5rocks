@@ -719,7 +719,7 @@ tags:
 title: HTML5 Video
 url: /tutorials/video/basics/
 author_id: ernestd
-publication_date: 
+publication_date: 2010-08-03
 description: Video is one of the most interesting and widely supported features of HTML5. This tutorial covers the mechanics of incorporating native video into your site (without a plugin) and gives interesting examples of using the &gt;video&lt; tag.
 browser_support:
 - chrome
