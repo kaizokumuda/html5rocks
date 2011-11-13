@@ -74,7 +74,8 @@ class Resource(DictModel):
 
   title = db.StringProperty(required=True)
   description = db.StringProperty()
-  author = db.ReferenceProperty(Author)
+  author = db.ReferenceProperty(Author, collection_name='author_one_set')
+  second_author = db.ReferenceProperty(Author, collection_name='author_two_set')
   url = db.StringProperty()
   browser_support = db.StringListProperty()
   update_date = db.DateProperty()
@@ -94,6 +95,7 @@ class TutorialForm(djangoforms.ModelForm):
   sorted_profiles = get_sorted_profiles(update_cache=True)
   author = forms.ChoiceField(choices=[(p['id'],
       '%s %s' % (p['given_name'], p['family_name'])) for p in sorted_profiles])
+  second_author = author
 
   browsers = ['Chrome', 'FF', 'Safari', 'Opera', 'IE']
   browser_support = forms.MultipleChoiceField(

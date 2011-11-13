@@ -23,6 +23,7 @@ import datetime
 import logging
 import os
 import re
+import urllib2
 import yaml
 
 # Libraries
@@ -260,6 +261,11 @@ class ContentHandler(webapp.RequestHandler):
     elif relpath == 'database/resource':
       #form = common.TutorialForm(data=self.request.POST)
       author_key = common.Author.get_by_key_name(self.request.get('author'))
+      author_key2 = common.Author.get_by_key_name(
+          self.request.get('second_author'))
+
+      if author_key.key() == author_key2.key():
+        author_key2 = None
 
       tags = (self.request.get('tags') or '').split(',')
       tags = [x.strip() for x in tags if x.strip()]
@@ -274,6 +280,7 @@ class ContentHandler(webapp.RequestHandler):
           title=self.request.get('title'),
           description=self.request.get('description'),
           author=author_key,
+          second_author=author_key2,
           url=self.request.get('url') or None,
           browser_support=browser_support,
           update_date=datetime.date.today(),
@@ -464,7 +471,7 @@ class ContentHandler(webapp.RequestHandler):
       tutorials = memcache.get('tutorials')
       if tutorials is None:
         tutorials = []
-        result = common.Resource.all()
+        result = common.Resource.all().order('-publication_date')
 
         for r in result:
           tutorials.append(r)
@@ -495,14 +502,16 @@ class ContentHandler(webapp.RequestHandler):
     for tut in yaml.load_all(f):
       try:
         author_key = common.Author.get_by_key_name(tut['author_id'])
-
-        logging.info(author_key)
+        author_key2 = None
+        if 'author_id2' in tut:
+          author_key2 = common.Author.get_by_key_name(tut['author_id2'])
 
         sample = common.Resource(
           title=tut['title'],
           description=tut['description'],
           author=author_key,
-          url=tut['url'],
+          second_author=author_key2,
+          url=unicode(tut['url']),
           browser_support=tut['browser_support'],
           update_date=datetime.date.today(),
           publication_date=tut['publication_date'],
@@ -515,7 +524,6 @@ class ContentHandler(webapp.RequestHandler):
   def addTestAuthors(self):
     f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
     for profile in yaml.load_all(f):
-      logging.info(profile)
       author = common.Author(
           key_name=unicode(profile['id']),
           given_name=unicode(profile['name']['given']),
@@ -558,18 +566,25 @@ class APIHandler(webapp.RequestHandler):
 class TagsHandler(webapp.RequestHandler):
 
   def get(self, tag):
-    #TODO(ericbidelman): memcache this
-    query = common.Resource.all()
-    query.filter('tags =', tag)
+    tag = urllib2.unquote(tag)
 
-    #dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime.date) else None
+    resources = memcache.get('tag|' + tag)
 
-    resources = []
-    for r in query:
-      resources.append(r.to_dict())
-      resources[-1]['publication_date'] = r.publication_date.isoformat()
-      resources[-1]['update_date'] = r.update_date.isoformat()
-      resources[-1]['author'] = r.author.key().name()
+    if resources is None:
+      query = common.Resource.all().filter('tags =', tag).order('-publication_date')
+
+      resources = []
+      for r in query:
+        second_author = None
+        if r.second_author:
+          second_author = r.second_author.key().name()
+        resources.append(r.to_dict())
+        resources[-1]['publication_date'] = r.publication_date.isoformat()
+        resources[-1]['update_date'] = r.update_date.isoformat()
+        resources[-1]['author'] = r.author.key().name()
+        resources[-1]['second_author'] = second_author
+
+      memcache.set('tag|' + tag, resources)
 
     self.response.headers['Content-Type'] = 'application/json'
     self.response.out.write(simplejson.dumps(resources))

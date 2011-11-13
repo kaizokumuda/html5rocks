@@ -386,7 +386,8 @@ tags:
 
 title: "Case Study: Converting Wordico from Flash to HTML5"
 url: /tutorials/casestudies/wordico.html
-author_id: adammark adriangould
+author_id: adammark
+author_id2: adriangould
 publication_date: 2011-03-10
 description: Learn how we converted our <a href="https://chrome.google.com/webstore/detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl">Wordico</a> crossword game from Flash to HTML5.
 browser_support:
@@ -460,7 +461,8 @@ tags:
 
 title: "Case Study: Onslaught! Arena"
 url: /tutorials/casestudies/onslaught.html
-author_id: matthackett geoffblair
+author_id: matthackett
+author_id2: geoffblair
 publication_date: 2011-02-10 
 description: Learn how <a href="https://chrome.google.com/webstore/detail/khodnfbkbanejphecblcofbghjdgfaih">Onslaught! Arena</a> created their fast-paced, arcade-style medieval fantasy shoot 'em up.
 browser_support:

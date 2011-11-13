@@ -143,11 +143,24 @@
             <span class="date">{{tut.publication_date}}</span>
             <span class="author">By:
               <a href="/profiles/#!/{{ tut.author.key.name }}">
-                {{ tut.author.given_name }} {{ tut.author.family_name }}
                 <img class="author_image" src="/static/images/profiles/{{ tut.author.key.name }}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}">
+                {{ tut.author.given_name }} {{ tut.author.family_name }}
               </a>
+              {% if tut.second_author %}
+              <a href="/profiles/#!/{{ tut.second_author.key.name }}">
+                <img class="author_image" src="/static/images/profiles/{{ tut.second_author.key.name }}.png" alt="{{ tut.second_author.given_name }} {{ tut.second_author.family_name }}" title="{{ tut.second_author.given_name }} {{ tut.second_author.family_name }}">
+                {{ tut.second_author.given_name }} {{ tut.second_author.family_name }}
+              </a>
+              {% endif %}
             </span>
-
+            <span class="browsers">
+              <span class="browser opera {% if 'opera' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
+              <span class="browser ie {% if 'ie' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
+              <span class="browser safari {% if 'safari' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Safari</span><span class="support">unsupported</span></span>
+              <span class="browser ff {% if 'ff' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Firefox</span><span class="support">unsupported</span></span>
+              <span class="browser chrome {% if 'chrome' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
+            </span>
+            
             {% for tag in tut.tags %}
               <span class="tag {% if 'type:' in tag %}hidden{% endif %}">{{tag}}</span>
             {% endfor %}
@@ -157,14 +170,6 @@
                 <span class="class {{tag}}"><span class="class_name">{{tag}}</span></span>
               {% endfor %}
             </div>
-
-            <span class="browsers">
-              <span class="browser opera {% if 'opera' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
-              <span class="browser ie {% if 'ie' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
-              <span class="browser safari {% if 'safari' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Safari</span><span class="support">unsupported</span></span>
-              <span class="browser ff {% if 'ff' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Firefox</span><span class="support">unsupported</span></span>
-              <span class="browser chrome {% if 'chrome' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
-            </span>
           </div>
           <div class="summary">
             {{tut.description|safe}}
