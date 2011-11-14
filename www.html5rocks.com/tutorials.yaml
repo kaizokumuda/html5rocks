@@ -40,7 +40,7 @@ browser_support:
 tags:
 - mobile
 - class:performance
-- type:tutorial
+- type:article
 
 ---
 
@@ -93,7 +93,7 @@ tags:
 - canvas
 - class:graphics
 - class:performance
-- type:tutorial
+- type:article
 
 ---
 
@@ -111,7 +111,7 @@ browser_support:
 tags:
 - internals
 - class:performance
-- type:tutorial
+- type:article
 
 ---
 
@@ -129,11 +129,11 @@ browser_support:
 tags:
 - canvas
 - class:graphics
-- type:tutorial
+- type:article
 
 ---
 
-title: Auto-Resizing HTML5 Games
+title: "Case Study: Auto-Resizing HTML5 Games"
 url: /tutorials/casestudies/gopherwoord-studios-resizing-html5-games.html
 author_id: derekdetweiler
 publication_date: 2011-07-03
@@ -146,8 +146,7 @@ browser_support:
 - ff 
 tags:
 - games
-- casestudy
-- type:tutorial
+- type:casestudy
 
 ---
 
@@ -182,7 +181,7 @@ browser_support:
 tags:
 - mobile
 - feature detection
-- type:tutorial
+- type:article
 
 ---
 
@@ -198,7 +197,7 @@ browser_support:
 - ff
 tags:
 - mobile
-- type:tutorial
+- type:article
 
 ---
 
@@ -264,7 +263,7 @@ browser_support:
 tags:
 - mobile
 - class:offline
-- type:tutorial
+- type:article
 
 ---
 
@@ -379,8 +378,7 @@ browser_support:
 tags:
 - eventsource
 - websockets
-- casestudy
-- type:tutorial
+- type:casestudy
 
 ---
 
@@ -395,11 +393,10 @@ browser_support:
 - safari
 - opera
 tags:
-- casestudy
 - games
 - canvas
 - class:graphics
-- type:tutorial
+- type:casestudy
 
 ---
 
@@ -417,7 +414,7 @@ browser_support:
 - opera
 tags:
 - mobile
-- type:tutorial
+- type:article
 
 ---
 
@@ -455,7 +452,7 @@ tags:
 - css
 - class:performance
 - class:presentation
-- type:tutorial
+- type:article
 
 ---
 
@@ -472,9 +469,8 @@ browser_support:
 - opera
 tags:
 - canvas
-- casestudy
 - games
-- type:tutorial
+- type:casestudy
 
 ---
 
@@ -491,7 +487,7 @@ browser_support:
 tags:
 - canvas
 - games
-- type:tutorial
+- type:article
 
 ---
 
@@ -506,8 +502,7 @@ browser_support:
 - ff
 - opera
 tags:
-- casestudy
-- type:tutorial
+- type:casestudy
 
 ---
 
@@ -524,8 +519,7 @@ browser_support:
 - ie
 tags:
 - canvas
-- casestudy
-- type:tutorial
+- type:casestudy
 
 ---
 
@@ -574,8 +568,7 @@ browser_support:
 - safari
 tags:
 - canvas
-- casestudy
-- type:tutorial
+- type:casestudy
 
 ---
 
@@ -646,7 +639,7 @@ tags:
 - indexeddb
 - class:offline
 - class:storage
-- type:tutorial
+- type:article
 
 ---
 
@@ -677,10 +670,9 @@ browser_support:
 - safari
 - ff
 tags:
-- casestudy
 - canvas
 - svg
-- type:tutorial
+- type:casestudy
 
 ---
 
@@ -692,9 +684,8 @@ description: Learn how Box.net implemented GMail's attachment drag and drop to t
 browser_support:
 - chrome
 tags:
-- casestudy
 - dnd
-- type:tutorial
+- type:casestudy
 
 ---
 
@@ -780,7 +771,7 @@ browser_support:
 tags:
 - devtools
 - class:performance
-- type:tutorial
+- type:article
 
 ---
 
@@ -812,7 +803,7 @@ browser_support:
 tags:
 - devtools
 - class:performance
-- type:tutorial
+- type:article
 
 ---
 
@@ -921,7 +912,7 @@ tags:
 ---
 
 title: A Simple TODO list using HTML5 WebDatabases
-url: 
+url: /tutorials/webdatabase/todo/
 author_id: paulkinlan
 publication_date: 2010-02-17
 description: Create a TODO list which persists data using a client side database.
