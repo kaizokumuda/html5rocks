@@ -106,46 +106,28 @@ class ContentHandler(webapp.RequestHandler):
   def get_feed(self, path):
     articles = memcache.get('feed|%s' % path)
     if articles is None or not self.request.cache:
-      template_text = template.render(path, {})
-      parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder('dom'))
-      dom_tree = parser.parse(template_text)
-
-      def __get_text(node_list):
-        rc = []
-        for node in node_list:
-          if node.nodeType == node.TEXT_NODE:
-            rc.append(node.data)
-        return ''.join(rc)
+      # DB query is memcached in get_all().
+      tutorials = common.Resource.get_all().order('-publication_date')
 
       articles = []
+      for tut in tutorials:
+        article = {}
+        article['title'] = tut.title
+        article['id'] = '-'.join(tut.title.lower().split())
+        article['href'] = tut.url
+        article['description'] = tut.description
+        article['author_id'] = tut.author.key().name()
+        if tut.second_author:
+          article['second_author'] = tut.second_author.key().name()
+        article['pubdate'] = datetime.datetime.strptime(
+                                 str(tut.publication_date), '%Y-%m-%d')
+        article['categories'] = []
+        for tag in tut.tags:
+          article['categories'].append(tag)
+        
+        articles.append(article)
 
-      article_elements = dom_tree.getElementsByTagName('article')
-      for element in article_elements:
-        if (element.getAttribute('class') == 'sample'):
-          article = {}
-          h = element.getElementsByTagName('h3')[0]
-          a = h.getElementsByTagName('a')[0]
-          article['title'] = __get_text(a.childNodes)
-          article['id'] = h.getAttribute('id')
-          article['href'] = a.getAttribute('href')
-          article['pubdate'] = h.getAttribute('data-pubdate')
-          if article['pubdate'] is not None:
-            article['pubdate'] = datetime.datetime.strptime(
-                article['pubdate'], '%Y-%m-%d')
-                          
-          divs = element.getElementsByTagName('div')
-
-          article['description'] = __get_text(divs[1].childNodes)
-          article['author_id'] = divs[0].getElementsByTagName('a')[0].getAttribute('data-id')
-          spans = divs[0].getElementsByTagName('span')
-          article['categories'] = []
-          for span in spans:
-            if (span.getAttribute('class') == 'tag'):
-              article['categories'].append(__get_text(span.childNodes))
-
-          articles.append(article)
-
-      memcache.set('feed|%s' % path, articles, 3600)
+      memcache.set('feed|%s' % path, articles, 86400) # Cache feed for 24hrs.
 
     return articles
 
@@ -207,23 +189,24 @@ class ContentHandler(webapp.RequestHandler):
 
   def render_atom_feed(self, template_path, data):
     prefix = '%s://%s' % (self.request.scheme, self.request.host)
-    logging.info(prefix)
 
     feed = feedgenerator.Atom1Feed(
-        # TODO: make title generic for any page.
-        title=_(u'HTML5Rocks - Tutorials'),
+        title=_(u'HTML5Rocks - Tutorials & Updates'),
         link=prefix,
         description=_(u'Take a guided tour through code that uses HTML5.'),
         language=u'en'
         )
-    for tutorial in data:
+    for tut in data:
+      author_name = unicode(tut['author_id'])
+      if 'second_author' in tut:
+        author_name += ',' + tut['second_author']
       feed.add_item(
-          title=tutorial['title'],
-          link=prefix + tutorial['href'],
-          description=tutorial['description'],
-          pubdate=tutorial['pubdate'],
-          author_name=tutorial['author_id'],
-          categories=tutorial['categories']
+          title=unicode(tut['title']),
+          link=prefix + tut['href'],
+          description=unicode(tut['description']),
+          pubdate=tut['pubdate'],
+          author_name=author_name,
+          categories=tut['categories']
           )
     self.response.headers.add_header('Content-Type', 'application/atom+xml')
     self.response.out.write(feed.writeString('utf-8'))
@@ -330,7 +313,7 @@ class ContentHandler(webapp.RequestHandler):
         
       template_data = {
         'tutorial_form': tutorial_form,
-        'resources': common.Resource.all().order('-publication_date')
+        'resources': common.Resource.get_all().order('-publication_date')
       }
       return self.render(data=template_data,
                          template_path='database/resource_new.html',
@@ -468,26 +451,24 @@ class ContentHandler(webapp.RequestHandler):
         return self.redirect("/en/%s?redirect_from_locale=%s" % (relpath,
                                                                  locale))
     elif os.path.isfile(path):
-      tutorials = memcache.get('tutorials')
-      if tutorials is None:
-        tutorials = []
-        result = common.Resource.all().order('-publication_date')
+      #TODO(ericbidleman): Don't need tutorials/updates for every file
+      result = common.Resource.get_all().order('-publication_date')
 
-        for r in result:
-          tutorials.append(r)
-          tutorials[-1].classes = [x.replace('class:', '') for x in r.tags if x.startswith('class:')]
-          tutorials[-1].tags = [x for x in r.tags if not x.startswith('class:')]
-          tutorials[-1].type = [x for x in r.tags if x.startswith('type:')][0]
+      tutorials = []
+      for r in result:
+        tutorials.append(r)
+        tutorials[-1].classes = [x.replace('class:', '') for x in r.tags
+                                 if x.startswith('class:')]
+        tutorials[-1].tags = [x for x in r.tags if not x.startswith('class:')]
+        tutorials[-1].type = [x for x in r.tags if x.startswith('type:')][0]
 
-        memcache.set('tutorials', tutorials)
+      self.render(
+          data={'tutorials': tutorials}, template_path=path, relpath=relpath)
 
-      data = {
-        'tutorials': tutorials
-      }
-      self.render(data=data, template_path=path, relpath=relpath)
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
       self.render(data={}, template_path=path[:path.rfind('.')] + '.html',
                   relpath=relpath)
+
     elif os.path.isfile(path + '.html'):
       category = relpath.replace('features/', '')
       data = {
@@ -495,6 +476,7 @@ class ContentHandler(webapp.RequestHandler):
         'results': TagsHandler().get_as_db('class:' + category)
       }
       self.render(data=data, template_path=path + '.html', relpath=relpath)
+
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
@@ -572,13 +554,9 @@ class TagsHandler(webapp.RequestHandler):
   def _get(self, tag):
     tag = urllib2.unquote(tag)
 
-    resources = memcache.get('tag|' + tag)
-
-    if resources is None:
-      resources = common.Resource.all().filter('tags =', tag).order('-publication_date')
-      memcache.set('tag|' + tag, resources)
-
-    return resources
+    # DB query is memcached in get_all().
+    return (common.Resource.get_all().filter('tags =', tag)
+                                     .order('-publication_date'))
 
   def get(self, format, tag):
     if format == 'json':

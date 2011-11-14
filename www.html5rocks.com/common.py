@@ -83,6 +83,15 @@ class Resource(DictModel):
   #generic tags and html5 feature group tags('offline', 'multimedia', etc.)
   tags = db.StringListProperty()
 
+  @classmethod
+  def get_all(self):
+    tutorials_query = memcache.get('tutorials')
+    if tutorials_query is None:
+      tutorials_query = self.all()
+      memcache.set('tutorials', tutorials_query)
+
+    return tutorials_query
+
 
 class TutorialForm(djangoforms.ModelForm):
   import datetime
