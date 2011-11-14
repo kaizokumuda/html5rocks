@@ -184,6 +184,20 @@ var tempJSON = [
     ]
   },
   {
+    "category":"JavaScript APIs-Quota API",
+    "samples":[
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/quota.html",
+        "files": ["samples/css/html5/basic.css",  "samples/js/html5/quota.js"],
+        "editor": "js",
+        "sampleName": "Show usage and quota request",
+        "tags": "",
+        "spec": "https://groups.google.com/a/chromium.org/group/chromium-html5/msg/5261d24266ba4366?pli=1",
+        "tutorial": "http://updates.html5rocks.com/2011/11/Quota-Management-API-Fast-Facts"
+      }
+    ]
+  },
+  {
     "category":"HTML",
     "samples":[
       {
