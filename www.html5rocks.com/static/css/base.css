@@ -2326,6 +2326,11 @@ body[data-href='tutorials'] .page header .share
   margin-bottom: .35em;
 }
 
+#filter {
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .page header section.filter ul
 {
   list-style: none;

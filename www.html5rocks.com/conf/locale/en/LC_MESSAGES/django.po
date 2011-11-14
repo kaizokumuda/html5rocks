@@ -1571,7 +1571,7 @@ msgid "A collection of useful references"
 msgstr ""
 
 #: content/tutorials/index.html:22
-msgid "Currently filtering by tag"
+msgid "Filtering by tag"
 msgstr ""
 
 #: content/tutorials/index.html:23

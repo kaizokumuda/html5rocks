@@ -317,7 +317,8 @@ $(document).ready(function() {
 
 function clearFilter() {
   $('.tutorial_listing.hidden').removeClass('hidden');
-  $('#filter').addClass('hidden');
+  $('.tag_filter input[type="text"]').val('');
+  $('#filter').parent().addClass('hidden');
   if (!!window.history) {
     var lang = document.documentElement.lang || 'en';
     history.replaceState({}, document.title, '/' + lang + '/tutorials');
@@ -327,6 +328,8 @@ function clearFilter() {
 };
 
 function filterTag(opt_tag) {
+  var e = window.event;
+
   var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
   document.location.hash = tag;
 
@@ -338,8 +341,8 @@ function filterTag(opt_tag) {
       samples.find('span.tag:contains("' + eachtag + '")').closest('.tutorial_listing').removeClass('hidden');
     });
     $('#filter_tag').text(tag);
-    $('#filter').removeClass('hidden');
-    window.scrollTo(0, 0);
+    $('#filter').parent().removeClass('hidden');
+    //window.scrollTo(0, 0);
   } else {
     clearFilter();
   }
