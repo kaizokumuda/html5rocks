@@ -15,50 +15,48 @@
     </hgroup>
 
     <section class="filter">
-      <form>
-        <div class="one_quarter">
-          <h3>Format:</h3>
-          <ul>
-            <li><label><input type="checkbox"> Tutorial</label></li>
-            <li><label><input type="checkbox"> Article</label></li>
-            <li><label><input type="checkbox"> Case Study</label></li>
-            <li><label><input type="checkbox"> News</label></li>
-            <li><label><input type="checkbox"> Presentation</label></li>
-            <li><label><input type="checkbox"> Video</label></li>
-          </ul>
-        </div>
-        <div class="one_quarter">
-          <h3>Audience:</h3>
-          <ul>
-            <li><label><input type="checkbox"> General</label></li>
-            <li><label><input type="checkbox"> Mobile</label></li>
-            <li><label><input type="checkbox"> Gaming</label></li>
-            <li><label><input type="checkbox"> Business</label></li>
-          </ul>
-        </div>
-        <div class="one_half">
-          <h3>Technology:</h3>
-          <ul>
-            <li><label><input type="checkbox"> Offline</label></li>
-            <li><label><input type="checkbox"> Storage</label></li>
-            <li><label><input type="checkbox"> Connectivity</label></li>
-            <li><label><input type="checkbox"> File Access</label></li>
-            <li><label><input type="checkbox"> Semantics</label></li>
-            <li><label><input type="checkbox"> Audio/Video</label></li>
-            <li><label><input type="checkbox"> 3D/Graphics</label></li>
-            <li><label><input type="checkbox"> Presentation</label></li>
-            <li><label><input type="checkbox"> Performance</label></li>
-            <li><label><input type="checkbox"> Nuts &amp; Bolts</label></li>
-          </ul>
-        </div>
+      <div class="one_quarter">
+        <h3>Format:</h3>
+        <ul id="updates_format_filter">
+          <li><label><input type="checkbox"> Tutorial</label></li>
+          <li><label><input type="checkbox"> Article</label></li>
+          <li><label><input type="checkbox"> Case Study</label></li>
+          <li><label><input type="checkbox"> News</label></li>
+          <li><label><input type="checkbox"> Presentation</label></li>
+          <li><label><input type="checkbox"> Video</label></li>
+        </ul>
+      </div>
+      <div class="one_quarter">
+        <h3>Audience:</h3>
+        <ul>
+          <li><label><input type="checkbox"> General</label></li>
+          <li><label><input type="checkbox"> Mobile</label></li>
+          <li><label><input type="checkbox"> Gaming</label></li>
+          <li><label><input type="checkbox"> Business</label></li>
+        </ul>
+      </div>
+      <div class="one_half">
+        <h3>Technology:</h3>
+        <ul>
+          <li><label><input type="checkbox"> Offline</label></li>
+          <li><label><input type="checkbox"> Storage</label></li>
+          <li><label><input type="checkbox"> Connectivity</label></li>
+          <li><label><input type="checkbox"> File Access</label></li>
+          <li><label><input type="checkbox"> Semantics</label></li>
+          <li><label><input type="checkbox"> Audio/Video</label></li>
+          <li><label><input type="checkbox"> 3D/Graphics</label></li>
+          <li><label><input type="checkbox"> Presentation</label></li>
+          <li><label><input type="checkbox"> Performance</label></li>
+          <li><label><input type="checkbox"> Nuts &amp; Bolts</label></li>
+        </ul>
+      </div>
 
-        <div class="tag_filter">
-          <label>
-            Tags:
-            <input type="text">
-          </label>
-        </div>
-      </form>
+      <div class="tag_filter">
+        <label>
+          Tags:
+          <input type="text" placeholder="Comma separated list of tags: workers,filesystem,file,..." onchange="filterTag(this.value);">
+        </label>
+      </div>
     </section>
 
     <span class="share">
@@ -70,112 +68,63 @@
     </span>
   </header>
 
-  <!--
-    <section>
-      <div id="filter" class="hidden">
-        {% trans "Currently filtering by tag" %} <span id="filter_tag"></span>.
-        <a href="javascript:clearFilter();">{% trans "[Clear filter]" %}</a>
-      </div>
-    </section>
+  <section class="hidden">
+    <div id="filter" style="text-align: center;">
+      {% trans "Filtering by tag" %}: <span id="filter_tag"></span>.
+      <a href="javascript:clearFilter();" target="_blank">{% trans "[Clear filter]" %}</a>
+    </div>
+  </section>
 
-    <aside id="tags">
-      <h3>{% trans "Filter by tag" %}</h3>
-      <div class="tag">3D</div>
-      <div class="tag">CSS</div>
-      <div class="tag">appcache</div>
-      <div class="tag">audio</div>
-      <div class="tag">binary</div>
-      <div class="tag">canvas</div>
-      <div class="tag">casestudy</div>
-      <div class="tag">chromeframe</div>
-      <div class="tag">dnd</div>
-      <div class="tag">debugging</div>
-      <div class="tag">devtools</div>
-      <div class="tag">device</div>
-      <div class="tag">devicemotion</div>
-      <div class="tag">deviceorientation</div>
-      <div class="tag">feature detection</div>
-      <div class="tag">file</div>
-      <div class="tag">filereader</div>
-      <div class="tag">filesystem</div>
-      <div class="tag">filewriter</div>
-      <div class="tag">flash</div>
-      <div class="tag">forms</div>
-      <div class="tag">games</div>
-      <div class="tag">geolocation</div>
-      <div class="tag">graphics</div>
-      <div class="tag">indexeddb</div>
-      <div class="tag">internals</div>
-      <div class="tag">mobile</div>
-      <div class="tag">multimedia</div>
-      <div class="tag">notifications</div>
-      <div class="tag">offline</div>
-      <div class="tag">performance</div>
-      <div class="tag">presentation</div>
-      <div class="tag">eventsource</div>
-      <div class="tag">navigationtiming</div>
-      <div class="tag">storage</div>
-      <div class="tag">svg</div>
-      <div class="tag">video</div>
-      <div class="tag">webaudio</div>
-      <div class="tag">webdatabase</div>
-      <div class="tag">webfonts</div>
-      <div class="tag">webgl</div>
-      <div class="tag">websockets</div>
-      <div class="tag">workers</div>
-      <div class="tag">xhr2</div>
-    </aside>
-  -->
+  <section>
+    <div id="index">
+      <h2>Recent Updates 
+      <a href="http://feeds.feedburner.com/html5rocks" style="vertical-align:text-top;" target="_blank">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJpSURBVDjLfVNJT1NRGL0/wY0/wonaEesOAxoTF4bEpY1GFGGBqEUhggjYaCVIcIKC1TiHiCEBiXEhVdm4EDaaKI2WofTRlqbYR8sbOhzfd5v3tEK8i5d3F+fcM3wf+3x065bZc9t6F5rNCLeYsXTJgkibBUK7FcsdVkS7bIh57Ihfs2PFa0fihgOx6w4QhrCMfmKXnYi4y7DcbEK8zYxEhwVJjxW/vDaIPXak+xxYv1MOqX8PlEEn1PtOKP4KTsLoZQLH  vQeRfjeAzPsBiE9O/Rec9e+F7HMiqiljJJteXvXX4O9TkEUon4awPlS5KThzq5xbY+SZZCf7DkGa8kH9Mo58SvjDpKwh+/biBnCq245opw2MAtvMszxah0IiaPDkPl4tASc9Nh40ow+B089ruexceBrqVC/kB5Vcdj44YZDIr5sM8Eq71larBYyqopczw6dLMuDSR11cdm52wshltaeCg6MtVLtGQD3rsqVHh6FOdqEgCgaJOuLisvVcMgEfBwtuExYvmMEoyQ1VPd5vSC9oQPH2PqRHzhfvksjB4YYyLLh3g9GE6eD83AcUhBkemPKwylCSHrvCZROYTtR7BPP1uzB3ViOg8SSwOl5v2M9HprlsOXCz6ORbgMuWvk7ye/KlF6GTOxE6YwKj2SbZ2eFq7pmOOvOCp732tJbfs8J3Ljv1pr9IMHYXP47vwM8GjYAWQx8S5Vk1pFd1JVUlB2uQuHeCe15qPQCh+xjmm6oQdG1HqFGzQAtBi/HvkOhV6YGRZ5JNLxN4sbG4kUxfZ1oMaoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height="16" />
+      </a>
+      </h2>
 
-    <section>
-      <div id="index">
-        <h2>Recent Updates</h2>
-        <!-- <a href="http://feeds.feedburner.com/html5rocks">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJpSURBVDjLfVNJT1NRGL0/wY0/wonaEesOAxoTF4bEpY1GFGGBqEUhggjYaCVIcIKC1TiHiCEBiXEhVdm4EDaaKI2WofTRlqbYR8sbOhzfd5v3tEK8i5d3F+fcM3wf+3x065bZc9t6F5rNCLeYsXTJgkibBUK7FcsdVkS7bIh57Ihfs2PFa0fihgOx6w4QhrCMfmKXnYi4y7DcbEK8zYxEhwVJjxW/vDaIPXak+xxYv1MOqX8PlEEn1PtOKP4KTsLoZQLH  vQeRfjeAzPsBiE9O/Rec9e+F7HMiqiljJJteXvXX4O9TkEUon4awPlS5KThzq5xbY+SZZCf7DkGa8kH9Mo58SvjDpKwh+/biBnCq245opw2MAtvMszxah0IiaPDkPl4tASc9Nh40ow+B089ruexceBrqVC/kB5Vcdj44YZDIr5sM8Eq71larBYyqopczw6dLMuDSR11cdm52wshltaeCg6MtVLtGQD3rsqVHh6FOdqEgCgaJOuLisvVcMgEfBwtuExYvmMEoyQ1VPd5vSC9oQPH2PqRHzhfvksjB4YYyLLh3g9GE6eD83AcUhBkemPKwylCSHrvCZROYTtR7BPP1uzB3ViOg8SSwOl5v2M9HprlsOXCz6ORbgMuWvk7ye/KlF6GTOxE6YwKj2SbZ2eFq7pmOOvOCp732tJbfs8J3Ljv1pr9IMHYXP47vwM8GjYAWQx8S5Vk1pFd1JVUlB2uQuHeCe15qPQCh+xjmm6oQdG1HqFGzQAtBi/HvkOhV6YGRZ5JNLxN4sbG4kUxfZ1oMaoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height="16" />
-        </a> -->
+      {% for tut in tutorials %}
+      <article class="tutorial_listing">
+        <h3 id="{{tut.title|slugify}}" data-pubdate="{{tut.publication_date}}">
+          <a href="{{tut.url}}">{{tut.title}}</a>
+        </h3>
+        <div>
+          <span class="date">{{tut.publication_date}}</span>
+          <span class="author">By:
+            <a href="/profiles/#!/{{ tut.author.key.name }}">
+              <img class="author_image" src="/static/images/profiles/{{ tut.author.key.name }}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}">
+              {{ tut.author.given_name }} {{ tut.author.family_name }}
+            </a>
+            {% if tut.second_author %}
+            <a href="/profiles/#!/{{ tut.second_author.key.name }}">
+              <img class="author_image" src="/static/images/profiles/{{ tut.second_author.key.name }}.png" alt="{{ tut.second_author.given_name }} {{ tut.second_author.family_name }}" title="{{ tut.second_author.given_name }} {{ tut.second_author.family_name }}">
+              {{ tut.second_author.given_name }} {{ tut.second_author.family_name }}
+            </a>
+            {% endif %}
+          </span>
+          <span class="browsers">
+            <span class="browser opera {% if 'opera' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
+            <span class="browser ie {% if 'ie' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
+            <span class="browser safari {% if 'safari' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Safari</span><span class="support">unsupported</span></span>
+            <span class="browser ff {% if 'ff' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Firefox</span><span class="support">unsupported</span></span>
+            <span class="browser chrome {% if 'chrome' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
+          </span>
 
-        {% for tut in tutorials %}
-        <article class="tutorial_listing">
-          <h3 id="{{tut.title|slugify}}" data-pubdate="{{tut.publication_date}}">
-            <a href="{{tut.url}}">{{tut.title}}</a>
-          </h3>
-          <div>
-            <span class="date">{{tut.publication_date}}</span>
-            <span class="author">By:
-              <a href="/profiles/#!/{{ tut.author.key.name }}">
-                <img class="author_image" src="/static/images/profiles/{{ tut.author.key.name }}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}">
-                {{ tut.author.given_name }} {{ tut.author.family_name }}
-              </a>
-              {% if tut.second_author %}
-              <a href="/profiles/#!/{{ tut.second_author.key.name }}">
-                <img class="author_image" src="/static/images/profiles/{{ tut.second_author.key.name }}.png" alt="{{ tut.second_author.given_name }} {{ tut.second_author.family_name }}" title="{{ tut.second_author.given_name }} {{ tut.second_author.family_name }}">
-                {{ tut.second_author.given_name }} {{ tut.second_author.family_name }}
-              </a>
-              {% endif %}
-            </span>
-            <span class="browsers">
-              <span class="browser opera {% if 'opera' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
-              <span class="browser ie {% if 'ie' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
-              <span class="browser safari {% if 'safari' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Safari</span><span class="support">unsupported</span></span>
-              <span class="browser ff {% if 'ff' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Firefox</span><span class="support">unsupported</span></span>
-              <span class="browser chrome {% if 'chrome' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
-            </span>
-            
-            {% for tag in tut.tags %}
-              <span class="tag {% if 'type:' in tag %}hidden{% endif %}">{{tag}}</span>
+          {% for tag in tut.tags %}
+            <span class="tag {% if 'type:' in tag %}hidden{% endif %}">{{tag}}</span>
+          {% endfor %}
+
+          <div class="classes">
+            {% for tag in tut.classes %}
+              <span class="class {{tag}}"><span class="class_name">{{tag}}</span></span>
             {% endfor %}
-
-            <div class="classes">
-              {% for tag in tut.classes %}
-                <span class="class {{tag}}"><span class="class_name">{{tag}}</span></span>
-              {% endfor %}
-            </div>
           </div>
-          <div class="summary">
-            {{tut.description|safe}}
-          </div>
-        </article>
-        {% endfor %}
+        </div>
+        <div class="summary">
+          {{tut.description|safe}}
+        </div>
+      </article>
+      {% endfor %}
 
     </div>
   </section>

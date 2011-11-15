@@ -271,7 +271,9 @@ $(document).ready(function() {
 
 function clearFilter() {
   $('.tutorial_listing.hidden').removeClass('hidden');
-  $('#filter').addClass('hidden');
+  $('.tag_filter input[type="text"]').val('');
+  $('#updates_format_filter input[type="checkbox"]').attr('checked', false);
+  $('#filter').parent().addClass('hidden');
   if (!!window.history) {
     var lang = document.documentElement.lang || 'en';
     history.replaceState({}, document.title, '/' + lang + '/tutorials');
@@ -280,20 +282,59 @@ function clearFilter() {
   }
 };
 
+function toggleFormatFilter(e) {
+  $(this).find('input[type="checkbox"]').attr('checked', false);
+
+  var checkbox = e.target;
+  checkbox.checked = true;
+  var tag = checkbox.parentElement.textContent;
+
+  // 'Case Study' -> 'casestudy'.
+  var type = $.trim(tag).toLowerCase().replace(' ', '');
+
+  if (checkbox.checked) {
+    filterTag('type:' + type);
+  } else {
+    clearFilter();
+  }
+}
+
+//$('#updates_format_filter').live('click', toggleFormatFilter);
+
 function filterTag(opt_tag) {
+  var e = window.event;
+
   var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
-  document.location.hash = tag;
+//document.location.hash = tag;
 
   var samples = $('.tutorial_listing');
 
   if (tag) {
+
+    var types = [];
+    $('#updates_format_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
+      var type = checkbox.parentElement.textContent;
+      // 'Case Study' -> 'casestudy'.
+      types.push('type:' + $.trim(type).toLowerCase().replace(' ', ''));
+    });
+
     samples.addClass('hidden');
     $.each(tag.split(','), function(i, eachtag) {
-      samples.find('span.tag:contains("' + eachtag + '")').closest('.tutorial_listing').removeClass('hidden');
+      if (types.length) {
+        types.forEach(function(type, i) {
+          samples.find('span.tag:contains("' + type + '")')
+                 .closest('.tutorial_listing')
+                 .find('span.tag:contains("' + eachtag + '")')
+                 .closest('.tutorial_listing').removeClass('hidden');
+        });
+      } else {
+        samples.find('span.tag:contains("' + eachtag + '")')
+               .closest('.tutorial_listing').removeClass('hidden');
+      }
     });
     $('#filter_tag').text(tag);
-    $('#filter').removeClass('hidden');
-    window.scrollTo(0, 0);
+    $('#filter').parent().removeClass('hidden');
+    //window.scrollTo(0, 0);
   } else {
     clearFilter();
   }

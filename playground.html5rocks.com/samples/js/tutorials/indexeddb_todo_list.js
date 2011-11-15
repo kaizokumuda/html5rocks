@@ -18,7 +18,7 @@ html5rocks.indexedDB.open = function() {
   var request = indexedDB.open("todos");
 
   request.onsuccess = function(e) {
-    var v = "1.98";
+    var v = "1.99";
     html5rocks.indexedDB.db = e.target.result;
     var db = html5rocks.indexedDB.db;
     // We can only create Object stores in a setVersion transaction;
@@ -48,7 +48,7 @@ html5rocks.indexedDB.open = function() {
 
 html5rocks.indexedDB.addTodo = function(todoText) {
   var db = html5rocks.indexedDB.db;
-  var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE, 0);
+  var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE);
   var store = trans.objectStore("todo");
 
   var data = {
@@ -69,7 +69,7 @@ html5rocks.indexedDB.addTodo = function(todoText) {
 
 html5rocks.indexedDB.deleteTodo = function(id) {
   var db = html5rocks.indexedDB.db;
-  var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE, 0);
+  var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE);
   var store = trans.objectStore("todo");
 
   var request = store.delete(id);
@@ -88,7 +88,7 @@ html5rocks.indexedDB.getAllTodoItems = function() {
   todos.innerHTML = "";
 
   var db = html5rocks.indexedDB.db;
-  var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE, 0);
+  var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE);
   var store = trans.objectStore("todo");
 
   // Get everything in the store;
