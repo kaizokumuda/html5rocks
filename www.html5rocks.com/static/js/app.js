@@ -14,8 +14,6 @@ $('.subheader.features ul li a').click(function() {
 // Page grid navigation.
 
 function finishPanelLoad(pagePanel, elemstate) {
-  //document.body.className = '';
-  //$('body').addClass(page);
   if (pagePanel.hasClass('next')) {
     pagePanel.removeClass('next');
     pagePanel.prev().addClass('previous');
@@ -54,7 +52,6 @@ $(document).keydown(function(e) {
     currentPage.one('webkitTransitionEnd', function(e) {
       $('.page').removeClass('previous');
       $('.page').removeClass('next');
-
     });
 
     loadContent($('div.features a.' + goFeature)[0])
@@ -108,9 +105,6 @@ function loadContent(elem, popped){
   }
 
   $('body').attr('data-href', page);
-  // $('.page').removeClass('current');
-
-  // pagePanel.addClass('current');
 
 
   // If we have an anchor, just scroll to it on the current page panel.

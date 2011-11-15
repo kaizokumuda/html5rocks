@@ -89,7 +89,7 @@ audio:not([controls]) { display: none; }
 [hidden] { display: none; }
 
 html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-body { margin: 0; font-size: 13px; line-height: 1.231; }
+body { margin: 0; font-size: 13px; line-height: 1.231; overflow: hidden; }
 body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
 ::-moz-selection { background: #f04530; color: #fff; text-shadow: none; }
@@ -312,6 +312,52 @@ header.main nav,
 .page.current
 {
   top: 0;
+}
+
+#feature-sections {
+  position: relative;
+  width: 1000px;
+  margin: 4em auto;
+  
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  
+  display: box;
+  box-orient: horizontal;
+  
+  -webkit-box-align: top;
+  -webkit-box-pack: justify;
+  
+  -moz-box-align: top;
+  -moz-box-pack: justify;
+  
+  box-align: top;
+  box-pack: justify;
+}
+
+#feature-sections .page {
+  display: none;
+  margin: 0;
+  top: 0;
+}
+
+#feature-sections .page.current {
+  top: 0;
+  display: block;
+  margin-left: 0;
+}
+
+#feature-sections .page.next {
+  display: block;
+  margin-left: 1500px;
+}
+
+#feature-sections .page.previous {
+  display: block;
+  margin-left: -1500px;
 }
 
 article article,
@@ -1096,12 +1142,11 @@ body[data-href='business'] .watermark
 
 /* SITE-GRID NAVIGATION */
 
-.page
-{
-  -webkit-transition: opacity, left, top 1s ease-in-out;
-  -moz-transition: opacity, left, top 1s ease-in-out;
-  -o-transition: opacity, left, top 1s ease-in-out;
-  transition: opacity, left, top 1s ease-in-out;
+.page {
+  -webkit-transition: opacity 1s ease-in-out, margin-left .5s ease-in-out, top 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out, margin-left .5s ease-in-out, top 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out, margin-left .5s ease-in-out, top 1s ease-in-out;
+  transition: opacity 1s ease-in-out, margin-left .5s ease-in-out, top 1s ease-in-out;
 }
 
 .nav,
@@ -1184,13 +1229,13 @@ nav.paginator a.next
 
 nav.paginator a.previous
 {
-  background-position: center -380px;
+  background-position: center -683px;
   padding: 0 0 55px 0;
 }
 
 nav.paginator a.next
 {
-  background-position: center -605px;
+  background-position: center -500px;
   padding: 55px 0 0 0;
   top: 135px;
 }
