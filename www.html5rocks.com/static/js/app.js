@@ -1,48 +1,4 @@
-
-// Page header pulldowns.
-
-$('#search_show').click(function() {
-  $('#features_hide').click(); // Hide features panel if it's out.
-
-  if ($(this).hasClass('current')) {
-    $('.subheader.search').hide();
-    $(this).removeClass('current');
-    $('.watermark').css('top', '30px');
-  } else {
-    $('.main nav .current').removeClass('current');
-    $(this).addClass('current');
-    $('.subheader.search').show();
-    $('#q').focus();
-    $('.watermark').css('top', '100px');
-  }
-});
-
-$('#search_hide').click(function() {
-  $('#search_show').removeClass('current');
-  $('.subheader.search').hide();
-  $('.watermark').css('top', '30px');
-});
-
-$('#features_show').click(function() {
-  $('#search_hide').click(); // Hide search panel if it's out.
-
-  if ($(this).hasClass('current')) {
-    $('.subheader.features').hide();
-    $(this).removeClass('current');
-    $('.watermark').css('top', '30px');
-  } else {
-    $('.main nav .current').removeClass('current');
-    $(this).addClass('current');
-    $('.subheader.features').show();
-    $('.watermark').css('top', '100px');
-  }
-});
-
-$('#features_hide').click(function() {
-  $('#features_show').removeClass('current');
-  $('.subheader.features').hide();
-  $('.watermark').css('top', '30px');
-});
+// Navigation highlighting.
 
 $('.main nav ul li a').click(function() {
   $('.main nav .current').removeClass('current');
@@ -55,8 +11,6 @@ $('.subheader.features ul li a').click(function() {
 });
 
 
-
-
 // Page grid navigation.
 
 function finishPanelLoad(pagePanel, elemstate) {
@@ -64,13 +18,13 @@ function finishPanelLoad(pagePanel, elemstate) {
   //$('body').addClass(page);
   if (pagePanel.hasClass('next')) {
     pagePanel.removeClass('next');
-    pagePanel.prev().addClass('previous');    
+    pagePanel.prev().addClass('previous');
   } else if (pagePanel.hasClass('previous')) {
     pagePanel.removeClass('previous');
     pagePanel.next().addClass('next');
   }
   $('.page').removeClass('current');
-  pagePanel.addClass('current');    
+  pagePanel.addClass('current');
 
   // TODO(Google): scrollTo needs to scroll to and element that is not display:none.
   // base.css applies this to .page elements. Not sure why pagePanel.addClass('current')
