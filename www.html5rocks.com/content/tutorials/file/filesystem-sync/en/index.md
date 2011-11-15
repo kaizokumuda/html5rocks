@@ -1,26 +1,22 @@
-<h2 id="toc-prereqs">Prerequisites</h2>
+<h2 id="toc-intro">Introduction</h2>
 
 The HTML5 [FileSystem API][fs-spec] and [Web Workers][workers-spec] are massively
-powerful in their own regard. Workers bring true asynchronous 'multi-threading'
-to JavaScript and the FileSystem API finally brings hierarchical storage and
-file I/O to web applications. However, when put together, these APIs can be used
-to build some truly interesting apps. 
-
-<h3 id="toc-getting-started">Getting started</h3>
+powerful in their own regard. The FileSystem API finally brings hierarchical storage and
+file I/O to web applications and Workers bring true asynchronous 'multi-threading'
+to JavaScript. However, when you use these APIs together, you can build some truly interesting apps.
 
 This tutorial provides a guide and code examples for leveraging the HTML5
 FileSystem inside of a Web Worker. It assumes a working knowledge of
 both APIs. If you're not quite ready to dive in or are interested in learning
-more about those APIs, I've written
-two great tutorials that discuss the basics:
+more about those APIs, read two great tutorials that discuss the basics:
 [Exploring the FileSystem APIs](/tutorials/file/filesystem/) and
 [Basics of Web Workers](/tutorials/workers/basics/).
 
-<h2 id="toc-intro">Introduction</h2>
+<h2 id="toc-vs">Synchronous vs. Asynchronous APIs</h2>
 
-Asynchronous JS APIs can be tough to use. They're large. They're complex.
+Asynchronous JavaScript APIs can be tough to use. They're large. They're complex.
 But what's most frustrating is that they offer plenty of opportunities for things to go wrong.
-The last thing you want to deal with as a developer is layering on a complex asynchronous API (FileSystem)
+The last thing you want to deal with is layering on a complex asynchronous API (FileSystem)
 in an already asynchronous world (Workers)! The good news is that the
 [FileSystem API][fs-spec] defines a synchronous version to ease the pain in Web Workers.
 
@@ -28,25 +24,25 @@ For the most part, the synchronous API is exactly the same as its asynchronous c
 The methods, properties, features, and functionality will be familiar. The major deviations are:
 
 * The synchronous API can only be used within a Web Worker context, whereas the
-asynchronous API can be used in and out of a worker.
+asynchronous API can be used in and out of a Worker.
 * Callbacks are out. API methods now return values.
 * The global methods on the window object (`requestFileSystem()` and
 `resolveLocalFileSystemURL()`) become `requestFileSystemSync()` and
 `resolveLocalFileSystemSyncURL()`. *Note:* These methods are members of the
 worker's global scope, not the <code>window</code> object.
 
-Apart from these exceptions, the APIs are the same. We're good to go!
+Apart from these exceptions, the APIs are the same. OK, we're good to go!
 
 <h2 id="toc-requesting">Requesting a filesystem</h2>
 
 A web application obtains access to the synchronous filesystem by requesting a
 `LocalFileSystemSync` object from within a Web Worker. The `requestFileSystemSync()`
-is exposed to the worker's global scope:
+is exposed to the Worker's global scope:
 
     var fs = requestFileSystemSync(TEMPORARY, 1024*1024 /*1MB*/);
 
-Notice the new return value now that we're using the sync API and absence of success
-and error callbacks.
+Notice the new return value now that we're using the synchronous API as well as
+the absence of success and error callbacks.
 
 As with the normal FileSystem API, methods are prefixed at the moment:
 
@@ -56,17 +52,17 @@ As with the normal FileSystem API, methods are prefixed at the moment:
 
 <h3 id="toc-quota">Dealing with quota</h3>
 
-Currently, it's not possible to [request `PERSISTENT` quota](/tutorials/file/filesystem/#toc-requesting-quota) in a Worker context. I recommend taking care of quota issues outside of workers.
+Currently, it's not possible to [request `PERSISTENT` quota](/tutorials/file/filesystem/#toc-requesting-quota) in a Worker context. I recommend taking care of quota issues outside of Workers.
 The process could look like something this:
 
-1.  worker.js: wrap any FileSystem API code in a `try/catch` so any
-`QUOTA_EXCEED_ERR` errors will be caught.
-2. worker.js: if you catch a `QUOTA_EXCEED_ERR`, send a `postMessage('get me more quota')` back to the main app.
-3. main app: go through the `window.webkitStorageInfo.requestQuota()` dance when #2 is received.
-4. main app: after the user grants more quota, send `postMessage('resume writes')` back
+1.  worker.js: Wrap any FileSystem API code in a `try/catch` so any
+`QUOTA_EXCEED_ERR` errors are caught.
+2. worker.js: If you catch a `QUOTA_EXCEED_ERR`, send a `postMessage('get me more quota')` back to the main app.
+3. main app: Go through the `window.webkitStorageInfo.requestQuota()` dance when #2 is received.
+4. main app: After the user grants more quota, send `postMessage('resume writes')` back
 to the worker to inform it of additional storage space.
 
-That's a fairly involved workaround, but should work. See [requesting quota](/tutorials/file/filesystem/#toc-requesting-quota) for more information on using `PERSISTENT` storage with the FileSystem API.
+That's a fairly involved workaround, but it should work. See [requesting quota](/tutorials/file/filesystem/#toc-requesting-quota) for more information on using `PERSISTENT` storage with the FileSystem API.
 
 <h2 id="toc-files-dirs">Working with files and directories</h2>
 
@@ -89,9 +85,9 @@ If you've never had to debug Web Worker code, I envy you! It can be a real pain
 to figure out what is going wrong.
 
 The lack of error callbacks in the synchronous world makes dealing with problems
-trickier than they should be. If we add the general complexity debugging worker code,
+trickier than they should be. If we add the general complexity of debugging Web Worker code,
 you'll be frustrated in no time. One thing that can make life easier is to wrap all
-of your relevant worker code in a try/catch. Then, if any errors occur, forward
+of your relevant Worker code in a try/catch. Then, if any errors occur, forward
 the error to the main app using `postMessage()`:
 
     function onError(e) {
@@ -114,15 +110,15 @@ meant passing a JSON object was possible. Recently however, some browsers like C
 accept more complex data types to be passed through `postMessage()` using the
 [structured clone algorithm][structuredclone].
 
-What does this really mean? It means that it's a heck-of-a-lot easier to pass
-binary data between main app and worker thread. Browsers that support structured cloning
-for workers allow you to pass Typed Arrays, `ArrayBuffer`s, `File`s, or `Blob`s
-into workers. Although the data is still a copy, being able to pass a `File` means
+What does this really mean? It means that it's a heck of a lot easier to pass
+binary data between main app and the Worker thread. Browsers that support structured cloning
+for Workers allow you to pass Typed Arrays, `ArrayBuffer`s, `File`s, or `Blob`s
+into Workers. Although the data is still a copy, being able to pass a `File` means
 a performance benefit over the former approach, which involved base64ing the file
 before passing it into `postMessage()`.
 
-The following example passes a user-selected list of files to an dedicated worker.
-The worker simply passes through the file list (simple to show the returned data
+The following example passes a user-selected list of files to an dedicated Worker.
+The Worker simply passes through the file list (simple to show the returned data
 is actually a `FileList`) and the main app reads each file as an `ArrayBuffer`.
 
 The sample also uses an improved version of the [inline Web Worker technique](/tutorials/workers/basics/#toc-inlineworkers)
@@ -151,10 +147,12 @@ described in [Basics of Web Workers](/tutorials/workers/basics/).
       var files = this.files;
       loadInlineWorker('#fileListWorker', function(worker) {
 
+        // Setup handler to process messages from the worker.
         worker.onmessage = function(e) {
           console.log(e.data);
         };
 
+        // Read each file aysnc. as an array buffer.
         for (var i = 0, file; file = files[i]; ++i) {
           var reader = new FileReader();
           reader.onload = function(e) {
@@ -186,9 +184,9 @@ described in [Basics of Web Workers](/tutorials/workers/basics/).
 
 [structuredclone]: https://developer.mozilla.org/en/DOM/The_structured_clone_algorithm
 
-<h2 id="toc-readingsync">Reading files in a worker</h2>
+<h2 id="toc-readingsync">Reading files in a Worker</h2>
 
-It's perfectly acceptable to use the asynchronous [`FileReader` API to read files](/tutorials/file/dndfiles/#toc-reading-files) in a worker. However, there's a better way. In workers, there's a
+It's perfectly acceptable to use the asynchronous [`FileReader` API to read files](/tutorials/file/dndfiles/#toc-reading-files) in a Worker. However, there's a better way. In Workers, there's a
 synchronous API (`FileReaderSync`) that streamlines reading files:
 
 *Main app:*
@@ -253,14 +251,14 @@ synchronous API stems from the limitations of Workers.
 For security reasons, data between the calling app and a Web Worker thread is
 never shared. This is going to
 [change in the future](https://bugs.webkit.org/show_bug.cgi?id=65209), but for
-now, data is always copied to and from the worker when `postMessage()` is called.
+now, data is always copied to and from the Worker when `postMessage()` is called.
 As a result, not every data type can be passed.
 
 Unfortunately, `FileEntrySync` and `DirectoryEntrySync` don't currently fall
 into the accepted types. So how can you get entries back to the calling app?
 One way to circumvent the limitation is to return a list of [filesystem: URLs](/tutorials/file/filesystem/#toc-filesystemurls) instead of a list of entries. `filesystem:` URLs are just strings,
 so they're super easy to pass around. Furthermore, they can be resolved to 
-entries in the main app using `resolveLocalFileSystemURL()`. That'll get you back
+entries in the main app using `resolveLocalFileSystemURL()`. That gets you back
 to a `FileEntrySync`/`DirectoryEntrySync` object.
 
 *Main app:*
@@ -338,8 +336,8 @@ to a `FileEntrySync`/`DirectoryEntrySync` object.
 
 <h2 id="toc-download-xhr2">Example: Downloading files using XHR2</h2>
 
-A common use case for Workers is to download a bunch of files using XHR2,
-and write those files to the HTML5 FileSystem. This is a perfect task for a worker thread!
+A common use case for Workers is to download a bunch of files using <a href="/tutorials/file/xhr2/">XHR2</a>,
+and write those files to the HTML5 FileSystem. This is a perfect task for a Worker thread!
 
 The following example only fetches and writes one file, but you can image
 expanding it to download a set of files.
@@ -351,7 +349,7 @@ expanding it to download a set of files.
     <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Download files using a XHR2, a worker, and saving to filesystem</title>
+    <title>Download files using a XHR2, a Worker, and saving to filesystem</title>
     </head>
     <body>
     <script>
@@ -425,12 +423,13 @@ expanding it to download a set of files.
 
 <h2 id="toc-conclusion">Conclusion</h2>
 
-In my opinion, Web Workers are an under utilized and under-appreciated feature
-of HTML5. Most developers I talk to don't need the extra computational benefits.
-But they can be used for more than just pure computation.
+Web Workers are an underutilized and under-appreciated feature
+of HTML5. Most developers I talk to don't need the extra computational benefits, 
+but they can be used for more than just pure computation.
 If you're skeptical (as I was), I hope this article has helped change your mind.
-Using the HTML5 File APIs inside of workers opens a whole new can of awesomeness
-for web apps that a lot of folks haven't explored.
+Offloading things like disc operations (Filesystem API calls) or HTTP requests to a Worker
+are a natural fit and also help compartmentalize your code. The HTML5 File APIs
+inside of Workers opens a whole new can of awesomeness for web apps that a lot of folks haven't explored.
 
 [fs-spec]: http://dev.w3.org/2009/dap/file-system/file-dir-sys.html
 [workers-spec]: http://www.whatwg.org/specs/web-apps/current-work/multipage/workers.html
