@@ -242,7 +242,6 @@ class ContentHandler(webapp.RequestHandler):
         self.redirect('/database/author')
 
     elif relpath == 'database/resource':
-      #form = common.TutorialForm(data=self.request.POST)
       author_key = common.Author.get_by_key_name(self.request.get('author'))
       author_key2 = common.Author.get_by_key_name(
           self.request.get('second_author'))
@@ -258,17 +257,35 @@ class ContentHandler(webapp.RequestHandler):
 
       pub = datetime.datetime.strptime(
           self.request.get('publication_date'), '%Y-%m-%d')
-
-      tutorial = common.Resource(
-          title=self.request.get('title'),
-          description=self.request.get('description'),
-          author=author_key,
-          second_author=author_key2,
-          url=self.request.get('url') or None,
-          browser_support=browser_support,
-          update_date=datetime.date.today(),
-          publication_date=datetime.date(pub.year, pub.month, pub.day),
-          tags=tags)
+      
+      tutorial = common.Resource.get_all().filter('title =', self.request.get('title'))
+      if tutorial.count() == 1:
+        try:
+          tutorial[0].title=self.request.get('title'),
+          tutorial[0].description=self.request.get('description'),
+          tutorial[0].author=author_key,
+          tutorial[0].second_author=author_key2,
+          tutorial[0].url=self.request.get('url') or None,
+          tutorial[0].browser_support=browser_support,
+          tutorial[0].update_date=datetime.date.today(),
+          tutorial[0].publication_date=datetime.date(pub.year, pub.month, pub.day),
+          tutorial[0].tags=tags
+        except TypeError:
+          pass
+      else:
+        try:
+          tutorial = common.Resource(
+              title=self.request.get('title'),
+              description=self.request.get('description'),
+              author=author_key,
+              second_author=author_key2,
+              url=self.request.get('url') or None,
+              browser_support=browser_support,
+              update_date=datetime.date.today(),
+              publication_date=datetime.date(pub.year, pub.month, pub.day),
+              tags=tags)
+        except TypeError:
+          pass        
       tutorial.put()       
 
       return self.redirect('/database/resource')
@@ -307,7 +324,13 @@ class ContentHandler(webapp.RequestHandler):
       postid = regex.findall(relpath)
       if len(postid) > 0: # /database/resource/1234
         post = common.Resource.get_by_id(int(postid[0]))
-        tutorial_form = common.TutorialForm(instance=post)
+        tutorial_form = common.TutorialForm(
+            instance=post,
+            initial={
+              'author': post and post.author.key().name(),
+              'second_author': post and post.second_author and post.second_author.key().name() ,
+              'browser_support': [x.lower() for x in post.browser_support]
+            })
       else: # /database/resource
         tutorial_form = common.TutorialForm()
         
