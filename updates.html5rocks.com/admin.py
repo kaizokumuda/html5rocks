@@ -22,6 +22,7 @@ application = webapp.WSGIApplication([
   (config.url_prefix + '/admin/newpage', handlers.PageHandler),
   (config.url_prefix + '/admin/page/delete/(/.*)', handlers.PageDeleteHandler),
   (config.url_prefix + '/admin/page/(/.*)', handlers.PageHandler),
+  (config.url_prefix + '/admin/load_authors', handlers.DataHandler),
 ])
 
 

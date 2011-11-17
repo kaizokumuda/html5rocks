@@ -220,13 +220,13 @@ def with_page(fun):
     fun(self, page)
   return decorate
 
-
+    
 class PageHandler(BaseHandler):
   def render_form(self, form):
     self.render_to_response("editpage.html", {'form': form})
 
   @with_page
-  def get(self, page):
+  def get(self, page):      
     self.render_form(PageForm(
         instance=page,
         initial={
@@ -256,7 +256,33 @@ class PageHandler(BaseHandler):
     else:
       self.render_form(form)
 
+class DataHandler(BaseHandler):
+  def get(self, path):
+    self.addTestAuthors()
 
+  def addTestAuthors(self):
+    f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
+    for profile in yaml.load_all(f):
+      author = common.Author(
+          key_name=unicode(profile['id']),
+          given_name=unicode(profile['name']['given']),
+          family_name=unicode(profile['name']['family']),
+          org=unicode(profile['org']['name']),
+          unit=unicode(profile['org']['unit']),
+          city=profile['address']['locality'],
+          state=profile['address']['region'],
+          country=profile['address']['country'],
+          google_account=str(profile.get('google')),
+          twitter_account=profile.get('twitter'),
+          email=profile['email'],
+          lanyrd=profile.get('lanyrd', False),
+          homepage=profile['homepage'],
+          geo_location=db.GeoPt(profile['address']['lat'],
+                                profile['address']['lon'])
+          )
+      author.put()
+    f.close()
+        
 class PageDeleteHandler(BaseHandler):
   @with_page
   def post(self, page):
