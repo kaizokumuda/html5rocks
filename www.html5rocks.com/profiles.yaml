@@ -598,3 +598,23 @@ google: wesleyhales
 twitter: wesleyhales
 email: wesleyhales@gmail.com
 lanyrd: true
+
+---
+
+id: monsurhossain
+name:
+  given: Monsur
+  family: Hossain
+org:
+  name: Google
+  unit: Software Engineer
+address:
+  locality: Chicago
+  region: Illinois
+  country: USA
+  lat: 41.877866
+  lon: -87.629669
+homepage: http://monsur.com
+google: 113897230587820705070
+twitter:
+email:
