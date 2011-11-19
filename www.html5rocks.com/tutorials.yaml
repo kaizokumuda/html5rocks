@@ -1,3 +1,21 @@
+title: Using CORS
+url: /tutorials/cors/
+author_id: monsurhossain
+publication_date: 2011-10-26
+description: An introduction to Cross Origin Resource Sharing (CORS), which gives scripts the ability to make cross-origin XHRs.
+browser_support:
+- chrome
+- safari
+- ie
+- ff
+tags:
+- cors
+- xhr2
+- class:nuts_and_bolts
+- type:tutorial
+
+---
+
 title: The Synchronous FileSystem API for Workers
 url: /tutorials/file/filesystem-sync/
 author_id: ericbidelman

@@ -7,6 +7,8 @@ handlers:
 - url: /js
   static_dir: js
   expiration: "10d"
+- url: /cors/server
+  script: corsserver.py
 - url: /offline_test/index.html
   static_files: offline_test/index.html
   upload: offline_test/index.html
