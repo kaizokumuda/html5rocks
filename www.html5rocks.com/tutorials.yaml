@@ -163,7 +163,7 @@ browser_support:
 - ie
 - ff 
 tags:
-- games
+- gaming
 - type:casestudy
 
 ---
@@ -180,7 +180,7 @@ browser_support:
 - ie
 - ff 
 tags:
-- games
+- gaming
 - type:tutorial
 
 ---
@@ -405,13 +405,13 @@ url: /tutorials/casestudies/wordico.html
 author_id: adammark
 author_id2: adriangould
 publication_date: 2011-03-10
-description: Learn how we converted our <a href="https://chrome.google.com/webstore/detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl">Wordico</a> crossword game from Flash to HTML5.
+description: 'Learn how we converted our <a href="https://chrome.google.com/webstore/detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl">Wordico</a> crossword game from Flash to HTML5.'
 browser_support:
 - chrome
 - safari
 - opera
 tags:
-- games
+- gaming
 - canvas
 - class:graphics
 - type:casestudy
@@ -487,7 +487,7 @@ browser_support:
 - opera
 tags:
 - canvas
-- games
+- gaming
 - type:casestudy
 
 ---
@@ -504,7 +504,7 @@ browser_support:
 - opera
 tags:
 - canvas
-- games
+- gaming
 - type:article
 
 ---

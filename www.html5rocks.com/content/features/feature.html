@@ -98,7 +98,7 @@
         <h3>{% trans "What&rsquo;s New" %}</h3>
 
         <ul>
-          {% for r in results %}
+          {% for r in updates %}
             <li><a href="{{r.url}}">{{r.title}}</a></li>
           {% endfor %}
           {% block tutorials %}{% endblock %}

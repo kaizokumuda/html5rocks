@@ -84,7 +84,7 @@
 
       {% for tut in tutorials %}
       <article class="tutorial_listing">
-        <h3 id="{{tut.title|slugify}}" data-pubdate="{{tut.publication_date}}">
+        <h3 id="{{tut.title|slugify}}" data-pubdate="{{tut.publication_date.year}}-{{tut.publication_date.month}}-{{tut.publication_date.day}}">
           <a href="{{tut.url}}">{{tut.title}}</a>
         </h3>
         <div>

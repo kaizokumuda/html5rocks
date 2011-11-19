@@ -716,16 +716,15 @@ div.one_half    { width: 50%; }
   vertical-align: text-top;
 }
 
-.feed li .date
-{
-  width: 45px;
+.feed li .date {
+  width: 35px;
 }
 
 .feed li .author
 {
   width: 20px;
   height: 20px;
-  margin: 0 10px 0 0;
+  margin: 0 5px 0 0;
 }
 
 .feed li .author img
@@ -735,6 +734,11 @@ div.one_half    { width: 50%; }
   box-sizing: border-box;
 }
 
+.feed li .title {
+  width:70%;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
 .feed li span.type
 {
   float: right;
@@ -856,22 +860,9 @@ a[rel='external']
   padding-right: 16px;
 }
 
-section.support p a[href^='http']:not([href*='html5rocks'])
-{
-  margin-right: 5px;
-  padding-right: 12px;
-}
-
-article.feature figure a[href^='http']:not([href*='html5rocks.']),
-section.figures figure a[href^='http']:not([href*='html5rocks.']),
-ul.figures li a[href^='http']:not([href*='html5rocks.'])
-{
-  background-position: 156px 5px;
-}
-
-ul.figures.books li a[href^='http']:not([href*='html5rocks.'])
-{
-  background-position: 108px 5px;
+figure > a,
+.figures li > a {
+  background: none !important;
 }
 
 
@@ -2159,7 +2150,6 @@ section.figures.two_thirds figure
 }
 
 article.feature figure a,
-section.figures figure a,
 ul.figures li a
 {
   display: block;
@@ -2178,6 +2168,11 @@ ul.figures li a p
   font-size: 13px;
   font-weight: normal;
   margin: .25em 0;
+}
+
+section.figures figcaption > a {
+  font-weight: 600;
+  font-size: 14px;
 }
 
 article.feature figure img,

@@ -433,10 +433,9 @@ class ContentHandler(webapp.RequestHandler):
       # If the localized file doesn't exist, and the locale isn't English, look
       # for an english version of the file, and redirect the user there if
       # it's found:
-      elif os.path.isfile( englishfile ):
+      elif os.path.isfile(englishfile):
         return self.redirect("/en/%s?redirect_from_locale=%s" % (relpath,
                                                                  locale))
-
 
     elif ((re.search('tutorials/.+', relpath) or
            re.search('mobile/.+', relpath) or
@@ -462,20 +461,23 @@ class ContentHandler(webapp.RequestHandler):
       # `split` the file's path, add in the locale, and check existance:
       logging.info('Building request for `%s` in locale `%s`', path, locale)
       (dir, filename) = os.path.split(path)
-      if os.path.isfile( os.path.join( dir, locale, filename ) ):
-        self.render(template_path=os.path.join( dir, locale, filename ),
+      if os.path.isfile(os.path.join(dir, locale, filename)):
+        self.render(template_path=os.path.join(dir, locale, filename),
                     data={'redirect_from_locale': redirect_from_locale},
                     relpath=relpath)
 
       # If the localized file doesn't exist, and the locale isn't English, look
       # for an english version of the file, and redirect the user there if
       # it's found:
-      elif os.path.isfile( os.path.join( dir, "en", filename ) ):
+      elif os.path.isfile( os.path.join(dir, 'en', filename)):
         return self.redirect("/en/%s?redirect_from_locale=%s" % (relpath,
                                                                  locale))
     elif os.path.isfile(path):
-      #TODO(ericbidleman): Don't need tutorials/updates for every file
-      result = common.Resource.get_all().order('-publication_date')
+      #TODO(ericbidleman): Don't need these tutorial/update results for query.
+      if relpath in ['mobile', 'gaming', 'business']:
+        result = TagsHandler().get_as_db(relpath)
+      else:
+        result = common.Resource.get_all().order('-publication_date')
 
       tutorials = []
       for r in result:
@@ -496,7 +498,7 @@ class ContentHandler(webapp.RequestHandler):
       category = relpath.replace('features/', '')
       data = {
         'category': category,
-        'results': TagsHandler().get_as_db('class:' + category)
+        'updates': TagsHandler().get_as_db('class:' + category)
       }
       self.render(data=data, template_path=path + '.html', relpath=relpath)
 
