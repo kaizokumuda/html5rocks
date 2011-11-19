@@ -298,13 +298,17 @@ function toggleFormatFilter(e) {
 function filterTag(opt_tag) {
   var e = window.event;
 
+  // Don't perform another filter if we're initiated from a hashchange.
+  if (e.type == 'hashchange') {
+    return;
+  }
+
   var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
-//document.location.hash = tag;
+  document.location.hash = tag;
 
   var samples = $('.tutorial_listing');
 
   if (tag) {
-
     var types = [];
     $('#updates_format_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
       var type = checkbox.parentElement.textContent;
