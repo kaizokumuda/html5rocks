@@ -29,7 +29,8 @@ def produce_manifest_entries(dir):
     # Filter out .svn directories.
     if not '.svn' in root:
       # Need to exclude large files because of AppCache 5MB limit.
-      exclude_list = ['.mp3', '.mp4', '.ogv', '.ogg', '.webm', '.DS_Store']
+      # Need to exclude excss files because they're invisible to viewers.
+      exclude_list = ['.mp3', '.mp4', '.ogv', '.ogg', '.webm', '.DS_Store', '.excss']
       l.extend('/%s/%s\n' % (root.replace('\\', '/'), f)  for f in fileList
                if f[f.rfind('.'):] not in exclude_list)
   return l
