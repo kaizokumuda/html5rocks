@@ -546,17 +546,21 @@ if (!Function.prototype.bind) {
                  );
   });
 
-  query('#toc-list').innerHTML = li_array.join('');
-
   var slideshow = new SlideShow(queryAll('.slide'));
   
   document.addEventListener('DOMContentLoaded', function() {
     query('.slides').style.display = 'block';
   }, false);
 
-  queryAll('#toc-list li a').forEach(function(el) {
-      el.onclick = function() { slideshow.go(el.dataset['hash']); };
-  });
+  var toc_list = query('#toc-list');
+  if (toc_list) {
+    toc_list.innerHTML = li_array.join('');
+    queryAll('li a', toc_list).forEach(function(el) {
+      el.onclick = function() {
+          slideshow.go(el.dataset['hash']);
+      };
+    });
+  }
 
   queryAll('pre').forEach(function(el) {
     addClass(el, 'prettyprint');
