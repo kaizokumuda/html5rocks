@@ -1,6 +1,12 @@
 import os
 import logging
 
+# Use Django 1.2.
+from google.appengine.dist import use_library
+use_library('django', '1.2')
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_settings'
+
 from google.appengine.api import memcache
 from google.appengine.ext import db
 from google.appengine.ext.db import djangoforms
@@ -91,6 +97,24 @@ class Resource(DictModel):
       memcache.set('tutorials', tutorials_query)
 
     return tutorials_query
+
+  @classmethod
+  def get_tutorials_by_author(self, author_id):
+    tutorials_by_author = memcache.get('tutorials_by_' + author_id)
+    if tutorials_by_author is None:
+      tutorials_by_author1 = Author.get_by_key_name(author_id).author_one_set
+      tutorials_by_author2 = Author.get_by_key_name(author_id).author_two_set
+
+      tutorials_by_author = [x for x in tutorials_by_author1]
+      temp2 = [x for x in tutorials_by_author2]
+      tutorials_by_author.extend(temp2)
+
+      # Order by published date. Latest first.
+      tutorials_by_author.sort(key=lambda x: x.publication_date, reverse=True)
+
+      memcache.set('tutorials_by_' + author_id, tutorials_by_author)
+
+    return tutorials_by_author
 
 
 class TutorialForm(djangoforms.ModelForm):

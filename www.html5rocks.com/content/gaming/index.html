@@ -55,7 +55,7 @@
       <ul>
         {% for tut in tutorials %}
           <li style="white-space:nowrap;">
-            <span class="date">{{tut.publication_date.month}}/{{tut.publication_date.day}}</span> <span class="author"><img src="/static/images/profiles/{{tut.author.key.name}}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}"></span>
+            <span class="date">{{tut.publication_date.month}}/{{tut.publication_date.day}}</span> <span class="author" data-author_id="{{ tut.author.key.name }}"><img src="/static/images/profiles/{{tut.author.key.name}}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}"></span>
             <span class="title"><a href="{{tut.url}}">{{tut.title}}</a></span>
             <span class="classes">
               {% for tag in tut.classes %}

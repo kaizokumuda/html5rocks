@@ -89,7 +89,7 @@
         </h3>
         <div>
           <span class="date">{{tut.publication_date}}</span>
-          <span class="author">By:
+          <span class="author" data-author_id="{{ tut.author.key.name }}">By:
             <a href="/profiles/#!/{{ tut.author.key.name }}">
               <img class="author_image" src="/static/images/profiles/{{ tut.author.key.name }}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}">
               {{ tut.author.given_name }} {{ tut.author.family_name }}

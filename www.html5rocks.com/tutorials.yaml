@@ -118,6 +118,7 @@ tags:
 title: "How Browsers Work: Behind the scenes of modern web browsers"
 url: /tutorials/internals/howbrowserswork/
 author_id: taligarsiel
+author_id2: paulirish
 publication_date: 2011-08-05
 description: In this comprehensive primer, you will learn what happens in the browser between when you type google.com in the address bar until you see the Google page on the browser screen.
 browser_support:

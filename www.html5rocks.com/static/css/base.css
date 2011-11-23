@@ -81,6 +81,37 @@
 }
 
 
+body ::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px;
+}
+
+body  ::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .2);
+  background-clip: padding-box;
+  border: solid transparent;
+  min-height: 28px;
+  padding: 100px 0 0;
+  box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
+  border-width: 1px 1px 1px 6px;
+}
+
+body  ::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+
+body  ::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 4px;
+  }
+
+body  ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 /* NORMALIZE */
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
@@ -717,7 +748,7 @@ div.one_half    { width: 50%; }
 }
 
 .feed li .date {
-  width: 35px;
+  width: 40px;
 }
 
 .feed li .author
@@ -1337,6 +1368,10 @@ body[data-href='home'] #updates_badge
   -moz-animation-iteration-count: infinite;
 }
 
+body[data-href='home'] #latest_articles_feed .title {
+  width:auto;
+}
+
 #updates_title
 {
   float: right;
@@ -1556,6 +1591,7 @@ article.profile section
 .profile .articles li
 {
   margin: .3em 0;
+  white-space: nowrap;
 }
 
 .profile .articles a
@@ -1563,6 +1599,8 @@ article.profile section
   font-size: 13px;
   display: list-item;
   list-style: square;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 body[data-href='profiles'] .profile:first-child,

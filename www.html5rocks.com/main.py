@@ -17,6 +17,7 @@
 __author__ = ('kurrik@html5rocks.com (Arne Kurrik) ',
               'ericbidelman@html5rocks.com (Eric Bidelman)')
 
+import common # Need this first to force Django 1.2.
 
 # Standard Imports
 import datetime
@@ -30,12 +31,6 @@ import yaml
 import html5lib
 from html5lib import treebuilders, treewalkers, serializer
 from html5lib.filters import sanitizer
-
-# Use Django 1.2.
-from google.appengine.dist import use_library
-use_library('django', '1.2')
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'django_settings'
 
 from django import http
 from django.conf import settings
@@ -51,7 +46,6 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 
-import common
 
 template.register_template_library('templatetags.templatefilters')
 
@@ -397,7 +391,10 @@ class ContentHandler(webapp.RequestHandler):
     # the user is requesting has a corresponding .html page that exists.
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
-      self.render(data={'sorted_profiles': common.get_sorted_profiles()},
+      profiles = common.get_sorted_profiles()
+      for p in profiles:
+        p['tuts_by_author'] = common.Resource.get_tutorials_by_author(p['id'])
+      self.render(data={'sorted_profiles': profiles},
                   template_path='content/profiles.html', relpath=relpath)
 
     elif re.search('tutorials/casestudies', relpath) and not is_feed:

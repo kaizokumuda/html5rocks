@@ -58,8 +58,9 @@ $(document).keydown(function(e) {
   }
 });
 
-//$('a').live('click', function() {
+/*
 // TODO: go back to event delgation. Currently breaks nav.
+//$('a').live('click', function() {
 $('a').click(function() {
 
   // Don't intercept external links
@@ -74,6 +75,7 @@ $('a').click(function() {
 
   return false;
 });
+*/
 
 function loadContent(elem, popped){
 

@@ -132,7 +132,11 @@ $(document).ready(function() {
             </div>
             {% endif %}
 
-            <ul class="articles"></ul>
+            <ul class="articles">
+              {% for tut in profile.tuts_by_author %}
+                <li><a href="{{ tut.url }}">{{ tut.title }}</a></li>
+              {% endfor %}
+            </ul>
           {% endif %}
         </section>
       </article>

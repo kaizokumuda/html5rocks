@@ -1,14 +1,4 @@
 $(function() {
-  var div = $('<div>').load('/tutorials/ .sample', function() {
-    var authorLinks = div.find('[data-id]');
-    authorLinks.each(function(i, authorLink) {
-      var profileID = $(authorLink).attr('data-id');
-      var ul = $('#' + profileID + ' .articles')[0];
-
-      $(authorLink).closest('.sample').find('h3 a').clone().wrap('<li>').parent().appendTo(ul);
-    });
-  });
-
   function updateHash(e) {
     $activeProfile = $('.profile.active');
     var lang = document.documentElement.lang || 'en';
@@ -24,13 +14,6 @@ $(function() {
       }
     }
   }
-
-  window.showArticles = function(link) {
-    var $profile = $(link).closest('.profile');
-    $profile.find('.articles').toggleClass('active');
-    $profile.find('.map').toggleClass('active');
-    return false;
-  };
 
   $('.profile .list-articles').click(function(e) {
     var $profile = $(this).closest('.profile');
@@ -53,9 +36,9 @@ $(function() {
     }
   };
 
-  $(".profile").click(function(e) {
-    $(".profile").not(this).removeClass("active");
-    $(this).toggleClass("active");
+  $('.profile').click(function(e) {
+    $('.profile').not(this).removeClass('active');
+    $(this).toggleClass('active');
     $(this).find('.list-articles').toggleClass('active');
     $(this).find('.articles').toggleClass('active');
     $(this).find('.map').toggleClass('active');
@@ -68,11 +51,11 @@ $(function() {
     window.scrollToProfile(profileID);
   }
 
-  window.onhashchange = function(e) {
+  window.addEventListener('hashchange', function(e) {
     if (!location.hash.length) {
       return;
     }
     onHashChange('#' + location.hash.split('#!\/')[1]);
-  };
+  }, false);
 
 });
