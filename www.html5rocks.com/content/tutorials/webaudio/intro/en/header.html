@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block iscompatible %}
-  return !!Modernizr.canvas
+  return !!(window.AudioContext || window.webkitAudioContext);
 {% endblock %}
 
 {% block html5badge %}
