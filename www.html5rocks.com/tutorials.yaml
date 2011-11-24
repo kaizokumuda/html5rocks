@@ -546,6 +546,7 @@ title: Exploring the FileSystem APIs
 url: /tutorials/file/filesystem/
 author_id: ericbidelman
 publication_date: 2011-01-04
+update_date: 2011-10-24
 description: "The FileSystem APIs give applications the ability to read/write files and directories in a secure, sandboxed file system on a user's local machine."
 browser_support:
 - chrome
@@ -562,6 +563,7 @@ title: A Simple TODO list using HTML5 IndexedDB
 url: /tutorials/indexeddb/todo/
 author_id: paulkinlan
 publication_date: 2010-12-20
+update_date: 2011-05-15
 description: "IndexedDB represents the future of query-able client-side storage. This tutorial presents a real world application implementing the basics of the IndexedDB API."
 browser_support:
 - chrome
@@ -595,6 +597,7 @@ title: Stream Updates with Server-Sent Events
 url: /tutorials/eventsource/basics/
 author_id: ericbidelman
 publication_date: 2010-11-30
+update_date: 2011-06-16
 description: The EventSource API is designed for receiving push notifications from a server, removing the need for client-size XHR polling.
 browser_support:
 - chrome
@@ -666,6 +669,7 @@ title: Native HTML5 Drag and Drop
 url: /tutorials/dnd/basics/
 author_id: ericbidelman
 publication_date: 2010-09-30
+update_date: 2010-12-21
 description: Drag-and-drop is yet another first class citizen in HTML5! This article explains how to enhance your web applications by adding native DnD functionality.
 browser_support:
 - chrome
@@ -747,6 +751,7 @@ title: '"Offline": What does it mean and why should I care?'
 url: /tutorials/offline/whats-offline/
 author_id: mahemoff
 publication_date: 2010-08-02
+update_date: 2011-10-13
 description: A discussion of what it means to take an application "offline" and the options available to developers for doing so.
 browser_support:
 - chrome
@@ -798,6 +803,7 @@ title: The Basics of Web Workers
 url: /tutorials/workers/basics/
 author_id: ericbidelman
 publication_date: 2010-07-26
+update_date: 2011-05-24
 description: Web Workers are a means of spawning background scripts in your application, giving thread-like message passing for handling computationally intensive tasks.
 browser_support:
 - chrome
@@ -850,6 +856,7 @@ title: "A Beginner's Guide to Using the Application Cache"
 url: /tutorials/appcache/beginner/
 author_id: ericbidelman
 publication_date: 2010-06-18
+update_date: 2011-05-27
 description: A step-by-step guide to taking your web app offline using the application cache APIs.
 browser_support:
 - chrome

@@ -1,24 +1,10 @@
 {% extends "tutorial.html" %}
 
-{% block headauthor %}Monsur Hossain <monsur@google.com>{% endblock %}
-{% block pageauthor %}{% profilelinks monsurhossain %}{% endblock %}
-{% block headtitle %}Using CORS{% endblock %}
-{% block pagetitle %}Using CORS{% endblock %}
 {% block head %}
 
 {% endblock %}
-{% block pagebreadcrumb %}Using CORS{% endblock %}
-{% block date %}October 26, 2011{% endblock %}
-{% block updated %}{% endblock %}
+{% block pagebreadcrumb %}{{ tut.title }}{% endblock %}
 {% block onload %}{% endblock %}
-
-{% block browsersupport %}
-<span class="browser opera"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
-<span class="browser ie supported"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
-<span class="browser safari supported"><span class="browser_name">Safari</span><span class="support">unsupported</span></span>
-<span class="browser ff supported"><span class="browser_name">Firefox</span><span class="support">unsupported</span></span>
-<span class="browser chrome supported"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
-{% endblock %}
 
 {% block iscompatible %}
   var xhr = new XMLHttpRequest();

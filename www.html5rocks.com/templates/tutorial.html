@@ -2,6 +2,9 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
+{% block headauthor %}{{ tut.author.given_name }} {{ tut.author.family_name }} {{ tut.author.given_name }} - {{ tut.author.email }}{% endblock %}
+{% block headtitle %}{{ tut.title }}{% endblock %}
+
 {% block body %}
   <header class="tutorial clearfix">
     <hgroup>
@@ -10,16 +13,16 @@
     </hgroup>
 
     <div class="right_side">
-      <h1>{% block pagetitle %}{% endblock %}</h1>
+      <h1>{{ tut.title }}</h1>
 
       <section class="byline">
-        <img src="/static/images/profiles/ericbidelman.png"> <!-- TODO: Bring in real author images. -->
+        <a href="/profiles/#!/{{ tut.author.key.name }}"><img src="/static/images/profiles/{{ tut.author.key.name }}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}"></a>
         <hgroup>
-          <h2>By <strong>{% block pageauthor %}{% endblock %}</strong></h2>
+          <h2>By <strong><a href="/profiles/#!/{{ tut.author.key.name }}">{{ tut.author.given_name }} {{ tut.author.family_name }}</a></strong></h2>
         </hgroup>
         <div class="date">
-          <time pubdate>Published <strong>{% block date %}{% endblock %}</strong></time>
-          <time class="updated">{% block updated %}{% endblock %}</time>
+          <time pubdate>Published <strong>{{ tut.publication_date }}</strong></time>
+          {%if tut.update_date %}<time class="updated">Updated <strong>{{ tut.update_date }}</strong></time>{% endif %}
         </div>
       </section>
 
@@ -35,7 +38,13 @@
 
       <section class="browser_support">
           <h2>{% trans "Supported browsers:" %}</h2>
-          <span class="browsers">{% block browsersupport %}{% endblock %}</span>
+          <span class="browsers">
+            <span class="browser opera {% if 'opera' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
+            <span class="browser ie {% if 'ie' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
+            <span class="browser safari {% if 'safari' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Safari</span><span class="support">unsupported</span></span>
+            <span class="browser ff {% if 'ff' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Firefox</span><span class="support">unsupported</span></span>
+            <span class="browser chrome {% if 'chrome' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
+          </span>
 
           <div class="compatible-block">
             <p id="notcompatible" class="hidden">
@@ -63,11 +72,11 @@
       </ul>
     </span>
     {% endif %}
-
-    {% if redirect_from_locale %}
-    <p class="redirect_notification" lang="{{ redirect_from_locale.lang }}">{{ redirect_from_locale.msg }}</p>
-    {% endif %}
   </header>
+
+  {% if redirect_from_locale %}
+  <section class="redirect_notification" lang="{{ redirect_from_locale.lang }}">{{ redirect_from_locale.msg }}</section>
+  {% endif %}
 
   <article class="tutorial">
     <div class="outline_nav_toggle">

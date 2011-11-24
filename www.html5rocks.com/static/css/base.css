@@ -807,14 +807,14 @@ div.one_half    { width: 50%; }
 .class_name,
 .browser_name
 {
-  background: #fff;
+  background: transparent;
   color: #333;
   font-size: 11px;
   font-weight: 300;
   line-height: 1;
   padding: 3px 5px;
   position: absolute;
-  top: -20px;
+  top: -15px;
   left: 0;
   opacity: 0;
   text-align: center;
@@ -2538,13 +2538,8 @@ header.tutorial .byline h2 span
 header.tutorial .browser_support
 {
   font-size: 12px;
-  margin-top: 1.25em;
+  padding-top: 1.25em;
   width: 632px;
-}
-
-header.tutorial .browser_support .browsers
-{
-  margin: 0 .75em 0 .25em;
 }
 
 header.tutorial aside
@@ -2573,6 +2568,26 @@ header.tutorial .browser_support p
   font-size: 12px;
   line-height: 1.5;
   margin: 0;
+}
+
+header.tutorial .compatible-block {
+  font-size: small;
+  font-style: italic;
+}
+header.tutorial #notcompatible {
+  color: red;
+}
+
+header.tutorial #compatible {
+  color: green;
+}
+
+.redirect_notification {
+  text-align: center;
+}
+
+header.tutorial .date time {
+  display: inline-block;
 }
 
 article.tutorial figure

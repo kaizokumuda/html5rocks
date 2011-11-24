@@ -251,7 +251,9 @@ class ContentHandler(webapp.RequestHandler):
 
       pub = datetime.datetime.strptime(
           self.request.get('publication_date'), '%Y-%m-%d')
-      
+
+      update_date = self.request.get('update_date') or None
+
       tutorial = common.Resource.get_all().filter('title =', self.request.get('title'))
       if tutorial.count() == 1:
         try:
@@ -261,7 +263,7 @@ class ContentHandler(webapp.RequestHandler):
           tutorial[0].second_author=author_key2,
           tutorial[0].url=self.request.get('url') or None,
           tutorial[0].browser_support=browser_support,
-          tutorial[0].update_date=datetime.date.today(),
+          tutorial[0].update_date=update_date,
           tutorial[0].publication_date=datetime.date(pub.year, pub.month, pub.day),
           tutorial[0].tags=tags
         except TypeError:
@@ -279,8 +281,8 @@ class ContentHandler(webapp.RequestHandler):
               publication_date=datetime.date(pub.year, pub.month, pub.day),
               tags=tags)
         except TypeError:
-          pass        
-      tutorial.put()       
+          pass
+      tutorial.put()
 
       return self.redirect('/database/resource')
 
@@ -459,9 +461,12 @@ class ContentHandler(webapp.RequestHandler):
       logging.info('Building request for `%s` in locale `%s`', path, locale)
       (dir, filename) = os.path.split(path)
       if os.path.isfile(os.path.join(dir, locale, filename)):
+        data = {
+          'tut': common.Resource.all().filter('url =', '/' + relpath).get(),
+          'redirect_from_locale': redirect_from_locale
+        }
         self.render(template_path=os.path.join(dir, locale, filename),
-                    data={'redirect_from_locale': redirect_from_locale},
-                    relpath=relpath)
+                    data=data, relpath=relpath)
 
       # If the localized file doesn't exist, and the locale isn't English, look
       # for an english version of the file, and redirect the user there if
@@ -514,6 +519,8 @@ class ContentHandler(webapp.RequestHandler):
         if 'author_id2' in tut:
           author_key2 = common.Author.get_by_key_name(tut['author_id2'])
 
+        update_date = tut.get('update_date')
+
         sample = common.Resource(
           title=tut['title'],
           description=tut['description'],
@@ -521,7 +528,7 @@ class ContentHandler(webapp.RequestHandler):
           second_author=author_key2,
           url=unicode(tut['url']),
           browser_support=tut['browser_support'],
-          update_date=datetime.date.today(),
+          update_date=update_date,
           publication_date=tut['publication_date'],
           tags=tut['tags'])
         sample.put()

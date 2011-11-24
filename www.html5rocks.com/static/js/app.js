@@ -301,7 +301,7 @@ function filterTag(opt_tag) {
   var e = window.event;
 
   // Don't perform another filter if we're initiated from a hashchange.
-  if (e.type == 'hashchange') {
+  if (!e || e.type == 'hashchange') {
     return;
   }
 
