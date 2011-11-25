@@ -60,6 +60,7 @@ $(document).keydown(function(e) {
 
 /*
 // TODO: go back to event delgation. Currently breaks nav.
+// TODO: AJAXifying page removed
 //$('a').live('click', function() {
 $('a').click(function() {
 
@@ -136,8 +137,8 @@ $(document).keydown(function(e) {
     $('#search_hide, #features_hide').click();
 
     // Hide +/- feature navigation.
-    $('.outline_nav_toggle').removeClass('activated');
-    $('nav.features_outline').fadeOut('fast');
+    $('.outline_nav_toggle').removeClass('activated')
+                            .find('nav.outline').fadeOut('fast');
   }
 });
 
@@ -224,8 +225,6 @@ window.route = {
   }
 };
 
-window.addEventListener('DOMContentLoaded', route.onload, false);
-
 window.state = {
   push : function(obj){
     if (!Modernizr.history) {
@@ -252,98 +251,6 @@ window.state = {
 
 };
 
-window.addEventListener('popstate', state, false);
-
-
-$(document).ready(function() {
-  $('.tag').live('click', filterTag);
-  if (document.location.hash) {
-    // Hide all samples as soon as DOM is loaded to prevent flicker effect.
-    var samples = $('.tutorial_listing');
-    samples.addClass('hidden');
-    filterTag(document.location.hash.substring(1));
-  }
-});
-
-function clearFilter() {
-  $('.tutorial_listing.hidden').removeClass('hidden');
-  $('.tag_filter input[type="text"]').val('');
-  $('#updates_format_filter input[type="checkbox"]').attr('checked', false);
-  $('#filter').parent().addClass('hidden');
-  if (!!window.history) {
-    var lang = document.documentElement.lang || 'en';
-    history.replaceState({}, document.title, '/' + lang + '/tutorials');
-  } else {
-    document.location.hash = '';
-  }
-};
-
-function toggleFormatFilter(e) {
-  $(this).find('input[type="checkbox"]').attr('checked', false);
-
-  var checkbox = e.target;
-  checkbox.checked = true;
-  var tag = checkbox.parentElement.textContent;
-
-  // 'Case Study' -> 'casestudy'.
-  var type = $.trim(tag).toLowerCase().replace(' ', '');
-
-  if (checkbox.checked) {
-    filterTag('type:' + type);
-  } else {
-    clearFilter();
-  }
-}
-
-//$('#updates_format_filter').live('click', toggleFormatFilter);
-
-function filterTag(opt_tag) {
-  var e = window.event;
-
-  // Don't perform another filter if we're initiated from a hashchange.
-  if (!e || e.type == 'hashchange') {
-    return;
-  }
-
-  var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
-  document.location.hash = tag;
-
-  var samples = $('.tutorial_listing');
-
-  if (tag) {
-    var types = [];
-    $('#updates_format_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
-      var type = checkbox.parentElement.textContent;
-      // 'Case Study' -> 'casestudy'.
-      types.push('type:' + $.trim(type).toLowerCase().replace(' ', ''));
-    });
-
-    samples.addClass('hidden');
-    $.each(tag.split(','), function(i, eachtag) {
-      if (types.length) {
-        types.forEach(function(type, i) {
-          samples.find('span.tag:contains("' + type + '")')
-                 .closest('.tutorial_listing')
-                 .find('span.tag:contains("' + eachtag + '")')
-                 .closest('.tutorial_listing').removeClass('hidden');
-        });
-      } else {
-        samples.find('span.tag:contains("' + eachtag + '")')
-               .closest('.tutorial_listing').removeClass('hidden');
-      }
-    });
-    $('#filter_tag').text(tag);
-    $('#filter').parent().removeClass('hidden');
-    //window.scrollTo(0, 0);
-  } else {
-    clearFilter();
-  }
-};
-
-// Adds back button support.
-window.addEventListener('hashchange', function(e) {
-  filterTag(document.location.hash.substring(1));
-  if (window._gaq) {
-    _gaq.push(['_trackPageview', document.location.href]);
-  }
-}, false);
+// TODO: AJAXifying page removed.
+//window.addEventListener('popstate', state, false);
+window.addEventListener('DOMContentLoaded', route.onload, false);
