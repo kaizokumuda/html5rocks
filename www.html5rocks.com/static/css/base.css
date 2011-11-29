@@ -2176,6 +2176,7 @@ ul.figures li a img
 {
   float: left;
   max-width: 150px;
+  border: 1px solid #eee;
 }
 
 article.feature figcaption,
