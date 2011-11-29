@@ -2935,7 +2935,7 @@ section.disqus
 
   article.profile section
   {
-
+    margin: 0 !important;
   }
 
   .profile .map,
@@ -3057,6 +3057,12 @@ section.disqus
     margin: 0 !important;
   }
 
+  .page header hgroup
+  {
+    float: none !important;
+    padding-bottom: .75em;
+  }
+
   section
   {
     float: none !important;
@@ -3088,38 +3094,8 @@ section.disqus
   }
 }
 
-@media screen and (max-width: 550px)
+@media screen and (max-width: 600px)
 {
-  .page header
-  {
-    padding-bottom: 3.25em;
-  }
-
-  .page header hgroup
-  {
-    padding-bottom: .75em;
-  }
-
-  article,
-  section,
-  article.sectioned section,
-  section.link_target,
-  .page header
-  {
-    padding: .75em .9em;
-  }
-
-  section
-  {
-    width: 100% !important;
-  }
-
-  section p:last-child,
-  section pre:last-child
-  {
-    margin-bottom: 0 !important;
-  }
-
   /* Profiles */
 
   .profile
@@ -3131,6 +3107,7 @@ section.disqus
   article.profile section
   {
     height: inherit;
+    margin: .75em 0 !important;
   }
 
   .profile .articles
@@ -3151,6 +3128,34 @@ section.disqus
   {
     list-style: none !important;
     overflow: visible;
+  }
+}
+
+@media screen and (max-width: 550px)
+{
+  .page header
+  {
+    padding-bottom: 3.25em;
+  }
+
+  article,
+  section,
+  article.sectioned section,
+  section.link_target,
+  .page header
+  {
+    padding: .75em .9em;
+  }
+
+  section
+  {
+    width: 100% !important;
+  }
+
+  section p:last-child,
+  section pre:last-child
+  {
+    margin-bottom: 0 !important;
   }
 }
 
