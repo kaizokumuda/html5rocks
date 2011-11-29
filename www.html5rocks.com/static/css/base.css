@@ -1529,8 +1529,8 @@ article.profile section
   transition: all 300ms ease-in-out;
 }
 
-.profile .map             { left: -400px; top: 135px; }
-.profile .articles        { left: 400px; top: 135px; }
+.profile .map             { left: -800px; top: 135px; }
+.profile .articles        { left: 800px; top: 135px; }
 .profile .map.active,
 .profile .articles.active { left: 20px; top: 135px; }
 
@@ -2912,6 +2912,54 @@ section.disqus
     margin-right: 0 !important;
     width: inherit !important;
   }
+
+  /* Profiles */
+
+  body[data-href="profiles"] .profile:first-child,
+  body[data-href="profiles"] .profile:nth-child(3n + 1)
+  {
+    margin-left: 3%;
+  }
+
+  body[data-href="profiles"] .profile:first-child,
+  body[data-href="profiles"] .profile:nth-child(2n + 1)
+  {
+    margin-left: 0;
+  }
+
+  .profile
+  {
+    margin-left: 3%;
+    width: 48.5%;
+  }
+
+  article.profile section
+  {
+
+  }
+
+  .profile .map,
+  .profile .list-articles span
+  {
+    display: none;
+  }
+
+  .profile .list-articles
+  {
+    cursor: default !important;
+    color: #666 !important;
+  }
+
+  .profile .articles
+  {
+    margin: 2.75em 0 0 94px;
+    position: static;
+  }
+
+  .profile .articles
+  {
+    width: 70%;
+  }
 }
 
 @media screen and (max-width: 860px)
@@ -3070,6 +3118,39 @@ section.disqus
   section pre:last-child
   {
     margin-bottom: 0 !important;
+  }
+
+  /* Profiles */
+
+  .profile
+  {
+    margin: 0 !important;
+    width: 100%;
+  }
+
+  article.profile section
+  {
+    height: inherit;
+  }
+
+  .profile .articles
+  {
+    height: inherit;
+    overflow: visible;
+  }
+
+  .profile .articles li
+  {
+    list-style: none !important;
+    white-space: normal;
+    margin-left: 1.5em;
+    text-indent: -1.5em;
+  }
+
+  .profile .articles a
+  {
+    list-style: none !important;
+    overflow: visible;
   }
 }
 
