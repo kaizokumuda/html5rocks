@@ -2927,6 +2927,64 @@ section.disqus
     width: inherit !important;
   }
 
+  /* Homepage  */
+
+  body[data-href="home"] header.two_columns
+  {
+    padding: 2%;
+  }
+
+  body[data-href="home"] header.two_columns hgroup,
+  body[data-href="home"] header.two_columns p
+  {
+    float: none;
+    width: inherit;
+  }
+
+  body[data-href="home"] header.two_columns hgroup h1,
+  body[data-href="home"] header.two_columns hgroup h2
+  {
+    font-size: 225%;
+  }
+
+  body[data-href="home"] header.two_columns p
+  {
+    margin: .5em 0 0;
+  }
+
+  body[data-href="home"] .one_third
+  {
+    float: left !important;
+    height: inherit;
+    margin-left: 2% !important;
+    padding: 2%;
+    width: 28% !important;
+  }
+
+  body[data-href="home"] .one_third:first-child
+  {
+    margin-left: 0 !important;
+  }
+
+  body[data-href="home"] .one_third a
+  {
+    position: static;
+  }
+
+  body[data-href="home"] article.profile
+  {
+    float: left !important;
+    height: inherit;
+    margin: 2% 0 0 2% !important;
+    width: 32% !important;
+    padding: 0;
+  }
+
+  body[data-href="home"] article.profile:nth-child(3n + 1)
+  {
+    margin-left: 0 !important;
+  }
+
   /* Updates List */
 
   .page header section.filter div.tag_filter
