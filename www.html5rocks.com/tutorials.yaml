@@ -2,6 +2,7 @@ title: Using CORS
 url: /tutorials/cors/
 author_id: monsurhossain
 publication_date: 2011-10-26
+update_date: 2011-11-29
 description: An introduction to Cross Origin Resource Sharing (CORS), which gives scripts the ability to make cross-origin XHRs.
 browser_support:
 - chrome
