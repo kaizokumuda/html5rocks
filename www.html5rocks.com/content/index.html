@@ -112,7 +112,7 @@
     <img src="/static/images/logo.png" width="459" height="364">
     <img id="updates_badge" src="/static/images/updates_badge.png" width="101" height="102">
   </div>
-  <section id="updates" class="feed">
+  <section id="updates" class="feed pattern-bg">
     <img src="/static/images/updates_title.png" id="updates_title">
     <h2>{% trans "Latest Updates" %}
       <a href="http://feeds.feedburner.com/html5rocks" style="vertical-align:text-top;" target="_blank">
@@ -125,7 +125,7 @@
 </header>
 
 <article id="intro" class="clearfix sectioned">
-  <header class="two_columns clearfix">
+  <header class="two_columns clearfix pattern-bg">
     <hgroup>
       <h1>Welcome to HTML5ROCKS</h1>
       <h2>What kind of HTML dev do you think you are?</h2>
@@ -134,21 +134,21 @@
   </header>
 
   <div class="clearfix thirds">
-    <section class="one_third link_target">
+    <section class="one_third link_target pattern-bg">
       <a href="/{{LANGUAGE_CODE}}/mobile">
         <h2>Mobile</h2>
         <p>Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris! Placerat mid integer nunc.</p>
       </a>
     </section>
 
-    <section class="one_third link_target">
+    <section class="one_third link_target pattern-bg">
       <a href="/{{LANGUAGE_CODE}}/gaming">
         <h2>Gaming</h2>
         <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet!</p>
       </a>
     </section>
 
-    <section class="one_third link_target">
+    <section class="one_third link_target pattern-bg">
       <a href="/{{LANGUAGE_CODE}}/business">
         <h2>Business</h2>
         <p>Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris! Placerat mid integer nunc parturient nec, aliquam, lacus nec lundium!</p>
@@ -160,7 +160,7 @@
 <a id="scroll-technology" class="nav arrow_down">Or get straight to the tech!</a>
 
 <article id="technology" class="clearfix sectioned">
-  <section id="classes">
+  <section id="classes" class="pattern-bg">
     <header class="two_columns">
       <hgroup>
         <h1>HTML5 Features</h1>
@@ -224,21 +224,21 @@
   </section>
 
   <div class="clearfix thirds">
-    <section class="one_third link_target">
+    <section class="one_third link_target pattern-bg">
       <a href="/{{LANGUAGE_CODE}}/why">
         <h2>Why HTML5?</h2>
         <p><strong>Pid cras vel odio lundium</strong><br>Natoque integer urna adipiscing tortor scelerisque vut! ....</p>
       </a>
     </section>
 
-    <section class="one_third link_target">
+    <section class="one_third link_target pattern-bg">
       <a href="/{{LANGUAGE_CODE}}/tutorials/">
         <h2>Updates</h2>
         <p><strong>Pid cras vel odio lundium</strong><br>Natoque integer urna adipiscing tortor scelerisque vut! ....</p>
       </a>
     </section>
 
-    <section class="one_third link_target">
+    <section class="one_third link_target pattern-bg">
       <a href="/{{LANGUAGE_CODE}}/resources">
         <h2>Resources</h2>
         <p><strong>Pid cras vel odio lundium</strong><br>Natoque integer urna adipiscing tortor scelerisque vut! ....</p>
@@ -250,7 +250,7 @@
 <a id="scroll-authors" class="nav arrow_down">HTML5 Contributors</a>
 
 <article id="authors" class="clearfix sectioned">
-  <header class="two_columns clearfix">
+  <header class="two_columns clearfix pattern-bg">
     <hgroup>
       <h1>HTML5 Gurus Rock</h1>
       <h2>New Hotness Every Day</h2>
@@ -260,7 +260,7 @@
 
   <div class="authors_wrapper">
   {% for profile in sorted_profiles %}
-    <article class="profile" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
+    <article class="profile pattern-bg" id="{{profile.id}}" itemscope itemtype="http://microformats.org/profile/hcard">
       <a href="/{{LANGUAGE_CODE}}/profiles#{{profile.id}}">
       <section>
         <img itemprop="photo" alt="{{profile.given_name}} {{profile.family_name}}" title="{{profile.given_name}} {{profile.family_name}}" src="/static/images/profiles/{{profile.id}}.png">
