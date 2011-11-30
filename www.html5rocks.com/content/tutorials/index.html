@@ -8,7 +8,7 @@
 
 {% block body %}
 <div data-import-html>
-  <header class="clearfix">
+  <header class="clearfix pattern-bg-lighter">
     <hgroup>
       <h1>HTML5 Rocks</h1>
       <h2>{% trans "Updates" %}</h2>
@@ -67,14 +67,14 @@
     </span>
   </header>
 
-  <section class="hidden">
+  <section class="hidden pattern-bg-lighter">
     <div id="filter" style="text-align: center;">
       {% trans "Filtering by tag" %}: <span id="filter_tag"></span>.
       <a href="javascript:clearFilter();" target="_blank">{% trans "[Clear filter]" %}</a>
     </div>
   </section>
 
-  <section>
+  <section class="pattern-bg-lighter">
     <div id="index">
       <h2>Recent Updates
       <a href="http://feeds.feedburner.com/html5rocks" style="vertical-align:text-top;" target="_blank">

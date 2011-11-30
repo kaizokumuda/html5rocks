@@ -8,7 +8,7 @@
 
 {% block body %}
   <div data-import-html>
-    <header class="clearfix">
+    <header class="clearfix pattern-bg-lighter">
       <hgroup>
         <h1>HTML5 Features</h1>
         <h2>{% block h2title %}{% trans "Feature" %}{% endblock %}</h2>
@@ -28,15 +28,10 @@
     </header>
 
     <article class="sectioned feature">
-      <div class="description">
-        {% block description %}{% endblock %}
-      </div>
+      {% block description %}{% endblock %}
 
       {% block support %}
-        <section
-          id="support"
-          class="support {% block supportblockstyle %}{% endblock %}"
-          style="display:none"
+        <section id="support" class="support {% block supportblockstyle %}{% endblock %}" style="display:none"
           data-caniusefeatures="{% block caniuse %}{% endblock %}"
           data-features="{% block tuttags %}{% endblock %}">
 

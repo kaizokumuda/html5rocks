@@ -1,9 +1,7 @@
 {% extends "tutorial.html" %}
 
-{% block head %}
-
-{% endblock %}
 {% block pagebreadcrumb %}{{ tut.title }}{% endblock %}
+{% block head %}{% endblock %}
 {% block onload %}{% endblock %}
 
 {% block iscompatible %}
@@ -30,11 +28,11 @@ APIs are the thread that let you stitch together a rich web experience. But this
 </p>
 
 <p>
-The use-case for CORS is simple. Imagine the site alice.com offers a set of data, and the site bob.com wants to access alice.com’s data. This type of request wouldn’t traditionally be allowed under the browser’s <a href="http://en.wikipedia.org/wiki/Same_origin_policy">same origin policy</a>.  However, by supporting CORS requests, alice.com can add a few special response headers that allows bob.com to access data.
+The use-case for CORS is simple. Imagine the site alice.com has some data that the site bob.com wants to access. This type of request traditionally wouldn’t be allowed under the browser’s <a href="http://en.wikipedia.org/wiki/Same_origin_policy">same origin policy</a>.  However, by supporting CORS requests, alice.com can add a few special response headers that allows bob.com to access the data.
 </p>
 
 <p>
-As you can see from this example, CORS support requires coordination between both the server and client. Luckily if you are a client-side developer, you are shielded from most of the details. The rest of this article will show you how clients can make cross-origin requests, and how servers can configure themselves to support CORS.
+As you can see from this example, CORS support requires coordination between both the server and client. Luckily if you are a client-side developer, you are shielded from most of these details. The rest of this article shows how clients can make cross-origin requests, and how servers can configure themselves to support CORS.
 </p>
 
 <h2 id="toc-making-a-cors-request">Making a CORS Request</h2>
@@ -64,7 +62,7 @@ Chrome, Firefox and Safari all use the <a href="http://www.html5rocks.com/en/tut
 </p>
 
 <p>
-To get started, you will first need to create the appropriate request object. Nicholas Zakas wrote <a href-"http://www.nczonline.net/blog/2010/05/25/cross-domain-ajax-with-cross-origin-resource-sharing/ ">a simple helper method</a> to help sort out the browser differences:
+To get started, you will first need to create the appropriate request object. Nicholas Zakas wrote <a href="http://www.nczonline.net/blog/2010/05/25/cross-domain-ajax-with-cross-origin-resource-sharing/">a simple helper method</a> to help sort out the browser differences:
 </p>
 
 <pre class="prettyprint">
@@ -143,7 +141,7 @@ Browers don't do a good job of reporting what went wrong when there is an error.
 <h3 id="toc-withcredentials">withCredentials</h3>
 
 <p>
-Standard CORS requests do not send or set any cookies by default.  In order to include cookies as part of the request, you need to set the XmlHttpRequest’s .withCredentials property to true:
+Standard CORS requests do not send or set any cookies by default.  In order to include cookies as part of the request, you need to set the XmlHttpRequest’s <code>.withCredentials</code> property to true:
 </p>
 
 <pre class="prettyprint">
@@ -159,7 +157,7 @@ Access-Control-Allow-Credentials: true
 </pre>
 
 <p>
-The withCredentials property will include any cookies from the remote domain in the request, and it will also set any cookies from the remote domain.  Note that these cookies still honor same-origin policies, so your JavaScript code can’t access the cookies from document.cookie or the response headers.  They can only be controlled by the remote domain.
+The <code>.withCredentials</code> property will include any cookies from the remote domain in the request, and it will also set any cookies from the remote domain.  Note that these cookies still honor same-origin policies, so your JavaScript code can’t access the cookies from document.cookie or the response headers.  They can only be controlled by the remote domain.
 </p>
 
 <h3 id="toc-making-the-request">Making the request</h3>
@@ -267,30 +265,30 @@ Simple requests are requests that meet the following criteria:
 
 <p>
 <ul>
-<li>HTTP Method matches (case-sensitive) one of:</li>
+<li>HTTP Method matches (case-sensitive) one of:
   <ul>
   <li>HEAD</li>
   <li>GET</li>
   <li>POST</li>
-  </ul>
-<li>HTTP Headers matches (case-insensitive):</li>
+  </ul></li>
+<li>HTTP Headers matches (case-insensitive):
   <ul>
   <li>Accept</li>
   <li>Accept-Language</li>
   <li>Content-Language</li>
   <li>Last-Event-ID</li>
-  <li>Content-Type, but only if the value is one of:</li>
+  <li>Content-Type, but only if the value is one of:
     <ul>
     <li>application/x-www-form-urlencoded</li>
     <li>multipart/form-data</li>
     <li>text/plain</li>
-    </ul>
-  </ul>
+    </ul></li>
+  </ul></li>
 </ul>
 </p>
 
 <p>
-A browser doesn't need CORS in order to make a simple request; simple requests are already possible via other browser techniques.  For example, a JSON-P request can issue a cross-domain GET request. Or HTML could be used to do a form POST.
+Simple requests are characterized as such because they can already be made from a browser without using CORS. For example, a JSON-P request can issue a cross-domain GET request. Or HTML could be used to do a form POST.
 </p>
 
 <p>
@@ -305,7 +303,7 @@ Lets start by examining a simple request from the client.  The table below shows
 
 <p>JavaScript:</p>
 <pre class="prettyprint">
-var url = 'http://alice.com/cors';
+var url = 'http://api.alice.com/cors';
 var xhr = createCORSRequest('GET', url);
 xhr.send();
 </pre>
@@ -313,8 +311,8 @@ xhr.send();
 <p>HTTP Request:</p>
 <pre class="prettyprint">
 GET /cors HTTP/1.1
-<b>Origin: http://api.alice.com</b>
-Host: api.bob.com
+<b>Origin: http://api.bob.com</b>
+Host: api.alice.com
 Accept-Language: en-US
 Connection: keep-alive
 User-Agent: Mozilla/5.0...
@@ -392,7 +390,7 @@ Here’s an example of a not-so-simple request:
 
 <p>JavaScript:</p>
 <pre class="prettyprint">
-var url = 'http://alice.com/cors';
+var url = 'http://api.alice.com/cors';
 var xhr = createCORSRequest('PUT', url);
 xhr.setRequestHeader(
     'X-Custom-Header', 'value');
@@ -402,10 +400,10 @@ xhr.send();
 <p>Preflight Request:</p>
 <pre class="prettyprint">
 OPTIONS /cors HTTP/1.1
-<b>Origin: http://api.alice.com</b>
+<b>Origin: http://api.bob.com</b>
 <b>Access-Control-Request-Method: PUT</b>
 <b>Access-Control-Request-Headers: X-Custom-Header</b>
-Host: api.bob.com
+Host: api.alice.com
 Accept-Language: en-US
 Connection: keep-alive
 User-Agent: Mozilla/5.0...
@@ -434,10 +432,10 @@ If the HTTP method and headers are valid, the server should respond with the fol
 <p>Preflight Request:</p>
 <pre class="prettyprint">
 OPTIONS /cors HTTP/1.1
-<b>Origin: http://api.alice.com</b>
+<b>Origin: http://api.bob.com</b>
 <b>Access-Control-Request-Method: PUT</b>
 <b>Access-Control-Request-Headers: X-Custom-Header</b>
-Host: api.bob.com
+Host: api.alice.com
 Accept-Language: en-US
 Connection: keep-alive
 User-Agent: Mozilla/5.0...
@@ -478,8 +476,8 @@ Once the preflight request gives permissions, the browser makes the actual reque
 <p>Actual Request:</p>
 <pre class="prettyprint">
 PUT /cors HTTP/1.1
-<b>Origin: http://api.alice.com</b>
-Host: api.bob.com
+<b>Origin: http://api.bob.com</b>
+Host: api.alice.com
 <b>X-Custom-Header: value</b>
 Accept-Language: en-US
 Connection: keep-alive
@@ -494,16 +492,16 @@ Content-Type: text/html; charset=utf-8
 
 
 <p>
-If the HTTP method or headers requested in the preflight are not valid, the server can just return a generic response, like HTTP 200. Since there are no CORS-specific headers in the response, the browser assumes the request is invalid, and doesn’t make the actual request:
+If the server wants to deny the CORS request, it can just return a generic response (like HTTP 200), without any CORS header. The server may want to deny the request if the HTTP method or headers requested in the preflight are not valid. Since there are no CORS-specific headers in the response, the browser assumes the request is invalid, and doesn’t make the actual request:
 </p>
 
 <p>Preflight Request:</p>
 <pre class="prettyprint">
 OPTIONS /cors HTTP/1.1
-<b>Origin: http://api.alice.com</b>
+<b>Origin: http://api.bob.com</b>
 <b>Access-Control-Request-Method: PUT</b>
 <b>Access-Control-Request-Headers: X-Custom-Header</b>
-Host: api.bob.com
+Host: api.alice.com
 Accept-Language: en-US
 Connection: keep-alive
 User-Agent: Mozilla/5.0...
@@ -625,4 +623,3 @@ function makeCorsRequest() {
 }
 </script>
 {% endblock %}
-
