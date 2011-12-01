@@ -1,7 +1,12 @@
-// Navigation highlighting.
+// Controls whether or not the site should function with ajax loads or not.
+var AJAXIFY_SITE = false;
 
+// Navigation highlighting.
 $('.main nav ul li a').click(function() {
   $('.main nav .current').removeClass('current');
+  if (AJAXIFY_SITE) {
+    $(this).addClass('current');
+  }
   setTimeout("$('.watermark').css('top', '30px')", 1000);
 });
 
@@ -12,7 +17,6 @@ $('.subheader.features ul li a').click(function() {
 
 
 // Page grid navigation.
-
 function finishPanelLoad(pagePanel, elemstate) {
   if (pagePanel.hasClass('next')) {
     pagePanel.removeClass('next');
@@ -56,27 +60,35 @@ $(document).keydown(function(e) {
 
     loadContent($('div.features a.' + goFeature)[0])
   }
-});
+  if (e.keyCode == 27) { // ESC
+    // Hide search and/or feature bar.
+    $('#search_hide, #features_hide').click();
 
-/*
-// TODO: go back to event delgation. Currently breaks nav.
-// TODO: AJAXifying page removed
-//$('a').live('click', function() {
-$('a').click(function() {
-
-  // Don't intercept external links
-  if ($(this).attr('target')) {
-    return true;
+    // Hide +/- feature navigation.
+    $('.outline_nav_toggle').removeClass('activated')
+                            .find('nav.outline').fadeOut('fast');
   }
-
-  // Only cool browsers get cool behavior
-  if (!Modernizr.history) return true;
-
-  loadContent(this);
-
-  return false;
 });
-*/
+
+
+// TODO: go back to event delgation. Currently breaks nav.
+if (AJAXIFY_SITE) {
+  //$('a').live('click', function() {
+  $('a').click(function() {
+
+    // Don't intercept external links
+    if ($(this).attr('target')) {
+      return true;
+    }
+
+    // Only cool browsers get cool behavior
+    if (!Modernizr.history) return true;
+
+    loadContent(this);
+
+    return false;
+  });
+}
 
 function loadContent(elem, popped){
 
@@ -131,17 +143,6 @@ function loadContent(elem, popped){
 
 }; // eo loadContent()
 
-$(document).keydown(function(e) {
-  if (e.keyCode == 27) { // ESC
-    // Hide search and/or feature bar.
-    $('#search_hide, #features_hide').click();
-
-    // Hide +/- feature navigation.
-    $('.outline_nav_toggle').removeClass('activated')
-                            .find('nav.outline').fadeOut('fast');
-  }
-});
-
 
 // Features navigation.
 
@@ -163,11 +164,6 @@ $('nav.features_outline a.section_title').click(function(e) {
     $(this).siblings('ul').slideDown('fast');
   }
   e.stopPropagation();
-});
-
-$('.main nav li a').click(function(e) {
-  $('.main nav .current').removeClass('current');
-  $(this).addClass('current');
 });
 
 // basic routing setup based on the global page variable
@@ -251,6 +247,7 @@ window.state = {
 
 };
 
-// TODO: AJAXifying page removed.
-//window.addEventListener('popstate', state, false);
+if (AJAXIFY_SITE) {
+  window.addEventListener('popstate', state, false);
+}
 window.addEventListener('DOMContentLoaded', route.onload, false);
