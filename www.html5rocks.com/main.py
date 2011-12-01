@@ -17,8 +17,6 @@
 __author__ = ('kurrik@html5rocks.com (Arne Kurrik) ',
               'ericbidelman@html5rocks.com (Eric Bidelman)')
 
-import common # Need this first to force Django 1.2.
-
 # Standard Imports
 import datetime
 import logging
@@ -26,6 +24,15 @@ import os
 import re
 import urllib2
 import yaml
+
+# Use Django 1.2.
+from google.appengine.dist import use_library
+use_library('django', '1.2')
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_settings'
+
+import common
+import models
 
 # Libraries
 import html5lib
@@ -101,7 +108,7 @@ class ContentHandler(webapp.RequestHandler):
     articles = memcache.get('feed|%s' % path)
     if articles is None or not self.request.cache:
       # DB query is memcached in get_all().
-      tutorials = common.Resource.get_all().order('-publication_date')
+      tutorials = models.Resource.get_all().order('-publication_date')
 
       articles = []
       for tut in tutorials:
@@ -162,7 +169,7 @@ class ContentHandler(webapp.RequestHandler):
       'is_mobile': self.is_awesome_mobile_device(),
       'current': current,
       'prod': common.PROD,
-      'sorted_profiles': common.get_sorted_profiles() # TODO: Don't add profile data on every request.
+      'sorted_profiles': models.get_sorted_profiles() # TODO: Don't add profile data on every request.
     }
 
     template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
@@ -211,7 +218,7 @@ class ContentHandler(webapp.RequestHandler):
       try:
         given_name = self.request.get('given_name')
         family_name = self.request.get('family_name')
-        author = common.Author(
+        author = models.Author(
             key_name=''.join([given_name, family_name]).lower(),
             given_name=given_name,
             family_name=family_name,
@@ -236,8 +243,8 @@ class ContentHandler(webapp.RequestHandler):
         self.redirect('/database/author')
 
     elif relpath == 'database/resource':
-      author_key = common.Author.get_by_key_name(self.request.get('author'))
-      author_key2 = common.Author.get_by_key_name(
+      author_key = models.Author.get_by_key_name(self.request.get('author'))
+      author_key2 = models.Author.get_by_key_name(
           self.request.get('second_author'))
 
       if author_key.key() == author_key2.key():
@@ -254,7 +261,7 @@ class ContentHandler(webapp.RequestHandler):
 
       update_date = self.request.get('update_date') or None
 
-      tutorial = common.Resource.get_all().filter('title =', self.request.get('title'))
+      tutorial = models.Resource.get_all().filter('title =', self.request.get('title'))
       if tutorial.count() == 1:
         try:
           tutorial[0].title=self.request.get('title'),
@@ -270,7 +277,7 @@ class ContentHandler(webapp.RequestHandler):
           pass
       else:
         try:
-          tutorial = common.Resource(
+          tutorial = models.Resource(
               title=self.request.get('title'),
               description=self.request.get('description'),
               author=author_key,
@@ -301,7 +308,7 @@ class ContentHandler(webapp.RequestHandler):
     # url)
     if (relpath == 'humans.txt'):
       self.response.headers['Content-Type'] = 'text/plain'
-      sorted_profiles = common.get_sorted_profiles()
+      sorted_profiles = models.get_sorted_profiles()
       return self.render(data={'sorted_profiles': sorted_profiles,
                                'profile_amount': len(sorted_profiles)},
                          template_path='content/humans.txt',
@@ -319,8 +326,8 @@ class ContentHandler(webapp.RequestHandler):
       regex = re.compile("/[^/]+/(\d+)")
       postid = regex.findall(relpath)
       if len(postid) > 0: # /database/resource/1234
-        post = common.Resource.get_by_id(int(postid[0]))
-        tutorial_form = common.TutorialForm(
+        post = models.Resource.get_by_id(int(postid[0]))
+        tutorial_form = models.TutorialForm(
             instance=post,
             initial={
               'author': post and post.author.key().name(),
@@ -328,11 +335,11 @@ class ContentHandler(webapp.RequestHandler):
               'browser_support': [x.lower() for x in post.browser_support]
             })
       else: # /database/resource
-        tutorial_form = common.TutorialForm()
+        tutorial_form = models.TutorialForm()
         
       template_data = {
         'tutorial_form': tutorial_form,
-        'resources': common.Resource.get_all().order('-publication_date')
+        'resources': models.Resource.get_all().order('-publication_date')
       }
       return self.render(data=template_data,
                          template_path='database/resource_new.html',
@@ -340,11 +347,11 @@ class ContentHandler(webapp.RequestHandler):
 
     elif (relpath == 'database/author'):
       # adds a new author information into DataStore.
-      sorted_profiles = common.get_sorted_profiles(update_cache=True)
+      sorted_profiles = models.get_sorted_profiles(update_cache=True)
       template_data = {
         'sorted_profiles': sorted_profiles,
         'profile_amount': len(sorted_profiles),
-        'author_form': common.AuthorForm()
+        'author_form': models.AuthorForm()
       }
       return self.render(data=template_data,
                          template_path='database/author_new.html',
@@ -393,9 +400,9 @@ class ContentHandler(webapp.RequestHandler):
     # the user is requesting has a corresponding .html page that exists.
 
     if (relpath == 'profiles' or relpath == 'profiles/'):
-      profiles = common.get_sorted_profiles()
+      profiles = models.get_sorted_profiles()
       for p in profiles:
-        p['tuts_by_author'] = common.Resource.get_tutorials_by_author(p['id'])
+        p['tuts_by_author'] = models.Resource.get_tutorials_by_author(p['id'])
       self.render(data={'sorted_profiles': profiles},
                   template_path='content/profiles.html', relpath=relpath)
 
@@ -462,7 +469,7 @@ class ContentHandler(webapp.RequestHandler):
       (dir, filename) = os.path.split(path)
       if os.path.isfile(os.path.join(dir, locale, filename)):
         data = {
-          'tut': common.Resource.all().filter('url =', '/' + relpath).get(),
+          'tut': models.Resource.all().filter('url =', '/' + relpath).get(),
           'redirect_from_locale': redirect_from_locale
         }
         self.render(template_path=os.path.join(dir, locale, filename),
@@ -479,7 +486,7 @@ class ContentHandler(webapp.RequestHandler):
       if relpath in ['mobile', 'gaming', 'business']:
         result = TagsHandler().get_as_db(relpath)
       else:
-        result = common.Resource.get_all().order('-publication_date')
+        result = models.Resource.get_all().order('-publication_date')
 
       tutorials = []
       for r in result:
@@ -514,14 +521,14 @@ class ContentHandler(webapp.RequestHandler):
     f = file(os.path.dirname(__file__) + '/tutorials.yaml', 'r')
     for tut in yaml.load_all(f):
       try:
-        author_key = common.Author.get_by_key_name(tut['author_id'])
+        author_key = models.Author.get_by_key_name(tut['author_id'])
         author_key2 = None
         if 'author_id2' in tut:
-          author_key2 = common.Author.get_by_key_name(tut['author_id2'])
+          author_key2 = models.Author.get_by_key_name(tut['author_id2'])
 
         update_date = tut.get('update_date')
 
-        sample = common.Resource(
+        sample = models.Resource(
           title=tut['title'],
           description=tut['description'],
           author=author_key,
@@ -539,7 +546,7 @@ class ContentHandler(webapp.RequestHandler):
   def addTestAuthors(self):
     f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
     for profile in yaml.load_all(f):
-      author = common.Author(
+      author = models.Author(
           key_name=unicode(profile['id']),
           given_name=unicode(profile['name']['given']),
           family_name=unicode(profile['name']['family']),
@@ -565,7 +572,7 @@ class APIHandler(webapp.RequestHandler):
   def get(self, relpath):
     if (relpath == 'authors'):
       profiles = {}
-      for p in common.get_sorted_profiles(): # This query is memcached.
+      for p in models.get_sorted_profiles(): # This query is memcached.
         profile_id = p['id']
         profiles[profile_id] = p
         geo_location = profiles[profile_id]['geo_location']
@@ -584,7 +591,7 @@ class TagsHandler(webapp.RequestHandler):
     tag = urllib2.unquote(tag)
 
     # DB query is memcached in get_all().
-    return (common.Resource.get_all().filter('tags =', tag)
+    return (models.Resource.get_all().filter('tags =', tag)
                                      .order('-publication_date'))
 
   def get(self, format, tag):

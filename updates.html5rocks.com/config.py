@@ -13,6 +13,9 @@ host = 'updates.html5rocks.com'
 # The hostname of the main site.
 main_site_origin = 'http://www.html5rocks.com'
 
+# The hostname of the main site (when in development server).
+main_site_test_origin = 'http://localhost:8080'
+
 # Selects the theme to use. Theme names correspond to directories under
 # the 'themes' directory, containing templates and static content.
 theme = 'html5rocks'

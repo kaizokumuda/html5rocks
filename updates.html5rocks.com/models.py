@@ -1,13 +1,16 @@
 import aetycoon
 import datetime
 import hashlib
+import logging
 import re
 import common
+from google.appengine.api import urlfetch
 from google.appengine.ext import db
 from google.appengine.ext import deferred
 
 import config
 import generators
+import json
 import markup
 import static
 import utils
@@ -60,13 +63,22 @@ class BlogPost(db.Model):
 
   @property
   def author_link(self):
-    try:
-      profile = common.get_profiles()[self.author_id]
-      name = profile['name']
-      return '<a href="http://html5rocks.com/profiles/#!/'+self.author_id+'">'+name['given']+" "+name['family']+'</a>'
-    except:
-      return self.author_id
+    # 
+    if common.PROD:
+      url = '%s/api/authors' % (config.main_site_origin)
+    else:
+      url = '%s/api/authors' % (config.main_site_test_origin)
 
+    try:
+      response = urlfetch.fetch(url)
+      if response.status_code == 200:
+        name = json.loads(response.content)[self.author_id]
+        return '<a href="%s/profiles/#!/%s">%s %s</a>' % (config.main_site_origin, self.author_id, name['given_name'], name['family_name'])
+      else:
+        return '<a href="%s/profiles/#!/%s">%s</a>' % (config.main_site_origin, self.author_id, self.author_id)
+    except urlfetch.DownloadError:
+      return '<a href="%s/profiles/#!/%s">%s</a>' % (config.main_site_origin, self.author_id, self.author_id)
+ 
   @property
   def published_tz(self):
     return utils.tz_field(self.published)

@@ -4,6 +4,7 @@ from google.appengine.api import files
 import datetime
 import logging
 import os
+import json
 import re
 import urllib2
 
@@ -19,7 +20,8 @@ import utils
 from django import newforms as forms
 from google.appengine.ext.db import djangoforms
 
-import common # html5rocks profiles
+import common # html5rocks common
+from google.appengine.api import urlfetch
 from google.appengine.api import users
 
 class PostForm(djangoforms.ModelForm):
@@ -34,7 +36,20 @@ class PostForm(djangoforms.ModelForm):
   tags = forms.CharField(widget=forms.Textarea(attrs={'rows': 5, 'cols': 20}))
   draft = forms.BooleanField(required=False)
   image_url = forms.CharField(required=False, widget=forms.TextInput(attrs={'id':'image_url'}))
-  sorted_profiles = sorted(common.get_profiles().keys())
+
+  if common.PROD:
+    url = '%s/api/authors' % (config.main_site_origin)
+  else:
+    url = '%s/api/authors' % (config.main_site_test_origin)
+
+  sorted_profiles = []
+  try:
+    response = urlfetch.fetch(url)
+    if response.status_code == 200:
+      sorted_profiles = json.loads(response.content).keys()
+  except urlfetch.DownloadError:
+    pass
+
   author_id = forms.ChoiceField(
     choices=[(id,id) for id in sorted_profiles])
   IMAGE_STYLES = (('top','top'), ('left','left'), ('right','right'))
@@ -256,33 +271,7 @@ class PageHandler(BaseHandler):
     else:
       self.render_form(form)
 
-class DataHandler(BaseHandler):
-  def get(self, path):
-    self.addTestAuthors()
 
-  def addTestAuthors(self):
-    f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
-    for profile in yaml.load_all(f):
-      author = common.Author(
-          key_name=unicode(profile['id']),
-          given_name=unicode(profile['name']['given']),
-          family_name=unicode(profile['name']['family']),
-          org=unicode(profile['org']['name']),
-          unit=unicode(profile['org']['unit']),
-          city=profile['address']['locality'],
-          state=profile['address']['region'],
-          country=profile['address']['country'],
-          google_account=str(profile.get('google')),
-          twitter_account=profile.get('twitter'),
-          email=profile['email'],
-          lanyrd=profile.get('lanyrd', False),
-          homepage=profile['homepage'],
-          geo_location=db.GeoPt(profile['address']['lat'],
-                                profile['address']['lon'])
-          )
-      author.put()
-    f.close()
-        
 class PageDeleteHandler(BaseHandler):
   @with_page
   def post(self, page):
