@@ -10,7 +10,7 @@ from google.appengine.ext import deferred
 
 import config
 import generators
-import json
+from django.utils import simplejson
 import markup
 import static
 import utils
@@ -72,7 +72,7 @@ class BlogPost(db.Model):
     try:
       response = urlfetch.fetch(url)
       if response.status_code == 200:
-        name = json.loads(response.content)[self.author_id]
+        name = simplejson.loads(response.content)[self.author_id]
         return '<a href="%s/profiles/#!/%s">%s %s</a>' % (config.main_site_origin, self.author_id, name['given_name'], name['family_name'])
       else:
         return '<a href="%s/profiles/#!/%s">%s</a>' % (config.main_site_origin, self.author_id, self.author_id)

@@ -4,7 +4,6 @@ from google.appengine.api import files
 import datetime
 import logging
 import os
-import json
 import re
 import urllib2
 
@@ -18,6 +17,7 @@ import post_deploy
 import utils
 
 from django import newforms as forms
+from django.utils import simplejson
 from google.appengine.ext.db import djangoforms
 
 import common # html5rocks common
@@ -46,7 +46,7 @@ class PostForm(djangoforms.ModelForm):
   try:
     response = urlfetch.fetch(url)
     if response.status_code == 200:
-      sorted_profiles = json.loads(response.content).keys()
+      sorted_profiles = simplejson.loads(response.content).keys()
   except urlfetch.DownloadError:
     pass
 
