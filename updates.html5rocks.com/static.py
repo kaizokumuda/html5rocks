@@ -125,6 +125,9 @@ class StaticContentHandler(webapp.RequestHandler):
     if content.content_type:
       self.response.headers['Content-Type'] = content.content_type
     last_modified = content.last_modified.strftime(HTTP_DATE_FMT)
+    # Add CORS and Chrome Frame support to entire site.
+    self.response.headers['Access-Control-Allow-Origin'] = '*'
+    self.response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     self.response.headers['Last-Modified'] = last_modified
     self.response.headers['ETag'] = '"%s"' % (content.etag,)
     for header in content.headers:
