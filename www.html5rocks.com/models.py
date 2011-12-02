@@ -75,12 +75,14 @@ class Resource(DictModel):
   publication_date = db.DateProperty()
   #generic tags and html5 feature group tags('offline', 'multimedia', etc.)
   tags = db.StringListProperty()
+  draft = db.BooleanProperty(default=True) # Don't publish by default.
 
   @classmethod
   def get_all(self):
     tutorials_query = memcache.get('tutorials')
     if tutorials_query is None:
       tutorials_query = self.all()
+      tutorials_query.filter('draft =', False) # Never return drafts.
       memcache.set('tutorials', tutorials_query)
 
     return tutorials_query
@@ -92,8 +94,8 @@ class Resource(DictModel):
       tutorials_by_author1 = Author.get_by_key_name(author_id).author_one_set
       tutorials_by_author2 = Author.get_by_key_name(author_id).author_two_set
 
-      tutorials_by_author = [x for x in tutorials_by_author1]
-      temp2 = [x for x in tutorials_by_author2]
+      tutorials_by_author = [x for x in tutorials_by_author1 if not x.draft]
+      temp2 = [x for x in tutorials_by_author2 if not x.draft]
       tutorials_by_author.extend(temp2)
 
       # Order by published date. Latest first.

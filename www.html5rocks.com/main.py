@@ -261,21 +261,28 @@ class ContentHandler(webapp.RequestHandler):
 
       update_date = self.request.get('update_date') or None
 
-      tutorial = models.Resource.get_all().filter('title =', self.request.get('title'))
-      if tutorial.count() == 1:
+      tutorial = None
+      if self.request.get('post_id'):
+        tutorial = models.Resource.get_by_id(int(self.request.get('post_id')))
+
+      # Updating existing resource.
+      if tutorial:
         try:
-          tutorial[0].title=self.request.get('title'),
-          tutorial[0].description=self.request.get('description'),
-          tutorial[0].author=author_key,
-          tutorial[0].second_author=author_key2,
-          tutorial[0].url=self.request.get('url') or None,
-          tutorial[0].browser_support=browser_support,
-          tutorial[0].update_date=update_date,
-          tutorial[0].publication_date=datetime.date(pub.year, pub.month, pub.day),
-          tutorial[0].tags=tags
+          #TODO: This is also hacky.
+          tutorial.title = self.request.get('title')
+          tutorial.description = self.request.get('description')
+          tutorial.author = author_key
+          tutorial.second_author = author_key2
+          tutorial.url = self.request.get('url') or None
+          tutorial.browser_support = browser_support
+          tutorial.update_date = datetime.date.today()
+          tutorial.publication_date = datetime.date(pub.year, pub.month, pub.day)
+          tutorial.tags = tags
+          tutorial.draft = self.request.get('draft') == 'on'
         except TypeError:
           pass
       else:
+        # Create new resource.
         try:
           tutorial = models.Resource(
               title=self.request.get('title'),
@@ -286,9 +293,12 @@ class ContentHandler(webapp.RequestHandler):
               browser_support=browser_support,
               update_date=datetime.date.today(),
               publication_date=datetime.date(pub.year, pub.month, pub.day),
-              tags=tags)
+              tags=tags,
+              draft=self.request.get('draft') == 'on'
+              )
         except TypeError:
           pass
+
       tutorial.put()
 
       return self.redirect('/database/resource')
@@ -304,8 +314,7 @@ class ContentHandler(webapp.RequestHandler):
       self.request.cache = False
 
     # Handle humans before locale, to prevent redirect to /en/
-    # (but still ensure it's dynamic, ie we can't just redirect to a static
-    # url)
+    # (but still ensure it's dynamic, ie we can't just redirect to a static url)
     if (relpath == 'humans.txt'):
       self.response.headers['Content-Type'] = 'text/plain'
       sorted_profiles = models.get_sorted_profiles()
@@ -321,25 +330,35 @@ class ContentHandler(webapp.RequestHandler):
     elif (relpath == 'database/load_author_information'):
       self.addTestAuthors()
       return self.redirect('/database/author')
-      
+
     elif 'database/resource' in relpath:
       regex = re.compile("/[^/]+/(\d+)")
       postid = regex.findall(relpath)
-      if len(postid) > 0: # /database/resource/1234
+      if postid: # /database/resource/1234
         post = models.Resource.get_by_id(int(postid[0]))
-        tutorial_form = models.TutorialForm(
-            instance=post,
-            initial={
-              'author': post and post.author.key().name(),
-              'second_author': post and post.second_author and post.second_author.key().name() ,
-              'browser_support': [x.lower() for x in post.browser_support]
-            })
+        if post:
+          author_id = post.author.key().name()
+          second_author_id = post.second_author and post.second_author.key().name()
+
+          # Adjust browser support so it renders to the checkboxes correctly.
+          browser_support = [b.capitalize() for b in post.browser_support]
+          for b in browser_support:
+            if len(b) == 2:
+              browser_support[browser_support.index(b)] = b.upper()
+
+          tutorial_form = models.TutorialForm(instance=post, initial={
+              'author': author_id,
+              'second_author': second_author_id or author_id,
+              'browser_support': browser_support,
+              'tags': ', '.join(post.tags)
+          })
       else: # /database/resource
         tutorial_form = models.TutorialForm()
-        
+
       template_data = {
         'tutorial_form': tutorial_form,
-        'resources': models.Resource.get_all().order('-publication_date')
+        'resources': models.Resource.all().order('-publication_date'), # get_all() not used b/c we don't care about caching on this page.
+        'post_id': postid and int(postid[0]) or ''
       }
       return self.render(data=template_data,
                          template_path='database/resource_new.html',
@@ -537,7 +556,9 @@ class ContentHandler(webapp.RequestHandler):
           browser_support=tut['browser_support'],
           update_date=update_date,
           publication_date=tut['publication_date'],
-          tags=tut['tags'])
+          tags=tut['tags'],
+          draft=False # These are previous tutorials. Mark as published.
+          )
         sample.put()
       except TypeError:
         pass # TODO(ericbidelman): Not sure why this is throwing an error, but ignore it.

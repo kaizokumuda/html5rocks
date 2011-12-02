@@ -18,6 +18,12 @@ indexes:
 
 - kind: Resource
   properties:
+  - name: draft
+  - name: publication_date
+    direction: desc
+
+- kind: Resource
+  properties:
   - name: second_author
   - name: publication_date
     direction: desc
