@@ -214,6 +214,9 @@ class ContentHandler(webapp.RequestHandler):
 
   def post(self, relpath):
 
+    # TODO: Don't use flush_all. Use flush_all_async() or only purge tutorials.
+    memcache.flush_all()
+
     if relpath == 'database/author':
       try:
         given_name = self.request.get('given_name')
@@ -535,7 +538,8 @@ class ContentHandler(webapp.RequestHandler):
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
   def addTestResources(self):
-    memcache.delete('tutorials')
+    #memcache.delete('tutorials')
+    memcache.flush_all()
 
     f = file(os.path.dirname(__file__) + '/tutorials.yaml', 'r')
     for tut in yaml.load_all(f):
