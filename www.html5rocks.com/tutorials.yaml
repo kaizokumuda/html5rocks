@@ -3,7 +3,7 @@ url: /tutorials/cors/
 author_id: monsurhossain
 publication_date: 2011-10-26
 update_date: 2011-11-29
-description: "An introduction to Cross Origin Resource Sharing (CORS), which gives scripts the ability to make cross-origin XHRs."
+description: An introduction to Cross Origin Resource Sharing (CORS), which gives scripts the ability to make cross-origin XHRs.
 browser_support:
 - chrome
 - safari
@@ -21,7 +21,7 @@ title: The Synchronous FileSystem API for Workers
 url: /tutorials/file/filesystem-sync/
 author_id: ericbidelman
 publication_date: 2011-10-25
-description: "The HTML5 FileSystem API offers an synchronous version to be used in the context of Web Workers. The tutorial introduces the Synchronous API, and gives practical examples of using it."
+description: The HTML5 FileSystem API offers an synchronous version to be used in the context of Web Workers. The tutorial introduces the Synchronous API, and gives practical examples of using it.
 browser_support:
 - chrome
 tags:
@@ -37,7 +37,7 @@ title: Getting Started with Web Audio API
 url: /tutorials/webaudio/intro/
 author_id: smus
 publication_date: 2011-10-14
-description: "A gentle introduction to loading and playing, cross-fading, and filtering sound using the Web Audio API."
+description: A gentle introduction to loading and playing, cross-fading, and filtering sound using the Web Audio API.
 browser_support:
 - chrome
 - safari
@@ -52,7 +52,7 @@ title: HTML5 Techniques for Optimizing Mobile Performance
 url: /mobile/optimization-and-performance.html
 author_id: wesleyhales
 publication_date: 2011-09-19
-description: "Learn the fundamentals of an HTML5 mobile framework. From network detection to sliding, flipping, and more."
+description: Learn the fundamentals of an HTML5 mobile framework. From network detection to sliding, flipping, and more.
 browser_support:
 - chrome
 - safari
@@ -67,7 +67,7 @@ title: Introduction to Raphaël.js
 url: /tutorials/raphael/intro/
 author_id: jameswilliams
 publication_date: 2011-09-08
-description: "Learn how to use Raphaël.js to create cross-platform SVG scenes."
+description: Learn how to use Raphaël.js to create cross-platform SVG scenes.
 browser_support:
 - chrome
 - opera
@@ -86,7 +86,7 @@ title: Measuring Page Load Speed with Navigation Timing
 url: /tutorials/webperformance/basics/
 author_id: dutton
 publication_date: 2011-08-31
-description: "Get accurate and detailed timing statistics-natively-for page navigation and load events."
+description: Get accurate and detailed timing statistics-natively-for page navigation and load events.
 browser_support:
 - chrome
 - ie
@@ -101,7 +101,7 @@ title: Improving HTML5 Canvas Performance
 url: /tutorials/canvas/performance/
 author_id: smus
 publication_date: 2011-08-16
-description: "Ten tips to make your canvas applications and games faster. Every technique is backed up by a performance test."
+description: Ten tips to make your canvas applications and games faster. Every technique is backed up by a performance test.
 browser_support:
 - chrome
 - opera
@@ -121,7 +121,7 @@ url: /tutorials/internals/howbrowserswork/
 author_id: taligarsiel
 author_id2: paulirish
 publication_date: 2011-08-05
-description: "In this comprehensive primer, you will learn what happens in the browser between when you type google.com in the address bar until you see the Google page on the browser screen."
+description: In this comprehensive primer, you will learn what happens in the browser between when you type google.com in the address bar until you see the Google page on the browser screen.
 browser_support:
 - chrome
 - opera
@@ -139,7 +139,7 @@ title: Integrating Canvas into your Web App
 url: /tutorials/canvas/integrating/
 author_id: davidtong
 publication_date: 2011-08-05
-description: "Use the HTML5 canvas element to create, edit, open, export images and tips on how these techniques can be applied to an existing web application."
+description: Use the HTML5 canvas element to create, edit, open, export images and tips on how these techniques can be applied to an existing web application.
 browser_support:
 - chrome
 - opera
@@ -157,7 +157,7 @@ title: "Case Study: Auto-Resizing HTML5 Games"
 url: /tutorials/casestudies/gopherwoord-studios-resizing-html5-games.html
 author_id: derekdetweiler
 publication_date: 2011-07-03
-description: "Resizing your game to fit a variety of form factors and window sizes."
+description: Resizing your game to fit a variety of form factors and window sizes.
 browser_support:
 - chrome
 - opera
@@ -174,7 +174,7 @@ title: Simple Asset Management for HTML5 Games
 url: /tutorials/games/assetmanager/
 author_id: sethladd
 publication_date: 2011-07-02
-description: "Centralize and manage the asset downloads for your HTML5 game."
+description: Centralize and manage the asset downloads for your HTML5 game.
 browser_support:
 - chrome
 - opera
@@ -191,7 +191,7 @@ title: "Feature, Browser, and Form Factor Detection: It's Good for the Environme
 url: /tutorials/detection/index.html
 author_id: mahemoff
 publication_date: 2011-06-27
-description: "Tune your app to the environment it's running in using Feature Detection, Browser Detection, and Form Factor detection."
+description: Tune your app to the environment it's running in using Feature Detection, Browser Detection, and Form Factor detection.
 browser_support:
 - chrome
 - opera
@@ -209,7 +209,7 @@ title: "HTML5 vs Native: The Mobile App Debate"
 url: /mobile/nativedebate.html
 author_id: mahemoff
 publication_date: 2011-06-03
-description: "There are still compelling reasons to go native, and clearly, many developers are indeed going that route. This article is a debate on native versus web. We'll examine each point in favor of native, then we'll let the web come in and give its best defense."
+description: There are still compelling reasons to go native, and clearly, many developers are indeed going that route. This article is a debate on native versus web. We'll examine each point in favor of native, then we'll let the web come in and give its best defense.
 browser_support:
 - chrome
 - opera
@@ -225,7 +225,7 @@ title: An Introduction to Shaders
 url: /tutorials/webgl/shaders/
 author_id: paullewis
 publication_date: 2011-06-02
-description: "Want to learn about WebGL shaders but don't know where to start? I'm here to help!"
+description: Want to learn about WebGL shaders but don't know where to start? I'm here to help!
 browser_support:
 - chrome
 - ff
@@ -240,7 +240,7 @@ title: Getting Started with Three.js
 url: /tutorials/three/intro/
 author_id: paullewis
 publication_date: 2011-06-02
-description: "Three.js is a powerful engine for doing native 3D work in your browser. But how do you get going?"
+description: Three.js is a powerful engine for doing native 3D work in your browser. But how do you get going?
 browser_support:
 - chrome
 - ff
@@ -256,7 +256,7 @@ title: Making Forms Fabulous with HTML5
 url: /tutorials/forms/html5forms/
 author_id: jankleinert
 publication_date: 2011-06-02 
-description: "Take advantage of improved forms support in HTML5 to build better forms, more easily."
+description: Take advantage of improved forms support in HTML5 to build better forms, more easily.
 browser_support:
 - chrome
 - opera
@@ -273,7 +273,7 @@ title: Working Off the Grid with HTML5 Offline
 url: /mobile/workingoffthegrid.html
 author_id: paulkinlan
 publication_date: 2011-06-01
-description: "This article covers practical techniques and examples for handling connectivity flakiness."
+description: This article covers practical techniques and examples for handling connectivity flakiness.
 browser_support:
 - chrome
 - opera
@@ -291,7 +291,7 @@ title: Rendering HTML5 in older browsers with Google Chrome Frame
 url: /tutorials/google-chrome-frame/
 author_id: malteubl
 publication_date: 2011-05-30
-description: " HTML5 adds a multitude of new awesome tools to the web developer toolbox. Google Chrome Frame helps bringing these features to older browsers. This article will tell you how to use Chrome Frame on your site."
+description:  HTML5 adds a multitude of new awesome tools to the web developer toolbox. Google Chrome Frame helps bringing these features to older browsers. This article will tell you how to use Chrome Frame on your site.
 browser_support:
 - ie
 tags:
@@ -304,7 +304,7 @@ title: New Tricks in XMLHttpRequest2
 url: /tutorials/file/xhr2/
 author_id: ericbidelman
 publication_date: 2011-05-27
-description: "There has been a slew of improvements to our old friend <code>XMLHttpRequest</code> for working with different types of data. This tutorial covers the new hotness."
+description: There has been a slew of improvements to our old friend <code>XMLHttpRequest</code> for working with different types of data. This tutorial covers the new hotness.
 browser_support:
 - chrome
 - ff
@@ -321,7 +321,7 @@ title: Chrome Experiments Demo Harness
 url: /tutorials/webgl/demoloop/
 author_id: ilmari 
 publication_date: 2011-05-25
-description: "Experiences from building a kiosk-style demo station with HTML and WebGL."
+description: Experiences from building a kiosk-style demo station with HTML and WebGL.
 browser_support:
 - chrome
 tags:
@@ -336,7 +336,7 @@ title: Image Filters with Canvas
 url: /tutorials/canvas/imagefilters/
 author_id: ilmari
 publication_date: 2011-05-25
-description: "A quick guide to writing custom image filters with &lt;canvas&gt;."
+description: A quick guide to writing custom image filters with &lt;canvas&gt;.
 browser_support:
 - chrome
 - safari
@@ -354,7 +354,7 @@ title: "This End Up: Using Device Orientation"
 url: /tutorials/device/orientation/
 author_id: petele
 publication_date: 2011-04-29
-description: "Learn how to use device orientation and device motion events to tell when your computer is moving."
+description: Learn how to use device orientation and device motion events to tell when your computer is moving.
 browser_support:
 - chrome
 - safari
@@ -373,7 +373,7 @@ title: Multi-touch Web Development
 url: /mobile/touch.html
 author_id: smus
 publication_date: 2011-08-21
-description: "Introduction on touch events for mobile devices."
+description: Introduction on touch events for mobile devices.
 browser_support:
 - chrome
 - safari
@@ -390,7 +390,7 @@ title: "Case Study: Real-time Updates in Stream Congress"
 url: /tutorials/casestudies/sunlight_streamcongress.html
 author_id: luigimontanez
 publication_date: 2011-03-17
-description: "Choosing the right technology to accomplish real-time, asynchronous updates."
+description: Choosing the right technology to accomplish real-time, asynchronous updates.
 browser_support:
 - chrome
 - safari
@@ -424,7 +424,8 @@ title: '"Mobifying" Your HTML5 Site'
 url: /mobile/mobifying.html
 author_id: ericbidelman
 publication_date: 2011-03-03
-description: "A guide on how to create a mobile version of an existing HTML5 website. This study looks at what was required to make html5rocks.com friendly to mobile users."
+description: A guide on how to create a mobile version of an existing HTML5 website. This study
+          looks at what was required to make html5rocks.com friendly to mobile users.
 browser_support:
 - chrome
 - safari
@@ -441,7 +442,7 @@ title: Typographic effects in canvas
 url: /tutorials/canvas/texteffects/
 author_id: mdeal
 publication_date: 2011-03-01
-description: "Effects in canvas inner/outer shadows, neon-glows, reflections, space-age, pattern/gradient overlays, stereoscopic imaging, and other text/vector-effects..."
+description: Effects in canvas inner/outer shadows, neon-glows, reflections, space-age, pattern/gradient overlays, stereoscopic imaging, and other text/vector-effects...
 browser_support:
 - chrome
 - safari
@@ -459,7 +460,7 @@ title: Improving the Performance of your HTML5 App
 url: /tutorials/speed/html5/
 author_id: malteubl
 publication_date: 2011-02-14
-description: "Optimization strategies and techniques for HTML5 applications."
+description: Optimization strategies and techniques for HTML5 applications.
 browser_support:
 - chrome
 - safari
@@ -480,7 +481,7 @@ url: /tutorials/casestudies/onslaught.html
 author_id: matthackett
 author_id2: geoffblair
 publication_date: 2011-02-10 
-description: "Learn how <a href=https://chrome.google.com/webstore/detail/khodnfbkbanejphecblcofbghjdgfaih>Onslaught! Arena</a> created their fast-paced, arcade-style medieval fantasy shoot 'em up."
+description: Learn how <a href="https://chrome.google.com/webstore/detail/khodnfbkbanejphecblcofbghjdgfaih">Onslaught! Arena</a> created their fast-paced, arcade-style medieval fantasy shoot 'em up.
 browser_support:
 - chrome
 - safari
@@ -514,7 +515,7 @@ title: "Case Study: HTML5 MathBoard"
 url: /tutorials/casestudies/mathboard.html
 author_id: jeremychone
 publication_date: 2011-01-28
-description: "A discussion on how the iPad's popular <a href=https://chrome.google.com/webstore/detail/elcilkmmbpmchojdmdohhoalmfmkcklk>MathBoard</a> application was ported to HTML5."
+description: A discussion on how the iPad's popular <a href="https://chrome.google.com/webstore/detail/elcilkmmbpmchojdmdohhoalmfmkcklk">MathBoard</a> application was ported to HTML5.
 browser_support:
 - chrome
 - safari
@@ -529,7 +530,7 @@ title: "Case Study: Page Flip Effect from 20thingsilearned.com"
 url: /tutorials/casestudies/20things_pageflip.html
 author_id: hakimelhattab
 publication_date: 2011-01-20
-description: "Learn how to re-create the page flip effect found on <a href=http://www.20thingsilearned.com>20thingsilearned.com</a> using the Canvas API."
+description: Learn how to re-create the page flip effect found on <a href="http://www.20thingsilearned.com">20thingsilearned.com</a> using the Canvas API.
 browser_support:
 - chrome
 - safari
@@ -598,7 +599,7 @@ url: /tutorials/eventsource/basics/
 author_id: ericbidelman
 publication_date: 2010-11-30
 update_date: 2011-06-16
-description: "The EventSource API is designed for receiving push notifications from a server, removing the need for client-size XHR polling."
+description: The EventSource API is designed for receiving push notifications from a server, removing the need for client-size XHR polling.
 browser_support:
 - chrome
 - ff
@@ -615,7 +616,7 @@ title: "Introducing WebSockets: Bringing Sockets to the Web"
 url: /tutorials/websockets/basics/
 author_id: malteubl
 publication_date: 2010-10-20
-description: "Learn how to use WebSockets to add low latency bidirectional client-server communication to your web app."
+description: Learn how to use WebSockets to add low latency bidirectional client-server communication to your web app.
 browser_support:
 - chrome
 - ff
@@ -670,7 +671,7 @@ url: /tutorials/dnd/basics/
 author_id: ericbidelman
 publication_date: 2010-09-30
 update_date: 2010-12-21
-description: "Drag-and-drop is yet another first class citizen in HTML5! This article explains how to enhance your web applications by adding native DnD functionality."
+description: Drag-and-drop is yet another first class citizen in HTML5! This article explains how to enhance your web applications by adding native DnD functionality.
 browser_support:
 - chrome
 - safari
@@ -687,7 +688,7 @@ title: "Case Study: HTML5 in deviantART muro"
 url: /tutorials/casestudies/html5_in_deviantart_muro.html
 author_id: michaeldewey
 publication_date: 2010-09-28 
-description: "Learn how deviantART used HTML5 drawing features in deviantART muro."
+description: Learn how deviantART used HTML5 drawing features in deviantART muro.
 browser_support:
 - chrome
 - safari
@@ -703,7 +704,7 @@ title: "Case Study: Drag and Drop Download in Chrome"
 url: /tutorials/casestudies/box_dnd_download.html
 author_id: davidtong
 publication_date: 2010-09-25
-description: "Learn how Box.net implemented GMail's attachment drag and drop to the desktop."
+description: Learn how Box.net implemented GMail's attachment drag and drop to the desktop.
 browser_support:
 - chrome
 tags:
@@ -716,7 +717,7 @@ title: 3D and CSS
 url: /tutorials/3d/css/
 author_id: paulkinlan
 publication_date: 2010-09-07
-description: "Learn how to build exciting 3D user interfaces using the power of CSS."
+description: Learn how to build exciting 3D user interfaces using the power of CSS.
 browser_support:
 - chrome
 - safari
@@ -734,7 +735,7 @@ title: HTML5 Video
 url: /tutorials/video/basics/
 author_id: ernestd
 publication_date: 2010-08-03
-description: "Video is one of the most interesting and widely supported features of HTML5. This tutorial covers the mechanics of incorporating native video into your site (without a plugin) and gives interesting examples of using the &gt;video&lt; tag."
+description: Video is one of the most interesting and widely supported features of HTML5. This tutorial covers the mechanics of incorporating native video into your site (without a plugin) and gives interesting examples of using the &gt;video&lt; tag.
 browser_support:
 - chrome
 - opera
@@ -752,7 +753,7 @@ url: /tutorials/offline/whats-offline/
 author_id: mahemoff
 publication_date: 2010-08-02
 update_date: 2011-10-13
-description: "A discussion of what it means to take an application 'offline' and the options available to developers for doing so."
+description: A discussion of what it means to take an application "offline" and the options available to developers for doing so.
 browser_support:
 - chrome
 - opera
@@ -770,7 +771,7 @@ title: "Quick guide to webfonts via @font-face"
 url: /tutorials/webfonts/quick/
 author_id: paulirish
 publication_date: 2010-08-02
-description: "Webfonts give new typographic freedom to designers while retaining scalability and accessibility."
+description: Webfonts give new typographic freedom to designers while retaining scalability and accessibility.
 browser_support:
 - chrome
 - opera
@@ -789,7 +790,7 @@ title: Auditing Your Web App For Speed
 url: /tutorials/developertools/auditpanel/
 author_id: sethladd
 publication_date: 2010-07-28
-description: "The Audit Panel is an excellent tool for examining latency in your web apps. It offers customized recommendations to enhance performance and reduce latency."
+description: The Audit Panel is an excellent tool for examining latency in your web apps. It offers customized recommendations to enhance performance and reduce latency.
 browser_support:
 - chrome
 tags:
@@ -804,7 +805,7 @@ url: /tutorials/workers/basics/
 author_id: ericbidelman
 publication_date: 2010-07-26
 update_date: 2011-05-24
-description: "Web Workers are a means of spawning background scripts in your application, giving thread-like message passing for handling computationally intensive tasks."
+description: Web Workers are a means of spawning background scripts in your application, giving thread-like message passing for handling computationally intensive tasks.
 browser_support:
 - chrome
 - safari
@@ -836,7 +837,7 @@ title: Best Practices for a Faster Web App with HTML5
 url: /tutorials/speed/quick/
 author_id: paulirish
 publication_date: 2010-06-18
-description: "How to effectively use features from HTML5 to improve the performance and responsiveness of your app."
+description: How to effectively use features from HTML5 to improve the performance and responsiveness of your app.
 browser_support:
 - chrome
 - safari
@@ -857,7 +858,7 @@ url: /tutorials/appcache/beginner/
 author_id: ericbidelman
 publication_date: 2010-06-18
 update_date: 2011-05-27
-description: "A step-by-step guide to taking your web app offline using the application cache APIs."
+description: A step-by-step guide to taking your web app offline using the application cache APIs.
 browser_support:
 - chrome
 - safari
@@ -892,7 +893,7 @@ title: Reading files in JavaScript using the File APIs
 url: /tutorials/file/dndfiles/
 author_id: ericbidelman
 publication_date: 2010-06-18
-description: "Starter guide for using the File/FileList/FileReader APIs to process and read binary files in JavaScript."
+description:  Starter guide for using the File/FileList/FileReader APIs to process and read binary files in JavaScript.
 browser_support:
 - chrome
 - ff
@@ -911,7 +912,7 @@ title: A Simple Trip Meter using the Geolocation API
 url: /tutorials/geolocation/trip_meter/
 author_id: mahemoff
 publication_date: 2010-05-24
-description: "Learn how to implement geolocation very quickly including a distance calculator"
+description: Learn how to implement geolocation very quickly including a distance calculator
 browser_support:
 - chrome
 - safari
@@ -927,7 +928,7 @@ title: Using the Notifications API
 url: /tutorials/notifications/quick/
 author_id: ernestd
 publication_date: 2010-02-24
-description: "Learn the notification basics creating a twitter notification"
+description: Learn the notification basics creating a twitter notification
 browser_support:
 - chrome
 - ff
@@ -941,7 +942,7 @@ title: A Simple TODO list using HTML5 WebDatabases
 url: /tutorials/webdatabase/todo/
 author_id: paulkinlan
 publication_date: 2010-02-17
-description: "Create a TODO list which persists data using a client side database."
+description: Create a TODO list which persists data using a client side database.
 browser_support:
 - chrome
 - safari
@@ -958,7 +959,7 @@ title: Quick Guide to Implementing the HTML5 Audio Tag
 url: /tutorials/audio/quick/
 author_id: ernestd
 publication_date: 2010-02-05
-description: "Learn how to use the HTML5 audio tag and fall back to Flash on platforms which do not support it."
+description: Learn how to use the HTML5 audio tag and fall back to Flash on platforms which do not support it.
 browser_support:
 - chrome
 - ff
