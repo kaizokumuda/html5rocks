@@ -28,7 +28,7 @@
     var disqus_url = '{{disqus_url}}';
     var disqus_developer = {% if not prod %}1{% else %}0{% endif %};
 
-    window.addEventListener && addEventListener('load', function () {
+    window.addEventListener('load', function(e) {
 
       var c = document.createElement('script'); c.type = 'text/javascript';
       c.src = 'http://' + disqus_shortname + '.disqus.com/count.js';

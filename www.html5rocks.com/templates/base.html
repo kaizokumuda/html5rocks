@@ -492,18 +492,18 @@
     }
 
     if ($(window).width() < '1200' && $(window).width() > '1000' && $('.toc')) {
-    	// Fix the TOC if our scroll position is below the top of the page.
-    	var top = $('.toc').offset().top - 50;
+      // Fix the TOC if our scroll position is below the top of the page.
+      var top = $('.toc').offset().top - 50;
 
-    	$(window).scroll(function (event) {
-    		// Get the position of the vertical scroll.
-    		var y = $(this).scrollTop();
+      $(window).scroll(function (event) {
+        // Get the position of the vertical scroll.
+        var y = $(this).scrollTop();
 
-    		if (y >= top)
-    			$('.toc').addClass('fixed').removeClass('bottom');
-    		else
-    			$('.toc').removeClass('fixed').removeClass('bottom');
-    	});
+        if (y >= top)
+          $('.toc').addClass('fixed').removeClass('bottom');
+        else
+          $('.toc').removeClass('fixed').removeClass('bottom');
+      });
     }
   })();
 
