@@ -1,3 +1,19 @@
+title: Migrating your WebSQL DB to IndexedDB
+url: /tutorials/webdatabase/websql-indexeddb/
+author_id: idogreen
+publication_date: 2011-12-05
+description: A look at what it would take to port a WebSQL based application to IndexedDB.
+browser_support:
+- chrome
+- ie
+- ff
+tags:
+- indexeddb
+- class:offline
+- type:tutorial
+
+---
+
 title: Using CORS
 url: /tutorials/cors/
 author_id: monsurhossain
