@@ -512,11 +512,15 @@ class ContentHandler(webapp.RequestHandler):
 
       tutorials = []
       for r in result:
+        resource_type = [x for x in r.tags if x.startswith('type:')]
+        if len(resource_type):
+          resource_type = resource_type[0]
+
         tutorials.append(r)
         tutorials[-1].classes = [x.replace('class:', '') for x in r.tags
                                  if x.startswith('class:')]
         tutorials[-1].tags = [x for x in r.tags if not x.startswith('class:')]
-        tutorials[-1].type = [x for x in r.tags if x.startswith('type:')][0]
+        tutorials[-1].type = resource_type
 
       self.render(
           data={'tutorials': tutorials}, template_path=path, relpath=relpath)
