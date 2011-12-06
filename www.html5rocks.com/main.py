@@ -334,6 +334,10 @@ class ContentHandler(webapp.RequestHandler):
       self.addTestAuthors()
       return self.redirect('/database/author')
 
+    elif (relpath == 'database/load_playground_samples'):
+      self.addTestPlaygroundSamples()
+      return self.redirect('/database/resource')
+
     elif 'database/resource' in relpath:
       regex = re.compile("/[^/]+/(\d+)")
       postid = regex.findall(relpath)
@@ -571,7 +575,36 @@ class ContentHandler(webapp.RequestHandler):
       except TypeError:
         pass # TODO(ericbidelman): Not sure why this is throwing an error, but ignore it.
     f.close()
+    
+  def addTestPlaygroundSamples(self):
+    memcache.flush_all()
 
+    f = file(os.path.dirname(__file__) + '/playground.yaml', 'r')
+    for sample in yaml.load_all(f):
+      try:
+        author_key = models.Author.get_by_key_name(sample['author_id'])
+        author_key2 = None
+        if 'author_id2' in sample:
+          author_key2 = models.Author.get_by_key_name(sample['author_id2'])
+
+        update_date = sample.get('update_date')
+
+        sample = models.Resource(
+          title=sample['title'],
+          author=author_key,
+          second_author=author_key2,
+          url=unicode(sample['url']),
+          update_date=update_date,
+          publication_date=sample['publication_date'],
+          tags=sample['tags'],
+          draft=False # These are previous samples. Mark as published.
+          )
+        sample.put()
+      except TypeError:
+        pass # TODO(ericbidelman): Not sure why this is throwing an error, but ignore it.
+    f.close()
+    
+    
   def addTestAuthors(self):
     f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
     for profile in yaml.load_all(f):
