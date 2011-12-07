@@ -18,15 +18,13 @@
         <span>And We Mean Business</span>
       </h1>
     </hgroup>
-    <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet! Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris!</p>
 
-    <p>Nisi adipiscing rhoncus elementum aliquet quis quis! Amet ac nec vel magna elementum lundium mus, velit sagittis facilisis!</p>
-
-    <p>Eros amet dictumst odio. Scelerisque!</p>
-
-    <p>Porttitor, montes auctor ac cum in mid eu eros, vut platea mid.</p>
-
-    <p><a href="#">See more &rarr;</a></p>
+    <section>
+      <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet! Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris!</p>
+      <p>Nisi adipiscing rhoncus elementum aliquet quis quis! Amet ac nec vel magna elementum lundium mus, velit sagittis facilisis!</p>
+      <p>Porttitor, montes auctor ac cum in mid eu eros, vut platea mid.</p>
+      <p><a href="#">See more &rarr;</a></p>
+    </section>
   </header>
 
   <article class="sectioned">
@@ -45,7 +43,7 @@
           </figure>
         {% endif %}
       {% empty %}
-        Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.
+        <p>Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.</p>
       {% endfor %}
     </section>
 
@@ -66,39 +64,6 @@
           Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.
         {% endfor %}
       </ul>
-    </section>
-
-    <section class="two_thirds figures">
-      <hgroup>
-        <h3>{% trans "Business" %} {% trans "Examples" %}</h3>
-      </hgroup>
-      <figure>
-        <a href="#">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
-          <figcaption>
-            Foo Baz Bar the Lorem Ipsum
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
-          </figcaption>
-        </a>
-      </figure>
-      <figure>
-        <a href="#">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
-          <figcaption>
-            Foo Baz Bar the Lorem Ipsum
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
-          </figcaption>
-        </a>
-      </figure>
-      <figure>
-        <a href="#">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
-          <figcaption>
-            Foo Baz Bar the Lorem Ipsum
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
-          </figcaption>
-        </a>
-      </figure>
     </section>
 
     <section class="one_third">
@@ -154,26 +119,10 @@
             <div itemprop="organization-name">N2N-Apps</div>
           </h3>
         </li>
-
-        <li class="profile mini" id="mdeal" itemscope itemtype="http://microformats.org/profile/hcard">
-          <img itemprop="photo" alt="Michael Deal" title="Michael Deal" src="/static/images/profiles/mdeal.png">
-          <h2>
-            <div itemprop="fn">
-              <div itemprop="n" itemscope>
-                <span itemprop="given-name">Michael</span>
-                <span itemprop="family-name">Deal</span>
-              </div>
-            </div>
-          </h2>
-          <h3 itemprop="org" itemscope>
-            <div itemprop="organization-unit">New Product Development</div>
-            <div itemprop="organization-name">Orange Honey</div>
-          </h3>
-        </li>
       </ul>
     </section>
 
-    <section class="resources">
+    <section class="resources two_thirds">
       <hgroup>
         <h3>{% trans "Additional Resources" %}</h3>
       </hgroup>

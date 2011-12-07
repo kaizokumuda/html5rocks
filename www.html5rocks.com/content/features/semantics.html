@@ -15,28 +15,22 @@
         Semantics is one of the most distinctive features of the Web Platform versus other application platforms. Developers usually ignore or de-prioritize such feature but the mastery of it can bring many benefits to our projects.
       {% endblocktrans %}
     </p>
-  </section>
-{% endblock %}
-
-
-{% block description %}
-  <section id="description">
-   <h3>The Web is text and text has a meaning.</h3>
-   <p>
-      {% blocktrans %}
-        Ultimately the content that our browsers read is pure text. Web sites and web applications have been created in an ecosystem where text based content is linkable, searchable and mashable. In the open web scenario our content can be shown, fed and remixed by third parties, search engines and accessibility tools. All these benefits don't come for free. Automated tools can only do half of the job at recognizing the nature of the content. The better job the developer does at marking the right semantics of the content the easier will be for the rest of the agents to deal with it. HTML5 provides a series of tools to make developers life easier too:
-      {% endblocktrans %}
-    </p>
-
-    <ul class="definitions">
-      <li>{% blocktrans %}New media elements.{% endblocktrans %}</li>
-      <li>{% blocktrans %}New structural elements.{% endblocktrans %}</li>
-      <li>{% blocktrans %}New semantics for internationalization.{% endblocktrans %}</li>
-      <li>{% blocktrans %}New link relation types.{% endblocktrans %}</li>
-      <li>{% blocktrans %}New attributes.{% endblocktrans %}</li>
-      <li>{% blocktrans %}New form types.{% endblocktrans %}</li>
-      <li>{% blocktrans %}New microdata syntax for additional semantics.{% endblocktrans %}</li>
-    </ul>
+    <div class="two_columns">
+      <p>
+        {% blocktrans %}
+          The Web is text and text has a meaning. Ultimately the content that our browsers read is pure text. Web sites and web applications have been created in an ecosystem where text based content is linkable, searchable and mashable. In the open web scenario our content can be shown, fed and remixed by third parties, search engines and accessibility tools. All these benefits don't come for free. Automated tools can only do half of the job at recognizing the nature of the content. The better job the developer does at marking the right semantics of the content the easier will be for the rest of the agents to deal with it. HTML5 provides a series of tools to make developers life easier too:
+        {% endblocktrans %}
+      </p>
+      <ul>
+        <li>{% blocktrans %}New media elements.{% endblocktrans %}</li>
+        <li>{% blocktrans %}New structural elements.{% endblocktrans %}</li>
+        <li>{% blocktrans %}New semantics for internationalization.{% endblocktrans %}</li>
+        <li>{% blocktrans %}New link relation types.{% endblocktrans %}</li>
+        <li>{% blocktrans %}New attributes.{% endblocktrans %}</li>
+        <li>{% blocktrans %}New form types.{% endblocktrans %}</li>
+        <li>{% blocktrans %}New microdata syntax for additional semantics.{% endblocktrans %}</li>
+      </ul>
+    </div>
   </section>
 {% endblock %}
 
@@ -95,7 +89,7 @@
       <a href="http://www.apple.com/">
         <img src="/static/images/features/apple.png">
         <figcaption>Apple is one of the few big brands using new HTML5 elements (nav, article, footer, etc) on their main site.</figcaption>
-      </a>      
+      </a>
     </figure>
   </section>
 

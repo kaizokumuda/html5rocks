@@ -22,32 +22,12 @@
     <section>
       <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet! Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris!</p>
       <p>Nisi adipiscing rhoncus elementum aliquet quis quis! Amet ac nec vel magna elementum lundium mus, velit sagittis facilisis!</p>
-      <p>Eros amet dictumst odio. Scelerisque!</p>
       <p><a href="http://code.google.com/speed/articles/mobile.html">Make the mobile web faster</a></p>
       <p><a href="/{{LANGUAGE_CODE}}/tutorials#mobile">{% trans "View all HTML5Rocks mobile tutorials" %}</a> &rarr;</p>
     </section>
   </header>
 
   <article class="sectioned">
-    <section class="tutorials one_half figures">
-      <h3>{% trans "Mobile" %} {% trans "Tutorials" %}</h3>
-      {% for r in tutorials %}
-        {% if forloop.counter0 < 4 %}
-          <figure>
-            <a href="{{r.url}}">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
-              <figcaption>
-                {{r.title}}
-                <p>{{r.description|safe|truncatewords:15}}</p>
-              </figcaption>
-            </a>
-          </figure>
-        {% endif %}
-      {% empty %}
-        Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.
-      {% endfor %}
-    </section>
-
     <section class="feed one_half">
       <h3>{% trans "Mobile" %} {% trans "Updates" %}</h3>
       <ul>
@@ -67,40 +47,60 @@
       </ul>
     </section>
 
-    <section class="two_thirds figures">
+    <section class="one_half">
       <hgroup>
-        <h3>{% trans "Mobile" %} {% trans "Examples" %}</h3>
+        <h3>{% trans "Tools" %}</h3>
       </hgroup>
-      <figure>
-        <a href="#">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
-          <figcaption>
-            Foo Baz Bar the Lorem Ipsum
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
-          </figcaption>
-        </a>
-      </figure>
-      <figure>
-        <a href="#">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
-          <figcaption>
-            Foo Baz Bar the Lorem Ipsum
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
-          </figcaption>
-        </a>
-      </figure>
-      <figure>
-        <a href="#">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
-          <figcaption>
-            Foo Baz Bar the Lorem Ipsum
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus.</p>
-          </figcaption>
-        </a>
-      </figure>
+      <ul>
+        <li><a href="http://stevesouders.com/mobileperf/">Mobile Performance Bookmarklets by Steve Souders</a></li>
+        <li style="margin-left:25px"><a href="http://www.stevesouders.com/blog/2011/02/16/jdrop-json-in-the-cloud/">Jdrop</a></li>
+        <li><a href="http://developer.android.com/guide/developing/tools/emulator.html">Android's Browser Emulator</a></li>
+        <li><a href="http://developer.apple.com/devcenter/ios/index.action">iOS SDK &amp; Simulator</a></li>
+        <li><a href="http://www.opera.com/developer/tools/mobile/">Opera Mobile Emulator</a></li>
+        <li><a href="http://www.mozilla.org/en-US/mobile/">Firefox Mobile Emulator</a></li>
+        <li><a href="http://caniuse.com">caniuse.com</a></li>
+        <li><a href="https://github.com/shichuan/mobile-html5-boilerplate">Mobile HTML5 Boilerplate</a></li>
+        <li><a href="http://pmuellr.github.com/weinre/">Weinre</a> - remote web inspector debugging</li>
+      </ul>
     </section>
 
-    <section class="one_third">
+    <section class="tutorials figures">
+      <h3>{% trans "Mobile" %} {% trans "Tutorials" %}</h3>
+      {% for r in tutorials %}
+        {% if forloop.counter0 < 4 %}
+          <figure>
+            <a href="{{r.url}}">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
+              <figcaption>
+                {{r.title}}
+                <p>{{r.description|safe|truncatewords:15}}</p>
+              </figcaption>
+            </a>
+          </figure>
+        {% endif %}
+      {% empty %}
+        Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.
+      {% endfor %}
+    </section>
+
+    <section>
+      <hgroup>
+        <h3>{% trans "Additional Resources" %}</h3>
+      </hgroup>
+      <ul class="two_columns">
+        <li><a href="http://code.google.com/mobile/">Google Mobile Developer Products</a></li>
+        <li><a href="http://mobile.yahoo.com/developers">Yahoo! Mobile Developers Home</a></li>
+        <li><a href="https://developer.mozilla.org/En/Mobile">Mozilla Mobile Docs</a></li>
+        <li><a href="http://www.w3.org/TR/mobile-bp/">W3C Mobile Best Practices</a></li>
+        <li><a href="http://developer.android.com/guide/webapps/index.html">Android Web Apps Overview</a></li>
+        <li><a href="http://www.mobileawesomeness.com/">mobileawesomeness.com</a> - Get inspired</li>
+        <li><a href="http://mobile-patterns.com/">mobile-patterns.com</a> - Examples of mobile UI patterns</li>
+        <li><a href="http://www.mobilexweb.com/emulators">List of Mobile Browser Emulators</a></li>
+        <li><a href="http://webpro.host.adobe.com/people/jblas/research/">Research and test cases on Touch-Events and Mobile</a></li>
+      </ul>
+    </section>
+
+    <section class="contributors">
       <hgroup>
         <h3>{% trans "Contributors" %}</h3>
       </hgroup>
@@ -169,40 +169,6 @@
             <div itemprop="organization-name">Orange Honey</div>
           </h3>
         </li>
-      </ul>
-    </section>
-
-    <section class="one_half">
-      <hgroup>
-        <h3>{% trans "Tools" %}</h3>
-      </hgroup>
-      <ul>
-        <li><a href="http://stevesouders.com/mobileperf/">Mobile Performance Bookmarklets by Steve Souders</a></li>
-        <li style="margin-left:25px"><a href="http://www.stevesouders.com/blog/2011/02/16/jdrop-json-in-the-cloud/">Jdrop</a></li>
-        <li><a href="http://developer.android.com/guide/developing/tools/emulator.html">Android's Browser Emulator</a></li>
-        <li><a href="http://developer.apple.com/devcenter/ios/index.action">iOS SDK &amp; Simulator</a></li>
-        <li><a href="http://www.opera.com/developer/tools/mobile/">Opera Mobile Emulator</a></li>
-        <li><a href="http://www.mozilla.org/en-US/mobile/">Firefox Mobile Emulator</a></li>
-        <li><a href="http://caniuse.com">caniuse.com</a></li>
-        <li><a href="https://github.com/shichuan/mobile-html5-boilerplate">Mobile HTML5 Boilerplate</a></li>
-        <li><a href="http://pmuellr.github.com/weinre/">Weinre</a> - remote web inspector debugging</li>
-      </ul>
-    </section>
-
-    <section class="one_half">
-      <hgroup>
-        <h3>{% trans "Additional Resources" %}</h3>
-      </hgroup>
-      <ul>
-        <li><a href="http://code.google.com/mobile/">Google Mobile Developer Products</a></li>
-        <li><a href="http://mobile.yahoo.com/developers">Yahoo! Mobile Developers Home</a></li>
-        <li><a href="https://developer.mozilla.org/En/Mobile">Mozilla Mobile Docs</a></li>
-        <li><a href="http://www.w3.org/TR/mobile-bp/">W3C Mobile Best Practices</a></li>
-        <li><a href="http://developer.android.com/guide/webapps/index.html">Android Web Apps Overview</a></li>
-        <li><a href="http://www.mobileawesomeness.com/">mobileawesomeness.com</a> - Get inspired</li>
-        <li><a href="http://mobile-patterns.com/">mobile-patterns.com</a> - Examples of mobile UI patterns</li>
-        <li><a href="http://www.mobilexweb.com/emulators">List of Mobile Browser Emulators</a></li>
-        <li><a href="http://webpro.host.adobe.com/people/jblas/research/">Research and test cases on Touch-Events and Mobile</a></li>
       </ul>
     </section>
   </article>
