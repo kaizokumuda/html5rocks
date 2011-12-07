@@ -109,9 +109,33 @@ var tempJSON = [
     "samples":[
       {
         "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
-        "files": ["samples/js/html5/file_api.js"],
+        "files": ["samples/js/html5/file_meta.js"],
         "editor": "js",
-        "sampleName": "Using FileReader",
+        "sampleName": "Reading File Metadata",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/FileAPI/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
+        "files": ["samples/js/html5/file_as_text.js"],
+        "editor": "js",
+        "sampleName": "Read file content as text",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/FileAPI/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
+        "files": ["samples/js/html5/file_as_dataurl.js"],
+        "editor": "js",
+        "sampleName": "Read file content as DataURL",
+        "tags": "",
+        "spec": "http://www.w3.org/TR/FileAPI/"
+      },
+      {
+        "boilerplateLoc": "samples/boilerplateHTML/html5/html_js.html",
+        "files": ["samples/js/html5/slice_file.js"],
+        "editor": "js",
+        "sampleName": "Slice file content",
         "tags": "",
         "spec": "http://www.w3.org/TR/FileAPI/"
       }
