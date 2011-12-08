@@ -47,13 +47,30 @@
       </ul>
     </section>
 
-    <section class="one_half">
+    <section class="tutorials one_half">
+      <h3>{% trans "Mobile" %} {% trans "Tutorials" %}</h3>
+      <ul class="definitions">
+      {% for r in tutorials %}
+        {% if forloop.counter0 < 4 %}
+          <li>
+            <a href="{{r.url}}">{{r.title}}</a><br>
+            {{r.description|safe|truncatewords:15}}
+            </a>
+          </li>
+        {% endif %}
+      {% empty %}
+        <p>Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.</p>
+      {% endfor %}
+      </ul>
+    </section>
+
+    <section>
       <hgroup>
         <h3>{% trans "Tools" %}</h3>
       </hgroup>
-      <ul>
+      <ul class="two_columns">
         <li><a href="http://stevesouders.com/mobileperf/">Mobile Performance Bookmarklets by Steve Souders</a></li>
-        <li style="margin-left:25px"><a href="http://www.stevesouders.com/blog/2011/02/16/jdrop-json-in-the-cloud/">Jdrop</a></li>
+        <li style="margin-left: 3.5em"><a href="http://www.stevesouders.com/blog/2011/02/16/jdrop-json-in-the-cloud/">Jdrop</a></li>
         <li><a href="http://developer.android.com/guide/developing/tools/emulator.html">Android's Browser Emulator</a></li>
         <li><a href="http://developer.apple.com/devcenter/ios/index.action">iOS SDK &amp; Simulator</a></li>
         <li><a href="http://www.opera.com/developer/tools/mobile/">Opera Mobile Emulator</a></li>
@@ -62,25 +79,6 @@
         <li><a href="https://github.com/shichuan/mobile-html5-boilerplate">Mobile HTML5 Boilerplate</a></li>
         <li><a href="http://pmuellr.github.com/weinre/">Weinre</a> - remote web inspector debugging</li>
       </ul>
-    </section>
-
-    <section class="tutorials figures">
-      <h3>{% trans "Mobile" %} {% trans "Tutorials" %}</h3>
-      {% for r in tutorials %}
-        {% if forloop.counter0 < 4 %}
-          <figure>
-            <a href="{{r.url}}">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
-              <figcaption>
-                {{r.title}}
-                <p>{{r.description|safe|truncatewords:15}}</p>
-              </figcaption>
-            </a>
-          </figure>
-        {% endif %}
-      {% empty %}
-        Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.
-      {% endfor %}
     </section>
 
     <section>

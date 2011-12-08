@@ -548,23 +548,37 @@ body[data-href='business'] .page header.two_columns p:first-child
   margin-top: 0;
 }
 
-body:not([data-href='home']) .page header hgroup,
-body:not([data-href='mobile']) .page header hgroup,
-body:not([data-href='gaming']) .page header hgroup,
-body:not([data-href='business']) .page header hgroup
+.page header hgroup
 {
   float: left;
   padding-right: 2%;
   width: 34%;
 }
 
-body:not([data-href='home']) .page header section,
-body:not([data-href='mobile']) .page header section,
-body:not([data-href='gaming']) .page header section,
-body:not([data-href='business']) .page header section
+.page header section
 {
   float: left;
   width: 64%;
+}
+
+body[data-href='home'] .page header hgroup,
+body[data-href='mobile'] .page header hgroup,
+body[data-href='gaming'] .page header hgroup,
+body[data-href='business'] .page header hgroup,
+body[data-href='home'] .page header section,
+body[data-href='mobile'] .page header section,
+body[data-href='gaming'] .page header section,
+body[data-href='business'] .page header section
+{
+  float: none;
+  width: inherit;
+}
+
+body[data-href='mobile'] .page header,
+body[data-href='gaming'] .page header,
+body[data-href='business'] .page header
+{
+  padding-bottom: 1%;
 }
 
 .page header hgroup h1
@@ -724,6 +738,12 @@ body:not([data-href='business']) .page header section
 {
   font-size: 16px;
   font-style: italic;
+  margin: 0;
+  -moz-column-break-before: always;
+  -o-column-break-before: always;
+  -ms-column-break-before: always;
+  -webkit-column-break-before: always;
+  column-break-before: always;
 }
 
 .page section header
@@ -1429,6 +1449,7 @@ body[data-href='home'] article.sectioned section.one_third
 #classes hgroup
 {
   float: left;
+  padding-right: 0;
   width: 33%;
 }
 
@@ -2110,8 +2131,7 @@ section.support.none + section
   width: 96% !important;
 }
 
-section.support.multiple + section#updates,
-section.support.none + section#updates
+section#updates
 {
   margin-bottom: 2% !important;
 }
@@ -2375,9 +2395,25 @@ ul.definitions li strong a:first-child:after
   content: none;
 }
 
+.one_half ul.definitions li a:first-child:after,
+.one_third ul.definitions li a:first-child:after,
+.two_thirds ul.definitions li a:first-child:after
+{
+  white-space: nowrap;
+}
+
 ul.definitions li a
 {
   font-weight: 600;
+}
+
+.one_half ul.definitions,
+.one_third ul.definitions,
+.two_thirds ul.definitions
+{
+  -moz-column-count: 1;
+  -webkit-column-count: 1;
+  column-count: 1;
 }
 
 section ul
@@ -2401,7 +2437,7 @@ section ul.two_columns
 
 section ul.two_columns li
 {
-  margin-top: .25em;
+  margin: .25em 0 .75em 1.5em;
 }
 
 
