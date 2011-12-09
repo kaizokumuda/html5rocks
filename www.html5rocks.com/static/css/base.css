@@ -2927,7 +2927,8 @@ section.disqus
 
   article.sectioned section.one_half:nth-child(2n + 1),
   .thirds section.one_third:nth-child(3n + 1),
-  article.sectioned section.one_third:first-child
+  article.sectioned section.one_third:first-child,
+  article.sectioned .slides + section.one_third
   {
     margin-left: 0;
   }

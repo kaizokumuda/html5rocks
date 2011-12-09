@@ -5,7 +5,7 @@ var talktmpl = '' +
 '                                                      \
 {{#each talksArr}}                                     \
 <article data-event="{{title}}">                       \
-  <h2>{{title}}</h2>                                   \
+  <h3>{{title}}</h3>                                   \
   <h4>                                                 \
       <span class=presenter>{{presntr presenter}}</span>       \
       <span class=event>{{event}}</span>               \

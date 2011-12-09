@@ -47,6 +47,31 @@
 
   <article class="sectioned">
 
+    <!-- slides -->
+    <section class="slides">
+      
+      <link rel=stylesheet href="/static/css/resources.css">
+      
+      <h2>{% trans "HTML5 Slides, Presentations, and Videos" %}</h2>
+
+      <input id="filter" placeholder=" {% trans "Filter talks by topic, person, etc" %}" >
+      <label> {% trans "Only show talks more recent than:" %} 
+        <input id="datefilter" type="range" value=0 min=0 max=100> 
+        <output id="dateoutput"></output>
+      </label>
+      
+      <div id="output">{% trans "Loading..." %}</div>
+
+      <script src="/static/js/handlebars.1.0.0.beta.3.js"></script>
+      <script src="/static/js/parseuri.js"></script>
+      <script src="/static/js/talkstmpl.js"></script>
+      <script src="/static/js/slides-polyfills.js"></script>
+      <script src="/static/js/slidesapp.js"></script>
+
+      <script src="https://spreadsheets.google.com/feeds/list/0ArK1Uipy0SbDdHpQMzFWVFlMX1Zyd0tOWUxNeUE5QUE/od6/public/basic?alt=json-in-script&callback=receiveSpreadsheet"></script>
+
+    </section>
+
     <section class="one_third">
       <h2>{% trans "Contribute" %}</h2>
       <p>
