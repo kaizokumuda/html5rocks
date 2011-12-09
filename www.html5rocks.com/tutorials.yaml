@@ -1,3 +1,21 @@
+title: "Case Study: Building the Stanisław Lem Google doodle"
+url: /tutorials/doodles/lem/
+author_id: marcinwichary
+publication_date: 2011-12-08
+description: A walk through of the HTML5 tech behind the Stanisław Lem Google doodle.
+browser_support:
+- chrome
+- ie
+- ff
+- safari
+- opera
+tags:
+- doodle
+- class:graphics
+- type:article
+
+---
+
 title: Migrating your WebSQL DB to IndexedDB
 url: /tutorials/webdatabase/websql-indexeddb/
 author_id: idogreen
