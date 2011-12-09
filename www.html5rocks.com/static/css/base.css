@@ -561,19 +561,6 @@ body[data-href='business'] .page header.two_columns p:first-child
   width: 64%;
 }
 
-body[data-href='home'] .page header hgroup,
-body[data-href='mobile'] .page header hgroup,
-body[data-href='gaming'] .page header hgroup,
-body[data-href='business'] .page header hgroup,
-body[data-href='home'] .page header section,
-body[data-href='mobile'] .page header section,
-body[data-href='gaming'] .page header section,
-body[data-href='business'] .page header section
-{
-  float: none;
-  width: inherit;
-}
-
 body[data-href='mobile'] .page header,
 body[data-href='gaming'] .page header,
 body[data-href='business'] .page header
@@ -724,14 +711,27 @@ body[data-href='business'] .page header
 .page header .share li.twitter    { left: 158px; }
 .page header .share li.twitter a  { color: #5cd6ff; }
 
-.page header.two_columns hgroup
+.page header.two_columns /* There is too much unpredictable behavior with CSS3 columns for this to reliable. Using floats for now. */
 {
-  padding-bottom: 0;
+  -moz-column-count: 0;
+  -o-column-count: 0;
+  -ms-column-count: 0;
+  -webkit-column-count: 0;
+  column-count: 0;
 }
 
-.page header.two_columns hgroup img
+.page header.two_columns hgroup
 {
-  margin-bottom: 1em;
+  padding: 0 3% 0 0;
+  float: left;
+  width: 48%;
+}
+
+.page header.two_columns section
+{
+  float: left;
+  padding: 0;
+  width: 49%;
 }
 
 .page header.two_columns p
@@ -739,11 +739,16 @@ body[data-href='business'] .page header
   font-size: 16px;
   font-style: italic;
   margin: 0;
-  -moz-column-break-before: always;
-  -o-column-break-before: always;
-  -ms-column-break-before: always;
-  -webkit-column-break-before: always;
-  column-break-before: always;
+}
+
+.page header.two_columns p + p
+{
+  margin-top: 1em;
+}
+
+.page header.two_columns hgroup img
+{
+  margin-bottom: 1em;
 }
 
 .page section header
