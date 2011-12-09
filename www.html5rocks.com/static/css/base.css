@@ -763,7 +763,6 @@ div.one_half    { width: 50%; }
   list-style: none;
   margin: 1em 0 !important;
   padding: 0;
-  overflow: hidden;
 }
 
 .feed li
@@ -771,6 +770,7 @@ div.one_half    { width: 50%; }
   clear: left;
   font-size: 14px;
   font-style: italic;
+  list-style: none;
   line-height: 1.8;
   margin: 0;
   padding: 0;
@@ -822,7 +822,9 @@ div.one_half    { width: 50%; }
 
 .feed p a
 {
-  font-size: 14px;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 600;
   padding-left: 45px;
 }
 
@@ -1368,7 +1370,7 @@ body[data-href='home'] #start
   padding: 0;
   position: relative;
   width: 1000px;
-  height: 385px;
+  height: 405px;
 }
 
 body[data-href='home'] #start article
@@ -1391,26 +1393,7 @@ body[data-href='home'] #logo
   width: 100%;
 }
 
-body[data-href='home'] section#updates
-{
-  margin-top: 0;
-  left: 2500px;
-  padding: 2% 3%;
-  width: 94%;
-  height: 325px;
-}
-
-body[data-href='home'] section#updates h2
-{
-  margin-top: 0;
-}
-
-body[data-href='home'] section#updates h2 a
-{
-  background: none !important;
-}
-
-body[data-href='home'] #updates_badge
+body[data-href='home'] #updates_badge /* The shaker. */
 {
   cursor: pointer !important;
   position: absolute;
@@ -1428,6 +1411,31 @@ body[data-href='home'] #updates_badge
   -moz-animation-iteration-count: infinite;
 }
 
+body[data-href='home'] section#updates
+{
+  margin-top: 0;
+  left: 2500px;
+  padding: 1.75% 2%;
+  width: 96%;
+  height: 350px;
+}
+
+body[data-href='home'] section#updates h2
+{
+  font-size: 18px;
+  margin: 0;
+}
+
+body[data-href='home'] section#updates h2 a
+{
+  background: none !important;
+}
+
+body[data-href='home'] section#updates ul
+{
+  margin: .5em 0 !important;
+}
+
 body[data-href='home'] #latest_articles_feed .title {
   width:auto;
 }
@@ -1436,7 +1444,7 @@ body[data-href='home'] #latest_articles_feed .title {
 {
   float: right;
   margin-left: 3em;
-  width: 35%;
+  width: 39%;
 }
 
 body[data-href='home'] article.sectioned section.one_third
