@@ -2676,6 +2676,7 @@ header.tutorial .byline hgroup
 {
   float: none;
   padding: 0;
+  width: 100%;
 }
 
 header.tutorial .byline img
