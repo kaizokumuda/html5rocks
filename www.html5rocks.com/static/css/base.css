@@ -2047,6 +2047,47 @@ section.updates h3
   margin-top: 0;
 }
 
+section.updates ul
+{
+  list-style: none;
+  margin: 1em 0 0 0;
+  padding: 0;
+}
+
+section.updates li
+{
+  margin: 0 0 .5em;
+  -moz-column-break-after: avoid;
+  -webkit-column-break-after: avoid;
+  column-break-after: avoid;
+  -moz-column-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  column-break-inside: avoid;
+}
+
+section.updates.two_columns
+{
+  -moz-column-count: 0;
+  -o-column-count: 0;
+  -ms-column-count: 0;
+  -webkit-column-count: 0;
+  column-count: 0;
+  margin: 0 0 2% 0 !important;
+  width: 96% !important;
+}
+
+section.updates.two_columns ul
+{
+  -moz-column-count: 2;
+  -o-column-count: 2;
+  -ms-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+  -moz-column-gap: 20px;
+  -webkit-column-gap: 20px;
+  column-gap: 20px;
+}
+
 section.support
 {
   margin-right: 2em !important;
@@ -2246,33 +2287,7 @@ section.support.multiple p
   text-align: left;
 }
 
-section.support.none + section.updates ul,
-section.support.multiple + section.updates ul
-{
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
-  column-count: 2;
-  -moz-column-gap: 20px;
-  -webkit-column-gap: 20px;
-  column-gap: 20px;
-}
-
-section.updates ul
-{
-  list-style: none;
-  margin: 1em 0 0 0;
-  padding: 0;
-}
-
-section.updates li
-{
-  margin: 0 0 .5em;
-  -moz-column-break-after: avoid;
-  -webkit-column-break-after: avoid;
-  column-break-after: avoid;
-}
-
-section.updates + section
+section.support + section
 {
   clear: both;
 }
@@ -2969,11 +2984,11 @@ section.disqus
   article.sectioned section#updates
   {
     float: left;
-    margin: 0 !important;
     width: 45%;
+    margin: 0 0 2% 0 !important;
   }
 
-  article.sectioned section#support
+  article.sectioned section#updates
   {
     margin: 0 2% 2% 0 !important;
   }

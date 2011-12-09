@@ -6,6 +6,7 @@
 {% block h2title   %}{% trans "Offline" %}{% endblock %}
 {% block tuttags   %}offline{% endblock %}
 {% block caniuse   %}offline-apps{% endblock %}
+{% block updatesblockstyle %}{% endblock %} <!-- 'one_half' if next to a browser support box. TODO: This logic should be moved out of the view!! -->
 {% block supportblockstyle %}{% endblock %} <!-- 'multiple' if more than one caniuse class, 'none' if none. TODO: This logic should be moved out of the view!! -->
 
 {% block header %}
