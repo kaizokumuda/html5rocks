@@ -2604,17 +2604,16 @@ body[data-href='tutorials'] .page header .share
   display: none;
 }
 
-header.tutorial div.right_side
+header.tutorial hgroup + section
 {
-  float: left;
-  width: 632px;
+  margin-top: 0;
 }
 
-header.tutorial section,
+header.tutorial .byline,
 header.tutorial aside
 {
   float: left;
-  width: 316px;
+  width: 50%;
   overflow: hidden;
 }
 
@@ -2672,13 +2671,8 @@ header.tutorial .byline h2 span
 header.tutorial .browser_support
 {
   font-size: 12px;
-  padding-top: 1.25em;
+  padding-top: 1em;
   width: 632px;
-}
-
-header.tutorial aside
-{
-  margin-top: .5em;
 }
 
 header.tutorial aside a
@@ -2748,7 +2742,7 @@ article.tutorial figcaption
   display: block;
   font-size: 13px;
   font-weight: 600;
-  margin: 1.25em 0 0;
+  margin: 1em 0 0;
 }
 
 .cc p

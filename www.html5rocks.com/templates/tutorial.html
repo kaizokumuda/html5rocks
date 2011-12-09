@@ -12,7 +12,7 @@
       <h2><a href="/{{LANGUAGE_CODE}}/tutorials/">{% trans "Tutorials" %}</a></h2>
     </hgroup>
 
-    <div class="right_side">
+    <section>
       <h1>{{ tut.title }}</h1>
 
       <section class="byline">
@@ -62,7 +62,7 @@
 
       {% if not is_mobile %}
       <a href="#disqus_thread" data-disqus-identifier="{{disqus_url}}" class="disqus_comments">{% trans "Leave a comment" %}</a>
-    </div>
+    </section>
 
     <span class="share">
       <ul>
