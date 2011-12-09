@@ -694,7 +694,6 @@ body[data-href='business'] .page header
 .page section
 {
   position: relative;
-  z-index: 2;
 }
 
 .page header .share
@@ -702,6 +701,7 @@ body[data-href='business'] .page header
   position: absolute;
   bottom: 40px;
   left: 30px;
+  z-index: 2;
 }
 
 .page header .share ul
@@ -830,11 +830,25 @@ div.one_half    { width: 50%; }
 {
   background-repeat: no-repeat;
   background-position: center;
-  display: inline-block;
+  display: none !important;
   width: 20px;
   height: 16px;
   vertical-align: -3px;
   position: relative;
+}
+
+.class.offline,
+.class.storage,
+.class.connectivity,
+.class.file_access,
+.class.semantics,
+.class.multimedia,
+.class.graphics,
+.class.presentation,
+.class.performance,
+.class.nuts_and_bolts
+{
+  display: inline-block !important;
 }
 
 .class.offline        { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAALCAYAAABLcGxfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjFCM0NEMkVFOEFCMTFFMDg2NkJGNDlCNjE5NENEMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjFCM0NEMkZFOEFCMTFFMDg2NkJGNDlCNjE5NENEMzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMUIzQ0QyQ0U4QUIxMUUwODY2QkY0OUI2MTk0Q0QzMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGMUIzQ0QyREU4QUIxMUUwODY2QkY0OUI2MTk0Q0QzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pgkly+8AAADxSURBVHjaTFGxEYJAEHzQ3C9BMkOhAqhArUAdCpBQIyUyFAtgpAOlArUD7MDQUEMzd5195WaWO+527+/vPSNL09TC7YAxYJV+AnugKMuSsfFEHsKdRciBRgKKF8AdSCjqqnBoJ83fGjQ7qRk5Ew8JdjkCIcgkxCIEwFrCqwSBj89Q3a3IHKEScQbcVKfFbiSrblYNQpFJHAm0vq+LGoyTwNXAhaPppFz5iQSXThRFDwRL+Bc84xoxi2+QCwb438INgJVbK/efAXOQqtaWWMv0Pt+a1yo4UaPRenqHvkbb/B6uJeKFp7q4W2cFstuS+QgwAKNxWCiD6YppAAAAAElFTkSuQmCC); }
@@ -1955,7 +1969,13 @@ body[data-href='features-nuts_and_bolts'] nav.outline.features .nuts_and_bolts u
 
 body[data-href*='features'] .page header
 {
-  min-height: 310px;
+  min-height: 250px;
+}
+
+body[data-href*='features'] .page header hgroup,
+body[data-href*='features'] .page header section
+{
+  z-index: 2;
 }
 
 body[data-href*='features'] .page header section p.intro
@@ -1979,13 +1999,17 @@ body[data-href*='features'] .page header section p
   left: -50px;
   width: 453px;
   height: 372px;
+  -webkit-transition: background-position .25s ease-in-out;
+  -moz-transition: background-position .25s ease-in-out;
+  -o-transition: background-position .25s ease-in-out;
+  transition: background-position .25s ease-in-out;
 }
 
 body[data-href='features-offline']        .feature_icon { background-position: center 76px, left top; }
-body[data-href='features-storage']        .feature_icon { background-position: 140px -298px, left top; }
+body[data-href='features-storage']        .feature_icon { background-position: center -298px, left top; }
 body[data-href='features-connectivity']   .feature_icon { background-position: center -672px, left top; }
 body[data-href='features-file_access']    .feature_icon { background-position: center -1046px, left top; }
-body[data-href='features-semantics']      .feature_icon { background-position: center -1416px, left top; }
+body[data-href='features-semantics']      .feature_icon { background-position: center -1428px, left top; }
 body[data-href='features-multimedia']     .feature_icon { background-position: center -1790px, left top; }
 body[data-href='features-graphics']       .feature_icon { background-position: center -2164px, left top; }
 body[data-href='features-presentation']   .feature_icon { background-position: center -2538px, left top; }
@@ -3065,7 +3089,6 @@ section.disqus
     float: left;
   }
 
-  header.tutorial div.right_side,
   header hgroup + section
   {
     float: none;
