@@ -792,6 +792,10 @@ input:invalid {
   height: 352px;
 }
 
+#inline-svg {
+  font-size: 14px;
+}
+
 #svg-example {
   margin-left: 150px;
   margin-top: 40px;

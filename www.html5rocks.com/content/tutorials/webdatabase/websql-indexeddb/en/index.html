@@ -1,33 +1,18 @@
-{% extends "sample.html" %}
+{% extends "tutorial.html" %}
 
-{% block headauthor %}Ido Green <idog@google.com>{% endblock %}
-  {% block pageauthor %}{% profilelinks idogreen %}{% endblock %}
-  {% block headtitle %}Migrating your WebSQL DB to IndexedDB{% endblock %}
-  {% block pagetitle %}Migrating your WebSQL DB to IndexedDB{% endblock %}
-  {% block head %}
+{% block head %}
+{% endblock %}
+{% block onload %}{% endblock %}
 
-  {% endblock %}
-  {% block pagebreadcrumb %}Migrating your WebSQL DB to IndexedDB{% endblock %}
-  {% block date %}December 05, 2011{% endblock %}
-  {% block updated %}{% endblock %}
-  {% block onload %}{% endblock %}
+{% block iscompatible %}
+return typeof window.openDatabase == "function" ? true : false;
+{% endblock %}
 
-  {% block browsersupport %}
-  <span class="opera"></span>
-  <span class="ie"></span>
-  <span class="safari"></span>
-  <span class="ff supported"></span>
-  <span class="chrome supported"></span>
-  {% endblock %}
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-storage.png" width="133" height="64" alt="This article is powered by HTML5 Offline &amp; Storage" title="This article is powered by HTML5 Offline &amp; Storage" />
+{% endblock %}
 
-  {% block iscompatible %}
-  return typeof window.openDatabase == "function" ? true : false;
-  {% endblock %}
-
-  {% block content %}
-
-
-
+{% block content %}
   <h2 id="toc-introduction">Introduction</h2>
 
   <p>Web Databases are hosted and persisted inside a user's browser. By allowing developers to create
