@@ -1485,7 +1485,7 @@ body[data-href='home'] article.sectioned section.one_third
   font-size: 13px;
   font-style: normal;
   float: left;
-  margin: 0;
+  margin: 0 0 1em !important;
   width: 67%;
 }
 
@@ -2435,23 +2435,9 @@ ul.definitions li
   column-break-inside: avoid;
 }
 
-ul.definitions li strong:after,
-ul.definitions li a:first-child:after
+ul.definitions li span
 {
-  content: "\A";
-  white-space: pre;
-}
-
-ul.definitions li strong a:first-child:after
-{
-  content: none;
-}
-
-.one_half ul.definitions li a:first-child:after,
-.one_third ul.definitions li a:first-child:after,
-.two_thirds ul.definitions li a:first-child:after
-{
-  white-space: nowrap;
+  display: block;
 }
 
 ul.definitions li a
@@ -3091,6 +3077,7 @@ section.disqus
   #feature-sections
   {
     margin: 0 !important;
+    width: 100% !important;
   }
 
   .page.current
@@ -3475,6 +3462,13 @@ section.disqus
 
 @media screen and (max-width: 600px)
 {
+  ul.definitions
+  {
+    -moz-column-count: 0;
+    -webkit-column-count: 0;
+    column-count: 0;
+  }
+
   /* Profiles */
 
   article.profile
@@ -3532,12 +3526,7 @@ section.disqus
     border-top: 0;
   }
 
-  body[data-href="home"] section#updates.feed li span.byline
-  {
-    float: left;
-    width: 75px;
-  }
-
+  body[data-href="home"] section#updates.feed li span.byline,
   body[data-href="home"] section#updates.feed li span.details
   {
     display: inline;
@@ -3571,10 +3560,14 @@ section.disqus
     padding: .75em .9em;
   }
 
-  section
+  section,
+  section.support.multiple,
+  section.support.multiple + section,
+  section.support.none + section
+
   {
     float: none;
-    width: 100% !important;
+    width: 95% !important;
   }
 
   section p:last-child,
