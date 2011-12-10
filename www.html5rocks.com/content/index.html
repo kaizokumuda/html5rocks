@@ -285,11 +285,11 @@ function processPipeFeed(result) {
       type = 'update';
     }
 
-    html.push('<li><span class="date">', formattedDateStr, '</span> ',
-              '<span class="author">', author ? '<img src="/static/images/profiles/' + author + '.png">' : '', '</span>',
-              '<span class="title">', entry.title.link(entry.link), '</span>',
+    html.push('<li><span class="byline"><span class="date">', formattedDateStr, '</span> ',
+              '<span class="author">', author ? '<img src="/static/images/profiles/' + author + '.png">' : '', '</span></span>',
+              '<span class="details"><span class="title">', entry.title.link(entry.link), '</span>',
               classes,
-              '<span data-type="', type, '" class="type">', type, '</span></li>');
+              '<span data-type="', type, '" class="type">', type, '</span></span></li>');
   }
   container.innerHTML += html.join('');
 }

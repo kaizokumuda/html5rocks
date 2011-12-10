@@ -713,11 +713,11 @@ body[data-href='business'] .page header
 
 .page header.two_columns /* There is too much unpredictable behavior with CSS3 columns for this to reliable. Using floats for now. */
 {
-  -moz-column-count: 0;
-  -o-column-count: 0;
-  -ms-column-count: 0;
-  -webkit-column-count: 0;
-  column-count: 0;
+  -moz-column-count: 0 !important;
+  -o-column-count: 0 !important;
+  -ms-column-count: 0 !important;
+  -webkit-column-count: 0 !important;
+  column-count: 0 !important;
 }
 
 .page header.two_columns hgroup
@@ -1421,7 +1421,7 @@ body[data-href='home'] section#updates
   margin-top: 0;
   left: 2500px;
   padding: 1.75% 2%;
-  width: 96%;
+
   height: 350px;
 }
 
@@ -3230,7 +3230,7 @@ section.disqus
     margin-left: 0 !important;
   }
 
-  /* Updates List */
+  /* Tutorials & Updates */
 
   .page header section.filter div.tag_filter
   {
@@ -3398,12 +3398,23 @@ section.disqus
     margin: 0;
   }
 
+  body[data-href="home"] header
+  {
+    margin-bottom: 0;
+  }
+
+  body[data-href="home"] #classes
+  {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
   body[data-href="home"] .one_third,
   body[data-href="home"] .one_third:first-child
   {
     float: none !important;
     margin-left: 0 !important;
-    margin-bottom: 0 !important;
+
     width: inherit !important;
   }
 
@@ -3443,6 +3454,7 @@ section.disqus
   body[data-href="home"] #start
   {
     height: inherit;
+    width: inherit;
     position: static;
   }
 
@@ -3455,7 +3467,9 @@ section.disqus
 
   body[data-href="home"] section#updates
   {
-    margin: 3% 0 !important;
+    margin: 2.5% 0 !important;
+    padding: 2% !important;
+    width: 96% !important;
   }
 }
 
@@ -3503,6 +3517,42 @@ section.disqus
     -webkit-column-count: 1;
     column-count: 1;
   }
+
+  /* Homepage */
+
+  body[data-href="home"] section#updates.feed li
+  {
+    border-top: 1px solid #bbb;
+    padding: .25em 0;
+    overflow: hidden;
+  }
+
+  body[data-href="home"] section#updates.feed li:first-child
+  {
+    border-top: 0;
+  }
+
+  body[data-href="home"] section#updates.feed li span.byline
+  {
+    float: left;
+    width: 75px;
+  }
+
+  body[data-href="home"] section#updates.feed li span.details
+  {
+    display: inline;
+  }
+
+  body[data-href="home"] section#updates.feed li span.classes,
+  body[data-href="home"] section#updates.feed li span.type
+  {
+    display: none;
+  }
+
+  body[data-href="home"] article.profile { width: 49% !important; }
+  body[data-href="home"] article.profile section { padding: 0 4% !important; }
+  body[data-href="home"] article.profile:nth-child(3n + 1) { margin-left: 2% !important; }
+  body[data-href="home"] article.profile:nth-child(2n + 1) { margin-left: 0 !important; }
 }
 
 @media screen and (max-width: 550px)
@@ -3532,6 +3582,8 @@ section.disqus
   {
     margin-bottom: 0 !important;
   }
+
+  /* Tutorials and Updates */
 
   section.filter .one_quarter
   {
@@ -3570,6 +3622,11 @@ section.disqus
   {
     width: 350px;
     height: 277px;
+  }
+
+  body[data-href="home"] #start
+  {
+
   }
 }
 
@@ -3614,4 +3671,19 @@ section.disqus
   {
     width: 160px;
   }
+
+  /* Homepage */
+
+  body[data-href="home"] article.profile
+  {
+    margin: 2% 0 0 0 !important;
+    width: 100% !important;
+  }
+
+  body[data-href="home"] article.profile section
+  {
+    padding: 0 2% !important;
+  }
+  body[data-href="home"] article.profile:nth-child(3n + 1) { margin-left: 0 !important; }
+  body[data-href="home"] article.profile:nth-child(2n + 1) { margin-left: 0 !important; }
 }
