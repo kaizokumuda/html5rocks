@@ -747,11 +747,11 @@ body[data-href='business'] .page header
 
 .page header.two_columns /* There is too much unpredictable behavior with CSS3 columns for this to reliable. Using floats for now. */
 {
-  -moz-column-count: 0 !important;
-  -o-column-count: 0 !important;
-  -ms-column-count: 0 !important;
-  -webkit-column-count: 0 !important;
-  column-count: 0 !important;
+  -moz-column-count: 1 !important;
+  -o-column-count: 1 !important;
+  -ms-column-count: 1 !important;
+  -webkit-column-count: 1 !important;
+  column-count: 1 !important;
 }
 
 .page header.two_columns hgroup
@@ -812,7 +812,7 @@ div.one_half    { width: 50%; }
   list-style: none;
   line-height: 1.8;
   margin: 0;
-  padding: 0;
+  padding: .1em;
 }
 
 .feed li a
@@ -848,11 +848,19 @@ div.one_half    { width: 50%; }
   box-sizing: border-box;
 }
 
-.feed li .title {
-  width:70%;
+.feed li .details
+{
+  display: inline;
+}
+
+.feed li .title
+{
+  display: inline;
+  width: 70%;
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
+
 .feed li span.type
 {
   float: right;
@@ -1455,7 +1463,7 @@ body[data-href='home'] section#updates
   margin-top: 0;
   left: 2500px;
   padding: 1.75% 2%;
-
+  width: 96%;
   height: 350px;
 }
 
@@ -2101,11 +2109,11 @@ section.updates li
 
 section.updates.two_columns
 {
-  -moz-column-count: 0;
-  -o-column-count: 0;
-  -ms-column-count: 0;
-  -webkit-column-count: 0;
-  column-count: 0;
+  -moz-column-count: 1 !important;
+  -o-column-count: 1 !important;
+  -ms-column-count: 1 !important;
+  -webkit-column-count: 1 !important;
+  column-count: 1 !important;
   margin: 0 0 2% 0 !important;
   width: 96% !important;
 }
