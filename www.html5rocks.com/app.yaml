@@ -89,6 +89,12 @@ handlers:
   mime_type: application/x-chrome-extension
   upload: content/tutorials/(.*\.crx)
 
+- url: /(.+\.(appcache|manifest))
+  expiration: "0s"
+  mime_type: text/cache-manifest
+  static_files: \1
+  upload: (.*\.(appcache|manifest))
+  
 #
 # Everything else
 #

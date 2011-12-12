@@ -387,7 +387,12 @@ but the total width always matches the size of the parent box.</p>
 <p>Centering something horizontally and vertically has long been a challenge in CSS.
 The best CSS-only solution we have is <code>position:absolute; left: 50%; top: 50%;</code>
 paired with negative left/top margins that equal half of the width/height.
-And that only flies with explicitly sized elements. Ugh! With flexbox we can get there a touch easier:</p>
+And that only flies with explicitly sized elements. Ugh!
+
+<p style="background-color: hsl(50, 84%, 91%)">James John Malcom wrote in to say there is a way, based on <code>display:table-cell;</code> which is at least 6 years old (Dušan Janovský wrote about it in 2004), to align vertically. <a href="http://james.gameover.com/index.php/2009/vertically-centring-in-css-without-hacks-and-multi-line-enabled/">James documented the full horizontal & vertical solution here</a>. It even works without explicitly sized elements.
+
+
+<p> With flexbox we can get there a touch easier:</p>
 
 {% if is_mobile %}
 <style>

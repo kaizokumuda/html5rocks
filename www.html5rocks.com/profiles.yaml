@@ -638,3 +638,23 @@ homepage: http://greenido.wordpress.com
 google: 101709676645745930035
 twitter: greenido
 email: idog@google.com
+
+---
+
+id: marcinwichary
+name:
+  given: Marcin
+  family: Wichary
+org:
+  name: Google
+  unit: Sr. User Experience Designer
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
+homepage: http://www.aresluna.org/
+google: 101765089097091765365
+twitter: mwichary
+email: mwichary@gmail.com

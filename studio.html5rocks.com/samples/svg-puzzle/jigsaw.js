@@ -17,8 +17,8 @@
  * Modified by: Eric Bidelman <ericbidelman@chromiumg.org>
  */
 var IMAGES = [
-  {src: 'chrome_poster.jpg', width: document.width, height: document.height,background:'-webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#f7e1b0), to(black)) no-repeat'},
-  {src: 'chrome_poster2.jpg', width: document.width, height: document.height,background:'-webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#e45827), to(black)) no-repeat'}
+  {src: 'chrome_poster.jpg', width: document.body.clientWidth, height: document.body.clientHeight,background:'-webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#f7e1b0), to(black)) no-repeat'},
+  {src: 'chrome_poster2.jpg', width: document.width||document.body.clientWidth, height: document.height||document.body.clientHeight,background:'-webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#e45827), to(black)) no-repeat'}
 ];
 var ROWS = 5;
 var COLS = 5;
