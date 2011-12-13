@@ -61,7 +61,7 @@
   AAborder-left: 5px solid transparent;
 }
 ::-webkit-scrollbar-thumb:horizontal {
-  AAborder-top: 5px solid transparent;
+  border-top: 5px solid transparent;
   border-bottom: 0px solid transparent;
   border-right: 0px solid transparent;
   border-left: 0px solid transparent;

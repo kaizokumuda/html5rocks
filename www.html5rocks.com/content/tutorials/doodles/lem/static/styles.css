@@ -432,6 +432,11 @@ figure table.text th {
   }
 }
 
+pre {
+  padding-left: 50px;
+  position: relative;
+}
+
 pre .line-numbers {
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 12px;
@@ -440,7 +445,7 @@ pre .line-numbers {
   position: absolute;
   left: 0;
   top: 0;
-  width: 94px;
+  /*width: 94px;*/
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
