@@ -18,7 +18,7 @@ import logging
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
-import common
+#import common
 
 import django.template
 
@@ -54,7 +54,7 @@ register.tag('toc', do_toc)
 class ProfileLink(django.template.Node):
   def __init__(self, ids):
     self.ids = ids
-    self.profiles = common.get_profiles()
+    self.profiles = [] #common.get_profiles()
 
   def render(self, context):
     names = []

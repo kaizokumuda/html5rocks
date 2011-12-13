@@ -6,6 +6,7 @@
 {% block h2title   %}{% trans "Offline" %}{% endblock %}
 {% block tuttags   %}offline{% endblock %}
 {% block caniuse   %}offline-apps{% endblock %}
+{% block updatesblockstyle %}{% endblock %} <!-- 'one_half' if next to a browser support box. TODO: This logic should be moved out of the view!! -->
 {% block supportblockstyle %}{% endblock %} <!-- 'multiple' if more than one caniuse class, 'none' if none. TODO: This logic should be moved out of the view!! -->
 
 {% block header %}
@@ -89,34 +90,34 @@
     <ul class="definitions">
       <li>
         <a href="http://www.youtube.com/watch?v=CoUSIBep1G8">Google TechTalk: HTML5 Storage - Application Cache</a>
-        {% trans "Presented by Nikolas Coukouma, January 5, 2011" %}
+        <span>{% trans "Presented by Nikolas Coukouma, January 5, 2011" %}</span>
       </li>
       <li>
         <a href="http://dev.w3.org/html5/spec-author-view/offline.html#offline">W3C HTML5 Spec, author view: Offline Web Applications</a>
-        {% trans "The w3c spec has the strict details on how the cache.manifest and applicationCache APIs work." %}
+        <span>{% trans "The w3c spec has the strict details on how the cache.manifest and applicationCache APIs work." %}</span>
       </li>
       <li>
         <a href="http://diveintohtml5.info/offline.html">Dive into HTML5: Let's take this offline</a>
-        {% trans "Mark Pilgrim dives into using the app cache in practice." %}
+        <span>{% trans "Mark Pilgrim dives into using the app cache in practice." %}</span>
       </li>
       <li>
         <a href="https://developer.mozilla.org/En/Offline_resources_in_Firefox">MDC: Offline resources in Firefox</a>
       </li>
       <li>
         <a href="https://developer.mozilla.org/en/Online_and_offline_events">MDC: Online and offline events</a>
-        {% trans "Mozilla Developer Center reference documentation and guides, covering online and offline events and app cache." %}
+        <span>{% trans "Mozilla Developer Center reference documentation and guides, covering online and offline events and app cache." %}</span>
       </li>
       <li>
         <a href="http://hacks.mozilla.org/2010/01/offline-web-applications/">Mozilla Hacks: offline web applications</a>
-        {% trans "Creating a todo list manager using localStorage, app cache and offline events. Putting everything together." %}
+        <span>{% trans "Creating a todo list manager using localStorage, app cache and offline events. Putting everything together." %}</span>
       </li>
       <li>
         <a href="http://dev.opera.com/articles/view/offline-applications-html5-appcache/">DevOpera: Running your web applications offline with HTML5 AppCache</a>
-        {% trans "The app cache explained with solid examples showing different features and configurations in use." %}
+        <span>{% trans "The app cache explained with solid examples showing different features and configurations in use." %}</span>
       </li>
       <li>
         <a href="http://trac.webkit.org/browser/trunk/WebCore/loader/appcache">Webkit app cache Source Code</a>
-        {% trans "The C code used by Webkit for the app cache" %}
+        <span>{% trans "The C code used by Webkit for the app cache" %}</span>
       </li>
     </ul>
   </section>

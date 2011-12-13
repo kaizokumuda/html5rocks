@@ -6,6 +6,7 @@
 {% block h2title   %}{% trans "Presentation" %}{% endblock %}
 {% block tuttags   %}presentation,css,3D,webfonts{% endblock %}
 {% block caniuse   %}css-transitions,css-animation,transforms2d,transforms3d{% endblock %}
+{% block updatesblockstyle %}two_columns{% endblock %}
 {% block supportblockstyle %}multiple{% endblock %}
 
 {% block header %}
@@ -120,27 +121,27 @@ pre:hover {
     <ul class="definitions">
       <li>
         <a href="http://www.w3.org/Style/CSS/current-work">CSS3 Spec status</a>
-        {% trans "A list of the current status of the CSS3 specifications." %}
+        <span>{% trans "A list of the current status of the CSS3 specifications." %}</span>
       </li>
       <li>
         <a href="http://www.w3.org/TR/css3-selectors/">W3C Spec: CSS3 Selectors</a>
-        {% trans "This W3C specification defines the new selectors available to developers." %}
+        <span>{% trans "This W3C specification defines the new selectors available to developers." %}</span>
       </li>
       <li>
         <a href="http://www.w3.org/TR/css3-2d-transforms">W3C Draft CSS3 2d Transform module</a>
-        {% trans "This W3C specification defines how rotations, transformations, skews and scaling should be applied to DOM elements in 2 dimensions." %}
+        <span>{% trans "This W3C specification defines how rotations, transformations, skews and scaling should be applied to DOM elements in 2 dimensions." %}</span>
       </li>
       <li>
         <a href="http://www.w3.org/TR/css3-3d-transforms">W3C Draft CSS3 3d Transform module</a>
-        {% trans "This W3C specification defines how 3d transformations should be applied to DOM elements." %}
+        <span>{% trans "This W3C specification defines how 3d transformations should be applied to DOM elements." %}</span>
       </li>
       <li>
         <a href="http://www.w3.org/TR/css3-transitions">W3C Draft CSS3 Transition Module</a>
-        {% trans "This W3C specification defines how properties should be animated between states." %}
+        <span>{% trans "This W3C specification defines how properties should be animated between states." %}</span>
       </li>
       <li>
         <a href="http://www.w3.org/TR/css3-animations">W3C Draft CSS3 Animation Module</a>
-        {% trans "This W3C specification defines the new animation properties available." %}
+        <span>{% trans "This W3C specification defines the new animation properties available." %}</span>
       </li>
     </dl>
   </section>

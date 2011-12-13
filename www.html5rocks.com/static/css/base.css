@@ -174,6 +174,40 @@ table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 
 
+button {
+  display: inline-block;
+  background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#F9F9F9), to(#E3E3E3));
+  background: -webkit-linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
+  background: -moz-linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
+  background: -ms-linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
+  background: -o-linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
+  background: linear-gradient(#F9F9F9 40%, #E3E3E3 70%);
+  border: 1px solid #999;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+button:hover {
+  border-color: black;
+}
+button:active {
+  background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#E3E3E3), to(#F9F9F9));
+  background: -webkit-linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
+  background: -moz-linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
+  background: -ms-linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
+  background: -o-linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
+  background: linear-gradient(#E3E3E3 40%, #F9F9F9 70%);
+}
+
 /* BACKGROUND SCALE */
 
 body
@@ -561,19 +595,6 @@ body[data-href='business'] .page header.two_columns p:first-child
   width: 64%;
 }
 
-body[data-href='home'] .page header hgroup,
-body[data-href='mobile'] .page header hgroup,
-body[data-href='gaming'] .page header hgroup,
-body[data-href='business'] .page header hgroup,
-body[data-href='home'] .page header section,
-body[data-href='mobile'] .page header section,
-body[data-href='gaming'] .page header section,
-body[data-href='business'] .page header section
-{
-  float: none;
-  width: inherit;
-}
-
 body[data-href='mobile'] .page header,
 body[data-href='gaming'] .page header,
 body[data-href='business'] .page header
@@ -694,7 +715,6 @@ body[data-href='business'] .page header
 .page section
 {
   position: relative;
-  z-index: 2;
 }
 
 .page header .share
@@ -702,6 +722,7 @@ body[data-href='business'] .page header
   position: absolute;
   bottom: 40px;
   left: 30px;
+  z-index: 2;
 }
 
 .page header .share ul
@@ -724,14 +745,27 @@ body[data-href='business'] .page header
 .page header .share li.twitter    { left: 158px; }
 .page header .share li.twitter a  { color: #5cd6ff; }
 
-.page header.two_columns hgroup
+.page header.two_columns /* There is too much unpredictable behavior with CSS3 columns for this to reliable. Using floats for now. */
 {
-  padding-bottom: 0;
+  -moz-column-count: 1 !important;
+  -o-column-count: 1 !important;
+  -ms-column-count: 1 !important;
+  -webkit-column-count: 1 !important;
+  column-count: 1 !important;
 }
 
-.page header.two_columns hgroup img
+.page header.two_columns hgroup
 {
-  margin-bottom: 1em;
+  padding: 0 3% 0 0;
+  float: left;
+  width: 48%;
+}
+
+.page header.two_columns section
+{
+  float: left;
+  padding: 0;
+  width: 49%;
 }
 
 .page header.two_columns p
@@ -739,11 +773,16 @@ body[data-href='business'] .page header
   font-size: 16px;
   font-style: italic;
   margin: 0;
-  -moz-column-break-before: always;
-  -o-column-break-before: always;
-  -ms-column-break-before: always;
-  -webkit-column-break-before: always;
-  column-break-before: always;
+}
+
+.page header.two_columns p + p
+{
+  margin-top: 1em;
+}
+
+.page header.two_columns hgroup img
+{
+  margin-bottom: 1em;
 }
 
 .page section header
@@ -763,7 +802,6 @@ div.one_half    { width: 50%; }
   list-style: none;
   margin: 1em 0 !important;
   padding: 0;
-  overflow: hidden;
 }
 
 .feed li
@@ -771,9 +809,10 @@ div.one_half    { width: 50%; }
   clear: left;
   font-size: 14px;
   font-style: italic;
+  list-style: none;
   line-height: 1.8;
   margin: 0;
-  padding: 0;
+  padding: .1em;
 }
 
 .feed li a
@@ -809,11 +848,19 @@ div.one_half    { width: 50%; }
   box-sizing: border-box;
 }
 
-.feed li .title {
-  width:70%;
+.feed li .details
+{
+  display: inline;
+}
+
+.feed li .title
+{
+  display: inline;
+  width: 70%;
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
+
 .feed li span.type
 {
   float: right;
@@ -822,7 +869,9 @@ div.one_half    { width: 50%; }
 
 .feed p a
 {
-  font-size: 14px;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 600;
   padding-left: 45px;
 }
 
@@ -830,11 +879,25 @@ div.one_half    { width: 50%; }
 {
   background-repeat: no-repeat;
   background-position: center;
-  display: inline-block;
+  display: none !important;
   width: 20px;
   height: 16px;
   vertical-align: -3px;
   position: relative;
+}
+
+.class.offline,
+.class.storage,
+.class.connectivity,
+.class.file_access,
+.class.semantics,
+.class.multimedia,
+.class.graphics,
+.class.presentation,
+.class.performance,
+.class.nuts_and_bolts
+{
+  display: inline-block !important;
 }
 
 .class.offline        { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAALCAYAAABLcGxfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjFCM0NEMkVFOEFCMTFFMDg2NkJGNDlCNjE5NENEMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjFCM0NEMkZFOEFCMTFFMDg2NkJGNDlCNjE5NENEMzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMUIzQ0QyQ0U4QUIxMUUwODY2QkY0OUI2MTk0Q0QzMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGMUIzQ0QyREU4QUIxMUUwODY2QkY0OUI2MTk0Q0QzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pgkly+8AAADxSURBVHjaTFGxEYJAEHzQ3C9BMkOhAqhArUAdCpBQIyUyFAtgpAOlArUD7MDQUEMzd5195WaWO+527+/vPSNL09TC7YAxYJV+AnugKMuSsfFEHsKdRciBRgKKF8AdSCjqqnBoJ83fGjQ7qRk5Ew8JdjkCIcgkxCIEwFrCqwSBj89Q3a3IHKEScQbcVKfFbiSrblYNQpFJHAm0vq+LGoyTwNXAhaPppFz5iQSXThRFDwRL+Bc84xoxi2+QCwb438INgJVbK/efAXOQqtaWWMv0Pt+a1yo4UaPRenqHvkbb/B6uJeKFp7q4W2cFstuS+QgwAKNxWCiD6YppAAAAAElFTkSuQmCC); }
@@ -1354,7 +1417,7 @@ body[data-href='home'] #start
   padding: 0;
   position: relative;
   width: 1000px;
-  height: 385px;
+  height: 405px;
 }
 
 body[data-href='home'] #start article
@@ -1377,26 +1440,7 @@ body[data-href='home'] #logo
   width: 100%;
 }
 
-body[data-href='home'] section#updates
-{
-  margin-top: 0;
-  left: 2500px;
-  padding: 2% 3%;
-  width: 94%;
-  height: 325px;
-}
-
-body[data-href='home'] section#updates h2
-{
-  margin-top: 0;
-}
-
-body[data-href='home'] section#updates h2 a
-{
-  background: none !important;
-}
-
-body[data-href='home'] #updates_badge
+body[data-href='home'] #updates_badge /* The shaker. */
 {
   cursor: pointer !important;
   position: absolute;
@@ -1414,6 +1458,31 @@ body[data-href='home'] #updates_badge
   -moz-animation-iteration-count: infinite;
 }
 
+body[data-href='home'] section#updates
+{
+  margin-top: 0;
+  left: 2500px;
+  padding: 1.75% 2%;
+  width: 96%;
+  height: 350px;
+}
+
+body[data-href='home'] section#updates h2
+{
+  font-size: 18px;
+  margin: 0;
+}
+
+body[data-href='home'] section#updates h2 a
+{
+  background: none !important;
+}
+
+body[data-href='home'] section#updates ul
+{
+  margin: .5em 0 !important;
+}
+
 body[data-href='home'] #latest_articles_feed .title {
   width:auto;
 }
@@ -1422,7 +1491,7 @@ body[data-href='home'] #latest_articles_feed .title {
 {
   float: right;
   margin-left: 3em;
-  width: 35%;
+  width: 39%;
 }
 
 body[data-href='home'] article.sectioned section.one_third
@@ -1458,7 +1527,7 @@ body[data-href='home'] article.sectioned section.one_third
   font-size: 13px;
   font-style: normal;
   float: left;
-  margin: 0;
+  margin: 0 0 1em !important;
   width: 67%;
 }
 
@@ -1955,7 +2024,13 @@ body[data-href='features-nuts_and_bolts'] nav.outline.features .nuts_and_bolts u
 
 body[data-href*='features'] .page header
 {
-  min-height: 310px;
+  min-height: 250px;
+}
+
+body[data-href*='features'] .page header hgroup,
+body[data-href*='features'] .page header section
+{
+  z-index: 2;
 }
 
 body[data-href*='features'] .page header section p.intro
@@ -1979,13 +2054,17 @@ body[data-href*='features'] .page header section p
   left: -50px;
   width: 453px;
   height: 372px;
+  -webkit-transition: background-position .25s ease-in-out;
+  -moz-transition: background-position .25s ease-in-out;
+  -o-transition: background-position .25s ease-in-out;
+  transition: background-position .25s ease-in-out;
 }
 
 body[data-href='features-offline']        .feature_icon { background-position: center 76px, left top; }
-body[data-href='features-storage']        .feature_icon { background-position: 140px -298px, left top; }
+body[data-href='features-storage']        .feature_icon { background-position: center -298px, left top; }
 body[data-href='features-connectivity']   .feature_icon { background-position: center -672px, left top; }
 body[data-href='features-file_access']    .feature_icon { background-position: center -1046px, left top; }
-body[data-href='features-semantics']      .feature_icon { background-position: center -1416px, left top; }
+body[data-href='features-semantics']      .feature_icon { background-position: center -1428px, left top; }
 body[data-href='features-multimedia']     .feature_icon { background-position: center -1790px, left top; }
 body[data-href='features-graphics']       .feature_icon { background-position: center -2164px, left top; }
 body[data-href='features-presentation']   .feature_icon { background-position: center -2538px, left top; }
@@ -2008,6 +2087,47 @@ section.support h3,
 section.updates h3
 {
   margin-top: 0;
+}
+
+section.updates ul
+{
+  list-style: none;
+  margin: 1em 0 0 0;
+  padding: 0;
+}
+
+section.updates li
+{
+  margin: 0 0 .5em;
+  -moz-column-break-after: avoid;
+  -webkit-column-break-after: avoid;
+  column-break-after: avoid;
+  -moz-column-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  column-break-inside: avoid;
+}
+
+section.updates.two_columns
+{
+  -moz-column-count: 1 !important;
+  -o-column-count: 1 !important;
+  -ms-column-count: 1 !important;
+  -webkit-column-count: 1 !important;
+  column-count: 1 !important;
+  margin: 0 0 2% 0 !important;
+  width: 96% !important;
+}
+
+section.updates.two_columns ul
+{
+  -moz-column-count: 2;
+  -o-column-count: 2;
+  -ms-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+  -moz-column-gap: 20px;
+  -webkit-column-gap: 20px;
+  column-gap: 20px;
 }
 
 section.support
@@ -2209,33 +2329,7 @@ section.support.multiple p
   text-align: left;
 }
 
-section.support.none + section.updates ul,
-section.support.multiple + section.updates ul
-{
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
-  column-count: 2;
-  -moz-column-gap: 20px;
-  -webkit-column-gap: 20px;
-  column-gap: 20px;
-}
-
-section.updates ul
-{
-  list-style: none;
-  margin: 1em 0 0 0;
-  padding: 0;
-}
-
-section.updates li
-{
-  margin: 0 0 .5em;
-  -moz-column-break-after: avoid;
-  -webkit-column-break-after: avoid;
-  column-break-after: avoid;
-}
-
-section.updates + section
+section.support + section
 {
   clear: both;
 }
@@ -2383,23 +2477,9 @@ ul.definitions li
   column-break-inside: avoid;
 }
 
-ul.definitions li strong:after,
-ul.definitions li a:first-child:after
+ul.definitions li span
 {
-  content: "\A";
-  white-space: pre;
-}
-
-ul.definitions li strong a:first-child:after
-{
-  content: none;
-}
-
-.one_half ul.definitions li a:first-child:after,
-.one_third ul.definitions li a:first-child:after,
-.two_thirds ul.definitions li a:first-child:after
-{
-  white-space: nowrap;
+  display: block;
 }
 
 ul.definitions li a
@@ -2604,17 +2684,16 @@ body[data-href='tutorials'] .page header .share
   display: none;
 }
 
-header.tutorial div.right_side
+header.tutorial hgroup + section
 {
-  float: left;
-  width: 632px;
+  margin-top: 0;
 }
 
-header.tutorial section,
+header.tutorial .byline,
 header.tutorial aside
 {
   float: left;
-  width: 316px;
+  width: 50%;
   overflow: hidden;
 }
 
@@ -2640,6 +2719,7 @@ header.tutorial .byline hgroup
 {
   float: none;
   padding: 0;
+  width: 100%;
 }
 
 header.tutorial .byline img
@@ -2672,13 +2752,8 @@ header.tutorial .byline h2 span
 header.tutorial .browser_support
 {
   font-size: 12px;
-  padding-top: 1.25em;
+  padding-top: 1em;
   width: 632px;
-}
-
-header.tutorial aside
-{
-  margin-top: .5em;
 }
 
 header.tutorial aside a
@@ -2748,7 +2823,7 @@ article.tutorial figcaption
   display: block;
   font-size: 13px;
   font-weight: 600;
-  margin: 1.25em 0 0;
+  margin: 1em 0 0;
 }
 
 .cc p
@@ -2936,11 +3011,11 @@ section.disqus
   article.sectioned section#updates
   {
     float: left;
-    margin: 0 !important;
     width: 45%;
+    margin: 0 0 2% 0 !important;
   }
 
-  article.sectioned section#support
+  article.sectioned section#updates
   {
     margin: 0 2% 2% 0 !important;
   }
@@ -3043,6 +3118,7 @@ section.disqus
   #feature-sections
   {
     margin: 0 !important;
+    width: 100% !important;
   }
 
   .page.current
@@ -3070,7 +3146,6 @@ section.disqus
     float: left;
   }
 
-  header.tutorial div.right_side,
   header hgroup + section
   {
     float: none;
@@ -3183,7 +3258,7 @@ section.disqus
     margin-left: 0 !important;
   }
 
-  /* Updates List */
+  /* Tutorials & Updates */
 
   .page header section.filter div.tag_filter
   {
@@ -3351,12 +3426,23 @@ section.disqus
     margin: 0;
   }
 
+  body[data-href="home"] header
+  {
+    margin-bottom: 0;
+  }
+
+  body[data-href="home"] #classes
+  {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
   body[data-href="home"] .one_third,
   body[data-href="home"] .one_third:first-child
   {
     float: none !important;
     margin-left: 0 !important;
-    margin-bottom: 0 !important;
+
     width: inherit !important;
   }
 
@@ -3396,6 +3482,7 @@ section.disqus
   body[data-href="home"] #start
   {
     height: inherit;
+    width: inherit;
     position: static;
   }
 
@@ -3408,12 +3495,21 @@ section.disqus
 
   body[data-href="home"] section#updates
   {
-    margin: 3% 0 !important;
+    margin: 2.5% 0 !important;
+    padding: 2% !important;
+    width: 96% !important;
   }
 }
 
 @media screen and (max-width: 600px)
 {
+  ul.definitions
+  {
+    -moz-column-count: 0;
+    -webkit-column-count: 0;
+    column-count: 0;
+  }
+
   /* Profiles */
 
   article.profile
@@ -3456,6 +3552,37 @@ section.disqus
     -webkit-column-count: 1;
     column-count: 1;
   }
+
+  /* Homepage */
+
+  body[data-href="home"] section#updates.feed li
+  {
+    border-top: 1px solid #bbb;
+    padding: .25em 0;
+    overflow: hidden;
+  }
+
+  body[data-href="home"] section#updates.feed li:first-child
+  {
+    border-top: 0;
+  }
+
+  body[data-href="home"] section#updates.feed li span.byline,
+  body[data-href="home"] section#updates.feed li span.details
+  {
+    display: inline;
+  }
+
+  body[data-href="home"] section#updates.feed li span.classes,
+  body[data-href="home"] section#updates.feed li span.type
+  {
+    display: none;
+  }
+
+  body[data-href="home"] article.profile { width: 49% !important; }
+  body[data-href="home"] article.profile section { padding: 0 4% !important; }
+  body[data-href="home"] article.profile:nth-child(3n + 1) { margin-left: 2% !important; }
+  body[data-href="home"] article.profile:nth-child(2n + 1) { margin-left: 0 !important; }
 }
 
 @media screen and (max-width: 550px)
@@ -3474,10 +3601,14 @@ section.disqus
     padding: .75em .9em;
   }
 
-  section
+  section,
+  section.support.multiple,
+  section.support.multiple + section,
+  section.support.none + section
+
   {
     float: none;
-    width: 100% !important;
+    width: 95% !important;
   }
 
   section p:last-child,
@@ -3485,6 +3616,8 @@ section.disqus
   {
     margin-bottom: 0 !important;
   }
+
+  /* Tutorials and Updates */
 
   section.filter .one_quarter
   {
@@ -3523,6 +3656,11 @@ section.disqus
   {
     width: 350px;
     height: 277px;
+  }
+
+  body[data-href="home"] #start
+  {
+
   }
 }
 
@@ -3567,4 +3705,21 @@ section.disqus
   {
     width: 160px;
   }
+
+
+
+  /* Homepage */
+
+  body[data-href="home"] article.profile
+  {
+    margin: 2% 0 0 0 !important;
+    width: 100% !important;
+  }
+
+  body[data-href="home"] article.profile section
+  {
+    padding: 0 2% !important;
+  }
+  body[data-href="home"] article.profile:nth-child(3n + 1) { margin-left: 0 !important; }
+  body[data-href="home"] article.profile:nth-child(2n + 1) { margin-left: 0 !important; }
 }

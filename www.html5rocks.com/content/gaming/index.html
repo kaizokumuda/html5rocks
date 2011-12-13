@@ -54,7 +54,7 @@
         {% if forloop.counter0 < 4 %}
           <li>
             <a href="{{r.url}}">{{r.title}}</a><br>
-            {{r.description|safe|truncatewords:15}}
+            <span>{{r.description|safe|truncatewords:15}}</span>
             </a>
           </li>
         {% endif %}

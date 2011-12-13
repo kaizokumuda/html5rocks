@@ -6,6 +6,7 @@
 {% block h2title   %}{% trans "Connectivity" %}{% endblock %}
 {% block tuttags   %}TODO{% endblock %}
 {% block caniuse   %}TODO{% endblock %}
+{% block updatesblockstyle %}two_columns{% endblock %}
 {% block supportblockstyle %}none{% endblock %} <!-- 'multiple' if more than one caniuse class, 'none' if none. TODO: This logic should be moved out of the view!! -->
 
 {% block header %}
@@ -87,7 +88,7 @@
     <ul class="definitions">
       <li>
         <a href="http://example.com/foo/bar/baz">Foo</a>
-        {% trans "Lorem ipsum dolor sit amet, consectetuer adipiscing elit." %}
+        <span>{% trans "Lorem ipsum dolor sit amet, consectetuer adipiscing elit." %}</span>
       </li>
     </ul>
   </section>

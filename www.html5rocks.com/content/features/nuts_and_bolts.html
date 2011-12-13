@@ -6,6 +6,7 @@
 {% block h2title   %}{% trans "Nuts & Bolts" %}{% endblock %}
 {% block tuttags   %}TODO{% endblock %}
 {% block caniuse   %}TODO{% endblock %}
+{% block updatesblockstyle %}two_columns{% endblock %}
 {% block supportblockstyle %}none{% endblock %} <!-- 'multiple' if more than one caniuse class, 'none' if none. TODO: This logic should be moved out of the view!! -->
 
 {% block header %}
@@ -13,7 +14,7 @@
     <p class="intro">
       {% blocktrans %}
         HTML5 is now an umbrella term that many people use to describe the amazing
-        improvements coming to the web platform. It's a platform that is becoming 
+        improvements coming to the web platform. It's a platform that is becoming
         more powerful by the day. Most people have heard of the rich APIs (css3, audio/video, WebGL, offline, geolocation,...),
         but there's also a slew of lesser-known features that you should be aware of.
         We call these the "nuts &amp; bolts" of building modern web applications.
@@ -30,7 +31,7 @@
       {% blocktrans %}
         Isn't it painful to build web apps? Luckily, smart folks are improving
         the underlying (core) platform to make our lives easier. These improvements include
-        additions to ECMAScript (the JavaScript language), ways to interact with the DOM, 
+        additions to ECMAScript (the JavaScript language), ways to interact with the DOM,
         and even old friends like <code>XMLHttpRequest</code> and <code>&lt;input type="file"&gt;</code>.
         Here are just a few:
       {% endblocktrans %}
@@ -126,58 +127,48 @@
     </figure>
   </section>
 
-  <section id="in_the_wild">
-    <h3>In the Wild</h3>
-    <figure>
-      <a href="">
-        <img src="/static/images/features/">
-        <figcaption></figcaption>
-      </a>
-    </figure>
-  </section>
-
   <section id="resources">
     <h3>Resources</h3>
     <ul class="definitions">
       <li>
         <a href="http://code.google.com/chrome/whitepapers/pagevisibility.html">Using the Page Visibility API</a>
-        {% trans "Whitepaper on using the Page Visibility API." %}
+        <span>{% trans "Whitepaper on using the Page Visibility API." %}</span>
       </li>
       <li>
         <a href="http://code.google.com/chrome/whitepapers/prerender.html">Web Developer's Guide to Prerendering in Chrome</a>
-        {% trans "How to use the <code>rel='prerender'</code> attribute to prerender content in a background tab." %}
+        <span>{% trans "How to use the <code>rel='prerender'</code> attribute to prerender content in a background tab." %}</span>
       </li>
       <li>
         <a href="https://developer.mozilla.org/en/Online_and_offline_events">Online and offline events documentation</a>
-        {% trans "MDN reference on online/offline events." %}
+        <span>{% trans "MDN reference on online/offline events." %}</span>
       </li>
       <li>
         <a href="https://developer.mozilla.org/en/JavaScript_typed_arrays">JavaScript Typed Arrays documentation</a>
-        {% trans "MDN reference on JS typed arrays." %}
+        <span>{% trans "MDN reference on JS typed arrays." %}</span>
       </li>
       <li>
         <a href="https://developer.mozilla.org/en/DOM/window.requestAnimationFrame"><code>requestAnimationFrame()</code> documentation</a>
-        {% trans "MDN refernce on <code>window.requestAnimationFrame()</code>" %}
+        <span>{% trans "MDN refernce on <code>window.requestAnimationFrame()</code>" %}</span>
       </li>
       <li>
         <a href="https://developer.mozilla.org/en/DOM/Manipulating_the_browser_history">HTML5 History API documentation</a>
-        {% trans "MDN reference on the <code>window.history</code> API." %}
+        <span>{% trans "MDN reference on the <code>window.history</code> API." %}</span>
       </li>
       <li>
         <a href="https://developer.mozilla.org/en/Web-based_protocol_handlers">Web-based protocol handlers</a>
-        {% trans "MDN documentation for <code>navigator.registerProtocolHandler()</code>." %}
+        <span>{% trans "MDN documentation for <code>navigator.registerProtocolHandler()</code>." %}</span>
       </li>
       <li>
         <a href="https://developer.mozilla.org/en/DOM/window.navigator.registerContentHandler">Web-based content handlers</a>
-        {% trans "MDN documentation for <code>navigator.registerContentHandler()</code>." %}
+        <span>{% trans "MDN documentation for <code>navigator.registerContentHandler()</code>." %}</span>
       </li>
       <li>
         <a href="http://webintents.org">Web Intents</a>
-        {% trans "Allows apps to register an intent to handle common user actions." %}
+        <span>{% trans "Allows apps to register an intent to handle common user actions." %}</span>
       </li>
       <li>
         <a href="https://developer.mozilla.org/en/DOM/XMLHttpRequest/Using_XMLHttpRequest">Using XMLHttpRequest2</a>
-        {% trans "MDN reference on using features in <code>XMLHttpRequest2</code>." %}
+        <span>{% trans "MDN reference on using features in <code>XMLHttpRequest2</code>." %}</span>
       </li>
       <li>
         <a href="http://dvcs.w3.org/hg/cors/raw-file/tip/Overview.html">Cross-Origin Resource Sharing specification</a>

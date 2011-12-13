@@ -6,6 +6,7 @@
 {% block h2title   %}{% trans "File Access" %}{% endblock %}
 {% block tuttags   %}file,dnd,filereader,filewriter,blob,xhr{% endblock %}
 {% block caniuse   %}bloburls,blobbuilder,filesystem,filereader,fileapi{% endblock %}
+{% block updatesblockstyle %}two_columns{% endblock %}
 {% block supportblockstyle %}multiple{% endblock %}
 
 {% block header %}
@@ -70,35 +71,35 @@
     <ul class="definitions">
       <li>
         <a href="http://www.w3.org/TR/file-upload/">W3C Spec: File</a>
-        {% trans "This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>." %}
+        <span>{% trans "This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>." %}</span>
       </li>
       <li>
         <a href="http://www.w3.org/TR/file-system-api/">W3C Spec: FileSystem APIs</a>
-        {% trans "This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing files and directories in a sandboxed file system." %}
+        <span>{% trans "This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing files and directories in a sandboxed file system." %}</span>
       </li>
       <li>
         <a href="http://www.w3.org/TR/file-writer-api/">W3C Spec: FileWriter</a>
-        {% trans "This W3C specification defines the FileWriter API; which provides an interface for writing to files from web applications." %}
+        <span>{% trans "This W3C specification defines the FileWriter API; which provides an interface for writing to files from web applications." %}</span>
       </li>
       <li>
         <a href="http://www.w3.org/TR/progress-events/#Progress">W3C Spec: ProgressEvents</a>
-        {% trans "This W3C specification defines the ProgressEvent; which gives asynchronous updates on the progress of a File read." %}
+        <span>{% trans "This W3C specification defines the ProgressEvent; which gives asynchronous updates on the progress of a File read." %}</span>
       </li>
       <li>
         <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#the-dragevent-and-datatransfer-interfaces">WHATWG Spec: Drag and Drop</a>
-        {% trans "This whatwg specification defines the native HTML5 drag and drop APIs" %}
+        <span>{% trans "This whatwg specification defines the native HTML5 drag and drop APIs" %}</span>
       </li>
       <li>
         <a href="http://hacks.mozilla.org/2009/12/uploading-files-with-xmlhttprequest/">Mozilla Hacks: Interactive file uploads</a>
-        {% trans "Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files." %}
+        <span>{% trans "Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files." %}</span>
       </li>
       <li>
         <a href="https://developer.mozilla.org/En/DragDrop/Drag_Operations">MDC: Drag Operations</a>
-        {% trans "Reference on the various dragging options that are available in the DnD API" %}
+        <span>{% trans "Reference on the various dragging options that are available in the DnD API" %}</span>
       </li>
       <li>
         <a href="http://html5doctor.com/native-drag-and-drop/">HTML5 Doctor: Native Drag and Drop</a>
-        {% trans "Article on using Native Drag and Drop in HTML5. Discusses File drag/drop from desktop." %}
+        <span>{% trans "Article on using Native Drag and Drop in HTML5. Discusses File drag/drop from desktop." %}</span>
       </li>
     </ul>
   </section>
