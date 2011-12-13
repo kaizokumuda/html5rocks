@@ -1,7 +1,8 @@
 
 //Presenter	Date	Event	Location	Slides	Slideshare	Youtube	Vimeo	Origlink	Presently	Notes
 
-var talktmpl = '' +
+window.SLD = window.SLD || {};
+SLD.talktmpl = '' +
 '                                                      \
 {{#each talksArr}}                                     \
 <article data-event="{{title}}">                       \
@@ -46,5 +47,3 @@ var talktmpl = '' +
  
 // jQuery('article.profile').each(function(){ obj[ $(this).find('h2').text().replace(/\s+/g,' ').trim() ] = this.id })
 
-// TODO: generate this list from the db results
-var presenters = {"Eric Bidelman":"ericbidelman","Geoff Blair":"geoffblair","Jeremy Chone":"jeremychone","Michael Deal":"mdeal","Ernest Delgado":"ernestd","Derek Detweiler":"derekdetweiler","Mike Dewey":"michaeldewey","Hakim El Hattab":"hakimelhattab","Adrian Gould":"adriangould","Matt Hackett":"matthackett","Ilmari Heikkinen":"ilmari","Paul Irish":"paulirish","Paul Kinlan":"paulkinlan","Jan Kleinert":"jankleinert","Seth Ladd":"sethladd","Pete LePage":"petele","Paul Lewis":"paullewis","Michael Mahemoff":"mahemoff","Adam Mark":"adammark","Luigi Montanez":"luigimontanez","Daniel X. Moore":"danielmoore","Boris Smus":"smus","David Tong":"davidtong","Malte Ubl":"malteubl"};
