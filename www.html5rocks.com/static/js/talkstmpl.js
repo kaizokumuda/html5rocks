@@ -45,5 +45,3 @@ SLD.talktmpl = '' +
  '; 
  
  
-// jQuery('article.profile').each(function(){ obj[ $(this).find('h2').text().replace(/\s+/g,' ').trim() ] = this.id })
-
