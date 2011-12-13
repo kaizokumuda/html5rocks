@@ -90,6 +90,17 @@ function receiveSpreadsheet(data) {
   if (data.feed)
     data.feed.entry.forEach(normalizeData);
     
+  // fix the sort order in case.
+  talks = talks.sort(function(a, b){
+
+    function parseDate(str){
+      var sp = str.split('/');
+      return new Date(sp[2], sp[0] - 1, sp[1]);
+    }
+
+    return parseDate(a.dateexact) > parseDate(b.dateexact) ? -1 : 1;
+  });
+
   render(talks.length && talks || backuptalks);
 
 }
