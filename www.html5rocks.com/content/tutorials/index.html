@@ -23,6 +23,8 @@
           <li><label><input type="checkbox"> News</label></li>
           <li><label><input type="checkbox"> Presentation</label></li>
           <li><label><input type="checkbox"> Video</label></li>
+          <li><label><input type="checkbox"> Demo</label></li>
+          <li><label><input type="checkbox"> Sample</label></li>
         </ul>
       </div>
       <div class="one_quarter">
@@ -101,6 +103,7 @@
             </a>
             {% endif %}
           </span>
+          {% if tut.browser_support %}
           <span class="browsers">
             <span class="browser opera {% if 'opera' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
             <span class="browser ie {% if 'ie' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
@@ -108,6 +111,7 @@
             <span class="browser ff {% if 'ff' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Firefox</span><span class="support">unsupported</span></span>
             <span class="browser chrome {% if 'chrome' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
           </span>
+          {% endif %}
 
           {% for tag in tut.tags %}
             <span class="tag {% if 'type:' in tag %}hidden{% endif %}">{{tag}}</span>
@@ -120,7 +124,7 @@
           </div>
         </div>
         <div class="summary">
-          {{tut.description|safe}}
+          {% if tut.description %}{{tut.description|safe}}{% endif %}
         </div>
       </article>
       {% endfor %}
@@ -132,6 +136,24 @@
 <script>
 $(document).ready(function() {
   $('.tag').click(filterTag);
+
+  $('#updates_format_filter').click(function(e) {
+    $(this).find('input[type="checkbox"]').attr('checked', false);
+
+    var checkbox = e.target;
+    checkbox.checked = true;
+    var tag = checkbox.parentElement.textContent;
+
+    // 'Case Study' -> 'casestudy'.
+    var type = $.trim(tag).toLowerCase().replace(' ', '');
+
+    if (checkbox.checked) {
+      filterTag('type:' + type);
+    } else {
+      clearFilter();
+    }
+  });
+
   if (document.location.hash) {
     // Hide all samples as soon as DOM is loaded to prevent flicker effect.
     var samples = $('.tutorial_listing');
@@ -153,25 +175,7 @@ function clearFilter() {
   }
 };
 
-function toggleFormatFilter(e) {
-  $(this).find('input[type="checkbox"]').attr('checked', false);
-
-  var checkbox = e.target;
-  checkbox.checked = true;
-  var tag = checkbox.parentElement.textContent;
-
-  // 'Case Study' -> 'casestudy'.
-  var type = $.trim(tag).toLowerCase().replace(' ', '');
-
-  if (checkbox.checked) {
-    filterTag('type:' + type);
-  } else {
-    clearFilter();
-  }
-}
-
-//$('#updates_format_filter').live('click', toggleFormatFilter);
-
+// TODO: this method is being called twice for some reason. Because of onhashchange?
 function filterTag(opt_tag) {
   var e = window.event;
 
