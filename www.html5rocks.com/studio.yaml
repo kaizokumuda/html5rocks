@@ -1,6 +1,8 @@
 title: WebGL Globe
 url: http://studio.html5rocks.com/samples/globe/index.html
 description: A WebGL sphere of news stories. Open stories by clicking. When you find the video, hit p to play.
+author_id: paulirish
+publication_date: 2011-01-18
 tags:
 - class:graphics
 - type:demo
@@ -14,6 +16,8 @@ tags:
 title: ASCII Art
 url: http://studio.html5rocks.com/samples/websocket-ascii-video/index.html
 description: Synchronized ASCII art video via WebSockets. All current viewers see the same video frame at the same time. Move your mouse over the video to change the color.
+author_id: malteubl
+publication_date: 2011-01-18
 tags:
 - class:performance
 - type:demo
@@ -24,6 +28,8 @@ tags:
 title: Orientation Physics
 url: http://studio.html5rocks.com/samples/orientation/index.html
 description: Break up a video into lots of boxes and move them around by titling your machine.
+author_id: ericbidelman
+publication_date: 2011-01-18
 tags:
 - class:multimedia
 - type:demo
@@ -36,6 +42,8 @@ tags:
 title: SVG Puzzle
 url: http://studio.html5rocks.com/samples/svg-puzzle/index.html
 description: Solve the puzzle! Hover over the correct area to place tiles, click to rotate.
+author_id: ericbidelman
+publication_date: 2011-01-18
 tags:
 - class:graphics
 - type:demo
@@ -46,6 +54,8 @@ tags:
 title: Notification Time!
 url: http://studio.html5rocks.com/samples/notifications-countdown/index.html
 description: Schedule a countdown to a notification, like an alarm clock.
+author_id: mahemoff
+publication_date: 2010-08-13 
 tags:
 - class:multimedia
 - type:demo
@@ -56,6 +66,8 @@ tags:
 title: Video PiP
 url: http://studio.html5rocks.com/samples/video-player/index.html
 description: Use Picture-in-picture to swap between two video sources while enjoying a color glow effect. Custom pause, mute and progress bar.
+author_id: paulirish
+publication_date: 2010-08-13 
 tags:
 - class:multimedia
 - type:demo
@@ -67,6 +79,8 @@ tags:
 title: Geolocation
 url: http://studio.html5rocks.com/samples/geo/index.html
 description: Peruse local job listings and envision your commute.
+author_id: ericbidelman
+publication_date: 2010-08-13 
 tags:
 - class:multimedia
 - type:demo
@@ -77,6 +91,8 @@ tags:
 title: Video Cube
 url: http://studio.html5rocks.com/samples/video-cube/index.html
 description: Build a cube of ASCII reflecting a video in realtime and reposition the view.
+author_id: paulirish
+publication_date: 2010-08-13 
 tags:
 - class:presentation
 - type:demo
@@ -89,6 +105,8 @@ tags:
 title: Newspaper Columns
 url: http://studio.html5rocks.com/samples/css3-col-layout/index.html
 description: A newspaper-like layout provided by CSS3. Adjust the sliders to understand the styles.
+author_id: ericbidelman
+publication_date: 2010-08-13 
 tags:
 - class:presentation
 - type:demo
@@ -99,6 +117,8 @@ tags:
 title: Podcast Player
 url: http://studio.html5rocks.com/samples/audio-podcast/index.html
 description: Load in podcast feeds dynamically, then listen to episodes in a custom player UI. The player UI is a semi-opaque skin on top of the background color.
+author_id: ericbidelman
+publication_date: 2010-08-13 
 tags:
 - class:multimedia
 - type:demo
@@ -110,6 +130,8 @@ tags:
 title: Slider Carousel
 url: http://studio.html5rocks.com/samples/coverflow/index.html
 description: Image gallery in a carousel UI. Page through the images quickly, and click to view full size.
+author_id: agektmr
+publication_date: 2010-08-13 
 tags:
 - class:presentation
 - type:demo
@@ -120,6 +142,8 @@ tags:
 title: Slideshow
 url: http://studio.html5rocks.com/samples/slides/index.html
 description: A minimal version of the HTML5 Slide Deck, ready for you to adapt to your uses.
+author_id: ernestd
+publication_date: 2010-08-13 
 tags:
 - class:presentation
 - type:demo
@@ -130,6 +154,8 @@ tags:
 title: Page Flip
 url: http://studio.html5rocks.com/samples/page-flip/index.html
 description: An animated page flip of real HTML content.
+author_id: paulirish
+publication_date: 2010-08-13 
 tags:
 - class:presentation
 - type:demo
@@ -140,6 +166,8 @@ tags:
 title: Drag n Drop Photos
 url: http://studio.html5rocks.com/samples/dnd-fileapi/index.html
 description: Drag files in from your machine, get an instant preview
+author_id: ericbidelman
+publication_date: 2010-08-13 
 tags:
 - class:performance
 - type:demo
