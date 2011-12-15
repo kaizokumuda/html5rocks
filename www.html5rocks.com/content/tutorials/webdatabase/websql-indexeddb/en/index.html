@@ -94,6 +94,12 @@ var db = openDatabase('todos1', '1.0', 'todo list example db', 2 * 1024 * 1024);
 var indexedDB = window.indexedDB || window.webkitIndexedDB ||
                 window.mozIndexedDB || window.msIndexedDB;
 
+// Handle the prefix of Chrome to IDBTransaction/IDBKeyRange.
+if ('webkitIndexedDB' in window) {
+  window.IDBTransaction = window.webkitIDBTransaction;
+  window.IDBKeyRange = window.webkitIDBKeyRange;
+}
+
 indexedDB.db = null;
 // Hook up the errors to the console so we could see it.
 // In the future, we need to push these messages to the user.
@@ -230,32 +236,36 @@ indexedDB.addTodo = function() {
 <p>In webSQL we will use the familiar syntax of 'Select'.</p>
 <pre class="prettyprint">
 function showAll() {
-  document.getElementById("ourList").innerHTML = "";
+  var ourList = document.getElementById('ourList');
+  ourList.innerHTML = '';
 
   database.transaction(function(tx) {
     tx.executeSql('SELECT * FROM tasks', [], function (tx, results) {
       var len = results.rows.length;
+      var ul = document.createElement("ul");
       for (var i = 0; i &lt; len; i++) {
         var item = results.rows.item(i);
 
-        var txt = i + ") key: " + item.id + " => Todo text: " + item.text;
-        var t = document.createTextNode(txt);
-
-        // have the ability to delete the item using data attributes and a link.
+        var li = document.createElement("li");
+        var t = document.createTextNode(i + ") key: " + item.id +
+                                        " => Todo text: " + item.text);
+        // Have the ability to delete the item using data attributes and a link.
         var a = document.createElement("a");
         a.textContent = " [Delete]";
-        a.dataset.key = item.id; // set a data-id attribute.
+        a.dataset.key = item.id;
         a.dataset.value = item.text;
-        a.addEventListener("click", function(e) {
-          deleteTodo(this.dataset.key, this.dataset.val);
+
+        a.addEventListener("click", function() {
+          deleteTodo(this.dataset.key, this.dataset.val );
         }, false);
 
-        var li = document.createElement("li");
         li.appendChild(t);
         li.appendChild(a);
-
-        document.getElementById("ourList").appendChild(li);
+        ul.appendChild(li);
       }
+
+      // Update the DOM only after we have ALL items in one element (performance baby...)
+      ourList.appendChild(li);
     });
   });
 }
@@ -275,20 +285,21 @@ function showAll() {
     var db = todoDB.indexedDB.db;
     var trans = db.transaction(["todo"], IDBTransaction.READ_ONLY);
     var request = trans.objectStore("todo").openCursor();
+    var ul = document.createElement("ul");
 
     request.onsuccess = function(event) {
       // This hack is to allow our code to run with Firefox (older versions then 6)
       var cursor = request.result || event.result;
 
-      // If cursor is null then we've completed the enumeration.
+      // If cursor is null then we've completed the enumeration - so update the DOM
       if (!cursor) {
+        document.getElementById("ourList").appendChild(ul);
         return;
       }
 
-      var element = document.createElement("div");
-      element.textContent = "key: " + cursor.key + " => Todo text: " +
-                            cursor.value.text;
-      document.getElementById("ourList").appendChild(element);
+      var li = document.createElement("div");
+      li.textContent = "key: " + cursor.key + " => Todo text: " + cursor.value.text;
+      ul.appendChild(li);
       cursor.continue();
     }
   }
