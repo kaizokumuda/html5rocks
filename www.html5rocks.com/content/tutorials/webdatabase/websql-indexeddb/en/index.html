@@ -106,12 +106,14 @@ var db = openDatabase('todos1', '1.0', 'todo list example db', 2 * 1024 * 1024);
 <p>In IndexedDB, we need a bit more code at the initialization phase because we wish to handle the prefix per browser (webkit, moz, etc). This enable us to have cleaner code during our application. Moreover, when more browsers implement this feature, we could use the window object without any prefix so our code is ready for that.
 </p>
 <pre class="prettyprint">
-var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+var indexedDB = window.indexedDB || window.webkitIndexedDB ||
+                window.mozIndexedDB || window.msIndexedDB;
 
 indexedDB.db = null;
-// hook up the errors to the console so we could see it. In the future, we need to push these messages to the user.
+// Hook up the errors to the console so we could see it.
+// In the future, we need to push these messages to the user.
 indexedDB.onerror = function(e) {
-console.log(e);
+  console.log(e);
 };
 </pre>
 
@@ -120,9 +122,9 @@ console.log(e);
 <p>In WebSQL, we want to create a table. This is the code that define it for us:</p>
 <pre class="prettyprint">
 if (database) {
-   database.transaction(function(tx) {
-     tx.executeSql("CREATE TABLE IF NOT EXISTS tasks (id REAL UNIQUE, text TEXT)", []);
-   });
+  database.transaction(function(tx) {
+    tx.executeSql("CREATE TABLE IF NOT EXISTS tasks (id REAL UNIQUE, text TEXT)", []);
+  });
 }
 </pre>
 
@@ -147,7 +149,7 @@ indexedDB.open = function() {
           db.deleteObjectStore("todo");
         }
 
-        var store = db.createObjectStore("todo",{keyPath: "timeStamp"});
+        var store = db.createObjectStore("todo", {keyPath: "timeStamp"});
 
         todoDB.indexedDB.getAllTodoItems();
       };
@@ -160,11 +162,16 @@ indexedDB.open = function() {
 };
 </pre>
 
-<p>Object Stores are created with a single call to createObjectStore. The method takes a name of the store and an parameter object. The parameter object is very important as it lets you define important optional properties. In our case, we define a keyPath that is the property that makes an individual object in the store unique. That property in this example is "timeStamp". "timeStamp" must be present on every object that is stored in the objectStore.
+<p>Object Stores are created with a single call to <code>createObjectStore()</code>.
+  The method takes a name of the store and an parameter object. The parameter object is
+  very important as it lets you define important optional properties. In our case, we define
+  a <code>keyPath</code> that is the property that makes an individual object in the store unique. That
+  property in this example is "timeStamp". "timeStamp" must be present on every object that is
+  stored in the objectStore.
 </p>
 <p>
-  <b>(!)</b> Note that according to latest IndexedDB spec: <a href="http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html">http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html</a>
-  setVersion() will be taken out. Thus, our code snippets here is going to change and the version setting will be part of the open() function of the database.
+  <b>Note:</b> according to latest IndexedDB spec: <a href="http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html">http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html</a>
+  <code>setVersion()</code> will be taken out. Thus, our code snippets here is going to change and the version setting will be part of the <code>open()</code> function of the database.
 </p>
 
 
@@ -181,13 +188,14 @@ function addTodo() {
   var todo = document.getElementById("todo");
   var task = {
     "id": new Date().getTime(),
-    "text": todo.value };
+    "text": todo.value
+  };
 
   database.transaction(function(tx) {
     tx.executeSql('INSERT INTO tasks (id, text) values (?, ?)', [task.id, task.text]);
   });
-  // now let clean it to the next todo
-  todo.value = "";
+
+  todo.value = ''; // Clean for the next todo.
   showAll();
 }
 </pre>
@@ -234,27 +242,33 @@ indexedDB.addTodo = function() {
 </p>
 
 <h4>WebSQL - retrieving data</h4>
-In webSQL we will use the familiar syntax of 'Select'.
+<p>In webSQL we will use the familiar syntax of 'Select'.</p>
 <pre class="prettyprint">
 function showAll() {
-  document.getElementById("ourList").innerHTML = "" ;
+  document.getElementById("ourList").innerHTML = "";
+
   database.transaction(function(tx) {
     tx.executeSql('SELECT * FROM tasks', [], function (tx, results) {
       var len = results.rows.length;
       for (var i = 0; i &lt; len; i++) {
-        var li = document.createElement("li");
-        var t = document.createTextNode(i+ ") key: " + results.rows.item(i).id +
-          " => Todo text: " + results.rows.item(i).text);
+        var item = results.rows.item(i);
+
+        var txt = i + ") key: " + item.id + " => Todo text: " + item.text;
+        var t = document.createTextNode(txt);
+
         // have the ability to delete the item using data attributes and a link.
         var a = document.createElement("a");
         a.textContent = " [Delete]";
-        a.dataset.key   = results.rows.item(i).id;
-        a.dataset.value = results.rows.item(i).text;
-        a.addEventListener("click", function() {
-          deleteTodo(this.dataset.key, this.dataset.val );
+        a.dataset.key = item.id; // set a data-id attribute.
+        a.dataset.value = item.text;
+        a.addEventListener("click", function(e) {
+          deleteTodo(this.dataset.key, this.dataset.val);
         }, false);
+
+        var li = document.createElement("li");
         li.appendChild(t);
         li.appendChild(a);
+
         document.getElementById("ourList").appendChild(li);
       }
     });
@@ -268,7 +282,8 @@ function showAll() {
 
 <pre class="prettyprint">
 function showAll() {
-  document.getElementById("ourList").innerHTML = "" ;
+  document.getElementById("ourList").innerHTML = "";
+
   var request = window.indexedDB.open("todos");
   request.onsuccess = function(event) {
     // Enumerate the entire object store.
@@ -279,12 +294,15 @@ function showAll() {
     request.onsuccess = function(event) {
       // This hack is to allow our code to run with Firefox (older versions then 6)
       var cursor = request.result || event.result;
-     // If cursor is null then we've completed the enumeration.
+
+      // If cursor is null then we've completed the enumeration.
       if (!cursor) {
         return;
       }
+
       var element = document.createElement("div");
-      element.textContent = "key: " + cursor.key + " => Todo text: " + cursor.value.text;
+      element.textContent = "key: " + cursor.key + " => Todo text: " +
+                            cursor.value.text;
       document.getElementById("ourList").appendChild(element);
       cursor.continue();
     }
@@ -318,7 +336,7 @@ function deleteTodo(id, text) {
 
 <pre class="prettyprint">
 indexedDB.deleteTodo = function(id, text) {
-  if (confirm("Are you sure you want to Delete "+ text +"?")) {
+  if (confirm("Are you sure you want to Delete " + text + "?")) {
     var db = todoDB.indexedDB.db;
     var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE);
     var store = trans.objectStore("todo");
@@ -328,7 +346,6 @@ indexedDB.deleteTodo = function(id, text) {
     request.onsuccess = function(e) {
       todoDB.indexedDB.getAllTodoItems();
     };
-
 
     request.onerror = function(e) {
       console.log("Error Adding: ", e);
