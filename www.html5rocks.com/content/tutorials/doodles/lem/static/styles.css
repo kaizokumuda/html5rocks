@@ -53,13 +53,19 @@ a:active {
 a.important {
   font-weight: 600;
 }
-
-
 abbr {
-  font-size: 85%;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-weight: 500;
+  color: black;
 }
+a.add-code-popup abbr {
+  font-weight: 600;
+  color: inherit;
+}
+h2 abbr {
+  font-size: inherit;
+  color: inherit;
+}
+
 em {
   letter-spacing: 1px;
 }
