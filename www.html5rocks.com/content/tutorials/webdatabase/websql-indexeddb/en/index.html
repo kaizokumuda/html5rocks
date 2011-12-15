@@ -107,7 +107,11 @@
 </p>
 <pre class="prettyprint">  
     var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
-
+    // handle the prefix of Chrome to IDBTransaction/IDBKeyRange
+    if ('webkitIndexedDB' in window) { 
+      window.IDBTransaction = window.webkitIDBTransaction; 
+      window.IDBKeyRange = window.webkitIDBKeyRange; 
+    }
     indexedDB.db = null;
     // hook up the errors to the console so we could see it. In the future, we need to push these messages to the user.
     indexedDB.onerror = function(e) {
@@ -251,6 +255,7 @@ function showAll() {
         database.transaction(function(tx) {
           tx.executeSql('SELECT * FROM tasks', [], function (tx, results) {
             var len = results.rows.length;
+            var ul = document.createElement("ul");
             for (var i = 0; i < len; i++) {
               var li = document.createElement("li");
               var t = document.createTextNode(i+ ") key: " + results.rows.item(i).id +
@@ -265,8 +270,10 @@ function showAll() {
               }, false);
               li.appendChild(t);
               li.appendChild(a);
-              document.getElementById("ourList").appendChild(li);
+              ul.appendChild(li);
             }
+            // update the DOM only after we have ALL items in one element (performance baby...)
+            document.getElementById("ourList").appendChild(li);
           });       
         });
       }
@@ -286,17 +293,19 @@ function showAll() {
           var db = todoDB.indexedDB.db;
           var trans = db.transaction(["todo"], IDBTransaction.READ_ONLY);
           var request = trans.objectStore("todo").openCursor();
-  
+          var ul = document.createElement("ul");
+          
           request.onsuccess = function(event) {
             // This hack is to allow our code to run with Firefox (older versions then 6)
             var cursor = request.result || event.result;             
-           // If cursor is null then we've completed the enumeration.
+           // If cursor is null then we've completed the enumeration - so update the DOM
             if (!cursor) {
+              document.getElementById("ourList").appendChild(ul);
               return;
             }
-            var element = document.createElement("div");
-            element.textContent = "key: " + cursor.key + " => Todo text: " + cursor.value.text;
-            document.getElementById("ourList").appendChild(element);
+            var li = document.createElement("div");
+            li.textContent = "key: " + cursor.key + " => Todo text: " + cursor.value.text;
+            ul.appendChild(li);
             cursor.continue();
           }
         }                   
