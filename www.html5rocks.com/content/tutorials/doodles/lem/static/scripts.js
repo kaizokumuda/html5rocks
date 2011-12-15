@@ -122,7 +122,7 @@ function showCodePopupPart1(linkEl) {
 
   el.innerHTML = html;
 
-  document.body.appendChild(el);
+  document.querySelector('#main-text').appendChild(el);
 
   el.preEl = document.createElement('pre');
   el.preEl.innerHTML = escapeEntities(code);
@@ -370,13 +370,13 @@ function prepareCodePopupAnchorEls() {
 }
 
 function hideAllPopups() {
-  var els = mainTextEl.querySelectorAll('.add-code-popup.showing');
+  var els = document.querySelectorAll('.add-code-popup.showing');
 
   for (var i = 0, el; el = els[i]; i++) {
     el.classList.remove('showing');
   }
 
-  var els = mainTextEl.querySelectorAll('.code-popup');
+  var els = document.querySelectorAll('.code-popup');
 
   for (var i = 0, el; el = els[i]; i++) {
     hideCodePopup(el);
@@ -384,7 +384,7 @@ function hideAllPopups() {
 }
 
 function repositionAllPopups() {
-  var els = mainTextEl.querySelectorAll('.code-popup');
+  var els = document.querySelectorAll('.code-popup');
 
   for (var i = 0, el; el = els[i]; i++) {
     repositionCodePopup(el);

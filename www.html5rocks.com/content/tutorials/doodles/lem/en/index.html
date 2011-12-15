@@ -1,6 +1,11 @@
-{% extends "tutorial.html" %}
+{% extends "sample.html" %}
 
-{% block pagebreadcrumb %}{{ tut.title }}{% endblock %}
+{% block headauthor %}Marcin Wichary{% endblock %}
+{% block pageauthor %}{% profilelinks marcinwichary %}{% endblock %}
+{% block headtitle %}Case Study: Building the Stanisław Lem Google doodle{% endblock %}
+{% block pagetitle %}Case Study: Building the Stanisław Lem Google doodle{% endblock %}
+{% block pagebreadcrumb %}Stanisław Lem Google doodle{% endblock %}
+{% block date %}December 16, 2011{% endblock %}
 
 {% block head %}
 <!--<meta name='viewport' content='width=800'>-->
@@ -8,18 +13,26 @@
 {% endblock %}
 
 {% block html5badge %}
-<img src="/static/images/identity/html5-badge-h-graphics.png" width="133" height="64" alt="This article is powered by HTML5 Graphics, 3D &amp; Effects" title="This article is powered by HTML5 Graphics, 3D &amp; Effects" />
+<img src="/static/images/identity/html5-badge-h-css3-graphics-storage.png" width="197" height="64" alt="This article is powered by HTML5 Graphics, 3D &amp; Effects, CSS3, and Offline/Storage" title="This article is powered by HTML5 Graphics, 3D &amp; Effects, CSS3, and Offline/Storage" />
 {% endblock %}
 
 {% block iscompatible %}
+  return !!Modernizr.canvas
+{% endblock %}
 
+{% block browsersupport %}
+<span class="opera supported"></span>
+<span class="ie supported"></span>
+<span class="safari supported"></span>
+<span class="ff supported"></span>
+<span class="chrome supported"></span>
 {% endblock %}
 
 {% block content %}
 <section id='main-text'>
-  <h1 id='hello-world'>
+  <h2 id='hello-world'>
     Hello, world
-  </h1>
+  </h2>
   <p>
     The Google homepage is a fascinating environment to code within. It comes
     with many challenging restrictions: particular focus on speed and latency,
@@ -27,7 +40,7 @@
     circumstances, and… yes, surprise and delight.
   </p>
   <p>
-    I’m talking about <a href='http://www.google.com/logos/'>Google
+    I'm talking about <a href='http://www.google.com/logos/'>Google
     doodles</a>, the special illustrations that occasionally replace our logo.
     And while my relationship with pens and brushes has long had that
     distinctive flavour of a restraining order, I often contribute to the
@@ -37,7 +50,7 @@
     Every interactive doodle I coded (<a
     href='http://www.google.com/pacman/'>Pac-Man</a>, <a
     href='http://www.google.com/logos/verne.html'>Jules Verne</a>, <a
-    href='http://www.google.com/logos/2011/worldsfair.html'>World’s Fair</a>)
+    href='http://www.google.com/logos/2011/worldsfair.html'>World's Fair</a>)
     – and many I helped with – were in equal parts futuristic and
     anachronistic: great opportunities for pie-in-the-sky applications of
     cutting-edge Web features… and gritty pragmatism of cross-browser
@@ -45,26 +58,11 @@
   </p>
   
   <figure style='margin: 24px 0'>
-    <div id='doodle' style='margin: 0 auto; position: relative; 
-                            width: 520px; height: 170px'></div>
-    
-    <script src='examples/lem-embedded/engine-const.js'></script>
-    <script src='examples/lem-embedded/engine-helpers.js'></script>
-    <script src='examples/lem-embedded/engine-events.js'></script>
-    <script src='examples/lem-embedded/engine-rects.js'></script>
-    <script src='examples/lem-embedded/engine-actors.js'></script>
-    <script src='examples/lem-embedded/engine-main.js'></script>
-    <script src='examples/lem-embedded/lem-const.js'></script>
-    <script src='examples/lem-embedded/lem-actors.js'></script>
-    <script src='examples/lem-embedded/lem-scenes.js'></script>
-    <script src='examples/lem-embedded/lem-images.js'></script>
-    <script src='examples/lem-embedded/lem-images-sprite.js'></script>
-    <script>
-      engine.init();
-    </script>
+    <div id='doodle' class="hidden" style='margin: 0 auto; position: relative; width: 520px; height: 170px'></div>
+    <img src="/static/demos/lemdoodle/examples/lem-standalone/images-raw/logo.png" width="304" height="135" onclick="activateDoodle(this);" title="Click here to active doodle" alt="Click here to active doodle">
     <figcaption>
       Stanisław Lem doodle; click to activate<br>
-      (also available on <a href='examples/lem-standalone/index.html'>a separate page</a>)
+      (also available on <a href='/static/demos/lemdoodle/examples/lem-standalone/index.html'>a separate page</a>)
     </figcaption>
   </figure>  
   <p>
@@ -72,25 +70,24 @@
     <span id='bird-perch'>Stanisław Lem</span>
     mini-game was no exception, with its 17,000 lines of JavaScript code
     trying many things for the first time in doodle history. Today, I want to
-    share that code with you – perhaps you’ll find something interesting
+    share that code with you – perhaps you'll find something interesting
     there, or point out my mistakes – and talk a bit about it.
   </p>
   <p>
-    <a class='important' href='code'>View Stanisław Lem doodle code »</a> 
-    [THIS WILL EVENTUALLY POINT TO GOOGLE CODE]
+    <a class='important' href='https://code.google.com/p/stanislaw-lem-google-doodle/source/browse/'>View Stanisław Lem doodle code »</a>
   </p>
   <p>
-    A thing worth keeping in mind is that Google’s homepage is not a place for
+    A thing worth keeping in mind is that Google's homepage is not a place for
     tech demos. With our doodles, we want to celebrate specific people and
     events, and we want to do that using the best art and the best
     technologies we can summon – but never celebrate technology for
-    technology’s sake. This means carefully looking at whatever part of
+    technology's sake. This means carefully looking at whatever part of
     broadly understood <abbr>HTML5</abbr> is available, and whether it helps us make the
     doodle better without distracting from it or overshadowing it.
   </p>
   <p>
-    So, let’s go through some of the modern Web technologies that found their
-    place – and some that didn’t – in the Stanisław Lem doodle.
+    So, let's go through some of the modern Web technologies that found their
+    place – and some that didn't – in the Stanisław Lem doodle.
   </p>
   <p class='note'>
     Note: Brown links in this article show excerpts of code in pop-ups or
@@ -99,13 +96,13 @@
     <span class='hidden-touch'>click</span><span class='hidden-mouse'>tap</span> me!</a>
   </p>
 
-  <h1 id='graphics-via-dom-and-canvas'>
+  <h2 id='graphics-via-dom-and-canvas'>
     Graphics via <abbr>DOM</abbr> and canvas
-  </h1>
+  </h2>
   <p>
     <a href='https://developer.mozilla.org/en/HTML/Canvas'>Canvas</a> is 
     powerful and created for exactly the kind of things we wanted to do in
-    this doodle. However, some of the older browsers we cared about didn’t
+    this doodle. However, some of the older browsers we cared about didn't
     support it – and even though I am literally sharing an office with the
     person who put together an otherwise excellent <a
     href='http://excanvas.sourceforge.net/'>excanvas</a>, I decided to choose
@@ -114,7 +111,7 @@
   <p>
     I put together <a href='code/engine-rects.js#1-12'>a 
     graphic engine</a> that abstracts away
-    graphic primitives called “rects,” and then renders them using either
+    graphic primitives called "rects," and then renders them using either
     canvas, <a href='code/engine-rects.js#41-51'>or 
     <abbr>DOM</abbr></a> if canvas is unavailable.
   </p>
@@ -122,8 +119,8 @@
     This approach comes with some interesting challenges – for example, moving
     or changing an object in <abbr>DOM</abbr> has <a
     href='code/engine-rects.js#866-1053'>immediate consequences</a>, whereas
-    for canvas there’s a specific moment when <a
-    href='code/engine-rects.js#850-864'>everything’s drawn at the same
+    for canvas there's a specific moment when <a
+    href='code/engine-rects.js#850-864'>everything's drawn at the same
     time</a>. (I decided to have just one canvas, and clear it and draw from
     scratch with every frame – too many literally moving parts on one hand,
     and on the other not enough complexity to warrant splitting into multiple
@@ -137,41 +134,24 @@
     importantly layering via z-index, and mouse events.
   </p>
   <p>
-    I already abstracted away the z-index with a concept called “planes.” The
+    I already abstracted away the z-index with a concept called "planes." The
     doodle defined <a href='code/lem-const.js#81-98'>a 
     number of planes</a> – from the sky far behind, to the mouse
     pointer in front of everything – and every actor within the doodle had to
     decide which one it belonged to (small plus/minus corrections within a
     plane were possible by using <code>planeCorrection</code>).
   </p>
-  
-  <script>
-    function updateLemPlanes() {
-      var els = document.querySelectorAll('#lem-planes-options input[type="checkbox"]');
-      
-      var planes = [];
-      
-      for (var i = 0, el; el = els[i]; i++) {
-        if (el.checked) {
-          planes.push(parseInt(el.getAttribute('plane')));
-        }
-      }
-      
-      document.querySelector('#lem-planes-iframe').contentWindow.
-          engine.debugSetLimitToPlane({ limitToPlane: planes });
-    }
-  </script>
-  
+
   <figure>
     <table class='compact'>
       <tr>
         <td>
           <iframe style='width: 470px; height: 600px' 
                   id='lem-planes-iframe'
-                  src='examples/lem-planes/index.html'></iframe>
+                  src='/static/demos/lemdoodle/examples/lem-planes/index.html'></iframe>
         <td style='width: 250px' id='lem-planes-options'>
           
-          <!-- This extra div is for the checkboxes to work on iPad, they otherwise wouldn’t for some reason -->
+          <!-- This extra div is for the checkboxes to work on iPad, they otherwise wouldn't for some reason -->
           <div style='white-space: nowrap; width: 200px; height: 320px'>
             <input type='checkbox' id='lem-plane-100' plane='100'
                    onclick='updateLemPlanes()'
@@ -230,7 +210,7 @@
     <a href='code/engine-rects.js#969-972'>translated into z-index</a>. 
     But if we render via canvas, we need to
     <a href='code/engine-main.js#1392-1421'>sort rects based on
-    their planes before drawing them</a>. Since it’s
+    their planes before drawing them</a>. Since it's
     costly to do this every time, the order is recalculated only 
     <a href='code/engine-main.js#1378-1389'>when an actor
     is added or when it moves to another plane</a>.
@@ -242,7 +222,7 @@
     z-index, whose function is only to react to mouse over/out, and clicks and
     taps. If you are running the demo, you
     can see actually see those elements in red by adding
-    <a href='examples/lem-standalone/index.html?doodle-debug&doodle-show-clickable'><span class='url'>?doodle-debug&doodle-show-clickable</span></a> 
+    <a href='/static/demos/lemdoodle/examples/lem-standalone/index.html?doodle-debug&doodle-show-clickable'><span class='url'>?doodle-debug&doodle-show-clickable</span></a> 
     to the <abbr>URL</abbr>.
   </p>
   
@@ -254,7 +234,7 @@
     objects</a> and in <abbr>DOM</abbr> <a href='code/lem-actors.js#6878-7205'>for
     Google homepage</a>. The bird, normally flying around and clipped by our
     jagged mask like any other actor, decides to stay out of trouble during
-    the shooting level, and sits on the I’m Feeling Lucky button. The way it’s
+    the shooting level, and sits on the I'm Feeling Lucky button. The way it's
     done is <a href='code/lem-actors.js#1373-1382'>for the bird
     to leave canvas and become a <abbr>DOM</abbr>
     element</a> (and <a href='code/lem-actors.js#1384-1391'><span class='foreign'>vice versa</span> later</a>), 
@@ -262,12 +242,12 @@
     transparent to our visitors</a>.
   </p>
 
-  <h1 id='the-frame-rate'>
+  <h2 id='the-frame-rate'>
     The frame rate
-  </h1>
+  </h2>
   <p>
-    Knowing the current frame rate, and reacting to when it’s too slow (and
-    too fast!) was an important part of our engine. Since the browsers don’t
+    Knowing the current frame rate, and reacting to when it's too slow (and
+    too fast!) was an important part of our engine. Since the browsers don't
     report back the frame rate, we have to calculate it ourselves.
   </p>
   <p>
@@ -284,7 +264,7 @@
     <span class='foreign'>Nota bene:</span> Why a repeated <code>setTimeout</code> and not simply
     <code>setInterval</code>? We found out before that when the system is
     lagging, <code>setInterval</code>s become slightly unpredictable and can hog the CPU
-    when the browser tries to catch up. If you’re using <code>setTimeout</code>, there’s
+    when the browser tries to catch up. If you're using <code>setTimeout</code>, there's
     only one scheduled at any given time, so there is no danger of this
     happening.
   </p>    
@@ -292,7 +272,7 @@
     Calculating the current frame rate <a href='code/engine-main.js#1318-1327'>is simple</a>, but is
     subject to drastic changes – for example it can drop quickly when another
     application hogs the computer for a while. Therefore, we calculate a
-    “rolling” (averaged) frame rate <a href='code/engine-main.js#1292-1316'>only across every 100 physical ticks</a>
+    "rolling" (averaged) frame rate <a href='code/engine-main.js#1292-1316'>only across every 100 physical ticks</a>
     and make decisions based on that.
   </p>
   <p>
@@ -302,23 +282,23 @@
     <li>
       If the frame rate is higher than 60fps, we <a href='code/engine-main.js#1183-1188'>throttle it</a>. 
       Currently, <code>requestAnimationFrame</code> on some versions of Firefox has no
-      upper cap on the frame rate, and there’s no point in wasting the CPU.
+      upper cap on the frame rate, and there's no point in wasting the CPU.
       Note that we actually cap at 65fps, because of the rounding errors that
       make the frame rate just a bit higher than 60fps on other browsers – we
-      don’t want do start throttling that by mistake.
+      don't want do start throttling that by mistake.
     <li>
       If the frame rate is lower than 10fps, we simply <a href='code/engine-main.js#1177-1181'>slow 
       down the engine instead of losing frames</a>.
-      It’s a lose-lose proposition, but I felt that dropping frames
+      It's a lose-lose proposition, but I felt that dropping frames
       excessively would be more confusing than simply having a game that becomes
-      slower (but still coherent). There’s another nice side-effect of that –
-      if the system gets slow temporarily, the user won’t experience a weird
+      slower (but still coherent). There's another nice side-effect of that –
+      if the system gets slow temporarily, the user won't experience a weird
       jump ahead as the engine is desperately catching up. (I did it slightly
       differently for Pac-Man, but the minimum frame rate is a better
       approach.)
     <li>
       Lastly, we can think of simplifying graphics when the frame rate gets
-      dangerously low. We’re not doing it for Lem doodle with the exception of
+      dangerously low. We're not doing it for Lem doodle with the exception of
       mouse pointer (<a href='#customizing-the-mouse-pointer'>more on that
       below</a>), but hypothetically we could lose some of the extraneous
       animations just so that the doodle feels fluid even on slower computers.
@@ -336,15 +316,15 @@
   <p>
     You can see the current/rolling frame rate and some other real-time
     information by running the doodle with a special parameter
-    <a href='examples/lem-standalone/index.html?doodle-debug&doodle-show-debug'><span class='url'>?doodle-debug&doodle-show-debug</span></a>.
+    <a href='/static/demos/lemdoodle/examples/lem-standalone/index.html?doodle-debug&doodle-show-debug'><span class='url'>?doodle-debug&doodle-show-debug</span></a>.
   </p>
   
-  <h1 id='benchmarking'>
+  <h2 id='benchmarking'>
     Benchmarking
-  </h1>
+  </h2>
   <p>
     An assumption can be (and indeed, early on, was) made that canvas will be
-    faster than <abbr>DOM</abbr> whenever it’s available. That is not always true. While
+    faster than <abbr>DOM</abbr> whenever it's available. That is not always true. While
     testing, we found out that Opera 10.0–10.1 on a Mac, and Firefox on Linux
     are actually faster when moving <abbr>DOM</abbr> elements.
   </p>
@@ -355,7 +335,7 @@
     drawing on canvas, and maybe even <abbr>DOM</abbr> elements moved using <abbr>CSS3</abbr> transforms
     – and then switch to whichever one gave the highest frame rate. I started
     writing code for that, but found that at least my way of benchmarking was
-    pretty unreliable and required a lot of time. Time that we don’t have on
+    pretty unreliable and required a lot of time. Time that we don't have on
     our homepage – we care a lot about speed and we want the doodle to show up
     instantly and the gameplay to begin as soon as you click or tap.
   </p>
@@ -367,20 +347,20 @@
     <code>&lt;marquee&gt;</code> tag.
   </p>
   
-  <h1 id='conserving-cpu'>
+  <h2 id='conserving-cpu'>
     Conserving CPU
-  </h1>
+  </h2>
   <p>
     You know that friend who comes to your house, watches the season finale of
     <span class='title'>Breaking Bad,</span> spoils it for you and then
-    deletes it from your <abbr>DVR</abbr>? You don’t want to be that guy, do you?
+    deletes it from your <abbr>DVR</abbr>? You don't want to be that guy, do you?
   </p>
   <p>
-    So, yes, the worst analogy ever. But we don’t want our doodle to be that
-    guy either – the fact we’re allowed into someone’s browser tab is a
+    So, yes, the worst analogy ever. But we don't want our doodle to be that
+    guy either – the fact we're allowed into someone's browser tab is a
     privilege, and hoarding <abbr>CPU</abbr> cycles or distracting the user
     would make us an unpleasant guest. Therefore, if <a
-    href='code/engine-main.js#578-595'>no one’s playing with the doodle</a>
+    href='code/engine-main.js#578-595'>no one's playing with the doodle</a>
     (no taps, mouse clicks, mouse movements, or key presses), we want it to
     eventually go to sleep.
   </p>
@@ -393,19 +373,19 @@
     <li>
       after 180 seconds if the tab has focus
     <li>
-      after 30 seconds if the tab doesn’t have focus (e.g. the user switched
+      after 30 seconds if the tab doesn't have focus (e.g. the user switched
       to another window, but perhaps is still watching the doodle which is in
       an inactive tab)
     <li>
       <em>immediately</em> if the tab becomes invisible (e.g. the user switched to
-      another tab in the same window – no point in wasting cycles if we can’t
+      another tab in the same window – no point in wasting cycles if we can't
       be seen)
   </ul>
   <p>
     How do we know the tab currently has focus? We attach ourselves to
     <a href='code/engine-main.js#752-758'><code>window.focus</code></a> and 
     <a href='code/engine-main.js#760-766'><code>window.blur</code></a> How
-    do we know the tab is visible? We’re using the new 
+    do we know the tab is visible? We're using the new 
     <a href='http://code.google.com/chrome/whitepapers/pagevisibility.html'>Page Visibility API</a> and
     react to the appropriate event:
   </p>
@@ -416,20 +396,20 @@
     to this particular doodle, which has a lot of moving parts (chiefly the
     sky and the bird). Ideally, the time outs would be gated on in-game
     interaction – e.g. right after landing, the bird could report back to the
-    doodle that it can go to sleep now – but I didn’t implement
+    doodle that it can go to sleep now – but I didn't implement
     that in the end.
   </p>
   <p>
     Since the sky is always in motion, when falling asleep and waking up the
-    doodle doesn’t just stop or start – it slows down before pausing, and <span class='foreign'>vice
+    doodle doesn't just stop or start – it slows down before pausing, and <span class='foreign'>vice
     versa</span> for resuming, <a href='code/engine-main.js#1242-1265'>increasing or decreasing</a> 
     the number logical ticks per
     physical tick as necessary.
   </p>
   
-  <h1 id='transitions-transforms-events'>
+  <h2 id='transitions-transforms-events'>
     Transitions, transforms, events
-  </h1>
+  </h2>
   <p>
     One of the powers of <abbr>HTML</abbr> has always been the fact you can make it better
     yourself: if something is not good enough in the regular portfolio of <abbr>HTML</abbr>
@@ -437,7 +417,7 @@
     oftentimes means having to start from scratch. <abbr>CSS3</abbr> transitions are great,
     but you cannot add a new transition type or use transitions to do anything
     else than styling elements. Another example: <abbr>CSS3</abbr> transforms are great for
-    <abbr>DOM</abbr>, but when you move to canvas, you’re suddenly on your own.
+    <abbr>DOM</abbr>, but when you move to canvas, you're suddenly on your own.
   </p>
   <p>
     These issues, and more, are why Lem doodle has its own transition and
@@ -471,30 +451,30 @@
   </p>
   <figure>
     <iframe style='width: 420px; height: 555px' 
-            src='examples/lem-css3-rotation/index.html'></iframe>
+            src='/static/demos/lemdoodle/examples/lem-css3-rotation/index.html'></iframe>
     <figcaption>
       Example of visual artifacts 
       (<a href='http://en.wikipedia.org/wiki/Moir%C3%A9_pattern'>moiré</a>)
-      in an early prototype: look at robot’s arms and hands. 
+      in an early prototype: look at robot's arms and hands. 
       Note: This prototype will work only on WebKit browsers.
   </figure>
   <p>
     Given that some objects which rotate are attached to other rotating
-    objects – one example is a robot’s hand connected to the lower arm, which
+    objects – one example is a robot's hand connected to the lower arm, which
     itself is attached to a rotating upper arm – this meant I also needed to
-    create a poor man’s transform-origin <a href='code/engine-rects.js#734-797'>in form of pivots</a>.
+    create a poor man's transform-origin <a href='code/engine-rects.js#734-797'>in form of pivots</a>.
   </p>
   <p>
     All of this is a solid amount of work that ultimately covers the ground
     already taken care of by <abbr>HTML5</abbr> – but sometimes native support is not good
-    enough and it’s that time for wheel reinvention.
+    enough and it's that time for wheel reinvention.
   </p>
   
-  <h1 id='dealing-with-images-and-sprites'>
+  <h2 id='dealing-with-images-and-sprites'>
     Dealing with images and sprites
-  </h1>
+  </h2>
   <p>
-    An engine is not just for running the doodle – it’s also for working on
+    An engine is not just for running the doodle – it's also for working on
     it. I shared some debug parameters above: you can find the rest in
     <a href='code/engine-main.js#389-445'><code>engine.readDebugParams</code></a>.
   </p>
@@ -520,7 +500,7 @@
   <p>
     We also support <a href='code/engine-main.js#1658-1695'>pre-loading images
     as we go along</a> and halting the doodle <a
-    href='code/engine-main.js#1605-1615'>if the images didn’t load in time</a>
+    href='code/engine-main.js#1605-1615'>if the images didn't load in time</a>
     – complete with a <a href='code/lem-actors.js#6411-6438'><span class='foreign'>faux</span>
     progress bar</a>! (<span class='foreign'>Faux</span> because, unfortunately, not even <abbr>HTML5</abbr>
     can tell us how much of an image file has already been loaded.)
@@ -539,7 +519,7 @@
     pixel limitation for images on iOS</a>.
   </p>
   <p>
-    Where does <abbr>HTML5</abbr> fit into all this? There’s not much of it above, but the
+    Where does <abbr>HTML5</abbr> fit into all this? There's not much of it above, but the
     tool I wrote for spriting/cropping was all new Web tech: canvas, 
     <a href='https://developer.mozilla.org/en/DOM/Blob'>blobs</a>,
     <a href='http://updates.html5rocks.com/2011/08/Downloading-resources-in-HTML5-a-download'>a[download]</a>. 
@@ -549,11 +529,11 @@
     optimizing <abbr>PNG</abbr> files.
   </p>
   
-  <h1 id='saving-state-in-between-games'>
+  <h2 id='saving-state-in-between-games'>
     Saving state in between games
-  </h1>
+  </h2>
   <p>
-    Lem’s worlds always felt big and alive and realistic. His stories
+    Lem's worlds always felt big and alive and realistic. His stories
     typically started without much in terms of explanation, the first page
     starting <span class='foreign'>in medias res,</span> with the reader having to find her or his way
     around.
@@ -570,7 +550,7 @@
     We also wanted to increase replayability in other ways. For that, we
     needed to know how many times the doodle was finished before. The
     historically correct technological solution to that is a cookie, but that
-    doesn’t work for Google homepage – every cookie increases every page’s
+    doesn't work for Google homepage – every cookie increases every page's
     payload, and again, we care quite a lot about speed and latency.
   </p>
   <p>
@@ -608,16 +588,16 @@
   </p>
   <ul>
     <li>
-      <a href='examples/lem-standalone/index.html?doodle-debug&doodle-first-run'><span class='url'>?doodle-debug&doodle-first-run</span></a> – pretend it’s a first run
+      <a href='/static/demos/lemdoodle/examples/lem-standalone/index.html?doodle-debug&doodle-first-run'><span class='url'>?doodle-debug&doodle-first-run</span></a> – pretend it's a first run
     <li>
-      <a href='examples/lem-standalone/index.html?doodle-debug&doodle-second-run'><span class='url'>?doodle-debug&doodle-second-run</span></a> – pretend it’s a second run
+      <a href='/static/demos/lemdoodle/examples/lem-standalone/index.html?doodle-debug&doodle-second-run'><span class='url'>?doodle-debug&doodle-second-run</span></a> – pretend it's a second run
     <li>
-      <a href='examples/lem-standalone/index.html?doodle-debug&doodle-old-run'><span class='url'>?doodle-debug&doodle-old-run</span></a> – pretend it’s an old run
+      <a href='/static/demos/lemdoodle/examples/lem-standalone/index.html?doodle-debug&doodle-old-run'><span class='url'>?doodle-debug&doodle-old-run</span></a> – pretend it's an old run
   </ul>
   
-  <h1 id='touch-devices'>
+  <h2 id='touch-devices'>
     Touch devices
-  </h1>  
+  </h2>  
   <p>
     We wanted the doodle to feel right at home on touch devices – the most
     modern ones are powerful enough so that the doodle runs really well, and
@@ -627,8 +607,8 @@
     Some upfront changes to user experience needed to be made. Originally, our
     mouse pointer was the only place that communicated a
     cutscene/non-interactive part is taking place. We later added a little
-    indicator in the lower-right corner, so we didn’t have to rely on mouse
-    pointer alone (given that those don’t exist on touch devices).
+    indicator in the lower-right corner, so we didn't have to rely on mouse
+    pointer alone (given that those don't exist on touch devices).
   </p>
   <figure>
     <table>
@@ -698,7 +678,7 @@
     start and end handlers</a>, instead of relying on mouse click.
   </p>
   <p>
-    We’re also using some more modern style properties to 
+    We're also using some more modern style properties to 
     <a href='code/engine-rects.js#377-379'>remove some touch
     features</a> that WebKit browsers add by default (tap highlight, tap callout).
   </p>
@@ -710,9 +690,9 @@
     href='code/engine-main.js#768-779'>first touch start event</a>.
   </p>
 
-  <h1 id='customizing-the-mouse-pointer'>
+  <h2 id='customizing-the-mouse-pointer'>
     Customizing the mouse pointer
-  </h1>
+  </h2>
   <p>
     But not everything is touch-based. One of our guiding principles was to
     put as many things as we could within the universe of the doodle. The
@@ -722,7 +702,7 @@
   <p>
     How to customize a mouse pointer? Some browsers allow customization of the
     mouse pointer by linking to a bespoke image file. However, this is not
-    supported well and it’s also somewhat restrictive.
+    supported well and it's also somewhat restrictive.
   </p>
   <p>
     If not this, then what? Well, why not making a mouse pointer 
@@ -735,7 +715,7 @@
       you need to be able to remove the native mouse pointer
     <li>
       you need to be pretty good at keeping your mouse pointer in sync with
-      the “real” one
+      the "real" one
   </ul>
   <p>
     The former is tricky. <abbr>CSS3</abbr> allows for <code>cursor: none</code>, but it
@@ -743,7 +723,7 @@
     gymnastics: 
     <a href='code/engine-const.js#130-136'>using empty <span class='url'>.cur</span> 
     file as a fallback</a>, 
-    <a href='code/engine-helpers#411-422'>specifying specific
+    <a href='code/engine-helpers.js#411-422'>specifying specific
     behaviour for some browsers</a>, and even
     <a href='code/engine-main.js#300-310'>hard-coding others out of the 
     experience whatsoever</a>.
@@ -761,7 +741,7 @@
   <p>
     One somewhat complex solution to that problem is decoupling the mouse
     pointer from the regular update loop. We did just that – in an alternate
-    universe where I don’t need to sleep. A simpler solution for this one?
+    universe where I don't need to sleep. A simpler solution for this one?
     Just reverting to the native mouse pointer 
     <a href='code/engine-main.js#1306-1314'>if the rolling frame rate drops
     below 20fps</a>. (This is where the rolling
@@ -796,7 +776,7 @@
         <td>
           &gt;60fps
         <td>
-          Throttle so that the frame rate doesn’t exceed this value.
+          Throttle so that the frame rate doesn't exceed this value.
     </table>
     <figcaption>Summary of frame rate-dependent behaviour.</figcaption>
   </figure>  
@@ -807,15 +787,15 @@
     fictional universes.
   </p>
 
-  <h1 id='conclusion'>
+  <h2 id='conclusion'>
     Conclusion
-  </h1>
+  </h2>
 
   <p>
-    This is not a perfect engine, but it doesn’t try to be one. It was
-    developed alongside the Lem doodle, and is very specific to it. That’s
-    okay. “Premature optimization is the root of all evil,” as Don Knuth
-    famously said, and I don’t believe writing an engine in isolation first,
+    This is not a perfect engine, but it doesn't try to be one. It was
+    developed alongside the Lem doodle, and is very specific to it. That's
+    okay. "Premature optimization is the root of all evil," as Don Knuth
+    famously said, and I don't believe writing an engine in isolation first,
     and only applying it later makes sense – the practice informs theory just
     as much as theory informs practice. In my case, code was thrown away,
     several parts rewritten over and over again, and many common pieces
@@ -827,14 +807,14 @@
     I hope the above sheds light on some of the design choices and trade-offs
     that we needed to make – and how we used <abbr>HTML5</abbr> in a specific, real-life
     scenario. Now, play with the source code, take it for the spin, and let us
-    know what you think. [ADD LINK TO COMMENTS]
+    know what you think.
   </p>
   <p>
     I did that myself – this below was live in the last days, counting down to
     the early hours of the 23th of November 2011 in Russia, which was the
     first time zone that saw the Lem doodle. A goofy thing, perhaps, but just
     like doodles, things that appear insignificant sometimes have a deeper
-    meaning – this counter was really a nice “stress test” for the engine.
+    meaning – this counter was really a nice "stress test" for the engine.
   </p>
   
   <figure>
@@ -846,7 +826,7 @@
   </figure>
   
   <p>
-    And that’s one way of looking at the life of a Google doodle – months of
+    And that's one way of looking at the life of a Google doodle – months of
     work, weeks of testing, 48 hours of baking it in, all for something that
     people play for five minutes. Every one of those thousands of JavaScript
     lines is hoping that those 5 minutes will be time well spent. Enjoy.
@@ -855,10 +835,42 @@
 
 <script src="prettify-newer.js"></script>
 <script src="scripts.js"></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/engine-const.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/engine-helpers.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/engine-events.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/engine-rects.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/engine-actors.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/engine-main.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/lem-const.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/lem-actors.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/lem-scenes.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/lem-images.js'></script>
+<script src='/static/demos/lemdoodle/examples/lem-embedded/lem-images-sprite.js'></script>
 <script>
   window.addEventListener('load', function() {
     initialize();
   }, false);
+
+  function activateDoodle(el) {
+    el.style.display = 'none';
+    document.getElementById('doodle').className = '';
+    engine.init();
+  }
+
+  function updateLemPlanes() {
+    var els = document.querySelectorAll('#lem-planes-options input[type="checkbox"]');
+    
+    var planes = [];
+    
+    for (var i = 0, el; el = els[i]; i++) {
+      if (el.checked) {
+        planes.push(parseInt(el.getAttribute('plane')));
+      }
+    }
+    
+    document.querySelector('#lem-planes-iframe').contentWindow.
+        engine.debugSetLimitToPlane({ limitToPlane: planes });
+  }
 </script>
 
 {% endblock %}

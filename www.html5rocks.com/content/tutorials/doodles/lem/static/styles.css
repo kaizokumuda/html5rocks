@@ -9,7 +9,7 @@
   }
 }
 
-p.note {
+#main-text p.note {
   font-style: italic;
 }
 
@@ -55,12 +55,12 @@ a.important {
 }
 
 
-abbr {
+#main-text abbr {
   font-size: 85%;
   font-weight: 600;
   letter-spacing: 1px;
 }
-em {
+#main-text em {
   letter-spacing: 1px;
 }
 span.title {
@@ -80,8 +80,8 @@ span.foreign {
 }
 
 
-label,
-label * {
+#main-text label,
+#main-text label * {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
@@ -90,13 +90,13 @@ label * {
 
 /* Lists */
 
-ul,
-ol {
+#main-text ul,
+#main-text ol {
   margin: 12px 0;
   padding: 0;
   list-style: none;
 }
-li {
+#main-text li {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -104,14 +104,14 @@ li {
   
   counter-increment: number;
 }
-ul > li::before {
+#main-text ul > li::before {
   content: '·';
   position: absolute;
   left: -1em;
   width: 1em;
   display: inline-block;
 }
-ol > li::before {
+#main-text ol > li::before {
   content: counter(number) '.';
   position: absolute;
   left: -3.5em;
@@ -121,13 +121,13 @@ ol > li::before {
 }
 
 @media screen and (max-device-width: 480px) {
-  ul > li {
+  #main-text ul > li {
     margin-left: 1em;
   }
-  ol > li { 
+  #main-text ol > li { 
     margin-left: 2.5em;
   }
-  ol > li::before {
+  #main-text ol > li::before {
     left: -2.5em;
     text-align: left;
   }
@@ -135,7 +135,7 @@ ol > li::before {
 
 
 @media screen and (max-device-width: 480px) {
-  figcaption {
+  #main-text figcaption {
     margin: 24px 0;
     line-height: 36px;
     font-size: 28px;
@@ -158,53 +158,53 @@ ol > li::before {
   box-sizing: border-box;
 }
 
-figure iframe {
+#main-text figure iframe {
   display: block;
   border: 0;
   margin: 0 auto;
 }
-figcaption a {
+#main-text figcaption a {
   color: rgb(60, 60, 60);
   border-bottom-color: rgba(60, 60, 60, .3);
 }
-figure table {
+#main-text figure table {
   max-width: 42em;
   margin: 0 auto;
   border-collapse: collapse;
 }
-figure td {
+#main-text figure td {
   text-align: center;
   padding: 12px 24px;
 }
-figure table.compact td {
+#main-text figure table.compact td {
   padding: 0;
   text-align: left;
 }
-figure th {
+#main-text figure th {
   font-weight: 400;
   text-align: left;
   line-height: 18px;
   font-size: 14px;
   padding: 12px 24px;
 }
-figure table.text td {
+#main-text figure table.text td {
   text-align: left;
   padding: 6px 12px;
 }
-figure table.text th {
+#main-text figure table.text th {
   text-align: left;
   padding: 6px 12px;
 }
 
 
 @media screen and (max-device-width: 480px) {
-  code {
+  #main-text code {
     padding: 0 8px;
     margin: 0 4px;
     line-height: 36px;
   }
-  code,
-  pre {
+  #main-text code,
+  #main-text pre {
     font-size: 28px;
   }
 }
@@ -402,7 +402,7 @@ figure table.text th {
   
   position: absolute;
   left: 0;
-  top: 24px;
+  top: 0;
   right: 0;
   bottom: 0;
   overflow-x: auto;
@@ -432,7 +432,11 @@ figure table.text th {
   }
 }
 
-pre .line-numbers {
+#main-text pre {
+  position: relative;
+  padding-left: 50px;
+}
+#main-text pre .line-numbers {
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 12px;
   letter-spacing: 0;
@@ -440,7 +444,7 @@ pre .line-numbers {
   position: absolute;
   left: 0;
   top: 0;
-  width: 94px;
+  /*width: 94px;*/
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
@@ -454,7 +458,7 @@ pre .line-numbers {
 }
 
 @media screen and (max-device-width: 480px) {
-  pre .line-numbers {
+  #main-text pre .line-numbers {
     font-size: 24px;
     width: 188px;    
     padding-top: 14px;
