@@ -659,3 +659,23 @@ homepage: http://www.aresluna.org/
 google: 101765089097091765365
 twitter: mwichary
 email: mwichary@gmail.com
+
+---
+
+id: hanrui
+name:
+  given: Hanrui
+  family: Gao
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Beijing
+  region: Haidian
+  country: China
+  lat: 39.993294
+  lon: 116.330365
+homepage:
+google: 106092487728562764672
+twitter:
+email: hanrui@google.com
