@@ -212,109 +212,16 @@ class ContentHandler(webapp.RequestHandler):
     self.response.headers.add_header('Content-Type', 'application/atom+xml')
     self.response.out.write(feed.writeString('utf-8'))
 
-  def post(self, relpath):
-
-    # TODO: Don't use flush_all. Use flush_all_async() or only purge tutorials.
-    memcache.flush_all()
-
-    if relpath == 'database/author':
-      try:
-        given_name = self.request.get('given_name')
-        family_name = self.request.get('family_name')
-        author = models.Author(
-            key_name=''.join([given_name, family_name]).lower(),
-            given_name=given_name,
-            family_name=family_name,
-            org=self.request.get('org'),
-            unit=self.request.get('unit'),
-            city=self.request.get('city'),
-            state=self.request.get('state'),
-            country=self.request.get('country'),
-            homepage=self.request.get('homepage') or None,
-            google_account=self.request.get('google_account') or None,
-            twitter_account=self.request.get('twitter_account') or None,
-            email=self.request.get('email') or None,
-            lanyrd=self.request.get('lanyrd') == 'on')
-        lat = self.request.get('lat')
-        lon = self.request.get('lon')
-        if lat and lon:
-          author.geo_location = db.GeoPt(float(lat), float(lon))
-        author.put()
-      except db.Error:
-        pass
-      else:
-        self.redirect('/database/author')
-
-    elif relpath == 'database/resource':
-      author_key = models.Author.get_by_key_name(self.request.get('author'))
-      author_key2 = models.Author.get_by_key_name(
-          self.request.get('second_author'))
-
-      if author_key.key() == author_key2.key():
-        author_key2 = None
-
-      tags = (self.request.get('tags') or '').split(',')
-      tags = [x.strip() for x in tags if x.strip()]
-
-      browser_support = [x.lower() for x in
-                         (self.request.get_all('browser_support') or [])]
-
-      pub = datetime.datetime.strptime(
-          self.request.get('publication_date'), '%Y-%m-%d')
-
-      update_date = self.request.get('update_date') or None
-
-      tutorial = None
-      if self.request.get('post_id'):
-        tutorial = models.Resource.get_by_id(int(self.request.get('post_id')))
-
-      # Updating existing resource.
-      if tutorial:
-        try:
-          #TODO: This is also hacky.
-          tutorial.title = self.request.get('title')
-          tutorial.description = self.request.get('description')
-          tutorial.author = author_key
-          tutorial.second_author = author_key2
-          tutorial.url = self.request.get('url') or None
-          tutorial.browser_support = browser_support
-          tutorial.update_date = datetime.date.today()
-          tutorial.publication_date = datetime.date(pub.year, pub.month, pub.day)
-          tutorial.tags = tags
-          tutorial.draft = self.request.get('draft') == 'on'
-        except TypeError:
-          pass
-      else:
-        # Create new resource.
-        try:
-          tutorial = models.Resource(
-              title=self.request.get('title'),
-              description=self.request.get('description'),
-              author=author_key,
-              second_author=author_key2,
-              url=self.request.get('url') or None,
-              browser_support=browser_support,
-              update_date=datetime.date.today(),
-              publication_date=datetime.date(pub.year, pub.month, pub.day),
-              tags=tags,
-              draft=self.request.get('draft') == 'on'
-              )
-        except TypeError:
-          pass
-
-      tutorial.put()
-
-      return self.redirect('/database/resource')
-
-    return '/'
-
-  def get(self, relpath):
-
+  def _set_cache_param(self):
     # Render uncached verion of page with ?cache=1
     if self.request.get('cache', default_value='1') == '1':
       self.request.cache = True
     else:
       self.request.cache = False
+
+  def get(self, relpath):
+
+    self._set_cache_param()
 
     # Handle humans before locale, to prevent redirect to /en/
     # (but still ensure it's dynamic, ie we can't just redirect to a static url)
@@ -324,78 +231,6 @@ class ContentHandler(webapp.RequestHandler):
       return self.render(data={'sorted_profiles': sorted_profiles,
                                'profile_amount': len(sorted_profiles)},
                          template_path='content/humans.txt',
-                         relpath=relpath)
-
-    elif (relpath == 'database/drop_all'):
-      self.nukeDB()
-      return self.redirect('/database/resource')
-
-    elif (relpath == 'database/load_tutorials'):
-      self.addTestResources()
-      return self.redirect('/database/resource')
-
-    elif (relpath == 'database/load_authors'):
-      self.addTestAuthors()
-      return self.redirect('/database/author')
-
-    elif (relpath == 'database/load_playground_samples'):
-      self.addTestPlaygroundSamples()
-      return self.redirect('/database/resource')
-
-    elif (relpath == 'database/load_studio_samples'):
-      self.addTestStudioSamples()
-      return self.redirect('/database/resource')
-
-    elif (relpath == 'database/load_all'):
-      self.addTestAuthors()
-      self.addTestResources()
-      self.addTestPlaygroundSamples()
-      self.addTestStudioSamples()
-      return self.redirect('/database/resource')
-
-    elif 'database/resource' in relpath:
-      regex = re.compile("/[^/]+/(\d+)")
-      postid = regex.findall(relpath)
-      if postid: # /database/resource/1234
-        post = models.Resource.get_by_id(int(postid[0]))
-        if post:
-          author_id = post.author.key().name()
-          second_author_id = post.second_author and post.second_author.key().name()
-
-          # Adjust browser support so it renders to the checkboxes correctly.
-          browser_support = [b.capitalize() for b in post.browser_support]
-          for b in browser_support:
-            if len(b) == 2:
-              browser_support[browser_support.index(b)] = b.upper()
-
-          tutorial_form = models.TutorialForm(instance=post, initial={
-              'author': author_id,
-              'second_author': second_author_id or author_id,
-              'browser_support': browser_support,
-              'tags': ', '.join(post.tags)
-          })
-      else: # /database/resource
-        tutorial_form = models.TutorialForm()
-
-      template_data = {
-        'tutorial_form': tutorial_form,
-        'resources': models.Resource.all().order('-publication_date'), # get_all() not used b/c we don't care about caching on this page.
-        'post_id': postid and int(postid[0]) or ''
-      }
-      return self.render(data=template_data,
-                         template_path='database/resource_new.html',
-                         relpath=relpath)
-
-    elif (relpath == 'database/author'):
-      # adds a new author information into DataStore.
-      sorted_profiles = models.get_sorted_profiles(update_cache=True)
-      template_data = {
-        'sorted_profiles': sorted_profiles,
-        'profile_amount': len(sorted_profiles),
-        'author_form': models.AuthorForm()
-      }
-      return self.render(data=template_data,
-                         template_path='database/author_new.html',
                          relpath=relpath)
 
     # Get the locale: if it's "None", redirect to English
@@ -509,8 +344,14 @@ class ContentHandler(webapp.RequestHandler):
       logging.info('Building request for `%s` in locale `%s`', path, locale)
       (dir, filename) = os.path.split(path)
       if os.path.isfile(os.path.join(dir, locale, filename)):
+        tut = models.Resource.all().filter('url =', '/' + relpath).get()
+
+        # If tutorial is marked as draft, redirect and don't show it.
+        if tut.draft:
+          return self.redirect('/tutorials')
+
         data = {
-          'tut': models.Resource.all().filter('url =', '/' + relpath).get(),
+          'tut': tut,
           'redirect_from_locale': redirect_from_locale
         }
         self.render(template_path=os.path.join(dir, locale, filename),
@@ -523,7 +364,7 @@ class ContentHandler(webapp.RequestHandler):
         return self.redirect("/en/%s?redirect_from_locale=%s" % (relpath,
                                                                  locale))
     elif os.path.isfile(path):
-      #TODO(ericbidleman): Don't need these tutorial/update results for query.
+      #TODO(ericbidelman): Don't need these tutorial/update results for query.
       if relpath in ['mobile', 'gaming', 'business']:
         result = TagsHandler().get_as_db(relpath)
       else:
@@ -560,94 +401,50 @@ class ContentHandler(webapp.RequestHandler):
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(basedir, 'templates/404.html'))
 
-  def addTestResources(self):
+
+class DBHandler(ContentHandler):
+
+  def _ImportBackupResources(self, file_name):
+    f = file(os.path.dirname(__file__) + file_name, 'r')
+    for res in yaml.load_all(f):
+      try:
+        author_key = models.Author.get_by_key_name(res['author_id'])
+        author_key2 = None
+        if 'author_id2' in res:
+          author_key2 = models.Author.get_by_key_name(res['author_id2'])
+
+        resource = models.Resource(
+          title=res['title'],
+          description=res.get('description') or None,
+          author=author_key,
+          second_author=author_key2,
+          url=unicode(res['url']),
+          browser_support=res.get('browser_support') or [],
+          update_date=res.get('update_date'),
+          publication_date=res['publication_date'],
+          tags=res['tags'],
+          draft=False # These are previous resources. Mark them as published.
+          )
+        resource.put()
+
+      except TypeError:
+        pass # TODO(ericbidelman): Not sure why this is throwing an error, but ignore it.
+    f.close()
+
+  def _AddTestResources(self):
     #memcache.delete('tutorials')
     memcache.flush_all()
+    self._ImportBackupResources('/tutorials.yaml')
 
-    f = file(os.path.dirname(__file__) + '/tutorials.yaml', 'r')
-    for tut in yaml.load_all(f):
-      try:
-        author_key = models.Author.get_by_key_name(tut['author_id'])
-        author_key2 = None
-        if 'author_id2' in tut:
-          author_key2 = models.Author.get_by_key_name(tut['author_id2'])
-
-        update_date = tut.get('update_date')
-
-        sample = models.Resource(
-          title=tut['title'],
-          description=tut['description'],
-          author=author_key,
-          second_author=author_key2,
-          url=unicode(tut['url']),
-          browser_support=tut['browser_support'],
-          update_date=update_date,
-          publication_date=tut['publication_date'],
-          tags=tut['tags'],
-          draft=False # These are previous tutorials. Mark as published.
-          )
-        sample.put()
-      except TypeError:
-        pass # TODO(ericbidelman): Not sure why this is throwing an error, but ignore it.
-    f.close()
-
-  def addTestPlaygroundSamples(self):
+  def _AddTestPlaygroundSamples(self):
     memcache.flush_all()
+    self._ImportBackupResources('/playground.yaml')
 
-    f = file(os.path.dirname(__file__) + '/playground.yaml', 'r')
-    for sample in yaml.load_all(f):
-      try:
-        author_key = models.Author.get_by_key_name(sample['author_id'])
-        author_key2 = None
-        if 'author_id2' in sample:
-          author_key2 = models.Author.get_by_key_name(sample['author_id2'])
+  def _AddTestStudioSamples(self):
+    memcache.flush_all()
+    self._ImportBackupResources('/studio.yaml')
 
-        update_date = sample.get('update_date')
-
-        sample = models.Resource(
-          title=sample['title'],
-          author=author_key,
-          second_author=author_key2,
-          url=unicode(sample['url']),
-          update_date=update_date,
-          publication_date=sample['publication_date'],
-          tags=sample['tags'],
-          draft=False # These are previous samples. Mark as published.
-          )
-        sample.put()
-      except TypeError:
-        pass # TODO(ericbidelman): Not sure why this is throwing an error, but ignore it.
-    f.close()
-
-  def addTestStudioSamples(self):
-      memcache.flush_all()
-
-      f = file(os.path.dirname(__file__) + '/studio.yaml', 'r')
-      for sample in yaml.load_all(f):
-        try:
-          author_key = models.Author.get_by_key_name(sample['author_id'])
-          author_key2 = None
-          if 'author_id2' in sample:
-            author_key2 = models.Author.get_by_key_name(sample['author_id2'])
-
-          update_date = sample.get('update_date')
-
-          sample = models.Resource(
-            title=sample['title'],
-            author=author_key,
-            second_author=author_key2,
-            url=unicode(sample['url']),
-            update_date=update_date,
-            publication_date=sample['publication_date'],
-            tags=sample['tags'],
-            draft=False # These are previous samples. Mark as published.
-            )
-          sample.put()
-        except TypeError:
-          pass # TODO(ericbidelman): Not sure why this is throwing an error, but ignore it.
-      f.close()
-
-  def addTestAuthors(self):
+  def _AddTestAuthors(self):
     f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
     for profile in yaml.load_all(f):
       author = models.Author(
@@ -670,7 +467,7 @@ class ContentHandler(webapp.RequestHandler):
       author.put()
     f.close()
 
-  def nukeDB(self):
+  def _NukeDB(self):
     memcache.flush_all()
 
     authors = models.Author.all()
@@ -680,6 +477,173 @@ class ContentHandler(webapp.RequestHandler):
     resources = models.Resource.all()
     for resource in resources:
       resource.delete()
+
+  def get(self, relpath, post_id=None):
+    self._set_cache_param()
+
+    if (relpath == 'author'):
+      # adds a new author information into DataStore.
+      sorted_profiles = models.get_sorted_profiles(update_cache=True)
+      template_data = {
+        'sorted_profiles': sorted_profiles,
+        'profile_amount': len(sorted_profiles),
+        'author_form': models.AuthorForm()
+      }
+      return self.render(data=template_data,
+                         template_path='database/author_new.html',
+                         relpath=relpath)
+
+    elif (relpath == 'drop_all'):
+      self._NukeDB()
+
+    elif (relpath == 'load_tutorials'):
+      self._AddTestResources()
+
+    elif (relpath == 'load_authors'):
+      self._AddTestAuthors()
+
+    elif (relpath == 'load_playground_samples'):
+      self._AddTestPlaygroundSamples()
+
+    elif (relpath == 'load_studio_samples'):
+      self._AddTestStudioSamples()
+
+    elif (relpath == 'load_all'):
+      # TODO(ericbidelman): Make this async.
+      self._AddTestAuthors()
+      self._AddTestResources()
+      self._AddTestPlaygroundSamples()
+      self._AddTestStudioSamples()
+
+    elif relpath == 'resource':
+      tutorial_form = models.TutorialForm()
+
+      if post_id: # /database/resource/1234
+        post = models.Resource.get_by_id(int(post_id))
+        if post:
+          author_id = post.author.key().name()
+          second_author_id = post.second_author and post.second_author.key().name()
+
+          # Adjust browser support so it renders to the checkboxes correctly.
+          browser_support = [b.capitalize() for b in post.browser_support]
+          for b in browser_support:
+            if len(b) == 2:
+              browser_support[browser_support.index(b)] = b.upper()
+
+          tutorial_form = models.TutorialForm(instance=post, initial={
+              'author': author_id,
+              'second_author': second_author_id or author_id,
+              'browser_support': browser_support,
+              'tags': ', '.join(post.tags)
+          })
+
+      template_data = {
+        'tutorial_form': tutorial_form,
+        'resources': models.Resource.all().order('-publication_date'), # get_all() not used b/c we don't care about caching on this page.
+        'post_id': post_id and int(post_id) or ''
+      }
+      return self.render(data=template_data,
+                         template_path='database/resource_new.html',
+                         relpath=relpath)
+
+    # Catch all to redirect to proper page.
+    return self.redirect('/database/resource')
+
+  def post(self, relpath):
+
+    # TODO: Don't use flush_all. Use flush_all_async() or only purge tutorials.
+    memcache.flush_all()
+
+    if relpath == 'author':
+      try:
+        given_name = self.request.get('given_name')
+        family_name = self.request.get('family_name')
+        author = models.Author(
+            key_name=''.join([given_name, family_name]).lower(),
+            given_name=given_name,
+            family_name=family_name,
+            org=self.request.get('org'),
+            unit=self.request.get('unit'),
+            city=self.request.get('city'),
+            state=self.request.get('state'),
+            country=self.request.get('country'),
+            homepage=self.request.get('homepage') or None,
+            google_account=self.request.get('google_account') or None,
+            twitter_account=self.request.get('twitter_account') or None,
+            email=self.request.get('email') or None,
+            lanyrd=self.request.get('lanyrd') == 'on')
+        lat = self.request.get('lat')
+        lon = self.request.get('lon')
+        if lat and lon:
+          author.geo_location = db.GeoPt(float(lat), float(lon))
+        author.put()
+      except db.Error:
+        pass
+      else:
+        self.redirect('/database/author')
+
+    elif relpath == 'resource':
+      author_key = models.Author.get_by_key_name(self.request.get('author'))
+      author_key2 = models.Author.get_by_key_name(
+          self.request.get('second_author'))
+
+      if author_key.key() == author_key2.key():
+        author_key2 = None
+
+      tags = (self.request.get('tags') or '').split(',')
+      tags = [x.strip() for x in tags if x.strip()]
+
+      browser_support = [x.lower() for x in
+                         (self.request.get_all('browser_support') or [])]
+
+      pub = datetime.datetime.strptime(
+          self.request.get('publication_date'), '%Y-%m-%d')
+
+      update_date = self.request.get('update_date') or None
+
+      tutorial = None
+      if self.request.get('post_id'):
+        tutorial = models.Resource.get_by_id(int(self.request.get('post_id')))
+
+      # Updating existing resource.
+      if tutorial:
+        try:
+          #TODO: This is also hacky.
+          tutorial.title = self.request.get('title')
+          tutorial.description = self.request.get('description')
+          tutorial.author = author_key
+          tutorial.second_author = author_key2
+          tutorial.url = self.request.get('url') or None
+          tutorial.browser_support = browser_support
+          tutorial.update_date = datetime.date.today()
+          tutorial.publication_date = datetime.date(pub.year, pub.month, pub.day)
+          tutorial.tags = tags
+          tutorial.draft = self.request.get('draft') == 'on'
+        except TypeError:
+          pass
+      else:
+        # Create new resource.
+        try:
+          tutorial = models.Resource(
+              title=self.request.get('title'),
+              description=self.request.get('description'),
+              author=author_key,
+              second_author=author_key2,
+              url=self.request.get('url') or None,
+              browser_support=browser_support,
+              update_date=datetime.date.today(),
+              publication_date=datetime.date(pub.year, pub.month, pub.day),
+              tags=tags,
+              draft=self.request.get('draft') == 'on'
+              )
+        except TypeError:
+          pass
+
+      tutorial.put()
+
+      return self.redirect('/database/resource')
+
+    return '/database'
 
 
 class APIHandler(webapp.RequestHandler):
@@ -741,6 +705,8 @@ class TagsHandler(webapp.RequestHandler):
 def main():
   application = webapp.WSGIApplication([
     ('/api/(.*)', APIHandler),
+    ('/database/(.*)/(.*)', DBHandler),
+    ('/database/(.*)', DBHandler),
     ('/tags/(.*)/(.*)', TagsHandler),
     ('/(.*)', ContentHandler)
   ], debug=True)
