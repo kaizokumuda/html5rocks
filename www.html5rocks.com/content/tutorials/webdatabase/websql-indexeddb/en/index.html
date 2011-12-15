@@ -1,87 +1,85 @@
 {% extends "sample.html" %}
 
 {% block headauthor %}Ido Green <idog@google.com>{% endblock %}
-  {% block pageauthor %}{% profilelinks idogreen %}{% endblock %}
-  {% block headtitle %}Migrating your WebSQL DB to IndexedDB{% endblock %}
-  {% block pagetitle %}Migrating your WebSQL DB to IndexedDB{% endblock %}
-  {% block head %}
+{% block pageauthor %}{% profilelinks idogreen %}{% endblock %}
+{% block headtitle %}Migrating your WebSQL DB to IndexedDB{% endblock %}
+{% block pagetitle %}Migrating your WebSQL DB to IndexedDB{% endblock %}
+{% block head %}
 
-  {% endblock %}
-  {% block pagebreadcrumb %}Migrating your WebSQL DB to IndexedDB{% endblock %}
-  {% block date %}December 05, 2011{% endblock %}
-  {% block updated %}{% endblock %}
-  {% block onload %}{% endblock %}
+{% endblock %}
+{% block pagebreadcrumb %}Migrating your WebSQL DB to IndexedDB{% endblock %}
+{% block date %}December 15, 2011{% endblock %}
+{% block updated %}{% endblock %}
+{% block onload %}{% endblock %}
 
-  {% block browsersupport %}
-  <span class="opera"></span>
-  <span class="ie"></span>
-  <span class="safari"></span>
-  <span class="ff supported"></span>
-  <span class="chrome supported"></span>
-  {% endblock %}
+{% block browsersupport %}
+<span class="opera"></span>
+<span class="ie"></span>
+<span class="safari"></span>
+<span class="ff supported"></span>
+<span class="chrome supported"></span>
+{% endblock %}
 
-  {% block iscompatible %}
-  return typeof window.openDatabase == "function" ? true : false;
-  {% endblock %}
+{% block iscompatible %}
+  return !!(window.indexedDB || window.webkitIndexedDB ||
+            window.mozIndexedDB || window.msIndexedDB);
+{% endblock %}
 
-  {% block content %}
+{% block content %}
+<h2 id="toc-introduction">Introduction</h2>
 
+<p>Because web databases let you store data and assets in users' browsers and provide you with rich query abilities, they enable you to create a new breed of web applications that can work online, offline, and states in between where the connection is flaky. Here are the main differences between the two databases.
+</p>
+<p>
 
-
-  <h2 id="toc-introduction">Introduction</h2>
-
-  <p>Because web databases let you store data and assets in users' browsers and provide you with rich query abilities, they enable you to create a new breed of web applications that can work online, offline, and states in between where the connection is flaky. Here are the main differences between the two databases.
-  </p>
-  <p>
-
-  <table border="0">
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>WebSQL</th>
-        <th>IndexedDB</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Advantages</td>
-        <td>A real, relational database implementation on the client (SQLite).</td>
-        <td>* Allows fast indexing and searching of objects, so in a web application scenario, you can manage your data and read/write it fast.
-          <br/>* A NoSQL database that let you work with your JavaScript objects and indexing them based on your application needs.
-          <br/>* Works in asynchronous mode with moderately granular locking per transaction. This allows you to work inside the event-driven module of JavaScript.</td>
-      </tr>
-      <tr>
-        <td>Disadvantages</td>
-        <td>* The spec is deprecated.
-          <br/>* Overhead of SQL language you need to master and transform your JavaScript objects into relational schema
-          <br/>* Not object driven </td>
-        <td>Harder to understand if you are coming from the world of relational databases.</td>
-      </tr>
-      <tr>
-        <td>Location</td>
-        <td>Tables contain columns and rows</td>
-        <td>objectStore contains Javascript objects and keys</td>
-      </tr>
-      <tr>
-        <td>Query Mechanism</td>
-        <td>SQL</td>
-        <td><a href="http://www.w3.org/TR/IndexedDB/#cursor-concept">Cursor APIs</a>,
-          <a href="http://www.w3.org/TR/IndexedDB/#range-concept">Key Range APIs</a>, and Application Code</td>
-      </tr>
-      <tr>
-        <td>Transaction</td>
-        <td>Lock can happen on databases, tables, or rows on READ_WRITE transactions</td>
-        <td>Lock can happen on database VERSION_CHANGE transaction, on an objectStore READ_ONLY and READ_WRITE transactions. </td>
-      </tr>
-      <tr>
-        <td>Transaction Commits</td>
-        <td>Transaction creation is explicit.
-          Default is to rollback unless we call commit.</td>
-        <td>Transaction creation is explicit.
-          Default is to commit unless we call abort or there is an error that is not caught.</td>
-      </tr>
-    </tbody>
-  </table>
+<table border="0">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>WebSQL</th>
+      <th>IndexedDB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Advantages</td>
+      <td>A real, relational database implementation on the client (SQLite).</td>
+      <td>* Allows fast indexing and searching of objects, so in a web application scenario, you can manage your data and read/write it fast.
+        <br/>* A NoSQL database that let you work with your JavaScript objects and indexing them based on your application needs.
+        <br/>* Works in asynchronous mode with moderately granular locking per transaction. This allows you to work inside the event-driven module of JavaScript.</td>
+    </tr>
+    <tr>
+      <td>Disadvantages</td>
+      <td>* The spec is deprecated.
+        <br/>* Overhead of SQL language you need to master and transform your JavaScript objects into relational schema
+        <br/>* Not object driven </td>
+      <td>Harder to understand if you are coming from the world of relational databases.</td>
+    </tr>
+    <tr>
+      <td>Location</td>
+      <td>Tables contain columns and rows</td>
+      <td>objectStore contains Javascript objects and keys</td>
+    </tr>
+    <tr>
+      <td>Query Mechanism</td>
+      <td>SQL</td>
+      <td><a href="http://www.w3.org/TR/IndexedDB/#cursor-concept">Cursor APIs</a>,
+        <a href="http://www.w3.org/TR/IndexedDB/#range-concept">Key Range APIs</a>, and Application Code</td>
+    </tr>
+    <tr>
+      <td>Transaction</td>
+      <td>Lock can happen on databases, tables, or rows on READ_WRITE transactions</td>
+      <td>Lock can happen on database VERSION_CHANGE transaction, on an objectStore READ_ONLY and READ_WRITE transactions. </td>
+    </tr>
+    <tr>
+      <td>Transaction Commits</td>
+      <td>Transaction creation is explicit.
+        Default is to rollback unless we call commit.</td>
+      <td>Transaction creation is explicit.
+        Default is to commit unless we call abort or there is an error that is not caught.</td>
+    </tr>
+  </tbody>
+</table>
 
 </p>
 <p>Since November 18, 2010, the W3C announced that Web SQL database is a deprecated specification. This is a recommendation for web developers to no longer use the technology as effectively, the spec will receive no new updates and browser vendors aren't encouraged to support this technology. The new alternative is IndexedDB which is already available on Chrome 12+ and Firefox 5+, and, soon, in IE 10 as well.
