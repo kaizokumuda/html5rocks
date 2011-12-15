@@ -43,22 +43,28 @@ function finishPanelLoad(pagePanel, elemstate) {
 
 $(document).keydown(function(e) {
   var goFeature = '';
+  var action = {
+    '37': 'previous',
+    '39': 'next'
+  }[e.keyCode];
   var currentPage = $('.page.current');
-  if (e.keyCode == 37) {
-    goFeature = currentPage.prev().attr('id').replace(/features-/, '');
-    currentPage.prev().addClass('previous')
-  }
-  if (e.keyCode == 39) {
-    goFeature = currentPage.next().attr('id').replace(/features-/, '');
-    currentPage.next().addClass('next')
-  }
-  if (goFeature) {
-    currentPage.one('webkitTransitionEnd', function(e) {
-      $('.page').removeClass('previous');
-      $('.page').removeClass('next');
-    });
-
-    loadContent($('div.features a.' + goFeature)[0])
+  if (currentPage.parent().hasClass('flexbox-container')) {
+    var currentPageId = currentPage.attr('id').replace(/feature-/, '');
+    if (action == 'previous') {
+      goFeature = currentPage.prev().attr('id').replace(/features-/, '');
+      currentPage.prev().addClass('previous')
+    }
+    if (action == 'next') {
+      goFeature = currentPage.next().attr('id').replace(/features-/, '');
+      currentPage.next().addClass('next')
+    }
+    if (goFeature) {
+      currentPage.one('webkitTransitionEnd', function(e) {
+        $('.page').removeClass('previous');
+        $('.page').removeClass('next');
+      });
+      loadContent($('nav.paginator ul.' + goFeature + ' a.' + action)[0]);
+    }
   }
   if (e.keyCode == 27) { // ESC
     // Hide search and/or feature bar.

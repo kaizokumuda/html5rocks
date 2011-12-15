@@ -338,14 +338,15 @@
   </div>
 
   <!-- Page grid. -->
-  <div class="page" id="home"></div>
-  <div class="page" id="mobile"></div>
-  <div class="page" id="gaming"></div>
-  <div class="page" id="business"></div>
-
+  <div class="flexbox-container">
+    <div class="page" id="home"></div>
+    <div class="page" id="mobile"></div>
+    <div class="page" id="gaming"></div>
+    <div class="page" id="business"></div>
+  </div>
   <div class="page" id="learn"></div>
 
-  <div id="feature-sections">
+  <div class="flexbox-container">
     <div class="page" id="features"></div>
     <div class="page" id="features-offline"></div>
     <div class="page" id="features-storage"></div>
@@ -477,7 +478,7 @@
     google.search.CustomSearchControl.attachAutoCompletion(
         '007435387813601113811:ef_kuvvx6a8', q, 'cse-search-box');
 
-    if(q.addEventListener) {
+    if (q.addEventListener) {
       q.addEventListener('keydown', function(e) {
         if (e.keyCode == 13) { // enter key
           document.getElementById('cse-search-box').submit();
