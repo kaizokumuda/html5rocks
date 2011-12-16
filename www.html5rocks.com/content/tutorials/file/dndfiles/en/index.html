@@ -121,7 +121,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     // files is a FileList of File objects. List some properties.
     var output = [];
     for (var i = 0, f; f = files[i]; i++) {
-      output.push('&lt;li&gt;&lt;strong&gt;', f.name, '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
+      output.push('&lt;li&gt;&lt;strong&gt;', escape(f.name), '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
                   f.size, ' bytes, last modified: ',
                   f.lastModifiedDate.toLocaleDateString(), '&lt;/li&gt;');
     }
@@ -154,7 +154,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     // files is a FileList of File objects. List some properties.
     var output = [];
     for (var i = 0, f; f = files[i]; i++) {
-      output.push('&lt;li&gt;&lt;strong&gt;', f.name, '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
+      output.push('&lt;li&gt;&lt;strong&gt;', escape(f.name), '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
                   f.size, ' bytes, last modified: ',
                   f.lastModifiedDate.toLocaleDateString(), '&lt;/li&gt;');
     }
@@ -237,7 +237,7 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
           // Render thumbnail.
           var span = document.createElement('span');
           span.innerHTML = ['&lt;img class="thumb" src="', e.target.result,
-                            '" title="', theFile.name, '"/&gt;'].join('');
+                            '" title="', escape(theFile.name), '"/&gt;'].join('');
           document.getElementById('list').insertBefore(span, null);
         };
       })(f);
@@ -481,7 +481,7 @@ example1.handleFileSelect = function(evt) {
   var files = evt.target.files;
   var output = [];
   for (var i = 0, f; f = files[i]; i++) {
-    output.push('<li><strong>', f.name, '</strong> (', f.type || 'n/a', ') - ',
+    output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
                 f.size, ' bytes, last modified: ',
                 f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
                 '</li>');
@@ -504,7 +504,7 @@ example2.onDragFileDrop = function(evt) {
   var files = evt.dataTransfer.files;
   var output = [];
   for (var i = 0, f; f = files[i]; i++) {
-    output.push('<li><strong>', f.name, '</strong> (', f.type || 'n/a', ') - ',
+    output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
                 f.size, ' bytes, last modified: ',
                 f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
                 '</li>');
@@ -537,7 +537,7 @@ example3.handleFileSelect = function(evt) {
         // Render thumbnail.
         var span = document.createElement('span');
         span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                          '" title="', theFile.name, '"/>'].join('');
+                          '" title="', escape(theFile.name), '"/>'].join('');
         get('thumbnails').insertBefore(span, null);
       };
     })(f);
