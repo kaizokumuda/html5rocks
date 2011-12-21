@@ -1,9 +1,22 @@
-// Copyright 2011 Google Inc. All Rights Reserved.
-
 /**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * @fileoverview Lem doodle: Actors.
  *
- * @author mwichary@google.com (Marcin Wichary)
+ * @author sfdimino@google.com (Sophia Foster-Dimino) – graphics/animation
+ * @author mwichary@google.com (Marcin Wichary) – code
  * @author jdtang@google.com (Jonathan Tang)
  * @author khom@google.com (Kristopher Hom)
  */
@@ -198,15 +211,8 @@ engine.ACTORS = {
 
         this.interactive = params.interactive;
 
-        if (this.interactive) {
-          this.setState({ state: 'user' });
-
-          this.setClickable({ clickable: true });
-        } else {
-          this.setState({ state: 'looking-away' });
-
-          this.setClickable({ clickable: false });
-        }
+        this.setClickable({ clickable: this.interactive });
+        this.setState({ state: this.interactive ? 'user' : 'looking-away' });
       }
     },
 
@@ -1173,7 +1179,7 @@ engine.ACTORS = {
     HEIGHT: 40,
     PLANE: engine.PLANE_CLOSE_FOREGROUND,
     PLANE_CORRECTION: +2,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     INNER_RECTS: {
       'left-wing': { x: 0, y: 10, width: 8, height: 19 },
@@ -2030,7 +2036,7 @@ engine.ACTORS = {
     PLANE: engine.PLANE_CLOSE_FOREGROUND,
     PLANE_CORRECTION: +1,
     OFFSET_X: -16,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     /**
      * Change the current state.
@@ -2064,7 +2070,7 @@ engine.ACTORS = {
     OFFSET_X: -16,
     PLANE: engine.PLANE_CLOSE_FOREGROUND,
     PLANE_CORRECTION: +1,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     /**
      * Change the current state.
@@ -2095,7 +2101,7 @@ engine.ACTORS = {
     HEIGHT: engine.EXPANDED_HEIGHT,
     PLANE: engine.PLANE_BK_SKY,
     SCROLLABLE: true,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     // How many strands in each particular pack. The sky consists of many
     // individual strands (lines, or clouds). The start 3px apart at the top,
@@ -2280,7 +2286,7 @@ engine.ACTORS = {
     HEIGHT: engine.EXPANDED_HEIGHT,
     PLANE: engine.PLANE_BK_SKY,
     PLANE_CORRECTION: 2,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     init: function() {
       this.showWhite();
@@ -5421,7 +5427,7 @@ engine.ACTORS = {
     PLANE: engine.PLANE_FOREGROUND,
     PLANE_CORRECTION: +2,
     CLAMP_ROTATE: 24,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     PLANET_HIT_DIAMETER: .9,
     MOMENTUM_ADJUSTMENT: 15,
@@ -5915,7 +5921,7 @@ engine.ACTORS = {
     HEIGHT: 57,
     PLANE: engine.PLANE_SKY,
     PLANE_CORRECTION: +3,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     init: function() {
       // Put off-screen so it doesn’t blink when it first appears.
@@ -5953,7 +5959,7 @@ engine.ACTORS = {
     HEIGHT: 253,
     PLANE: engine.PLANE_SKY,
     PLANE_CORRECTION: +2,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     INNER_RECTS: {
       'planet': { x: 0, y: 0, width: 210, height: 253 },
@@ -6392,7 +6398,7 @@ engine.ACTORS = {
     HEIGHT: 197,
     PLANE: engine.PLANE_MOUSE_POINTER,
     PLANE_CORRECTION: +1,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     // A couple of fake progress bar segments.
     INNER_RECTS: {
@@ -6476,7 +6482,7 @@ engine.ACTORS = {
     WIDTH: 19,
     HEIGHT: 33,
     PLANE: engine.PLANE_TOOLBAR,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     init: function() {
       this.transform({ x: 432, y: engine.bodyOffsetY });
@@ -6503,7 +6509,7 @@ engine.ACTORS = {
     WIDTH: 31,
     HEIGHT: 62,
     PLANE: engine.PLANE_TOOLBAR,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     INNER_RECTS: {
       'wait': { x: 1, y: 30, width: 19, height: 20 },
@@ -6635,7 +6641,7 @@ engine.ACTORS = {
     HEIGHT: 43,
     PLANE: engine.PLANE_MOUSE_POINTER,
     PLANE_CORRECTION: +1,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     // Tip of the pointer (from top-left corner) for each cursor type.
     POINTER_CORRECTIONS: {
@@ -6773,8 +6779,8 @@ engine.ACTORS = {
     HEIGHT: engine.EXPANDED_HEIGHT,
 
     PLANE: engine.PLANE_MOUSE_POINTER,
-    PLANE_CORRECT: +2,
-    NEVER_AUTO_HIDE: true,
+    PLANE_CORRECTION: +2,
+    NO_AUTO_HIDE: true,
 
     // A size of the explosion rect.
     EXPLOSION_WIDTH: 210,
@@ -6880,7 +6886,7 @@ engine.ACTORS = {
     HEIGHT: engine.SCREEN_HEIGHT,
     PLANE: engine.PLANE_COVER,
     PLANE_CORRECTION: +2,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
     FORCE_RENDER_DOM: true,
     ATTACHED_TO_DOCUMENT_BODY: true,
 

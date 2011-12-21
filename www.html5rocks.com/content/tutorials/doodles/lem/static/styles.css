@@ -9,7 +9,7 @@
   }
 }
 
-p.note {
+#main-text p.note {
   font-style: italic;
 }
 
@@ -35,6 +35,9 @@ a.add-code-popup {
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px solid rgba(150, 90, 40, .2);
+  
+  background: inherit !important;
+  padding-right: inherit !important;
 }
 a.add-code-popup:hover {
   color: rgb(120, 60, 30);
@@ -53,20 +56,14 @@ a:active {
 a.important {
   font-weight: 600;
 }
-abbr {
-  font-weight: 500;
-  color: black;
-}
-a.add-code-popup abbr {
-  font-weight: 600;
-  color: inherit;
-}
-h2 abbr {
-  font-size: inherit;
-  color: inherit;
-}
 
-em {
+
+#main-text abbr {
+  font-size: 85%;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+#main-text em {
   letter-spacing: 1px;
 }
 span.title {
@@ -86,8 +83,8 @@ span.foreign {
 }
 
 
-label,
-label * {
+#main-text label,
+#main-text label * {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
@@ -96,13 +93,13 @@ label * {
 
 /* Lists */
 
-ul,
-ol {
+#main-text ul,
+#main-text ol {
   margin: 12px 0;
   padding: 0;
   list-style: none;
 }
-li {
+#main-text li {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -110,14 +107,14 @@ li {
   
   counter-increment: number;
 }
-ul > li::before {
+#main-text ul > li::before {
   content: '·';
   position: absolute;
   left: -1em;
   width: 1em;
   display: inline-block;
 }
-ol > li::before {
+#main-text ol > li::before {
   content: counter(number) '.';
   position: absolute;
   left: -3.5em;
@@ -127,13 +124,13 @@ ol > li::before {
 }
 
 @media screen and (max-device-width: 480px) {
-  ul > li {
+  #main-text ul > li {
     margin-left: 1em;
   }
-  ol > li { 
+  #main-text ol > li { 
     margin-left: 2.5em;
   }
-  ol > li::before {
+  #main-text ol > li::before {
     left: -2.5em;
     text-align: left;
   }
@@ -141,7 +138,7 @@ ol > li::before {
 
 
 @media screen and (max-device-width: 480px) {
-  figcaption {
+  #main-text figcaption {
     margin: 24px 0;
     line-height: 36px;
     font-size: 28px;
@@ -164,53 +161,53 @@ ol > li::before {
   box-sizing: border-box;
 }
 
-figure iframe {
+#main-text figure iframe {
   display: block;
   border: 0;
   margin: 0 auto;
 }
-figcaption a {
+#main-text figcaption a {
   color: rgb(60, 60, 60);
   border-bottom-color: rgba(60, 60, 60, .3);
 }
-figure table {
+#main-text figure table {
   max-width: 42em;
   margin: 0 auto;
   border-collapse: collapse;
 }
-figure td {
+#main-text figure td {
   text-align: center;
   padding: 12px 24px;
 }
-figure table.compact td {
+#main-text figure table.compact td {
   padding: 0;
   text-align: left;
 }
-figure th {
+#main-text figure th {
   font-weight: 400;
   text-align: left;
   line-height: 18px;
   font-size: 14px;
   padding: 12px 24px;
 }
-figure table.text td {
+#main-text figure table.text td {
   text-align: left;
   padding: 6px 12px;
 }
-figure table.text th {
+#main-text figure table.text th {
   text-align: left;
   padding: 6px 12px;
 }
 
 
 @media screen and (max-device-width: 480px) {
-  code {
+  #main-text code {
     padding: 0 8px;
     margin: 0 4px;
     line-height: 36px;
   }
-  code,
-  pre {
+  #main-text code,
+  #main-text pre {
     font-size: 28px;
   }
 }
@@ -345,7 +342,7 @@ figure table.text th {
 }
 
 .code-popup .content h1 {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 12px;
   letter-spacing: 0;
 
@@ -394,7 +391,7 @@ figure table.text th {
   padding: 0;
     
   font-size: 14px;
-  line-height: 18px; 
+  line-height: 18px !important; 
   padding: 6px;
 
   padding-left: 50px;
@@ -408,9 +405,13 @@ figure table.text th {
   
   position: absolute;
   left: 0;
-  top: 24px;
+  top: 24px !important;
   right: 0;
   bottom: 0;
+  
+  border: 0;
+  border-radius: 0;
+  
   overflow-x: auto;
   overflow-y: auto;
 
@@ -431,6 +432,8 @@ figure table.text th {
 
 .code-popup .content pre .line-numbers {
   width: 44px;
+  line-height: 18px;
+  padding-top: 9px;
 }
 @media screen and (max-device-width: 480px) {
   .code-popup .content pre .line-numbers {
@@ -438,34 +441,36 @@ figure table.text th {
   }
 }
 
-pre {
-  padding-left: 50px;
+#main-text pre {
   position: relative;
+  padding-left: 50px;
+  line-height: 17px;
 }
-
 pre .line-numbers {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 12px;
   letter-spacing: 0;
 
   position: absolute;
   left: 0;
   top: 0;
-  /*width: 94px;*/
+  width: 43px;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
-  padding-top: 7px;
+  padding-top: 11px;
   padding-right: 8px;
-  padding-bottom: 4px;
+  padding-bottom: 9px;
   text-align: right;
   color: rgb(160, 160, 160);
+  
+  line-height: 17px;
   
   border-right: 1px solid rgba(0, 0, 0, .1);
 }
 
 @media screen and (max-device-width: 480px) {
-  pre .line-numbers {
+  #main-text pre .line-numbers {
     font-size: 24px;
     width: 188px;    
     padding-top: 14px;

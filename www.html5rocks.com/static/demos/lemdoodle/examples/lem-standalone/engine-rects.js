@@ -1,12 +1,25 @@
-// Copyright 2011 Google Inc. All Rights Reserved.
-
 /**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * @fileoverview Doodle game engine: Rect drawing and manipulation library.
  *
  * A rect is a generic graphic element (a rectangle) that can contain a number
  * of things (colours, images, animations) and be drawn using canvas or DOM.
  *
- * @author mwichary@google.com (Marcin Wichary)
+ * @author sfdimino@google.com (Sophia Foster-Dimino) – graphics/animation
+ * @author mwichary@google.com (Marcin Wichary) – code
  * @author jdtang@google.com (Jonathan Tang)
  * @author khom@google.com (Kristopher Hom)
  */
@@ -202,7 +215,7 @@ function EngineRect(params) {
    * If true, the engine should never attempt to automatically hide an
    * object if off-screen.
    */
-  this.neverAutoHide = !!params.neverAutoHide;
+  this.noAutoHide = !!params.noAutoHide;
 
   /**
    * Whether the object is attached directly to the <body> of the document
@@ -395,7 +408,9 @@ EngineRect.prototype.setClickable = function(params) {
     this.update();
 
     // Remembering the custom on mouse up and down handlers. Those are used
-    // e.g. for buttons.
+    // e.g. for buttons. We need to store bindings somewhere in order to be
+    // able to remove event handlers later.
+
     if (params.onMouseDown) {
       this.clickableEl.onMouseDownHandler =
           engine.bind(params.onMouseDown, this);
@@ -405,16 +420,13 @@ EngineRect.prototype.setClickable = function(params) {
           engine.bind(params.onMouseUp, this);
     }
 
-    // Remembering hover in and out handlers. We animate the mouse pointer
-    // on hover in and out.
-
-    this.clickableEl.onMouseOverHandler =
-        engine.bind(this.actor.onClickableMouseOver, this.actor);
-    this.clickableEl.onMouseOutHandler =
-        engine.bind(this.actor.onClickableMouseOut, this.actor);
-
     // Adding mouse down/up event listeners and corresponding touch
-    // event listeners.
+    // event listeners. We assign generic mouse event listeners that are
+    // shared between all the actors so, for example, the engine knows
+    // whether the user interacted with the doodle in a meaningful way
+    // without us having to put that in every custom event listener.
+    // The custom event listeners for some actors, assigned to this.clickableEl
+    // above, are called from within the listeners below.
 
     engine.addEventListener({
         el: this.clickableEl, type: 'mousedown',
@@ -429,7 +441,14 @@ EngineRect.prototype.setClickable = function(params) {
         el: this.clickableEl, type: 'touchend',
         handler: engine.bind(this.actor.onMouseUp, this.actor) });
 
-    // Adding hover in and out event listeners.
+    // Remembering the bindings for hover in and out handlers, and adding
+    // them as event listeners directly. We animate the mouse pointer on
+    // hover in and out for all the clickable rects.
+
+    this.clickableEl.onMouseOverHandler =
+        engine.bind(this.actor.onClickableMouseOver, this.actor);
+    this.clickableEl.onMouseOutHandler =
+        engine.bind(this.actor.onClickableMouseOut, this.actor);
 
     engine.addEventListener({
         el: this.clickableEl, type: 'mouseover',
@@ -440,6 +459,7 @@ EngineRect.prototype.setClickable = function(params) {
 
     // Adding click handler/event listener if an actor has it. (An actor
     // handles clicks to all its inner elements too in the same function.)
+
     if (this.actor.onClick) {
       this.clickableEl.onClickHandler =
           engine.bind(this.actor.onMouseClick, this.actor);
@@ -494,6 +514,8 @@ EngineRect.prototype.setClickable = function(params) {
         handler: this.clickableEl.onMouseOutHandler });
 
     engine.bodyEl.removeChild(this.clickableEl);
+    // Garbage collection, do that thing you do.
+    this.clickableEl = null;
   }
 };
 
@@ -550,7 +572,7 @@ EngineRect.prototype.showBlack = function(params) {
  * @param {Object} params
  * - {string} .imageId Image id with rotation.
  * - {string} .nonRotatedImageId Image id without rotation.
- * - {string} .align Image alignment.
+ * - {number} .align Image alignment.
  * - {boolean} .noUpdate Don’t update visually right now.
  */
 EngineRect.prototype.showImage = function(params) {
@@ -573,7 +595,7 @@ EngineRect.prototype.showImage = function(params) {
  * Fill a rect with animation.
  * @param {Object} params
  * - {array} .imageIds Array with image ids (frames).
- * - {boolean} .align Image alignment vis-a-vis the rect.
+ * - {number} .align Image alignment vis-a-vis the rect.
  * - {number} .speed Speed in milliseconds per frame.
  * - {number} .count Play count (defaults to infinity).
  * - {func} .onFinish A function to call if finished.
@@ -616,7 +638,7 @@ EngineRect.prototype.update = function() {
   this.updateRotate();
 
   // Auto-hide if moved to the left of the screen.
-  if (!this.innerId && !this.neverAutoHide && this.actor && this.visible &&
+  if (!this.innerId && !this.noAutoHide && this.actor && this.visible &&
       ((this.x + this.width) < 0)) {
     this.actor.setVisible({ visible: false });
   }
@@ -870,7 +892,7 @@ EngineRect.prototype.updateCanvas = function() {
 EngineRect.prototype.updateDom = function() {
   if (this.visible != this.visiblePrev) {
     if (!this.visible) {
-      engine.removeAnimation({ id: this.id, innerId: this.innerId });
+      engine.removeAnimation({ id: this.actor.id, innerId: this.innerId });
       this.hideInDom();
     } else {
       this.showInDom();
@@ -993,6 +1015,8 @@ EngineRect.prototype.updateDom = function() {
 
         var alignment = '';
         if (!engine.useSprites) {
+          // Not using sprites.
+
           switch (this.align[0]) {
             case engine.ALIGN_CENTER:
               alignment = 'center';
@@ -1015,37 +1039,22 @@ EngineRect.prototype.updateDom = function() {
               alignment += ' bottom';
               break;
           }
-
-          if (this.horLoop) {
-            this.horLoopEl1.style.background =
-                'url(' + url + ') ' + alignment +
-                ' no-repeat';
-            this.horLoopEl2.style.background =
-                'url(' + url + ') ' + alignment +
-                ' no-repeat';
-
-            this.horLoopEl1.style.height = this.height + 'px';
-            this.horLoopEl2.style.height = this.height + 'px';
-          } else {
-            this.el.style.background =
-                'url(' + url + ') ' + alignment +
-                ' no-repeat';
-          }
         } else {
-          if (this.horLoop) {
-            this.horLoopEl1.style.background =
-                'url(' + url + ') -' + this.spriteX +
-                'px -' + this.spriteY + 'px no-repeat';
-            this.horLoopEl2.style.background = 'url(' + url + ') -' +
-                this.spriteX + 'px -' + this.spriteY + 'px no-repeat';
+          // Using sprites.
 
-            this.horLoopEl1.style.height = this.height + 'px';
-            this.horLoopEl2.style.height = this.height + 'px';
-          } else {
-            this.el.style.background = 'url(' + url + ') -' +
-              (this.spriteX) + 'px -' +
-              (this.spriteY) + 'px no-repeat';
-          }
+          var alignment = '-' + this.spriteX + 'px -' + this.spriteY + 'px';
+        }
+
+        var backgroundStyle = 'url(' + url + ') ' + alignment + ' no-repeat';
+
+        if (this.horLoop) {
+          this.horLoopEl1.style.height = this.height + 'px';
+          this.horLoopEl2.style.height = this.height + 'px';
+
+          this.horLoopEl1.style.background = backgroundStyle;
+          this.horLoopEl2.style.background = backgroundStyle;
+        } else {
+          this.el.style.background = backgroundStyle;
         }
         break;
     }
@@ -1207,7 +1216,7 @@ EngineRect.prototype.transform = function(params) {
 /**
  * Render a given image on canvas.
  * @param {Object} params
- * - {number} .canvasCtx Canvas context.
+ * - {Object} .canvasCtx Canvas context.
  */
 EngineRect.prototype.renderOnCanvas = function(params) {
   if (this.contents == engine.CONTENTS_CLEAR) {

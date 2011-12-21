@@ -1,4 +1,6 @@
 var CODE_PATH_PREFIX = 'code/';
+var DESTINATION_CODE_PATH_PREFIX = 
+    'https://code.google.com/p/stanislaw-lem-google-doodle/source/browse/';
 
 var codeFiles = {};
 var codeFilesToBeLoaded = 0;
@@ -102,7 +104,7 @@ function showCodePopupPart1(linkEl) {
   el.addEventListener('mousedown', onCodePopupMouseDown, false);
   el.addEventListener('touchstart', onCodePopupTouchStart, false);
 
-  var data = processExcerptSrc(linkEl.getAttribute('href'));
+  var data = processExcerptSrc(linkEl.origHref);
   code = getCodeFileExcerpt(data.url, data.lineStart, data.lineEnd, true);
   el.lineStart = data.lineStart;
 
@@ -122,7 +124,7 @@ function showCodePopupPart1(linkEl) {
 
   el.innerHTML = html;
 
-  document.body.appendChild(el);
+  document.querySelector('article.tutorial').appendChild(el);
 
   el.preEl = document.createElement('pre');
   el.preEl.innerHTML = escapeEntities(code);
@@ -352,11 +354,18 @@ function preloadCodePopupAnchorEls() {
         CODE_PATH_PREFIX) {
       el.classList.add('add-code-popup');
 
-      el.title = el.getAttribute('href').substr(CODE_PATH_PREFIX).
+      el.title = el.getAttribute('href').substr(CODE_PATH_PREFIX.length).
                  replace(/\#/, ' @ ');
 
       var data = processExcerptSrc(el.getAttribute('href'));
       loadCodeFile(data.url);
+      
+      el.origHref = el.getAttribute('href');
+      
+      // Link to the proper repository, and since it doesn’t support linking
+      // to #X-Y, rewrite to do just #X
+      el.href = DESTINATION_CODE_PATH_PREFIX + 
+                el.getAttribute('href').substr(CODE_PATH_PREFIX.length).replace(/(-[0-9]*$)/, '');
     }
   }
 }

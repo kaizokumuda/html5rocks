@@ -3,17 +3,56 @@
 <!--
   Copyright 2011 Google Inc. All Rights Reserved.
 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  -----------------------------------------------------------------------------
+
+  IMPORTANT LICENSE NOTE:
+
+  We are sharing the CODE of the doodle under the Apache 2.0 License
+  (http://www.apache.org/licenses/LICENSE-2.0), but the
+  IMAGES AND ANIMATIONS accompanying the doodle under the Creative Commons
+  BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/).
+  The big difference between those two is that the first one allows commercial
+  re-use, whereas the second one forbids it.
+
+  -----------------------------------------------------------------------------
+
   @fileoverview Stanisław Lem doodle.
 
-  @author mwichary@google.com (Marcin Wichary)
+  @author sfdimino@google.com (Sophia Foster-Dimino) – graphics/animation
+  @author mwichary@google.com (Marcin Wichary) – code
   @author jdtang@google.com (Jonathan Tang)
   @author khom@google.com (Kristopher Hom)
-  
-  TODO (EXPLAIN THINGS HERE AND ADD URLS)
+
+  -----------------------------------------------------------------------------
+
+  This is the source code and graphics for Stanisław Lem doodle that ran on
+  Google homepage in selected countries on November 23, 2011.
+
+  The original doodle is available at
+  http://www.google.com/logos/lem/
+
+  The homepage for the open-sourced version is
+  https://code.google.com/p/stanislaw-lem-google-doodle/
+
+  Feedback: stanislaw-lem-google-doodle@googlegroups.com
+
+  -----------------------------------------------------------------------------
 
   Attach those URL parameters to the page to play with debug options:
 
-  · ?doodle-debug to enable debugging; adds debug keyboard shortcuts 
+  · ?doodle-debug to enable debugging; adds debug keyboard shortcuts
                   and you can also combine with any of the following:
 
   · &doodle-force-dom to force using DOM
@@ -29,6 +68,14 @@
   · &doodle-old-run to pretend we’re running for 99th time
 
   · &doodle-country=XX to run as a specific country (e.g. en, pl, de…)
+
+  Debug keyboard shortcuts:
+  · Shift to fast forward
+  · N to skip an interactive level (use only on interactive levels)
+  · T to hit the target in level 3
+
+  Note: Debug keyboard shortcuts may result in various problems since they
+        are not tested or validated in any way.
 -->
 <html>
   <head>
@@ -87,13 +134,14 @@
       </div>
 
       <div id='prm'>
-        View source to see debug options!
+        Back to <a id='back-link' href='http://www.google.com/logos'>Google
+        Logos</a>. View source to see debug options!
       </div>
     </div>
 
     <script src='engine-const.js'></script>
     <script src='engine-helpers.js'></script>
-    <script src='engine-events.js'></script>
+    <script src='engine-actions.js'></script>
     <script src='engine-rects.js'></script>
     <script src='engine-actors.js'></script>
     <script src='engine-main.js'></script>

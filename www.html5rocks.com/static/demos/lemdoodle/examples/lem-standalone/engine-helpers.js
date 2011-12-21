@@ -1,11 +1,24 @@
-// Copyright 2011 Google Inc. All Rights Reserved.
-
 /**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * @fileoverview Doodle game engine: All sorts of helper functions, polyfills,
  *               abstractions that are not unique to our engine and oftentimes
  *               indeed actually just come from elsewhere.
  *
- * @author mwichary@google.com (Marcin Wichary)
+ * @author sfdimino@google.com (Sophia Foster-Dimino) – graphics/animation
+ * @author mwichary@google.com (Marcin Wichary) – code
  * @author jdtang@google.com (Jonathan Tang)
  * @author khom@google.com (Kristopher Hom)
  */
@@ -137,8 +150,9 @@ engine.setRand = function(params) {
 };
 
 /**
- * A modulo function, necessary because some browsers support negative
- * modulo funny. This is equivalent to the native (val $PERC$ mod).
+ * A modulo function, necessary because there are differences in how
+ * browsers support negative modulus. This is otherwise equivalent
+ * to the native (val $PERC$ mod).
  * @param {Object} params
  * - {number} .val Value.
  * - {number} .mod Modulus.
