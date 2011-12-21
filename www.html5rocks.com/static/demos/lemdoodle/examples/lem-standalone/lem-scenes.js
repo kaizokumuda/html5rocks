@@ -1,9 +1,22 @@
-// Copyright 2011 Google Inc. All Rights Reserved.
-
 /**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * @fileoverview Lem doodle: Scenes.
  *
- * @author mwichary@google.com (Marcin Wichary)
+ * @author sfdimino@google.com (Sophia Foster-Dimino) – graphics/animation
+ * @author mwichary@google.com (Marcin Wichary) – code
  * @author jdtang@google.com (Jonathan Tang)
  * @author khom@google.com (Kristopher Hom)
  */
@@ -84,17 +97,17 @@ engine.SCENES = [
 
       // The bird picks up the start button (which is in the sky, so it
       // appears as if the bird carried the button from the beginning),
-      // then lands. This below is how we usually add events to the timeline,
+      // then lands. This below is how we usually add actions to the timeline,
       // 300 is in milliseconds.
-      engine.addEvents({
+      engine.addActions({
         300: function() {
           if (engine.curSceneId == 'intro') {
             $a('bird').pickUpStartButton({
               onPickUp: function() {
                 $a('bird').setTarget({ x: 180, y: 440, land: false });
-                engine.addEvents({
+                engine.addActions({
                   5000: function() {
-                    // This and the subsequent event can be fired after
+                    // This and the subsequent action can be fired after
                     // the user advanced to the next stage already. In this
                     // case the bird doesn’t even bother to land.
                     if (engine.curSceneId == 'intro') {
@@ -113,7 +126,7 @@ engine.SCENES = [
           }
         },
         1500: function() {
-          // This and the subsequent event can be fired after
+          // This and the subsequent action can be fired after
           // the user advanced to the next stage already. In this
           // case Trurl doesn’t bother to sit down, but just continues
           // walking into the first intermission.
@@ -160,7 +173,7 @@ engine.SCENES = [
       // Replace the default mouse pointer with our custom one if we can.
       engine.setCustomMousePointer({ customMousePointer: true });
 
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           // Remove the cover. We won’t need it ever again.
           engine.setInteractive({ interactive: false });
@@ -248,7 +261,7 @@ engine.SCENES = [
   {
     id: 'before-level-1',
     onEnter: function() {
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           // Showing the thought cloud.
 
@@ -318,7 +331,7 @@ engine.SCENES = [
     id: 'level-1-ending',
     cutscene: true,
     onEnter: function() {
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           if (engine.debugEnabled) {
             // Even if we skip the earlier level to see Numbot do it,
@@ -414,7 +427,7 @@ engine.SCENES = [
         },
         4200: function() {
           // A part falls out of Numbot and the bird picks it up. At the
-          // moment the bird picks it up (it’s event-based, not time-based),
+          // moment the bird picks it up (it’s action-based, not time-based),
           // we move to the next scene.
           $a('old-parts').transform({ x: 215, y: 185 });
           $a('old-parts').setState({ state: 'connectors' });
@@ -427,7 +440,7 @@ engine.SCENES = [
                 onPickUp: function() {
                   $a('bird').setTarget({ x: 50, y: 140, land: false });
 
-                  engine.addEvents({
+                  engine.addActions({
                     750: function() {
                       engine.goToNextScene();
                     }
@@ -451,7 +464,7 @@ engine.SCENES = [
   {
     id: 'intermission-level-1-level-2',
     onEnter: function() {
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           $a('trurl').setState({ state: 'walking' });
           $a('trurl').addTransition({
@@ -546,9 +559,9 @@ engine.SCENES = [
 
       // Schedule an easter egg passage of the Lem satellite in the
       // background, between 10 and 30 seconds from entering this stage.
-      engine.addEvent({
+      engine.addAction({
         startTime: engine.rangeRand({ min: 10000, max: 30000 }),
-        onEvent: function() { $a('satellite').startPassage(); }
+        onAction: function() { $a('satellite').startPassage(); }
       });
 
       engine.preloadImageSet({ id: 'level-3' });
@@ -565,7 +578,7 @@ engine.SCENES = [
     id: 'level-2-ending',
     cutscene: true,
     onEnter: function() {
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           engine.setInteractive({ interactive: false });
           $a('trurl').setInteractive({ interactive: false });
@@ -771,7 +784,7 @@ engine.SCENES = [
                                   $a('bird').setTarget({
                                       x: 50, y: 140, land: false });
 
-                                  engine.addEvents({
+                                  engine.addActions({
                                     750: function() {
                                       engine.goToNextScene();
                                     }
@@ -798,7 +811,7 @@ engine.SCENES = [
   {
     id: 'intermission-level-2-level-3',
     onEnter: function() {
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           $a('trurl').setState({ state: 'walking' });
 
@@ -976,7 +989,7 @@ engine.SCENES = [
 
       $a('babybot-projectile').setVisible({ visible: false });
 
-      engine.addEvents({
+      engine.addActions({
         2000: function() {
           // The planet opens a little hatch inside.
           $a('babybot-planet').showAnimation({
@@ -1042,7 +1055,7 @@ engine.SCENES = [
                           state: 'connectors-eyes-head' });
                       $a('bird').setTarget({ x: 50, y: 140, land: false });
 
-                      engine.addEvents({
+                      engine.addActions({
                         750: function() {
                           engine.goToNextScene();
                         }
@@ -1075,7 +1088,7 @@ engine.SCENES = [
     id: 'intermission-before-finale',
     interactive: true,
     onEnter: function() {
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           $a('trurl').setState({ state: 'walking' });
 
@@ -1223,9 +1236,9 @@ engine.SCENES = [
             });
 
             // …and soon after disappears.
-            engine.addEvent({
+            engine.addAction({
               startTime: engine.rangeRand({ min: 2000, max: 3000 }),
-              onEvent: function() {
+              onAction: function() {
                 $a('dragon').showAnimation({
                   speed: 200,
                   count: 1,
@@ -1259,7 +1272,7 @@ engine.SCENES = [
               $a('bird').setTarget({ x: 32, y: 508,
                                      land: true, targetId: 'books' });
 
-              engine.addEvents({
+              engine.addActions({
                 500: function() {
                   // The big button appears at the bottom of the page,
                   // waiting to be pressed to initiate the finale.
@@ -1405,7 +1418,7 @@ engine.SCENES = [
       $a('nbot-button').hide();
       engine.setInteractive({ interactive: false });
 
-      engine.addEvents({
+      engine.addActions({
         1000: function() {
           $a('trurl').setInteractive({ interactive: false });
           $a('klapaucjusz').setInteractive({ interactive: false });
@@ -1557,7 +1570,7 @@ engine.SCENES = [
     onEnter: function() {
       engine.doodleFinished();
 
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           // The sky gets more violent.
           $a('sky').setStyle({ speed: 1000, opacity: .95 });
@@ -1714,9 +1727,9 @@ engine.SCENES = [
         12000: function() {
           // Destroy the sky bit by bit.
           for (var i in $a('sky').innerRects) {
-            engine.addEvent({
+            engine.addAction({
               startTime: engine.rangeRand({ min: 0, max: 1000 }),
-              onEvent: (function(i) {
+              onAction: (function(i) {
                 return function() {
                   // (Only every fourth element gets an explosion.)
                   if (engine.modulo(
@@ -1754,7 +1767,7 @@ engine.SCENES = [
   {
     id: 'going-to-search-results',
     onEnter: function() {
-      engine.addEvents({
+      engine.addActions({
         1000: function() {
           $a('inside-explosions').explodeActor({ actorId: 'nbot' });
         },

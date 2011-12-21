@@ -35,6 +35,9 @@ a.add-code-popup {
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px solid rgba(150, 90, 40, .2);
+  
+  background: inherit !important;
+  padding-right: inherit !important;
 }
 a.add-code-popup:hover {
   color: rgb(120, 60, 30);
@@ -339,7 +342,7 @@ span.foreign {
 }
 
 .code-popup .content h1 {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 12px;
   letter-spacing: 0;
 
@@ -388,7 +391,7 @@ span.foreign {
   padding: 0;
     
   font-size: 14px;
-  line-height: 18px; 
+  line-height: 18px !important; 
   padding: 6px;
 
   padding-left: 50px;
@@ -402,9 +405,13 @@ span.foreign {
   
   position: absolute;
   left: 0;
-  top: 0;
+  top: 24px !important;
   right: 0;
   bottom: 0;
+  
+  border: 0;
+  border-radius: 0;
+  
   overflow-x: auto;
   overflow-y: auto;
 
@@ -425,6 +432,8 @@ span.foreign {
 
 .code-popup .content pre .line-numbers {
   width: 44px;
+  line-height: 18px;
+  padding-top: 9px;
 }
 @media screen and (max-device-width: 480px) {
   .code-popup .content pre .line-numbers {
@@ -435,24 +444,27 @@ span.foreign {
 #main-text pre {
   position: relative;
   padding-left: 50px;
+  line-height: 17px;
 }
-#main-text pre .line-numbers {
-  font-family: 'Open Sans', Arial, sans-serif;
+pre .line-numbers {
+  font-family: Arial, sans-serif;
   font-size: 12px;
   letter-spacing: 0;
 
   position: absolute;
   left: 0;
   top: 0;
-  /*width: 94px;*/
+  width: 43px;
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
-  padding-top: 7px;
+  padding-top: 11px;
   padding-right: 8px;
-  padding-bottom: 4px;
+  padding-bottom: 9px;
   text-align: right;
   color: rgb(160, 160, 160);
+  
+  line-height: 17px;
   
   border-right: 1px solid rgba(0, 0, 0, .1);
 }

@@ -1,9 +1,22 @@
-// Copyright 2011 Google Inc. All Rights Reserved.
-
 /**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * @fileoverview Lem doodle: Actors.
  *
- * @author mwichary@google.com (Marcin Wichary)
+ * @author sfdimino@google.com (Sophia Foster-Dimino) – graphics/animation
+ * @author mwichary@google.com (Marcin Wichary) – code
  * @author jdtang@google.com (Jonathan Tang)
  * @author khom@google.com (Kristopher Hom)
  */
@@ -198,15 +211,8 @@ engine.ACTORS = {
 
         this.interactive = params.interactive;
 
-        if (this.interactive) {
-          this.setState({ state: 'user' });
-
-          this.setClickable({ clickable: true });
-        } else {
-          this.setState({ state: 'looking-away' });
-
-          this.setClickable({ clickable: false });
-        }
+        this.setClickable({ clickable: this.interactive });
+        this.setState({ state: this.interactive ? 'user' : 'looking-away' });
       }
     },
 
@@ -222,13 +228,13 @@ engine.ACTORS = {
      * changes state before then.
      */
     scheduleFootTapping: function() {
-      if (this.footTappingEvent) {
-        engine.removeEvent({ event: this.footTappingEvent });
+      if (this.footTappingAction) {
+        engine.removeAction({ action: this.footTappingAction });
       }
 
-      this.footTappingEvent = engine.addEvent({
+      this.footTappingAction = engine.addAction({
         startTime: this.FOOT_TAPPING_DELAY,
-        onEvent: function() { $a('trurl').tapFoot(); }
+        onAction: function() { $a('trurl').tapFoot(); }
       });
     },
 
@@ -488,12 +494,12 @@ engine.ACTORS = {
      * The cat will move its head in a (randomized) while.
      */
     scheduleHeadMovement: function() {
-      engine.addEvent({
+      engine.addAction({
         startTime: engine.rangeRand({
             min: this.MIN_MOVEMENT_DELAY,
             max: this.MAX_MOVEMENT_DELAY
         }),
-        onEvent: function() { $a('cat').moveHead(); }
+        onAction: function() { $a('cat').moveHead(); }
       });
     },
 
@@ -501,12 +507,12 @@ engine.ACTORS = {
      * The cat will move its tail in a (randomized) while.
      */
     scheduleTailMovement: function() {
-      engine.addEvent({
+      engine.addAction({
         startTime: engine.rangeRand({
             min: this.MIN_MOVEMENT_DELAY,
             max: this.MAX_MOVEMENT_DELAY
         }),
-        onEvent: function() { $a('cat').moveTail(); }
+        onAction: function() { $a('cat').moveTail(); }
       });
     },
 
@@ -564,7 +570,7 @@ engine.ACTORS = {
       $a('cat').setState({ state: 'standing' });
       $a('cat').setInteractive({ interactive: false });
 
-      engine.addEvents({
+      engine.addActions({
         450: function() {
           $a('cat').setState({ state: 'walking' });
           $a('cat').addTransition({
@@ -738,7 +744,7 @@ engine.ACTORS = {
 
       // Hide the contents a touch later, so it will seem like the bubble
       // crops it as it disappears.
-      engine.addEvents({
+      engine.addActions({
         150: function() {
           $a('hints').clearContents();
         }
@@ -771,7 +777,7 @@ engine.ACTORS = {
         }
       }
 
-      engine.addEvents({
+      engine.addActions({
         // Start showing the bubble.
         0: function() {
           if (source == 'klapaucjusz') {
@@ -987,7 +993,7 @@ engine.ACTORS = {
     show: function() {
       $a('thought-cloud').stage++;
 
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           $a('thought-cloud').clear({ innerId: 'connectors' });
           $a('thought-cloud').clear({ innerId: 'head' });
@@ -1050,7 +1056,7 @@ engine.ACTORS = {
                   speed: 100,
                   count: 1,
                   onFinish: function() {
-                    engine.addEvents({
+                    engine.addActions({
                       2000: function() {
                         $a('thought-cloud').setVisible({ visible: false });
                       }
@@ -1080,7 +1086,7 @@ engine.ACTORS = {
      * if applicable.
      */
     finishOpening: function() {
-      engine.addEvents({
+      engine.addActions({
         750: function() {
           $a('thought-cloud').clear({ innerId: 'disassemble' });
 
@@ -1173,7 +1179,7 @@ engine.ACTORS = {
     HEIGHT: 40,
     PLANE: engine.PLANE_CLOSE_FOREGROUND,
     PLANE_CORRECTION: +2,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     INNER_RECTS: {
       'left-wing': { x: 0, y: 10, width: 8, height: 19 },
@@ -1454,9 +1460,9 @@ engine.ACTORS = {
      * or find a new target to hover around or sit on.
      */
     scheduleNextRandomizeEvent: function() {
-      engine.addEvent({
+      engine.addAction({
         startTime: this.RANDOMIZE_DELAY,
-        onEvent: function() {
+        onAction: function() {
           $a('bird').randomize();
         }
       });
@@ -2030,7 +2036,7 @@ engine.ACTORS = {
     PLANE: engine.PLANE_CLOSE_FOREGROUND,
     PLANE_CORRECTION: +1,
     OFFSET_X: -16,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     /**
      * Change the current state.
@@ -2064,7 +2070,7 @@ engine.ACTORS = {
     OFFSET_X: -16,
     PLANE: engine.PLANE_CLOSE_FOREGROUND,
     PLANE_CORRECTION: +1,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     /**
      * Change the current state.
@@ -2095,7 +2101,7 @@ engine.ACTORS = {
     HEIGHT: engine.EXPANDED_HEIGHT,
     PLANE: engine.PLANE_BK_SKY,
     SCROLLABLE: true,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     // How many strands in each particular pack. The sky consists of many
     // individual strands (lines, or clouds). The start 3px apart at the top,
@@ -2280,7 +2286,7 @@ engine.ACTORS = {
     HEIGHT: engine.EXPANDED_HEIGHT,
     PLANE: engine.PLANE_BK_SKY,
     PLANE_CORRECTION: 2,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     init: function() {
       this.showWhite();
@@ -2527,7 +2533,7 @@ engine.ACTORS = {
           // N-Bot wakes up.
           $a('nbot').moveEyes({ pos: 60 });
 
-          engine.addEvents({
+          engine.addActions({
             0: function() {
               $a('nbot').showAnimation({
                   innerId: 'body', speed: 200, count: 1,
@@ -2566,7 +2572,7 @@ engine.ACTORS = {
 
         case 'activated':
           // N-Bot is now active and breathing.
-          engine.addEvents({
+          engine.addActions({
             0: function() {
               engine.removeTransition({ id: 'nbot-breathe' });
               engine.removeTransition({ id: 'nbot-breathe-body' });
@@ -2918,7 +2924,7 @@ engine.ACTORS = {
                    'intro-finale/button-appear-2',
                    'intro-finale/button-appear-1']});
 
-      engine.addEvents({
+      engine.addActions({
         900: function() {
           $a('nbot-button').showAnimation({
             speed: 50,
@@ -2954,7 +2960,7 @@ engine.ACTORS = {
                    'intro-finale/button-hole-6',
                    'intro-finale/button-hole-7']});
 
-      engine.addEvents({
+      engine.addActions({
        750: function() {
          $a('nbot-button').showAnimation({
            speed: 100,
@@ -3067,7 +3073,7 @@ engine.ACTORS = {
                    'intro-finale/speech-bubble-8',
                    'intro-finale/speech-bubble-9']});
 
-      engine.addEvents({
+      engine.addActions({
         500: function() {
           if (params.item) {
             $a('speech-bubble').showAnimation({
@@ -3426,7 +3432,7 @@ engine.ACTORS = {
      * @param {Object} params
      */
     explode: function() {
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           $a('numbot').addTransition({
             id: 'numbot-shaking-1',
@@ -3593,7 +3599,7 @@ engine.ACTORS = {
 
         var easing = engine.easeOut;
 
-        engine.addEvents({
+        engine.addActions({
           100: function() {
             $a('numbot').addTransition({
               easing: engine.linear,
@@ -3704,9 +3710,9 @@ engine.ACTORS = {
           // already.
           if ((engine.curSceneId == 'before-level-1') ||
               (engine.curSceneId == 'level-1')) {
-            engine.addEvent({
+            engine.addAction({
               startTime: delayBetween,
-              onEvent: function() {
+              onAction: function() {
                 $a('numbot').moveArms();
               }
             });
@@ -3847,7 +3853,7 @@ engine.ACTORS = {
 
       switch (this.stage) {
         case 1:
-          engine.addEvents({
+          engine.addActions({
             0: function() {
               $a('numbot').showAnimation({
                 innerId: 'formula',
@@ -3900,7 +3906,7 @@ engine.ACTORS = {
           break;
 
         case 2:
-          engine.addEvents({
+          engine.addActions({
             0: function() {
               $a('trurl').setState({ state: 'happy' });
 
@@ -3993,7 +3999,7 @@ engine.ACTORS = {
         case 3:
           $a('trurl').setState({ state: 'happy' });
 
-          engine.addEvents({
+          engine.addActions({
             0: function() {
               $a('numbot').showAnimation({
                 innerId: 'head',
@@ -4875,7 +4881,7 @@ engine.ACTORS = {
         easing: engine.backEaseInOut,
         properties: { relY: -60 } });
 
-      engine.addEvents({
+      engine.addActions({
         1000: function() {
           $a('demonbot-ui-extension-3').showImage({
               innerId: 'base-top', imageId: 'demonbot/pen-base-top' });
@@ -5077,7 +5083,7 @@ engine.ACTORS = {
       if ($a('demonbot-ui').stage == 3) {
         engine.goToNextScene();
       } else {
-        engine.addEvents({
+        engine.addActions({
           1000: function() {
             if ($a('demonbot-ui').stage < 3) {
               $a('demonbot-ui-extension-1').clearDial();
@@ -5233,7 +5239,7 @@ engine.ACTORS = {
           break;
       }
 
-      engine.addEvents({
+      engine.addActions({
         1200: function() {
           $a('demonbot-ui').showOutput();
 
@@ -5421,7 +5427,7 @@ engine.ACTORS = {
     PLANE: engine.PLANE_FOREGROUND,
     PLANE_CORRECTION: +2,
     CLAMP_ROTATE: 24,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     PLANET_HIT_DIAMETER: .9,
     MOMENTUM_ADJUSTMENT: 15,
@@ -5646,7 +5652,7 @@ engine.ACTORS = {
                         ]});
       }
 
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           $a('babybot-cannon').addTransition({
             easing: engine.backEaseInOut,
@@ -5708,7 +5714,7 @@ engine.ACTORS = {
      * The baby hits the planet! Hilarity ensues.
      */
     targetHit: function() {
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           $a('trurl').setState({ state: 'happy' });
 
@@ -5747,7 +5753,7 @@ engine.ACTORS = {
           var state = $a('babybot-planet').state;
 
           if (state < 4) {
-            engine.addEvents({
+            engine.addActions({
               2500: function() {
                 $a('babybot-cannon').loadNewBaby();
               }
@@ -5767,7 +5773,7 @@ engine.ACTORS = {
      * Load the new baby into the cannon. Seriously. Read the story.
      */
     loadNewBaby: function() {
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           $a('babybot-cannon').babyLoaded = true;
 
@@ -5810,7 +5816,7 @@ engine.ACTORS = {
 
       this.babyLoaded = false;
 
-      engine.addEvents({
+      engine.addActions({
         0: function() {
           // First the baby gets loaded into the cannon…
           $a('babybot-cannon').showAnimation({
@@ -5878,7 +5884,7 @@ engine.ACTORS = {
               $a('babybot-planet').decreaseDifficulty();
               $a('trurl').negatory();
 
-              engine.addEvents({
+              engine.addActions({
                 750: function() {
                   $a('babybot-cannon').loadNewBaby();
                 }
@@ -5915,7 +5921,7 @@ engine.ACTORS = {
     HEIGHT: 57,
     PLANE: engine.PLANE_SKY,
     PLANE_CORRECTION: +3,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     init: function() {
       // Put off-screen so it doesn’t blink when it first appears.
@@ -5953,7 +5959,7 @@ engine.ACTORS = {
     HEIGHT: 253,
     PLANE: engine.PLANE_SKY,
     PLANE_CORRECTION: +2,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     INNER_RECTS: {
       'planet': { x: 0, y: 0, width: 210, height: 253 },
@@ -6392,7 +6398,7 @@ engine.ACTORS = {
     HEIGHT: 197,
     PLANE: engine.PLANE_MOUSE_POINTER,
     PLANE_CORRECTION: +1,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     // A couple of fake progress bar segments.
     INNER_RECTS: {
@@ -6476,7 +6482,7 @@ engine.ACTORS = {
     WIDTH: 19,
     HEIGHT: 33,
     PLANE: engine.PLANE_TOOLBAR,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     init: function() {
       this.transform({ x: 432, y: engine.bodyOffsetY });
@@ -6503,7 +6509,7 @@ engine.ACTORS = {
     WIDTH: 31,
     HEIGHT: 62,
     PLANE: engine.PLANE_TOOLBAR,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     INNER_RECTS: {
       'wait': { x: 1, y: 30, width: 19, height: 20 },
@@ -6635,7 +6641,7 @@ engine.ACTORS = {
     HEIGHT: 43,
     PLANE: engine.PLANE_MOUSE_POINTER,
     PLANE_CORRECTION: +1,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
 
     // Tip of the pointer (from top-left corner) for each cursor type.
     POINTER_CORRECTIONS: {
@@ -6773,8 +6779,8 @@ engine.ACTORS = {
     HEIGHT: engine.EXPANDED_HEIGHT,
 
     PLANE: engine.PLANE_MOUSE_POINTER,
-    PLANE_CORRECT: +2,
-    NEVER_AUTO_HIDE: true,
+    PLANE_CORRECTION: +2,
+    NO_AUTO_HIDE: true,
 
     // A size of the explosion rect.
     EXPLOSION_WIDTH: 210,
@@ -6862,9 +6868,9 @@ engine.ACTORS = {
 
       // Remove the actor or the rect 250 milliseconds in, in the middle
       // of the explosion.
-      engine.addEvent({
+      engine.addAction({
         startTime: 250,
-        onEvent: function() {
+        onAction: function() {
           if (params.innerId) {
             $a(params.actorId).clear({ innerId: params.innerId });
           } else {
@@ -6880,7 +6886,7 @@ engine.ACTORS = {
     HEIGHT: engine.SCREEN_HEIGHT,
     PLANE: engine.PLANE_COVER,
     PLANE_CORRECTION: +2,
-    NEVER_AUTO_HIDE: true,
+    NO_AUTO_HIDE: true,
     FORCE_RENDER_DOM: true,
     ATTACHED_TO_DOCUMENT_BODY: true,
 
@@ -7131,9 +7137,9 @@ engine.ACTORS = {
       var timeDistance = this.DELAY_BETWEEN_EXPLOSIONS_START;
 
       for (var i in this.elements) {
-        engine.addEvent({
+        engine.addAction({
           startTime: this.FIRST_EXPLOSION_DELAY + i * timeDistance,
-          onEvent: function() {
+          onAction: function() {
             $a('outside-explosions').explodeNextElement();
           }
         });
@@ -7172,9 +7178,9 @@ engine.ACTORS = {
                    'explosions/explosion-' + type + '-9',
                    'explosions/explosion-' + type + '-10']});
 
-      engine.addEvent({
+      engine.addAction({
        startTime: speed * 5,
-       onEvent: function() {
+       onAction: function() {
          el.style.opacity = 0;
          if (engine.features.ie8OrLower) {
            el.style.visibility = 'hidden';
@@ -7308,9 +7314,9 @@ engine.ACTORS = {
 
       this.transitioning = true;
 
-      engine.addEvent({
+      engine.addAction({
         startTime: this.TRANSITION_UP_TIME - 100,
-        onEvent: function() {
+        onAction: function() {
           $a('tooltip').addTransition({
             easing: engine.easeInOut,
             innerId: 'arm',
@@ -7332,9 +7338,9 @@ engine.ACTORS = {
       });
 
       if (!engine.attractMode) {
-        engine.addEvent({
+        engine.addAction({
           startTime: this.TRANSITION_UP_TIME,
-          onEvent: function() {
+          onAction: function() {
             $a('tooltip').showImage({
                 innerId: 'hand',
                 align: [engine.ALIGN_CENTER, engine.ALIGN_END],
@@ -7343,9 +7349,9 @@ engine.ACTORS = {
         });
       }
 
-      engine.addEvent({
+      engine.addAction({
         startTime: this.TRANSITION_UP_TIME + this.TRANSITION_DOWN_TIME,
-        onEvent: function() {
+        onAction: function() {
           $a('tooltip').transitioning = false;
 
           if ($a('tooltip').hideAsSoonAsPossible) {

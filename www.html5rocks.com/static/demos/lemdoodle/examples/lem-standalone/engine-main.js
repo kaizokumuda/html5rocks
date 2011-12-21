@@ -1,9 +1,22 @@
-// Copyright 2011 Google Inc. All Rights Reserved.
-
 /**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * @fileoverview Doodle game engine: Main entry point.
  *
- * @author mwichary@google.com (Marcin Wichary)
+ * @author sfdimino@google.com (Sophia Foster-Dimino) – graphics/animation
+ * @author mwichary@google.com (Marcin Wichary) – code
  * @author jdtang@google.com (Jonathan Tang)
  * @author khom@google.com (Kristopher Hom)
  */
@@ -251,7 +264,7 @@ engine.init = function() {
   engine.listeners = [];
 
   engine.actors = {};
-  engine.events = [];
+  engine.actions = [];
   engine.scenes = [];
   engine.rects = [];
 
@@ -1056,16 +1069,14 @@ engine.goToScene = function(params) {
   this.curScene = this.scenes[params.no];
   this.curSceneId = this.curScene.id;
 
-  if (this.curScene.onEnter) {
-    this.curScene.onEnter();
-  }
+  this.curScene.onEnter();
 
   if (this.curSceneNo > this.lastReachedSceneNo) {
     this.lastReachedSceneNo = this.curSceneNo;
     this.saveProgress();
   }
 
-  this.dispatchGameEvent({ name: 'SceneEnter' });
+  this.dispatchGameAction({ name: 'SceneEnter' });
 };
 
 /**
@@ -1277,7 +1288,7 @@ engine.logicalTick = function(params) {
   engine.updateTimers();
 
   if (!engine.waitingForImages && !engine.tooltipShown) {
-    engine.tickEvents();
+    engine.tickActions();
     engine.tickActors();
   }
 
@@ -1352,24 +1363,24 @@ engine.tickActors = function() {
 };
 
 /**
- * Go through events/transitions and fire necessary ticks.
+ * Go through actions/transitions and fire necessary ticks.
  */
-engine.tickEvents = function() {
-  for (var i in engine.events) {
-    var event = engine.events[i];
+engine.tickActions = function() {
+  for (var i in engine.actions) {
+    var action = engine.actions[i];
 
-    if (event.startTime <= engine.curGameTime) {
-      if (!event.endTime) {
-        // One-time event.
-        event.onEvent();
+    if (action.startTime <= engine.curGameTime) {
+      if (!action.endTime) {
+        // One-time action.
+        action.onAction();
 
-        engine.removeEvent({ event: event });
-      } else if (event.endTime <= engine.curGameTime) {
-        if (event.type == engine.EVENT_TYPE_TRANSITION) {
-          event.tick({ lastTick: true });
+        engine.removeAction({ action: action });
+      } else if (action.endTime <= engine.curGameTime) {
+        if (action.type == engine.ACTION_TYPE_TRANSITION) {
+          action.tick({ lastTick: true });
         }
       } else {
-        event.onEvent();
+        action.onAction();
       }
     }
   }
@@ -1443,36 +1454,36 @@ engine.updateCanvas = function() {
 };
 
 /**
- * Add a new transition to the list of active transitions.
+ * Add a new action to the list of actions.
  * @param {Object} params
  * - {number} .startTime Start time in ms (relative to current time).
  * - {number} .endTime End time in ms (relative to current time).
- * - {func} .onEvent Function to be called at every tick when the
- *                   event is active.
+ * - {func} .onAction Function to be called at every tick when the
+ *                    action is active.
  */
-engine.addEvent = function(params) {
-  var event = new EngineEvent({
+engine.addAction = function(params) {
+  var action = new EngineAction({
       startTime: engine.curGameTime + params.startTime,
       endTime: engine.curGameTime + params.endTime,
-      onEvent: params.onEvent });
+      onAction: params.onAction });
 
-  engine.events.push(event);
+  engine.actions.push(action);
 
-  return event;
+  return action;
 };
 
 /**
- * A shorthand function that allows to add many events in a simplified
- * form: we are passing an object where times are identifiers, and onEvent
+ * A shorthand function that allows to add many actions in a simplified
+ * form: we are passing an object where times are identifiers, and onAction
  * functions are values, e.g.
- *   engine.addEvents({
+ *   engine.addActions({
  *     0: function() { CONTENTS },
  *     50: function() { CONTENTS }
  *   });
  */
-engine.addEvents = function(events) {
-  for (var i in events) {
-    engine.addEvent({ startTime: parseInt(i, 10), onEvent: events[i] });
+engine.addActions = function(actions) {
+  for (var i in actions) {
+    engine.addAction({ startTime: parseInt(i, 10), onAction: actions[i] });
   }
 };
 
@@ -1483,19 +1494,18 @@ engine.addEvents = function(events) {
 engine.addTransition = function(params) {
   var transition = new EngineTransition(params);
 
-  engine.events.push(transition);
+  engine.actions.push(transition);
 };
 
 /**
- * Removes a passed event from the list of active events.
+ * Removes a given action from the list of active actions.
  * @param {Object} params
- * - {object} .event Event object.
+ * - {object} .action Action object.
  */
-engine.removeEvent = function(params) {
-  for (var i in engine.events) {
-    if (engine.events[i] == params.event) {
-      engine.events.splice(i, 1);
-
+engine.removeAction = function(params) {
+  for (var i in engine.actions) {
+    if (engine.actions[i] == params.action) {
+      engine.actions.splice(i, 1);
       break;
     }
   }
@@ -1507,12 +1517,12 @@ engine.removeEvent = function(params) {
  * - {string} .id Transition id.
  */
 engine.removeTransition = function(params) {
-  for (var i in engine.events) {
-    var ev = engine.events[i];
+  for (var i in engine.actions) {
+    var action = engine.actions[i];
 
-    if (ev.type == engine.EVENT_TYPE_TRANSITION &&
-        ev.id == params.id) {
-      engine.removeEvent({ event: ev });
+    if (action.type == engine.ACTION_TYPE_TRANSITION &&
+        action.id == params.id) {
+      engine.removeAction({ action: action });
       break;
     }
   }
@@ -1527,14 +1537,14 @@ engine.removeTransition = function(params) {
  *                            transitions on a given actor.
  */
 engine.removeAnimation = function(params) {
-  for (var i = engine.events.length - 1; i >= 0; i--) {
-    var ev = engine.events[i];
-    if (ev.type == engine.EVENT_TYPE_TRANSITION &&
-        ev.actorId == params.id &&
-        ev.properties.animation &&
-      (((ev.innerId == engine.MAIN_RECT_ID) && (!params.innerId)) ||
-        (ev.innerId == params.innerId) || (params.allInnerRects))) {
-      engine.removeEvent({ event: ev });
+  for (var i = engine.actions.length - 1; i >= 0; i--) {
+    var action = engine.actions[i];
+    if (action.type == engine.ACTION_TYPE_TRANSITION &&
+        action.actorId == params.id &&
+        action.properties.animation &&
+      (((action.innerId == engine.MAIN_RECT_ID) && (!params.innerId)) ||
+        (action.innerId == params.innerId) || (params.allInnerRects))) {
+      engine.removeAction({ action: action });
 
       if (!params.allInnerRects) {
         break;
@@ -1712,16 +1722,16 @@ engine.debugCheckIfImageLoaded = function(params) {
 };
 
 /**
- * A simple dispatcher for a given in-game event to actors. If a given actor
+ * A simple dispatcher for a given in-game action to actors. If a given actor
  * has a method called onXXX, it will be called.
  *
- * Currently used events:
+ * Currently used actions:
  * – onSceneEnter when the new scene begins
  *
  * @param {Object} params
- * - {string} .name Name of the event.
+ * - {string} .name Name of the action.
  */
-engine.dispatchGameEvent = function(params) {
+engine.dispatchGameAction = function(params) {
   for (var id in this.actors) {
     if (this.actors[id]['on' + params.name]) {
       this.actors[id]['on' + params.name]();
