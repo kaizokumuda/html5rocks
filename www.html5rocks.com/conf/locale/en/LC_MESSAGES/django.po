@@ -2744,8 +2744,8 @@ msgstr ""
 msgid "Studio"
 msgstr ""
 
-#: templates/base.html:73
-msgid "Search HTML5Rocks"
+#: templates/base.html:89
+msgid "HTML5Rocks"
 msgstr ""
 
 #: templates/base.html:83
