@@ -233,8 +233,8 @@ msgstr ""
 msgid "Author Profiles"
 msgstr ""
 
-#: content/profiles.html:72
-msgid "Articles"
+#: content/profiles.html:94
+msgid "Contributions"
 msgstr ""
 
 #: content/resources.html:5 templates/base.html:63

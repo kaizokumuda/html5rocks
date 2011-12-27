@@ -1615,6 +1615,10 @@ article.profile section
   margin-right: 19px;
   width: 75px;
   height: 75px;
+  -webkit-filter: grayscale(0.75) sepia(0.5);
+  -moz-filter: grayscale(0.75) sepia(0.5);
+  -ms-filter: grayscale(0.75) sepia(0.5);
+  filter: grayscale(0.75) sepia(0.5);
 }
 
 .profile h2,

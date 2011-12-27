@@ -7,39 +7,6 @@
 <link type="text/css" rel="stylesheet" href="/static/css/profiles{% if prod %}.min{% endif %}.css"/>
 -->
 <script src="/static/js/profiles{% if prod %}.min{% endif %}.js"></script>
-<script>
-$(document).ready(function() {
-  // WebGL for greyscaling author images.
-  $(window).load(function() {
-
-    if (!window.WebGLRenderingContext) {
-      return;
-    }
-
-    $.getScript('/static/js/glfx.js', function() {
-      var webglcanvas = null;
-      try {
-        webglcanvas = fx.canvas();
-      } catch (e) {
-        return;
-      }
-
-      if (!webglcanvas) {
-        return;
-      }
-
-      var images = document.querySelectorAll('#profiles img[itemprop=photo]');
-
-      [].forEach.call(images, function(image) {
-        var texture = webglcanvas.texture(image);
-        webglcanvas.draw(texture).hueSaturation(0, -1).vignette(0.5, 0.5).update();
-        image.src = webglcanvas.toDataURL('image/png');
-      });
-    });
-
-  });
-});
-</script>
 {% endblock %}
 {% block onload %}scrollToProfile();{% endblock %}
 {% block body %}
@@ -124,7 +91,7 @@ $(document).ready(function() {
             {% endif %}
           </ul>
           {% if not is_mobile %}
-            <div class="list-articles">{% trans "Articles" %} <span>&rarr;</span></div>
+            <div class="list-articles">{% trans "Contributions" %} <span>&rarr;</span></div>
 
             {% if profile.geo_location %}
             <div itemprop="geo" class="map active">
