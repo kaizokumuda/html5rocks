@@ -59,6 +59,9 @@ template.register_template_library('templatetags.templatefilters')
 
 class ContentHandler(webapp.RequestHandler):
 
+  FEED_RESULTS_LIMIT = 20
+  FEATURE_PAGE_WHATS_NEW_LIMIT = 10
+
   def get_language(self):
     lang_match = re.match("^/(\w{2,3})(?:/|$)", self.request.path)
     self.locale = lang_match.group(1) if lang_match else settings.LANGUAGE_CODE
@@ -107,8 +110,9 @@ class ContentHandler(webapp.RequestHandler):
   def get_feed(self, path):
     articles = memcache.get('feed|%s' % path)
     if articles is None or not self.request.cache:
-      # DB query is memcached in get_all().
-      tutorials = models.Resource.get_all().order('-publication_date')
+      # DB query is memcached in get_all(). Limit to last several results
+      tutorials = (models.Resource.get_all().order('-publication_date')
+                                  .fetch(limit=self.FEED_RESULTS_LIMIT))
 
       articles = []
       for tut in tutorials:
@@ -125,7 +129,7 @@ class ContentHandler(webapp.RequestHandler):
         article['categories'] = []
         for tag in tut.tags:
           article['categories'].append(tag)
-        
+
         articles.append(article)
 
       memcache.set('feed|%s' % path, articles, 86400) # Cache feed for 24hrs.
@@ -344,6 +348,7 @@ class ContentHandler(webapp.RequestHandler):
       logging.info('Building request for `%s` in locale `%s`', path, locale)
       (dir, filename) = os.path.split(path)
       if os.path.isfile(os.path.join(dir, locale, filename)):
+        # Lookup tutorial by its url. Return the first one that matches.
         tut = models.Resource.all().filter('url =', '/' + relpath).get()
 
         # If tutorial is marked as draft, redirect and don't show it.
@@ -393,7 +398,8 @@ class ContentHandler(webapp.RequestHandler):
       category = relpath.replace('features/', '')
       data = {
         'category': category,
-        'updates': TagsHandler().get_as_db('class:' + category)
+        'updates': (TagsHandler().get_as_db('class:' + category)
+                    .fetch(limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT))
       }
       self.render(data=data, template_path=path + '.html', relpath=relpath)
 
@@ -478,6 +484,9 @@ class DBHandler(ContentHandler):
     for resource in resources:
       resource.delete()
 
+  # /database/resource
+  # /database/resource/1234
+  # /database/load_all
   def get(self, relpath, post_id=None):
     self._set_cache_param()
 
@@ -646,25 +655,68 @@ class DBHandler(ContentHandler):
     return '/database'
 
 
-class APIHandler(webapp.RequestHandler):
+class APIHandler(ContentHandler):
 
   def get(self, relpath):
-    if (relpath == 'authors'):
+    output = []
+
+    if relpath == 'authors':
       profiles = {}
       for p in models.get_sorted_profiles(): # This query is memcached.
         profile_id = p['id']
         profiles[profile_id] = p
         geo_location = profiles[profile_id]['geo_location']
         profiles[profile_id]['geo_location'] = str(geo_location)
+      output = profiles
+    elif relpath == 'tutorials':
+      output = TagsHandler()._query_to_serializable_list(
+          TagsHandler().get_as_db('type:tutorial'))
+    elif relpath == 'articles':
+      output = TagsHandler()._query_to_serializable_list(
+          TagsHandler().get_as_db('type:article'))
+    elif relpath == 'casestudies':
+      output = TagsHandler()._query_to_serializable_list(
+          TagsHandler().get_as_db('type:casestudy'))
+    elif relpath == 'demos':
+      output = TagsHandler()._query_to_serializable_list(
+          TagsHandler().get_as_db('type:demo'))
+    elif relpath == 'samples':
+      output = TagsHandler()._query_to_serializable_list(
+          TagsHandler().get_as_db('type:sample'))
+    elif relpath == 'presentations':
+      output = TagsHandler()._query_to_serializable_list(
+          TagsHandler().get_as_db('type:presentation'))
+    elif relpath == 'announcements':
+      output = TagsHandler()._query_to_serializable_list(
+          TagsHandler().get_as_db('type:announcement'))
+    elif relpath == 'videos':
+      output = TagsHandler()._query_to_serializable_list(
+          TagsHandler().get_as_db('type:video'))
 
-      self.response.headers['Content-Type'] = 'application/json'
-      self.response.out.write(simplejson.dumps(profiles))
-      return
-    else:
-      self.redirect('/')
+    self.response.headers['Content-Type'] = 'application/json'
+    self.response.out.write(simplejson.dumps(output))
 
 
-class TagsHandler(webapp.RequestHandler):
+class TagsHandler(ContentHandler):
+
+  def _query_to_serializable_list(self, query):
+    resources = []
+    for r in query:
+      second_author = None
+      if r.second_author:
+        second_author = r.second_author.key().name()
+
+      update_date = r.update_date
+      if update_date:
+        update_date = r.update_date.isoformat()
+
+      resources.append(r.to_dict())
+      resources[-1]['publication_date'] = r.publication_date.isoformat()
+      resources[-1]['update_date'] = update_date
+      resources[-1]['author'] = r.author.key().name()
+      resources[-1]['second_author'] = second_author
+
+    return resources
 
   def _get(self, tag):
     tag = urllib2.unquote(tag)
@@ -673,6 +725,10 @@ class TagsHandler(webapp.RequestHandler):
     return (models.Resource.get_all().filter('tags =', tag)
                                      .order('-publication_date'))
 
+  # /tags/json/type:demo
+  # /tags/json/class:file_access
+  # /tags/json/dnd
+  # /tags/db/dnd
   def get(self, format, tag):
     if format == 'json':
       return self.get_as_json(tag)
@@ -682,16 +738,7 @@ class TagsHandler(webapp.RequestHandler):
   def get_as_json(self, tag):
     query = self._get(tag)
 
-    resources = []
-    for r in query:
-      second_author = None
-      if r.second_author:
-        second_author = r.second_author.key().name()
-      resources.append(r.to_dict())
-      resources[-1]['publication_date'] = r.publication_date.isoformat()
-      resources[-1]['update_date'] = r.update_date.isoformat()
-      resources[-1]['author'] = r.author.key().name()
-      resources[-1]['second_author'] = second_author
+    resources = self._query_to_serializable_list(query)
 
     self.response.headers['Content-Type'] = 'application/json'
     self.response.out.write(simplejson.dumps(resources))

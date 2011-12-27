@@ -5,7 +5,7 @@
 {% block headtitle %}{% trans "A resource for open web HTML5 developers" %}{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/index_page_mobile{% if prod %}.min{% endif %}.css" />
+  <!--<link rel="stylesheet" media="only screen and (max-width: 640px)" href="/static/css/index_page_mobile{% if prod %}.min{% endif %}.css" />-->
 
   <script>
   $(document).ready(function() {
@@ -271,7 +271,7 @@ function processPipeFeed(result) {
       entry.category.forEach(function(cat) {
         classes += '<span class="class ' + cat.term + '"><span class="class_name">' + cat.term + '</span></span>';
         //TODO: use each cat.term
-        //TODO: do categories correspond to classes? No -- categories are formats: Tutorial, Article, Case Study, News, Presentation, Video
+        //TODO: do categories correspond to classes? No -- categories are formats: Tutorial, Article, Case Study, Announcements, Presentation, Video
         //                                                 classes are technologies: Offline, Storage, Connectivity, File, Access, Semantics, Audio/Video, 3D/Graphics, Presentation, Performance, Nuts & Bolts
         //                                                 audiences/personas: General, Mobile, Gaming, Business
       });
