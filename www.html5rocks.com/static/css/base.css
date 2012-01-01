@@ -1616,9 +1616,25 @@ article.profile section
   width: 75px;
   height: 75px;
   -webkit-filter: grayscale(0.75) sepia(0.5);
-  -moz-filter: grayscale(0.75) sepia(0.5);
-  -ms-filter: grayscale(0.75) sepia(0.5);
-  filter: grayscale(0.75) sepia(0.5);
+     -moz-filter: grayscale(0.75) sepia(0.5);
+      -ms-filter: grayscale(0.75) sepia(0.5);
+       -o-filter: grayscale(0.75) sepia(0.5);
+          filter: grayscale(0.75) sepia(0.5);
+
+  -webkit-transition: all 0.3s ease-out;  
+     -moz-transition: all 0.3s ease-out;  
+      -ms-transition: all 0.3s ease-out;  
+       -o-transition: all 0.3s ease-out;  
+          transition: all 0.3s ease-out;
+}
+
+.profile:hover img[itemprop=photo]
+{
+  -webkit-filter: none;
+     -moz-filter: none;
+      -ms-filter: none;
+       -o-filter: none;
+          filter: none;
 }
 
 .profile h2,
