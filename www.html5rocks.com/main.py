@@ -349,6 +349,8 @@ class ContentHandler(webapp.RequestHandler):
       (dir, filename) = os.path.split(path)
       if os.path.isfile(os.path.join(dir, locale, filename)):
         # Lookup tutorial by its url. Return the first one that matches.
+        # get_all() not used because we don't care about caching on individual
+        # tut pages.
         tut = models.Resource.all().filter('url =', '/' + relpath).get()
 
         # If tutorial is marked as draft, redirect and don't show it.
@@ -371,7 +373,8 @@ class ContentHandler(webapp.RequestHandler):
     elif os.path.isfile(path):
       #TODO(ericbidelman): Don't need these tutorial/update results for query.
       if relpath in ['mobile', 'gaming', 'business']:
-        result = TagsHandler().get_as_db(relpath)
+        result = (TagsHandler().get_as_db(relpath)
+                               .fetch(limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT))
       else:
         result = models.Resource.get_all().order('-publication_date')
 
@@ -451,6 +454,7 @@ class DBHandler(ContentHandler):
     self._ImportBackupResources('/studio.yaml')
 
   def _AddTestAuthors(self):
+    memcache.flush_all()
     f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
     for profile in yaml.load_all(f):
       author = models.Author(
@@ -474,8 +478,6 @@ class DBHandler(ContentHandler):
     f.close()
 
   def _NukeDB(self):
-    memcache.flush_all()
-
     authors = models.Author.all()
     for author in authors:
       author.delete()
@@ -483,6 +485,8 @@ class DBHandler(ContentHandler):
     resources = models.Resource.all()
     for resource in resources:
       resource.delete()
+
+    memcache.flush_all()
 
   # /database/resource
   # /database/resource/1234
@@ -560,9 +564,6 @@ class DBHandler(ContentHandler):
 
   def post(self, relpath):
 
-    # TODO: Don't use flush_all. Use flush_all_async() or only purge tutorials.
-    memcache.flush_all()
-
     if relpath == 'author':
       try:
         given_name = self.request.get('given_name')
@@ -585,7 +586,9 @@ class DBHandler(ContentHandler):
         lon = self.request.get('lon')
         if lat and lon:
           author.geo_location = db.GeoPt(float(lat), float(lon))
+
         author.put()
+
       except db.Error:
         pass
       else:
@@ -651,6 +654,10 @@ class DBHandler(ContentHandler):
       tutorial.put()
 
       return self.redirect('/database/resource')
+
+    # TODO: Don't use flush_all. Use flush_all_async() or only purge tutorials.
+    # Once new entry is saved, flush memcache.
+    memcache.flush_all()
 
     return '/database'
 

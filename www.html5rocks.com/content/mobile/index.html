@@ -32,9 +32,9 @@
       <h3>{% trans "Mobile" %} {% trans "Updates" %}</h3>
       <ul>
         {% for tut in tutorials %}
-          <li style="white-space:nowrap;">
+          <li style="white-space:nowrap;text-overflow: ellipsis;overflow: hidden;">
             <span class="date">{{tut.publication_date.month}}/{{tut.publication_date.day}}</span> <span class="author" data-author_id="{{ tut.author.key.name }}"><img src="/static/images/profiles/{{tut.author.key.name}}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}"></span>
-            <span class="title"><a href="{{tut.url}}">{{tut.title}}</a></span>
+            <span class="title"><a href="{{tut.url}}">{{tut.title|safe}}</a></span>
             <span class="classes">
               {% for tag in tut.classes %}
                 <span class="class {{tag}}"><span class="class_name">{{tag}}</span></span>
@@ -51,12 +51,14 @@
       <h3>{% trans "Mobile" %} {% trans "Tutorials" %}</h3>
       <ul class="definitions">
       {% for r in tutorials %}
-        {% if forloop.counter0 < 4 %}
+        {% if forloop.counter0 < 10 %}
+          {% if r.type == 'type:tutorial' %}
           <li>
             <a href="{{r.url}}">{{r.title}}</a><br>
             <span>{{r.description|safe|truncatewords:15}}</span>
             </a>
           </li>
+          {% endif %}
         {% endif %}
       {% empty %}
         <p>Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.</p>
