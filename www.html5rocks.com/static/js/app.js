@@ -42,20 +42,19 @@ function finishPanelLoad(pagePanel, elemstate) {
 }
 
 $(document).keydown(function(e) {
-  var goFeature = '';
+  var goFeature, currentFeature;
   var action = {
     '37': 'previous',
     '39': 'next'
   }[e.keyCode];
   var currentPage = $('.page.current');
   if (currentPage.parent().hasClass('flexbox-container')) {
-    var currentPageId = currentPage.attr('id').replace(/feature-/, '');
     if (action == 'previous') {
-      goFeature = currentPage.prev().attr('id').replace(/features-/, '');
+      goFeature = currentPage.prev();
       currentPage.prev().addClass('previous')
     }
     if (action == 'next') {
-      goFeature = currentPage.next().attr('id').replace(/features-/, '');
+      goFeature = currentPage.next();
       currentPage.next().addClass('next')
     }
     if (goFeature) {
@@ -63,7 +62,8 @@ $(document).keydown(function(e) {
         $('.page').removeClass('previous');
         $('.page').removeClass('next');
       });
-      loadContent($('nav.paginator ul.' + goFeature + ' a.' + action)[0]);
+      currentFeature = currentPage.attr('id').replace(/features-/, '');
+      loadContent($('nav.paginator ul.' + currentFeature + ' a.' + action)[0]);
     }
   }
   if (e.keyCode == 27) { // ESC
@@ -97,7 +97,6 @@ if (AJAXIFY_SITE) {
 }
 
 function loadContent(elem, popped){
-
   window.page = elem.pathname
                   // remove locale
                   .replace(/\/\w{2,3}\//gi, '')
