@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -18,7 +19,7 @@
     <section>
       <p class="intro">
         {% blocktrans %}
-          Sed purus ante, congue eget convallis at, aliquet ut diam. Pellentesque volutpat posuere lectus, eu venenatis enim molestie nec. Sed ac eros lorem. Nulla egestas mauris a quam tincidunt ac lacinia ipsum commodo. Phasellus fermentum est sed arcu rhoncus eget ornare quam lobortis. Morbi. elit massa, molestie vitae adipiscing non, gravida vitae dolor. Praesent id tellus scelerisque libero posuere malesuada.
+          HTML5 introduces many cutting-edge features that enable developers to create apps and websites with the functionality, speed, performance, and experience of desktop applications. But unlike desktop applications, apps built on the web platform can reach a much broader audience using a wider array of devices. HTML5 accelerates the pace of your innovation and enables you to seamlessly roll out your latest work to all your users simultaneously. 
         {% endblocktrans %}
       </p>
     </section>
@@ -35,12 +36,7 @@
   </header>
 
   <article class="pattern-bg-lighter">
-    <h1>Lorem Ipsum</h1>
-    <p>Sed rhoncus porttitor nibh, eget consequat nibh sodales sed. Aliquam ac urna mi, luctus laoreet massa. Phasellus vel hendrerit nibh. Integer convallis bibendum enim, id condimentum metus imperdiet sed. Vestibulum placerat, urna quis gravida viverra, nulla ligula eleifend nulla, a vehicula purus velit ac felis. Proin ut tincidunt leo. Praesent eu sodales eros. Pellentesque luctus orci eu metus pharetra vel aliquam ipsum convallis. Phasellus eu massa vitae lorem ultricies ultrices. Maecenas tempus, mauris sit amet sagittis venenatis, odio risus convallis dui, ut venenatis est augue eu mauris. Duis eget lectus vitae orci imperdiet semper quis nec orci.</p>
-    <p>In hac habitasse platea dictumst. Suspendisse faucibus vestibulum ipsum. In hac habitasse platea dictumst. Pellentesque id elit est. Morbi sit amet nibh lacus, eu luctus eros. Fusce sed velit est, sit amet euismod turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vel posuere mauris. Praesent aliquam diam quis lorem aliquet blandit. Nullam sit amet ante non arcu elementum accumsan sed quis nunc. Nunc fermentum velit in lectus ultrices id tincidunt lectus interdum. Donec quis dui ac nisi bibendum egestas in commodo orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce sagittis pulvinar dui vitae mattis.</p>
-    <h2>Dolor Sit Amet</h2>
-    <p>Aliquam dui orci, sagittis a rhoncus sodales, aliquet vitae orci. Suspendisse quis nisl nisl, sed volutpat risus. Sed sagittis faucibus imperdiet. Pellentesque et est rhoncus tellus dapibus sagittis. Aenean commodo eros lobortis mauris vehicula feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec scelerisque, sapien vitae rhoncus rhoncus, magna ipsum vehicula felis, et ullamcorper diam enim sit amet enim. Nam vitae faucibus nisl. Nulla felis tortor, luctus at tristique eget, egestas ut mauris. Proin et nisl sit amet leo semper convallis eget lobortis mi. Nulla placerat libero non urna placerat varius. Morbi id auctor tellus. Maecenas eu magna in massa sodales feugiat.</p>
-    <p>Suspendisse sodales sapien imperdiet sem vestibulum nec commodo nisl eleifend. Aenean tempor, purus et vestibulum sagittis, eros dui bibendum erat, sit amet convallis eros erat et nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam elementum volutpat magna, in hendrerit diam interdum sed. Mauris blandit ligula mi. Aenean hendrerit cursus lacus, non venenatis nibh elementum non. Sed cursus nisl iaculis tortor sodales eget vestibulum purus eleifend. Nullam lacus lacus, imperdiet ut adipiscing non, volutpat non felis.</p>
+    {% include 'why_content.html' %}
   </article>
 </div>
 {% include "footer.html" %}
