@@ -491,6 +491,7 @@ class DBHandler(ContentHandler):
   # /database/resource
   # /database/resource/1234
   # /database/load_all
+  # /database/drop_all
   def get(self, relpath, post_id=None):
     self._set_cache_param()
 
