@@ -671,7 +671,7 @@ org:
   unit: Developer Relations
 address:
   locality: Beijing
-  region: Haidian
+  region:
   country: China
   lat: 39.993294
   lon: 116.330365

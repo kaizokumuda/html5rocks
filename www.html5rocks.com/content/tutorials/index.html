@@ -29,7 +29,7 @@
       </div>
       <div class="one_quarter">
         <h3>Audience:</h3>
-        <ul>
+        <ul id="updates_audience_filter">
           <li><label><input type="checkbox"> General</label></li>
           <li><label><input type="checkbox"> Mobile</label></li>
           <li><label><input type="checkbox"> Gaming</label></li>
@@ -38,24 +38,24 @@
       </div>
       <div class="one_half">
         <h3>Technology:</h3>
-        <ul>
-          <li><label><input type="checkbox"> Offline</label></li>
-          <li><label><input type="checkbox"> Storage</label></li>
-          <li><label><input type="checkbox"> Connectivity</label></li>
-          <li><label><input type="checkbox"> File Access</label></li>
-          <li><label><input type="checkbox"> Semantics</label></li>
-          <li><label><input type="checkbox"> Audio/Video</label></li>
-          <li><label><input type="checkbox"> 3D/Graphics</label></li>
-          <li><label><input type="checkbox"> Presentation</label></li>
-          <li><label><input type="checkbox"> Performance</label></li>
-          <li><label><input type="checkbox"> Nuts &amp; Bolts</label></li>
+        <ul id="updates_technology_filter">
+          <li><label><input type="checkbox" value="offline"> Offline</label></li>
+          <li><label><input type="checkbox" value="storage"> Storage</label></li>
+          <li><label><input type="checkbox" value="connectivity"> Connectivity</label></li>
+          <li><label><input type="checkbox" value="file_access"> File Access</label></li>
+          <li><label><input type="checkbox" value="semantics"> Semantics</label></li>
+          <li><label><input type="checkbox" value="multimedia"> Audio/Video</label></li>
+          <li><label><input type="checkbox" value="graphics"> 3D/Graphics</label></li>
+          <li><label><input type="checkbox" value="presentation"> Presentation</label></li>
+          <li><label><input type="checkbox" value="performance"> Performance</label></li>
+          <li><label><input type="checkbox" value="nuts_and_bolts"> Nuts &amp; Bolts</label></li>
         </ul>
       </div>
 
       <div class="tag_filter">
         <label>
           Tags:
-          <input type="text" placeholder="Comma separated list of tags: workers,filesystem,file,..." onchange="filterTag(this.value);">
+          <input id="updates_tag_filter" type="text" placeholder="Comma separated list of tags: workers,filesystem,file,..." onchange="filterTag();">
         </label>
       </div>
     </section>
@@ -85,7 +85,7 @@
       </h2>
 
       {% for tut in tutorials %}
-      <article class="tutorial_listing">
+      <article class="tutorial_listing" data-type="{{ tut.type }}" data-classes="{{ tut.classes|join:',' }}">
         <h3 id="{{tut.title|slugify}}" data-pubdate="{{tut.publication_date.year}}-{{tut.publication_date.month}}-{{tut.publication_date.day}}">
           <a href="{{tut.url}}">{{tut.title}}</a>
         </h3>
@@ -114,7 +114,7 @@
           {% endif %}
 
           {% for tag in tut.tags %}
-            <span class="tag {% if 'type:' in tag %}hidden{% endif %}">{{tag}}</span>
+            <span class="tag">{{tag}}</span>
           {% endfor %}
 
           <div class="classes">
@@ -135,47 +135,34 @@
 
 <script>
 $(document).ready(function() {
-  $('.tag').click(filterTag);
-
-  $('#updates_format_filter').click(function(e) {
-    $(this).find('input[type="checkbox"]').attr('checked', false);
-
-    var checkbox = e.target;
-    checkbox.checked = true;
-    var tag = checkbox.parentElement.textContent;
-
-    // 'Case Study' -> 'casestudy'.
-    var type = $.trim(tag).toLowerCase().replace(' ', '');
-
-    if (checkbox.checked) {
-      filterTag('type:' + type);
-    } else {
-      clearFilter();
-    }
+  $('.tag').click(function(){
+    filterTag(this.textContent);
   });
+  $('section.filter input[type="checkbox"]').click(filterTag);
 
-  if (document.location.hash) {
+  if (window.location.hash) {
     // Hide all samples as soon as DOM is loaded to prevent flicker effect.
-    var samples = $('.tutorial_listing');
-    samples.addClass('hidden');
-    filterTag(document.location.hash.substring(1));
+    //var samples = $('.tutorial_listing');
+    //samples.addClass('hidden');
+    filterTag(window.location.hash.substring(1));
   }
 });
 
 function clearFilter() {
   $('.tutorial_listing.hidden').removeClass('hidden');
-  $('.tag_filter input[type="text"]').val('');
-  $('#updates_format_filter input[type="checkbox"]').attr('checked', false);
+  $('#updates_tag_filter').val('');
+  $('section.filter input[type="checkbox"]').attr('checked', false);
   $('#filter').parent().addClass('hidden');
   if (!!window.history) {
     var lang = document.documentElement.lang || 'en';
     history.replaceState({}, document.title, '/' + lang + '/tutorials');
   } else {
-    document.location.hash = '';
+    window.location.hash = '';
   }
 };
 
 // TODO: this method is being called twice for some reason. Because of onhashchange?
+var times = 0;
 function filterTag(opt_tag) {
   var e = window.event;
 
@@ -184,46 +171,99 @@ function filterTag(opt_tag) {
     return;
   }
 
-  var tag = typeof opt_tag == 'string' ? opt_tag : $(this).text();
-  document.location.hash = tag;
+  console.log('called: ' + ++times);
 
   var samples = $('.tutorial_listing');
+  samples.addClass('hidden');
 
-  if (tag) {
-    var types = [];
-    $('#updates_format_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
-      var type = checkbox.parentElement.textContent;
-      // 'Case Study' -> 'casestudy'.
-      types.push('type:' + $.trim(type).toLowerCase().replace(' ', ''));
-    });
+  if ((!opt_tag || typeof(opt_tag) != 'string') && window.location.hash) {
+    opt_tag = window.location.hash.substring(1);
+  }
 
-    samples.addClass('hidden');
-    $.each(tag.split(','), function(i, eachtag) {
-      if (types.length) {
-        types.forEach(function(type, i) {
-          samples.find('span.tag:contains("' + type + '")')
-                 .closest('.tutorial_listing')
-                 .find('span.tag:contains("' + eachtag + '")')
-                 .closest('.tutorial_listing').removeClass('hidden');
-        });
-      } else {
-        samples.find('span.tag:contains("' + eachtag + '")')
-               .closest('.tutorial_listing').removeClass('hidden');
-      }
-    });
-    $('#filter_tag').text(tag);
+  if (opt_tag && typeof(opt_tag) == 'string' && opt_tag.length) {
+    opt_tag = opt_tag.toLowerCase();
+    samples = samples.find('span.tag:contains("' + opt_tag + '")')
+                     .closest('.tutorial_listing');
+    window.location.hash = opt_tag;
+    $('#filter_tag').text(opt_tag);
     $('#filter').parent().removeClass('hidden');
-    //window.scrollTo(0, 0);
-  } else {
-    clearFilter();
+  }
+
+  // Gets all filters
+  var types = [];
+  $('#updates_format_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
+    var type = checkbox.parentElement.textContent;
+    // 'Case Study' -> 'casestudy'.
+    types.push($.trim(type).toLowerCase().replace(' ', ''));
+  });
+
+  var audiences = [];
+  $('#updates_audience_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
+    audiences.push($.trim(checkbox.parentElement.textContent).toLowerCase());
+  });
+
+  var technologies = [];
+  $('#updates_technology_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
+    technologies.push(checkbox.value);
+  });
+
+  var tags = $('#updates_tag_filter')[0].value;
+  var tag_list = tags ? tags.toLowerCase().split(',') : [];
+  
+  for (var i = 0; i < samples. length; i++) {
+    var qualified = true;
+    var sample = samples[i];
+
+    if ((types.length > 0) && (types.indexOf(sample.dataset['type']) < 0)) {
+      qualified = false;
+    }
+
+    if (qualified && (audiences.length > 0)) {
+      var matched = false;
+      for (var j = 0; j < audiences.length; j++) {
+        if ($('span.tag:contains("' + audiences[j] + '")', sample).length > 0) {
+          matched = true;
+          break;
+        }
+      }
+      qualified = matched;
+    }
+
+    if (qualified && (technologies.length > 0)) {
+      var matched = false;
+      var class_list = sample.dataset['classes'].split(',');
+      for (var j = 0; j < technologies.length; j++) {
+        if (class_list.indexOf(technologies[j]) >= 0) {
+          matched = true;
+          break;
+        }
+      }
+      qualified = matched;
+    }
+
+    if (qualified && (tags)) {
+      var matched = false;
+      for (var j = 0; j < tag_list.length; j++) {
+        if ((tag_list[j].length > 0) &&
+            $('span.tag:contains("' + tag_list[j] + '")', sample).length > 0) {
+          matched = true;
+          break;
+        }
+      }
+      qualified = matched;
+    }
+    
+    if (qualified) {
+      sample.classList.remove('hidden');
+    }
   }
 };
 
 // Adds back button support.
 window.addEventListener('hashchange', function(e) {
-  filterTag(document.location.hash.substring(1));
+  filterTag(window.location.hash.substring(1));
   if (window._gaq) {
-    _gaq.push(['_trackPageview', document.location.href]);
+    _gaq.push(['_trackPageview', window.location.href]);
   }
 }, false);
 </script>
