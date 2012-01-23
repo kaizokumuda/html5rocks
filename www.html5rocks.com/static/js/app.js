@@ -18,13 +18,6 @@ $('.subheader.features ul li a').click(function() {
 
 // Page grid navigation.
 function finishPanelLoad(pagePanel, elemstate) {
-  if (pagePanel.hasClass('next')) {
-    pagePanel.removeClass('next');
-    pagePanel.prev().addClass('previous');
-  } else if (pagePanel.hasClass('previous')) {
-    pagePanel.removeClass('previous');
-    pagePanel.next().addClass('next');
-  }
   $('.page').removeClass('current');
   pagePanel.addClass('current');
 
@@ -42,30 +35,6 @@ function finishPanelLoad(pagePanel, elemstate) {
 }
 
 $(document).keydown(function(e) {
-  var goFeature, currentFeature;
-  var action = {
-    '37': 'previous',
-    '39': 'next'
-  }[e.keyCode];
-  var currentPage = $('.page.current');
-  if (currentPage.parent().hasClass('flexbox-container')) {
-    if (action == 'previous') {
-      goFeature = currentPage.prev();
-      currentPage.prev().addClass('previous')
-    }
-    if (action == 'next') {
-      goFeature = currentPage.next();
-      currentPage.next().addClass('next')
-    }
-    if (goFeature) {
-      currentPage.one('webkitTransitionEnd', function(e) {
-        $('.page').removeClass('previous');
-        $('.page').removeClass('next');
-      });
-      currentFeature = currentPage.attr('id').replace(/features-/, '');
-      loadContent($('nav.paginator ul.' + currentFeature + ' a.' + action)[0]);
-    }
-  }
   if (e.keyCode == 27) { // ESC
     // Hide search and/or feature bar.
     $('#search_hide, #features_hide').click();
