@@ -452,52 +452,6 @@ header.main nav,
   top: 0;
 }
 
-.flexbox-container {
-  position: relative;
-  width: 1000px;
-  margin: 3.5em auto;
-
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-
-  /*display: -moz-box;
-  -moz-box-orient: horizontal;*/
-
-  display: box;
-  box-orient: horizontal;
-
-  -webkit-box-align: top;
-  -webkit-box-pack: justify;
-
-  /*-moz-box-align: top;
-  -moz-box-pack: justify;*/
-
-  box-align: top;
-  box-pack: justify;
-}
-
-.flexbox-container .page {
-  display: none;
-  margin: 0;
-  top: 0;
-}
-
-.flexbox-container .page.current {
-  top: 0;
-  display: block;
-  margin-left: 0;
-}
-
-.flexbox-container .page.next {
-  display: block;
-  margin-left: 1500px;
-}
-
-.flexbox-container .page.previous {
-  display: block;
-  margin-left: -1500px;
-}
-
 article article,
 article.sectioned,
 article section,
