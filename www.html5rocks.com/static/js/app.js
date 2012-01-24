@@ -263,8 +263,9 @@ window.feed = {
       html.push('<li><span class="byline"><span class="date">', entry.formattedDateStr, '</span> ',
                 '<span class="author">', entry.author ? '<img src="/static/images/profiles/' + entry.author + '.png">' : '', '</span></span>',
                 '<span class="details"><span class="title">', entry.title.link(entry.link), '</span>',
-                classes,
-                '<span data-type="', entry.type, '" class="type">', entry.type, '</span></span></li>');
+                classes
+                //,'<span data-type="', entry.type, '" class="type">', entry.type, '</span></span></li>'
+                );
     }
     container.innerHTML += html.join('');
 

@@ -1415,10 +1415,10 @@ body[data-href='home'] #updates_badge /* The shaker. */
 body[data-href='home'] section#updates
 {
   margin-top: 0;
-  left: 2500px;
+  left: 0;
   padding: 1.75% 2%;
   width: 96%;
-  height: 350px;
+  min-height: 300px;
 }
 
 body[data-href='home'] section#updates h2
