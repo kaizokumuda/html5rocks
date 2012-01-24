@@ -1,0 +1,29 @@
+{{#each updates}}       
+<article class="tutorial_listing" data-type="{{ type }}" data-classes="{{ classes }}">
+  <h3 id="{{title }}" data-pubdate="date">
+    <a href="{{url}}">{{title}}</a>
+  </h3>
+  <div>
+    <span class="date">{{publication_date}}</span>
+    <span class="author" data-author_id="{{ author }}">By
+      <a href="/profiles/#!/{{ author }}">
+        <img class="author_image" src="/static/images/profiles/{{ author }}.png" alt="{{ author }}" >
+        {{ author }}
+      </a>
+    </span>
+
+    {% for tag in tags %}
+      <span class="tag">{{tag}}</span>
+    {% endfor %}
+
+    <div class="classes">
+      {% for tag in classes %}
+        <span class="class {{tag}}"><span class="class_name">{{tag}}</span></span>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="summary">
+    {% if description %}{{description}}{% endif %}
+  </div>
+</article>
+{{/each}}
