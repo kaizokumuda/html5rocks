@@ -49,6 +49,9 @@ sidebars = [
 # Number of entries per page in indexes.
 posts_per_page = 10
 
+# Number of items in the atom feed.
+posts_in_feed = 20
+
 # The mime type to serve HTML files as.
 html_mime_type = "text/html; charset=utf-8"
 
