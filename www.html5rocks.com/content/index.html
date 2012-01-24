@@ -179,6 +179,7 @@
   </div>
 </article>
 
+{% if not is_mobile %}
 <a id="scroll-authors" class="nav arrow_down">Contributors</a>
 
 <article id="authors" class="clearfix sectioned">
@@ -218,10 +219,9 @@
   {% endfor %}
   </div>
 </article>
+{% endif %}
 
 <script>
-
-
 {% if not is_mobile %}
   (function(){
     var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";

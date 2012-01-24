@@ -8,6 +8,7 @@
 
 {% block body %}
 <div data-import-html>
+  {% if not is_mobile %}
   <header class="clearfix pattern-bg-lighter">
     <hgroup>
       <h1>HTML5 Rocks</h1>
@@ -68,6 +69,7 @@
       </ul>
     </span>
   </header>
+  {% endif %}
 
   <section class="hidden pattern-bg-lighter">
     <div id="filter" style="text-align: center;">
