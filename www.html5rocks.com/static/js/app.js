@@ -35,6 +35,7 @@ function finishPanelLoad(pagePanel, elemstate) {
 }
 
 $(document).keydown(function(e) {
+
   if (e.keyCode == 27) { // ESC
     // Hide search and/or feature bar.
     $('#search_hide, #features_hide').click();
@@ -150,10 +151,18 @@ $('nav.features_outline a.section_title').click(function(e) {
 
 window.route = {
   common : function() {
-    gapi.plusone.go(pagePanel.find('.plusone').get(0));
+    gapi.plusone.go($('.plusone').get(0));
     twttr.widgets.load();
 
     // TODO(Google): record GA hit on new ajax page load.
+  },
+
+  home: function(){
+    $.getScript(feed.pipeURL + '_callback=feed.home');
+  },
+
+  tutorials: function(){
+
   },
 
   "features" : function() {
@@ -179,19 +188,12 @@ window.route = {
 
     // due to the funky templating, we output into the same div, but we
     // want to move it into "correct" DOM order (in base.html)
-    var curelem = $('.page.current'),
-        curid   = curelem[0].id;
+    //var curelem = $('.page.current'),
+    //    curid   = curelem[0].id;
+    //$('[id=' + curid + ']').eq(1).replaceWith(curelem);
 
-    // Special case for the homepage and profiles.
-    // Former prevents the DOM replacement causing a double load of the Y!
-    // pipe feed.
-    if (curid == 'home' || curid == 'profiles') {
-      return false;
-    }
-
-    $('[id=' + curid + ']').eq(1).replaceWith(curelem);
-
-    route.fire(route.features);
+    // kick off any functions associated with the current route
+    route.init(document.body.getAttribute('data-href'));
   }
 };
 
@@ -220,6 +222,88 @@ window.state = {
   }
 
 };
+
+// yahoo pipe returning our feed to do stuff with it.
+// called from inside route[home|tutorials]()
+window.feed = {
+  pipeURL : 'http://pipes.yahoo.com/pipes/pipe.run?_id=\
+            119e0da707bc08778cbf04df91bc4418&_render=json&',
+
+  // homepage.
+
+  home : function(result){
+    
+    result = feed.process(result);
+
+    var container = document.getElementById('latest_articles_feed')
+      , html = []
+
+    if (!container) return;
+
+    if (container.textContent == 'loading feed...') {
+      container.textContent = '';
+    }
+
+    for (var i = 0, entry; entry = result.value.items[i]; ++i) {
+
+      var classes = '<span class="classes">';
+      if (entry.category && entry.category.length) {
+        entry.category.forEach(function(cat) {
+          classes += '<span class="class ' + cat.term + '"><span class="class_name">' + cat.term + '</span></span>';
+          //TODO: use each cat.term
+          //TODO: do categories correspond to classes? 
+          // No...                                                
+          //   categories are formats: Tutorial, Article, Case Study, Announcements, Presentation, Video
+          //   classes are technologies: Offline, Storage, Connectivity, File, Access, Semantics, Audio/Video, 3D/Graphics, Presentation, Performance, Nuts & Bolts
+          //   audiences/personas: General, Mobile, Gaming, Business                                              
+        });
+      }
+      classes += '</span>';
+
+      html.push('<li><span class="byline"><span class="date">', entry.formattedDateStr, '</span> ',
+                '<span class="author">', entry.author ? '<img src="/static/images/profiles/' + entry.author + '.png">' : '', '</span></span>',
+                '<span class="details"><span class="title">', entry.title.link(entry.link), '</span>',
+                classes,
+                '<span data-type="', entry.type, '" class="type">', entry.type, '</span></span></li>');
+    }
+    container.innerHTML += html.join('');
+
+  },
+  
+
+  // normalize feed data.
+  process : function(result) {
+    
+    if (!result.value.items) return;
+
+    for (var i = 0, entry; entry = result.value.items[i]; ++i) {
+      var date = new Date(entry.pubDate.split('T')[0].replace(/-/g, '/'));
+      var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
+
+      var author = '';
+      if (entry.author) {
+        author = entry.author.name;
+      }
+
+      var type = '';
+      if (entry.id.match('www.html5rocks.com') || entry.id.match('htmlfiverocks')) {
+        type = 'tutorial';
+      } else if (entry.id.match('updates.html5rocks.com')) {
+        type = 'update';
+      }
+
+      entry.date = date;
+      entry.formattedDateStr = formattedDateStr;
+      entry.author = author;
+      entry.type = type;
+
+    }
+    
+    return result;
+
+  } // eo process()
+} // eo feed{}
+
 
 if (AJAXIFY_SITE) {
   window.addEventListener('popstate', state, false);

@@ -218,54 +218,7 @@
 </article>
 
 <script>
-function processPipeFeed(result) {
-  var container = document.getElementById('latest_articles_feed');
 
-  if (!container || !result.value.items) {
-    return;
-  }
-
-  if (container.textContent == 'loading feed...') {
-    container.textContent = '';
-  }
-
-  var html = [];
-  for (var i = 0, entry; entry = result.value.items[i]; ++i) {
-    var date = new Date(entry.pubDate.split('T')[0].replace(/-/g, '/'));
-    var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
-
-    var author = '';
-    if (entry.author) {
-      author = entry.author.name;
-    }
-
-    var classes = '<span class="classes">';
-    if (entry.category && entry.category.length) {
-      entry.category.forEach(function(cat) {
-        classes += '<span class="class ' + cat.term + '"><span class="class_name">' + cat.term + '</span></span>';
-        //TODO: use each cat.term
-        //TODO: do categories correspond to classes? No -- categories are formats: Tutorial, Article, Case Study, Announcements, Presentation, Video
-        //                                                 classes are technologies: Offline, Storage, Connectivity, File, Access, Semantics, Audio/Video, 3D/Graphics, Presentation, Performance, Nuts & Bolts
-        //                                                 audiences/personas: General, Mobile, Gaming, Business
-      });
-    }
-    classes += '</span>';
-
-    var type = '';
-    if (entry.id.match('www.html5rocks.com') || entry.id.match('htmlfiverocks')) {
-      type = 'tutorial';
-    } else if (entry.id.match('updates.html5rocks.com')) {
-      type = 'update';
-    }
-
-    html.push('<li><span class="byline"><span class="date">', formattedDateStr, '</span> ',
-              '<span class="author">', author ? '<img src="/static/images/profiles/' + author + '.png">' : '', '</span></span>',
-              '<span class="details"><span class="title">', entry.title.link(entry.link), '</span>',
-              classes,
-              '<span data-type="', type, '" class="type">', type, '</span></span></li>');
-  }
-  container.innerHTML += html.join('');
-}
 
 {% if not is_mobile %}
   (function(){
@@ -284,5 +237,5 @@ function processPipeFeed(result) {
   })();
 {% endif %}
 </script>
-<script src="http://pipes.yahoo.com/pipes/pipe.run?_id=119e0da707bc08778cbf04df91bc4418&_render=json&_callback=processPipeFeed"></script>
+
 {% endblock %}
