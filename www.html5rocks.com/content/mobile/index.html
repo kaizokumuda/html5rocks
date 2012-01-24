@@ -20,8 +20,7 @@
     </hgroup>
 
     <section>
-      <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet! Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris!</p>
-      <p>Nisi adipiscing rhoncus elementum aliquet quis quis! Amet ac nec vel magna elementum lundium mus, velit sagittis facilisis!</p>
+      <p>The mobile web is growing up quickly, and tons of great HTML5 features are already supported on modern mobile browsers. Web developers can use the same set of technologies they know and love to build rich web applications that work across different device types.</p>
       <p><a href="http://code.google.com/speed/articles/mobile.html">Make the mobile web faster</a></p>
       <p><a href="/{{LANGUAGE_CODE}}/tutorials#mobile">{% trans "View all HTML5Rocks mobile tutorials" %}</a> &rarr;</p>
     </section>
@@ -68,37 +67,64 @@
 
     <section>
       <hgroup>
-        <h3>{% trans "Tools" %}</h3>
+        <h3>{% trans "Frameworks" %}</h3>
       </hgroup>
       <ul class="two_columns">
-        <li><a href="http://stevesouders.com/mobileperf/">Mobile Performance Bookmarklets by Steve Souders</a></li>
-        <li style="margin-left: 3.5em"><a href="http://www.stevesouders.com/blog/2011/02/16/jdrop-json-in-the-cloud/">Jdrop</a></li>
-        <li><a href="http://developer.android.com/guide/developing/tools/emulator.html">Android's Browser Emulator</a></li>
-        <li><a href="http://developer.apple.com/devcenter/ios/index.action">iOS SDK &amp; Simulator</a></li>
-        <li><a href="http://www.opera.com/developer/tools/mobile/">Opera Mobile Emulator</a></li>
-        <li><a href="http://www.mozilla.org/en-US/mobile/">Firefox Mobile Emulator</a></li>
-        <li><a href="http://caniuse.com">caniuse.com</a></li>
-        <li><a href="https://github.com/shichuan/mobile-html5-boilerplate">Mobile HTML5 Boilerplate</a></li>
-        <li><a href="http://pmuellr.github.com/weinre/">Weinre</a> - remote web inspector debugging</li>
+        <h4>Boilerplate</h4>
+        <li><a href="http://html5boilerplate.com/mobile">html5boilerplate.com/mobile</a> - A best practice baseline for your mobile web app</li>
+        <h4>Packaging frameworks</h4>
+        <li><a href="http://phonegap.com/">phonegap.com</a> - build native applications with web technologies and get access to APIs and app stores</li>
+        <li><a href="http://www.appmobi.com/">appmobi.com</a></li>
+        <h4>Web application frameworks</h4>
+        <li><a href="http://jquerymobile.com/">jquerymobile.com</a> - </li>
+        <li><a href="http://www.sencha.com/">sencha.com</a></li>
+        <li><a href="http://jqtouch.com/">jqtouch.com</a></li>
+        <li><a href="http://sproutcore.com/">sproutcore.com</a></li>
       </ul>
     </section>
 
+
     <section>
       <hgroup>
-        <h3>{% trans "Additional Resources" %}</h3>
+        <h3>{% trans "Development Tools" %}</h3>
       </hgroup>
       <ul class="two_columns">
-        <li><a href="http://code.google.com/mobile/">Google Mobile Developer Products</a></li>
-        <li><a href="http://mobile.yahoo.com/developers">Yahoo! Mobile Developers Home</a></li>
-        <li><a href="https://developer.mozilla.org/En/Mobile">Mozilla Mobile Docs</a></li>
-        <li><a href="http://www.w3.org/TR/mobile-bp/">W3C Mobile Best Practices</a></li>
-        <li><a href="http://developer.android.com/guide/webapps/index.html">Android Web Apps Overview</a></li>
-        <li><a href="http://www.mobileawesomeness.com/">mobileawesomeness.com</a> - Get inspired</li>
-        <li><a href="http://mobile-patterns.com/">mobile-patterns.com</a> - Examples of mobile UI patterns</li>
-        <li><a href="http://www.mobilexweb.com/emulators">List of Mobile Browser Emulators</a></li>
-        <li><a href="http://webpro.host.adobe.com/people/jblas/research/">Research and test cases on Touch-Events and Mobile</a></li>
+        <h4>Debugging</h4>
+        <li><a href="http://phonegap.github.com/weinre/">WEINRE</a> - WEb INspector REmote</li>
+        <li><a href="http://www.webkit.org/blog/1620/webkit-remote-debugging/">WebKit Remote Debugging</a></li>
+        <h4>Emulators & Simulators</h4>
+        <li><a href="http://www.mobilexweb.com/emulators">Mobile Emulators and Simulators</a></li>
+        <li><a href="http://developer.android.com/guide/developing/tools/emulator.html">Android Emulator</a></li>
+        <li><a href="http://developer.apple.com/library/ios/#documentation/Xcode/Conceptual/ios_development_workflow/00-About_the_iOS_Application_Development_Workflow/introduction.html">iOS Tools Workflow</a></li>
+        <li><a href="http://smus.com/multi-touch-browser-patch">Multi-Touch for Desktop</a></li>
+        <h4>Performance</h4>
+        <li><a href="http://stevesouders.com/mobileperf/mobileperfbkm.php">Mobile Perf Bookmarklet</a> - links to multiple other bookmarklets useful for mobile.</li>
+        <li><a href="http://jdrop.org">jdrop.org</a> - JSON in the cloud for gathering data</li>
+        <li><a href="http://www.blaze.io/mobile/">blaze.io/mobile</a> - Free Mobile Web Performance Measurement Tool</li>
+        <li><a href="http://pcapperf.appspot.com/">pcapperf.appspot.com</a> - PCAP Web Performance Analyzer</li>
       </ul>
     </section>
+
+    <section class="compatibility one_half">
+      <h3>{% trans "Compatibility" %}</h3>
+      <ul>
+      <li><a href="http://caniuse.com">caniuse.com</a> - When can I use...</li>
+      <li><a href="http://mobilehtml5.org">mobilehtml5.org</a> - HTML5 compatibility on mobile and tablet browsers.</li>
+      <li><a href="http://html5test.com/results-mobile.html">html5test.com</a> - How well does your browser support HTML5?</li>
+      <li><a href="http://gs.statcounter.com/#mobile_browser-ww-monthly-201012-201112">statcounter.com</a> - Top mobile browser usage.</li>
+      <li><a href="http://www.quirksmode.org/m/">quirksmode.org mobile tests</a> - PPK's link page to all mobile test cases.</li>
+      </ul>
+    </section>
+
+    <section class="inspiration one_half">
+      <h3>{% trans "Inspiration" %}</h3>
+      <ul>
+      <li><a href="http://mobile-patterns.com/">mobile-patterns.com</a> - Mobile UI Patterns</li>
+      <li><a href="http://pttrns.com/">pttrns.com</a> - Another gallery of Mobile UI</li>
+      <li><a href="http://www.mobileawesomeness.com/">mobileawesomeness.com</a> - the best in mobile web design and developer news.</li>
+      </ul>
+    </section>
+
 
     <section class="contributors">
       <hgroup>
