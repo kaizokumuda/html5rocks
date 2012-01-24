@@ -1,7 +1,7 @@
 # Intro
 *Are we there yet?*
 
-HTML5 rocks for your users, too. It frees them from the hassles of having to install apps across multiple devices. They can start running a new app the instant they click a link or an icon. They don’t have to be bothered with hairy details like downloading the latest updates and making sure that they are working on the right version. Their data, work, tools, and entertainment follow them wherever they are. They are no longer bound to a specific device.  
+HTML5 rocks for your users. It frees them from the hassles of having to install apps across multiple devices. They can start running a new app the instant they click a link or an icon. They don’t have to be bothered with hairy details like downloading the latest updates and making sure that they are working on the right version. Their data, work, tools, and entertainment follow them wherever they are. They are no longer bound to a specific device.  
 
 So why HTML5? With a reach of hundreds of millions of users (Google Chrome alone has more than 200 million active users)—and growing rapidly—the question is, why not HTML5?  
 
