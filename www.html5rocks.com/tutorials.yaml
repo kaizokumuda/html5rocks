@@ -432,6 +432,7 @@ browser_support:
 tags:
 - eventsource
 - websockets
+- class:connectivity
 - type:casestudy
 
 ---

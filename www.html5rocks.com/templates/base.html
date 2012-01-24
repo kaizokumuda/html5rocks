@@ -398,51 +398,49 @@
       }, false);
     {% endif %}
 
-    {% if not is_mobile %}
-      // Page header pulldowns.
-      $('#search_show').click(function() {
-        $('#features_hide').click(); // Hide features panel if it's out.
+    // Page header pulldowns.
+    $('#search_show').click(function() {
+      $('#features_hide').click(); // Hide features panel if it's out.
 
-        if ($(this).hasClass('current')) {
-          $('.subheader.search').hide();
-          $(this).removeClass('current');
-          $('.watermark').css('top', '30px');
-        } else {
-          $('.main nav .current').removeClass('current');
-          $(this).addClass('current');
-          $('.subheader.search').show();
-          $('#q').focus();
-          $('.watermark').css('top', '100px');
-        }
-      });
-
-      $('#search_hide').click(function() {
-        $('#search_show').removeClass('current');
+      if ($(this).hasClass('current')) {
         $('.subheader.search').hide();
+        $(this).removeClass('current');
         $('.watermark').css('top', '30px');
-      });
+      } else {
+        $('.main nav .current').removeClass('current');
+        $(this).addClass('current');
+        $('.subheader.search').show();
+        $('#q').focus();
+        $('.watermark').css('top', '100px');
+      }
+    });
 
-      $('#features_show').click(function() {
-        $('#search_hide').click(); // Hide search panel if it's out.
+    $('#search_hide').click(function() {
+      $('#search_show').removeClass('current');
+      $('.subheader.search').hide();
+      $('.watermark').css('top', '30px');
+    });
 
-        if ($(this).hasClass('current')) {
-          $('.subheader.features').hide();
-          $(this).removeClass('current');
-          $('.watermark').css('top', '30px');
-        } else {
-          $('.main nav .current').removeClass('current');
-          $(this).addClass('current');
-          $('.subheader.features').show();
-          $('.watermark').css('top', '100px');
-        }
-      });
+    $('#features_show').click(function() {
+      $('#search_hide').click(); // Hide search panel if it's out.
 
-      $('#features_hide').click(function() {
-        $('#features_show').removeClass('current');
+      if ($(this).hasClass('current')) {
         $('.subheader.features').hide();
+        $(this).removeClass('current');
         $('.watermark').css('top', '30px');
-      });
-    {% endif %}
+      } else {
+        $('.main nav .current').removeClass('current');
+        $(this).addClass('current');
+        $('.subheader.features').show();
+        $('.watermark').css('top', '100px');
+      }
+    });
+
+    $('#features_hide').click(function() {
+      $('#features_show').removeClass('current');
+      $('.subheader.features').hide();
+      $('.watermark').css('top', '30px');
+    });
 
     // Check if new appcache is available.
     if (window.applicationCache) {
