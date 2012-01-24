@@ -488,7 +488,7 @@
           {}, '', document.location.href.replace(/\?utm_.*/, ''));
     }
 
-    if ($(window).width() < '1200' && $(window).width() > '1000' && $('.toc')) {
+    if ($(window).width() < '1200' && $(window).width() > '1000' && $('.toc').length) {
       // Fix the TOC if our scroll position is below the top of the page.
       var top = $('.toc').offset().top - 50;
 
