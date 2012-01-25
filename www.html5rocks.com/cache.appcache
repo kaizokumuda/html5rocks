@@ -8,6 +8,8 @@ CACHE:
 /static/js/profiles.min.js
 /static/js/modernizr.custom.73722.js
 /static/js/feature.min.js
+/static/js/handlebars.1.0.0.beta.3.js
+/static/js/tutsapp.min.js
 
 /static/css/base.min.css
 /static/css/mobile.min.css
@@ -22,7 +24,3 @@ FALLBACK:
 
 NETWORK:
 *
-
-# Thu Oct 13 16:23:38 PDT 2011
-# Mon Nov 21 13:48:03 PST 2011
-# Mon Nov 21 13:50:06 PST 2011
