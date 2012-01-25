@@ -23,7 +23,7 @@
       <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet! Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris!</p>
       <p>Nisi adipiscing rhoncus elementum aliquet quis quis! Amet ac nec vel magna elementum lundium mus, velit sagittis facilisis!</p>
       <p>Porttitor, montes auctor ac cum in mid eu eros, vut platea mid.</p>
-      <p><a href="#">See more &rarr;</a></p>
+      <p><a href="/{{LANGUAGE_CODE}}/tutorials#business">{% trans "Give me everything" %} &rarr;</a></p>
     </section>
   </header>
 
@@ -72,53 +72,27 @@
       </hgroup>
 
       <ul class="authors">
-        <li class="profile mini" id="ericbidelman" itemscope itemtype="http://microformats.org/profile/hcard">
-          <img itemprop="photo" alt="Eric Bidelman" title="Eric Bidelman" src="/static/images/profiles/ericbidelman.png">
-          <h2>
-            <div itemprop="fn">
-              <div itemprop="n" itemscope>
-                <span itemprop="given-name">Eric</span>
-                <span itemprop="family-name">Bidelman</span>
-              </div>
-            </div>
-          </h2>
-          <h3 itemprop="org" itemscope>
-            <div itemprop="organization-unit">Developer Relations</div>
-            <div itemprop="organization-name">Google</div>
-          </h3>
-        </li>
-
-        <li class="profile mini" id="geoffblair" itemscope itemtype="http://microformats.org/profile/hcard">
-          <img itemprop="photo" alt="Geoff Blair" title="Geoff Blair" src="/static/images/profiles/geoffblair.png">
-          <h2>
-            <div itemprop="fn">
-              <div itemprop="n" itemscope>
-                <span itemprop="given-name">Geoff</span>
-                <span itemprop="family-name">Blair</span>
-              </div>
-            </div>
-          </h2>
-          <h3 itemprop="org" itemscope>
-            <div itemprop="organization-unit">Programmer, Designer</div>
-            <div itemprop="organization-name">Lost Decade Games</div>
-          </h3>
-        </li>
-
-        <li class="profile mini" id="jeremychone" itemscope itemtype="http://microformats.org/profile/hcard">
-          <img itemprop="photo" alt="Jeremy Chone" title="Jeremy Chone" src="/static/images/profiles/jeremychone.png">
-          <h2>
-            <div itemprop="fn">
-              <div itemprop="n" itemscope>
-                <span itemprop="given-name">Jeremy</span>
-                <span itemprop="family-name">Chone</span>
-              </div>
-            </div>
-          </h2>
-          <h3 itemprop="org" itemscope>
-            <div itemprop="organization-unit">Developer</div>
-            <div itemprop="organization-name">N2N-Apps</div>
-          </h3>
-        </li>
+        {% for a in authors %}
+          <li class="profile" id="{{ a.key.name }}" itemscope itemtype="http://microformats.org/profile/hcard">
+            <a href="/{{LANGUAGE_CODE}}/profiles#{{ a.key.name }}">
+              <img itemprop="photo" alt="{{ a.given_name }} {{ a.family_name }}" title="{{ a.given_name }} {{ a.family_name }}" src="/static/images/profiles/{{ a.key.name }}.png">
+              <h2>
+                <div itemprop="fn">
+                  <div itemprop="n" itemscope>
+                    <span itemprop="given-name">{{ a.given_name }}</span>
+                    <span itemprop="family-name">{{ a.family_name }}</span>
+                  </div>
+                </div>
+              </h2>
+              <h3 itemprop="org" itemscope>
+                <div itemprop="organization-unit">{{ a.unit }}</div>
+                <div itemprop="organization-name">{{ a.org}}</div>
+              </h3>
+            </a>
+          </li>
+          {% empty %}
+          Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.
+        {% endfor %}
       </ul>
     </section>
 

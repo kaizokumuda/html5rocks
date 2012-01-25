@@ -378,7 +378,8 @@ class ContentHandler(webapp.RequestHandler):
       else:
         result = models.Resource.get_all().order('-publication_date')
 
-      tutorials = []
+      tutorials = [] # List of final result set.
+      authors = [] # List of authors related to the result set.
       for r in result:
         resource_type = [x for x in r.tags if x.startswith('type:')]
         if len(resource_type):
@@ -388,13 +389,20 @@ class ContentHandler(webapp.RequestHandler):
         tutorials[-1].classes = [x.replace('class:', '') for x in r.tags
                                  if x.startswith('class:')]
         tutorials[-1].tags = [x for x in r.tags
-		                      if not (x.startswith('class:') or
-							          x.startswith('type:'))
-                             ]
+            if not (x.startswith('class:') or x.startswith('type:'))]
         tutorials[-1].type = resource_type
 
+        authors.append(r.author)
+
+      # Remove duplicate authors from the list.
+      author_dict = {}
+      for a in authors:
+        author_dict[a.key().name()] = a
+      authors = author_dict.values()
+
       self.render(
-          data={'tutorials': tutorials}, template_path=path, relpath=relpath)
+          data={'tutorials': tutorials, 'authors': authors}, template_path=path,
+                relpath=relpath)
 
     elif os.path.isfile(path[:path.rfind('.')] + '.html'):
       self.render(data={}, template_path=path[:path.rfind('.')] + '.html',
