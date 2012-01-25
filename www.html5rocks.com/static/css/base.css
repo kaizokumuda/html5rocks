@@ -2945,7 +2945,7 @@ section.disqus
     display: none;
   }
 
-  article.sectioned section.one_half   { width: 45%; }
+  article.sectioned section.one_half   { width: 45%; min-height: 315px; }
   article.sectioned section.one_third  { width: 28%; }
   article.sectioned section.two_thirds { width: 58%; }
 
