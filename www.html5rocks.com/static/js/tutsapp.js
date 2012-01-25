@@ -175,10 +175,6 @@ function filterTag(opt_tag) {
   var samples = $('.tutorial_listing');
   samples.addClass('hidden');
 
-/*  if ((!opt_tag || typeof(opt_tag) != 'string') && window.location.hash) {
-    opt_tag = window.location.hash.substring(1);
-  }
-*/
   if (opt_tag && typeof(opt_tag) == 'string' && opt_tag.length) {
     initializeFilters(opt_tag);
   }
