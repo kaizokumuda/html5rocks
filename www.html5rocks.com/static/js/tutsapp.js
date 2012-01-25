@@ -1,5 +1,3 @@
-
-
 window.tuts = {
 
   feed      : undefined,
@@ -113,28 +111,8 @@ window.tuts = {
 }; // eo tuts{}
 
 tuts.init();
-
-
     
 
-
-
-
-
-
-$(document).ready(function() {
-  $('.tag').click(function(){
-    filterTag(this.textContent);
-  });
-  $('section.filter input[type="checkbox"]').click(filterTag);
-
-  if (window.location.hash) {
-    // Hide all samples as soon as DOM is loaded to prevent flicker effect.
-    //var samples = $('.tutorial_listing');
-    //samples.addClass('hidden');
-    filterTag(window.location.hash.substring(1));
-  }
-});
 
 function clearFilter() {
   $('.tutorial_listing.hidden').removeClass('hidden');
@@ -148,6 +126,39 @@ function clearFilter() {
     window.location.hash = '';
   }
 };
+
+function initializeFilters(tag_str) {
+  console.log(tag_str);
+  var simple_tags = [];
+  tag_str.toLowerCase().split(',').forEach(function(eachtag, i) {
+      var type_and_value = eachtag.split(':');
+      if (type_and_value.length == 2) {
+        var value_str = ' input[value="' + type_and_value[1] + '"]';
+        switch (type_and_value[0]) {
+          case 'type':
+            $('#updates_format_filter' + value_str).attr('checked', true);
+            break;
+          case 'audience':
+            $('#updates_audience_filter' + value_str).attr('checked', true);
+            break;
+          case 'technology':
+            $('#updates_technology_filter' + value_str).attr('checked', true);
+            break;
+          default:
+            break;
+        }
+    } else {
+      simple_tags.push(type_and_value[0]);
+    }
+  });
+  if (simple_tags.length) {
+    var updates_tag_filter_elem = $('#updates_tag_filter')[0];
+    if (updates_tag_filter_elem.value) {
+      updates_tag_filter_elem.value += ',';
+    }
+    updates_tag_filter_elem.value += simple_tags.join(',');
+  }
+}
 
 // TODO: this method is being called twice for some reason. Because of onhashchange?
 var times = 0;
@@ -164,39 +175,43 @@ function filterTag(opt_tag) {
   var samples = $('.tutorial_listing');
   samples.addClass('hidden');
 
-  if ((!opt_tag || typeof(opt_tag) != 'string') && window.location.hash) {
+/*  if ((!opt_tag || typeof(opt_tag) != 'string') && window.location.hash) {
     opt_tag = window.location.hash.substring(1);
   }
-
+*/
   if (opt_tag && typeof(opt_tag) == 'string' && opt_tag.length) {
-    opt_tag = opt_tag.toLowerCase();
-    samples = samples.find('span.tag:contains("' + opt_tag + '")')
-                     .closest('.tutorial_listing');
-    window.location.hash = opt_tag;
-    $('#filter_tag').text(opt_tag);
-    $('#filter').parent().removeClass('hidden');
+    initializeFilters(opt_tag);
   }
+
+  var filter_arr = [];
 
   // Gets all filters
   var types = [];
   $('#updates_format_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
-    var type = checkbox.parentElement.textContent;
-    // 'Case Study' -> 'casestudy'.
-    types.push($.trim(type).toLowerCase().replace(' ', ''));
+    types.push(checkbox.value);
+    filter_arr.push('type:' + checkbox.value);
   });
 
   var audiences = [];
   $('#updates_audience_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
-    audiences.push($.trim(checkbox.parentElement.textContent).toLowerCase());
+    audiences.push(checkbox.value);
+    filter_arr.push('audience:' + checkbox.value);
   });
 
   var technologies = [];
   $('#updates_technology_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
     technologies.push(checkbox.value);
+    filter_arr.push(checkbox.value);
   });
 
   var tags = $('#updates_tag_filter')[0].value;
-  var tag_list = tags ? tags.toLowerCase().split(',') : [];
+  var tag_list;
+  if (tags) {
+    tag_list = tags.toLowerCase().split(',');
+    filter_arr.push(tags);
+  } else {
+    tag_list = [];
+  }
   
   for (var i = 0; i < samples. length; i++) {
     var qualified = true;
@@ -245,6 +260,16 @@ function filterTag(opt_tag) {
       sample.classList.remove('hidden');
     }
   }
+  
+  if (filter_arr.length) {
+    var filter_str = filter_arr.join(',');
+    window.location.hash = filter_str;
+    $('#filter_tag').text(filter_str);
+    $('#filter').parent().removeClass('hidden');
+  } else {
+    $('#filter_tag').text('');
+    $('#filter').parent().addClass('hidden');
+  }
 };
 
 // Adds back button support.
@@ -254,3 +279,17 @@ window.addEventListener('hashchange', function(e) {
     _gaq.push(['_trackPageview', window.location.href]);
   }
 }, false);
+
+$(document).ready(function() {
+  $('.tag').click(function(e){
+    filterTag(this.textContent);
+  });
+  $('section.filter input[type="checkbox"]').click(filterTag);
+
+  if (window.location.hash) {
+    // Hide all samples as soon as DOM is loaded to prevent flicker effect.
+    //var samples = $('.tutorial_listing');
+    //samples.addClass('hidden');
+    filterTag(window.location.hash.substring(1));
+  }
+});
