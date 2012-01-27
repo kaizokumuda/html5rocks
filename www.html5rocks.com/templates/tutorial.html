@@ -9,7 +9,7 @@
   <header class="tutorial clearfix pattern-bg-lighter">
     {% if not is_mobile %}
     <hgroup>
-      <h1>HTML5 Rocks</h1>
+  `    <h1>{% trans "HTML5 Rocks" %}</h1>
       <h2><a href="/{{LANGUAGE_CODE}}/tutorials/">{% trans "Tutorials" %}</a></h2>
     </hgroup>
     {% endif %}
@@ -23,8 +23,8 @@
           <h2>By <strong><a href="/profiles/#!/{{ tut.author.key.name }}">{{ tut.author.given_name }} {{ tut.author.family_name }}</a></strong></h2>
         </hgroup>
         <div class="date">
-          <time pubdate>Published <strong>{{ tut.publication_date }}</strong></time>
-          {%if tut.update_date %}<time class="updated">Updated <strong>{{ tut.update_date }}</strong></time>{% endif %}
+          <time pubdate>{% blocktrans %}Published <strong>{{ tut.publication_date }}</strong>{% endblocktrans %}</time>
+          {%if tut.update_date %}<time class="updated">{% blocktrans %}Updated <strong>{{ tut.update_date }}</strong>{% endblocktrans %}</time>{% endif %}
         </div>
       </section>
 
@@ -41,11 +41,56 @@
       <section class="browser_support">
           <h2>{% trans "Supported browsers:" %}</h2>
           <span class="browsers">
-            <span class="browser opera {% if 'opera' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
-            <span class="browser ie {% if 'ie' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
-            <span class="browser safari {% if 'safari' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Safari</span><span class="support">unsupported</span></span>
-            <span class="browser ff {% if 'ff' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Firefox</span><span class="support">unsupported</span></span>
-            <span class="browser chrome {% if 'chrome' in tut.browser_support %}supported{% endif %}"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
+            <span class="browser opera {% if 'opera' in tut.browser_support %}supported{% endif %}">
+              <span class="browser_name">{% trans "Opera" %}</span>
+              <span class="support">
+                {% if 'opera' in tut.browser_support %}
+                  {% trans "supported" %}
+                {% else %}
+                  {% trans "unsupported" %}
+                {% endif %}
+              </span>
+            </span>
+            <span class="browser ie {% if 'ie' in tut.browser_support %}supported{% endif %}">
+              <span class="browser_name">{% trans "Internet Explorer" %}</span>
+              <span class="support">
+                {% if 'ie' in tut.browser_support %}
+                  {% trans "supported" %}
+                {% else %}
+                  {% trans "unsupported" %}
+                {% endif %}
+              </span>
+            </span>
+            <span class="browser safari {% if 'safari' in tut.browser_support %}supported{% endif %}">
+              <span class="browser_name">{% trans "Safari" %}</span>
+              <span class="support">
+                {% if 'safari' in tut.browser_support %}
+                  {% trans "supported" %}
+                {% else %}
+                  {% trans "unsupported" %}
+                {% endif %}
+              </span>
+            </span>
+            <span class="browser ff {% if 'ff' in tut.browser_support %}supported{% endif %}">
+              <span class="browser_name">{% trans "Firefox" %}</span>
+              <span class="support">
+                {% if 'ff' in tut.browser_support %}
+                  {% trans "supported" %}
+                {% else %}
+                  {% trans "unsupported" %}
+                {% endif %}
+              </span>
+            </span>
+            <span class="browser chrome {% if 'chrome' in tut.browser_support %}supported{% endif %}">
+              <span class="browser_name">{% trans "Chrome" %}</span>
+              <span class="support">
+                {% if 'chrome' in tut.browser_support %}
+                  {% trans "supported" %}
+                {% else %}
+                  {% trans "unsupported" %}
+                {% endif %}
+              </span>
+            </span>
           </span>
 
           <div class="compatible-block">
@@ -86,7 +131,7 @@
       <img class="hide" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAeCAYAAADU8sWcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTAyRDZFQUZFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTAyRDZFQjBFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5MDJENkVBREU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5MDJENkVBRUU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlXiDkoAAAIdSURBVHjaxFfNasJAEN6sSkUIBOLBFktF0Junek+96wOU3tt76716tw/Q3msfQO8a8GhP3iKIpdJ6MBAIiEWE7shaos1m18SfD4ZFd2a/mc3szqyEBNHtdq/IAJKlsgmDSjufz7dF1pQESG/JcE1ERuL4JtIgTrz4IiekEN0TkVPkH+BEhTjx7jaJGcQlMtQDEiNq/0zX40dOFR/R7lElO9Bgku+ReIWyMxklB/EZGV55iTWbzUL9fl+xbftk9Z8syz+ZTMaKRqMLDrlN5IY48AU/wo6Jey9iINV1/XwwGKhu851OB6XTaVPTtE8PJ2TKU/6LnER9CYnBIh6Px7Fms5mdz+ch3r5GIpFFsVg0EonE1EPtDk7AKttLuyAGgB7og52HWsl51DSWVqvVuhAldjoAdh4qSz5Mt9z1W/d6PdWyrJiftAY7sGd9e+DFjHt6ieFwqAQ5Vxz7LPbK8NFoFIicYy+HRRaJx+NIVVVhUtM00WQy4ephdEQIRQ5RiESyLTC98lyRTCatIItz7G1Muw9XpFKpQOQcewPTQu8afS6XMxVFmfohBjuwZ0XtvF511iKFQuED7uttiEEf7DxUdGe2N1haUCCgUIg6IFhY6pv1vEa7U18lFSBQUhHtbstHbyYkl968tsd7Za2PW7vhaH9VPQQxs2/fQyP5j5j3aIA6X9nBo+GBEBtBnkulLZ2AxHrz/Vw6xEPxV4ABAB9p/+75XTbuAAAAAElFTkSuQmCC">
 
       <nav class="outline toc pattern-bg-lighter">
-        <h3>Table of Contents</h3>
+        <h3>{% trans "Table of Contents" %}</h3>
 
         {% toc %}
       </nav>

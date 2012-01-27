@@ -2,7 +2,14 @@
 #	`make messages`
 #
 LANGUAGES=en de ja pt ru zh es
-DJANGO_ROOT=/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine/lib/django_1_2
+MAC_DJANGO_ROOT=/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine/lib/django_1_2
+LINUX_DJANGO_ROOT=/usr/local/google/google_appengine/lib/django_1_2
+ifeq "$(shell uname)" "Darwin"
+	DJANGO_ROOT=$(MAC_DJANGO_ROOT)
+else
+	DJANGO_ROOT=$(LINUX_DJANGO_ROOT)
+endif
+
 define HEREDOC
 
 HTML5Rocks Makefile
