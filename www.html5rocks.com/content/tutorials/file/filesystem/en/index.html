@@ -32,7 +32,7 @@
 {% endblock %}
 {% block pagebreadcrumb %}Exploring the FileSystem APIs{% endblock %}
 {% block date %}January 4, 2011{% endblock %}
-{% block updated %}October 24, 2011{% endblock %}
+{% block updated %}January 27, 2012{% endblock %}
 {% block onload %}document.querySelector('#terminal-iframe').style.display='block';{% endblock %}
 
 {% block browsersupport %}
@@ -437,7 +437,7 @@ dirEntry.isDirectory === true
 // See the section on <a href="#toc-fileentry">FileEntry</a> for other inherited properties/methods.
 ...
 
-var dirReader = dirEntry.createReader(successCallback, opt_errorCallback);
+var dirReader = dirEntry.createReader();
 dirEntry.getFile(path, opt_flags, opt_successCallback, opt_errorCallback);
 dirEntry.getDirectory(path, opt_flags, opt_successCallback, opt_errorCallback);
 dirEntry.removeRecursively(successCallback, opt_errorCallback);
