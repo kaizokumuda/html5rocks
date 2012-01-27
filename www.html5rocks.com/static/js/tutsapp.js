@@ -269,7 +269,7 @@ window.addEventListener('hashchange', function(e) {
   if (window.location.hash) {
     filterTag(window.location.hash.substring(1));
   } else {
-    clearTag();
+    clearFilter();
   }
   if (window._gaq) {
     _gaq.push(['_trackPageview', window.location.href]);
