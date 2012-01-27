@@ -13,7 +13,7 @@
 <div data-import-html>
   <header class="clearfix pattern-bg-lighter">
     <hgroup>
-      <h1>Why HTML5 <span>Rocks</span></h1>
+    <h1>{% trans "Why HTML5 <span>Rocks</span>" %}</h1>
     </hgroup>
 
     <section>
@@ -36,7 +36,7 @@
   </header>
 
   <article class="pattern-bg-lighter">
-    {% include 'why_content.html' %}
+    {% include local_content_path %}
   </article>
 </div>
 {% include "footer.html" %}
