@@ -162,10 +162,10 @@ function filterTag(opt_tag) {
   var e = window.event;
 
   // Don't perform another filter if we're initiated from a hashchange.
-/*  if (!e || e.type == 'hashchange') {
+  if (e && e.type == 'hashchange') {
     return;
   }
-*/
+
   console.log('called: ' + ++times);
 
   var samples = $('.tutorial_listing');
@@ -266,7 +266,11 @@ function filterTag(opt_tag) {
 
 // Adds back button support.
 window.addEventListener('hashchange', function(e) {
-  filterTag(window.location.hash.substring(1));
+  if (window.location.hash) {
+    filterTag(window.location.hash.substring(1));
+  } else {
+    clearTag();
+  }
   if (window._gaq) {
     _gaq.push(['_trackPageview', window.location.href]);
   }
