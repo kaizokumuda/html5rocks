@@ -82,7 +82,7 @@ window.loadTutorials = function() {
   }
 
   var div = $('<div>').load('/' + lang + '/tutorials/ #index', function() {
-    var MAX_NUM_TUTS = 5;  
+    var MAX_NUM_TUTS = 5; 
     var matches = $([]);
 
     $.each(caniuse.features.split(','), function(i, eachtag) {

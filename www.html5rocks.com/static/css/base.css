@@ -128,7 +128,7 @@ body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
 a { color: #5fa4a0; text-decoration: none;}
 a:visited { color: #5fa4a0; }
-a:hover { color: #f04530; }
+a:hover, a:focus { color: #f04530; }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
 
@@ -196,7 +196,8 @@ button {
   font-weight: 700;
   font-size: 10pt;
 }
-button:hover {
+button:hover,
+button:focus {
   border-color: black;
 }
 button:active {
@@ -888,7 +889,9 @@ div.one_half    { width: 50%; }
 }
 
 .class:hover .class_name,
-.browser:hover .browser_name
+.browser:hover .browser_name,
+.class:focus .class_name,
+.browser:focus .browser_name
 {
   opacity: 1;
 }
@@ -1044,7 +1047,8 @@ header.main nav a
 }
 
 header.main nav a,
-header.main nav a:hover
+header.main nav a:hover,
+header.main nav a:focus
 {
   color: #fff !important;
 }
@@ -1059,16 +1063,6 @@ header.main h1
 {
   cursor: pointer !important;
   padding: 19px 0 26px;
-}
-
-#search_show,
-#features_show
-{
-  color: #fff;
-  cursor: pointer !important;
-  padding: 6px 1em 5px;
-  text-transform: uppercase;
-  height: 14px;
 }
 
 #search_show
@@ -1096,7 +1090,8 @@ header.main h1
   padding: .4em .6em;
 }
 
-.gsc-completion-container td:hover
+.gsc-completion-container td:hover,
+.gsc-completion-container td:focus
 {
   background: #4b7c7a;
   cursor: pointer !important;
@@ -1216,7 +1211,8 @@ body[data-href='business'] .watermark
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAABeCAYAAAC3rJ31AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEEzMEVDN0REODBGMTFFMEJDMEZDMjAwMjNDNjc0MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEEzMEVDN0VEODBGMTFFMEJDMEZDMjAwMjNDNjc0MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0QTMwRUM3QkQ4MEYxMUUwQkMwRkMyMDAyM0M2NzQwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0QTMwRUM3Q0Q4MEYxMUUwQkMwRkMyMDAyM0M2NzQwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ppgva2QAAAS5SURBVHja7FuLceIwELUzKcCpANOBO4hTQbgKDjogFcRUwF0F0EGgAkMF5iqAVBBSgU+aWZFlT7JkW5I1FzSjMRjbelq//UrEdV1H/1VjE0pZX7H+UX+1DziXhAg4I2Bp479lQ2CLVRJmh4p1Ic0d61v4/sh6DufPrI/jOD6HIOUVkuhc83sRCjWOAKgyuKb0je9OcT6F47bh3h0cc9+g73vc++7wTedIGCfWN1q9MeEr/01cZBHsBNGOtkJHjyH0aMoOb4iatL1yAxAMaDCxS3RqwfoDowQ3yTMwrbxNYXLD04ObVY2JTZGjq0Khx7NQOibcX/94wDjmyriGr1kwnEaWQtU+g1NEG87lBvoG2hZo8GRvkkQhlSQU2OOVSrvrKPbA7Y1853H3FJzBDM4tUXweoWArHwq0SAg2EEjhRGEliQ73rI9Yn0gm4g00t69P4ARwLEEBz9g1a3TNCzvweDxzymme0IKr/YlOHyRejIPD3m2NAcM1/O38cKqIEOcegZ84GuOv+ShRqq3iM3XRByegAVCJOHgCfmLXu2qwBmeNPtgFLeHnC5MQz8I5j8fwisXAS9c1kbsOgGc0EmPfNxADC3M3GRL0swTwWnHtWpIYDwI6MwQc+SzYmCpiI2DhyrsqVm/QEu03AZwRGm28gVYonQlgbAoX2DM6BW0JMPd6hRdOWwQ886KIEj4GDVhI+rUn4MgnYAFamKpNF8BDp1t/WgI+hwDaJKVKkMv+jWNsxT2pwruqPK+ZIFCieWyKziAJrUXlEpLZGp+TJAtHkuwmkusKdM20YfzlpXZIbqo0wBPFhGvIxjM0oUpSYz4Kdw/Z+VI3KYnQKnGiMgVOea5ZthPPK2t9yzVjXb9VeJV9gKtAXRZJiVSp9DODusqFQjF59TgzPkCGfTYFD2WDRKRiNAaBMSZIQbmZPRg8ewV1FN7GMuXpJHFXDbh/0ZumEkEwwMlCa66rbQwOnIPEdT/TosxgwCV2Pmtzo3fgknGXfR/gFDiMh8vGla2ZVy72elgXEDywJG53bhHwhHhXe2+UmKCreKKHhSjbuvUuA5UKd7zESxaatzZXBFXOQcuCpaPB/XNFnGLkSPouFPG44QGKj6cWgfwJHXkxcwx55rtLO1rKvJQJNTTPLXxImhYhnVaWnIAOMbENpt0bco3ySxj9xLJpGuEMnex/OQn6xYagQ9hFuxDFzRunb6C/pfXQtJ1FPGlkazmvqSxkOTwoGoYqQqXHyAunLTuX1Ben8QSmbTnZZTXMBuiESOq15f0YdOaFHlHLrTwtBOCHHiRr4RnJNlQ7PSLpl2ifjK87Fwp971DjHw3+TnLSLQP6oAdOt/JIv1Fw0ZbP1hWxZ46Y+ZQ0ldCT5nq+xWjeotzgnB4R2OkcJB9rFO7Q1oVbiz0sufJ0SEnjyfCFnT1IVPzDbqJQXO/0wLzeI6sxiRr26BHFzbzSgwzIN12tNVLkTueliwt3Qg9YzJwBPcSC6CNMYg+7JQd340rNhwkcoustyb0V2RY98q4WBCqt+RCS5gOXkDJuQBk3Mg8J6yg5siStE1nXZbFT9PWn4iy6/q9A23Ypizm10yDFafS1g+D7FmtuoG+gG9pfAQYAKw5GgTJkaHIAAAAASUVORK5CYII=);
 }
 
-.watermark:hover
+.watermark:hover,
+.watermark:focus
 {
   opacity: 1;
 }
@@ -1233,7 +1229,8 @@ body[data-href='business'] .watermark
 }
 
 .nav,
-.nav:hover
+.nav:hover,
+.nav:focus
 {
   text-shadow: 0 0 5px #000000;
   color: #fff;
@@ -1324,10 +1321,16 @@ nav.paginator a.next
 }
 
 nav.paginator.home a       { color: #ddd; }
-nav.paginator.home a:hover { color: #fff; }
+nav.paginator.home a:hover,
+nav.paginator.home a:focus {
+  color: #fff;
+}
 
 nav.paginator.features a       { color: #555; }
-nav.paginator.features a:hover { color: #000; }
+nav.paginator.features a:hover,
+nav.paginator.features a:focus {
+  color: #000;
+}
 
 body[data-href='home']       nav.paginator.home,
 body[data-href='mobile']     nav.paginator.home,
@@ -1515,7 +1518,8 @@ body[data-href='home'] article.sectioned section.one_third
   padding-bottom: 15px;
 }
 
-#classes li a:hover
+#classes li a:hover,
+#classes li a:focus
 {
   color: #5FA4A0;
 }
@@ -1531,16 +1535,46 @@ body[data-href='home'] article.sectioned section.one_third
 #classes li.performance a          { background-position: left -1104px; }
 #classes li.nuts_and_bolts a       { background-position: left -1245px; }
 
-#classes li.offline a:hover        { background-position: -121px 25px; }
-#classes li.storage a:hover        { background-position: -121px -117px; }
-#classes li.connectivity a:hover   { background-position: -121px -258px; }
-#classes li.file_access a:hover    { background-position: -121px -399px; }
-#classes li.semantics a:hover      { background-position: -121px -540px; }
-#classes li.multimedia a:hover     { background-position: -121px -681px; }
-#classes li.graphics a:hover       { background-position: -121px -822px; }
-#classes li.presentation a:hover   { background-position: -121px -963px; }
-#classes li.performance a:hover    { background-position: -121px -1104px; }
-#classes li.nuts_and_bolts a:hover { background-position: -121px -1245px; }
+#classes li.offline a:hover,
+#classes li.offline a:focus {
+  background-position: -121px 25px;
+}
+#classes li.storage a:hover,
+#classes li.storage a:focus {
+  background-position: -121px -117px;
+}
+#classes li.connectivity a:hover,
+#classes li.connectivity a:focus {
+  background-position: -121px -258px;
+}
+#classes li.file_access a:hover,
+#classes li.file_access a:focus {
+  background-position: -121px -399px;
+}
+#classes li.semantics a:hover,
+#classes li.semantics a:focus {
+  background-position: -121px -540px;
+}
+#classes li.multimedia a:hover,
+#classes li.multimedia a:focus {
+  background-position: -121px -681px;
+}
+#classes li.graphics a:hover,
+#classes li.graphics a:focus {
+  background-position: -121px -822px;
+}
+#classes li.presentation a:hover,
+#classes li.presentation a:focus {
+  background-position: -121px -963px;
+}
+#classes li.performance a:hover,
+#classes li.performance a:focus {
+  background-position: -121px -1104px;
+}
+#classes li.nuts_and_bolts a:hover,
+#classes li.nuts_and_bolts a:focus {
+  background-position: -121px -1245px;
+}
 
 #classes li h3
 {
@@ -1575,14 +1609,15 @@ article.profile section
        -o-filter: grayscale(0.75) sepia(0.5);
           filter: grayscale(0.75) sepia(0.5);
 
-  -webkit-transition: all 0.3s ease-out;  
-     -moz-transition: all 0.3s ease-out;  
-      -ms-transition: all 0.3s ease-out;  
-       -o-transition: all 0.3s ease-out;  
+  -webkit-transition: all 0.3s ease-out;
+     -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+       -o-transition: all 0.3s ease-out;
           transition: all 0.3s ease-out;
 }
 
-.profile:hover img[itemprop=photo]
+.profile:hover img[itemprop=photo],
+.profile:focus img[itemprop=photo]
 {
   -webkit-filter: none;
      -moz-filter: none;
@@ -1647,7 +1682,8 @@ article.profile section
   transition: opacity 100ms ease-in-out;
 }
 
-.profile .urls li a:hover
+.profile .urls li a:hover,
+.profile .urls li a:focus
 {
   opacity: 1;
 }
@@ -1674,6 +1710,7 @@ article.profile section
 }
 
 .profile:hover .list-articles { color: #5fa4a0; }
+.profile:focus .list-articles { color: #5fa4a0; }
 
 .profile .list-articles span
 {
@@ -1898,7 +1935,8 @@ nav.outline a
   color: #555;
 }
 
-nav.outline a:hover
+nav.outline a:hover,
+nav.outline a:focus
 {
   color: #000;
 }
@@ -2632,7 +2670,8 @@ body[data-href='tutorials'] .page header .share
   cursor: pointer;
 }
 
-.tutorial_listing .tag:hover
+.tutorial_listing .tag:hover,
+.tutorial_listing .tag:focus
 {
   color: #333;
 }
@@ -3061,7 +3100,8 @@ section.disqus
     color: #5fa4a0;
   }
 
-  nav.outline.toc a:hover
+  nav.outline.toc a:hover,
+  nav.outline.toc a:focus
   {
     color: #f04530;
   }
