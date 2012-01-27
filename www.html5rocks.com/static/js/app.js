@@ -232,7 +232,6 @@ window.feed = {
   // homepage.
 
   home : function(result){
-    
     result = feed.process(result);
 
     var container = document.getElementById('latest_articles_feed')
@@ -251,19 +250,30 @@ window.feed = {
         entry.category.forEach(function(cat) {
           classes += '<span class="class ' + cat.term + '"><span class="class_name">' + cat.term + '</span></span>';
           //TODO: use each cat.term
-          //TODO: do categories correspond to classes? 
-          // No...                                                
+          //TODO: do categories correspond to classes?
+          // No...
           //   categories are formats: Tutorial, Article, Case Study, Announcements, Presentation, Video
           //   classes are technologies: Offline, Storage, Connectivity, File, Access, Semantics, Audio/Video, 3D/Graphics, Presentation, Performance, Nuts & Bolts
-          //   audiences/personas: General, Mobile, Gaming, Business                                              
+          //   audiences/personas: General, Mobile, Gaming, Business
         });
       }
       classes += '</span>';
 
-      html.push('<li><span class="byline"><span class="date">', entry.formattedDateStr, '</span> ',
-                '<span class="author">', entry.author ? '<img src="/static/images/profiles/' + entry.author + '.png">' : '', '</span></span>',
-                '<span class="details"><span class="title">', entry.title.link(entry.link), '</span>',
-                classes
+      html.push('<li><span class="byline"><span class="date">',
+                entry.formattedDateStr, '</span> ', '<span class="author">',
+                // TODO(mkwst): This shouldn't be a blank alt-attribute. It
+                // should contain the author's name. That apparently isn't
+                // available in the feed.
+                //
+                // TODO(ericbidelman): Why is this being loaded via a feed,
+                // anyway? Don't we have a database?
+                entry.author ?
+                    '<img src="/static/images/profiles/' + entry.author +
+                        '.png" alt="">' :
+                    '',
+                '</span></span>',
+                '<span class="details"><span class="title">',
+                entry.title.link(entry.link), '</span>', classes
                 //,'<span data-type="', entry.type, '" class="type">', entry.type, '</span></span></li>'
                 );
     }
