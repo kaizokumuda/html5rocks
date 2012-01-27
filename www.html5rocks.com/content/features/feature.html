@@ -39,6 +39,8 @@
         </ul>
       </section>
 
+      {% block description %}{% endblock %}
+
       {% block support %}
         <section id="support" class="support {% block supportblockstyle %}{% endblock %}" style="display:none"
           data-caniusefeatures="{% block caniuse %}{% endblock %}"
