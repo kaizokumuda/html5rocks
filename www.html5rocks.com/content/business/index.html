@@ -20,33 +20,16 @@
     </hgroup>
 
     <section>
-      <p>Pid cras vel odio lundium natoque integer urna adipiscing tortor scelerisque vut! Mauris montes pellentesque in pulvinar eu, natoque natoque mid phasellus, lectus ut, aliquet! Duis, dis urna rhoncus augue ac mattis dapibus est. Sit cras, nec mattis, elit, ut cras turpis, ridiculus quis elementum et? Turpis et, cras mauris!</p>
-      <p>Nisi adipiscing rhoncus elementum aliquet quis quis! Amet ac nec vel magna elementum lundium mus, velit sagittis facilisis!</p>
-      <p>Porttitor, montes auctor ac cum in mid eu eros, vut platea mid.</p>
+      <p>Businesses need to let their users access their core applications quickly and easily.
+      With HTML5, the browser is becoming the main business platform. Features like websockets,
+      offline storage and rich user interface let you create amazing business web applications.
+      HTML5 brings substantial benefits for companies that no other IT model can — in simplicity,
+      cost, security, flexibility and mobility.</p>
       <p><a href="/{{LANGUAGE_CODE}}/tutorials#business">{% trans "Give me everything" %} &rarr;</a></p>
     </section>
   </header>
 
   <article class="sectioned">
-    <section class="tutorials one_half figures">
-      <h3>{% trans "Business" %} {% trans "Tutorials" %}</h3>
-      {% for r in tutorials %}
-        {% if forloop.counter0 < 4 %}
-          <figure>
-            <a href="{{r.url}}">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAABuCAIAAABKon3BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RERCRDc2OEFGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RERCRDc2OEJGOEUzMTFFMDk1OUZDN0QwOEI5QjU1NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEREJENzY4OEY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEREJENzY4OUY4RTMxMUUwOTU5RkM3RDA4QjlCNTU2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv7sto8AAAC4SURBVHja7NEBDQAADMKwB/+ibwOSTsKa03ixAKEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAiFUAiFEKEQCqEQIhRCIRRChEIohEKIUAiFUAgRCqEQCiFCIRRCIUQohEIohAjV0wswAM1MAN20QOvTAAAAAElFTkSuQmCC">
-              <figcaption>
-                {{r.title}}<br>
-                <p>{{r.description|safe|truncatewords:15}}</p>
-              </figcaption>
-            </a>
-          </figure>
-        {% endif %}
-      {% empty %}
-        <p>Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.</p>
-      {% endfor %}
-    </section>
-
     <section class="feed one_half">
       <h3>{% trans "Business" %} {% trans "Updates" %}</h3>
       <ul>
@@ -66,13 +49,80 @@
       </ul>
     </section>
 
-    <section class="one_third">
+    <section class="tutorials one_half figures">
+      <h3>{% trans "Business" %} {% trans "Tutorials" %}</h3>
+      <ul class="definitions">
+        {% for r in tutorials %}
+          {% if forloop.counter0 < 4 %}
+            {% if r.type == 'tutorial' or r.type == 'article' %}
+            <li>
+              <a href="{{r.url}}">{{r.title}}</a><br>
+              <span>{{r.description|safe|truncatewords:15}}</span>
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
+        {% empty %}
+          <p>Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.</p>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section>
+      <h3>{% trans "Why move to HTML5 now than later?" %}</h3>
+      <ul>
+        <li>HTML5 can be deployed across multiple platforms and a wide range of mobile devices.</li>
+        <li>It's a less expensive and more productive solution to have one source code for all your platforms. </li>
+        <li>HTML5 contains a lot of features that are very useful and powerful for business:
+          <ul>
+            <li><b>Security</b>: Secure web sockets gives you high throughput on a secure channel.</li>
+            <li><b>Efficiency</b>: Multi-threading with web workers let you do more computational tasks in your clients’ machines.</li>
+            <li><b>Offline</b>: Client-side databases to store data so you can be productive when you don’t have an internet connection.</li>
+          </ul>
+        </li>
+        <li>Lots of other leading companies are moving to HTML5: Adobe, Salesforce, Citrix,  <a href="" target="_blank">Netflix</a>, Twitter etc.</li>
+      </ul>
+    </section>
+
+    <section class="tools">
+      <hgroup>
+        <h3>{% trans "Tools &amp; Frameworks" %}</h3>
+      </hgroup>
+      <div>
+        <ul class="two_columns">
+          <li><a href="https://gist.github.com/350433">localStorage polyfill</a></li>
+          <li><a href="http://code.google.com/p/sessionstorage/">sessionStorage polyfill</a></li>
+          <li><a href="http://amplifyjs.com/">amplifyjs.js</a></li>
+          <li><a href="https://github.com/jensarps/IDBWrapper">IDBWrapper</a> - wrapper library for IndexedDB</li>
+          <li><a href="http://www.sencha.com/products/">Sencha</a></li>
+          <li><a href="http://www.strobecorp.com/">Strobe</a></li>
+          <li><a href="http://code.google.com/webtoolkit/">Google Web Toolkit</a></li>
+          <li><a href="http://code.google.com/closure/library/">Google Closure Library</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="resources">
+      <hgroup>
+        <h3>{% trans "Additional Resources" %}</h3>
+      </hgroup>
+      <div>
+        <ul class="two_columns">
+          <li><a href="http://www.google.com/chromebook/#business-education/">Chromebooks for Business</a></li>
+          <li><a href="http://hacks.mozilla.org/2010/01/offline-web-applications/">Mozilla Hack: Offline Web Applications</a></li>
+          <li><a href="https://developer.mozilla.org/En/Offline_resources_in_Firefox">MDN Documentation: Offline</a></li>
+          <li><a href="http://dev.opera.com/articles/view/offline-applications-html5-appcache/">Running your web applications offline with HTML5 AppCache</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contributors">
       <hgroup>
         <h3>{% trans "Recent Contributors" %}</h3>
       </hgroup>
-
       <ul class="authors">
         {% for a in authors %}
+          {% if forloop.counter0 < 4 %}
           <li class="profile" id="{{ a.key.name }}" itemscope itemtype="http://microformats.org/profile/hcard">
             <a href="/{{LANGUAGE_CODE}}/profiles#{{ a.key.name }}">
               <img itemprop="photo" alt="{{ a.given_name }} {{ a.family_name }}" title="{{ a.given_name }} {{ a.family_name }}" src="/static/images/profiles/{{ a.key.name }}.png">
@@ -90,29 +140,11 @@
               </h3>
             </a>
           </li>
+          {% endif %}
           {% empty %}
           Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.
         {% endfor %}
       </ul>
-    </section>
-
-    <section class="resources two_thirds">
-      <hgroup>
-        <h3>{% trans "Additional Resources" %}</h3>
-      </hgroup>
-      <div>
-        <ul>
-          <li><a href="http://code.google.com/mobile/">Google Mobile Developer Products</a></li>
-          <li><a href="http://mobile.yahoo.com/developers">Yahoo! Mobile Developers Home</a></li>
-          <li><a href="https://developer.mozilla.org/En/Mobile">Mozilla Mobile Docs</a></li>
-          <li><a href="http://www.w3.org/TR/mobile-bp/">W3C Mobile Best Practices</a></li>
-          <li><a href="http://developer.android.com/guide/webapps/index.html">Android Web Apps Overview</a></li>
-          <li><a href="http://www.mobileawesomeness.com/">mobileawesomeness.com</a> - Get inspired</li>
-          <li><a href="http://mobile-patterns.com/">mobile-patterns.com</a> - Examples of mobile UI patterns</li>
-          <li><a href="http://www.mobilexweb.com/emulators">List of Mobile Browser Emulators</a></li>
-          <li><a href="http://webpro.host.adobe.com/people/jblas/research/">Research and test cases on Touch-Events and Mobile</a></li>
-        </ul>
-      </div>
     </section>
   </div>
 </div>

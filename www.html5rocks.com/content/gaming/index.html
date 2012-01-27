@@ -55,11 +55,13 @@
       <ul class="definitions">
       {% for r in tutorials %}
         {% if forloop.counter0 < 4 %}
+          {% if r.type == 'tutorial' or r.type == 'article' %}
           <li>
             <a href="{{r.url}}">{{r.title}}</a><br>
             <span>{{r.description|safe|truncatewords:15}}</span>
             </a>
           </li>
+          {% endif %}
         {% endif %}
       {% empty %}
         <p>Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.</p>
@@ -69,19 +71,19 @@
 
     <section class="resources">
       <hgroup>
-        <h3>{% trans "Additional Resources" %}</h3>
+        <h3>{% trans "Tools &amp; Frameworks" %}</h3>
       </hgroup>
       <div>
         <ul class="two_columns">
-          <li><a href="http://code.google.com/mobile/">Google Mobile Developer Products</a></li>
-          <li><a href="http://mobile.yahoo.com/developers">Yahoo! Mobile Developers Home</a></li>
-          <li><a href="https://developer.mozilla.org/En/Mobile">Mozilla Mobile Docs</a></li>
-          <li><a href="http://www.w3.org/TR/mobile-bp/">W3C Mobile Best Practices</a></li>
-          <li><a href="http://developer.android.com/guide/webapps/index.html">Android Web Apps Overview</a></li>
-          <li><a href="http://www.mobileawesomeness.com/">mobileawesomeness.com</a> - Get inspired</li>
-          <li><a href="http://mobile-patterns.com/">mobile-patterns.com</a> - Examples of mobile UI patterns</li>
-          <li><a href="http://www.mobilexweb.com/emulators">List of Mobile Browser Emulators</a></li>
-          <li><a href="http://webpro.host.adobe.com/people/jblas/research/">Research and test cases on Touch-Events and Mobile</a></li>
+          <li><a href="http://www.mandreel.com/">Mandreel</a></li>
+          <li><a href="https://github.com/mrdoob/three.js/">three.js</a></li>
+          <li><a href="http://benvanik.github.com/WebGL-Inspector/">WebGL Inspector</a></li>
+          <li><a href="https://github.com/facebook/jsgamebench">JS Games Benchmark</a></li>
+          <li><a href="http://impactjs.com/">Impact.js</a></li>
+          <li><a href="https://developers.google.com/playn/">PlayN</a></li>
+          <li><a href="http://processingjs.org/">Processing.js</a></li>
+          <li><a href="http://www.scirra.com/">Scirra</a></li>
+          <li><a href="http://learningthreejs.com/">learningthreejs.com</a></li>
         </ul>
       </div>
     </section>
