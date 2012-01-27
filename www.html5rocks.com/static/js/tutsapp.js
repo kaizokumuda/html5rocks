@@ -94,7 +94,6 @@ window.tuts = {
 
       // make real dates
       var date = new Date(entry.getAttribute('data-pubdate'));
-      console.log(date.toString());
       $.data(entry, 'date', date);
 
     }).get().sort(function(a,b){
@@ -106,13 +105,11 @@ window.tuts = {
 
     // hello DOM
     $(entries).appendTo('#index');
-
+    initPage();
   }
 }; // eo tuts{}
 
 tuts.init();
-    
-
 
 function clearFilter() {
   $('.tutorial_listing.hidden').removeClass('hidden');
@@ -128,7 +125,6 @@ function clearFilter() {
 };
 
 function initializeFilters(tag_str) {
-  console.log(tag_str);
   var simple_tags = [];
   tag_str.toLowerCase().split(',').forEach(function(eachtag, i) {
       var type_and_value = eachtag.split(':');
@@ -166,10 +162,10 @@ function filterTag(opt_tag) {
   var e = window.event;
 
   // Don't perform another filter if we're initiated from a hashchange.
-  if (!e || e.type == 'hashchange') {
+/*  if (!e || e.type == 'hashchange') {
     return;
   }
-
+*/
   console.log('called: ' + ++times);
 
   var samples = $('.tutorial_listing');
@@ -197,7 +193,7 @@ function filterTag(opt_tag) {
   var technologies = [];
   $('#updates_technology_filter input[type="checkbox"]:checked').each(function(i, checkbox) {
     technologies.push(checkbox.value);
-    filter_arr.push(checkbox.value);
+    filter_arr.push('technology:' + checkbox.value);
   });
 
   var tags = $('#updates_tag_filter')[0].value;
@@ -209,7 +205,7 @@ function filterTag(opt_tag) {
     tag_list = [];
   }
   
-  for (var i = 0; i < samples. length; i++) {
+  for (var i = 0; i < samples.length; i++) {
     var qualified = true;
     var sample = samples[i];
 
@@ -276,7 +272,7 @@ window.addEventListener('hashchange', function(e) {
   }
 }, false);
 
-$(document).ready(function() {
+function initPage() {
   $('.tag').click(function(e){
     filterTag(this.textContent);
   });
@@ -288,4 +284,4 @@ $(document).ready(function() {
     //samples.addClass('hidden');
     filterTag(window.location.hash.substring(1));
   }
-});
+}
