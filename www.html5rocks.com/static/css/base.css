@@ -1061,16 +1061,6 @@ header.main h1
   padding: 19px 0 26px;
 }
 
-#search_show,
-#features_show
-{
-  color: #fff;
-  cursor: pointer !important;
-  padding: 6px 1em 5px;
-  text-transform: uppercase;
-  height: 14px;
-}
-
 #search_show
 {
   float: right;
