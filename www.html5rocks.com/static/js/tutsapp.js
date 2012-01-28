@@ -27,10 +27,10 @@ window.tuts = {
     });
 
     // get template
-    $.get('/static/js/tutorialtmpl.html', {dataType: 'plain'}, function(data){
+    $.get('/static/js/tutstmpl.html', function(data){
       tuts.tmpl = Handlebars.compile( data );
       tuts.tmpldfr.resolve();
-    });
+    }, 'text');
 
     // when the three of these async events finish. kick things off.
     $.when(
@@ -277,7 +277,7 @@ window.addEventListener('hashchange', function(e) {
 }, false);
 
 function initPage() {
-  $('.tag').click(function(e){
+  $('.tag').live('click', function(e){
     filterTag(this.textContent);
   });
   $('section.filter input[type="checkbox"]').click(filterTag);
