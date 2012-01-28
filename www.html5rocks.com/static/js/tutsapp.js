@@ -7,6 +7,19 @@ window.tuts = {
   tmpl      : undefined,
   tmpldfr   : $.Deferred(),
 
+  classToTag : {
+      "offline"       : ['appcache'],
+      "storage"       : ['indexeddb'],
+      "connectivity"  : ['xhr2', 'websockets'],
+      "file_access"   : ['filesystem', 'file', 'quota'],
+      "semantics"     : [],
+      "multimedia"    : ['webaudio', 'video', 'media source'],
+      "graphics"      : ['webgl', '3d'],
+      "presentation"  : ['css','css3'],
+      "performance"   : ['workers'],
+      "nuts_and_bolts": ['devtools'],
+  },
+
   init : function(){
 
     // get update feed data
@@ -77,7 +90,30 @@ window.tuts = {
       entry.categories = entry.categories.map(function(cat){
         return cat.replace(/,/g,'').trim();
       });
-      entry.tags = entry.categories.join(', ');
+      entry.tags = entry.categories.join(', '); // not sure these are actually used...
+
+      // map some of these into classes
+      var classesObj = {};
+      entry.classes = [];
+      // iterate over categories
+      for ( var i = 0, len = entry.categories.length;
+            cat = entry.categories[i], i < len;
+            i++)  {
+        // for each category iterate over hash
+        for (var key in tuts.classToTag){
+          // if category matches key of hash,
+          //  or
+          // if the array in the hash contains the category...
+          //   strip that out of categories and add to classes
+          if (key == cat || ~tuts.classToTag[key].indexOf(cat)){
+            entry.categories.splice(i,1)
+            classesObj[key] = true;
+          }
+        }
+      }
+
+      // remove duplicate categories
+      entry.classes = Object.keys(classesObj);
 
       return entry;
     });
