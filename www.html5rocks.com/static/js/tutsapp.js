@@ -105,7 +105,8 @@ window.tuts = {
           //  or
           // if the array in the hash contains the category...
           //   strip that out of categories and add to classes
-          if (key == cat || ~tuts.classToTag[key].indexOf(cat)){
+          //if (key == cat || ~tuts.classToTag[key].indexOf(cat)){
+          if (key == cat) {
             entry.categories.splice(i,1)
             classesObj[key] = true;
           }
