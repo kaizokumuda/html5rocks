@@ -23,8 +23,8 @@
           <h2>By <strong><a href="/profiles/#!/{{ tut.author.key.name }}">{{ tut.author.given_name }} {{ tut.author.family_name }}</a></strong></h2>
         </hgroup>
         <div class="date">
-          <time pubdate>{% blocktrans %}Published <strong>{{ tut.publication_date }}</strong>{% endblocktrans %}</time>
-          {%if tut.update_date %}<time class="updated">{% blocktrans %}Updated <strong>{{ tut.update_date }}</strong>{% endblocktrans %}</time>{% endif %}
+          <time pubdate>{% blocktrans %}Published{% endblocktrans %} <strong>{{ tut.publication_date }}</strong></time>
+          {%if tut.update_date %}<time class="updated">{% blocktrans %}Updated{% endblocktrans %} <strong>{{ tut.update_date }}</strong></time>{% endif %}
         </div>
       </section>
 
