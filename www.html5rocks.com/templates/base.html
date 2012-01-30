@@ -384,9 +384,7 @@
   </footer>
 -->
 
-  <script type="text/javascript"
-      src="//www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22search%22%2C%22version%22%3A%221%22%2C%22language%22%3A%22{{LANGUAGE_CODE}}%22%7D%5D%7D"></script>
-
+  
   <script defer src="/static/js/feature{% if prod %}.min{% endif %}.js"></script>
   <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
     {lang: '{{LANGUAGE_CODE}}', parsetags: 'explicit'}
@@ -403,31 +401,6 @@
       }, false);
     {% endif %}
 
-    // Page header pulldowns.
-    $('#search_show a').click(function(e) {
-      e.preventDefault();
-      $('#features_hide').click(); // Hide features panel if it's out.
-
-      if ($(this).hasClass('current')) {
-        $('.subheader.search').hide();
-        $(this).removeClass('current');
-        $('.watermark').css('top', '30px');
-        $('#search_show a').focus();
-      } else {
-        $('.main nav .current').removeClass('current');
-        $(this).addClass('current');
-        $('.subheader.search').show();
-        $('.watermark').css('top', '100px');
-        $('#q').focus();
-      }
-    });
-
-    $('#search_hide').click(function() {
-      $('#search_show').removeClass('current');
-      $('.subheader.search').hide();
-      $('.watermark').css('top', '30px');
-      $('#search_show a').focus();
-    });
 
     $('#features_show a').click(function() {
       $('#search_hide').click(); // Hide search panel if it's out.
@@ -477,18 +450,7 @@
       document.getElementById('compatible').className = '';
     }
 
-    var q = document.getElementById('q');
 
-    google.search.CustomSearchControl.attachAutoCompletion(
-        '007435387813601113811:ef_kuvvx6a8', q, 'cse-search-box');
-
-    if (q.addEventListener) {
-      q.addEventListener('keydown', function(e) {
-        if (e.keyCode == 13) { // enter key
-          document.getElementById('cse-search-box').submit();
-        }
-      }, false);
-    }
 
     // Kill feedburner and marketing tracking arguments cuz they're ugly.
     if (/^\?utm_/.test(document.location.search) &&
