@@ -32,18 +32,20 @@
   <article class="sectioned">
     <section class="feed one_half">
       <h3>{% trans "Business" %} {% trans "Updates" %}</h3>
-      <ul>
+      <ul id="updates_list">
         {% for tut in tutorials %}
-          <li style="white-space:nowrap;">
-            <span class="date">{{tut.publication_date.month}}/{{tut.publication_date.day}}</span> <span class="author" data-author_id="{{ tut.author.key.name }}"><img src="/static/images/profiles/{{tut.author.key.name}}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}"></span>
-            <span class="title"><a href="{{tut.url}}">{{tut.title}}</a></span>
-            <span class="classes">
-              {% for tag in tut.classes %}
-                <span class="class {{tag}}"><span class="class_name">{{tag}}</span></span>
-              {% endfor %}
-            </span>
-          </li>
-          {% empty %}
+          {% if tut.type != 'tutorial' and tut.type != 'article' %}
+            <li data-pubdate="{{tut.publication_date}}">
+              <span class="date">{{tut.publication_date.month}}/{{tut.publication_date.day}}</span> <span class="author" data-author_id="{{ tut.author.key.name }}"><img src="/static/images/profiles/{{tut.author.key.name}}.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}"></span>
+              <span class="title"><a href="{{tut.url}}">{{tut.title|safe}}</a></span>
+              <span class="classes">
+                {% for tag in tut.classes %}
+                  <span class="class {{tag}}"><span class="class_name">{{tag}}</span></span>
+                {% endfor %}
+              </span>
+            </li>
+          {% endif %}
+        {% empty %}
           Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.
         {% endfor %}
       </ul>
@@ -148,4 +150,10 @@
     </section>
   </div>
 </div>
+
+<script>
+  var selfPage = '{{self_pagename}}'; // Need to pass in current page id to persona.js via template.
+</script>
+<script defer src="/static/js/handlebars-1{% if prod %}.min{% endif %}.js"></script>
+<script defer src="/static/js/persona{% if prod %}.min{% endif %}.js"></script>
 {% endblock %}

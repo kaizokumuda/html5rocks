@@ -121,11 +121,11 @@
     {% endcomment %}
     <div id="output">{% trans "Loading..." %}</div>
 
-    <script src="/static/js/handlebars.1.0.0.beta.3.js"></script>
-    <script src="/static/js/parseuri.js"></script>
-    <script src="/static/js/talkstmpl.js"></script>
-    <script src="/static/js/slides-polyfills.js"></script>
-    <script src="/static/js/slidesapp.js"></script>
+    <script src="/static/js/handlebars-1{% if prod %}.min{% endif %}.js"></script>
+    <script src="/static/js/parseuri{% if prod %}.min{% endif %}.js"></script>
+    <script src="/static/js/talkstmpl{% if prod %}.min{% endif %}.js"></script>
+    <script src="/static/js/slides-polyfills{% if prod %}.min{% endif %}.js"></script>
+    <script src="/static/js/slidesapp{% if prod %}.min{% endif %}.js"></script>
 
   </section>
 </div>

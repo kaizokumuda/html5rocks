@@ -302,18 +302,27 @@ class ContentHandler(webapp.RequestHandler):
       logging.info('Building request for casestudy `%s` in locale `%s`',
                    path, locale)
       potentialfile = re.sub('tutorials/casestudies',
-                             'tutorials/casestudies/%s' % locale,
-                             path)
+                             'tutorials/casestudies/%s' % locale, path)
       englishfile = re.sub('tutorials/casestudies',
-                           'tutorials/casestudies/%s' % 'en',
-                           path)
+                           'tutorials/casestudies/%s' % 'en', path)
+
       logging.info(englishfile)
+
       if os.path.isfile(potentialfile):
         logging.info('Rendering in native: %s' % potentialfile)
 
-        self.render(template_path=potentialfile,
-                    data={'redirect_from_locale': redirect_from_locale},
-                    relpath=relpath)
+        tut = models.Resource.all().filter('url =', '/' + relpath).get()
+
+        # If tutorial is marked as draft, redirect and don't show it.
+        if tut.draft:
+          return self.redirect('/tutorials')
+
+        data = {
+          'tut': tut,
+          'redirect_from_locale': redirect_from_locale
+        }
+
+        self.render(template_path=potentialfile, data=data, relpath=relpath)
 
       # If the localized file doesn't exist, and the locale isn't English, look
       # for an english version of the file, and redirect the user there if

@@ -41,7 +41,7 @@
   <!-- <script defer src="/static/js/jquery.scrollTo-min.js"></script> -->
 
   <!-- defer is unreliable in ie <= 9, but o well -->
-  <script defer src="/static/js/app.js"></script>
+  <script defer src="/static/js/app{% if prod %}.min{% endif %}.js"></script>
 
   <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css">
 
@@ -386,9 +386,6 @@
   </footer>
 -->
 
-  
-  <script defer src="/static/js/feature{% if prod %}.min{% endif %}.js"></script>
-
   <script>
 
 
@@ -476,7 +473,7 @@
 
 
   </script>
-  <script defer src="/static/js/search.js"></script>
-  <script defer src="/static/js/3rdpartyinit.js"></script>
+  <script defer src="/static/js/search{% if prod %}.min{% endif %}.js"></script>
+  <script defer src="/static/js/3rdpartyinit{% if prod %}.min{% endif %}.js"></script>
 </body>
 </html>

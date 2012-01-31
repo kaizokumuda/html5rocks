@@ -1,24 +1,9 @@
 {% extends "tutorial.html" %}
 
-{% block headauthor %}Jeremy Chone <jeremy.chone@gmail.com>{% endblock %}
-{% block pageauthor %}{% profilelinks jeremychone %}{% endblock %}
-{% block headtitle %}Case Study: HTML5 MathBoard{% endblock %}
-{% block pagetitle %}Case Study: HTML5 MathBoard{% endblock %}
 {% block head %}
 
 {% endblock %}
-{% block pagebreadcrumb %}Case Study: HTML5 MathBoard{% endblock %}
-{% block date %}January 28, 2011{% endblock %}
-{% block updated %}{% endblock %}
 {% block onload %}{% endblock %}
-
-{% block browsersupport %}
-<span class="browser opera supported"><span class="browser_name">Opera</span><span class="support">supported</span></span>
-<span class="browser ie"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
-<span class="browser safari supported"><span class="browser_name">Safari</span><span class="support">supported</span></span>
-<span class="browser ff supported"><span class="browser_name">Firefox</span><span class="support">supported</span></span>
-<span class="browser chrome supported"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
-{% endblock %}
 
 {% block iscompatible %}
   return !!Modernizr.canvas

@@ -328,8 +328,7 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
     cacheKey = options.cacheKey;
   else 
      cacheKey = options.url + options.type + options.data;
-  
-console.log(cacheKey)
+
   // isCacheValid is a function to validate cache
   if( options.isCacheValid &&  ! options.isCacheValid() ){
     localStorage.removeItem( cacheKey );
