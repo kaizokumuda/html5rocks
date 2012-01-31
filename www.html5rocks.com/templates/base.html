@@ -386,12 +386,9 @@
 
   
   <script defer src="/static/js/feature{% if prod %}.min{% endif %}.js"></script>
-  <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-    {lang: '{{LANGUAGE_CODE}}', parsetags: 'explicit'}
-  </script>
-  <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+
   <script>
-  gapi.plusone.go();
+
 
   (function() {
     {% if is_mobile %}
@@ -475,17 +472,9 @@
     }
   })();
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-15028909-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script');
-    ga.type = 'text/javascript';
-    ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-  })();
+
   </script>
+  <script src="/static/js/search.js"></script>
+  <script src="/static/js/3rdpartyinit.js"></script>
 </body>
 </html>

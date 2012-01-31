@@ -151,8 +151,6 @@ $('nav.features_outline a.section_title').click(function(e) {
 
 window.route = {
   common : function() {
-    gapi.plusone.go($('.plusone').get(0));
-    twttr.widgets.load();
 
     // TODO(Google): record GA hit on new ajax page load.
   },
