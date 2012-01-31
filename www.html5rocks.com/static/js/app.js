@@ -313,11 +313,15 @@ window.feed = {
   } // eo process()
 } // eo feed{}
 
+
+
+
+
 // https://github.com/nectify/jquery-ajax-jstorage-cache
 // modded by paulirish to use localStorage directly
 $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   // Cache it ?
-  if( !Modernizr.localstorage || !options.cacheJStorage )
+  if( !Modernizr.localstorage || !options.localCache )
     return;
 
   var cacheKey;
@@ -329,7 +333,7 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   
   // isCacheValid is a function to validate cache
   if( options.isCacheValid &&  ! options.isCacheValid() ){
-    localStorage.removeItem( cackeKey );
+    localStorage.removeItem( cacheKey );
   }
   
   var value = localStorage.getItem( cacheKey );
@@ -346,14 +350,16 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
       options.success = function( data ) {
         localStorage.setItem( cacheKey, data );
         successhandler( data );
-      }
+      };
     }else{
        options.success = function( data ) {
          localStorage.setItem( cacheKey, data );
-       }
+       };
     }
   }
 });
+
+
 
 
 

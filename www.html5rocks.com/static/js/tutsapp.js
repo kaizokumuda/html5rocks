@@ -3,9 +3,7 @@ window.tuts = {
   feed      : undefined,
   feeddfr   : $.Deferred(),
   authors   : undefined,
-  authordfr : $.Deferred(),
   tmpl      : undefined,
-  tmpldfr   : $.Deferred(),
 
   classToTag : {
       "offline"       : ['appcache'],
@@ -20,38 +18,44 @@ window.tuts = {
       "nuts_and_bolts": ['devtools'],
   },
 
-  init : function(){
-
-    // get update feed data
-    google.load("feeds", "1");
-    google.setOnLoadCallback(function(){
-      var gfeed = new google.feeds.Feed("http://updates.html5rocks.com/feeds/atom.xml");
-      gfeed.setNumEntries(1e3);
-      gfeed.load(function(result) {
-        tuts.feed = result.feed;
-        tuts.feeddfr.resolve();
-      });
+  // once feed API loaded, grab our atom feed
+  feedsapi : function(){
+    var gfeed = new google.feeds.Feed("http://updates.html5rocks.com/feeds/atom.xml");
+    gfeed.setNumEntries(1e3);
+    gfeed.load(function(result) {
+      tuts.feed = result.feed;
+      tuts.feeddfr.resolve();
     });
+  },
+
+  init : function(){
+    // load the gfeed API
+    var jsapiurl = 'https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221%22%2C%22callback%22%3A%22tuts.feedsapi%22%7D%5D%7D';
+    $.getScript(jsapiurl);
 
     // get author data
-    $.getJSON('/api/authors', function(data){
-      tuts.authors = data;
-      tuts.authordfr.resolve();
+    var authorXHR = $.ajax({
+      url: '/api/authors',
+      dataType: 'text',
+      localCache : true,
+      success: function(data){
+        tuts.authors = JSON.parse(data);
+      }
     });
 
     // get template
-    $.get('/static/js/tutstmpl.html', function(data){
-      tuts.tmpl = Handlebars.compile( data );
-      tuts.tmpldfr.resolve();
-    }, 'text');
+    var templateXHR = $.ajax({
+      url: '/static/js/tutstmpl.html',
+      dataType: 'text',
+      localCache : true,
+      success: function(data){
+        tuts.tmpl = Handlebars.compile( data );
+      }
+    });
 
     // when the three of these async events finish. kick things off.
-    $.when(
-        tuts.feeddfr.promise(), 
-        tuts.authordfr.promise(), 
-        tuts.tmpldfr.promise()      
-      )
-    .done(tuts.compile);
+    $.when( tuts.feeddfr.promise(), authorXHR, templateXHR )
+     .done(tuts.compile);
 
   }, // eo init() 
 
