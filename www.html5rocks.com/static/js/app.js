@@ -224,18 +224,20 @@ window.state = {
 // yahoo pipe returning our feed to do stuff with it.
 // called from inside route[home|tutorials]()
 window.feed = {
-  pipeURL : 'http://pipes.yahoo.com/pipes/pipe.run?_id=\
+  pipeURL: 'http://pipes.yahoo.com/pipes/pipe.run?_id=\
             647030be6aceb6d005c3775a1c19401c&_render=json&',
-
+            // 119e0da707bc08778cbf04df91bc4418 htmlfiverocks
   // homepage.
 
-  home : function(result){
+  home: function(result) {
     result = feed.process(result);
 
-    var container = document.getElementById('latest_articles_feed')
-      , html = []
+    var container = document.getElementById('latest_articles_feed');
+    var html = [];
 
-    if (!container) return;
+    if (!container) {
+      return;
+    }
 
     if (container.textContent == 'loading feed...') {
       container.textContent = '';
@@ -246,13 +248,11 @@ window.feed = {
       var classes = '<span class="classes">';
       if (entry.category && entry.category.length) {
         entry.category.forEach(function(cat) {
+          var CLASS_PREFIX = 'class:';
+          if (cat.term.indexOf(CLASS_PREFIX) == 0) {
+            cat.term = cat.term.substring(CLASS_PREFIX.length);
+          }
           classes += '<span class="class ' + cat.term + '"><span class="class_name">' + cat.term + '</span></span>';
-          //TODO: use each cat.term
-          //TODO: do categories correspond to classes?
-          // No...
-          //   categories are formats: Tutorial, Article, Case Study, Announcements, Presentation, Video
-          //   classes are technologies: Offline, Storage, Connectivity, File, Access, Semantics, Audio/Video, 3D/Graphics, Presentation, Performance, Nuts & Bolts
-          //   audiences/personas: General, Mobile, Gaming, Business
         });
       }
       classes += '</span>';
@@ -265,10 +265,7 @@ window.feed = {
                 //
                 // TODO(ericbidelman): Why is this being loaded via a feed,
                 // anyway? Don't we have a database?
-                entry.author ?
-                    '<img src="/static/images/profiles/' + entry.author +
-                        '.png" alt="">' :
-                    '',
+                entry.author ? '<img src="/static/images/profiles/' + entry.author + '.png" alt="">' : '',
                 '</span></span>',
                 '<span class="details"><span class="title">',
                 entry.title.link(entry.link), '</span>', classes
@@ -332,6 +329,7 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   else 
      cacheKey = options.url + options.type + options.data;
   
+console.log(cacheKey)
   // isCacheValid is a function to validate cache
   if( options.isCacheValid &&  ! options.isCacheValid() ){
     localStorage.removeItem( cacheKey );
