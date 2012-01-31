@@ -156,7 +156,15 @@ window.route = {
   },
 
   home: function(){
-    $.getScript(feed.pipeURL + '_callback=feed.home');
+    $.ajax({
+      dataType: 'jsonp',
+      localCache: true, // use localStorage
+      cache: true, // jQuery dont cachebust
+      url : feed.pipeURL + '_callback=?',
+      success: function(data){
+        feed.home(data);
+      }
+    });
   },
 
   tutorials: function(){
@@ -224,11 +232,12 @@ window.state = {
 // yahoo pipe returning our feed to do stuff with it.
 // called from inside route[home|tutorials]()
 window.feed = {
+
   pipeURL: 'http://pipes.yahoo.com/pipes/pipe.run?_id=\
             647030be6aceb6d005c3775a1c19401c&_render=json&',
             // 119e0da707bc08778cbf04df91bc4418 htmlfiverocks
-  // homepage.
 
+  // homepage.
   home: function(result) {
     result = feed.process(result);
 
@@ -314,21 +323,20 @@ window.feed = {
 
 
 
-// https://github.com/nectify/jquery-ajax-jstorage-cache
-// modded by paulirish to use localStorage directly
-//   and to use a 5 hour ttl on the caches.
+// github.com/paulirish/jquery-ajax-localstorage-cache
+// dependent on Modernizr's localStorage test
+
 $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+
+
   // Cache it ?
-  if( !Modernizr.localstorage || !options.localCache )
-    return;
+  if( !Modernizr.localstorage || !options.localCache ) return;
 
-  var cacheKey;
-  // If cacheKey exist we take it, or default one will be used
-  if ( options.cacheKey )
-    cacheKey = options.cacheKey;
-  else 
-     cacheKey = options.url + options.type + options.data;
+  var hourstl = options.cacheTTL || 5;
 
+  var cacheKey = options.cacheKey || 
+                 options.url.replace(/jQuery.*/,'') + options.type + options.data;
+  
   // isCacheValid is a function to validate cache
   if( options.isCacheValid &&  ! options.isCacheValid() ){
     localStorage.removeItem( cacheKey );
@@ -344,27 +352,27 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   var value = localStorage.getItem( cacheKey );
   if( value ){
     //In the cache? So get it, apply success callback & abort the XHR request
+    // parse back to JSON if we can.
+    if (value.indexOf('{') === 0) value = JSON.parse(value);
     options.success( value );
     // Abort is broken on JQ 1.5 :(
     jqXHR.abort();
   }else{
+
     //If it not in the cache, we change the success callback, just put data on localstorage and after that apply the initial callback
-    if( options.success ) {
-      var successhandler = options.success;
-      
-      options.success = function( data ) {
-        localStorage.setItem( cacheKey, data );
-        successhandler( data );
-      };
-    }else{
-       options.success = function( data ) {
-         localStorage.setItem( cacheKey, data );
-       };
-    }
+    if ( options.success ) {
+      options.realsuccess = options.success;
+    }  
+    options.success = function( data ) {
+      var strdata = data;
+      if (this.dataType.indexOf('json') === 0) strdata = JSON.stringify(data);
+      localStorage.setItem( cacheKey, strdata );
+      if (options.realsuccess) options.realsuccess( data );
+    };
 
     // store timestamp
     if (!ttl || ttl === 'expired'){
-      localStorage.setItem( cacheKey  + 'cachettl', +new Date() + 1000 * 60 * 60 * 5);
+      localStorage.setItem( cacheKey  + 'cachettl', +new Date() + 1000 * 60 * 60 * hourstl);
     }
     
   }

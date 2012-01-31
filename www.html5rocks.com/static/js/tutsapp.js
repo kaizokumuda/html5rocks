@@ -36,10 +36,10 @@ window.tuts = {
     // get author data
     var authorXHR = $.ajax({
       url: '/api/authors',
-      dataType: 'text',
+      dataType: 'json',
       localCache : true,
       success: function(data){
-        tuts.authors = JSON.parse(data);
+        tuts.authors = data;
       }
     });
 
