@@ -155,17 +155,12 @@ window.route = {
     // TODO(Google): record GA hit on new ajax page load.
   },
 
-  home: function(){
-    $.ajax({
-      dataType: 'jsonp',
-      localCache: true, // use localStorage
-      cache: true, // jQuery dont cachebust
-      url : feed.pipeURL + '_callback=?',
-      success: function(data){
-        feed.home(data);
-      }
-    });
-  },
+  home     : function(){ feed.grabPipe() },
+  mobile   : function(){ feed.grabPipe() },
+  gaming   : function(){ feed.grabPipe() },
+  business : function(){ feed.grabPipe() },
+
+
 
   tutorials: function(){
 
@@ -178,6 +173,8 @@ window.route = {
   init : function(thing) {
     var commonfn = route[thing.split('-')[0]],
         pagefn   = route[thing];
+
+    route.state = pagefn;
 
     route.fire(route.common);
     route.fire(commonfn);
@@ -233,24 +230,54 @@ window.state = {
 // called from inside route[home|tutorials]()
 window.feed = {
 
-  pipeURL: 'http://pipes.yahoo.com/pipes/pipe.run?_id=\
-            647030be6aceb6d005c3775a1c19401c&_render=json&',
+
+
+  pipeURL : 'http://pipes.yahoo.com/pipes/pipe.run?_id='+
+            '647030be6aceb6d005c3775a1c19401c&_render=json&',
             // 119e0da707bc08778cbf04df91bc4418 htmlfiverocks
 
+  grabPipe : function(){
+    $.ajax({
+      dataType: 'jsonp',
+      localCache: true, // use localStorage
+      cache: true,      // jQuery dont cachebust
+      url : feed.pipeURL + '_callback=?',
+      success: function(data){
+        if (route.state == 'home')
+          feed.home(data);
+        else
+          feed.persona(data);
+      }
+    });
+  },
+
   // homepage.
-  home: function(result) {
-    result = feed.process(result);
-
+  home : function(result){
     var container = document.getElementById('latest_articles_feed');
-    var html = [];
-
-    if (!container) {
-      return;
-    }
+    if (!container) return;
+    result = feed.process(result);
+    var html = feed.generateHTML(result);
 
     if (container.textContent == 'loading feed...') {
       container.textContent = '';
     }
+    container.innerHTML += html;
+  },
+
+  persona : function(result){
+    var container  = $('section.feed ul');
+    result = feed.process(result);
+    // we only want updates and ones that match the topic.
+    result.value.items = result.value.items.filter(function(item){
+      return item.type == 'update' && ~item.content.content.indexOf(route.state);
+    });
+    var html = feed.generateHTML(result);
+    container.prepend(html);
+  },
+
+  generateHTML : function(result){
+
+    var html = [];
 
     for (var i = 0, entry; entry = result.value.items[i]; ++i) {
 
@@ -281,7 +308,7 @@ window.feed = {
                 //,'<span data-type="', entry.type, '" class="type">', entry.type, '</span></span></li>'
                 );
     }
-    container.innerHTML += html.join('');
+    return html.join('');
 
   },
   
