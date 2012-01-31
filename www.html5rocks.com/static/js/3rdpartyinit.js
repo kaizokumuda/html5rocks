@@ -1,22 +1,23 @@
 
 window.thirdParty = {
-    
+
     delay : 500,
 
     init : function(){
-      $(window).load(function(){
-        setTimeout(function(){
+      $(window).load(function() {
+        setTimeout(function() {
           thirdParty.plus1();
           thirdParty.twitter();
           thirdParty.GA();
           thirdParty.facebook();
+          $('.share').css('display', 'block');
         }, thirdParty.delay);
       });
     },
 
-    facebook : function(){
-      
-      $('li.facebook').not(':has("iframe")').html(function(){
+    facebook : function() {
+
+      $('li.facebook').not(':has("iframe")').html(function() {
 
         var html = '<iframe src="http://www.facebook.com/plugins/like.php?href='+
           this.getAttribute('data-url') +
@@ -29,11 +30,11 @@ window.thirdParty = {
       });
     },
 
-    twitter : function(){
+    twitter : function(){ 
       $.ajax({
-        url : '//platform.twitter.com/widgets.js',  
+        url : '//platform.twitter.com/widgets.js',
         dataType : 'script', cache: true,
-        success : function(){   twttr.widgets.load();  }
+        success : function() {   twttr.widgets.load();  }
       });
     },
 
@@ -42,9 +43,9 @@ window.thirdParty = {
       window.___gcfg = { lang: document.documentElement.lang, parsetags: 'explicit' };
 
       $.ajax({
-        url : 'https://apis.google.com/js/plusone.js',  
+        url : 'https://apis.google.com/js/plusone.js',
         dataType : 'script', cache: true,
-        success : function(){ 
+        success : function(){
           gapi.plusone.go();
         }
       });

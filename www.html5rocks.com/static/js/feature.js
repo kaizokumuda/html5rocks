@@ -1,7 +1,7 @@
 window.caniusecallback = function(data) {
 
-  var page = $('.page.current'),
-      dom  = page.find('.support div');
+  var page = $('.page.current');
+  var dom  = page.find('.support div');
 
   window.caniusedata = data;
 
@@ -12,7 +12,9 @@ window.caniusecallback = function(data) {
     var featurestats = data.data[feature];
     var localdom = dom.clone();
 
-    if (!featurestats) return false;
+    if (!featurestats) {
+      return false;
+    }
 
     var url = 'http://caniuse.com/#search=' + feature;
     localdom.find('h4').html((featurestats.title).link(url));
@@ -40,6 +42,9 @@ window.caniusecallback = function(data) {
     // remove placeholder table
     dom.remove();
     page.addClass('caniuseloaded');
+
+    // Hack to make chrome rendered the backgrounds. Otherwise, they somteimes poof, GONE!
+    $('section.support thead:first td').css('backgroundImage', 'url(/static/images/browsers.png)');
 
     // Show names of browsers when hovering over the logo/version cells.
     // TODO(ericbidelman): This should be done with CSS, not JS.
