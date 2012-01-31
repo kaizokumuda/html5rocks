@@ -36,7 +36,7 @@ function finishPanelLoad(pagePanel, elemstate) {
 
 $(document).keydown(function(e) {
 
-  if (e.keyCode == 27) { // ESC
+  if (e.keyCode === 27) { // ESC
     // Hide search and/or feature bar.
     $('#search_hide, #features_hide').click();
 
@@ -312,6 +312,50 @@ window.feed = {
 
   } // eo process()
 } // eo feed{}
+
+// https://github.com/nectify/jquery-ajax-jstorage-cache
+// modded by paulirish to use localStorage directly
+$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+  // Cache it ?
+  if( !Modernizr.localstorage || !options.cacheJStorage )
+    return;
+
+  var cacheKey;
+  // If cacheKey exist we take it, or default one will be used
+  if ( options.cacheKey )
+    cacheKey = options.cacheKey;
+  else 
+     cacheKey = options.url + options.type + options.data;
+  
+  // isCacheValid is a function to validate cache
+  if( options.isCacheValid &&  ! options.isCacheValid() ){
+    localStorage.removeItem( cackeKey );
+  }
+  
+  var value = localStorage.getItem( cacheKey );
+  if( value ){
+    //In the cache? So get it, apply success callback & abort the XHR request
+    options.success( value );
+    // Abort is broken on JQ 1.5 :(
+    jqXHR.abort();
+  }else{
+    //If it not in the cache, we change the success callback, just put data on localstorage and after that apply the initial callback
+    if( options.success ) {
+      var successhandler = options.success;
+      
+      options.success = function( data ) {
+        localStorage.setItem( cacheKey, data );
+        successhandler( data );
+      }
+    }else{
+       options.success = function( data ) {
+         localStorage.setItem( cacheKey, data );
+       }
+    }
+  }
+});
+
+
 
 
 if (AJAXIFY_SITE) {
