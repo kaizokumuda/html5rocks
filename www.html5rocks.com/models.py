@@ -5,7 +5,7 @@ from django import forms
 
 
 def get_profiles(update_cache=False):
-  profiles = memcache.get('profiles')
+  profiles = memcache.get('profiles_rocking')
   if profiles is None or update_cache:
     profiles = {}
     authors = Author.all()
@@ -15,7 +15,7 @@ def get_profiles(update_cache=False):
       profiles[author_id] = author.to_dict()
       profiles[author_id]['id'] = author_id
 
-    memcache.set('profiles', profiles)
+    memcache.set('profiles_rocking', profiles)
 
   return profiles
 
@@ -79,17 +79,17 @@ class Resource(DictModel):
 
   @classmethod
   def get_all(self):
-    tutorials_query = memcache.get('tutorials')
+    tutorials_query = memcache.get('tutorials_rocking')
     if tutorials_query is None:
       tutorials_query = self.all()
       tutorials_query.filter('draft =', False) # Never return drafts.
-      memcache.set('tutorials', tutorials_query)
+      memcache.set('tutorials_rocking', tutorials_query)
 
     return tutorials_query
 
   @classmethod
   def get_tutorials_by_author(self, author_id):
-    tutorials_by_author = memcache.get('tutorials_by_' + author_id)
+    tutorials_by_author = memcache.get('tutorials_rocking_by_' + author_id)
     if tutorials_by_author is None:
       tutorials_by_author1 = Author.get_by_key_name(author_id).author_one_set
       tutorials_by_author2 = Author.get_by_key_name(author_id).author_two_set
@@ -101,7 +101,7 @@ class Resource(DictModel):
       # Order by published date. Latest first.
       tutorials_by_author.sort(key=lambda x: x.publication_date, reverse=True)
 
-      memcache.set('tutorials_by_' + author_id, tutorials_by_author)
+      memcache.set('tutorials_rocking_by_' + author_id, tutorials_by_author)
 
     return tutorials_by_author
 

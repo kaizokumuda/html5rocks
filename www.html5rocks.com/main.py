@@ -80,7 +80,7 @@ class ContentHandler(webapp.RequestHandler):
     if not (re.search('', path) or re.search('/mobile/', path)):
       return ''
 
-    toc = memcache.get('toc|%s' % path)
+    toc = memcache.get('toc_rocking|%s' % path)
     if toc is None or not self.request.cache:
       template_text = template.render(path, {})
       parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("dom"))
@@ -103,12 +103,12 @@ class ContentHandler(webapp.RequestHandler):
         elif element['type'] == 'EndTag' and current is not None:
           toc.append(current)
           current = None
-      memcache.set('toc|%s' % path, toc, 3600)
+      memcache.set('toc_rocking|%s' % path, toc, 3600)
 
     return toc
 
   def get_feed(self, path):
-    articles = memcache.get('feed|%s' % path)
+    articles = memcache.get('feed_rocking|%s' % path)
     if articles is None or not self.request.cache:
       # DB query is memcached in get_all(). Limit to last several results
       tutorials = (models.Resource.get_all().order('-publication_date')
@@ -132,7 +132,7 @@ class ContentHandler(webapp.RequestHandler):
 
         articles.append(article)
 
-      memcache.set('feed|%s' % path, articles, 86400) # Cache feed for 24hrs.
+      memcache.set('feed_rocking|%s' % path, articles, 86400) # Cache feed for 24hrs.
 
     return articles
 
