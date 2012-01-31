@@ -319,6 +319,7 @@ window.feed = {
 
 // https://github.com/nectify/jquery-ajax-jstorage-cache
 // modded by paulirish to use localStorage directly
+//   and to use a 5 hour ttl on the caches.
 $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   // Cache it ?
   if( !Modernizr.localstorage || !options.localCache )
@@ -334,6 +335,13 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   // isCacheValid is a function to validate cache
   if( options.isCacheValid &&  ! options.isCacheValid() ){
     localStorage.removeItem( cacheKey );
+  }
+  // if there's a TTL that's expired, flush this item
+  var ttl = localStorage.getItem(cacheKey + 'cachettl');
+  if (ttl && ttl < +new Date()){
+    localStorage.removeItem( cacheKey );
+    localStorage.removeItem( cacheKey  + 'cachettl');
+    ttl = 'expired';
   }
   
   var value = localStorage.getItem( cacheKey );
@@ -356,6 +364,12 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
          localStorage.setItem( cacheKey, data );
        };
     }
+
+    // store timestamp
+    if (!ttl || ttl === 'expired'){
+      localStorage.setItem( cacheKey  + 'cachettl', +new Date() + 1000 * 60 * 60 * 5);
+    }
+    
   }
 });
 
