@@ -10,9 +10,10 @@
 
 {% block content %}
 
-<p style="text-align: center;"><img src="million_letters.jpg"><br>
-
-<a href="million_letters.html">Animated letters demo</a>
+<figure>
+  <a href="million_letters.html"><img src="million_letters.jpg"></a>
+  <figcaption><a href="million_letters.html">Animated letters demo</a></figcaption>
+</figure>
 
 <h2 id="toc-intro">Introduction</h2>
 <p>My goal in this article is to draw a million animated letters on the screen at a smooth framerate. This task should be quite possible with modern GPUs. Each letter consists of two textured triangles, so we're only talking about two million triangles per frame. 
