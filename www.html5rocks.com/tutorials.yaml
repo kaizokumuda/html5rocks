@@ -1,13 +1,12 @@
 title: Animating a Million Letters Using Three.js
 url: /tutorials/webgl/million_letters/
-author_id: ilmariheikkinen
+author_id: ilmari
 publication_date: 2012-01-30
 description: A guide to using shaders to animate large amounts of particles.
 browser_support:
 - chrome
 - ff
 - safari
-- opera
 tags:
 - webgl
 - three.js
@@ -379,7 +378,7 @@ tags:
 
 title: Chrome Experiments Demo Harness
 url: /tutorials/webgl/demoloop/
-author_id: ilmari 
+author_id: ilmari
 publication_date: 2011-05-25
 description: Experiences from building a kiosk-style demo station with HTML and WebGL.
 browser_support:

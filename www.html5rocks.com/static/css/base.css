@@ -1625,11 +1625,11 @@ article.profile section
 .profile:hover img[itemprop=photo],
 .profile:focus img[itemprop=photo]
 {
-  -webkit-filter: none;
-     -moz-filter: none;
-      -ms-filter: none;
-       -o-filter: none;
-          filter: none;
+  -webkit-filter: grayscale(0) sepia(0);
+     -moz-filter: grayscale(0) sepia(0);
+      -ms-filter: grayscale(0) sepia(0);
+       -o-filter: grayscale(0) sepia(0);
+          filter: grayscale(0) sepia(0);
 }
 
 .profile h2,
