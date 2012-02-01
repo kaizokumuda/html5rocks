@@ -123,7 +123,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     for (var i = 0, f; f = files[i]; i++) {
       output.push('&lt;li&gt;&lt;strong&gt;', escape(f.name), '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
                   f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate.toLocaleDateString(), '&lt;/li&gt;');
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '&lt;/li&gt;');
     }
     document.getElementById('list').innerHTML = '&lt;ul&gt;' + output.join('') + '&lt;/ul&gt;';
   }
@@ -156,7 +157,8 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
     for (var i = 0, f; f = files[i]; i++) {
       output.push('&lt;li&gt;&lt;strong&gt;', escape(f.name), '&lt;/strong&gt; (', f.type || 'n/a', ') - ',
                   f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate.toLocaleDateString(), '&lt;/li&gt;');
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '&lt;/li&gt;');
     }
     document.getElementById('list').innerHTML = '&lt;ul&gt;' + output.join('') + '&lt;/ul&gt;';
   }
