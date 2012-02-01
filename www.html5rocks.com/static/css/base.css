@@ -2910,7 +2910,8 @@ section.disqus
   display: inline-block;
   float: right;
   margin-right: -1px;
-  width: 172px;
+  margin-top: 10px;
+  width: 126px;
 }
 
 #google_plus_link a div span:nth-child(1)
