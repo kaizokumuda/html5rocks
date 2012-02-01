@@ -362,7 +362,7 @@ class ContentHandler(webapp.RequestHandler):
         tut = models.Resource.all().filter('url =', '/' + relpath).get()
 
         # If tutorial is marked as draft, redirect and don't show it.
-        if tut.draft:
+        if tut and tut.draft:
           return self.redirect('/tutorials')
 
         data = {
@@ -726,6 +726,7 @@ class APIHandler(ContentHandler):
       output = TagsHandler()._query_to_serializable_list(
           TagsHandler().get_as_db('type:video'))
 
+    self.response.headers.add_header('Access-Control-Allow-Origin', '*')
     self.response.headers['Content-Type'] = 'application/json'
     self.response.out.write(simplejson.dumps(output))
 
