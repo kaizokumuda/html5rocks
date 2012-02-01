@@ -1,3 +1,21 @@
+title: Animating a Million Letters Using Three.js
+url: /tutorials/webgl/million_letters/
+author_id: ilmariheikkinen
+publication_date: 2012-01-30
+description: A guide to using shaders to animate large amounts of particles.
+browser_support:
+- chrome
+- ff
+- safari
+- opera
+tags:
+- webgl
+- three.js
+- class:graphics
+- type:tutorial
+
+---
+
 title: "Case Study: Building the Stanisław Lem Google doodle"
 url: /tutorials/doodles/lem/
 author_id: marcinwichary
