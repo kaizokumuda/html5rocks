@@ -2898,6 +2898,49 @@ section.disqus
 .clearfix { zoom: 1; }
 
 
+/* Google Plus Icon */
+#google_plus_link a
+{
+  text-decoration: none;
+  color: #333;
+}
+
+#google_plus_link a > div
+{
+  display: inline-block;
+  float: right;
+  margin-right: -1px;
+  width: 172px;
+}
+
+#google_plus_link a div span:nth-child(1)
+{
+  float: left;
+  font: bold 13px/16px arial,sans-serif;
+  margin-right: 4px;
+  margin-top: 4px;
+}
+
+#google_plus_link a div span:nth-child(2)
+{
+  float: left;
+  font: 13px/16px arial,sans-serif;
+  margin-right: 11px;
+  margin-top: 4px;
+}
+
+#google_plus_icon
+{
+  float: left;
+  display: inline;
+}
+
+#google_plus_icon img
+{
+  border: 0;
+}
+
+
 /* PRINT */
 
 @media print {
