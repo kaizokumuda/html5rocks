@@ -47,6 +47,7 @@ window.thirdParty = {
         dataType : 'script', cache: true,
         success : function(){
           gapi.plusone.go();
+          gapi.plus.go();
         }
       });
     },

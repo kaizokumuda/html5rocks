@@ -2899,12 +2899,12 @@ section.disqus
 
 
 /* Google Plus Icon */
-#google_plus_link
-{
+#google_plus_page_link {
   float: right;
-  margin-top: 10px;
 }
-
+#google_plus_page_link a {
+  background: none;
+}
 
 /* PRINT */
 
