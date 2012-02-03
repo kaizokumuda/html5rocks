@@ -4,9 +4,8 @@ window.SLD = {
 
   talks     : [],
   authors   : {},
-  template  : Handlebars.compile( SLD.talktmpl ),
+  template  : undefined,
   talksdfr  : $.Deferred(),
-  authordfr : $.Deferred(),
 
   // called from jsonp
   receiveSpreadsheet : function(data) {
@@ -73,12 +72,21 @@ window.SLD = {
      success  : SLD.receiveSpreadsheet
     });
     
-    $.getJSON('/api/authors', function(data){
+    var tmplXHR = $.ajax({
+     url        :"/static/js/talkstmpl.html",
+     dataType   :'text',
+     localCache : true,
+     success    : function(data){
+       SLD.template = Handlebars.compile( data )
+     }
+    });
+
+    var authXHR = $.getJSON('/api/authors', function(data){
       SLD.authors = data;
       SLD.authordfr.resolve();
     })
 
-    $.when( SLD.talksdfr.promise(), SLD.authordfr.promise() ).done(function(){
+    $.when( SLD.talksdfr.promise(), authXHR, tmplXHR ).done(function(){
       var talks = SLD.talks.length && SLD.talks || SLD.backuptalks
       SLD.render(talks);
     });
