@@ -151,18 +151,17 @@ $('nav.features_outline a.section_title').click(function(e) {
 
 window.route = {
   common : function() {
-
     // TODO(Google): record GA hit on new ajax page load.
   },
 
   home     : function(){ feed.grabPipe() },
-  mobile   : function(){ feed.grabPipe() },
-  gaming   : function(){ feed.grabPipe() },
-  business : function(){ feed.grabPipe() },
 
+  // These are taken care of in persona.js.
+  //mobile   : function(){ feed.grabPipe() },
+  //gaming   : function(){ feed.grabPipe() },
+  //business : function(){ feed.grabPipe() },
 
-
-  tutorials: function(){
+  tutorials: function() {
 
   },
 
@@ -182,11 +181,13 @@ window.route = {
       route.fire(pagefn);
     }
   },
+
   fire : function(fn) {
     if (typeof fn == 'function') {
       fn.call(route);
     }
   },
+
   onload : function() {
 
     // due to the funky templating, we output into the same div, but we
@@ -230,19 +231,17 @@ window.state = {
 // called from inside route[home|tutorials]()
 window.feed = {
 
-
-
-  pipeURL : 'http://pipes.yahoo.com/pipes/pipe.run?_id='+
+  pipeURL: 'http://pipes.yahoo.com/pipes/pipe.run?_id='+
             '647030be6aceb6d005c3775a1c19401c&_render=json&',
             // 119e0da707bc08778cbf04df91bc4418 htmlfiverocks
 
-  grabPipe : function(){
+  grabPipe: function() {
     $.ajax({
       dataType: 'jsonp',
       localCache: true, // use localStorage
       cache: true,      // jQuery dont cachebust
       url : feed.pipeURL + '_callback=?',
-      success: function(data){
+      success: function(data) {
         if (route.state == 'home')
           feed.home(data);
         else
@@ -252,7 +251,7 @@ window.feed = {
   },
 
   // homepage.
-  home : function(result){
+  home: function(result) {
     var container = document.getElementById('latest_articles_feed');
     if (!container) return;
     result = feed.process(result);
@@ -264,7 +263,7 @@ window.feed = {
     container.innerHTML += html;
   },
 
-  persona : function(result){
+  persona: function(result) {
     var container  = $('section.feed ul');
     result = feed.process(result);
     // we only want updates and ones that match the topic.
@@ -275,7 +274,7 @@ window.feed = {
     container.prepend(html);
   },
 
-  generateHTML : function(result){
+  generateHTML: function(result) { 
 
     var html = [];
 
