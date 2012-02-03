@@ -156,11 +156,6 @@ window.route = {
 
   home     : function(){ feed.grabPipe() },
 
-  // These are taken care of in persona.js.
-  //mobile   : function(){ feed.grabPipe() },
-  //gaming   : function(){ feed.grabPipe() },
-  //business : function(){ feed.grabPipe() },
-
   tutorials: function() {
 
   },
@@ -242,10 +237,7 @@ window.feed = {
       cache: true,      // jQuery dont cachebust
       url : feed.pipeURL + '_callback=?',
       success: function(data) {
-        if (route.state == 'home')
-          feed.home(data);
-        else
-          feed.persona(data);
+        feed[route.state](data);
       }
     });
   },
@@ -263,16 +255,7 @@ window.feed = {
     container.innerHTML += html;
   },
 
-  persona: function(result) {
-    var container  = $('section.feed ul');
-    result = feed.process(result);
-    // we only want updates and ones that match the topic.
-    result.value.items = result.value.items.filter(function(item){
-      return item.type == 'update' && ~item.content.content.indexOf(route.state);
-    });
-    var html = feed.generateHTML(result);
-    container.prepend(html);
-  },
+
 
   generateHTML: function(result) { 
 
