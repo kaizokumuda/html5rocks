@@ -174,7 +174,7 @@ window.route = {
     var commonfn = route[thing.split('-')[0]],
         pagefn   = route[thing];
 
-    route.state = pagefn;
+    route.state = thing;
 
     route.fire(route.common);
     route.fire(commonfn);
@@ -360,6 +360,7 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   if( !Modernizr.localstorage || !options.localCache ) return;
 
   var hourstl = options.cacheTTL || 5;
+
 
   var cacheKey = options.cacheKey || 
                  options.url.replace(/jQuery.*/,'') + options.type + options.data;
