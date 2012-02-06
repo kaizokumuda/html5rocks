@@ -11,7 +11,7 @@
 {% block content %}
 
 <figure>
-  <a href="million_letters.html"><img src="million_letters.jpg"></a>
+  <a href="million_letters.html"><img src="million_letters.jpg" width="623" height="522"></a>
   <figcaption><a href="million_letters.html">Animated letters demo</a></figcaption>
 </figure>
 
@@ -129,6 +129,13 @@ for (i=0; i<BOOK.length; i++) {
 <p>With a simple vertex shader, I get a flat view of the text. Nothing fancy. Runs well, but if I want to animate it, I need to do the animation in JavaScript. And JavaScript is kinda slow for animating the six million vertices involved, especially if you want to do it on every frame. Maybe there is there a faster way.
 
 <p>Why yes, we can do procedural animation. What that means is that we do all our position and rotation math in the vertex shader. Now I don't need to run any JavaScript to update the positions of the vertices. The vertex shader runs very fast and I get a smooth framerate even with a million triangles being individually animated every frame. To address the individual triangles, I round down the vertex coordinates so that all four points of a letter quad map to a single unique coordinate. Now I can use this coordinate to set the animation parameters for the letter in question.
+
+<p>To be able to successfully round down coordinates, coordinates from two different letters can't overlap. The easiest way to do this is by using square letter quads with a small offset separating the letter from the one on its right side and the line below it. For example, you could use a width and height of 0.5 for the letters and align the letters on integer coordinates. Now when you round down the coordinate of any letter vertex, you get the top-left coordinate of the letter.
+
+<figure>
+  <img src="coordinate_rounding.png" width="360" height="444">
+  <figcaption>Rounding down vertex coordinates to find the top-left corner of a letter.</figcaption>
+</figure>
 
 <p>Simple vertex shader (with explanations)
 <pre class="prettyprint">
