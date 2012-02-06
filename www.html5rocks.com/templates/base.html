@@ -2,10 +2,10 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-<html{% block manifest %}{% if is_mobile and prod %} manifest="/cache.appcache"{% endif %}{% endblock %} lang="{{LANGUAGE_CODE}}" dir="{{LANGUAGE_BIDI|yesno:"rtl,ltr"}}">
+<html{% block manifest %}{% if is_mobile and prod %} manifest="/cache.appcache"{% endif %}{% endblock %} lang="{{LANGUAGE_CODE}}" dir="{{LANGUAGE_BIDI|yesno:"rtl,ltr"}}" itemscope itemtype="http://schema.org/Article">
 <head>
   <meta charset="utf-8">
-  <!-- Copyright (c) 2011 Google Inc.
+  <!-- Copyright (c) 2012 Google Inc.
    *
    * Licensed under the Apache License, Version 2.0 (the "License");
    * you may not use this file except in compliance with the License.
@@ -26,6 +26,9 @@
   -->
   <meta name="description" content="{% block meta_description %}{% trans "A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps." %}{% endblock %}">
   <meta name="keywords" content="{% trans "html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile" %}">
+  <meta itemprop="name" content="{% trans "HTML5 Rocks" %}{% if tut.title %} - {{tut.title}}{% endif %}">
+  <meta itemprop="description" content="{{tut.description}}">
+  <meta itemprop="image" content="/static/images/identity/HTML5_Badge_64.png">
   <title>{% trans "HTML5 Rocks" %} - {% block headtitle %}{% trans "A resource for open web HTML5 developers" %}{% endblock %}</title>
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="alternate" type="application/rss+xml" title="{% trans "HTML5Rocks RSS" %}" href="http://feeds.feedburner.com/html5rocks" />
@@ -448,8 +451,6 @@
       document.getElementById('compatible').className = '';
     }
 
-
-
     // Kill feedburner and marketing tracking arguments cuz they're ugly.
     if (/^\?utm_/.test(document.location.search) &&
         window.history.replaceState) {
@@ -465,10 +466,11 @@
         // Get the position of the vertical scroll.
         var y = $(this).scrollTop();
 
-        if (y >= top)
+        if (y >= top) {
           $('.toc').addClass('fixed').removeClass('bottom');
-        else
+        } else {
           $('.toc').removeClass('fixed').removeClass('bottom');
+        }
       });
     }
   })();
