@@ -83,7 +83,6 @@ window.SLD = {
 
     var authXHR = $.getJSON('/api/authors', function(data){
       SLD.authors = data;
-      SLD.authordfr.resolve();
     })
 
     $.when( SLD.talksdfr.promise(), authXHR, tmplXHR ).done(function(){
