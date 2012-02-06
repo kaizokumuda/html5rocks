@@ -28,7 +28,8 @@
               transition: all 0.3s ease-out;
     }
 
-    .video iframe { width: 475px; height: 400px;}
+    .video iframe, .video div[data-embed] img { width: 475px; height: 400px;}
+    .video div[data-embed] img  { height: 356px; }
     .video { margin-right: 15px; }
     .video,
     .video + .slides  { display: inline-block; }
@@ -47,6 +48,60 @@
       -webkit-box-shadow: 0px 3px 8px hsl(202,69%,23%);
          -moz-box-shadow: 0px 3px 8px hsl(202,69%,23%);
               box-shadow: 0px 3px 8px hsl(202,69%,23%);
+    }
+
+ 
+    .video div[data-embed]{
+      cursor: pointer;
+    
+      position: relative;
+}
+
+    .video div[data-embed] span {
+
+      display:inline-block;
+      -webkit-box-sizing:border-box;
+      -moz-box-sizing:border-box;
+      box-sizing:border-box;
+      width:100px;
+      height:100px;
+      border-radius:50px;
+   
+      
+      font-size: 80px;
+      color: hsl(0, 0%, 86%);
+      border-width:50px;
+      border-color:rgba(0,0,0,0);
+      
+      -webkit-transition:0.2s ease;
+      -moz-transition:0.2s ease;
+      -ms-transition:0.2s ease;
+      -o-transition:0.2s ease;
+      transition:0.2s ease;
+
+      border:50px double rgba(0,0,0,0.7);
+      position: absolute;
+      left: 180px;
+      top: 120px;
+
+    }
+
+    .video div[data-embed] span:before {
+      /* content: "\25B6"; */
+    } 
+
+    .video div[data-embed]:hover span {
+
+      border-width:0;
+      border-color:rgba(0,0,0,0.5);
+      
+      -webkit-transition-duration:0.5s;
+      -moz-transition-duration:0.5s;
+      -ms-transition-duration:0.5s;
+      -o-transition-duration:0.5s;
+      transition-duration:0.5s;
+
+      border: 1px double rgba(0,0,0,0.7);
     }
 
     #filter, #filter + label {
