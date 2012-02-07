@@ -150,21 +150,23 @@ $('nav.features_outline a.section_title').click(function(e) {
 // route['features-offline']();
 
 window.route = {
-  common : function() {
+  common: function() {
     // TODO(Google): record GA hit on new ajax page load.
   },
 
-  home     : function(){ feed.grabPipe() },
+  home: function() {
+    feed.grabPipe()
+  },
 
   tutorials: function() {
 
   },
 
-  "features" : function() {
+  features: function() {
     window.loadFeaturePanels && loadFeaturePanels();
   },
 
-  init : function(thing) {
+  init: function(thing) {
     var commonfn = route[thing.split('-')[0]],
         pagefn   = route[thing];
 
@@ -177,13 +179,20 @@ window.route = {
     }
   },
 
-  fire : function(fn) {
+  fire: function(fn) {
     if (typeof fn == 'function') {
       fn.call(route);
     }
   },
 
-  onload : function() {
+  onload: function() {
+
+    $('nav.outline.features ul li ul li a').click(function(e) {
+      var hash = this.href.split('#')[1];
+      if (hash) {
+        $.scrollTo('#' + hash, 800, {offset: {top: -35}});
+      }
+    });
 
     // due to the funky templating, we output into the same div, but we
     // want to move it into "correct" DOM order (in base.html)

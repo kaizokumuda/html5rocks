@@ -41,7 +41,7 @@
   <!-- Try to load remote jquery, load local version of jQuery on fail -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
   <script>window.jQuery || document.write('<script src="/static/js/jquery-1.7.1.min.js">\x3C/script>')</script>
-  <!-- <script defer src="/static/js/jquery.scrollTo-min.js"></script> -->
+  <script defer src="/static/js/jquery.scrollTo-min.js"></script>
 
   <!-- defer is unreliable in ie <= 9, but o well -->
   <script defer src="/static/js/app{% if prod %}.min{% endif %}.js"></script>
@@ -228,7 +228,6 @@
 
     <nav class="outline features">
       <h3>HTML5 Features</h3>
-
       <ul>
         <li class="offline">
           <a href="/{{LANGUAGE_CODE}}/features/offline" class="section_title offline">{% trans "Offline" %}</a>
