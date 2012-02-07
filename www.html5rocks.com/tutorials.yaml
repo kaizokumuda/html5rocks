@@ -1,3 +1,20 @@
+title: Google Photography Prize Gallery
+url: /tutorials/closure/photographyprize/
+author_id: ilmari
+publication_date: 2012-02-07
+description: Building the gallery widget for the Google Photography Prize site using Closure.
+browser_support:
+- chrome
+- ie
+- ff
+- safari
+- opera
+tags:
+- closure
+- type:casestudy
+
+---
+
 title: Animating a Million Letters Using Three.js
 url: /tutorials/webgl/million_letters/
 author_id: ilmari
