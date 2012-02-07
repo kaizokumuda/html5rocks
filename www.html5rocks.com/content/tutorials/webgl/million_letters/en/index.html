@@ -11,21 +11,21 @@
 {% block content %}
 
 <figure>
-  <a href="million_letters.html"><img src="million_letters.jpg"></a>
+  <a href="million_letters.html"><img src="million_letters.jpg" width="623" height="522"></a>
   <figcaption><a href="million_letters.html">Animated letters demo</a></figcaption>
 </figure>
 
 <h2 id="toc-intro">Introduction</h2>
 <p>My goal in this article is to draw a million animated letters on the screen at a smooth framerate. This task should be quite possible with modern GPUs. Each letter consists of two textured triangles, so we're only talking about two million triangles per frame. 
 
-<p>If you're coming from a traditional JavaScript animation background, this all sounds like madness. Two million triangles updated every frame is definitely not something you would like to do with JavaScript today. But thankfully we have WebGL, which lets us tap into the awesome power of modern GPUs. And two million animated triangles is quite doable with a modern GPU and some shader magic.
+<p>If you're coming from a traditional JavaScript animation background, this all sounds like madness. Two million triangles updated every frame is definitely not something you would like to do with JavaScript today. But thankfully we have <a href="http://www.khronos.org/webgl/wiki/Getting_Started">WebGL</a>, which lets us tap into the awesome power of modern GPUs. And two million animated triangles is quite doable with a modern GPU and some shader magic.
 
 <h2 id="toc-efficientwebgl">Writing efficient WebGL code</h2>
 <p>Writing efficient WebGL code requires a specific mindset. The basic idea is to collect as many operations as possible into a single draw call, as changing the WebGL state machine state and doing WebGL calls is relatively expensive. If you want to draw more than a couple thousand objects at once, you need to adopt a quite different strategy for drawing.
 
 <p>The usual way of drawing with WebGL is to set up your uniforms, buffers and shaders for each object, followed by a call to draw the object. Unless your object is very complex, the time taken in this way of drawing is dominated by the state setup. To draw in a fast way, you can either do some buffer editing in JavaScript, followed by re-uploading the buffer and the draw call. If you need to go even faster, you can push more computation to the shaders.
 
-<p>I'm going to be using the Three.js library for writing this demo. Three.js abstracts away all the tedious boilerplate from writing WebGL code. Instead of writing a hundred lines of WebGL state setup and error handling, you only need to write a couple lines of code using Three.js. And you can tap into the WebGL shader system from Three.js quite easily.
+<p>I'm going to be using the <a href="https://github.com/mrdoob/three.js/">Three.js</a> library for writing this demo. Three.js abstracts away all the tedious boilerplate from writing WebGL code. Instead of writing a hundred lines of WebGL state setup and error handling, you only need to write a couple lines of code using Three.js. And you can tap into the WebGL shader system from Three.js quite easily.
 
 <h3 id="toc-efficientwebgl-example">Geometry bundling example</h3>
 <p>Instead of drawing one object at a time:
@@ -126,9 +126,16 @@ for (i=0; i<BOOK.length; i++) {
 
 
 <h2 id="toc-shader">Vertex shader for animating the letters</h2>
-<p>With a simple vertex shader, I get a flat view of the text. Nothing fancy. Runs well, but if I want to animate it, I need to do the animation in Javascript. And JavaScript is kinda slow for animating the six million vertices involved, especially if you want to do it on every frame. Maybe there is there a faster way.
+<p>With a simple vertex shader, I get a flat view of the text. Nothing fancy. Runs well, but if I want to animate it, I need to do the animation in JavaScript. And JavaScript is kinda slow for animating the six million vertices involved, especially if you want to do it on every frame. Maybe there is there a faster way.
 
 <p>Why yes, we can do procedural animation. What that means is that we do all our position and rotation math in the vertex shader. Now I don't need to run any JavaScript to update the positions of the vertices. The vertex shader runs very fast and I get a smooth framerate even with a million triangles being individually animated every frame. To address the individual triangles, I round down the vertex coordinates so that all four points of a letter quad map to a single unique coordinate. Now I can use this coordinate to set the animation parameters for the letter in question.
+
+<p>To be able to successfully round down coordinates, coordinates from two different letters can't overlap. The easiest way to do this is by using square letter quads with a small offset separating the letter from the one on its right side and the line below it. For example, you could use a width and height of 0.5 for the letters and align the letters on integer coordinates. Now when you round down the coordinate of any letter vertex, you get the top-left coordinate of the letter.
+
+<figure>
+  <img src="coordinate_rounding.png" width="360" height="444">
+  <figcaption>Rounding down vertex coordinates to find the top-left corner of a letter.</figcaption>
+</figure>
 
 <p>Simple vertex shader (with explanations)
 <pre class="prettyprint">
@@ -220,30 +227,30 @@ void main() {
 }
 </pre>
 
-<p>To use the vertex shader, I use a THREE.MeshShaderMaterial, a material type that lets you use custom shaders and specify uniforms for them. Three.js provides some pre-built attributes for the shader, such as position, uv, modelViewMatrix and perspectiveMatrix. What this means is that it's usually easier to write shaders for Three.js than with raw WebGL.
+<p>To use the vertex shader, I use a <a href="https://github.com/mrdoob/three.js/blob/master/src/materials/ShaderMaterial.js">THREE.ShaderMaterial</a>, a material type that lets you use custom shaders and specify uniforms for them. Three.js provides some pre-built attributes for the shader, such as position, uv, modelViewMatrix and perspectiveMatrix. What this means is that it's usually easier to write shaders for Three.js than with raw WebGL.
 
-<p>Here's the MeshShaderMaterial example:
+<p>Here's the ShaderMaterial example:
 <pre class="prettyprint">
 // set up uniforms for the shader
 var uniforms = {
   // pass the letter map texture as a built-in uniform
-  map : { type: "t", value: 1, texture: tex },
+  map: { type: "t", value: 1, texture: tex },
   // current time
-  uTime : { type: "f", value: 1.0 },
+  uTime: { type: "f", value: 1.0 },
   // amount of animation to show
-  uEffectAmount : { type: "f", value: 0.0 }
+  uEffectAmount: { type: "f", value: 0.0 }
 };
   
 var shaderMaterial = new THREE.ShaderMaterial({
-  uniforms : uniforms,
+  uniforms: uniforms,
 
   // I have my shaders inside HTML elements like
   // &lt;script type="text/x-glsl-vert">... shaderSource ... &lt;script>
-  vertexShader : document.querySelector('#vertex').textContent,
+  vertexShader: document.querySelector('#vertex').textContent,
 
   // The fragment shader is a bit special as well, drawing a rotating
   // rainbow gradient.
-  fragmentShader : document.querySelector('#fragment').textContent
+  fragmentShader: document.querySelector('#fragment').textContent
 });
 
 // set depthTest to false so that the letters don't occlude each other
@@ -259,7 +266,7 @@ var controller = {
   effectAmount: 0
 };
 
-// I'm using DAT.GUI to do a quick & easy GUI for the demo
+// I'm using <a href="http://code.google.com/p/dat-gui/">DAT.GUI</a> to do a quick & easy GUI for the demo
 var gui = new dat.GUI();
 gui.add(controller, 'effectAmount', 0, 100);
 
@@ -274,7 +281,7 @@ var animate = function(t) {
 animate(+new Date);
 </pre>
 
-And there you have it, shader-based animation. It looks pretty complex but the only thing it really does is moves the letters around in a way that depends on the letter's index. If performance wasn't a concern you would have this logic running in JavaScript. However, at tens of thousands of objects, JavaScript stops being a viable solution.
+<p>And there you have it, shader-based animation. It looks pretty complex but the only thing it really does is moves the letters around in a way that depends on the letter's index. If performance wasn't a concern you would have this logic running in JavaScript. However, at tens of thousands of objects, JavaScript stops being a viable solution.
 
 <h2 id="toc-concerns">Remaining concerns</h2>
 <p>The only problem now is that JavaScript doesn’t know about the particle positions. If you really need to know where your particles are, you could duplicate the vertex shader logic in JavaScript and re-calculate the vertex positions using a web worker every time you need the positions. That way your rendering thread doesn’t have to wait for the math and you can continue animating at a smooth frame rate.

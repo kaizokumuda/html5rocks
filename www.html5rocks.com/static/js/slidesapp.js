@@ -4,9 +4,8 @@ window.SLD = {
 
   talks     : [],
   authors   : {},
-  template  : Handlebars.compile( SLD.talktmpl ),
+  template  : undefined,
   talksdfr  : $.Deferred(),
-  authordfr : $.Deferred(),
 
   // called from jsonp
   receiveSpreadsheet : function(data) {
@@ -54,11 +53,19 @@ window.SLD = {
       , elems
       
     output.innerHTML = html;
-    
+
+    SLD.lazyEmbed();
     FLTR.setup();
     
   }, // eo render()
 
+  lazyEmbed : function() {
+
+    $('#output').on('click', 'div[data-embed]', function(){
+      $(this).replaceWith( $(this).data('embed') );
+    });
+
+  },
     
   offline : function() {
     SLD.receiveSpreadsheet(SLD.talks = SLD.backuptalks);
@@ -73,12 +80,20 @@ window.SLD = {
      success  : SLD.receiveSpreadsheet
     });
     
-    $.getJSON('/api/authors', function(data){
+    var tmplXHR = $.ajax({
+     url        :"/static/js/talkstmpl.html",
+     dataType   :'text',
+     localCache : true,
+     success    : function(data){
+       SLD.template = Handlebars.compile( data )
+     }
+    });
+
+    var authXHR = $.getJSON('/api/authors', function(data){
       SLD.authors = data;
-      SLD.authordfr.resolve();
     })
 
-    $.when( SLD.talksdfr.promise(), SLD.authordfr.promise() ).done(function(){
+    $.when( SLD.talksdfr.promise(), authXHR, tmplXHR ).done(function(){
       var talks = SLD.talks.length && SLD.talks || SLD.backuptalks
       SLD.render(talks);
     });
@@ -213,8 +228,11 @@ Handlebars.registerHelper('video', function(video) {
   
   if (/youtube\.com$/.test(domain)){
     id = uri.queryKey.v;
-    html = '<iframe src="http://www.youtube.com/embed/' + id + 
-           '" frameborder="0" allowfullscreen></iframe> ';
+    iframe = '<iframe src=\'http://www.youtube.com/embed/' + id + 
+           '?autoplay=1\' frameborder=\'0\' allowfullscreen></iframe>';
+    html = '<div data-embed="' + iframe + '"><span></span>' + // ▶  ▷
+             '<img src="http://i.ytimg.com/vi/' + id + '/hqdefault.jpg">' +
+           '</div>';
     
   } else if (/vimeo\.com$/.test(domain)){
     id = uri.path.match(/\d+/)[0];
