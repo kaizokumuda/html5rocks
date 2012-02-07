@@ -11,6 +11,35 @@ handlers:
   static_files: static/google75906d613a2a09ba.html
   upload: static/google75906d613a2a09ba.html
 
+# Web App Field Guide
+
+- url: /webappfieldguide/(.*\.(appcache|manifest))
+  static_files: webappfieldguide/static/\1
+  mime_type: text/cache-manifest
+  upload: webappfieldguide/static/(.*\.(appcache|manifest))
+  expiration: "0s"
+
+- url: /webappfieldguide/css
+  static_dir: webappfieldguide/static/css
+
+- url: /webappfieldguide/img
+  static_dir: webappfieldguide/static/img
+
+- url: /webappfieldguide/js
+  static_dir: webappfieldguide/static/js
+
+- url: /webappfieldguide/index.html
+  static_files: webappfieldguide/index/index.html
+  upload: webappfieldguide/index/index.html
+
+- url: /webappfieldguide/(.*\.(html|txt|xml|png|ico))
+  static_files: webappfieldguide/static/\1
+  upload: webappfieldguide/static/(.*\.(html|txt|xml|png|ico))
+
+- url: /webappfieldguide/(.*)
+  static_files: webappfieldguide/index/index.html
+  upload: webappfieldguide/index/index.html
+
 # Server appropriate mimetype for certain static content.
 
 #
@@ -94,7 +123,7 @@ handlers:
   mime_type: text/cache-manifest
   static_files: \1
   upload: (.*\.(appcache|manifest))
-  
+
 #
 # Everything else
 #
