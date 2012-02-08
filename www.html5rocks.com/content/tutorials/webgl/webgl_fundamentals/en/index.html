@@ -1,13 +1,40 @@
 {% extends "tutorial.html" %}
 
-<script type="text/javascript" src="resources/lesson.js"></script>
-
 {% block html5badge %}
 <img src="/static/images/identity/html5-badge-h-graphics.png" width="133" height="64" alt="This article is powered by HTML5 Graphics, 3D &amp; Effects" title="This article is powered by HTML5 Graphics, 3D &amp; Effects" />
 {% endblock %}
 
 {% block iscompatible %}
   return !!Modernizr.webgl
+{% endblock %}
+
+{% block head %}
+<style>
+.webgl_center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+}
+
+iframe.webgl_example {
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+div.webgl_bottombar {
+  border: 1px solid #000;
+  background-color: #eef;
+  width: 95%;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+div.webgl_bottombar>h3 {
+  gbackground-color: red;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -119,7 +146,7 @@ gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
 <p><a class="webgl_center" href="webgl/webgl-2d-rectangle.html" target="_blank">click here to open in a separate window</a></p>
 <p>You might notice the rectangle is near the bottom of that area. WebGL considers the bottom left corner to be 0,0. To get it to be the more traditional top left corner used for 2d graphics APIs we just flip the y coordinate.</p>
 <pre class="prettyprint">
-   gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
+gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
 </pre>
 
 <p>And now our rectangle is where we expect it.</p>
@@ -142,6 +169,8 @@ void main() {
 
 <p>And here's the new code that draws 50 rectangles in random places and random colors.</p>
 <pre class="prettyprint">
+...
+
   var colorLocation = gl.getUniformLocation(program, "u_color");
   ...
   // Create a buffer
@@ -290,9 +319,9 @@ function render(image) {
 <p><a class="webgl_center" href="webgl/webgl-2d-image.html" target="_blank">click here to open in a separate window</a></p>
 <p>Not too exciting so let's manipulate that image. How about just swapping red and blue?</p>
 <pre class="prettyprint">
-   ...
-   gl_FragColor = texture2D(u_image, v_texCoord).bgra;
-   ...
+...
+gl_FragColor = texture2D(u_image, v_texCoord).bgra;
+...
 </pre>
 
 <p>And now red and blue are swapped.</p>
@@ -327,12 +356,12 @@ void main() {
 
 <p>We then need to pass in the size of the texture from JavaScript.</p>
 <pre class="prettyprint">
-  ...
-  var textureSizeLocation = gl.getUniformLocation(program, "u_textureSize");
-  ...
-  // set the size of the image
-  gl.uniform2f(textureSizeLocation, image.width, image.height);
-  ...
+...
+var textureSizeLocation = gl.getUniformLocation(program, "u_textureSize");
+...
+// set the size of the image
+gl.uniform2f(textureSizeLocation, image.width, image.height);
+...
 </pre>
 
 <p>Compare to the un-blurred image above.</p>
@@ -389,16 +418,16 @@ void main() {
 
 <p>In JavaScript we need to supply a convolution kernel.</p>
 <pre class="prettyprint">
-  ...
-  var kernelLocation = gl.getUniformLocation(program, "u_kernel[0]");
-  ...
-  var edgeDetectKernel = [
-      -1, -1, -1,
-      -1,  8, -1,
-      -1, -1, -1
-  ];
-  gl.uniform1fv(kernelLocation, edgeDetectKernel);
-  ...
+...
+var kernelLocation = gl.getUniformLocation(program, "u_kernel[0]");
+...
+var edgeDetectKernel = [
+    -1, -1, -1,
+    -1,  8, -1,
+    -1, -1, -1
+];
+gl.uniform1fv(kernelLocation, edgeDetectKernel);
+...
 </pre>
 
 <p>And voila... Use the drop down list to select different kernels.</p>
@@ -426,127 +455,127 @@ Texture 2      -&gt; [Normal]      -&gt; Canvas</pre></blockquote>
 <p>To do this we need to create framebuffers. In WebGL and OpenGL, a Framebuffer is actually a poor name. A WebGL/OpenGL Framebuffer is really just a collection of state and not actually a buffer of any kind. But, by attaching a texture to a framebuffer we can render into that texture. </p>
 <p>First let's turn the old texture creation code into a function</p>
 <pre class="prettyprint">
-  function createAndSetupTexture(gl) {
-    var texture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, texture);
+function createAndSetupTexture(gl) {
+  var texture = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, texture);
 
-    // Set up texture so we can render any size image and so we are
-    // working with pixels.
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  // Set up texture so we can render any size image and so we are
+  // working with pixels.
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
 
-    return texture;
-  }
+  return texture;
+}
 
-  // Create a texture and put the image in it.
-  var originalImageTexture = createAndSetupTexture(gl);
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+// Create a texture and put the image in it.
+var originalImageTexture = createAndSetupTexture(gl);
+gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
 </pre>
 
 <p>And now let's use that function to make 2 more textures and attach them to 2 framebuffers.</p>
 <pre class="prettyprint">
-  // create 2 textures and attach them to framebuffers.
-  var textures = [];
-  var framebuffers = [];
-  for (var ii = 0; ii < 2; ++ii) {
-    var texture = createAndSetupTexture(gl);
-    textures.push(texture);
+// create 2 textures and attach them to framebuffers.
+var textures = [];
+var framebuffers = [];
+for (var ii = 0; ii < 2; ++ii) {
+  var texture = createAndSetupTexture(gl);
+  textures.push(texture);
 
-    // make the texture the same size as the image
-    gl.texImage2D(
-        gl.TEXTURE_2D, 0, gl.RGBA, image.width, image.height, 0,
-        gl.RGBA, gl.UNSIGNED_BYTE, null);
+  // make the texture the same size as the image
+  gl.texImage2D(
+      gl.TEXTURE_2D, 0, gl.RGBA, image.width, image.height, 0,
+      gl.RGBA, gl.UNSIGNED_BYTE, null);
 
-    // Create a framebuffer
-    var fbo = gl.createFramebuffer();
-    framebuffers.push(fbo);
-    gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+  // Create a framebuffer
+  var fbo = gl.createFramebuffer();
+  framebuffers.push(fbo);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
 
-    // Attach a texture to it.
-    gl.framebufferTexture2D(
-        gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
-  }
+  // Attach a texture to it.
+  gl.framebufferTexture2D(
+      gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+}
 </pre>
 
 <p>Now let's make a set of kernels and then a list of them to apply.</p>
 <pre class="prettyprint">
-  // Define several convolution kernels
-  var kernels = {
-    normal: [
-      0, 0, 0,
-      0, 1, 0,
-      0, 0, 0
-    ],
-    gaussianBlur: [
-      0.045, 0.122, 0.045,
-      0.122, 0.332, 0.122,
-      0.045, 0.122, 0.045
-    ],
-    unsharpen: [
-      -1, -1, -1,
-      -1,  9, -1,
-      -1, -1, -1
-    ],
-    emboss: [
-       -2, -1,  0,
-       -1,  1,  1,
-        0,  1,  2
-    ]
-  };
+// Define several convolution kernels
+var kernels = {
+  normal: [
+    0, 0, 0,
+    0, 1, 0,
+    0, 0, 0
+  ],
+  gaussianBlur: [
+    0.045, 0.122, 0.045,
+    0.122, 0.332, 0.122,
+    0.045, 0.122, 0.045
+  ],
+  unsharpen: [
+    -1, -1, -1,
+    -1,  9, -1,
+    -1, -1, -1
+  ],
+  emboss: [
+     -2, -1,  0,
+     -1,  1,  1,
+      0,  1,  2
+  ]
+};
 
-  // List of effects to apply.
-  var effectsToApply = [
-    "gaussianBlur",
-    "emboss",
-    "gaussianBlur",
-    "unsharpen"
-  ];
+// List of effects to apply.
+var effectsToApply = [
+  "gaussianBlur",
+  "emboss",
+  "gaussianBlur",
+  "unsharpen"
+];
 </pre>
 
 <p>And finally let's apply each one, ping ponging which texture we are rendering too</p>
 <pre class="prettyprint">
-  // start with the original image
-  gl.bindTexture(gl.TEXTURE_2D, originalImageTexture);
+// start with the original image
+gl.bindTexture(gl.TEXTURE_2D, originalImageTexture);
 
-  // don't y flip images while drawing to the textures
-  gl.uniform1f(flipYLocation, 1);
+// don't y flip images while drawing to the textures
+gl.uniform1f(flipYLocation, 1);
 
-  // loop through each effect we want to apply.
-  for (var ii = 0; ii < effectsToApply.length; ++ii) {
-    // Setup to draw into one of the framebuffers.
-    setFramebuffer(framebuffers[ii % 2], image.width, image.height);
+// loop through each effect we want to apply.
+for (var ii = 0; ii < effectsToApply.length; ++ii) {
+  // Setup to draw into one of the framebuffers.
+  setFramebuffer(framebuffers[ii % 2], image.width, image.height);
 
-    drawWithKernel(effectsToApply[ii]);
+  drawWithKernel(effectsToApply[ii]);
 
-    // for the next draw, use the texture we just rendered to.
-    gl.bindTexture(gl.TEXTURE_2D, textures[ii % 2]);
-  }
+  // for the next draw, use the texture we just rendered to.
+  gl.bindTexture(gl.TEXTURE_2D, textures[ii % 2]);
+}
 
-  // finally draw the result to the canvas.
-  gl.uniform1f(flipYLocation, -1);  // need to y flip for canvas
-  setFramebuffer(null, canvas.width, canvas.height);
-  drawWithKernel("normal");
+// finally draw the result to the canvas.
+gl.uniform1f(flipYLocation, -1);  // need to y flip for canvas
+setFramebuffer(null, canvas.width, canvas.height);
+drawWithKernel("normal");
 
-  function setFramebuffer(fbo, width, height) {
-    // make this the framebuffer we are rendering to.
-    gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+function setFramebuffer(fbo, width, height) {
+  // make this the framebuffer we are rendering to.
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
 
-    // Tell the shader the resolution of the framebuffer.
-    gl.uniform2f(resolutionLocation, width, height);
+  // Tell the shader the resolution of the framebuffer.
+  gl.uniform2f(resolutionLocation, width, height);
 
-    // Tell webgl the viewport setting needed for framebuffer.
-    gl.viewport(0, 0, width, height);
-  }
+  // Tell webgl the viewport setting needed for framebuffer.
+  gl.viewport(0, 0, width, height);
+}
 
-  function drawWithKernel(name) {
-    // set the kernel
-    gl.uniform1fv(kernelLocation, kernels[name]);
+function drawWithKernel(name) {
+  // set the kernel
+  gl.uniform1fv(kernelLocation, kernels[name]);
 
-    // Draw the rectangle.
-    gl.drawArrays(gl.TRIANGLES, 0, 6);
-  }
+  // Draw the rectangle.
+  gl.drawArrays(gl.TRIANGLES, 0, 6);
+}
 </pre>
 
 <p>Here's a working version with a slightly more flexible UI. Check the effects to turn them on. Drag the effects to reorder how they are applied.</p>
@@ -574,14 +603,14 @@ void main() {
 
 <p>And then we can set it when we render with</p>
 <pre class="prettyprint">
-  ...
-  var flipYLocation = gl.getUniformLocation(program, "u_flipY");
-  ...
-  // don't flip
-  gl.uniform1f(flipYLocation, 1);
-  ...
-  // flip
-  gl.uniform1f(flipYLocation, -1);
+...
+var flipYLocation = gl.getUniformLocation(program, "u_flipY");
+...
+// don't flip
+gl.uniform1f(flipYLocation, 1);
+...
+// flip
+gl.uniform1f(flipYLocation, -1);
 </pre>
 
 <p>I kept this example simple by using single GLSL program that can achieve multiple effects. If you wanted to do full on image processing you'd probably need many GLSL programs. A program for hue, saturation and luminance adjustment. Another for brightness and contrast. One for inverting, another for adjusting levels, etc. You'd need to change the code to switch GLSL programs and update the parameters for that particular program. I'd considered writing that example but it's an exercise best left to the reader because multiple GLSL programs each with their own parameter needs probably means some major refactoring to keep it all from becoming a big mess of spaghetti. </p>
@@ -590,57 +619,52 @@ void main() {
     <h2 id="toc-webglalpha">WebGL and Alpha</h2>
     <p>I've noticed some OpenGL developers having issues with how WebGL treats alpha in the backbuffer (ie, the canvas), so I thought it might be good to go over some of the differences between WebGL and OpenGL related to alpha.
 <!--more-->
-The biggest difference between OpenGL and WebGL is that OpenGL renders to a backbuffer that is not composited with anything so, or effectively not composited with anything by the OS's window manager, so it doesn't matter what your alpha is.</p>
+<p>The biggest difference between OpenGL and WebGL is that OpenGL renders to a backbuffer that is not composited with anything so, or effectively not composited with anything by the OS's window manager, so it doesn't matter what your alpha is.</p>
 <p>WebGL is composited by the browser with the web page and the default is to use pre-multiplied alpha the same as .png &lt;img&gt; tags with transparency and 2d canvas tags.</p>
 <p>WebGL has several ways to make this more like OpenGL.</p>
 <h3>#1) Tell WebGL you want it composited with non-premultiplied alpha</h3>
 
 <pre class="prettyprint">
-gl = canvas.getContext(
-        "experimental-webgl", 
-        {  
-           premultipliedAlpha: false  // Ask non-premultiplied alpha
-        }
-     );
+gl = canvas.getContext("experimental-webgl", {premultipliedAlpha: false});
 </pre>
 
 <p>The default is true.</p>
 <p>Of course the result will still be composited over page with whatever background color ends up being under the canvas  (the canvas's background color, the canvas's container background color, the page's background color, the stuff behind the canvas if the canvas has a z-index &gt; 0, etc....) in other words, the color CSS defines for that area of the webpage.</p>
 <p>I really good way to find if you have any alpha problems is to set the canvas's background to a bright color like red. You'll immediately see what is happening.</p>
 <pre class="prettyprint">
-&lt;canvas style="background: red;"&gt; &lt;/canvas&gt;
+&lt;canvas style="background: red;"&gt;&lt;/canvas&gt;
 </pre>
 
 <p>You could also set it to black which will hide any alpha issues you have.</p>
 <h3>#2) Tell WebGL you don't want alpha in the backbuffer</h3>
 
 <pre class="prettyprint">
-gl = canvas.getContext("experimental-webgl", { alpha: false }};
+gl = canvas.getContext("experimental-webgl", {alpha: false});
 </pre>
 
 <p>This will make it act more like OpenGL since the backbuffer will only have RGB. This is probably the best option because a good browser could see that you have no alpha and actually optimize the way WebGL is composited. Of course that also means it actually won't have alpha in the backbuffer so if you are using alpha in the backbuffer for some purpose that might not work for you. Few apps that I know of use alpha in the backbuffer. I think arguably this should have been the default.</p>
 <h3>#3) Clear alpha at the end of your rendering</h3>
 
 <pre class="prettyprint">
-  ..
-  renderScene();
-  ..
-  // Set the backbuffer's alpha to 1.0
-  gl.clearColor(1, 1, 1, 1);
-  gl.colorMask(false, false, false, true);
-  gl.clear(gl.COLOR_BUFFER_BIT);
+..
+renderScene();
+..
+// Set the backbuffer's alpha to 1.0
+gl.clearColor(1, 1, 1, 1);
+gl.colorMask(false, false, false, true);
+gl.clear(gl.COLOR_BUFFER_BIT);
 </pre>
 
 <p>Clearing is generally very fast as there is a special case for it in most hardware. I did this in most of my demos. If I was smart I'd switch to method #2 above. Maybe I'll do that right after I post this. It seems like most WebGL libraries should default to this method. Those few developers that are actually using alpha for compositing effects can ask for it. The rest will just get the best perf and the least surprises.</p>
 <h3>#4) Clear the alpha once then don't render to it anymore</h3>
 
 <pre class="prettyprint">
-  // At init time. Clear the back buffer.
-  gl.clearColor(1,1,1,1);
-  gl.clear(gl.COLOR_BUFFER_BIT);
+// At init time. Clear the back buffer.
+gl.clearColor(1,1,1,1);
+gl.clear(gl.COLOR_BUFFER_BIT);
 
-  // Turn off rendering to alpha
-  gl.colorMask(true, true, true, false); 
+// Turn off rendering to alpha
+gl.colorMask(true, true, true, false); 
 </pre>
 
 <p>Of course if you are rendering to your own framebuffers you may need to turn rendering to alpha back on and then turn it off again when you switch to rendering to the canvas.</p>
@@ -648,22 +672,23 @@ gl = canvas.getContext("experimental-webgl", { alpha: false }};
 
 <p>Also, if you are loading PNG files with alpha into textures, the default is that their alpha is pre-multiplied which is generally NOT the way most games do things. If you want to prevent that behavior you need to tell WebGL with</p>
 <pre class="prettyprint">
-  gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
 </pre>
 
 <h3>#6) Using a blending equation that works with pre-multiplied alpha.</h3>
 
 <p>Almost all OpenGL apps I've writing or worked on use</p>
 <pre class="prettyprint">
-   gl.blendFunc(gl.SRC_ALPHA, gl_ONE_MINUS_SRC_ALPHA);
+gl.blendFunc(gl.SRC_ALPHA, gl_ONE_MINUS_SRC_ALPHA);
 </pre>
 
 <p>That works for non pre-multiplied alpha textures.</p>
 <p>If you actually want to work with pre-multiplied alpha textures then you probably want</p>
 <pre class="prettyprint">
-   gl.blendFunc(gl.ONE, gl_ONE_MINUS_SRC_ALPHA);
+gl.blendFunc(gl.ONE, gl_ONE_MINUS_SRC_ALPHA);
 </pre>
 
 <p>Those are the methods I'm aware of. If you know of more please post them below.</p>
 
+<script type="text/javascript" src="resources/lesson.js"></script>
 {% endblock %}

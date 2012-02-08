@@ -40,7 +40,7 @@ $(document).ready(function($){
   $('img[src$="-sm.jpg"]').wrap(linkSmallImgs(".jpg"));
   $('img[src$="-sm.gif"]').wrap(linkSmallImgs(".gif"));
   $('img[src$="-sm.png"]').wrap(linkSmallImgs(".png"));
-  prettyPrint();
+  //prettyPrint();
 });
 }(jQuery));
 

@@ -1,7 +1,7 @@
 title: WebGL Fundamentals
 url: /tutorials/webgl/webgl_fundamentals/
 author_id: gman
-publication_date: 2012-02-10
+publication_date: 2012-02-09
 description: "Fundamentals of using WebGL as a 2D drawing API and using shaders for image processing."
 browser_support:
 - chrome
@@ -17,7 +17,7 @@ tags:
 title: Getting Started With the Track Element
 url: /tutorials/track/basics/
 author_id: dutton
-publication_date: 2012-02-09
+publication_date: 2012-02-08
 description: "The track element provides a simple, standardized way to add subtitles and captions to video and audio, but can also be used with other kinds of timed data, to improve searchability and enable deep linking."
 browser_support:
 - chrome
@@ -34,7 +34,7 @@ tags:
 title: Google Photography Prize Gallery
 url: /tutorials/closure/photographyprize/
 author_id: ilmari
-publication_date: 2012-02-08
+publication_date: 2012-02-07
 description: Building the gallery widget for the Google Photography Prize site using Closure.
 browser_support:
 - chrome
