@@ -1,3 +1,19 @@
+title: WebGL Fundamentals
+url: /tutorials/webgl/webgl_fundamentals/
+author_id: gman
+publication_date: 2012-02-10
+description: "Fundamentals of using WebGL as a 2D drawing API and using shaders for image processing."
+browser_support:
+- chrome
+- firefox
+- opera
+tags:
+- webgl
+- type:tutorial
+- class:graphics
+
+---
+
 title: Getting Started With the Track Element
 url: /tutorials/track/basics/
 author_id: dutton
