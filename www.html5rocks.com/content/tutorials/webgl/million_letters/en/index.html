@@ -306,20 +306,21 @@ animate(+new Date);
 <p>And there you have it, shader-based animation. It looks pretty complex, but the only thing it really does is move the letters around in a way that depends on the current time and each letter's index. If performance wasn't a concern, you could have this logic running in JavaScript. However, at tens of thousands of animated objects, JavaScript stops being a viable solution.
 
 <h2 id="toc-concerns">Remaining concerns</h2>
-<p>The only problem now is that JavaScript doesn’t know about the particle positions. If you really need to know where your particles are, you could duplicate the vertex shader logic in JavaScript and recalculate the vertex positions using a web worker every time you need the positions. That way your rendering thread doesn’t have to wait for the math and you can continue animating at a smooth frame rate.
+<p>One problem now is that JavaScript doesn’t know about the particle positions. If you really need to know where your particles are, you could duplicate the vertex shader logic in JavaScript and recalculate the vertex positions using a web worker every time you need the positions. That way your rendering thread doesn’t have to wait for the math and you can continue animating at a smooth frame rate.
 
 <p>For more controllable animation, you could use render-to-texture functionality to animate between two sets of positions provided by JavaScript. First, render the current positions to a texture, then animate towards positions defined in a separate texture provided by JavaScript. The nice thing about this is that you can update a small fraction of the JavaScript-provided positions per frame and still continue animating all the letters every frame with the vertex shader tweening the positions.
 
-<!--
+<p>Another concern is that 256 characters is far too few to do non-ASCII texts. If push the texture map size to 4096x4096 while decreasing the font size to 8px, you can fit the entire UCS-2 character set into the texture map. However, 8px font size is not very readable. To do larger font sizes, you can use multiple textures for your font. See this <a href="http://code.google.com/p/webglsamples/source/browse/#hg%2Fsprites">sprite atlas demo</a> for an example. Another thing that would help is to create only the letters used in your text. 
+
 <h2 id="toc-summary">Summary</h2>
-<p>
--->
+<p>In this article, I walked you through implementing a vertex shader -based animation demo using Three.js. The demo animates a million letters in real-time on a 2010 MacBook Air. The implementation bundled an entire book into a single geometry object for efficient drawing. The individual letters were animated by figuring out out which vertices belong to which letter and animating the vertices based on the index of the letter in the book text.
 
 
   <h2 id="toc-references">References</h2>
   <ul>
     <li><a href="https://github.com/mrdoob/three.js/">Three.js</a></li>
     <li><a href="http://www.gutenberg.org/ebooks/5200">Metamorphosis by Franz Kafka on Project Gutenberg</a></li>
+    <li><a href="http://code.google.com/p/webglsamples/source/browse/#hg%2Fsprites">Sprite Atlas demo</a></li>
   </ul>
 
 {% endblock %}
