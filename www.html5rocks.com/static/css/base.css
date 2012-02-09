@@ -1618,12 +1618,7 @@ article.profile section
   height: 248px;
 }
 
-.profile img[itemprop=photo]
-{
-  float: left;
-  margin-right: 19px;
-  width: 75px;
-  height: 75px;
+img[itemprop=photo] {
   -webkit-filter: grayscale(0.75) sepia(0.5);
      -moz-filter: grayscale(0.75) sepia(0.5);
       -ms-filter: grayscale(0.75) sepia(0.5);
@@ -1636,10 +1631,16 @@ article.profile section
        -o-transition: all 0.3s ease-out;
           transition: all 0.3s ease-out;
 }
+.profile img[itemprop=photo] {
+  float: left;
+  margin-right: 19px;
+  width: 75px;
+  height: 75px;
+}
 
 .profile:hover img[itemprop=photo],
-.profile:focus img[itemprop=photo]
-{
+.profile:focus img[itemprop=photo],
+img[itemprop=photo]:hover {
   -webkit-filter: grayscale(0) sepia(0);
      -moz-filter: grayscale(0) sepia(0);
       -ms-filter: grayscale(0) sepia(0);
