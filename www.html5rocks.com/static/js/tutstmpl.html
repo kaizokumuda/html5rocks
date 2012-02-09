@@ -1,8 +1,8 @@
 <!-- updates template for /tutorials -->
-{{#each updates}}       
-<article class="tutorial_listing" data-type="update" data-classes="{{ classes }}" data-pubdate="{{date}}">
-  <h3 id="{{title }}" >
-    <a href="{{link}}">{{title}}</a>
+{{#each updates}}
+<article class="tutorial_listing" data-type="update" data-classes="{{ classes }}" data-pubdate="{{ date }}">
+  <h3 id="{{ title }}" >
+    <a href="{{ link }}">{{title}}</a>
   </h3>
   <div>
     <span class="date">{{ formattedDateStr }}</span>

@@ -246,19 +246,20 @@ body
     -moz-linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -moz-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
     -moz-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%) !important;*/
+  /*Opera doesn't implement background-size?
   background-image:
     -o-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -o-linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -o-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
-    -o-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%) !important;
-   background-image:
+    -o-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%) !important;*/
+  background-image:
     -ms-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -ms-linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -ms-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
     -ms-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%) !important;
   -webkit-background-size: 3px 3px;
   /*-moz-background-size: 3px 3px;*/
-  -o-background-size: 3px 3px;
+  /*-o-background-size: 3px 3px; Opera doesn't implement this?*/
   -ms-background-size: 3px 3px;
   /*background-size: 3px 3px; Don't use b/c of FF*/
 }
@@ -284,11 +285,14 @@ article.sectioned > section:not(#classes) {
     -moz-linear-gradient(-45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
     -moz-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%),
     -moz-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%); !important*/
+  /*
+  Opera doesn't implement background-size?
   background-image:
     -o-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
     -o-linear-gradient(-45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
     -o-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%),
     -o-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%) !important;
+  */
    background-image:
     -ms-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
     -ms-linear-gradient(-45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
@@ -296,7 +300,7 @@ article.sectioned > section:not(#classes) {
     -ms-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%) !important;
   -webkit-background-size: 3px 3px;
   /*-moz-background-size: 3px 3px;*/
-  -o-background-size: 3px 3px;
+  /*-o-background-size: 3px 3px; Opera doesn't implement background-size?*/
   -ms-background-size: 3px 3px;
   /*background-size: 3px 3px; Don't use b/c of FF*/
 }
@@ -1446,8 +1450,19 @@ body[data-href='home'] section#updates ul
   margin: .5em 0 !important;
 }
 
+body[data-href='home'] #latest_articles_feed {
+  width: 60%;
+}
+
+body[data-href='home'] #latest_articles_feed li {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 body[data-href='home'] #latest_articles_feed .title {
-  width:auto;
+  max-width: 75%;
+  /*display: inline-block;*/
+  width: auto;
 }
 
 #updates_title

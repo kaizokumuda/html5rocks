@@ -400,6 +400,7 @@ class ContentHandler(webapp.RequestHandler):
             if not (x.startswith('class:') or x.startswith('type:'))]
         tutorials[-1].type = resource_type
 
+        #TODO(ericbidelman): Probably don't need author for every result query.
         authors.append(r.author)
 
       # Remove duplicate authors from the list.
