@@ -26,10 +26,11 @@ FILE_LIST = [
   '../templates/base.html',
   '../content/slides.html',
   '../content/profiles.html',
+  '../content/profiles.html',
   '../content/tutorials/index.html',
   '../content/business/index.html',
   '../content/gaming/index.html',
-  '../content/mobile/index.html',
+  '../content/features/feature.html',
 ]
 
 timestamp = str(datetime.datetime.now().date())
