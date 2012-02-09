@@ -314,6 +314,7 @@ window.addEventListener('hashchange', function(e) {
   if (window._gaq) {
     _gaq.push(['_trackPageview', window.location.href]);
   }
+  window.scrollTo(0, 0);
 }, false);
 
 function initPage() {
