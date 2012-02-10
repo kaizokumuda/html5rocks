@@ -1,21 +1,21 @@
 
 window.thirdParty = {
 
-    delay : 500,
+    delay: 500,
 
-    init : function(){
+    init: function() {
       $(window).load(function() {
         setTimeout(function() {
+          thirdParty.GA();
           thirdParty.plus1();
           thirdParty.twitter();
-          thirdParty.GA();
           thirdParty.facebook();
           $('.share').css('display', 'block');
         }, thirdParty.delay);
       });
     },
 
-    facebook : function() {
+    facebook: function() {
 
       $('li.facebook').not(':has("iframe")').html(function() {
 
@@ -30,7 +30,7 @@ window.thirdParty = {
       });
     },
 
-    twitter : function(){ 
+    twitter: function() {
       $.ajax({
         url : '//platform.twitter.com/widgets.js',
         dataType : 'script', cache: true,
@@ -38,7 +38,7 @@ window.thirdParty = {
       });
     },
 
-    plus1 : function(){
+    plus1: function() {
       // https://developers.google.com/+/plugins/+1button/#async-load
       window.___gcfg = { lang: document.documentElement.lang, parsetags: 'explicit' };
 
@@ -52,7 +52,7 @@ window.thirdParty = {
       });
     },
 
-    GA : function(){
+    GA: function() {
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-15028909-1']);
         _gaq.push(['_trackPageview']);
