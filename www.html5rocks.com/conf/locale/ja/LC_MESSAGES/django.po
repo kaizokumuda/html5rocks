@@ -1,39 +1,17 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 15:27+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
-
 #: main.py:188
 msgid "this feature"
 msgstr "この機能"
 
 #: main.py:199
-#, fuzzy
 msgid "HTML5Rocks - Tutorials & Updates"
-msgstr "HTML5Rocks - チュートリアル"
+msgstr "HTML5Rocks - チュートリアルと最新情報"
 
 #: main.py:201
 msgid "Take a guided tour through code that uses HTML5."
 msgstr "HTML5 を使ったコードについて学ぶことができます。"
 
 #: main.py:265
-msgid ""
-"Sorry, this article isn't available in your native language; we've "
-"redirected you to the English version."
+msgid "Sorry, this article isn't available in your native language; we've redirected you to the English version."
 msgstr "この記事はご利用の言語で提供されていません。英語版を表示しています。"
 
 #: content/community.html:5 content/features/index.html:11
@@ -46,16 +24,8 @@ msgid "Community"
 msgstr "コミュニティ"
 
 #: content/community.html:79
-msgid ""
-"The HTML5 community is getting bigger and bigger. Here you will find some "
-"resources to be up to date about the latest HTML5 news as well as to be able "
-"to discuss with developers and engineers the experimental features and "
-"proposals around the standards and browser implementations."
-msgstr ""
-"HTML5 コミュニティの輪は日に日に広がっています。ここでは、HTML5 の最新状況に"
-"関する資料をご覧いただけます。また、標準規格やブラウザの実装に関連した新しい"
-"機能やアイデアについて、デベロッパーやエンジニアたちと話し合うことができま"
-"す。"
+msgid "The HTML5 community is getting bigger and bigger. Here you will find some resources to be up to date about the latest HTML5 news as well as to be able to discuss with developers and engineers the experimental features and proposals around the standards and browser implementations."
+msgstr "HTML5 コミュニティの輪は日に日に広がっています。ここでは、HTML5 の最新状況に関する資料をご覧いただけます。また、標準規格やブラウザの実装に関連した新しい機能やアイデアについて、デベロッパーやエンジニアたちと話し合うことができます。"
 
 #: content/community.html:84
 msgid "Forum"
@@ -106,30 +76,26 @@ msgid "loading feed..."
 msgstr "フィードを読み込んでいます..."
 
 #: content/index.html:93
-#, fuzzy
 msgid "See more &rarr;"
-msgstr "もっと見る &rArr;"
+msgstr "もっと見る &rarr;"
 
 #: content/index.html:100
 msgid "Welcome to HTML5ROCKS"
-msgstr ""
+msgstr "HTML5ROCKS へようこそ"
 
 #: content/index.html:101
 msgid "What kind of HTML dev do you think you are?"
-msgstr ""
+msgstr "ご自分はどのようなタイプの HTML デベロッパーだと思いますか。"
 
 #: content/index.html:104
-msgid ""
-"\n"
-"      HTML5 is the ubiquitous platform for the web. Whether your a mobile "
-"web\n"
-"      developer, an enterprise with specific business needs, or a serious "
-"game\n"
-"      dev looking to explore the web as a new platform, HTML5 has something "
-"for\n"
+msgid "\n"
+"      HTML5 is the ubiquitous platform for the web. Whether your a mobile web\n"
+"      developer, an enterprise with specific business needs, or a serious game\n"
+"      dev looking to explore the web as a new platform, HTML5 has something for\n"
 "      you! Choose your path:\n"
 "      "
-msgstr ""
+msgstr "\n"
+"      HTML5 は、ウェブでのユビキタス プラットフォームです。モバイル ウェブ デベロッパーでも、固有のビジネス ニーズを持つ企業でも、本格的なゲーム デベロッパーでも、新しいプラットフォームとしてウェブの可能性を探っているデベロッパーなら HTML5 が最適です。該当するものを選択してください:"
 
 #: content/index.html:116 content/mobile/index.html:31
 #: content/mobile/index.html.py:50 templates/base.html:157
@@ -138,64 +104,57 @@ msgid "Mobile"
 msgstr "モバイル"
 
 #: content/index.html:118
-msgid ""
-"\n"
-"          Web developers can use the same set of technologies they know and "
-"love\n"
+msgid "\n"
+"          Web developers can use the same set of technologies they know and love\n"
 "          to build rich web applications that work across different device\n"
 "          types.\n"
 "          "
-msgstr ""
+msgstr "\n"
+"          ウェブ デベロッパーは、知り尽くしている一連の技術を使用して、さまざまなタイプの端末上で動作する機能が豊富なウェブ アプリケーションを構築できます。"
 
 #: content/index.html:129 content/gaming/index.html:35
 #: content/gaming/index.html.py:54 templates/base.html:161
 #: templates/base.html.py:168
 msgid "Gaming"
-msgstr ""
+msgstr "ゲーム"
 
 #: content/index.html:131
-msgid ""
-"\n"
-"          High performance 2D/3D graphics, offline asset storage, rich "
-"audio\n"
-"          APIs, and socket-based networking let you create compelling "
-"modern\n"
+msgid "\n"
+"          High performance 2D/3D graphics, offline asset storage, rich audio\n"
+"          APIs, and socket-based networking let you create compelling modern\n"
 "          games and reach users like never before.\n"
 "          "
-msgstr ""
+msgstr "\n"
+"          パフォーマンスの高い 2D/3D グラフィック、オフライン アセット ストレージ、機能の豊富な音声 API、ソケットベースのネットワーキングを利用して、最新の魅力的なゲームを作成し、今までより幅広くユーザーにアピールできます。"
 
 #: content/index.html:142 content/business/index.html:34
 #: content/business/index.html.py:53 templates/base.html:165
 msgid "Business"
-msgstr ""
+msgstr "ビジネス"
 
 #: content/index.html:144
-msgid ""
-"\n"
-"          HTML5 brings substantial benefits for companies that no other IT "
-"model\n"
-"          can &ndash; in simplicity, cost, security, flexibility and "
-"mobility.\n"
+msgid "\n"
+"          HTML5 brings substantial benefits for companies that no other IT model\n"
+"          can &ndash; in simplicity, cost, security, flexibility and mobility.\n"
 "          "
-msgstr ""
+msgstr "\n"
+"          HTML5 は、他の IT モデルでは実現できなかった、シンプルさ、コスト、セキュリティ、柔軟性、機動性での重大なメリットを企業にもたらします。"
 
 #: content/index.html:154
 msgid "Or get straight to the tech!"
-msgstr ""
+msgstr "または、技術担当者に直接ご連絡ください。"
 
 #: content/index.html:160
-#, fuzzy
 msgid "HTML5 Features"
-msgstr "機能"
+msgstr "HTML5 の機能"
 
 #: content/index.html:163
-msgid ""
-"\n"
-"        HTML5 is making the web platform more powerful in a number of "
-"different\n"
+msgid "\n"
+"        HTML5 is making the web platform more powerful in a number of different\n"
 "        areas. Try learning by major HTML5 feature groups.\n"
 "        "
-msgstr ""
+msgstr "\n"
+"        HTML5 はさまざまな面でウェブ プラットフォームを強化しています。HTML5 の主要な機能グループをお試しください。"
 
 #: content/index.html:170 content/features/index.html:19
 #: content/features/offline.html:5 content/features/offline.html.py:6
@@ -216,7 +175,7 @@ msgstr "ストレージ"
 #: templates/base.html.py:178 templates/base.html:185
 #: templates/base.html.py:244
 msgid "Connectivity"
-msgstr ""
+msgstr "コネクティビティ"
 
 #: content/index.html:173 content/features/file_access.html:5
 #: content/features/file_access.html:6 content/features/index.html:16
@@ -230,18 +189,17 @@ msgstr "ファイル アクセス"
 #: templates/base.html.py:186 templates/base.html:193
 #: templates/base.html.py:266
 msgid "Semantics"
-msgstr ""
+msgstr "セマンティクス"
 
 #: content/index.html:175 templates/base.html:125 templates/base.html.py:190
 #: templates/base.html:197 templates/base.html.py:277
 msgid "Audio/Video"
-msgstr ""
+msgstr "音声/動画"
 
 #: content/index.html:176 templates/base.html:130 templates/base.html.py:194
 #: templates/base.html:201 templates/base.html.py:288
-#, fuzzy
 msgid "3D/Graphics"
-msgstr "グラフィック"
+msgstr "3D/グラフィック"
 
 #: content/index.html:177 content/features/index.html:21
 #: content/features/presentation.html:5 content/features/presentation.html:6
@@ -260,44 +218,41 @@ msgstr "パフォーマンス"
 #: content/index.html:179 templates/base.html:145 templates/base.html.py:206
 #: templates/base.html:322
 msgid "Nuts &amp; Bolts"
-msgstr ""
+msgstr "基本機能"
 
 #: content/index.html:186
 msgid "Why HTML5?"
-msgstr ""
+msgstr "HTML5 を支持する理由"
 
 #: content/index.html:188
 msgid "Why you should care."
-msgstr ""
+msgstr "注目する理由"
 
 #: content/index.html:190
-msgid ""
-"\n"
-"          HTML5 introduces many cutting-edge features that enable developers "
-"to\n"
+msgid "\n"
+"          HTML5 introduces many cutting-edge features that enable developers to\n"
 "          create web apps&hellip;\n"
 "          "
-msgstr ""
+msgstr "\n"
+"          HTML5 には、デベロッパーがウェブ アプリの作成に利用できる最先端の機能が数多く導入されています..."
 
 #: content/index.html:200 content/business/index.html:34
 #: content/gaming/index.html:35 content/mobile/index.html:31
 #: content/tutorials/index.html:15
-#, fuzzy
 msgid "Updates"
 msgstr "最新情報"
 
 #: content/index.html:202
 msgid "Learn what's new."
-msgstr ""
+msgstr "最新情報をチェック"
 
 #: content/index.html:203
-msgid ""
-"\n"
-"          Articles, tutorials, case studies, and demos that show you how to "
-"use\n"
+msgid "\n"
+"          Articles, tutorials, case studies, and demos that show you how to use\n"
 "          HTML5 features.\n"
 "          "
-msgstr ""
+msgstr "\n"
+"          HTML5 の機能の利用方法を紹介する記事、チュートリアル、事例、デモ"
 
 #: content/index.html:213 content/resources.html:5
 #: content/resources.html.py:15 templates/base.html:75
@@ -311,36 +266,32 @@ msgstr "リソース"
 
 #: content/index.html:215 content/resources.html:20
 msgid "All HTML5, all the time."
-msgstr ""
+msgstr "いつでも HTML5 をフル活用"
 
 #: content/index.html:216
-msgid ""
-"\n"
+msgid "\n"
 "          Cultivated list of additional resources to help you on your HTML5\n"
 "          learning voyage.\n"
 "          "
-msgstr ""
+msgstr "\n"
+"          HTML5 の習得をサポートするその他の精選リソース リスト"
 
 #: content/index.html:227
-#, fuzzy
 msgid "Contributors"
-msgstr "サイト作成協力"
+msgstr "協力者"
 
 #: content/index.html:232
-#, fuzzy
 msgid "HTML5 Gurus Rock"
-msgstr "HTML5 Rocks"
+msgstr "HTML5Rock の達人"
 
 #: content/index.html:236
-msgid ""
-"\n"
-"      HTML5Rocks is <a href=\"http://code.google.com/p/html5rocks/\" rel="
-"\"external\">open source</a>\n"
-"      and community driven. Tweak the code or <a href=\"http://code.google."
-"com/p/html5rocks/wiki/ContributorsGuide\" rel=\"external\">contribute</a>\n"
+msgid "\n"
+"      HTML5Rocks is <a href=\"http://code.google.com/p/html5rocks/\" rel=\"external\">open source</a>\n"
+"      and community driven. Tweak the code or <a href=\"http://code.google.com/p/html5rocks/wiki/ContributorsGuide\" rel=\"external\">contribute</a>\n"
 "      a new tutorial. We'd love to have your help and expertise!\n"
 "      "
-msgstr ""
+msgstr "\n"
+"      HTML5Rocks はコミュニティが主導する<a href=\"http://code.google.com/p/html5rocks/\" rel=\"external\">オープンソース</a> です。コードの改良や、新しいチュートリアルの<a href=\"http://code.google.com/p/html5rocks/wiki/ContributorsGuide\" rel=\"external\">投稿</a>も歓迎します。ぜひご協力ください。"
 
 #: content/privacy.html:5
 msgid "Privacy Policy"
@@ -348,24 +299,14 @@ msgstr "プライバシー ポリシー"
 
 #: content/privacy.html:12
 msgid "HTML5 Rocks <span>Privacy Policy</span>"
-msgstr ""
+msgstr "HTML5Rocks <span>プライバシー ポリシー</span>"
 
 #: content/privacy.html:16
-#, fuzzy
-msgid ""
-"\n"
-"        The HTML5ROCKS website (the \"Website\") is hosted by Google and, as "
-"such, for the purposes of personal information, the Website operates as any "
-"other Google service. Google's Privacy Policy is available at <a href="
-"\"http://www.google.com/privacy.html\">http://www.google.com/privacy.html</"
-"a>.</p>\n"
+msgid "\n"
+"        The HTML5ROCKS website (the \"Website\") is hosted by Google and, as such, for the purposes of personal information, the Website operates as any other Google service. Google's Privacy Policy is available at <a href=\"http://www.google.com/privacy.html\">http://www.google.com/privacy.html</a>.</p>\n"
 "      "
-msgstr ""
-"<p>HTML5ROCKS ウェブサイト（以下、「本ウェブサイト」）は Google が提供する"
-"ウェブサイトであり、個人情報の取り扱い方法は他の Google サービスと同じです。"
-"Google のプライバシー ポリシーについては、<a href=\"http://www.google.com/"
-"intl/ja/privacy.html\">http://www.google.com/intl/ja/privacy.html</a> をご覧"
-"ください。</p>"
+msgstr "\n"
+"        HTML5ROCKS ウェブサイト（以下、「本ウェブサイト」）は Google が提供するウェブサイトであり、個人情報の取り扱い方法は他の Google サービスと同じです。Google のプライバシー ポリシーについては <a href=\"http://www.google.com/intl/ja/privacy.html\">http://www.google.com/intl/ja/privacy.html</a> をご覧ください。</p>"
 
 #: content/profiles.html:4
 msgid "Author Profiles"
@@ -377,37 +318,30 @@ msgid "HTML5 Rocks"
 msgstr "HTML5 Rocks"
 
 #: content/profiles.html:17
-#, fuzzy
 msgid "Authors"
-msgstr "作成者情報"
+msgstr "作成者"
 
 #: content/profiles.html:22
 msgid "Our honorable contributors."
-msgstr ""
+msgstr "投稿者をご紹介"
 
 #: content/profiles.html:25 content/resources.html:23
 #, python-format
-msgid ""
-"\n"
-"          You can <a href=\"http://twitter.com/ChromiumDev\">follow us on "
-"Twitter</a>,\n"
-"          read the <a href=\"/%(LANGUAGE_CODE)s/tos\">Terms of Service</a> "
-"or <a href=\"/%(LANGUAGE_CODE)s/privacy\">Privacy Policy</a>,\n"
-"          or <a href=\"http://code.google.com/p/html5rocks/issues/entry"
-"\">report a bug or request a feature</a>.\n"
-"          <small>This site contains information on APIs that are not part of "
-"the W3C HTML5 specification.</small>\n"
+msgid "\n"
+"          You can <a href=\"http://twitter.com/ChromiumDev\">follow us on Twitter</a>,\n"
+"          read the <a href=\"/%(LANGUAGE_CODE)s/tos\">Terms of Service</a> or <a href=\"/%(LANGUAGE_CODE)s/privacy\">Privacy Policy</a>,\n"
+"          or <a href=\"http://code.google.com/p/html5rocks/issues/entry\">report a bug or request a feature</a>.\n"
+"          <small>This site contains information on APIs that are not part of the W3C HTML5 specification.</small>\n"
 "        "
-msgstr ""
+msgstr "\n"
+"          <a href=\"http://twitter.com/ChromiumDev\">Twitter でフォロー</a>したり、<a href=\"/%(LANGUAGE_CODE)s/tos\">利用規約</a>や<a href=\"/%(LANGUAGE_CODE)s/privacy\">プライバシー ポリシー</a>を確認したり、<a href=\"http://code.google.com/p/html5rocks/issues/entry\">バグの報告や機能のリクエスト</a>を送信したりできます。<small>このサイトには、W3C HTML5 仕様の一部ではない API に関する情報も含まれています。</small>"
 
 #: content/profiles.html:33 content/resources.html:31
-msgid ""
-"\n"
-"          <strong>HTML5 Rocks</strong> is a <strong><img src=\"/static/"
-"images/google_logo_small.png\" alt=\"Google logo\" title=\"Google\"></"
-"strong> project.\n"
+msgid "\n"
+"          <strong>HTML5 Rocks</strong> is a <strong><img src=\"/static/images/google_logo_small.png\" alt=\"Google logo\" title=\"Google\"></strong> project.\n"
 "        "
-msgstr ""
+msgstr "\n"
+"          <strong>HTML5Rocks</strong> は <strong><img src=\"/static/images/google_logo_small.png\" alt=\"Google logo\" title=\"Google\"></strong> プロジェクトです。"
 
 #: content/profiles.html:44 content/resources.html:42 content/slides.html:98
 #: content/why.html:32 content/features/feature.html:25
@@ -416,52 +350,30 @@ msgid "Tweet"
 msgstr "ツイートする"
 
 #: content/profiles.html:94
-#, fuzzy
 msgid "Contributions"
-msgstr "サイト作成協力"
+msgstr "投稿"
 
 #: content/resources.html:51 templates/base.html:77
 msgid "Contribute"
 msgstr "サイト作成協力"
 
 #: content/resources.html:53
-#, fuzzy
-msgid ""
-"\n"
-"          This site and all of its tutorials and presentation slides are <a "
-"href=\"http://code.google.com/p/html5rocks/\" rel=\"external\">open source "
-"projects</a>. Tweak the code or <a href=\"http://code.google.com/p/"
-"html5rocks/wiki/ContributorsGuide\" rel=\"external\">contribute</a> new "
-"guides!\n"
+msgid "\n"
+"          This site and all of its tutorials and presentation slides are <a href=\"http://code.google.com/p/html5rocks/\" rel=\"external\">open source projects</a>. Tweak the code or <a href=\"http://code.google.com/p/html5rocks/wiki/ContributorsGuide\" rel=\"external\">contribute</a> new guides!\n"
 "        "
-msgstr ""
-"<p>このサイト、HTML5 <a href=\"http://playground.html5rocks.com\">実験広場</"
-"a>、<a href=\"http://studio.html5rocks.com\">スタジオ</a>、<a href=\"http://"
-"slides.html5rocks.com\">プレゼンテーション</a> スライドは、すべて<a href="
-"\"http://code.google.com/p/html5rocks/\">オープンソース プロジェクト</a>によ"
-"るものです。さまざまなコードをお試しください。また、新しいガイドの作成にもぜ"
-"ひ<a href=\"http://code.google.com/p/html5rocks/wiki/ContributorsGuide\">ご協"
-"力</a>ください。</p>"
+msgstr "\n"
+"          このサイト、チュートリアル、プレゼンテーションのスライドはすべて、<a href=\"http://code.google.com/p/html5rocks/\" rel=\"external\">オープンソース プロジェクト</a>によるものです。コードの改良や新しいガイドの作成にもぜひ<a href=\"http://code.google.com/p/html5rocks/wiki/ContributorsGuide\" rel=\"external\">ご協力ください</a>。"
 
 #: content/resources.html:60
-#, fuzzy
 msgid "Chrome Frame"
-msgstr "Chrome"
+msgstr "Chrome Frame"
 
 #: content/resources.html:62
-#, fuzzy
-msgid ""
-"\n"
-"          Ready to develop in HTML5 but worried about supporting older "
-"versions of Internet Explorer? Learn how <a href=\"http://code.google.com/"
-"chrome/chromeframe/\">Google Chrome Frame</a> can help. It's easy to include "
-"on your site:\n"
+msgid "\n"
+"          Ready to develop in HTML5 but worried about supporting older versions of Internet Explorer? Learn how <a href=\"http://code.google.com/chrome/chromeframe/\">Google Chrome Frame</a> can help. It's easy to include on your site:\n"
 "        "
-msgstr ""
-"<p>HTML5 で開発を進めつつ、古いバージョンの Internet Explorer にも対応する必"
-"要がある場合は、<a href=\"http://code.google.com/chrome/chromeframe/"
-"\">Google Chrome Frame</a> をご検討ください。Google Chrome Frame は、次のコー"
-"ドで簡単にサイトに組み込むことができます。</p>"
+msgstr "\n"
+"          HTML5 で開発を進めつつ、古いバージョンの Internet Explorer にも対応する必要がある場合は、<a href=\"http://code.google.com/chrome/chromeframe/\">Google Chrome Frame</a> をご検討ください。Google Chrome Frame は、簡単にサイトに組み込むことができます:"
 
 #: content/resources.html:71
 msgid "Reference"
@@ -488,11 +400,8 @@ msgid "A quick overview of scope and support."
 msgstr "HTML5 の対応範囲とサポート状況をまとめたページです。"
 
 #: content/resources.html:114
-msgid ""
-"Follow the engineering effort for cutting edge support from the Chrome team."
-msgstr ""
-"Chrome チームによる、最先端のサポートを提供するためのエンジニアリングの取り組"
-"みをご確認ください。"
+msgid "Follow the engineering effort for cutting edge support from the Chrome team."
+msgstr "Chrome チームによる、最先端のサポートを提供するためのエンジニアリングの取り組みをご確認ください。"
 
 #: content/resources.html:121
 msgid "If the Wikipedia says it then it must be true."
@@ -504,8 +413,7 @@ msgstr "ブラウザごとの ES5 サポートについて、詳細な表で確�
 
 #: content/resources.html:136
 msgid "Results of DOM and CSS properties tests in major browsers."
-msgstr ""
-"主要ブラウザでの DOM と CSS のプロパティのテスト結果をご覧いただけます。"
+msgstr "主要ブラウザでの DOM と CSS のプロパティのテスト結果をご覧いただけます。"
 
 #: content/resources.html:151
 msgid "Documentation"
@@ -536,35 +444,24 @@ msgid "Tools"
 msgstr "ツール"
 
 #: content/resources.html:200
-msgid ""
-"Javascript library for feature detection and control fallback cases of HTML5."
+msgid "Javascript library for feature detection and control fallback cases of HTML5."
 msgstr "HTML5 の機能検出と代替手段提供のための Javascript ライブラリです。"
 
 #: content/resources.html:207
 msgid "Javascript patch to make IE support, and print, the new tag elements."
-msgstr ""
-"IE で新しいタグ要素をサポートし、出力できるようにする Javascript のパッチで"
-"す。"
+msgstr "IE で新しいタグ要素をサポートし、出力できるようにする Javascript のパッチです。"
 
 #: content/resources.html:214
-msgid ""
-"An set of HTML/CSS/JS templates with best practices for HTML5 and front-end "
-"dev built in."
-msgstr ""
-"HTML5 のベスト プラクティスと初期の開発が組み込まれた一連の HTML/CSS/JS テン"
-"プレートをお使いいただけます。"
+msgid "An set of HTML/CSS/JS templates with best practices for HTML5 and front-end dev built in."
+msgstr "HTML5 のベスト プラクティスと初期の開発が組み込まれた一連の HTML/CSS/JS テンプレートをお使いいただけます。"
 
 #: content/resources.html:221
 msgid "The collection of scripts that enable HTML5 features in all browsers."
-msgstr ""
-"あらゆるブラウザで HTML5 の機能を使えるようにするスクリプトを集めたページで"
-"す。"
+msgstr "あらゆるブラウザで HTML5 の機能を使えるようにするスクリプトを集めたページです。"
 
 #: content/resources.html:228 content/resources.html.py:235
 msgid "Preview CSS buttons with a fancy interface to play with the parameters."
-msgstr ""
-"見やすいインターフェースで CSS ボタンをプレビューし、パラメータを入力して確認"
-"できます。"
+msgstr "見やすいインターフェースで CSS ボタンをプレビューし、パラメータを入力して確認できます。"
 
 #: content/resources.html:242
 msgid "Test and get the code of the fanciest CSS features."
@@ -584,9 +481,7 @@ msgstr "ドラッグ＆ドロップでフォントをテストすることがで
 
 #: content/resources.html:270
 msgid "Most complete tool to generate code for you font-face support."
-msgstr ""
-"フォントフェースをサポートするためのコードを生成できる、最も包括的なツールで"
-"す。"
+msgstr "フォントフェースをサポートするためのコードを生成できる、最も包括的なツールです。"
 
 #: content/resources.html:277
 msgid "Complete list of tools related to web performance."
@@ -601,36 +496,31 @@ msgid "Search Results"
 msgstr "検索結果"
 
 #: content/search.html:171
-#, fuzzy
 msgid "Loading"
-msgstr "読み込んでいます..."
+msgstr "読み込んでいます"
 
 #: content/slides.html:5
 msgid "Videos and Presentations"
 msgstr "動画とプレゼンテーション"
 
 #: content/slides.html:70
-#, fuzzy
 msgid "Slides, Presen&shy;ta&shy;tions & Videos"
-msgstr "HTML5 のスライド、プレゼンテーション、動画"
+msgstr "スライド、プレゼンテーション、動画"
 
 #: content/slides.html:76
-msgid ""
-"\n"
-"          Below you can get your hands on the most recent presentations by "
-"Google Chrome Developer Relations and friends. Video is shared if available "
-"and you can view them by person, topic or event.\n"
+msgid "\n"
+"          Below you can get your hands on the most recent presentations by Google Chrome Developer Relations and friends. Video is shared if available and you can view them by person, topic or event.\n"
 "        "
-msgstr ""
+msgstr "\n"
+"          Google Chrome デベロッパー リレーションズとその友だちによる最新のプレゼンテーションを、下記からご覧になることができます。動画が提供されている場合もあります。プレゼンテーションは、作成者、トピック、イベントごとに表示することができます。"
 
 #: content/slides.html:81
 msgid "Filter the talks to your liking"
-msgstr ""
+msgstr "プレゼンテーションを自由に絞り込む"
 
 #: content/slides.html:84
-#, fuzzy
 msgid "filter by topic, person, etc"
-msgstr "トピック、作成者などでプレゼンテーションを絞り込む"
+msgstr "トピック、作成者などで絞り込む"
 
 #: content/slides.html:85
 msgid "Only show talks more recent than:"
@@ -646,52 +536,34 @@ msgstr "利用規約"
 
 #: content/tos.html:12
 msgid "HTML5 Rocks <span>Terms of Service</span>"
-msgstr ""
+msgstr "HTML5Rocks <span>利用規約</span>"
 
 #: content/tos.html:16
-#, fuzzy
-msgid ""
-"\n"
-"        The HTML5ROCKS website (the \"Website\") is hosted by Google. By "
-"using and/or visiting the Website, you consent to be bound by these terms of "
-"service as well as Google's general <a href=\"http://www.google.com/accounts/"
-"TOS\">Terms of Service</a> and Google's general <a href=\"http://www.google."
-"com/privacy.html\">Privacy Policy</a>.\n"
+msgid "\n"
+"        The HTML5ROCKS website (the \"Website\") is hosted by Google. By using and/or visiting the Website, you consent to be bound by these terms of service as well as Google's general <a href=\"http://www.google.com/accounts/TOS\">Terms of Service</a> and Google's general <a href=\"http://www.google.com/privacy.html\">Privacy Policy</a>.\n"
 "      "
-msgstr ""
-"<p>HTML5ROCKS ウェブサイト（以下、「本ウェブサイト」）は Google が提供する"
-"ウェブサイトです。本ウェブサイトを使用するユーザー、本ウェブサイトにアクセス"
-"するユーザーは、本ウェブサイトの利用規約に加え、Google の<a href=\"http://"
-"www.google.com/accounts/TOS\">利用規約</a>と<a href=\"http://www.google.com/"
-"intl/ja/privacy.html\">プライバシー ポリシー</a>に従うことに同意したとみなさ"
-"れます。</p>"
+msgstr "\n"
+"        HTML5ROCKS ウェブサイト（以下、「本ウェブサイト」）は Google が提供するウェブサイトです。本ウェブサイトを使用するユーザー、本ウェブサイトにアクセスするユーザーは、本ウェブサイトの利用規約に加え、Google の<a href=\"http://www.google.com/accounts/TOS\">利用規約</a>と<a href=\"http://www.google.com/intl/ja/privacy.html\">プライバシー ポリシー</a>に従うことに同意したとみなされます。"
 
 #: content/why.html:6
-#, fuzzy
 msgid "Why HTML5 Rocks"
-msgstr "HTML5 Rocks"
+msgstr "HTML5Rocks を支持する理由"
 
 #: content/why.html:16
 msgid "Why HTML5 <span>Rocks</span>"
-msgstr ""
+msgstr "HTML5 <span>Rocks</span> を支持する理由"
 
 #: content/why.html:21
-msgid ""
-"\n"
-"          HTML5 introduces many cutting-edge features that enable developers "
-"to create apps and websites with the functionality, speed, performance, and "
-"experience of desktop applications. But unlike desktop applications, apps "
-"built on the web platform can reach a much broader audience using a wider "
-"array of devices. HTML5 accelerates the pace of your innovation and enables "
-"you to seamlessly roll out your latest work to all your users "
-"simultaneously. \n"
+msgid "\n"
+"          HTML5 introduces many cutting-edge features that enable developers to create apps and websites with the functionality, speed, performance, and experience of desktop applications. But unlike desktop applications, apps built on the web platform can reach a much broader audience using a wider array of devices. HTML5 accelerates the pace of your innovation and enables you to seamlessly roll out your latest work to all your users simultaneously. \n"
 "        "
-msgstr ""
+msgstr "\n"
+"          HTML5 に導入されている多くの最先端機能を利用して、デベロッパーはデスクトップ アプリケーションと同様の機能、速度、パフォーマンス、操作性を持つアプリやウェブサイトを作成することができます。そして、デスクトップ アプリケーションとは異なり、ウェブ プラットフォーム上に構築されたアプリは、さまざまな端末を使用する、はるかに多くのユーザーが利用できるようになります。HTML5 によって、新開発のペースが加速され、最新のアプリをすべてのユーザーに同時に、シームレスに展開できるようになります。"
 
 #: content/business/index.html:28 content/gaming/index.html:29
 #: content/mobile/index.html:25
 msgid "Give me everything"
-msgstr ""
+msgstr "すべてを取得"
 
 #: content/business/index.html:53 content/gaming/index.html:54
 #: content/mobile/index.html:50 content/tutorials/index.html:5
@@ -701,11 +573,11 @@ msgstr "チュートリアル"
 
 #: content/business/index.html:72
 msgid "Why move to HTML5 now than later?"
-msgstr ""
+msgstr "今すぐ HTML5 に移行する理由"
 
 #: content/business/index.html:89 content/gaming/index.html:74
 msgid "Tools &amp; Frameworks"
-msgstr ""
+msgstr "ツール&amp;フレームワーク"
 
 #: content/business/index.html:107
 msgid "Additional Resources"
@@ -713,99 +585,72 @@ msgstr "その他のリソース"
 
 #: content/business/index.html:121 content/gaming/index.html:93
 #: content/mobile/index.html:130
-#, fuzzy
 msgid "Recent Contributors"
-msgstr "サイト作成協力"
+msgstr "最近の協力者"
 
 #: content/features/_feature_blank.html:14
-msgid ""
-"\n"
-"        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. "
-"Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. "
-"Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus "
-"orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit.\n"
+msgid "\n"
+"        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit."
 
 #: content/features/_feature_blank.html:25
 #: content/features/_feature_blank.html:28
 #: content/features/connectivity.html:47 content/features/connectivity.html:50
-msgid ""
-"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse "
-"pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a "
-"felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci "
-"luctus et ultrices posuere cubilia Curae; Suspendisse suscipit. Vestibulum "
-"ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; "
-"Vestibulum est. Cras felis diam, malesuada in, pellentesque vel, ornare ut, "
-"purus. Suspendisse eget libero."
-msgstr ""
+msgid "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum est. Cras felis diam, malesuada in, pellentesque vel, ornare ut, purus. Suspendisse eget libero."
+msgstr "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum est. Cras felis diam, malesuada in, pellentesque vel, ornare ut, purus. Suspendisse eget libero."
 
 #: content/features/_feature_blank.html:27
 #: content/features/connectivity.html:49
 msgid "Foo"
-msgstr ""
+msgstr "Foo"
 
 #: content/features/_feature_blank.html:69 content/features/semantics.html:106
 #: content/features/semantics.html:110 content/features/semantics.html:114
 #: content/features/semantics.html:118 content/features/semantics.html:122
 #: content/features/semantics.html:126
 msgid "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
-msgstr ""
+msgstr "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
 #: content/features/connectivity.html:15
-msgid ""
-"\n"
-"        More efficient connectivity means more real-time chats, faster "
-"games, and better communication. Web Sockets and Server-Sent Events are "
-"pushing (pun intended) data between client and server more efficiently than "
-"ever before.\n"
+msgid "\n"
+"        More efficient connectivity means more real-time chats, faster games, and better communication. Web Sockets and Server-Sent Events are pushing (pun intended) data between client and server more efficiently than ever before.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        接続効率がよくなると、よりリアルタイムのチャット、ゲームの高速化、通信の改善につながります。WebSocket と Server-Sent Events はクライアントとサーバー間で今までにない高い効率でデータを（文字どおり）プッシュします。"
 
 #: content/features/connectivity.html:22
-msgid ""
-"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse "
-"pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a "
-"felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci "
-"luctus et ultrices posuere cubilia curae."
-msgstr ""
+msgid "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae."
+msgstr "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae."
 
 #: content/features/connectivity.html:25
-msgid ""
-"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse "
-"pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a "
-"felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci "
-"luctus."
-msgstr ""
+msgid "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus."
+msgstr "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue. Fusce a felis in mi auctor rhoncus. Vestibulum ante ipsum primis in faucibus orci luctus."
 
 #: content/features/connectivity.html:36
-msgid ""
-"\n"
-"        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. "
-"Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam "
-"congue.\n"
+msgid "\n"
+"        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse pharetra purus vitae elit. Praesent sodales dolor. Etiam congue."
 
 #: content/features/connectivity.html:42 content/features/connectivity.html:43
 #: content/features/connectivity.html:44
-#, fuzzy
 msgid "<a href=\"http://example.com/\">Foo</a> bar baz."
-msgstr "Firefox 向け <a href=\"http://getfirebug.com/\">Firebug</a>（英語）"
+msgstr "<a href=\"http://example.com/\">foo</a> bar baz."
 
 #: content/features/connectivity.html:159
 msgid "HTML5 agency Bocoup's deep research into EventSource"
-msgstr ""
+msgstr "HTML5 エージェンシーの Bocoup による EventSource の徹底研究"
 
 #: content/features/connectivity.html:163
-msgid ""
-"a hosted API for adding scalable realtime WebSockets functionality to your "
-"apps"
-msgstr ""
+msgid "a hosted API for adding scalable realtime WebSockets functionality to your apps"
+msgstr "アプリに拡張可能なリアルタイムの WebSocket 機能を追加する、ホストされた API"
 
 #: content/features/connectivity.html:168
 msgid "The power of the EventSource API across browsers"
-msgstr ""
+msgstr "ブラウザ間での EventSource API の威力"
 
 #: content/features/feature.html:5 content/features/feature.html.py:14
 msgid "Feature"
@@ -818,11 +663,11 @@ msgstr "機能"
 #: templates/base.html.py:303 templates/base.html:313
 #: templates/base.html.py:326
 msgid "What&rsquo;s New"
-msgstr ""
+msgstr "新機能"
 
 #: content/features/feature.html:50
 msgid "loading&hellip;"
-msgstr ""
+msgstr "読み込んでいます..."
 
 #: content/features/feature.html:55 templates/tutorial.html:85
 msgid "Chrome"
@@ -861,121 +706,54 @@ msgid "Opera Mobile"
 msgstr "Opera Mobile"
 
 #: content/features/feature.html:93
-#, fuzzy
-msgid ""
-"Data courtesy of <a href=\"http://caniuse.com/\">caniuse.com</a> and <a href="
-"\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform "
-"Status</a>."
-msgstr ""
-"データ出典: <a href=\"http://caniuse.com/\">caniuse.com</a>（英語）と <a "
-"href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome プラッ"
-"トフォームの状況</a>"
+msgid "Data courtesy of <a href=\"http://caniuse.com/\">caniuse.com</a> and <a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform Status</a>."
+msgstr "データ出典: <a href=\"http://caniuse.com/\">caniuse.com</a>（英語）、<a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome プラットフォームの状況</a>"
 
 #: content/features/file_access.html:15
-#, fuzzy
-msgid ""
-"\n"
-"        HTML5 provides very powerful APIs to interact with binary data and a "
-"user's local file system. The File APIs give web applications the ability to "
-"do things like read files [a]synchronously, create arbitrary Blobs, write "
-"files to a temporary location, recursively read a file directory, perform "
-"file drag and drop from the desktop to the browser, and upload binary data "
-"using <code>XMLHttpRequest2</code>.\n"
+msgid "\n"
+"        HTML5 provides very powerful APIs to interact with binary data and a user's local file system. The File APIs give web applications the ability to do things like read files [a]synchronously, create arbitrary Blobs, write files to a temporary location, recursively read a file directory, perform file drag and drop from the desktop to the browser, and upload binary data using <code>XMLHttpRequest2</code>.\n"
 "      "
-msgstr ""
-"HTML5 では、バイナリ データやユーザーのローカル ファイル システムと連携動作す"
-"る強力な API が提供されています（まもなく提供されるものもあります）。File "
-"API を使用すると、同期/非同期でのファイルの読み取り、任意の Blob の作成、一時"
-"的な場所へのファイルの書き込み、ファイル ディレクトリの再帰的な読み取り、デス"
-"クトップからブラウザへのファイルのドラッグ＆ドロップ、<code>XMLHttpRequest</"
-"code> を使用したバイナリ データのアップロードなど、さまざまな機能をウェブ ア"
-"プリケーションに追加することができます。"
+msgstr "\n"
+"        HTML5 では、バイナリ データやユーザーのローカル ファイル システムと連携動作する強力な API が提供されています。File API を使用すると、同期/非同期でのファイルの読み取り、任意の Blob の作成、一時的な場所へのファイルの書き込み、ファイル ディレクトリの再帰的な読み取り、デスクトップからブラウザへのファイルのドラッグ＆ドロップ、バイナリ データのアップロードなど、<code>XMLHttpRequest2</code> を使用するさまざまな機能をウェブ アプリケーションに追加することができます。"
 
 #: content/features/file_access.html:20
-#, fuzzy
-msgid ""
-"\n"
-"        As examples, the File APIs can be used to create a thumbnail preview "
-"of images as they're being sent to the server, or allow an app to save a "
-"file reference while the user is offline. Using the <a href=\"https://dvcs."
-"w3.org/hg/audio/raw-file/tip/webaudio/specification.html\">Web Audio API</"
-"a>, your app could read an .mp3 file and display a visualization of the song "
-"as it plays. Additionally, you could use client-side logic to verify an "
-"upload's mimetype matches its file extension or restrict the size of an "
-"upload.\n"
+msgid "\n"
+"        As examples, the File APIs can be used to create a thumbnail preview of images as they're being sent to the server, or allow an app to save a file reference while the user is offline. Using the <a href=\"https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html\">Web Audio API</a>, your app could read an .mp3 file and display a visualization of the song as it plays. Additionally, you could use client-side logic to verify an upload's mimetype matches its file extension or restrict the size of an upload.\n"
 "      "
-msgstr ""
-"たとえば、File API を使用すると、サーバー送信時に画像のサムネイル プレビュー"
-"を作成したり、ユーザーのオフライン時にアプリでファイル参照を保存できるように"
-"したりできます。また今後公開される Audio Data API を使用すると、アプリで ."
-"mp3 ファイルを読み込み、再生中に曲を視覚化して表現するといったこともできま"
-"す。さらに、クライアントサイド ロジックを使用して、アップロードの mimetype と"
-"ファイル拡張子を照合したり、アップロードのサイズを制限したりすることもできま"
-"す。"
+msgstr "\n"
+"        たとえば、File API を使用すると、サーバー送信時に画像のサムネイル プレビューを作成したり、ユーザーのオフライン時にアプリでファイル参照を保存したりすることができます。<a href=\"https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html\">Web Audio API</a>（リンク先は英語）を使用すると、アプリで .mp3 ファイルを読み取り、再生中にその曲を視覚化して表示することができます。さらに、クライアントサイド ロジックを使用して、アップロード ファイルの mimetype と拡張子を照合したり、アップロードのサイズを制限したりすることもできます。"
 
 #: content/features/file_access.html:74
-msgid ""
-"This W3C specification defines the File APIs: <code>File</code>, "
-"<code>FileList</code>, <code>FileReader</code>, <code>Blob</code>."
-msgstr ""
-"この W3C 仕様では、<code>File</code>、<code>FileList</code>、"
-"<code>FileReader</code>、<code>Blob</code> といった File API を定義していま"
-"す。"
+msgid "This W3C specification defines the File APIs: <code>File</code>, <code>FileList</code>, <code>FileReader</code>, <code>Blob</code>."
+msgstr "この W3C 仕様では、<code>File</code>、<code>FileList</code>、<code>FileReader</code>、<code>Blob</code> といった File API を定義しています。"
 
 #: content/features/file_access.html:78
-msgid ""
-"This W3C specification defines the FileSystem APIs; which provide an "
-"interface for reading and writing files and directories in a sandboxed file "
-"system."
-msgstr ""
-"この W3C 仕様では FileSystem API を定義しています。FileSystem API は、サンド"
-"ボックス化されたファイル システムに対してファイルやディレクトリの読み取り/書"
-"き込みを行うためのインターフェースを提供します。"
+msgid "This W3C specification defines the FileSystem APIs; which provide an interface for reading and writing files and directories in a sandboxed file system."
+msgstr "この W3C 仕様では FileSystem API を定義しています。FileSystem API は、サンドボックス化されたファイル システムに対してファイルやディレクトリの読み取り/書き込みを行うためのインターフェースを提供します。"
 
 #: content/features/file_access.html:82
-msgid ""
-"This W3C specification defines the FileWriter API; which provides an "
-"interface for writing to files from web applications."
-msgstr ""
-"この W3C 仕様では FileWriter API を定義しています。FileWriter API は、ウェブ "
-"アプリケーションからファイルに書き込みを行うためのインターフェースを提供しま"
-"す。"
+msgid "This W3C specification defines the FileWriter API; which provides an interface for writing to files from web applications."
+msgstr "この W3C 仕様では FileWriter API を定義しています。FileWriter API は、ウェブ アプリケーションからファイルに書き込みを行うためのインターフェースを提供します。"
 
 #: content/features/file_access.html:86
-msgid ""
-"This W3C specification defines the ProgressEvent; which gives asynchronous "
-"updates on the progress of a File read."
-msgstr ""
-"この W3C 仕様では、ファイル読み取りの進行状況について非同期更新を行う "
-"ProgressEvent を定義しています。"
+msgid "This W3C specification defines the ProgressEvent; which gives asynchronous updates on the progress of a File read."
+msgstr "この W3C 仕様では、ファイル読み取りの進行状況について非同期更新を行う ProgressEvent を定義しています。"
 
 #: content/features/file_access.html:90
 msgid "This whatwg specification defines the native HTML5 drag and drop APIs"
-msgstr ""
-"この whatwg の仕様では、ネイティブ HTML5 ドラッグ＆ドロップ API を定義してい"
-"ます。"
+msgstr "この whatwg の仕様では、ネイティブ HTML5 ドラッグ＆ドロップ API を定義しています。"
 
 #: content/features/file_access.html:94
-msgid ""
-"Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files."
-msgstr ""
-"ドラッグ＆ドロップ、File API、XMLHttpRequest を使用したファイルのアップロード"
-"についてのチュートリアルです。"
+msgid "Tutorial on using Drag and Drop, FileAPI and XMLHttpRequest to upload files."
+msgstr "ドラッグ＆ドロップ、File API、XMLHttpRequest を使用したファイルのアップロードについてのチュートリアルです。"
 
 #: content/features/file_access.html:98
-msgid ""
-"Reference on the various dragging options that are available in the DnD API"
-msgstr ""
-"ドラッグ＆ドロップ API で使用できる各種ドラッグ操作オプションについての資料で"
-"す"
+msgid "Reference on the various dragging options that are available in the DnD API"
+msgstr "ドラッグ＆ドロップ API で使用できる各種ドラッグ操作オプションについての資料です"
 
 #: content/features/file_access.html:102
-msgid ""
-"Article on using Native Drag and Drop in HTML5. Discusses File drag/drop "
-"from desktop."
-msgstr ""
-"HTML5 のネイティブ ドラッグ＆ドロップの使用方法についての記事です。デスクトッ"
-"プからファイルをドラッグ＆ドロップする方法を紹介します。"
+msgid "Article on using Native Drag and Drop in HTML5. Discusses File drag/drop from desktop."
+msgstr "HTML5 のネイティブ ドラッグ＆ドロップの使用方法についての記事です。デスクトップからファイルをドラッグ＆ドロップする方法を紹介します。"
 
 #: content/features/graphics.html:5 content/features/graphics.html.py:6
 #: content/features/index.html:17
@@ -983,84 +761,47 @@ msgid "Graphics"
 msgstr "グラフィック"
 
 #: content/features/graphics.html:14
-#, fuzzy
-msgid ""
-"\n"
-"        The web has always been a visual medium, but a restricted one at "
-"best. Until recently, HTML developers were limited to CSS and JavaScript in "
-"order to produce animations or visual effects for their websites, or they "
-"would have to rely on a plugin like Flash.\n"
+msgid "\n"
+"        The web has always been a visual medium, but a restricted one at best. Until recently, HTML developers were limited to CSS and JavaScript in order to produce animations or visual effects for their websites, or they would have to rely on a plugin like Flash.\n"
 "      "
-msgstr ""
-"ウェブは常に視覚的な媒体であり続けていますが、制限が伴うものでした。つい最近"
-"まで、HTML デベロッパーがウェブサイトにアニメーションや視覚効果を取り入れるに"
-"は、CSS と JavaScript を使用するか Flash のようなプラグインに頼るほかありませ"
-"んでした。しかし、canvas 要素、Web GL、SVG 画像などの技術が加わったことで、こ"
-"のようなことはなくなりました。次のように、ウェブでグラフィックを扱う新しい機"
-"能が数多く登場しています。"
+msgstr "\n"
+"        ウェブは今までも視覚的媒体でしたが、常に制限がありました。最近まで、HTML デベロッパーが、ウェブサイトにアニメーションや視覚的効果を取り入れるには、CSS や JavaScript を使用するか、Flash のようなプラグインに頼るしかありませんでした。"
 
 #: content/features/graphics.html:19
-msgid ""
-"\n"
-"        With the addition of technologies like the canvas element, Web GL, "
-"and SVG images, this is no longer the case! In fact, there are many new "
-"features which deal with graphics on the web: 2D Canvas, WebGL, SVG, 3D CSS "
-"transforms, and SMIL.\n"
+msgid "\n"
+"        With the addition of technologies like the canvas element, Web GL, and SVG images, this is no longer the case! In fact, there are many new features which deal with graphics on the web: 2D Canvas, WebGL, SVG, 3D CSS transforms, and SMIL.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        canvas 要素、WebGL、SVG 画像などの技術が追加されて、状況が一変しました。2D canvas、WebGL、SVG、3D CSS 変形、SMIL など、ウェブ上でグラフィックを扱うさまざまな新機能があります。"
 
 #: content/features/graphics.html:31
-#, fuzzy
-msgid ""
-"\n"
-"        Of course, none of these new technologies would be useful if they "
-"weren&rsquo;t capable of running fast. Thankfully, JavaScript engines have "
-"become fast enough to run 3D games and manipulate video in realtime. "
-"Hardware accelerated compositing is also being implemented in many browsers, "
-"meaning that even CSS transitions and transforms will be butter-smooth.\n"
+msgid "\n"
+"        Of course, none of these new technologies would be useful if they weren&rsquo;t capable of running fast. Thankfully, JavaScript engines have become fast enough to run 3D games and manipulate video in realtime. Hardware accelerated compositing is also being implemented in many browsers, meaning that even CSS transitions and transforms will be butter-smooth.\n"
 "      "
-msgstr ""
-"もちろん、これらの新しい技術は速い処理速度に対応しなければ意味がありません。"
-"幸いなことに、JavaScript エンジンでは 3D ゲームの実行や動画のリアルタイム操作"
-"に対応できるだけの速度で処理を行えるようになりました。多くのブラウザでは、"
-"ハードウェア アクセラレーションによる画像処理の実装も進んでおり、CSS のトラン"
-"ジションと変形処理もさらに滑らかに行われるようになります。"
+msgstr "\n"
+"        もちろん、これらの新しい技術は処理速度が速くなければ意味がありません。幸いなことに、JavaScript エンジンでは 3D ゲームの実行や動画のリアルタイム操作に対応できるだけの速度で処理できるようになりました。多くのブラウザでは、ハードウェア アクセラレーションによる画像処理の実装も進んでおり、CSS のトランジションと変形処理もさらに滑らかに行われるようになります。"
 
 #: content/features/graphics.html:36
-#, fuzzy
-msgid ""
-"\n"
-"        Developers are taking advantage of these features: a flood of HTML "
-"graphics demos have been showing up on the web, ranging from implementations "
-"of old 2D graphics algorithms, to brand new techniques created specifically "
-"for the modern web.\n"
+msgid "\n"
+"        Developers are taking advantage of these features: a flood of HTML graphics demos have been showing up on the web, ranging from implementations of old 2D graphics algorithms, to brand new techniques created specifically for the modern web.\n"
 "      "
-msgstr ""
-"デベロッパーたちはこれらの機能を大いに活用しています。実際、ウェブ上では "
-"HTML グラフィックのデモが次々と公開されており、その内容は 2D グラフィック ア"
-"ルゴリズムの実装から最新のウェブを想定した新たな手法まで多岐にわたります。"
+msgstr "\n"
+"        デベロッパーはこれらの機能を大いに活用しています。実際、ウェブ上では HTML グラフィックのデモが次々と公開されており、その内容は 2D グラフィック アルゴリズムの実装から最新のウェブを想定した新たな手法まで多岐にわたります。"
 
 #: content/features/graphics.html:42 templates/base.html:225
 #: templates/base.html.py:236 templates/base.html:247
 #: templates/base.html.py:258 templates/base.html:269
 #: templates/base.html.py:280 templates/base.html:291
 #: templates/base.html.py:302 templates/base.html:325
-#, fuzzy
 msgid "Browser Support"
 msgstr "ブラウザ サポート"
 
 #: content/features/graphics.html:44
-#, fuzzy
-msgid ""
-"\n"
-"        &ldquo;Graphics&rdquo; is such a wide topic that there are several "
-"specifications being worked on. A comprehensive graphics demo may use "
-"several of the following:\n"
+msgid "\n"
+"        &ldquo;Graphics&rdquo; is such a wide topic that there are several specifications being worked on. A comprehensive graphics demo may use several of the following:\n"
 "      "
-msgstr ""
-"「グラフィック」という分野で扱う内容は多岐にわたり、その中には現在策定中の仕"
-"様が複数含まれます。包括的なグラフィックのデモでは、次のうちいくつかを扱って"
-"いる場合があります。"
+msgstr "\n"
+"        「グラフィック」という分野で扱う内容は多岐にわたり、その中には現在策定中の仕様がいくつかあります。包括的なグラフィックのデモでは、以下のうち複数を利用している場合があります:"
 
 #: content/features/graphics.html:50
 msgid "PNG Alpha Transparency"
@@ -1131,19 +872,11 @@ msgid "CSS 3D Transforms"
 msgstr "CSS 3D 変形"
 
 #: content/features/graphics.html:70
-#, fuzzy
-msgid ""
-"\n"
-"        Click each specification to see its support status on <a href="
-"\"http://caniuse.com/\">caniuse.com</a>. Chrome-specific details can be "
-"found on the <a href=\"http://dev.chromium.org/developers/web-platform-status"
-"\">Chrome Platform Status</a>.\n"
+msgid "\n"
+"        Click each specification to see its support status on <a href=\"http://caniuse.com/\">caniuse.com</a>. Chrome-specific details can be found on the <a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform Status</a>.\n"
 "      "
-msgstr ""
-"それぞれの仕様をクリックすると、<a href=\"http://caniuse.com/\">caniuse.com</"
-"a>（英語）でサポート状況をご確認いただけます。Chrome 固有の詳細情報について"
-"は、<a href=\"http://dev.chromium.org/developers/web-platform-status"
-"\">Chrome プラットフォームの状況</a>をご覧ください。"
+msgstr "\n"
+"        それぞれの仕様をクリックすると、<a href=\"http://caniuse.com/\">caniuse.com</a>（英語）でサポート状況をご確認いただけます。Chrome 固有の詳細については、<a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome プラットフォームの状況</a>をご覧ください。"
 
 #: content/features/graphics.html:88
 msgid "Various WebGL / canvas demos which take advantage of HW accel"
@@ -1190,23 +923,16 @@ msgid "JavaScript scenegraph library for the canvas element"
 msgstr "canvas 要素向けの JavaScript シーングラフ ライブラリです"
 
 #: content/features/graphics.html:166
-msgid ""
-"Port of Processing animation scripting language to JavaScript - uses canvas"
-msgstr ""
-"アニメーション スクリプト言語を Javascript に処理するポート - canvas を使用し"
-"ています"
+msgid "Port of Processing animation scripting language to JavaScript - uses canvas"
+msgstr "アニメーション スクリプト言語を Javascript に処理するポート - canvas を使用しています"
 
 #: content/features/graphics.html:170
 msgid "Lightweight 3D engine, uses canvas, SVG, WebGL"
 msgstr "canvas、SVG、WebGL を使用する軽量版 3D エンジンです"
 
 #: content/features/graphics.html:174
-msgid ""
-"Background and details on the implementation of hardware accelerated "
-"compositing in Chrome"
-msgstr ""
-"ハードウェア アクセラレーションによる画像処理を Chrome に実装した背景とその詳"
-"細を説明しています"
+msgid "Background and details on the implementation of hardware accelerated compositing in Chrome"
+msgstr "ハードウェア アクセラレーションによる画像処理を Chrome に実装した背景とその詳細を説明しています"
 
 #: content/features/index.html:5 templates/base.html:96
 msgid "Features"
@@ -1218,285 +944,189 @@ msgid "Multimedia"
 msgstr "マルチメディア"
 
 #: content/features/multimedia.html:15
-#, fuzzy
-msgid ""
-"\n"
-"        Audio and Video became first-class citizens on the Web with HTML5 "
-"the same way that other media types like images did in the past. Through "
-"their new APIs you can access, control and manipulate timeline data and "
-"network states of the files. With the coming additions to the APIs you will "
-"be able to read and write raw data to audio files (Audio Data API) or "
-"manipulate captions in videos (Timed Track API). But the real power of these "
-"new HTML elements stands out when they are combined with the other "
-"technologies of the web stack, be it Canvas, SVG, CSS or even WebGL.\n"
+msgid "\n"
+"        Audio and Video became first-class citizens on the Web with HTML5 the same way that other media types like images did in the past. Through their new APIs you can access, control and manipulate timeline data and network states of the files. With the coming additions to the APIs you will be able to read and write raw data to audio files (Audio Data API) or manipulate captions in videos (Timed Track API). But the real power of these new HTML elements stands out when they are combined with the other technologies of the web stack, be it Canvas, SVG, CSS or even WebGL.\n"
 "      "
-msgstr ""
-"音声と動画は、HTML5 を使用したウェブの世界において主要な機能となりました（か"
-"つては画像のようなメディアがこの役割を果たしていました）。音声と動画用に用意"
-"された新しい API を使用すると、ファイルのタイムライン データやネットワーク ス"
-"テータスにアクセスしたり、これらを管理、操作したりすることができます。まもな"
-"く公開される追加の API を使用すると、音声ファイルに対して生データの読み取り/"
-"書き込み（Audio Data API）を行ったり、動画のキャプションを操作（Timed Track "
-"API）したりできるようにもなります。しかし、こうした新しい HTML 要素は、ウェ"
-"ブ スタック上の他の技術（canvas、SVG、CSS、WebGL など）と組み合わせてこそ真価"
-"を発揮します。"
+msgstr "\n"
+"        音声と動画は、HTML5 を使用したウェブの世界において主要な機能となりました（以前に画像などのメディアが組み込まれたときと同様です）。音声と動画用に用意された新しい API を使用すると、タイムライン データやファイルのネットワーク ステータスにアクセスしたり、これらを管理、操作したりすることができます。まもなく公開される追加の API を使用すると、音声ファイルに対する生データの読み取り/書き込み（Audio Data API）や、動画のキャプションの操作（Timed Track API）もできるようにもなります。しかし、こうした新しい HTML 要素は、ウェブ スタック上の他の技術（canvas、SVG、CSS、WebGL など）と組み合わせてこそ真価を発揮します。"
 
 #: content/features/multimedia.html:21
-#, fuzzy
-msgid ""
-"\n"
-"        For instance, you can build a DJ mixer table app where you show "
-"several controls to fade and mix audio tracks. Canvas lets you read pixel "
-"data from videos so you could add a video visualizer with a scene selection "
-"feature and, on top of that, use SVG filters &aacute; la Photoshop to "
-"distort the movie while the videos are playing.\n"
+msgid "\n"
+"        For instance, you can build a DJ mixer table app where you show several controls to fade and mix audio tracks. Canvas lets you read pixel data from videos so you could add a video visualizer with a scene selection feature and, on top of that, use SVG filters &aacute; la Photoshop to distort the movie while the videos are playing.\n"
 "      "
-msgstr ""
-"たとえば、DJ ミキサーのアプリを作成し、音声トラックのフェード、ミックス用の調"
-"整ツマミを表示することができます。canvas を使用すると動画からピクセル データ"
-"を読み込むことができるので、シーンの選択機能付きで動画のビジュアライザを追加"
-"したり、さらに Photoshop 風の SVG フィルタを使用して動画の再生中にムービーを"
-"変形させたりすることができます。"
+msgstr "\n"
+"        たとえば、DJ ミキサーのアプリを作成し、音声トラックのフェード、ミックス用の調整ツマミを表示することができます。canvas を使用すると動画からピクセル データを読み取ることができるので、シーンの選択機能付きで動画のビジュアライザを追加したり、さらに Photoshop 風の SVG フィルタを使用して動画の再生中に映像を変形させたりすることができます。"
 
 #: content/features/multimedia.html:73
-msgid ""
-"This W3C specification defines the audio element with all the available "
-"methods, attributes and events."
-msgstr ""
-"この W3C 仕様では、audio 要素について、使用可能なすべてのメソッド、属性、イベ"
-"ントなどを定義しています。"
+msgid "This W3C specification defines the audio element with all the available methods, attributes and events."
+msgstr "この W3C 仕様では、audio 要素について、使用可能なすべてのメソッド、属性、イベントなどを定義しています。"
 
 #: content/features/multimedia.html:77
-msgid ""
-"This W3C specification defines the video element with all the available "
-"methods, attributes and events."
-msgstr ""
-"この W3C 仕様では、video 要素について、使用可能なすべてのメソッド、属性、イベ"
-"ントなどを定義しています。"
+msgid "This W3C specification defines the video element with all the available methods, attributes and events."
+msgstr "この W3C 仕様では、video 要素について、使用可能なすべてのメソッド、属性、イベントなどを定義しています。"
 
 #: content/features/multimedia.html:81
-msgid ""
-"This W3C specification defines those methods and properties which are common "
-"to both audio and video elements."
-msgstr ""
-"この W3C 仕様では、音声と動画の両方の要素に共通するメソッドとプロパティを定義"
-"しています。"
+msgid "This W3C specification defines those methods and properties which are common to both audio and video elements."
+msgstr "この W3C 仕様では、音声と動画の両方の要素に共通するメソッドとプロパティを定義しています。"
 
 #: content/features/multimedia.html:85
-msgid ""
-"A subset of the media element spec currently being written where it defines "
-"means to handle metadata of audio/video files such as captions and subtitles."
-msgstr ""
-"現在策定中のメディア要素仕様の一部分を紹介しています。この仕様では、キャプ"
-"ションや字幕などの音声/動画ファイルのメタデータを処理する方法を定義していま"
-"す。"
+msgid "A subset of the media element spec currently being written where it defines means to handle metadata of audio/video files such as captions and subtitles."
+msgstr "現在策定中のメディア要素仕様の一部分を紹介しています。この仕様では、キャプションや字幕などの音声/動画ファイルのメタデータを処理する方法を定義しています。"
 
 #: content/features/multimedia.html:89
-msgid ""
-"Draft recommendation for Audio Data API where methods are defined to read "
-"and write spectrum data of audio files."
-msgstr ""
-"Audio Data API に関する提言（ドラフト版）です。Audio Data API では、音声ファ"
-"イルのスペクトル データの読み取り/書き込みを行うメソッドが定義されています。"
+msgid "Draft recommendation for Audio Data API where methods are defined to read and write spectrum data of audio files."
+msgstr "Audio Data API に関する提言（ドラフト版）です。Audio Data API では、音声ファイルのスペクトル データの読み取り/書き込みを行うメソッドが定義されています。"
 
 #: content/features/nuts_and_bolts.html:5
 #: content/features/nuts_and_bolts.html:6
 msgid "Nuts & Bolts"
-msgstr ""
+msgstr "基本機能"
 
 #: content/features/nuts_and_bolts.html:15
-msgid ""
-"\n"
-"        HTML5 is now an umbrella term that many people use to describe the "
-"amazing\n"
-"        improvements coming to the web platform. It's a platform that is "
-"becoming\n"
-"        more powerful by the day. Most people have heard of the rich APIs "
-"(css3, audio/video, WebGL, offline, geolocation,...),\n"
-"        but there's also a slew of lesser-known features that you should be "
-"aware of.\n"
-"        We call these the \"nuts &amp; bolts\" of building modern web "
-"applications.\n"
+msgid "\n"
+"        HTML5 is now an umbrella term that many people use to describe the amazing\n"
+"        improvements coming to the web platform. It's a platform that is becoming\n"
+"        more powerful by the day. Most people have heard of the rich APIs (css3, audio/video, WebGL, offline, geolocation,...),\n"
+"        but there's also a slew of lesser-known features that you should be aware of.\n"
+"        We call these the \"nuts &amp; bolts\" of building modern web applications.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        HTML5 はウェブ プラットフォームにもたらされる素晴らしい改善を説明する包括的な用語として現在、多くの人が使用しています。HTML5 は日増しに強化されていくプラットフォームです。機能の豊富な API（CSS3、音声/動画、WebGL、オフライン、位置情報など）についてもよく知られています。さらに、それほど知られていなくても、知っておくべき機能もたくさんあります。これらの機能を、最新ウェブ アプリケーションの構築のための「基本機能」と呼んでいます。"
 
 #: content/features/nuts_and_bolts.html:31
-msgid ""
-"\n"
-"        Isn't it painful to build web apps? Luckily, smart folks are "
-"improving\n"
-"        the underlying (core) platform to make our lives easier. These "
-"improvements include\n"
-"        additions to ECMAScript (the JavaScript language), ways to interact "
-"with the DOM,\n"
-"        and even old friends like <code>XMLHttpRequest</code> and <code>&lt;"
-"input type=\"file\"&gt;</code>.\n"
+msgid "\n"
+"        Isn't it painful to build web apps? Luckily, smart folks are improving\n"
+"        the underlying (core) platform to make our lives easier. These improvements include\n"
+"        additions to ECMAScript (the JavaScript language), ways to interact with the DOM,\n"
+"        and even old friends like <code>XMLHttpRequest</code> and <code>&lt;input type=\"file\"&gt;</code>.\n"
 "        Here are just a few:\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        ウェブ アプリの構築に苦労している方に朗報です。構築を強力に支援する基礎（コア）プラットフォームの改善が行われています。この改善では、ECMAScript（JavaScript 言語）の機能の追加、DOM との連携方法、そしておなじみの <code>XMLHttpRequest</code>、<code>&lt;input type=\"file\"&gt;</code> なども対象です。以下にその一部をご紹介します:"
 
 #: content/features/nuts_and_bolts.html:41
-msgid ""
-"JavaScript <a href=\"https://developer.mozilla.org/en/JavaScript_typed_arrays"
-"\">Typed Arrays</a>"
-msgstr ""
+msgid "JavaScript <a href=\"https://developer.mozilla.org/en/JavaScript_typed_arrays\">Typed Arrays</a>"
+msgstr "JavaScript <a href=\"https://developer.mozilla.org/ja/JavaScript_typed_arrays\">型付き配列</a>"
 
 #: content/features/nuts_and_bolts.html:42
-msgid ""
-"New selectors: <a href=\"http://slides.html5rocks.com/#new-selectors"
-"\"><code>querySelector()</code></a>, <a href=\"http://slides.html5rocks.com/"
-"#new-selectors\"><code>querySelectorAll()</code></a>, <a href=\"http://html5-"
-"demos.appspot.com/static/html5-whats-new/template/index.html#13"
-"\"><code>matchesSelector()</code></a>"
-msgstr ""
+msgid "New selectors: <a href=\"http://slides.html5rocks.com/#new-selectors\"><code>querySelector()</code></a>, <a href=\"http://slides.html5rocks.com/#new-selectors\"><code>querySelectorAll()</code></a>, <a href=\"http://html5-demos.appspot.com/static/html5-whats-new/template/index.html#13\"><code>matchesSelector()</code></a>"
+msgstr "新しいセレクタ: <a href=\"http://slides.html5rocks.com/#new-selectors\"><code>querySelector()</code></a>、<a href=\"http://slides.html5rocks.com/#new-selectors\"><code>querySelectorAll()</code></a>、<a href=\"http://html5-demos.appspot.com/static/html5-whats-new/template/index.html#13\"><code>matchesSelector()</code></a>"
 
 #: content/features/nuts_and_bolts.html:43
-msgid ""
-"Custom data-* attributes: <a href=\"http://html5-demos.appspot.com/static/"
-"html5-whats-new/template/index.html#12\"><code>Element.dataset</code></a>"
-msgstr ""
+msgid "Custom data-* attributes: <a href=\"http://html5-demos.appspot.com/static/html5-whats-new/template/index.html#12\"><code>Element.dataset</code></a>"
+msgstr "カスタム データ* 属性: <a href=\"http://html5-demos.appspot.com/static/html5-whats-new/template/index.html#12\"><code>Element.dataset</code></a>"
 
 #: content/features/nuts_and_bolts.html:45
 msgid "<a href=\"/tutorials/file/xhr2/\">XMLHttpRequest2</a>"
-msgstr ""
+msgstr "<a href=\"/tutorials/file/xhr2/\">XMLHttpRequest2</a>"
 
 #: content/features/nuts_and_bolts.html:46
-msgid ""
-"<a href=\"http://lists.w3.org/Archives/Public/public-webapps/2011JulSep/1622."
-"html\">Mutation Observers</a>"
-msgstr ""
+msgid "<a href=\"http://lists.w3.org/Archives/Public/public-webapps/2011JulSep/1622.html\">Mutation Observers</a>"
+msgstr "<a href=\"http://lists.w3.org/Archives/Public/public-webapps/2011JulSep/1622.html\">変更オブザーバー</a>"
 
 #: content/features/nuts_and_bolts.html:47
-msgid ""
-"<a href=\"http://hacks.mozilla.org/2011/11/html5-context-menus-in-firefox-"
-"screencast-and-code/\">Context menus</a>"
-msgstr ""
+msgid "<a href=\"http://hacks.mozilla.org/2011/11/html5-context-menus-in-firefox-screencast-and-code/\">Context menus</a>"
+msgstr "<a href=\"http://hacks.mozilla.org/2011/11/html5-context-menus-in-firefox-screencast-and-code/\">コンテキスト メニュー</a>"
 
 #: content/features/nuts_and_bolts.html:48
-#, fuzzy
 msgid "<a href=\"http://webintents.org\">Web Intents</a>"
-msgstr "<a href=\"http://www.webpagetest.org/\">WebPageTest</a>（英語）"
+msgstr "<a href=\"http://webintents.org\">ウェブ インテント</a>"
 
 #: content/features/nuts_and_bolts.html:52
-msgid ""
-"\n"
-"      These additions make apps easier to build, offload more work to the "
-"browser, and reduce your footprint\n"
-"      (e.g. by removing the need for libraries that handle the same "
-"functionality).\n"
+msgid "\n"
+"      These additions make apps easier to build, offload more work to the browser, and reduce your footprint\n"
+"      (e.g. by removing the need for libraries that handle the same functionality).\n"
 "      "
-msgstr ""
+msgstr "\n"
+"      これらの追加機能により、アプリの作成が容易になり、ブラウザにさらに機能を分担させ、アプリのサイズを縮小することができます（たとえば、同じ機能を扱うライブラリが不要になります）。"
 
 #: content/features/nuts_and_bolts.html:58
 msgid "With smarter APIs, we can build smarter apps"
-msgstr ""
+msgstr "スマートな API で、スマートなアプリを構築できます"
 
 #: content/features/nuts_and_bolts.html:60
-msgid ""
-"\n"
+msgid "\n"
 "      The platform includes APIs that give you greater insight into what is\n"
-"      happening in your application. These APIs allow you to make smarter "
-"choices\n"
+"      happening in your application. These APIs allow you to make smarter choices\n"
 "      in your app, save battery/CPU, and create a better user experience.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"      プラットフォームには、アプリケーションで実際に起きていることを分析できる API が組み込まれています。これらの API を利用して、アプリでの適切な選択、電源/CPU の節減、ユーザー エクスペリエンスの改善を行うことができます。"
 
 #: content/features/nuts_and_bolts.html:68
 msgid "Smarter animations: <code>window.requestAnimationFrame()</code>"
-msgstr ""
+msgstr "高度なアニメーション: <code>window.requestAnimationFrame()</code>"
 
 #: content/features/nuts_and_bolts.html:69
-msgid ""
-"Form factor detection: <a href=\"http://html5-demos.appspot.com/static/html5-"
-"whats-new/template/index.html#16\"><code>window.matchMedia()</code></a> and "
-"CSS media queries.</code>"
-msgstr ""
+msgid "Form factor detection: <a href=\"http://html5-demos.appspot.com/static/html5-whats-new/template/index.html#16\"><code>window.matchMedia()</code></a> and CSS media queries.</code>"
+msgstr "フォーム ファクタの検出: <a href=\"http://html5-demos.appspot.com/static/html5-whats-new/template/index.html#16\"><code>window.matchMedia()</code></a> と CSS メディア クエリ</code>"
 
 #: content/features/nuts_and_bolts.html:70
 msgid "<a href=\"http://slides.html5rocks.com/#history-api\">History API</a>"
-msgstr ""
+msgstr "<a href=\"http://slides.html5rocks.com/#history-api\">History API</a>"
 
 #: content/features/nuts_and_bolts.html:71
-msgid ""
-"<a href=\"http://updates.html5rocks.com/2011/06/Page-Visibility-API-Have-I-"
-"got-your-attention\">Page Visibility API</a>"
-msgstr ""
+msgid "<a href=\"http://updates.html5rocks.com/2011/06/Page-Visibility-API-Have-I-got-your-attention\">Page Visibility API</a>"
+msgstr "<a href=\"http://updates.html5rocks.com/2011/06/Page-Visibility-API-Have-I-got-your-attention\">Page Visibility API</a>"
 
 #: content/features/nuts_and_bolts.html:72
-msgid ""
-"<a href=\"https://developer.mozilla.org/en/Online_and_offline_eventsion"
-"\">online/offline events</a>"
-msgstr ""
+msgid "<a href=\"https://developer.mozilla.org/en/Online_and_offline_eventsion\">online/offline events</a>"
+msgstr "<a href=\"https://developer.mozilla.org/ja/Online_and_offline_eventsion\">オンライン/オフライン イベント</a>"
 
 #: content/features/nuts_and_bolts.html:73
-msgid ""
-"<a href=\"http://html5-demos.appspot.com/static/html5-whats-new/template/"
-"index.html#28\">Custom protocol/content handlers</a>"
-msgstr ""
+msgid "<a href=\"http://html5-demos.appspot.com/static/html5-whats-new/template/index.html#28\">Custom protocol/content handlers</a>"
+msgstr "<a href=\"http://html5-demos.appspot.com/static/html5-whats-new/template/index.html#28\">カスタム プロトコル/コンテンツ ハンドラ</a>"
 
 #: content/features/nuts_and_bolts.html:135
 msgid "Whitepaper on using the Page Visibility API."
-msgstr ""
+msgstr "Page Visibility API の利用に関するホワイトペーパー"
 
 #: content/features/nuts_and_bolts.html:139
-msgid ""
-"How to use the <code>rel='prerender'</code> attribute to prerender content "
-"in a background tab."
-msgstr ""
+msgid "How to use the <code>rel='prerender'</code> attribute to prerender content in a background tab."
+msgstr "<code>rel='prerender'</code> 属性を使用してバックグラウンドのタブでコンテンツを事前にレンダリングする方法"
 
 #: content/features/nuts_and_bolts.html:143
-#, fuzzy
 msgid "MDN reference on online/offline events."
-msgstr "オンライン/オフライン イベント"
+msgstr "オンライン/オフライン イベントに関する MDN リファレンス"
 
 #: content/features/nuts_and_bolts.html:147
 msgid "MDN reference on JS typed arrays."
-msgstr ""
+msgstr "JS 型付け配列に関する MDN リファレンス"
 
 #: content/features/nuts_and_bolts.html:151
 msgid "MDN refernce on <code>window.requestAnimationFrame()</code>"
-msgstr ""
+msgstr "<code>window.requestAnimationFrame()</code> に関する MDN リファレンス"
 
 #: content/features/nuts_and_bolts.html:155
 msgid "MDN reference on the <code>window.history</code> API."
-msgstr ""
+msgstr "<code>window.history</code> API に関する MDN リファレンス"
 
 #: content/features/nuts_and_bolts.html:159
 msgid "MDN documentation for <code>navigator.registerProtocolHandler()</code>."
-msgstr ""
+msgstr "<code>navigator.registerProtocolHandler()</code> に関する MDN ドキュメント"
 
 #: content/features/nuts_and_bolts.html:163
 msgid "MDN documentation for <code>navigator.registerContentHandler()</code>."
-msgstr ""
+msgstr "<code>navigator.registerContentHandler()</code> に関する MDN ドキュメント"
 
 #: content/features/nuts_and_bolts.html:167
 msgid "Allows apps to register an intent to handle common user actions."
-msgstr ""
+msgstr "ユーザーの一般的な操作を取り扱うために、アプリではインテントを登録することができます。"
 
 #: content/features/nuts_and_bolts.html:171
 msgid "MDN reference on using features in <code>XMLHttpRequest2</code>."
-msgstr ""
+msgstr "<code>XMLHttpRequest2</code> の機能の利用に関する MDN リファレンス"
 
 #: content/features/offline.html:15
-#, fuzzy
-msgid ""
-"\n"
-"        \"Web\" and \"online\" are two closely associated terms, downright "
-"synonymous to many people. So why on earth would we talk about \"offline\" "
-"web technologies, and what does the term even mean?\n"
+msgid "\n"
+"        \"Web\" and \"online\" are two closely associated terms, downright synonymous to many people. So why on earth would we talk about \"offline\" web technologies, and what does the term even mean?\n"
 "      "
-msgstr ""
-"「ウェブ」と「オンライン」という 2 つの言葉は密接に関連しており、多くの人はこ"
-"れらをまったく同じ意味で使っています。それでは、「オフライン」のウェブ技術を"
-"話題にする理由は何でしょうか。そもそもこれはどういう意味なのでしょうか。"
-"HTML5 とその関連仕様では、オフラインのウェブ アプリを現実のものにする多くの機"
-"能が導入されています。"
+msgstr "\n"
+"        「ウェブ」と「オンライン」の 2 つは関連の深い用語で、完全な同義語とする人も少なくありません。では、なぜ「オフライン」ウェブ技術について説明しようとするのでしょうか。この用語はどのような意味があるのでしょうか。"
 
 #: content/features/offline.html:22
-msgid ""
-"HTML5 and related specs introduce a number of features to make offline web "
-"apps a reality:"
-msgstr ""
+msgid "HTML5 and related specs introduce a number of features to make offline web apps a reality:"
+msgstr "HTML5 と関連仕様には、オフライン ウェブ アプリを実現するための多くの機能が導入されています:"
 
 #: content/features/offline.html:25
 msgid "application cache"
@@ -1515,144 +1145,74 @@ msgid "online/offline events"
 msgstr "オンライン/オフライン イベント"
 
 #: content/features/offline.html:31
-#, fuzzy
-msgid ""
-"For a whirlwind overview of the offline landscape, consider the article <a "
-"href=\"/tutorials/offline/whats-offline/\">\"Offline\": What does it mean "
-"and why should I care?</a>. These features can also be used to improve an "
-"application&rsquo;s performance by storing data in the cache or to make data "
-"persistent between user sessions and when reloading and restoring pages."
-msgstr ""
-"「オフライン」の概念については、<a href=\"/tutorials/offline/whats-offline/"
-"\">「オフライン」の意味と「オフライン」に注目する理由</a>をご覧ください。オフ"
-"ライン機能は、キャッシュにデータを保存してアプリケーションのパフォーマンスを"
-"高めたり、ユーザー セッション間やページの再読み込み/復元の際にデータの一貫性"
-"を保ったりするためにも使用できます。"
+msgid "For a whirlwind overview of the offline landscape, consider the article <a href=\"/tutorials/offline/whats-offline/\">\"Offline\": What does it mean and why should I care?</a>. These features can also be used to improve an application&rsquo;s performance by storing data in the cache or to make data persistent between user sessions and when reloading and restoring pages."
+msgstr "「オフライン」の概念については、<a href=\"/tutorials/offline/whats-offline/\">「オフライン」の意味と「オフライン」に注目する理由</a>をご覧ください。オフライン機能は、キャッシュにデータを保存してアプリケーションのパフォーマンスを高めたり、ユーザー セッション間やページの再読み込み/復元の際にデータの一貫性を保ったりするためにも使用できます。"
 
 #: content/features/offline.html:93
 msgid "Presented by Nikolas Coukouma, January 5, 2011"
 msgstr "2011 年 1 月 5 日に Nikolas Coukouma が行ったプレゼンテーションです。"
 
 #: content/features/offline.html:97
-msgid ""
-"The w3c spec has the strict details on how the cache.manifest and "
-"applicationCache APIs work."
-msgstr ""
-"W3C 仕様では、cache.manifest と applicationCache API の仕組みを細部まで定義し"
-"ています。"
+msgid "The w3c spec has the strict details on how the cache.manifest and applicationCache APIs work."
+msgstr "W3C 仕様では、cache.manifest と applicationCache API の仕組みを細部まで定義しています。"
 
 #: content/features/offline.html:101
 msgid "Mark Pilgrim dives into using the app cache in practice."
-msgstr ""
-"マーク ピルグリムが、アプリケーション キャッシュの使用について深く考察してい"
-"ます。"
+msgstr "マーク ピルグリムが、アプリケーション キャッシュの使用について深く考察しています。"
 
 #: content/features/offline.html:108
-msgid ""
-"Mozilla Developer Center reference documentation and guides, covering online "
-"and offline events and app cache."
-msgstr ""
-"Mozilla Developer Network の参考資料とガイドです。オンライン/オフラインのイベ"
-"ントとアプリケーション キャッシュについて説明しています。"
+msgid "Mozilla Developer Center reference documentation and guides, covering online and offline events and app cache."
+msgstr "Mozilla Developer Network の参考資料とガイドです。オンライン/オフラインのイベントとアプリケーション キャッシュについて説明しています。"
 
 #: content/features/offline.html:112
-msgid ""
-"Creating a todo list manager using localStorage, app cache and offline "
-"events. Putting everything together."
-msgstr ""
-"localStorage、アプリケーション キャッシュ、オフライン イベントを使って TODO "
-"リスト マネージャを作成します。すべてを 1 つにまとめることができます。"
+msgid "Creating a todo list manager using localStorage, app cache and offline events. Putting everything together."
+msgstr "localStorage、アプリケーション キャッシュ、オフライン イベントを使って TODO リスト マネージャを作成します。すべてを 1 つにまとめることができます。"
 
 #: content/features/offline.html:116
-msgid ""
-"The app cache explained with solid examples showing different features and "
-"configurations in use."
-msgstr ""
-"アプリケーション キャッシュについて、確かなサンプルとともに、使用する各種機能"
-"と設定を示しながら説明しています。"
+msgid "The app cache explained with solid examples showing different features and configurations in use."
+msgstr "アプリケーション キャッシュについて、確かなサンプルとともに、使用する各種機能と設定を示しながら説明しています。"
 
 #: content/features/offline.html:120
 msgid "The C code used by Webkit for the app cache"
 msgstr "Webkit でアプリケーション キャッシュに使用される C 言語コードです。"
 
 #: content/features/performance.html:14
-#, fuzzy
-msgid ""
-"\n"
-"        Web apps are now able to rival performance of native and desktop "
-"applications. By using a variety of techniques and technologies, your sites "
-"and apps can feel more responsive and your users will get more done. "
-"Performance is important, it's a constant theme across all aspects of your "
-"development and product.\n"
+msgid "\n"
+"        Web apps are now able to rival performance of native and desktop applications. By using a variety of techniques and technologies, your sites and apps can feel more responsive and your users will get more done. Performance is important, it's a constant theme across all aspects of your development and product.\n"
 "      "
-msgstr ""
-"ウェブ アプリは今や、ネイティブ アプリケーションやデスクトップ アプリケーショ"
-"ンに匹敵するパフォーマンスを実現するものとなりました。サイトやアプリでは、さ"
-"まざまな手法や技術を活用して反応性を高めることができ、ユーザーの作業効率に貢"
-"献することができます。パフォーマンスの重要性は、開発や提供サービスのあらゆる"
-"面において、常に浮かび上がってくるテーマです。"
+msgstr "\n"
+"        ウェブ アプリは今や、ネイティブ アプリケーションやデスクトップ アプリケーションに匹敵するパフォーマンスを実現できるようになりました。サイトやアプリでは、さまざまな手法や技術を活用して応答性を高めることができ、ユーザーの作業効率を改善することができます。パフォーマンスの重要性は、開発や提供サービスのあらゆる面において、常に浮かび上がってくるテーマです。"
 
 #: content/features/performance.html:26
-#, fuzzy, python-format
-msgid ""
-"\n"
-"        Writing fast and responsive apps isn't just important for your "
-"users, it's important for your bottom line. For example, <a href=\"http://"
-"googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-"
-"ranking.html\">Google now incorporates site speed in page ranking</a>.  <a "
-"href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf"
-"\">Amazon has found that every 100 ms increase in page load time decreased "
-"sales by 1%%</a>. Also, <a href=\"http://exp-platform.com/Documents/2007-"
-"10EmetricsExperimenation.pdf\">Microsoft found that slowing a page by 2 "
-"seconds decreased ad clicks by 4%%</a>.\n"
+#, python-format
+msgid "\n"
+"        Writing fast and responsive apps isn't just important for your users, it's important for your bottom line. For example, <a href=\"http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html\">Google now incorporates site speed in page ranking</a>.  <a href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf\">Amazon has found that every 100 ms increase in page load time decreased sales by 1%%</a>. Also, <a href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf\">Microsoft found that slowing a page by 2 seconds decreased ad clicks by 4%%</a>.\n"
 "      "
-msgstr ""
-"高速で反応がスムーズなアプリを作成することは、ユーザーのために重要なだけでな"
-"く、自分の利益にもなります。たとえば、<a href=\"http://"
-"googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-"
-"ranking.html\">Google では、ページのランキングにサイトの応答速度を考慮</a>す"
-"るようになりました。<a href=\"http://exp-platform.com/Documents/2007-"
-"10EmetricsExperimenation.pdf\">Amazon では、ページの読み込み時間が 0.1 秒遅く"
-"なるごとに売り上げが 1% 減少</a>することがわかっており、<a href=\"http://exp-"
-"platform.com/Documents/2007-10EmetricsExperimenation.pdf\">Microsoft では、"
-"ページの読み込み時間が 2 秒遅いと広告のクリック数が 4% 減少</a>することがわ"
-"かっています（リンク先はいずれも英語）。"
+msgstr "\n"
+"        高速で反応がスムーズなアプリを作成することは、ユーザーのために重要なだけでなく、自分の利益にもなります。たとえば、<a href=\"http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html\">Google では、ページのランキングにサイトの応答速度を考慮</a>するようになりました。<a href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf\">Amazon では、ページの読み込みが 0.1 秒遅くなるごとに売り上げが 1%% 減少</a>することがわかっており、<a href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf\">Microsoft では、ページの読み込みが 2 秒遅いと広告のクリック数が 4%% 減少</a>することがわかっています（リンク先はいずれも英語）。"
 
 #: content/features/performance.html:32
-#, fuzzy
-msgid ""
-"\n"
-"        Web app optimization cross cuts all aspects of development, from the "
-"server to the network to the client. Focusing on performance is critical to "
-"success.\n"
+msgid "\n"
+"        Web app optimization cross cuts all aspects of development, from the server to the network to the client. Focusing on performance is critical to success.\n"
 "      "
-msgstr ""
-"ウェブ アプリの最適化は、サーバーからネットワーク、クライアントまで、開発のす"
-"べての面に関連します。パフォーマンスに重点を置くことは、成功に不可欠です。"
+msgstr "\n"
+"        ウェブ アプリの最適化は、サーバーからネットワーク、クライアントまで、開発のすべての面に関連します。パフォーマンスに重点を置くことは、成功に不可欠です。"
 
 #: content/features/performance.html:49
 msgid "Store locally."
 msgstr "ローカルに保存"
 
 #: content/features/performance.html:50
-msgid ""
-"Data stored on the client is quicker to access than data stored on the "
-"server.  Also, data stored closer to the calculation is quicker to access."
-msgstr ""
-"クライアントに保存されているデータの方が、サーバーに保存されているデータより"
-"もすばやくアクセスできます。また、演算処理が行われる場所に近いデータほど、す"
-"ばやくアクセスできます。"
+msgid "Data stored on the client is quicker to access than data stored on the server.  Also, data stored closer to the calculation is quicker to access."
+msgstr "クライアントに保存されているデータの方が、サーバーに保存されているデータよりもすばやくアクセスできます。また、演算処理が行われる場所に近いデータほど、すばやくアクセスできます。"
 
 #: content/features/performance.html:53
 msgid "Process in the background."
 msgstr "バックグラウンドで処理"
 
 #: content/features/performance.html:54
-msgid ""
-"Anything that doesn't help the user see a response to their action should be "
-"performed in the background."
-msgstr ""
-"ユーザーに表示しても意味のない処理はバックグラウンドで実行するのが適切です。"
+msgid "Anything that doesn't help the user see a response to their action should be performed in the background."
+msgstr "ユーザーに表示しても意味のない処理はバックグラウンドで実行するのが適切です。"
 
 #: content/features/performance.html:57
 msgid "Minimize connections."
@@ -1683,13 +1243,8 @@ msgid "HTTP caching servers"
 msgstr "HTTP キャッシング サーバー"
 
 #: content/features/performance.html:76
-msgid ""
-"Servers like <a href=\"http://www.varnish-cache.org/\">Varnish</a> and <a "
-"href=\"http://www.squid-cache.org/\">Squid</a> can cache your content."
-msgstr ""
-"<a href=\"http://www.varnish-cache.org/\">Varnish</a> や <a href=\"http://"
-"www.squid-cache.org/\">Squid</a> などのサーバーでコンテンツをキャッシュできま"
-"す（リンク先はどちらも英語）。"
+msgid "Servers like <a href=\"http://www.varnish-cache.org/\">Varnish</a> and <a href=\"http://www.squid-cache.org/\">Squid</a> can cache your content."
+msgstr "<a href=\"http://www.varnish-cache.org/\">Varnish</a> や <a href=\"http://www.squid-cache.org/\">Squid</a> などのサーバーでコンテンツをキャッシュできます（リンク先はどちらも英語）。"
 
 #: content/features/performance.html:79
 msgid "Memcache"
@@ -1737,19 +1292,15 @@ msgstr "アプリケーション キャッシュ"
 
 #: content/features/performance.html:100
 msgid "Caching web app assets locally for offline use"
-msgstr ""
-"ウェブ アプリのアセットをオフライン利用のためローカルでキャッシュします"
+msgstr "ウェブ アプリのアセットをオフライン利用のためローカルでキャッシュします"
 
 #: content/features/performance.html:103
 msgid "CSS3 transitions and animations"
 msgstr "CSS3 トランジション/アニメーション"
 
 #: content/features/performance.html:104
-msgid ""
-"Native (and possibly hardware accelerated) property changes for elements"
-msgstr ""
-"ネイティブで（多くの場合ハードウェア アクセラレーションによって）要素のプロパ"
-"ティが変化します"
+msgid "Native (and possibly hardware accelerated) property changes for elements"
+msgstr "ネイティブで（多くの場合ハードウェア アクセラレーションによって）要素のプロパティが変化します"
 
 #: content/features/performance.html:107
 msgid "CSS sprites"
@@ -1797,8 +1348,7 @@ msgstr "データ URI"
 
 #: content/features/performance.html:128
 msgid "Embed binary data such as images into HTML, reducing HTTP requests"
-msgstr ""
-"画像などのバイナリ データを HTML に埋め込み、HTTP リクエスト数を削減します"
+msgstr "画像などのバイナリ データを HTML に埋め込み、HTTP リクエスト数を削減します"
 
 #: content/features/performance.html:137
 msgid "HTTP Caching"
@@ -1806,9 +1356,7 @@ msgstr "HTTP キャッシング"
 
 #: content/features/performance.html:138
 msgid "Use If-Modified-Since and ETags to reduce content over the wire."
-msgstr ""
-"If-Modified-Since と ETag を使用して、ネットワーク送信されるコンテンツを削減"
-"します。"
+msgstr "If-Modified-Since と ETag を使用して、ネットワーク送信されるコンテンツを削減します。"
 
 #: content/features/performance.html:141
 msgid "Data caching"
@@ -1832,9 +1380,7 @@ msgstr "コンテンツ デリバリ ネットワーク"
 
 #: content/features/performance.html:150
 msgid "Place the content closer to the client with a CDN."
-msgstr ""
-"コンテンツ デリバリ ネットワークを使って、クライアントの近くにコンテンツを配"
-"置します。"
+msgstr "コンテンツ デリバリ ネットワークを使って、クライアントの近くにコンテンツを配置します。"
 
 #: content/features/performance.html:153
 msgid "Efficient data retrieval"
@@ -1842,9 +1388,7 @@ msgstr "効率的なデータ取得"
 
 #: content/features/performance.html:154
 msgid "Minimize SQL calls, reduce joins, retrieve via an index."
-msgstr ""
-"SQL 呼び出しを最小限に抑え、結合を減らし、インデックスを使用してデータを取得"
-"します。"
+msgstr "SQL 呼び出しを最小限に抑え、結合を減らし、インデックスを使用してデータを取得します。"
 
 #: content/features/performance.html:157
 msgid "Pre-calculating results"
@@ -1875,7 +1419,6 @@ msgid "Asynchronous callbacks"
 msgstr "非同期コールバック"
 
 #: content/features/performance.html:170
-#, fuzzy
 msgid "Defer the work, get notified when it&rsquo;s done."
 msgstr "処理のタイミングをずらし、終了したら通知を受け取ります。"
 
@@ -1893,22 +1436,15 @@ msgstr "データの近くに計算を移動"
 
 #: content/features/performance.html:178
 msgid "Data is bigger than algorithms, move code and not data."
-msgstr ""
-"データはアルゴリズムよりもサイズが大きいため、データではなくコードを移動しま"
-"す。"
+msgstr "データはアルゴリズムよりもサイズが大きいため、データではなくコードを移動します。"
 
 #: content/features/performance.html:181
 msgid "Profiling"
 msgstr "プロファイリング"
 
 #: content/features/performance.html:182
-#, fuzzy
-msgid ""
-"Use tools to understand and collect real life data. Measure, don&rsquo;t "
-"guess."
-msgstr ""
-"ツールを使用して実際のデータを理解、収集します。推測ではなく客観的な測定にな"
-"ります。"
+msgid "Use tools to understand and collect real life data. Measure, don&rsquo;t guess."
+msgstr "ツールを使用して実際のデータを把握、収集します。推測ではなく客観的な測定になります。"
 
 #: content/features/performance.html:185
 msgid "Sprites"
@@ -1916,8 +1452,7 @@ msgstr "スプライト"
 
 #: content/features/performance.html:186
 msgid "Place many images into one file, minimizing HTTP requests."
-msgstr ""
-"数多くの画像を 1 つのファイルにまとめ、HTTP リクエスト数を最小限に抑えます。"
+msgstr "数多くの画像を 1 つのファイルにまとめ、HTTP リクエスト数を最小限に抑えます。"
 
 #: content/features/performance.html:189
 msgid "Image optimization"
@@ -1932,10 +1467,8 @@ msgid "Specify image width and heights"
 msgstr "画像の幅と高さを指定"
 
 #: content/features/performance.html:194
-msgid ""
-"Tell the browser how to render around images before they are downloaded."
-msgstr ""
-"画像をダウンロードする前に画像周囲のレンダリング方法をブラウザに指示します。"
+msgid "Tell the browser how to render around images before they are downloaded."
+msgstr "画像をダウンロードする前に画像周囲のレンダリング方法をブラウザに指示します。"
 
 #: content/features/performance.html:197
 msgid "Place JavaScript at the bottom of your HTML"
@@ -1950,40 +1483,24 @@ msgid "Rendering on the client"
 msgstr "クライアントでのレンダリング"
 
 #: content/features/performance.html:202
-msgid ""
-"Use canvas to draw images, or web fonts to render text, instead of "
-"downloading assets."
-msgstr ""
-"アセットをダウンロードする代わりに、canvas を使用して画像を描画したり、ウェブ"
-"フォントを使用してテキストをレンダリングしたりします。"
+msgid "Use canvas to draw images, or web fonts to render text, instead of downloading assets."
+msgstr "アセットをダウンロードする代わりに、canvas を使用して画像を描画したり、ウェブフォントを使用してテキストをレンダリングしたりします。"
 
 #: content/features/performance.html:205
 msgid "Read 'High Performance Web Sites' and 'Even Faster Web Sites'"
-msgstr ""
-"参考書籍:「ハイパフォーマンス Web サイト」と「続・ハイパフォーマンス Web サイ"
-"ト」"
+msgstr "参考書籍:「ハイパフォーマンス Web サイト」と「続・ハイパフォーマンス Web サイト」"
 
 #: content/features/performance.html:206
 msgid "Covers web app performance in great detail"
 msgstr "ウェブ アプリのパフォーマンスについて詳しく解説しています。"
 
 #: content/features/performance.html:215
-msgid ""
-"Developer tools for <a href=\"http://www.chromium.org/devtools\">Chrome</a> "
-"and <a href=\"http://developer.apple.com/technologies/safari/developer-tools."
-"html\">Safari</a>"
-msgstr ""
-"<a href=\"http://www.chromium.org/devtools\">Chrome</a> と <a href=\"http://"
-"developer.apple.com/technologies/safari/developer-tools.html\">Safari</a>（リ"
-"ンク先は英語）向けのデベロッパー ツール"
+msgid "Developer tools for <a href=\"http://www.chromium.org/devtools\">Chrome</a> and <a href=\"http://developer.apple.com/technologies/safari/developer-tools.html\">Safari</a>"
+msgstr "<a href=\"http://www.chromium.org/devtools\">Chrome</a> と <a href=\"http://developer.apple.com/technologies/safari/developer-tools.html\">Safari</a>（リンク先は英語）向けのデベロッパー ツール"
 
 #: content/features/performance.html:216
-msgid ""
-"Peer into requests, walk the DOM, set JavaScript breakpoints, get behind the "
-"scenes"
-msgstr ""
-"リクエストの内容を確認したり、DOM を使ってみたり、JavaScript のブレークポイン"
-"トを設定したり、背景となる情報を入手したりできます。"
+msgid "Peer into requests, walk the DOM, set JavaScript breakpoints, get behind the scenes"
+msgstr "リクエストの内容を確認したり、DOM を使ってみたり、JavaScript のブレークポイントを設定したり、背景となる情報を入手したりできます。"
 
 #: content/features/performance.html:219
 msgid "<a href=\"http://www.opera.com/dragonfly/\">Dragonfly</a> for Opera"
@@ -2002,26 +1519,16 @@ msgid "Similar to Opera Dragonfly, but for Firefox."
 msgstr "Opera Dragonfly に似た、Firefox 向けのツールです"
 
 #: content/features/performance.html:227
-msgid ""
-"<a href=\"http://www.html5rocks.com/tutorials/developertools/auditpanel/"
-"\">Audit panel</a> in the Developer tools"
-msgstr ""
-"デベロッパー ツールの<a href=\"http://www.html5rocks.com/tutorials/"
-"developertools/auditpanel/\">監査パネル</a>"
+msgid "<a href=\"http://www.html5rocks.com/tutorials/developertools/auditpanel/\">Audit panel</a> in the Developer tools"
+msgstr "デベロッパー ツールの<a href=\"http://www.html5rocks.com/tutorials/developertools/auditpanel/\">監査パネル</a>"
 
 #: content/features/performance.html:228
 msgid "Get suggestions for speeding up your web app"
 msgstr "ウェブ アプリを高速化する方法についてヒントを得ることができます"
 
 #: content/features/performance.html:231
-msgid ""
-"<a href=\"http://code.google.com/webtoolkit/speedtracer/\">Speedtracer</a> - "
-"not just for GWT, check out the <a href=\"http://www.igvita.com/2010/07/19/"
-"speed-tracer-server-side-tracing-with-rack/\">Ruby plugin</a>"
-msgstr ""
-"Speedtracer（<a href=\"http://code.google.com/webtoolkit/speedtracer/"
-"\">Google Web Toolkit</a>、<a href=\"http://www.igvita.com/2010/07/19/speed-"
-"tracer-server-side-tracing-with-rack/\">Ruby プラグイン</a>（英語））"
+msgid "<a href=\"http://code.google.com/webtoolkit/speedtracer/\">Speedtracer</a> - not just for GWT, check out the <a href=\"http://www.igvita.com/2010/07/19/speed-tracer-server-side-tracing-with-rack/\">Ruby plugin</a>"
+msgstr "Speedtracer（<a href=\"http://code.google.com/webtoolkit/speedtracer/\">Google Web Toolkit</a>、<a href=\"http://www.igvita.com/2010/07/19/speed-tracer-server-side-tracing-with-rack/\">Ruby プラグイン</a>（英語））"
 
 #: content/features/performance.html:232
 msgid "Identify and fix performance problems in your web app"
@@ -2029,31 +1536,23 @@ msgstr "ウェブ アプリのパフォーマンスに関する問題を特定�
 
 #: content/features/performance.html:235
 msgid "<a href=\"http://developer.yahoo.com/yslow/\">YSlow</a> for Firebug"
-msgstr ""
-"Firebug 用 <a href=\"http://developer.yahoo.com/yslow/\">YSlow</a>（英語）"
+msgstr "Firebug 用 <a href=\"http://developer.yahoo.com/yslow/\">YSlow</a>（英語）"
 
 #: content/features/performance.html:236
 msgid "Like the Developer Tools' Audit Panel, but for Firefox"
 msgstr "デベロッパー ツールの監査パネルに似た、Firefox 向けのツールです"
 
 #: content/features/performance.html:239
-msgid ""
-"<a href=\"http://code.google.com/closure/compiler/\">Closure JavaScript "
-"compiler</a>"
-msgstr ""
-"<a href=\"http://code.google.com/closure/compiler/\">Closure JavaScript コン"
-"パイラ</a>"
+msgid "<a href=\"http://code.google.com/closure/compiler/\">Closure JavaScript compiler</a>"
+msgstr "<a href=\"http://code.google.com/closure/compiler/\">Closure JavaScript コンパイラ</a>"
 
 #: content/features/performance.html:240
 msgid "Minify, reduce, and obfuscate your JavaScript"
 msgstr "JavaScript を縮小、簡素化、難読化します"
 
 #: content/features/performance.html:243
-msgid ""
-"<a href=\"http://developer.yahoo.com/yui/compressor/\">YUI Compressor</a>"
-msgstr ""
-"<a href=\"http://developer.yahoo.com/yui/compressor/\">YUI Compressor</a>（英"
-"語）"
+msgid "<a href=\"http://developer.yahoo.com/yui/compressor/\">YUI Compressor</a>"
+msgstr "<a href=\"http://developer.yahoo.com/yui/compressor/\">YUI Compressor</a>（英語）"
 
 #: content/features/performance.html:244
 msgid "Minify and obfuscate your JavaScript and CSS"
@@ -2064,303 +1563,152 @@ msgid "<a href=\"http://www.webpagetest.org/\">WebPageTest</a>"
 msgstr "<a href=\"http://www.webpagetest.org/\">WebPageTest</a>（英語）"
 
 #: content/features/performance.html:248
-msgid ""
-"An industry collaboration providing the testing infrastructure for testing "
-"from around the globe"
-msgstr ""
-"業界コラボレーションによるテスト インフラストラクチャです。世界のどこからでも"
-"テストを行うことができます"
+msgid "An industry collaboration providing the testing infrastructure for testing from around the globe"
+msgstr "業界コラボレーションによるテスト インフラストラクチャです。世界のどこからでもテストを行うことができます"
 
 #: content/features/presentation.html:15
-#, fuzzy
-msgid ""
-"\n"
-"        With the introduction of CSS3 it has never been easier to create "
-"rich and beautiful sites and applications in HTML. There are many new "
-"technologies and extensions to CSS3 including:\n"
-"        <a href=\"http://www.w3.org/TR/css3-2d-transforms\">2D "
-"Transformations</a>,\n"
+msgid "\n"
+"        With the introduction of CSS3 it has never been easier to create rich and beautiful sites and applications in HTML. There are many new technologies and extensions to CSS3 including:\n"
+"        <a href=\"http://www.w3.org/TR/css3-2d-transforms\">2D Transformations</a>,\n"
 "        <a href=\"http://www.w3.org/TR/css3-transistion\">Transitions</a>,\n"
-"        <a href=\"http://www.w3.org/TR/css3-3d-transforms\">3D Transforms</"
-"a> and\n"
+"        <a href=\"http://www.w3.org/TR/css3-3d-transforms\">3D Transforms</a> and\n"
 "        <a href=\"http://www.w3.org/TR/css3-webfonts\">WebFonts</a>\n"
 "        to name just a few.\n"
 "      "
-msgstr ""
-"CSS3 の導入により、HTML でも優れた外観、機能を備えたサイトやアプリケーション"
-"をずっと簡単に作成できるようになりました。CSS3 には、<a href=\"http://www.w3."
-"org/TR/css3-2d-transforms\">2D 変形</a>、<a href=\"http://www.w3.org/TR/css3-"
-"transistion\">トランジション</a>、<a href=\"http://www.w3.org/TR/css3-3d-"
-"transforms\">3D 変形</a>、<a href=\"http://www.w3.org/TR/css3-webfonts\">ウェ"
-"ブフォント</a>といった新しい技術や拡張機能が数多く採用されています（リンク先"
-"はすべて英語）。"
+msgstr "\n"
+"        CSS3 の導入により、HTML でも優れた外観と機能を備えたサイトやアプリケーションを今までになく簡単に作成できるようになりました。CSS3 には、以下のような新しい技術や拡張機能が数多く採用されています（リンク先はすべて英語）:\n"
+"        <a href=\"http://www.w3.org/TR/css3-2d-transforms\">2D 変形</a>、\n"
+"        <a href=\"http://www.w3.org/TR/css3-transistion\">トランジション</a>、\n"
+"        <a href=\"http://www.w3.org/TR/css3-3d-transforms\">3D 変形</a>、\n"
+"        <a href=\"http://www.w3.org/TR/css3-webfonts\">ウェブフォント</a>、\n"
+"        その他多数。"
 
 #: content/features/presentation.html:25
-#, fuzzy
-msgid ""
-"\n"
-"        You can create rich user experiences with no coding effort required, "
-"just simply apply a little CSS to your existing applications.\n"
+msgid "\n"
+"        You can create rich user experiences with no coding effort required, just simply apply a little CSS to your existing applications.\n"
 "      "
-msgstr ""
-"小さな CSS を既存のアプリケーションに適用するだけで、コーディング作業をしなく"
-"ても、優れたユーザー エクスペリエンスを作り出すことができます。"
+msgstr "\n"
+"        小さな CSS を既存のアプリケーションに適用するだけで、コーディング作業をしなくても、優れたユーザー エクスペリエンスを作り出すことができます。"
 
 #: content/features/presentation.html:48
-msgid ""
-"CSS3 Transformations allow you to apply rotations, scales, skews and "
-"translations to any DOM element with simple styles."
-msgstr ""
-"CSS3 の変形処理を使用すると、あらゆる DOM 要素を単純なスタイルで回転したり、"
-"拡大/縮小したり、歪めたり、移動したりすることができます。"
+msgid "CSS3 Transformations allow you to apply rotations, scales, skews and translations to any DOM element with simple styles."
+msgstr "CSS3 の変形処理を使用すると、あらゆる DOM 要素を単純なスタイルで回転したり、拡大/縮小したり、歪めたり、移動したりすることができます。"
 
 #: content/features/presentation.html:54
-#, fuzzy
-msgid ""
-"Transitions allow you to specify how the style on a DOM element will animate "
-"between transformed states.  For example, you can animate the background "
-"color when the user hovers over an element. <strong>Hover over this code!</"
-"strong>"
-msgstr ""
-"トランジションを使用すると、DOM 要素のスタイルを変形する際のアニメーションの"
-"方法を指定できます。たとえば、ユーザーが要素にマウスを合わせたときに背景の色"
-"をアニメーションで変化させることができます。"
+msgid "Transitions allow you to specify how the style on a DOM element will animate between transformed states.  For example, you can animate the background color when the user hovers over an element. <strong>Hover over this code!</strong>"
+msgstr "トランジションを使用すると、DOM 要素のスタイルを変形する際のアニメーションの方法を指定できます。たとえば、ユーザーが要素にマウスを合わせたときに背景の色をアニメーションで変化させることができます。<strong>このコードにマウスを合わせてみてください。</strong>"
 
 #: content/features/presentation.html:65
-#, fuzzy
-msgid ""
-"Applying 3D transforms is simple too.  Just specify the transformation in 3d "
-"co-ordinates and you are ready. <strong>Hover over this code!</strong>"
-msgstr ""
-"3D 変形も簡単に適用できます。3 次元の座標軸で変形方向を指定するだけです。"
+msgid "Applying 3D transforms is simple too.  Just specify the transformation in 3d co-ordinates and you are ready. <strong>Hover over this code!</strong>"
+msgstr "3D 変形も簡単に適用できます。3 次元の座標軸で変形方向を指定するだけです。<strong>こちらのコードにマウスを合わせてください。</strong>"
 
 #: content/features/presentation.html:124
 msgid "A list of the current status of the CSS3 specifications."
 msgstr "CSS3 仕様の現在のステータスを一覧でご確認いただけます。"
 
 #: content/features/presentation.html:128
-msgid ""
-"This W3C specification defines the new selectors available to developers."
-msgstr ""
-"この W3C 仕様では、デベロッパーが使用できる新しいセレクタを定義しています。"
+msgid "This W3C specification defines the new selectors available to developers."
+msgstr "この W3C 仕様では、デベロッパーが使用できる新しいセレクタを定義しています。"
 
 #: content/features/presentation.html:132
-msgid ""
-"This W3C specification defines how rotations, transformations, skews and "
-"scaling should be applied to DOM elements in 2 dimensions."
-msgstr ""
-"この W3C 仕様では、DOM 要素を 2 次元で回転、変換、歪曲、拡大/縮小する方法を定"
-"義しています。"
+msgid "This W3C specification defines how rotations, transformations, skews and scaling should be applied to DOM elements in 2 dimensions."
+msgstr "この W3C 仕様では、DOM 要素を 2 次元で回転、変換、歪曲、拡大/縮小する方法を定義しています。"
 
 #: content/features/presentation.html:136
-msgid ""
-"This W3C specification defines how 3d transformations should be applied to "
-"DOM elements."
+msgid "This W3C specification defines how 3d transformations should be applied to DOM elements."
 msgstr "この W3C 仕様では、3D 変形を DOM 要素に適用する方法を定義しています。"
 
 #: content/features/presentation.html:140
-msgid ""
-"This W3C specification defines how properties should be animated between "
-"states."
-msgstr ""
-"この W3C 仕様では、プロパティをアニメーションで切り替える方法を定義していま"
-"す。"
+msgid "This W3C specification defines how properties should be animated between states."
+msgstr "この W3C 仕様では、プロパティをアニメーションで切り替える方法を定義しています。"
 
 #: content/features/presentation.html:144
 msgid "This W3C specification defines the new animation properties available."
-msgstr ""
-"この W3C 仕様では、新しく使用可能になったアニメーションのプロパティを定義して"
-"います。"
+msgstr "この W3C 仕様では、新しく使用可能になったアニメーションのプロパティを定義しています。"
 
 #: content/features/semantics.html:15
-msgid ""
-"\n"
-"        Semantics is one of the most distinctive features of the Web "
-"Platform versus other application platforms. Developers usually ignore or de-"
-"prioritize such feature but the mastery of it can bring many benefits to our "
-"projects.\n"
+msgid "\n"
+"        Semantics is one of the most distinctive features of the Web Platform versus other application platforms. Developers usually ignore or de-prioritize such feature but the mastery of it can bring many benefits to our projects.\n"
 "      "
-msgstr ""
+msgstr "\n"
+"        他のアプリケーション プラットフォームと比べて、ウェブ プラットフォームにとって最も特徴的な機能の 1 つがセマンティクスです。この機能は、通常デベロッパーに無視されたり、軽視されたりしますが、これをフルに活用すると、プロジェクトに多くの利点をもたらすことができます。"
 
 #: content/features/semantics.html:21
-msgid ""
-"\n"
-"          The Web is text and text has a meaning. Ultimately the content "
-"that our browsers read is pure text. Web sites and web applications have "
-"been created in an ecosystem where text based content is linkable, "
-"searchable and mashable. In the open web scenario our content can be shown, "
-"fed and remixed by third parties, search engines and accessibility tools. "
-"All these benefits don't come for free. Automated tools can only do half of "
-"the job at recognizing the nature of the content. The better job the "
-"developer does at marking the right semantics of the content the easier will "
-"be for the rest of the agents to deal with it. HTML5 provides a series of "
-"tools to make developers life easier too:\n"
+msgid "\n"
+"          The Web is text and text has a meaning. Ultimately the content that our browsers read is pure text. Web sites and web applications have been created in an ecosystem where text based content is linkable, searchable and mashable. In the open web scenario our content can be shown, fed and remixed by third parties, search engines and accessibility tools. All these benefits don't come for free. Automated tools can only do half of the job at recognizing the nature of the content. The better job the developer does at marking the right semantics of the content the easier will be for the rest of the agents to deal with it. HTML5 provides a series of tools to make developers life easier too:\n"
 "        "
-msgstr ""
+msgstr "\n"
+"          ウェブはテキストであり、テキストには意味があります。ブラウザが読み取るコンテンツは最終的には純粋なテキストです。ウェブサイトとウェブ アプリケーションはこれまで、テキスト ベースのコンテンツのリンク、検索、マッシュアップが可能なエコシステムで作成されてきました。オープン ウェブの状況では、サードパーティ、検索エンジン、アクセシビリティ ツールがコンテンツの表示、フィード、リミックスをすることができます。こうしたメリットのすべてが自動的に提供されるわけではありません。コンテンツの性質の認識について、自動化ツールでできることは半分ほどです。コンテンツの適切なセマンティクスに、より正確なマーキングをデベロッパーが行うほど、その後のエージェントによる処理は容易になります。HTML5 では、デベロッパーの仕事も容易にする一連のツールが提供されます:"
 
 #: content/features/semantics.html:26
 msgid "New media elements."
-msgstr ""
+msgstr "新しいメディア要素"
 
 #: content/features/semantics.html:27
 msgid "New structural elements."
-msgstr ""
+msgstr "新しい構造要素"
 
 #: content/features/semantics.html:28
 msgid "New semantics for internationalization."
-msgstr ""
+msgstr "国際化のための新しいセマンティクス"
 
 #: content/features/semantics.html:29
 msgid "New link relation types."
-msgstr ""
+msgstr "新しいリンク リレーション タイプ"
 
 #: content/features/semantics.html:30
 msgid "New attributes."
-msgstr ""
+msgstr "新しい属性"
 
 #: content/features/semantics.html:31
 msgid "New form types."
-msgstr ""
+msgstr "新しいフォームの種類"
 
 #: content/features/semantics.html:32
 msgid "New microdata syntax for additional semantics."
-msgstr ""
+msgstr "セマンティクスの追加に伴う新しい microdata 構文"
 
 #: content/features/semantics.html:102
 msgid "To enable sectioning markup in old IE."
-msgstr ""
+msgstr "古いバージョンの IE でのマークアップの分割を可能にします。"
 
 #: content/features/storage.html:15
-#, fuzzy
-msgid ""
-"\n"
-"        When web developers think of storing anything about the user, they "
-"immediately think of uploading to the server. HTML5 changes that, as there "
-"are now several technologies allowing the app to save data on the client "
-"device. It might also be sync'd back to the server, or it might only ever "
-"stay on the client: that's down to you, the developer.\n"
+msgid "\n"
+"        When web developers think of storing anything about the user, they immediately think of uploading to the server. HTML5 changes that, as there are now several technologies allowing the app to save data on the client device. It might also be sync'd back to the server, or it might only ever stay on the client: that's down to you, the developer.\n"
 "      "
-msgstr ""
-"ウェブ デベロッパーがユーザーに関するデータを保存しようとする場合、これまでは"
-"サーバーにアップロードするのが普通でした。しかし、HTML5 ではこの概念が変わり"
-"ます。現在ではさまざまな技術によってアプリのデータをクライアント端末に保存す"
-"ることができ、さらにデータをサーバーと同期することも、クライアントのみで保存"
-"することも、デベロッパーの思いのままです。"
+msgstr "\n"
+"        ウェブ デベロッパーがユーザーに関するデータを保存しようとする場合、これまではサーバーにアップロードするのが普通でした。しかし、HTML5 ではこの概念が変わります。現在ではさまざまな技術によってアプリのデータをクライアント端末に保存することができます。さらにデータをサーバーと同期することも、クライアントのみで保存することも、デベロッパーの思いのままです。"
 
 #: content/features/storage.html:21
-#, fuzzy
-msgid ""
-"\n"
-"        There are several reasons to use client-side storage. First, you can "
-"make your app work when the user is offline, possibly sync'ing data back "
-"once the network is connected again. Second, it's a performance booster; you "
-"can show a large corpus of data as soon as the user clicks on to your site, "
-"instead of waiting for it to download again. Third, it's an easier "
-"programming model, with no server infrastructure required. Of course, the "
-"data is more vulnerable and the user can't access it from multiple clients, "
-"so you should only use it for non-critical data, in particular cached "
-"versions of data that's also \"in the cloud\". See <a href=\"/tutorials/"
-"offline/whats-offline/\">\"Offline\": What does it mean and why should I "
-"care?</a> for a general discussion of offline technologies, of which client-"
-"side storage is one component.\n"
+msgid "\n"
+"        There are several reasons to use client-side storage. First, you can make your app work when the user is offline, possibly sync'ing data back once the network is connected again. Second, it's a performance booster; you can show a large corpus of data as soon as the user clicks on to your site, instead of waiting for it to download again. Third, it's an easier programming model, with no server infrastructure required. Of course, the data is more vulnerable and the user can't access it from multiple clients, so you should only use it for non-critical data, in particular cached versions of data that's also \"in the cloud\". See <a href=\"/tutorials/offline/whats-offline/\">\"Offline\": What does it mean and why should I care?</a> for a general discussion of offline technologies, of which client-side storage is one component.\n"
 "      "
-msgstr ""
-"クライアントサイド ストレージを使用する理由はいくつかあります。1 つ目の理由"
-"は、ユーザーがオフラインのときでもアプリを動作させられることです。ネットワー"
-"クに再度接続した際にデータを同期することもできます。2 つ目の理由は、パフォー"
-"マンスを高められることです。ユーザーがクリックしてサイトにアクセスしたとき"
-"に、再ダウンロードに時間をかけることなく大きいサイズのデータを表示できます。"
-"3 つ目の理由は、これがサーバー基盤を必要としない簡易なプログラミング モデルで"
-"あることです。ただし、データは脆弱性がより高く、ユーザーは複数のクライアント"
-"からデータにアクセスできないため、重要度が高くないデータにしか使用できません"
-"（「クラウド内」にも存在するようなキャッシュ データなどが特に当てはまりま"
-"す）。クライアントサイド ストレージはオフライン技術の 1 コンポーネントです。"
-"オフライン技術については、<a href=\"/tutorials/offline/whats-offline/\">「オ"
-"フライン」の意味と「オフライン」に注目する理由</a>をご覧ください。"
+msgstr "\n"
+"        クライアントサイド ストレージを使用する理由は複数あります。1 つ目の理由は、ユーザーがオフラインのときでもアプリを実行できることです。ネットワークに再度接続した際にデータを同期することもできます。2 つ目の理由は、パフォーマンスを改善できることです。ユーザーがクリックしてサイトにアクセスしたときに、再ダウンロードに時間をかけることなく大量のデータを表示できます。3 つ目の理由は、これがサーバー基盤を必要としないプログラミングしやすいモデルであることです。ただし、データは脆弱性がより高く、ユーザーは複数のクライアントからデータにアクセスできないため、重要度が高くないデータにしか使用できません（「クラウド内」にも存在するようなデータのキャッシュに特に適しています）。クライアントサイド ストレージはオフライン技術の 1 コンポーネントです。オフライン技術については、<a href=\"/tutorials/offline/whats-offline/\">「オフライン」の意味と「オフライン」に注目する理由</a>をご覧ください。"
 
 #: content/features/storage.html:31
-msgid ""
-"While Web SQL Database is supported in Chrome, Safari &amp; Opera, Firefox "
-"and IE are unlikely to support it any time soon (Mozilla is <a href=\"http://"
-"hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-"
-"indexeddb/\">philosophically opposed</a>). Indexed Database has an early "
-"implementation in Firefox 4.0 Beta and Chrome dev channel. There's a good "
-"chance all browsers will support it in the future, but that's not yet clear."
-msgstr ""
-"Web SQL Database は、Chrome、Safari、Opera でサポートされていますが、Firefox "
-"と IE では現在のところサポートの見込みはありません（Mozilla は<a href="
-"\"http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-"
-"to-indexeddb/\">理念的に反対の立場を表明</a>しています（リンク先は英語））。"
-"Indexed Database は、Firefox 4.0 ベータ版と Chrome dev チャンネル版で初期の実"
-"装が行われています。今後すべてのブラウザでサポートされる可能性は十分にありま"
-"すが、現時点ではまだ不明です。"
+msgid "While Web SQL Database is supported in Chrome, Safari &amp; Opera, Firefox and IE are unlikely to support it any time soon (Mozilla is <a href=\"http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/\">philosophically opposed</a>). Indexed Database has an early implementation in Firefox 4.0 Beta and Chrome dev channel. There's a good chance all browsers will support it in the future, but that's not yet clear."
+msgstr "Web SQL Database は、Chrome、Safari、Opera でサポートされていますが、Firefox と IE では現在のところサポートの見込みはありません（Mozilla は<a href=\"http://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/\">理念的に反対の立場を表明</a>しています（リンク先は英語））。Indexed Database は、Firefox 4.0 ベータ版と Chrome dev チャンネル版で初期の実装が行われています。今後すべてのブラウザでサポートされる可能性は十分にありますが、現時点ではまだ不明です。"
 
 #: content/features/storage.html:46
-#, fuzzy
-msgid ""
-"<a href=\"http://dev.w3.org/html5/webstorage/\">Web Storage</a> simply "
-"provides a key-value mapping, e.g. <code>localStorage[\"name\"] = username;</"
-"code>.  Unfortunately, present implementations only support string-to-string "
-"mappings, so you need to serialise and de-serialise other data structures. "
-"You can do so using <code>JSON.stringify()</code> and <code>JSON.parse()</"
-"code>."
-msgstr ""
-"<a href=\"http://dev.w3.org/html5/webstorage/\">Web Storage</a>（リンク先は英"
-"語）: <code>localStorage[\"name\"] = username;</code> のような Key-Value マッ"
-"ピングを提供します。現在の実装では文字列から文字列へのマッピングしかサポート"
-"していないため、その他のデータ構造はシリアライズ/デシリアライズする必要があり"
-"ます。これには <code>JSON.stringify()</code> と <code>JSON.parse()</code> を"
-"使用できます。"
+msgid "<a href=\"http://dev.w3.org/html5/webstorage/\">Web Storage</a> simply provides a key-value mapping, e.g. <code>localStorage[\"name\"] = username;</code>.  Unfortunately, present implementations only support string-to-string mappings, so you need to serialise and de-serialise other data structures. You can do so using <code>JSON.stringify()</code> and <code>JSON.parse()</code>."
+msgstr "<a href=\"http://dev.w3.org/html5/webstorage/\">ウェブ ストレージ</a>（リンク先は英語）は、<code>localStorage[\"name\"] = username;</code> のような Key-Value マッピングを提供します。ただし、現在の実装では文字列から文字列へのマッピングしかサポートされていないため、その他のデータ構造はシリアライズ/デシリアライズする必要があります。これには <code>JSON.stringify()</code> と <code>JSON.parse()</code> を使用できます。"
 
 #: content/features/storage.html:47
-msgid ""
-"<a href=\"http://dev.w3.org/html5/webdatabase/\">Web SQL Database</a> gives "
-"you all the power - and effort - of a structured SQL relational database."
-msgstr ""
-"<a href=\"http://dev.w3.org/html5/webdatabase/\">Web SQL Database</a>（リンク"
-"先は英語）: 構造化 SQL リレーショナル データベースのすべての機能（と取り組"
-"み）を提供します。"
+msgid "<a href=\"http://dev.w3.org/html5/webdatabase/\">Web SQL Database</a> gives you all the power - and effort - of a structured SQL relational database."
+msgstr "<a href=\"http://dev.w3.org/html5/webdatabase/\">Web SQL Database</a>（リンク先は英語）: 構造化 SQL リレーショナル データベースのすべての機能（と取り組み）を提供します。"
 
 #: content/features/storage.html:48
-msgid ""
-"<a href=\"http://www.w3.org/TR/IndexedDB/\">Indexed Database</a> is "
-"somewhere in between Web Storage and Web SQL Database. Like Web Storage, "
-"it's a straightforward key-value mapping, but it supports indexes like those "
-"of relational databases, so searching objects matching a particular field is "
-"fast; you don't have to manually iterate through every object in the store."
-msgstr ""
-"<a href=\"http://www.w3.org/TR/IndexedDB/\">Indexed Database</a>（リンク先は"
-"英語）: Web Storage と Web SQL Database の間に位置付けられるものです。Web "
-"Storage のように単純な Key-Value マッピングを行いつつ、リレーショナル データ"
-"ベースのようなインデックスもサポートするため、特定フィールドに一致するオブ"
-"ジェクトをすばやく検索できます。ストア内のオブジェクト 1 つ 1 つに手動で同じ"
-"ことを繰り返す必要はありません。"
+msgid "<a href=\"http://www.w3.org/TR/IndexedDB/\">Indexed Database</a> is somewhere in between Web Storage and Web SQL Database. Like Web Storage, it's a straightforward key-value mapping, but it supports indexes like those of relational databases, so searching objects matching a particular field is fast; you don't have to manually iterate through every object in the store."
+msgstr "<a href=\"http://www.w3.org/TR/IndexedDB/\">Indexed Database</a>（リンク先は英語）: Web Storage と Web SQL Database の間に位置付けられるものです。Web Storage のように単純な Key-Value マッピングを行いつつ、リレーショナル データベースのようなインデックスもサポートするため、特定フィールドに一致するオブジェクトをすばやく検索できます。ストア内のオブジェクト 1 つ 1 つに手動で同じことを繰り返す必要はありません。"
 
 #: content/features/storage.html:49
-msgid ""
-"<a href=\"http://www.w3.org/TR/FileAPI/\">File Access</a> is an API for "
-"reading file content in JavaScript. Given a set of files the user has added "
-"to a \"file\" input element, you can read the content of the file or "
-"reference it as a URL, e.g. if the user has specified an image file, you can "
-"show the image. There are also proposals underway for file writing "
-"capabilities."
-msgstr ""
-"<a href=\"http://www.w3.org/TR/FileAPI/\">File Access</a>（リンク先は英語）"
-"は、JavaScript でファイルの内容を読み取るための API です。ユーザーが input 要"
-"素の「file」としてファイル セットを追加している場合、この API を使ってファイ"
-"ルの内容を読み取ったり URL として参照したりできます。たとえばユーザーが画像"
-"ファイルを指定した場合は、この API を使って画像を表示できます。ファイルの書き"
-"込み機能についても、現在提案が進行中です。"
+msgid "<a href=\"http://www.w3.org/TR/FileAPI/\">File Access</a> is an API for reading file content in JavaScript. Given a set of files the user has added to a \"file\" input element, you can read the content of the file or reference it as a URL, e.g. if the user has specified an image file, you can show the image. There are also proposals underway for file writing capabilities."
+msgstr "<a href=\"http://www.w3.org/TR/FileAPI/\">File Access</a>（リンク先は英語）は、JavaScript でファイルの内容を読み取るための API です。ユーザーが input 要素の「file」としてファイル セットを追加している場合、この API を使ってファイルの内容を読み取ったり URL として参照したりできます。たとえばユーザーが画像ファイルを指定した場合は、この API を使って画像を表示できます。ファイルの書き込み機能についても、現在提案が進行中です。"
 
 #: content/features/storage.html:52
-msgid ""
-"For a detailed comparison of client-side storage techniques with code demos, "
-"see our <a href=\"/tutorials/offline/storage/\">Client-Side Storage</a> "
-"article."
-msgstr ""
-"クライアントサイド ストレージ手法について詳しくは、<a href=\"/tutorials/"
-"offline/storage/\">クライアントサイド ストレージ</a>をご覧ください。ここでは"
-"各種手法を比較し、コード デモも記載しています。"
+msgid "For a detailed comparison of client-side storage techniques with code demos, see our <a href=\"/tutorials/offline/storage/\">Client-Side Storage</a> article."
+msgstr "クライアントサイド ストレージ手法について詳しくは、<a href=\"/tutorials/offline/storage/\">クライアントサイド ストレージ</a>をご覧ください。ここでは各種手法を比較し、コード デモも記載しています。"
 
 #: content/features/storage.html:92
 msgid "Mark Pilgrim dives into using the storage APIs."
@@ -2375,12 +1723,8 @@ msgid "Mozilla Developer Center on IndexedDB."
 msgstr "IndexedDB に関する Mozilla Developer Network の記事です。"
 
 #: content/features/storage.html:104
-msgid ""
-"Creating a todo list manager using localStorage, app cache and offline "
-"events."
-msgstr ""
-"localStorage、アプリケーション キャッシュ、オフライン イベントを使用して "
-"TODO リスト マネージャを作成します。"
+msgid "Creating a todo list manager using localStorage, app cache and offline events."
+msgstr "localStorage、アプリケーション キャッシュ、オフライン イベントを使用して TODO リスト マネージャを作成します。"
 
 #: content/features/storage.html:108
 msgid "Mozilla explains its views on Web SQL Database and Indexed Database"
@@ -2388,23 +1732,21 @@ msgstr "Mozilla の Web SQL Database と Indexed Database に対する見解で�
 
 #: content/mobile/index.html:70
 msgid "Frameworks"
-msgstr ""
+msgstr "フレームワーク"
 
 #: content/mobile/index.html:89
 msgid "Development Tools"
-msgstr ""
+msgstr "開発ツール"
 
 #: content/mobile/index.html:109
 msgid "Compatibility"
-msgstr ""
+msgstr "互換性"
 
 #: content/mobile/index.html:120
-#, fuzzy
 msgid "Inspiration"
-msgstr "縮小化"
+msgstr "インスピレーション"
 
 #: content/tutorials/index.html:76
-#, fuzzy
 msgid "Filtering by tag"
 msgstr "タグで絞り込み"
 
@@ -2434,11 +1776,8 @@ msgstr "エンティティが不適切な数字で使用されています（win
 
 #: html5lib/constants.py:25
 #, python-format
-msgid ""
-"Numeric entity couldn't be converted to character (codepoint U+%(charAsInt)"
-"08x)."
-msgstr ""
-"数値エンティティを文字（符号位置 U+%(charAsInt)08x）に変換できませんでした。"
+msgid "Numeric entity couldn't be converted to character (codepoint U+%(charAsInt)08x)."
+msgstr "数値エンティティを文字（符号位置 U+%(charAsInt)08x）に変換できませんでした。"
 
 #: html5lib/constants.py:28
 #, python-format
@@ -2474,12 +1813,8 @@ msgid "Expected tag name. Got '>' instead."
 msgstr "タグ名が必要です。「>」を検出しました。"
 
 #: html5lib/constants.py:45
-msgid ""
-"Expected tag name. Got '?' instead. (HTML doesn't support processing "
-"instructions.)"
-msgstr ""
-"タグ名が必要ですが、「?」を検出しました（HTML では処理命令はサポートされませ"
-"ん）。"
+msgid "Expected tag name. Got '?' instead. (HTML doesn't support processing instructions.)"
+msgstr "タグ名が必要ですが、「?」を検出しました（HTML では処理命令はサポートされません）。"
 
 #: html5lib/constants.py:48
 msgid "Expected tag name. Got something else instead"
@@ -2520,9 +1855,7 @@ msgstr "タグで重複している属性をドロップしました。"
 
 #: html5lib/constants.py:66
 msgid "Unexpected end of file. Expected = or end of tag."
-msgstr ""
-"予期せずファイルの終わり（EOF）に到達しました。= またはタグの終わりを想定して"
-"いました。"
+msgstr "予期せずファイルの終わり（EOF）に到達しました。= またはタグの終わりを想定していました。"
 
 #: html5lib/constants.py:68
 msgid "Unexpected end of file. Expected attribute value."
@@ -2655,9 +1988,7 @@ msgstr "ルート要素（省略）の後に予期しない終了タグ（%(name
 #: html5lib/constants.py:130
 #, python-format
 msgid "Unexpected end of file. Expected end tag (%(name)s)."
-msgstr ""
-"予期せずファイルの終わり（EOF）に到達しました。終了タグ（%(name)s）が必要で"
-"す。"
+msgstr "予期せずファイルの終わり（EOF）に到達しました。終了タグ（%(name)s）が必要です。"
 
 #: html5lib/constants.py:132
 msgid "Unexpected start tag head in existing head. Ignored."
@@ -2671,9 +2002,7 @@ msgstr "予期しない終了タグ（%(name)s）があります。無視しま�
 #: html5lib/constants.py:136
 #, python-format
 msgid "Unexpected start tag (%(name)s) that can be in head. Moved."
-msgstr ""
-"予期しない開始タグ（%(name)s）です。head 内に指定できるタグであり、移動しまし"
-"た。"
+msgstr "予期しない開始タグ（%(name)s）です。head 内に指定できるタグであり、移動しました。"
 
 #: html5lib/constants.py:138
 #, python-format
@@ -2693,15 +2022,12 @@ msgstr "終了タグ（%(name)s）がありません。"
 #: html5lib/constants.py:144
 #, python-format
 msgid "Unexpected start tag (%(startName)s) implies end tag (%(endName)s)."
-msgstr ""
-"予期しない開始タグ（%(startName)s）です。終了タグ（%(endName)s）が省略されて"
-"います。"
+msgstr "予期しない開始タグ（%(startName)s）です。終了タグ（%(endName)s）が省略されています。"
 
 #: html5lib/constants.py:147
 #, python-format
 msgid "Unexpected start tag (%(originalName)s). Treated as %(newName)s."
-msgstr ""
-"予期しない開始タグ（%(originalName)s）です。%(newName)s として扱います。"
+msgstr "予期しない開始タグ（%(originalName)s）です。%(newName)s として扱います。"
 
 #: html5lib/constants.py:149
 #, python-format
@@ -2716,22 +2042,17 @@ msgstr "予期しない開始タグ（%(name)s）です。無視しました。"
 #: html5lib/constants.py:153
 #, python-format
 msgid "Unexpected end tag (%(gotName)s). Missing end tag (%(expectedName)s)."
-msgstr ""
-"予期しない終了タグ（%(gotName)s）です。終了タグ（%(expectedName)s）がありませ"
-"ん。"
+msgstr "予期しない終了タグ（%(gotName)s）です。終了タグ（%(expectedName)s）がありません。"
 
 #: html5lib/constants.py:156
 #, python-format
 msgid "End tag (%(name)s) seen too early. Expected other end tag."
-msgstr ""
-"終了タグ（%(name)s）を想定より早く検出しました。別の終了タグが必要です。"
+msgstr "終了タグ（%(name)s）を想定より早く検出しました。別の終了タグが必要です。"
 
 #: html5lib/constants.py:158
 #, python-format
 msgid "Unexpected end tag (%(gotName)s). Expected end tag (%(expectedName)s)."
-msgstr ""
-"予期しない終了タグ（%(gotName)s）です。終了タグ（%(expectedName)s）が必要で"
-"す。"
+msgstr "予期しない終了タグ（%(gotName)s）です。終了タグ（%(expectedName)s）が必要です。"
 
 #: html5lib/constants.py:160
 #, python-format
@@ -2740,36 +2061,23 @@ msgstr "終了タグ（%(name)s）を想定より早く検出しました。無�
 
 #: html5lib/constants.py:162
 #, python-format
-msgid ""
-"End tag (%(name)s) violates step 1, paragraph 1 of the adoption agency "
-"algorithm."
-msgstr ""
-"終了タグ（%(name)s）は、養子縁組アルゴリズムの手順 1、段落 1 に違反していま"
-"す。"
+msgid "End tag (%(name)s) violates step 1, paragraph 1 of the adoption agency algorithm."
+msgstr "終了タグ（%(name)s）は、養子縁組アルゴリズムの手順 1、段落 1 に違反しています。"
 
 #: html5lib/constants.py:165
 #, python-format
-msgid ""
-"End tag (%(name)s) violates step 1, paragraph 2 of the adoption agency "
-"algorithm."
-msgstr ""
-"終了タグ（%(name)s）は、養子縁組アルゴリズムの手順 1、段落 2 に違反していま"
-"す。"
+msgid "End tag (%(name)s) violates step 1, paragraph 2 of the adoption agency algorithm."
+msgstr "終了タグ（%(name)s）は、養子縁組アルゴリズムの手順 1、段落 2 に違反しています。"
 
 #: html5lib/constants.py:168
 #, python-format
-msgid ""
-"End tag (%(name)s) violates step 1, paragraph 3 of the adoption agency "
-"algorithm."
-msgstr ""
-"終了タグ（%(name)s）は、養子縁組アルゴリズムの手順 1、段落 3 に違反していま"
-"す。"
+msgid "End tag (%(name)s) violates step 1, paragraph 3 of the adoption agency algorithm."
+msgstr "終了タグ（%(name)s）は、養子縁組アルゴリズムの手順 1、段落 3 に違反しています。"
 
 #: html5lib/constants.py:171
 #, python-format
 msgid "Unexpected end tag (%(originalName)s). Treated as %(newName)s."
-msgstr ""
-"予期しない終了タグ（%(originalName)s）です。%(newName)s として処理しました。"
+msgstr "予期しない終了タグ（%(originalName)s）です。%(newName)s として処理しました。"
 
 #: html5lib/constants.py:173
 #, python-format
@@ -2784,14 +2092,11 @@ msgstr "in table フェーズに予期しない終了タグ（%(name)s）の省�
 #: html5lib/constants.py:177
 #, python-format
 msgid "Unexpected implied end tag (%(name)s) in the table body phase."
-msgstr ""
-"in table body フェーズに予期しない終了タグ（%(name)s）の省略があります。"
+msgstr "in table body フェーズに予期しない終了タグ（%(name)s）の省略があります。"
 
 #: html5lib/constants.py:179
 msgid "Unexpected non-space characters in table context caused voodoo mode."
-msgstr ""
-"表のコンテキストにスペース以外の予期しない文字があります。voodoo モードになり"
-"ました。"
+msgstr "表のコンテキストにスペース以外の予期しない文字があります。voodoo モードになりました。"
 
 #: html5lib/constants.py:182
 msgid "Unexpected input with type hidden in table context."
@@ -2804,22 +2109,17 @@ msgstr "表のコンテキストに予期しない form があります。"
 #: html5lib/constants.py:186
 #, python-format
 msgid "Unexpected start tag (%(name)s) in table context caused voodoo mode."
-msgstr ""
-"表のコンテキストに予期しない開始タグ（%(name)s）があります。voodoo モードにな"
-"りました。"
+msgstr "表のコンテキストに予期しない開始タグ（%(name)s）があります。voodoo モードになりました。"
 
 #: html5lib/constants.py:189
 #, python-format
 msgid "Unexpected end tag (%(name)s) in table context caused voodoo mode."
-msgstr ""
-"表のコンテキストに予期しない終了タグ（%(name)s）があります。voodoo モードにな"
-"りました。"
+msgstr "表のコンテキストに予期しない終了タグ（%(name)s）があります。voodoo モードになりました。"
 
 #: html5lib/constants.py:192
 #, python-format
 msgid "Unexpected table cell start tag (%(name)s) in the table body phase."
-msgstr ""
-"in table body フェーズに、予期しない表セル開始タグ（%(name)s）があります。"
+msgstr "in table body フェーズに、予期しない表セル開始タグ（%(name)s）があります。"
 
 #: html5lib/constants.py:195
 #, python-format
@@ -2829,9 +2129,7 @@ msgstr "必須の終了タグがないまま、表セルの終了タグ（%(name
 #: html5lib/constants.py:198
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the table body phase. Ignored."
-msgstr ""
-"in table body フェーズに、予期しない終了タグ（%(name)s）があります。無視しま"
-"した。"
+msgstr "in table body フェーズに、予期しない終了タグ（%(name)s）があります。無視しました。"
 
 #: html5lib/constants.py:200
 #, python-format
@@ -2841,16 +2139,11 @@ msgstr "表の in row フェーズに予期しない終了タグ（%(name)s）�
 #: html5lib/constants.py:202
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the table row phase. Ignored."
-msgstr ""
-"表の in row フェーズに予期しない終了タグ（%(name)s）があります。無視しまし"
-"た。"
+msgstr "表の in row フェーズに予期しない終了タグ（%(name)s）があります。無視しました。"
 
 #: html5lib/constants.py:204
-msgid ""
-"Unexpected select start tag in the select phase treated as select end tag."
-msgstr ""
-"in select フェーズに予期しない select 開始タグがあります。select 終了タグとし"
-"て扱います。"
+msgid "Unexpected select start tag in the select phase treated as select end tag."
+msgstr "in select フェーズに予期しない select 開始タグがあります。select 終了タグとして扱います。"
 
 #: html5lib/constants.py:207
 msgid "Unexpected input start tag in the select phase."
@@ -2859,31 +2152,22 @@ msgstr "in select フェーズに予期しない input 開始タグがありま�
 #: html5lib/constants.py:209
 #, python-format
 msgid "Unexpected start tag token (%(name)s in the select phase. Ignored."
-msgstr ""
-"in select フェーズに予期しない開始タグ トークン（%(name)s）があります。無視し"
-"ました。"
+msgstr "in select フェーズに予期しない開始タグ トークン（%(name)s）があります。無視しました。"
 
 #: html5lib/constants.py:212
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the select phase. Ignored."
-msgstr ""
-"in select フェーズに予期しない終了タグ（%(name)s）があります。無視しました。"
+msgstr "in select フェーズに予期しない終了タグ（%(name)s）があります。無視しました。"
 
 #: html5lib/constants.py:214
 #, python-format
-msgid ""
-"Unexpected table element start tag (%(name)s) in the select in table phase."
-msgstr ""
-"in select in table フェーズに、予期しない table 要素開始タグ（%(name)s）があ"
-"ります。"
+msgid "Unexpected table element start tag (%(name)s) in the select in table phase."
+msgstr "in select in table フェーズに、予期しない table 要素開始タグ（%(name)s）があります。"
 
 #: html5lib/constants.py:216
 #, python-format
-msgid ""
-"Unexpected table element end tag (%(name)s) in the select in table phase."
-msgstr ""
-"in select in table フェーズに、予期しない table 要素終了タグ（%(name)s）があ"
-"ります。"
+msgid "Unexpected table element end tag (%(name)s) in the select in table phase."
+msgstr "in select in table フェーズに、予期しない table 要素終了タグ（%(name)s）があります。"
 
 #: html5lib/constants.py:218
 msgid "Unexpected non-space characters in the after body phase."
@@ -2892,14 +2176,12 @@ msgstr "after body フェーズにスペース以外の予期しない文字が�
 #: html5lib/constants.py:220
 #, python-format
 msgid "Unexpected start tag token (%(name)s) in the after body phase."
-msgstr ""
-"after body フェーズに予期しない開始タグ トークン（%(name)s）があります。"
+msgstr "after body フェーズに予期しない開始タグ トークン（%(name)s）があります。"
 
 #: html5lib/constants.py:223
 #, python-format
 msgid "Unexpected end tag token (%(name)s) in the after body phase."
-msgstr ""
-"after body フェーズに予期しない終了タグ トークン（%(name)s）があります。"
+msgstr "after body フェーズに予期しない終了タグ トークン（%(name)s）があります。"
 
 #: html5lib/constants.py:226
 msgid "Unepxected characters in the frameset phase. Characters ignored."
@@ -2908,42 +2190,30 @@ msgstr "in frameset フェーズに予期しない文字があります。文字
 #: html5lib/constants.py:228
 #, python-format
 msgid "Unexpected start tag token (%(name)s) in the frameset phase. Ignored."
-msgstr ""
-"in frameset フェーズに予期しない開始タグ トークン（%(name)s）があります。無視"
-"しました。"
+msgstr "in frameset フェーズに予期しない開始タグ トークン（%(name)s）があります。無視しました。"
 
 #: html5lib/constants.py:231
 msgid "Unexpected end tag token (frameset) in the frameset phase (innerHTML)."
-msgstr ""
-"in frameset フェーズ（innerHTML）に予期しない終了タグ トークン（frameset）が"
-"あります。"
+msgstr "in frameset フェーズ（innerHTML）に予期しない終了タグ トークン（frameset）があります。"
 
 #: html5lib/constants.py:234
 #, python-format
 msgid "Unexpected end tag token (%(name)s) in the frameset phase. Ignored."
-msgstr ""
-"in frameset フェーズに予期しない終了タグ トークン（%(name)s）があります。無視"
-"しました。"
+msgstr "in frameset フェーズに予期しない終了タグ トークン（%(name)s）があります。無視しました。"
 
 #: html5lib/constants.py:237
 msgid "Unexpected non-space characters in the after frameset phase. Ignored."
-msgstr ""
-"after frameset フェーズにスペース以外の予期しない文字があります。無視しまし"
-"た。"
+msgstr "after frameset フェーズにスペース以外の予期しない文字があります。無視しました。"
 
 #: html5lib/constants.py:240
 #, python-format
 msgid "Unexpected start tag (%(name)s) in the after frameset phase. Ignored."
-msgstr ""
-"after frameset フェーズに予期しない開始タグ（%(name)s）があります。無視しまし"
-"た。"
+msgstr "after frameset フェーズに予期しない開始タグ（%(name)s）があります。無視しました。"
 
 #: html5lib/constants.py:243
 #, python-format
 msgid "Unexpected end tag (%(name)s) in the after frameset phase. Ignored."
-msgstr ""
-"after frameset フェーズに予期しない終了タグ（%(name)s）があります。無視しまし"
-"た。"
+msgstr "after frameset フェーズに予期しない終了タグ（%(name)s）があります。無視しました。"
 
 #: html5lib/constants.py:246
 msgid "Unexpected end tag after body(innerHtml)"
@@ -2951,23 +2221,17 @@ msgstr "body の後（innerHtml）に予期しない終了タグがあります"
 
 #: html5lib/constants.py:248
 msgid "Unexpected non-space characters. Expected end of file."
-msgstr ""
-"スペース以外の予期しない文字があります。ファイルの終わり（EOF）を想定していま"
-"した。"
+msgstr "スペース以外の予期しない文字があります。ファイルの終わり（EOF）を想定していました。"
 
 #: html5lib/constants.py:250
 #, python-format
 msgid "Unexpected start tag (%(name)s). Expected end of file."
-msgstr ""
-"予期しない開始タグ（%(name)s）です。ファイルの終わり（EOF）を想定していまし"
-"た。"
+msgstr "予期しない開始タグ（%(name)s）です。ファイルの終わり（EOF）を想定していました。"
 
 #: html5lib/constants.py:253
 #, python-format
 msgid "Unexpected end tag (%(name)s). Expected end of file."
-msgstr ""
-"予期しない終了タグ（%(name)s）です。ファイルの終わり（EOF）を想定していまし"
-"た。"
+msgstr "予期しない終了タグ（%(name)s）です。ファイルの終わり（EOF）を想定していました。"
 
 #: html5lib/constants.py:256
 msgid "Unexpected end of file. Expected table content."
@@ -2975,18 +2239,15 @@ msgstr "予期せずファイルの終わり（EOF）に到達しました。表
 
 #: html5lib/constants.py:258
 msgid "Unexpected end of file. Expected select content."
-msgstr ""
-"予期せずファイルの終わり（EOF）に到達しました。select の内容が必要です。"
+msgstr "予期せずファイルの終わり（EOF）に到達しました。select の内容が必要です。"
 
 #: html5lib/constants.py:260
 msgid "Unexpected end of file. Expected frameset content."
-msgstr ""
-"予期せずファイルの終わり（EOF）に到達しました。frameset の内容が必要です。"
+msgstr "予期せずファイルの終わり（EOF）に到達しました。frameset の内容が必要です。"
 
 #: html5lib/constants.py:262
 msgid "Unexpected end of file. Expected script content."
-msgstr ""
-"予期せずファイルの終わり（EOF）に到達しました。script の内容が必要です。"
+msgstr "予期せずファイルの終わり（EOF）に到達しました。script の内容が必要です。"
 
 #: html5lib/constants.py:264
 #, python-format
@@ -3064,8 +2325,7 @@ msgstr "データが空の %(type)s トークンです"
 #: html5lib/filters/lint.py:72
 #, python-format
 msgid "Non-space character(s) found in SpaceCharacters token: %(token)r"
-msgstr ""
-"SpaceCharacters トークンにスペース以外の文字が見つかりました: %(token)r"
+msgstr "SpaceCharacters トークンにスペース以外の文字が見つかりました: %(token)r"
 
 #: html5lib/filters/lint.py:77
 #, python-format
@@ -3125,68 +2385,43 @@ msgid "Oops!! We didn't find any HTML<sub>5</sub> resources here."
 msgstr "HTML<sub>5</sub> のリソースは見つかりませんでした。"
 
 #: templates/article_footer.html:5
-#, fuzzy
-msgid ""
-"\n"
-"    Except as otherwise <a href=\"http://code.google.com/policies."
-"html#restrictions\">noted</a>, the content of this page is licensed under "
-"the <a href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons "
-"Attribution 3.0 License</a>, and code samples are licensed under the <a href="
-"\"http://www.apache.org/licenses/LICENSE-2.0\">Apache 2.0 License</a>.\n"
+msgid "\n"
+"    Except as otherwise <a href=\"http://code.google.com/policies.html#restrictions\">noted</a>, the content of this page is licensed under the <a href=\"http://creativecommons.org/licenses/by/3.0/\">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href=\"http://www.apache.org/licenses/LICENSE-2.0\">Apache 2.0 License</a>.\n"
 "  "
-msgstr ""
-"特に<a href=\"http://code.google.com/intl/ja/policies.html#restrictions\">記"
-"載</a>のない限り、このページのコンテンツは<a href=\"http://creativecommons."
-"org/licenses/by/3.0/deed.ja\">クリエイティブ・コモンズの表示 3.0 ライセンス</"
-"a>により使用許諾されます。<br>サンプル コードは <a href=\"http://www.apache."
-"org/licenses/LICENSE-2.0\">Apache 2.0 ライセンス</a>（リンク先は英語）により"
-"使用許諾されます。"
+msgstr "\n"
+"    特に<a href=\"http://code.google.com/policies.html#restrictions\">記載</a>のない限り、このページのコンテンツは<a href=\"http://creativecommons.org/licenses/by/3.0/deed.ja\">クリエイティブ・コモンズの表示 3.0 ライセンス</a>により使用許諾されます。サンプル コードは <a href=\"http://www.apache.org/licenses/LICENSE-2.0\">Apache 2.0 ライセンス</a>（リンク先は英語）により使用許諾されます。"
 
 #: templates/article_footer.html:17
 msgid "Please enable JavaScript to view the comments powered by Disqus."
 msgstr "Disqus によるコメントを表示するには、JavaScript を有効にしてください。"
 
 #: templates/base.html:27
-msgid ""
-"A resource for developers looking to put HTML5 to use today, including "
-"information on specific features and when to use them in your apps."
-msgstr ""
-"HTML5 を今すぐ使用することを検討しているデベロッパー向けリソースです。具体的"
-"な機能の情報や、アプリでの機能の使用について確認できます。"
+msgid "A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps."
+msgstr "HTML5 を今すぐ使用することを検討しているデベロッパー向けリソースです。具体的な機能の情報や、アプリでの機能の使用について確認できます。"
 
 #: templates/base.html:28
-#, fuzzy
-msgid ""
-"html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,"
-"geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,"
-"audio,video,drag and drop,chrome,sse,mobile"
-msgstr ""
-"html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,"
-"geolocation,web workers,apppcache,file api,filereader,offline,audio,video,"
-"drag and drop,chrome"
+msgid "html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile"
+msgstr "html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile"
 
 #: templates/base.html:31
-#, fuzzy
 msgid "HTML5Rocks RSS"
-msgstr "HTML5Rocks"
+msgstr "HTML5Rocks RSS"
 
 #: templates/base.html:73
 msgid "Updates &amp; Tutorials"
-msgstr ""
+msgstr "最新情報&amp;チュートリアル"
 
 #: templates/base.html:74
-#, fuzzy
 msgid "Slides"
-msgstr "スプライト"
+msgstr "スライド"
 
 #: templates/base.html:76
 msgid "Who We Are"
-msgstr ""
+msgstr "投稿者について"
 
 #: templates/base.html:78 templates/base.html.py:89
-#, fuzzy
 msgid "Search"
-msgstr "検索結果"
+msgstr "検索"
 
 #: templates/base.html:89
 msgid "HTML5Rocks"
@@ -3198,7 +2433,7 @@ msgstr "HTML5Rocks"
 #: templates/base.html.py:301 templates/base.html:312
 #: templates/base.html.py:324
 msgid "Intro"
-msgstr ""
+msgstr "はじめに"
 
 #: templates/base.html:227 templates/base.html.py:238 templates/base.html:249
 #: templates/base.html.py:260 templates/base.html:271
@@ -3228,7 +2463,7 @@ msgstr "手法"
 
 #: templates/base.html:318
 msgid "Further Reading"
-msgstr ""
+msgstr "その他の情報"
 
 #: templates/base.html:367
 msgid "HTML5 Logo"
@@ -3259,12 +2494,8 @@ msgid "Made by Google"
 msgstr "Google により作成"
 
 #: templates/base.html:378
-msgid ""
-"This site contains information on APIs that are not part of the W3C HTML5 "
-"specification."
-msgstr ""
-"このサイトには、W3C HTML5 仕様の一部ではない API に関する情報も含まれていま"
-"す。"
+msgid "This site contains information on APIs that are not part of the W3C HTML5 specification."
+msgstr "このサイトには、W3C HTML5 仕様の一部ではない API に関する情報も含まれています。"
 
 #: templates/base.html:450
 msgid "A new version of this site is available. Load it?"
@@ -3273,12 +2504,12 @@ msgstr "このサイトの新しいバージョンをご利用いただけます
 #: templates/tutorial.html:26
 #, python-format
 msgid "Published <strong>%(tut.publication_date)s</strong>"
-msgstr ""
+msgstr "公開日: <strong>%(tut.publication_date)s</strong>"
 
 #: templates/tutorial.html:27
 #, python-format
 msgid "Updated <strong>%(tut.update_date)s</strong>"
-msgstr ""
+msgstr "更新日: <strong>%(tut.update_date)s</strong>"
 
 #: templates/tutorial.html:35
 msgid "HTML5 Powered"
@@ -3292,31 +2523,25 @@ msgstr "サポートされているブラウザ:"
 #: templates/tutorial.html:68 templates/tutorial.html.py:78
 #: templates/tutorial.html:88
 msgid "supported"
-msgstr ""
+msgstr "対応済み"
 
 #: templates/tutorial.html:50 templates/tutorial.html.py:60
 #: templates/tutorial.html:70 templates/tutorial.html.py:80
 #: templates/tutorial.html:90
 msgid "unsupported"
-msgstr ""
+msgstr "未対応"
 
 #: templates/tutorial.html:55
 msgid "Internet Explorer"
-msgstr ""
+msgstr "Internet Explorer"
 
 #: templates/tutorial.html:99
-#, fuzzy
 msgid "Your browser may not support all of the functionality in this article."
-msgstr ""
-"ご使用のブラウザは、この記事で使用している機能すべてに対応していない可能性が"
-"あります。"
+msgstr "ご使用のブラウザは、この記事で使用している機能の一部に対応していない可能性があります。"
 
 #: templates/tutorial.html:104
-#, fuzzy
-msgid ""
-"Your browser appears to support all of the functionality in this article."
-msgstr ""
-"ご使用のブラウザは、この記事で使用しているすべての機能に対応しています。"
+msgid "Your browser appears to support all of the functionality in this article."
+msgstr "ご使用のブラウザは、この記事で使用しているすべての機能に対応しています。"
 
 #: templates/tutorial.html:111
 msgid "Leave a comment"
@@ -3324,577 +2549,4 @@ msgstr "コメント募集中"
 
 #: templates/tutorial.html:134
 msgid "Table of Contents"
-msgstr ""
-
-#~ msgid "<span>Interactive</span> Presentation"
-#~ msgstr "<span>対話操作ができる</span>プレゼンテーション"
-
-#~ msgid "Watch the slideshow that lets you play with HTML5 features."
-#~ msgstr "スライドショーで HTML5 の各種機能を操作できます。"
-
-#~ msgid "<span>Code</span> Playground"
-#~ msgstr "<span>コード</span> 実験広場"
-
-#~ msgid "Jump headfirst into HTML5 by experimenting with each API."
-#~ msgstr "HTML5 の各 API を実際にお試しください。"
-
-#~ msgid "<span>Samples</span> Studio"
-#~ msgstr "<span>サンプル</span> スタジオ"
-
-#~ msgid "A showroom of content that you can reuse in your own site."
-#~ msgstr "サイトで再利用できるコンテンツを紹介しています。"
-
-#~ msgid "<span>Step by Step</span> Tutorials"
-#~ msgstr "<span>ステップ バイ ステップ</span> チュートリアル"
-
-#~ msgid "Take a guided tour through code that uses HTML5 features."
-#~ msgstr "HTML5 の機能を使ったコードについて学ぶことができます。"
-
-#~ msgid "Learn by Major HTML5 Feature Groups"
-#~ msgstr "分野別の HTML5 機能の紹介"
-
-#~ msgid "Articles"
-#~ msgstr "記事"
-
-#~ msgid "learn more about %(category)s."
-#~ msgstr "%(category)sについて詳しく知る"
-
-#~ msgid "View all related HTML5Rocks tutorials"
-#~ msgstr "関連する HTML5 Rocks チュートリアルをすべて見る"
-
-#~ msgid "Text"
-#~ msgstr "テキスト"
-
-#~ msgid "read more about %(category)s."
-#~ msgstr "%(category)sについて読む"
-
-#~ msgid "learn how to use %(category)s."
-#~ msgstr "%(category)sの使い方を学ぶ"
-
-#~ msgid "View all related HTML5Rocks tutorials</a> &rArr;"
-#~ msgstr "関連する HTML5 Rocks チュートリアルをすべて見る</a> &rArr;"
-
-#~ msgid "see %(category)s in action"
-#~ msgstr "%(category)sの実際の動作を見る"
-
-#~ msgid "who is using %(category)s?"
-#~ msgstr "%(category)sの活用先"
-
-#~ msgid "learn from the best, explore the potential"
-#~ msgstr "最良事例から学び、可能性を探る"
-
-#~ msgid "loading browser support data..."
-#~ msgstr "ブラウザのサポート データを読み込んでいます..."
-
-#~ msgid "MyFeature"
-#~ msgstr "MyFeature"
-
-#~ msgid "\n"
-#~ msgstr "\n"
-
-#~ msgid "2D Canvas"
-#~ msgstr "2D canvas"
-
-#~ msgid "WebGL"
-#~ msgstr "WebGL"
-
-#~ msgid "SVG"
-#~ msgstr "SVG"
-
-#~ msgid "3D CSS transforms"
-#~ msgstr "3D CSS 変形"
-
-#~ msgid "SMIL"
-#~ msgstr "SMIL"
-
-#~ msgid ""
-#~ "Not every browser supports transforms, transitions and 3d transforms.  "
-#~ "Check <a href=\"http://caniuse.com/#feat=css3\">current browser support "
-#~ "for CSS3 on caniuse.com</a>. Chrome specific details can be found on the "
-#~ "<a href=\"http://dev.chromium.org/developers/web-platform-status\">Chrome "
-#~ "Platform Status</a>."
-#~ msgstr ""
-#~ "ブラウザによっては、変形、トランジション、3D 変形はサポートされません。ブ"
-#~ "ラウザごとの現在の CSS3 サポート状況については、<a href=\"http://caniuse."
-#~ "com/#feat=css3\">caniuse.com</a>（英語）でご確認いただけます。Chrome 固有"
-#~ "の詳細情報については、<a href=\"http://dev.chromium.org/developers/web-"
-#~ "platform-status\">Chrome プラットフォームの状況</a>をご覧ください。"
-
-#~ msgid "The technologies are:"
-#~ msgstr "クライアントサイド ストレージ技術には次のものがあります:"
-
-#~ msgid "Learn how to leverage HTML5 in mobile"
-#~ msgstr "モバイルで HTML5 を活用する方法"
-
-#~ msgid "View all HTML5Rocks mobile tutorials"
-#~ msgstr "HTML5 Rocks モバイルのチュートリアルをすべて見る"
-
-#~ msgid "A collection of useful references"
-#~ msgstr "役に立つ参考資料"
-
-#~ msgid "Currently filtering by tag"
-#~ msgstr "次のタグに該当する記事を表示しています:"
-
-#~ msgid "Case Study: Converting Wordico from Flash to HTML5"
-#~ msgstr "実装例: Wordico を Flash から HTML5 に変換する"
-
-#~ msgid "By:"
-#~ msgstr "作成者:"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn how we converted our <a href=\"https://chrome.google.com/"
-#~ "webstore/detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl\">Wordico</a>\n"
-#~ "        crossword game from Flash to HTML5.\n"
-#~ "      "
-#~ msgstr ""
-#~ "<a href=\"https://chrome.google.com/webstore/detail/"
-#~ "ehehfnkgbccpcjmfhdkbeakkpibbcfdl\">Wordico</a> がクロスワードパズル ゲーム"
-#~ "を Flash から HTML5 にどのように変換したか、ご確認ください。"
-
-#~ msgid "View tutorial"
-#~ msgstr "チュートリアルを見る"
-
-#~ msgid "\\"
-#~ msgstr "\\"
-
-#~ msgid ""
-#~ "\n"
-#~ "        A guide on how to create a mobile version of an existing HTML5 "
-#~ "website. This study\n"
-#~ "        looks at what was required to make html5rocks.com friendly to "
-#~ "mobile users.\n"
-#~ "      "
-#~ msgstr ""
-#~ "既存の HTML5 ウェブサイトのモバイル版を作成する方法に関するガイドです。こ"
-#~ "の記事では、html5rocks.com をモバイル ユーザーにとって使いやすいサイトにす"
-#~ "るために何が必要だったかを説明しています。"
-
-#~ msgid "Typographic effects in canvas"
-#~ msgstr "canvas のタイポグラフィ効果"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Effects in &lt;canvas&gt;; inner/outer shadows, neon-glows, "
-#~ "reflections, space-age, pattern/gradient overlays, stereoscopic imaging, "
-#~ "and other text/vector-effects&hellip;\n"
-#~ "      "
-#~ msgstr ""
-#~ "内側/外側のシャドウ、ネオン、反転、残像、パターン/グラデーション オーバー"
-#~ "レイ、立体画像処理、その他のテキスト/ベクター効果など、&lt;canvas&gt; の特"
-#~ "殊効果を紹介します。"
-
-#~ msgid "Improving the Performance of your HTML5 App"
-#~ msgstr "HTML5 アプリのパフォーマンスを高める"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Optimization strategies and techniques for HTML5 applications.\n"
-#~ "      "
-#~ msgstr "HTML5 アプリケーションを最適化するための対策や手法を紹介します。"
-
-#~ msgid "Case Study: Onslaught! Arena"
-#~ msgstr "実装例: Onslaught! Arena"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn how <a href=\"https://chrome.google.com/webstore/detail/"
-#~ "khodnfbkbanejphecblcofbghjdgfaih\">Onslaught! Arena</a>\n"
-#~ "        created their fast-paced, arcade-style medieval fantasy shoot 'em "
-#~ "up.\n"
-#~ "      "
-#~ msgstr ""
-#~ "ゲームセンターにあるようなテンポの速い中世ファンタジー シューティング ゲー"
-#~ "ムを <a href=\"https://chrome.google.com/webstore/detail/"
-#~ "khodnfbkbanejphecblcofbghjdgfaih\">Onslaught! Arena</a> がどのように作成し"
-#~ "たか、ご確認ください。"
-
-#~ msgid "No Tears Guide to HTML5 Games"
-#~ msgstr "HTML5 ゲーム成功ガイド"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Building an HTML5 game using <code>&lt;canvas&gt;</code>, the no "
-#~ "tears way.\n"
-#~ "      "
-#~ msgstr ""
-#~ "<code>&lt;canvas&gt;</code> を使用して HTML5 ゲームを作成する確実な方法を"
-#~ "紹介します。"
-
-#~ msgid "Case Study: HTML5 MathBoard"
-#~ msgstr "実装例: HTML5 の MathBoard"
-
-#~ msgid ""
-#~ "\n"
-#~ "        A discussion on how the iPad's popular <a href=\"https://chrome."
-#~ "google.com/webstore/detail/elcilkmmbpmchojdmdohhoalmfmkcklk\">MathBoard</"
-#~ "a>\n"
-#~ "        application was ported to HTML5.\n"
-#~ "      "
-#~ msgstr ""
-#~ "iPad で人気が高い<a href=\"https://chrome.google.com/webstore/detail/"
-#~ "elcilkmmbpmchojdmdohhoalmfmkcklk\">MathBoard</a> アプリケーションを HTML5 "
-#~ "に移植した方法についての考察です。"
-
-#~ msgid "Case Study: Page Flip Effect from 20thingsilearned.com"
-#~ msgstr "実装例: 20thingsilearned.com のページめくり効果"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn how to re-create the page flip effect found on\n"
-#~ "        <a href=\"http://www.20thingsilearned.com\">20thingsilearned.com</"
-#~ "a> using the Canvas API.\n"
-#~ "      "
-#~ msgstr ""
-#~ "<a href=\"http://www.20thingsilearned.com\">20thingsilearned.com</a> のよ"
-#~ "うなページめくり効果を canvas API を使用して再現する方法を紹介します。"
-
-#~ msgid "Exploring the FileSystem APIs"
-#~ msgstr "FileSystem API について知る"
-
-#~ msgid ""
-#~ "\n"
-#~ "        The FileSystem APIs give applications the ability to read/write "
-#~ "files and directories\n"
-#~ "        in a secure, sandboxed file system on a user's local machine.\n"
-#~ "      "
-#~ msgstr ""
-#~ "FileSystem API により、アプリケーションでは、ユーザーのローカル マシン上の"
-#~ "保護されサンドボックス化されたファイル システムに対してファイルやディレク"
-#~ "トリの読み取り/書き込みを行うことができます。"
-
-#~ msgid "A Simple TODO list using HTML5 IndexedDB"
-#~ msgstr "HTML5 の IndexedDB を使用した簡単な TODO リスト"
-
-#~ msgid ""
-#~ "\n"
-#~ "        IndexedDB represents the future of query-able client-side "
-#~ "storage.  This\n"
-#~ "        tutorial presents a real world application implementing the "
-#~ "basics of\n"
-#~ "        the IndexedDB API.\n"
-#~ "      "
-#~ msgstr ""
-#~ "IndexedDB はクエリに対応したこれからのクライアントサイド ストレージです。"
-#~ "このチュートリアルでは、基本的な IndexedDB API を実装するアプリケーション"
-#~ "を実例付きで紹介します。"
-
-#~ msgid "Case Study: Getting Entangled with HTML5 Canvas"
-#~ msgstr "実装例: HTML5 canvas を使用して Entanglement を作成する"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Entanglement is a puzzle game made by Gopherwood Studios. This "
-#~ "article talks about Entanglement's\n"
-#~ "        usage of the &lt;canvas&gt; tag.\n"
-#~ "      "
-#~ msgstr ""
-#~ "Entanglement は Gopherwood Studios が作成したパズルゲームです。この記事で"
-#~ "は、Entanglement での　&lt;canvas&gt; タグの使い方について説明します。"
-
-#~ msgid "Stream Updates with Server-Sent Events"
-#~ msgstr "Server-Sent Events を使用したストリーム更新"
-
-#~ msgid ""
-#~ "\n"
-#~ "        The EventSource API is designed for receiving push notifications "
-#~ "from a server,\n"
-#~ "        removing the need for client-size XHR polling.\n"
-#~ "      "
-#~ msgstr ""
-#~ "EventSource API はサーバーからプッシュ通知を受け取れるように設計されてお"
-#~ "り、クライアントサイドの XHR ポーリングが不要になります。"
-
-#~ msgid "Introducing WebSockets: Bringing Sockets to the Web"
-#~ msgstr "WebSocket の導入: ウェブにソケットを実装する"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn how to use WebSockets to add low latency bidirectional "
-#~ "client-server communication to your web app.\n"
-#~ "      "
-#~ msgstr ""
-#~ "WebSocket を使用して、待ち時間の少ないクライアント/サーバー双方向通信を"
-#~ "ウェブ アプリに追加する方法を紹介します。"
-
-#~ msgid "Quick hits with the Flexible Box Model"
-#~ msgstr "フレキシブル ボックス モデルを使ってみる"
-
-#~ msgid ""
-#~ "\n"
-#~ "        An introduction to <q>flexbox</q>, an alternative <abbr title="
-#~ "\"Cascading Style Sheets\">CSS</abbr> layout scheme based on vboxes and "
-#~ "hboxes.\n"
-#~ "      "
-#~ msgstr ""
-#~ "vbox/hbox に基づいた代替の <abbr title=\"Cascading Style Sheets\">CSS</"
-#~ "abbr> レイアウト スキーム、<q>Flexbox</q> について紹介します。"
-
-#~ msgid "Client-Side Storage"
-#~ msgstr "クライアントサイド ストレージ"
-
-#~ msgid ""
-#~ "\n"
-#~ "        An overview of client-side storage techniques: Web Storage (local/"
-#~ "session storage), Web SQL Database,\n"
-#~ "        Indexed Database, FileSystem.\n"
-#~ "      "
-#~ msgstr ""
-#~ "クライアントサイドのストレージ手法（Web Storage（ローカル/セッション スト"
-#~ "レージ）、Web SQL Database、Indexed Database、FileSystem）の概要を紹介しま"
-#~ "す。"
-
-#~ msgid "Native HTML5 Drag and Drop"
-#~ msgstr "ネイティブ HTML5 ドラッグ＆ドロップ"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Drag-and-drop is yet another first class citizen in HTML5! This "
-#~ "article\n"
-#~ "        explains how to enhance your web applications by adding native "
-#~ "DnD functionality.\n"
-#~ "      "
-#~ msgstr ""
-#~ "ドラッグ＆ドロップも HTML5 の主要機能の 1 つです。この記事では、ネイティ"
-#~ "ブ ドラッグ＆ドロップ機能を追加してウェブ アプリケーションを強化する方法に"
-#~ "ついて説明します。"
-
-#~ msgid "Case Study: HTML5 in deviantART muro"
-#~ msgstr "実装例: deviantART muro の HTML5"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn how deviantART used HTML5 drawing features in deviantART "
-#~ "muro.\n"
-#~ "      "
-#~ msgstr ""
-#~ "deviantART が deviantART muro に HTML5 の描画機能を導入した経緯について紹"
-#~ "介します。"
-
-#~ msgid "View article"
-#~ msgstr "記事を見る"
-
-#~ msgid "Case Study: Drag and Drop Download in Chrome"
-#~ msgstr "実装例: Chrome でのドラッグ＆ドロップによるダウンロード"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn how Box.net implemented GMail's attachment drag and drop to "
-#~ "the desktop.\n"
-#~ "      "
-#~ msgstr ""
-#~ "Gmail からデスクトップへの添付ファイルのドラッグ＆ドロップ機能を Box.net "
-#~ "がどのように実装したか、ご確認ください。"
-
-#~ msgid "3D and CSS"
-#~ msgstr "3D と CSS"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn how to build exciting 3D user interfaces using the power of "
-#~ "CSS.\n"
-#~ "      "
-#~ msgstr ""
-#~ "CSS を活用して、魅力的な 3D ユーザー インターフェースを作成する方法を紹介"
-#~ "します。"
-
-#~ msgid "HTML5 Video"
-#~ msgstr "HTML5 の動画"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Video is one of the most interesting and widely supported "
-#~ "features of HTML5.\n"
-#~ "        This tutorial covers the mechanics of incorporating native video "
-#~ "into your site\n"
-#~ "        (without a plugin) and gives interesting examples of using the "
-#~ "&lt;video&gt; tag.\n"
-#~ "      "
-#~ msgstr ""
-#~ "動画は HTML5 の中でも特に注目を集めサポートが進んでいる機能です。この"
-#~ "チュートリアルでは、プラグインを使用しないでサイトにネイティブ動画を組み込"
-#~ "む仕組みについて説明し、&lt;video&gt; タグを使った面白いサンプルを紹介しま"
-#~ "す。"
-
-#~ msgid ""
-#~ "\n"
-#~ "        A discussion of what it means to take an application \"offline\" "
-#~ "and the options available\n"
-#~ "        to developers for doing so.\n"
-#~ "      "
-#~ msgstr ""
-#~ "アプリケーションを「オフライン」にする意義についての考察と、デベロッパーが"
-#~ "オフラインに対応する際の選択肢について記載しています。"
-
-#~ msgid "Quick guide to webfonts via @font-face"
-#~ msgstr "@font-face によるウェブフォント実装クイックガイド"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Webfonts give new typographic freedom to designers while "
-#~ "retaining scalability and accessibility.\n"
-#~ "      "
-#~ msgstr ""
-#~ "ウェブフォントは、デザイナーにこれまでにないタイポグラフィの自由をもたらし"
-#~ "ます。しかも拡張性や使いやすさはそのままです。"
-
-#~ msgid "Auditing Your Web App For Speed"
-#~ msgstr "ウェブ アプリの速度を検証する"
-
-#~ msgid ""
-#~ "\n"
-#~ "        The Audit Panel is an excellent tool for examining latency in "
-#~ "your web apps. It offers customized recommendations to\n"
-#~ "        enhance performance and reduce latency.\n"
-#~ "      "
-#~ msgstr ""
-#~ "監査パネルは、ウェブ アプリの待ち時間を調べる優れたツールです。パフォーマ"
-#~ "ンスを高め、待ち時間を短縮するためのヒントを、カスタマイズした方法で確認で"
-#~ "きます。"
-
-#~ msgid "The Basics of Web Workers"
-#~ msgstr "ウェブ ワーカーの基本"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Web Workers are a means of spawning background scripts in your "
-#~ "application,\n"
-#~ "        giving thread-like message passing for handling computationally "
-#~ "intensive tasks.\n"
-#~ "      "
-#~ msgstr ""
-#~ "ウェブ ワーカーはアプリケーションでバックグラウンドの実行スクリプトを生成"
-#~ "する手段となります。スレッド形式でメッセージの受け渡しを行い、集中的な計算"
-#~ "処理が要求されるタスクに対応します。"
-
-#~ msgid "Introduction to Chrome Developer Tools, Part One"
-#~ msgstr "Chrome デベロッパー ツールの概要（パート 1）"
-
-#~ msgid ""
-#~ "\n"
-#~ "        An introduction to the tools available in Google Chrome that make "
-#~ "a developer's life easier!\n"
-#~ "      "
-#~ msgstr ""
-#~ "デベロッパーに役立つ、Google Chrome で使用できるツールを紹介します。"
-
-#~ msgid "Best Practices for a Faster Web App with HTML5"
-#~ msgstr "HTML5 で高速ウェブ アプリを実現するためのヒント"
-
-#~ msgid ""
-#~ "\n"
-#~ "        How to effectively use features from HTML5 to improve the "
-#~ "performance and responsiveness of your app.\n"
-#~ "      "
-#~ msgstr ""
-#~ "HTML5 の機能を効果的に活用してアプリのパフォーマンスと反応速度を改善する方"
-#~ "法を紹介します。"
-
-#~ msgid "A Beginner's Guide to Using the Application Cache"
-#~ msgstr "アプリケーション キャッシュを初めて使う"
-
-#~ msgid ""
-#~ "\n"
-#~ "        A step-by-step guide to taking your web app offline using the "
-#~ "application cache APIs.\n"
-#~ "      "
-#~ msgstr ""
-#~ "アプリケーション キャッシュ API を使用してウェブ アプリをオフラインで動作"
-#~ "させるための手順ガイドです。"
-
-#~ msgid "Practical Guide to Take Your TODO List Offline"
-#~ msgstr "オフライン TODO リスト作成のための実用ガイド"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Expanding on the <a href=\"/%(LANGUAGE_CODE)s/tutorials/"
-#~ "webdatabase/todo/\">simple TODO list</a>, this tutorial\n"
-#~ "        gives a practical guide for taking the sample offline using the "
-#~ "application cache.\n"
-#~ "      "
-#~ msgstr ""
-#~ "このチュートリアルでは、<a href=\"/%(LANGUAGE_CODE)s/tutorials/"
-#~ "webdatabase/todo/\">簡単な TODO リスト</a>を素材に、アプリケーション "
-#~ "キャッシュを使用してサンプル コードをオフラインで動作させる具体的な方法を"
-#~ "紹介します。"
-
-#~ msgid "Reading files in JavaScript using the File APIs"
-#~ msgstr "JavaScript で File API を使用してファイルを読み取る"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Starter guide for using the File/FileList/FileReader APIs to "
-#~ "process\n"
-#~ "        and read binary files in JavaScript.\n"
-#~ "      "
-#~ msgstr ""
-#~ "File/FileList/FileReader API を使用し、JavaScript でバイナリ ファイルの処"
-#~ "理と読み取りを行うためのスタート ガイドです。"
-
-#~ msgid "A Simple Trip Meter using the Geolocation API"
-#~ msgstr "Geolocation API を使用した簡単な距離メーター"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn how to implement geolocation very quickly including a "
-#~ "distance calculator\n"
-#~ "      "
-#~ msgstr ""
-#~ "距離メーターを含め、Geolocation を簡単に実装する方法について紹介します。"
-
-#~ msgid "Using the Notifications API"
-#~ msgstr "Notifications API を使用する"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn the notification basics creating a twitter notification\n"
-#~ "      "
-#~ msgstr "Twitter 通知の作成を通じて、通知の基本を学ぶことができます。"
-
-#~ msgid "A Simple TODO list using HTML5 WebDatabases"
-#~ msgstr "HTML5 の Web Database を使用した簡単な TODO リスト"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Create a TODO list which persists data using a client side "
-#~ "database.\n"
-#~ "      "
-#~ msgstr ""
-#~ "クライアントサイド データベースを使用してデータを維持する TODO リストを作"
-#~ "成します。"
-
-#~ msgid "Quick Guide to Implementing the HTML5 Audio Tag"
-#~ msgstr "HTML5 の audio タグの実装に関するクイック ガイド"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Learn how to use the HTML5 audio tag and fall back to Flash on\n"
-#~ "        platforms which do not support it.\n"
-#~ "      "
-#~ msgstr ""
-#~ "HTML5 の audio タグの使用方法と、このタグをサポートしないプラットフォーム"
-#~ "における Flash での代用方法を紹介します。"
-
-#~ msgid "HTML5 Rocks Logo"
-#~ msgstr "HTML5 Rocks ロゴ"
-
-#~ msgid "HTML"
-#~ msgstr "HTML"
-
-#~ msgid "Rocks"
-#~ msgstr "Rocks"
-
-#~ msgid "Playground"
-#~ msgstr "実験広場"
-
-#~ msgid "Studio"
-#~ msgstr "スタジオ"
-
-#~ msgid "Search HTML5Rocks"
-#~ msgstr "HTML5Rocks 内を検索"
-
-#~ msgid "Case Studies"
-#~ msgstr "実装例"
-
-#~ msgid "Supported mobile browsers:"
-#~ msgstr "対応モバイル ブラウザ:"
+msgstr "目次"
