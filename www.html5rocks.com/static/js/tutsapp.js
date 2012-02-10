@@ -200,12 +200,6 @@ function initializeFilters(tag_str) {
 var times = 0;
 function filterTag(opt_tag) {
   var e = window.event;
-
-  // Don't perform another filter if we're initiated from a hashchange.
-  if (e && e.type == 'hashchange') {
-    return;
-  }
-
   console.log('called: ' + ++times);
 
   var samples = $('.tutorial_listing');
@@ -295,7 +289,9 @@ function filterTag(opt_tag) {
 
   if (filter_arr.length) {
     var filter_str = filter_arr.join(',');
-    window.location.hash = filter_str;
+    // Changes location.hash by pushState()
+	window.history.pushState(null, document.tittle,
+	    [window.location.pathname, '#', filter_str].join(''));
     $('#filter_tag').text(filter_str);
     $('#filter').parent().removeClass('hidden');
   } else {
