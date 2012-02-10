@@ -398,10 +398,6 @@
       window.addEventListener('load', function(e) {
         setTimeout(function() { window.scrollTo(0, 1); }, 1);
       }, false);
-    {% else %}
-      window.addEventListener('load', function(e) {
-        window.scroll(0, 0);
-      }, false);
     {% endif %}
 
     $('#features_show a').click(function() {
