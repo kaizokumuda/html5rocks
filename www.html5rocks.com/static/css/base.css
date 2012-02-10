@@ -2906,7 +2906,12 @@ pre.prettyprint
   background: #fff;
   margin: 1em;
   padding: 1em;
-  border-left: 3px solid #eee;
+  border-left: 3px solid #5fa4a0;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+
+pre.prettyprint:hover {
+  border-color: #f04530;
 }
 
 pre.prettyprint.small
