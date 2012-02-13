@@ -36,9 +36,15 @@ handlers:
   static_files: webappfieldguide/static/\1
   upload: webappfieldguide/static/(.*\.(html|txt|xml|png|ico))
 
+- url: /webappfieldguide
+  static_files: webappfieldguide/index/index.html
+  upload: webappfieldguide/index/index.html
+
 - url: /webappfieldguide/(.*)
   static_files: webappfieldguide/index/index.html
   upload: webappfieldguide/index/index.html
+
+
 
 # Server appropriate mimetype for certain static content.
 
