@@ -320,9 +320,13 @@ track.removeCue(activeCue);
 </div>
 
 <script>
+(function(){
+
 var video = document.querySelector('div#eric video');
 var span1 = document.querySelector('div#eric > div :first-child');
 var span2 = document.querySelector('div#eric > div :last-of-type');
+
+if (!video.textTracks) return;
 
 var track = video.textTracks[0];
 track.mode = TextTrack.HIDDEN;
@@ -349,7 +353,10 @@ track.oncuechange = function(e) {
 
     idx = ++idx % 2;
   }
+
 };
+
+})();
 </script>
 
 <p>This example uses the <code>getCueAsHTML()</code> method, which returns an HTML version of each cue, converting from WebVTT format to an HTML <code>DocumentFragment</code> using the WebVTT cue text <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#webvtt-cue-text-parsing-rules" title="WebVTT cue text parsing rules documentation">parsing</a> and <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#webvtt-cue-text-dom-construction-rules" title="WebVTT cue text DOM construction rule documentation">DOM construction</a> rules. Use the <code>text</code> property of a cue if you just want to get the raw text value of the cue as it is in the <code>src</code> file.</p>

@@ -3169,6 +3169,7 @@ section.disqus
     padding: 0;
     width: inherit;
     height: inherit;
+    opacity: 1 !important; /* to ignore the fadeToggle on wide-display treatment */
   }
 
   nav.outline.toc
@@ -3187,6 +3188,8 @@ section.disqus
     -ms-box-shadow: none;
     -o-box-shadow: none;
     box-shadow: none;
+    opacity: 1 !important; /* to ignore the fadeToggle on wide-display treatment */
+    display: block !important; /* to ignore the fadeToggle on wide-display treatment */
   }
 
   nav.outline.toc a
