@@ -28,13 +28,14 @@
               transition: all 0.3s ease-out;
     }
 
-    .video iframe, .video div[data-embed] img { width: 475px; height: 400px;}
-    .video div[data-embed] img  { height: 356px; }
-    .video { margin-right: 15px; }
-    .video,
-    .video + .slides  { display: inline-block; }
+    body .video iframe,
+    body .video div[data-embed] img  { width: 475px; height: 400px; }
+    body .video div[data-embed] img  {               height: 356px; }
+    body .video { margin-right: 15px; }
+    body .video,
+    body .video + .slides  { display: inline-block; }
 
-    article { padding: 20px 10px; margin: 0 -10px; border-top: 1px solid hsl(0, 0%, 90%);}
+    article { padding: 20px 0 20px 10px; margin: 0 -10px; border-top: 1px solid hsl(0, 0%, 90%);}
     article.even { background: hsl(0, 0%, 95%);}
 
     .slides { vertical-align: top; }
