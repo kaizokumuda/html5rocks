@@ -2,7 +2,7 @@
 var AJAXIFY_SITE = false;
 
 // Navigation highlighting.
-$('.main nav ul li a').click(function() {
+$('.main nav').on('click','ul li a', function() {
   $('.main nav .current').removeClass('current');
   if (AJAXIFY_SITE) {
     $(this).addClass('current');
@@ -10,9 +10,11 @@ $('.main nav ul li a').click(function() {
   setTimeout("$('.watermark').css('top', '30px')", 1000);
 });
 
-$('.subheader.features ul li a').click(function() {
+$('.subheader.features').on('click','ul li a', function() {
   $('.main nav .current').removeClass('current');
-  setTimeout("$('.watermark').css('top', '30px')", 1000);
+  setTimeout(function(){
+    $('.watermark').css('top', '30px')
+  }, 1000);
 });
 
 
@@ -128,7 +130,8 @@ $('.outline_nav_toggle').click(function(e) {
 });
 
 // A feature is clicked.
-$('nav.features_outline a.section_title').click(function(e) {
+$('nav.features_outline').on('click','a.section_title', function(e) {
+
   if ($(this).parent('li').hasClass('current')) {
     $(this).parent('li').removeClass('current');
     $(this).siblings('ul').slideUp('fast');
@@ -138,7 +141,9 @@ $('nav.features_outline a.section_title').click(function(e) {
     $(this).parent('li').addClass('current');
     $(this).siblings('ul').slideDown('fast');
   }
+  
   e.stopPropagation();
+
 });
 
 // basic routing setup based on the global page variable

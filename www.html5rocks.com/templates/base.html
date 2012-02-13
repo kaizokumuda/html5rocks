@@ -43,8 +43,6 @@
   <script>window.jQuery || document.write('<script src="/static/js/jquery-1.7.1.min.js">\x3C/script>')</script>
   <script defer src="/static/js/jquery.scrollTo-min.js"></script>
 
-  <!-- defer is unreliable in ie <= 9, but o well -->
-  <script defer src="/static/js/app{% if prod %}.min{% endif %}.js"></script>
 
   <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css">
 
@@ -180,6 +178,7 @@
       <li><a class="previous" href="/{{LANGUAGE_CODE}}/gaming">{% trans "Gaming" %}</a></li>
     </ul>
   </nav>
+
 
   <nav class="paginator features">
     <ul class="offline">
@@ -474,6 +473,10 @@
 
 
   </script>
+
+  <!-- defer is unreliable in ie <= 9, but o well -->
+  <script defer src="/static/js/app{% if prod %}.min{% endif %}.js"></script>
+
   <script defer src="/static/js/search{% if prod %}.min{% endif %}.js"></script>
   <script defer src="/static/js/3rdpartyinit{% if prod %}.min{% endif %}.js"></script>
 </body>
