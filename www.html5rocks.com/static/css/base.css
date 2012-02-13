@@ -1111,7 +1111,7 @@ header.main h1
 .gsc-completion-container
 {
   border: 1px solid #4f4f4f;
-  margin-top: 8px;
+  margin-top: 8px!important; /* dont let widget override this */
 }
 
 .gsc-completion-container td
