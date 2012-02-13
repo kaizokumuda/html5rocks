@@ -57,39 +57,39 @@ window.tuts = {
     $.when( tuts.feeddfr.promise(), authorXHR, templateXHR )
      .done(tuts.compile);
 
-  }, // eo init() 
+  }, // eo init()
 
   compile : function(){
-      
+
       tuts.normalize();
 
       var html     = tuts.tmpl({ updates: tuts.feed.entries });
       $('#index').append(html);
 
       tuts.resort();
-      
+
   }, // eo compile()
 
   normalize : function(){
-    
+
     tuts.feed.entries = tuts.feed.entries.map(function(entry){
-      
+
       // author names (thx ERIC...)  :p
       if (entry.author == 'ebidelman') entry.author = 'ericbidelman';
       // okay on with the author names
       var authorentry = tuts.authors[entry.author];
       entry.fullname = authorentry.given_name + ' ' + authorentry.family_name;
 
-      // dates
-      var months = ["January", "February", "March", 
-                  "April", "May", "June", "July", "August", "September", 
-                  "October", "November", "December"];
-      var date = entry.date  = new Date(entry.publishedDate);
-      entry.formattedDateStr = months[date.getMonth()].slice(0,3) + 
-                               '. ' + date.getDate() + ', ' + 
+      var months = ["January", "February", "March",
+                    "April", "May", "June", "July", "August", "September",
+                    "October", "November", "December"];
+      var date = new Date(entry.publishedDate);
+      entry.date = date.toJSON().split('T')[0]; // 2012-01-01
+      entry.formattedDateStr = months[date.getMonth()].slice(0,3) +
+                               '. ' + date.getDate() + ', ' +
                                date.getFullYear();
 
-                            
+
       // tags
       entry.categories = entry.categories.map(function(cat){
         return cat.replace(/,/g,'').trim();
@@ -122,26 +122,25 @@ window.tuts = {
 
       return entry;
     });
-    
-      
+
+
   }, // eo normalize()
 
   resort : function(){
-    
+
     var entries = $('.tutorial_listing');
-    
+
     // always rely on sort returning what you want
-    entries = entries.each(function(i, entry){
+    entries = entries.each(function(i, entry) {
 
       // make real dates
       var date = new Date(entry.getAttribute('data-pubdate'));
-      $.data(entry, 'date', date);
+      //$.data(entry, 'date', date.toJSON());
+      $.data(entry, 'date', date); // Implicit date.toString().
 
-    }).get().sort(function(a,b){
-
+    }).get().sort(function(a, b) {
       // compare the dates
       return $.data(a,'date') > $.data(b,'date') ? -1 : 1;
-    
     });
 
     // hello DOM
@@ -201,12 +200,6 @@ function initializeFilters(tag_str) {
 var times = 0;
 function filterTag(opt_tag) {
   var e = window.event;
-
-  // Don't perform another filter if we're initiated from a hashchange.
-  if (e && e.type == 'hashchange') {
-    return;
-  }
-
   console.log('called: ' + ++times);
 
   var samples = $('.tutorial_listing');
@@ -245,7 +238,7 @@ function filterTag(opt_tag) {
   } else {
     tag_list = [];
   }
-  
+
   for (var i = 0; i < samples.length; i++) {
     var qualified = true;
     var sample = samples[i];
@@ -288,15 +281,17 @@ function filterTag(opt_tag) {
       }
       qualified = matched;
     }
-    
+
     if (qualified) {
       sample.classList.remove('hidden');
     }
   }
-  
+
   if (filter_arr.length) {
     var filter_str = filter_arr.join(',');
-    window.location.hash = filter_str;
+    // Changes location.hash by pushState()
+    window.history.pushState(null, document.title,
+        [window.location.pathname, '#', filter_str].join(''));
     $('#filter_tag').text(filter_str);
     $('#filter').parent().removeClass('hidden');
   } else {

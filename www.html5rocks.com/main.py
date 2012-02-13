@@ -336,9 +336,9 @@ class ContentHandler(webapp.RequestHandler):
            re.search('gaming/.+', relpath) or
            re.search('business/.+', relpath))
           and not is_feed):
-      # If no trailing / (e.g. /tutorials/blah/blah), append index.html file.
+      # If no trailing / (e.g. /tutorials/blah), redirect to /tutorials/blah/.
       if (relpath[-1] != '/' and not relpath.endswith('.html')):
-        path += '/index.html'
+        return self.redirect(self.request.url + '/')
 
       # Tutorials look like this on the filesystem:
       #
@@ -400,6 +400,7 @@ class ContentHandler(webapp.RequestHandler):
             if not (x.startswith('class:') or x.startswith('type:'))]
         tutorials[-1].type = resource_type
 
+        #TODO(ericbidelman): Probably don't need author for every result query.
         authors.append(r.author)
 
       # Remove duplicate authors from the list.

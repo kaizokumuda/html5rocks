@@ -23,8 +23,8 @@ name:
   given: Michael
   family: Mahemoff
 org:
-  name: Google
-  unit: Developer Relations
+  name: Freelance
+  unit: Web Developer
 address:
   locality: London
   region: London
@@ -679,3 +679,23 @@ homepage:
 google: 106092487728562764672
 twitter:
 email: hanrui@google.com
+
+---
+
+id: gman
+name:
+  given: Gregg
+  family: Tavares
+org:
+  name: Google
+  unit: Software Engineer
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
+homepage: http://games.greggman.com/game/
+google: 112274749534477530569
+twitter: 
+email:

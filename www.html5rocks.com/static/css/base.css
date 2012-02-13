@@ -20,6 +20,7 @@
                (orange)
 */
 
+/*
 @-webkit-keyframes jitter {
   0% {
     -webkit-transform: rotate(0deg) translateX(2px) ;
@@ -79,7 +80,7 @@
     -moz-transform: rotate(0deg);
   }
 }
-
+*/
 
 body ::-webkit-scrollbar {
   height: 16px;
@@ -246,25 +247,25 @@ body
     -moz-linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -moz-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
     -moz-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%) !important;*/
+  /*Opera doesn't implement background-size?
   background-image:
     -o-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -o-linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -o-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
-    -o-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%) !important;
-   background-image:
+    -o-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%) !important;*/
+  background-image:
     -ms-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -ms-linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     -ms-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
     -ms-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%) !important;
   -webkit-background-size: 3px 3px;
   /*-moz-background-size: 3px 3px;*/
-  -o-background-size: 3px 3px;
+  /*-o-background-size: 3px 3px; Opera doesn't implement this?*/
   -ms-background-size: 3px 3px;
   /*background-size: 3px 3px; Don't use b/c of FF*/
 }
 
 .pattern-bg-lighter,
-.flexbox-container article.feature > section,
 article.sectioned > section:not(#classes) {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE8AAABPCAYAAACqNJiGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUVFREE2QTFENjc3MTFFMDg0RDg4QURBN0E4NTA4NTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUVFREE2QTJENjc3MTFFMDg0RDg4QURBN0E4NTA4NTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGNTQwMEVFNkQ1OTUxMUUwODREODhBREE3QTg1MDg1NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1RUVEQTZBMEQ2NzcxMUUwODREODhBREE3QTg1MDg1NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pu1CJBoAAAVwSURBVHja7FwNb9s2FLRlO4kbtFuwrViHYgP2/3/TsHVtsqUfadOlTuKv+bQ878rqUSfJdj76CASiTN6JIXgUec90/+TP309/fP7LtLdKxy9+2/vp51+vkX998nJ09P3T2XC0t/z44WyAzx5/czSfTa/7Z29Ohz88e15i/nr5x6gOb/ffPX02KwaDpcqd8tXhcf3w7s1g72C8HD86XDThNj4Vj9RfLpevepFapSK6oEPnYcjaDeffvf57iKGK/MU/5wX+kL+6nPQxtKswHh7p7enJcDGf901a4Em5UR+4Kj4FjwSpTT5dlPe4mvRUbhVfynY+mx1jHsENCCyPyjZfGXFVPS/P+DoMc6fPVZ7ptS3XJuU5df9TzHldZMtDkfMYrixbkwk+s6GcYjy8SY2lYWXgZdl63Ao+bSuXAcvTjcet4pGGh4+fzO2G83hVF8V/dff3D5aWxxVlVRgPj3SA+5vhz2Wj0V5vcPN5jlvBp239jHt1PRC4VXzItqts7c1ibxce/jaUMXxtKOMzy6cYD5+WAe9xswQ9bg+flnFbU26eHjzuHL7svGt6MOe9tFjMe7PZtBKTw2OOskYBD566xHwqfrFY9KfTcuPQwxX3dc9h7ib4kG0X2bK0+O3IedTx6in4XL0ct/KcFJ/mFW7vOTl82Xlnb0/X2sfG1/Ln7/9fDkwmF338GQHKeHVeh0d6T8sBlZv50M46/PredggiN/NhXlPwIdswBm6x8+DHeZt8G8p4rfMGmesxHh5ZFd7uTXZsGuS4Uz7De22z3YK3sc9xGx/jc20L2YZs76Cfh+G7Cz8PEtmFnwfszvw81TPr6ufV+Yib9POaPif8vPDz7rGfNx4frofqNv08SGL8qLcTP+/Jt0fh58VS5aEtVbzQY245oS5V2nAr+HSpoXKnOx4F/8VSJRea4+WA95r38HXLBI9beU7dMkrhzi1bPHzMeV1ly69fznsxDPQ+y0TBmxx4OcBLDS9OwHwK3nYFvNQwCeZiGMyt4svOwzeC7Ibzbm+vXuPD4agSk8NjuNvwB56XMV5iPhVfFMUSSwxbauC+7jnM3QQfsu0iWzW8VxWOSzEePleWhveacqeYNm1Vuble2Xle6JDDexyOU0OPaXjQCx1yeC/HreDTtn7GvcLy0snjVvEh266y9cJ2TcJ7dfg6jBLWVPGcz7VJeU7d/1Rw6JDzXngPc8Dq1V5UYTw8EocOgV+boWpYU8DbMobNTN4hKGFNFR+yDWPgjhgDXjhuE6FH3tir3G1Cj7yxb8IdoceQ7T2VLb/dtunneWHNTft5alhzI35eG8+tjZ/XxnNr4+ep7Qs/L/y8B+LnsWe3TT/PvLNt+3nAepjw88LPe4B+nnlb2/bzrGwXfl6aDz8vdhj3qPOuEmkoZiiXKfhcPfWsRBM8z1lNz2Go+LLzLj6edzqHoeCRLleTbZdzGAq+7OSry/Wc1eYchoqPOS/mvFvsPDYz0zMZVYYj5h52FxR8amYCb3OYarQq+NTMxNW2eKrRquJDtiHbOyhblgYPZVW2jM/JjqWR41bwOdkBq0wJKj5kG7K9xc7zzlHkYhjKOYw0huGdo8jFCZRzGGkMwztHkYthKOcwKmMYl5NPx/s3piMqW96LE5RblsW8Z2WM8fBVZTAmjc+4U1yOO4fnMm6rF7fIcXv4mPM2aYayHHO/q+L99omHT+up3N5vn3j4KhNX4U75FHzZealT0DQpv8ViJmr69a0mid2OumQb+zaJzdC6FLINP+8O+HnsV23Tz8P8tQs/D9fw82KH8ZUZA7vw83K/fbJJPw9Y/hZY+Hkh2wfu5/EX/rbp56Wb7236eWk+/LyQbXTeV5H+FWAA7eqC0D2aO2cAAAAASUVORK5CYII=);
   background-color: white !important;
@@ -284,11 +285,14 @@ article.sectioned > section:not(#classes) {
     -moz-linear-gradient(-45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
     -moz-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%),
     -moz-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%); !important*/
+  /*
+  Opera doesn't implement background-size?
   background-image:
     -o-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
     -o-linear-gradient(-45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
     -o-linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%),
     -o-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%) !important;
+  */
    background-image:
     -ms-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
     -ms-linear-gradient(-45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%, transparent),
@@ -296,9 +300,15 @@ article.sectioned > section:not(#classes) {
     -ms-linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.03) 75%) !important;
   -webkit-background-size: 3px 3px;
   /*-moz-background-size: 3px 3px;*/
-  -o-background-size: 3px 3px;
+  /*-o-background-size: 3px 3px; Opera doesn't implement background-size?*/
   -ms-background-size: 3px 3px;
   /*background-size: 3px 3px; Don't use b/c of FF*/
+
+  -webkit-box-shadow: 1px 1px 10px #ccc;
+  -moz-box-shadow: 1px 1px 10px #ccc;
+  -ms-box-shadow: 1px 1px 10px #ccc;
+  -o-box-shadow: 1px 1px 10px #ccc;
+  box-shadow: 1px 1px 10px #ccc;
 }
 
 body[data-href='home'],
@@ -316,6 +326,20 @@ body[data-href='business'] {
   background-size: cover;
 }
 
+body[data-href='home'] .pattern-bg-lighter,
+body[data-href='mobile'] .pattern-bg-lighter,
+body[data-href='gaming'] .pattern-bg-lighter,
+body[data-href='business'] .pattern-bg-lighter,
+body[data-href='home'] article.sectioned > section:not(#classes),
+body[data-href='mobile'] article.sectioned > section:not(#classes),
+body[data-href='gaming'] article.sectioned > section:not(#classes),
+body[data-href='business'] article.sectioned > section:not(#classes) {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
 #updates_list li {
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -427,6 +451,7 @@ p
 a
 {
   -webkit-transition: color .2s;
+  -ms-transition: color .2s;
   -moz-transition: color .2s;
   -o-transition: color .2s;
   transition: color .2s;
@@ -889,6 +914,7 @@ div.one_half    { width: 50%; }
   text-transform: uppercase;
   -webkit-transition: all .1s ease-in-out;
   -moz-transition: all .1s ease-in-out;
+  -ms-transition: all .1s ease-in-out;
   -o-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
   display: inline-block;
@@ -1182,16 +1208,16 @@ header.main h1
   top: 30px;
   z-index: 2;
   padding: 20px;
-  opacity: .85;
+  opacity: 0.65;
   width: 68px;
   height: 116px;
   background-repeat: no-repeat;
   background-position: center;
-  -webkit-transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
-  -moz-transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
-  -ms-transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
-  -o-transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
-  transition: opacity 600ms ease-in-out, top 150ms ease-in-out;
+  -webkit-transition: opacity 300ms ease-in-out, top 150ms ease-in-out;
+  -moz-transition: opacity 300ms ease-in-out, top 150ms ease-in-out;
+  -ms-transition: opacity 300ms ease-in-out, top 150ms ease-in-out;
+  -o-transition: opacity 300ms ease-in-out, top 150ms ease-in-out;
+  transition: opacity 300ms ease-in-out, top 150ms ease-in-out;
 }
 
 .watermark
@@ -1230,6 +1256,7 @@ body[data-href='business'] .watermark
 .page {
   -webkit-transition: opacity 1s ease-in-out, margin-left .5s ease-in-out, top 1s ease-in-out;
   -moz-transition: opacity 1s ease-in-out, margin-left .5s ease-in-out, top 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out, margin-left .5s ease-in-out, top 1s ease-in-out;
   -o-transition: opacity 1s ease-in-out, margin-left .5s ease-in-out, top 1s ease-in-out;
   transition: opacity 1s ease-in-out, margin-left .5s ease-in-out, top 1s ease-in-out;
 }
@@ -1403,7 +1430,8 @@ body[data-href='home'] #logo
   width: 100%;
 }
 
-body[data-href='home'] #updates_badge /* The shaker. */
+/* removed
+body[data-href='home'] #updates_badge
 {
   cursor: pointer !important;
   position: absolute;
@@ -1419,7 +1447,18 @@ body[data-href='home'] #updates_badge /* The shaker. */
   -moz-animation-timing-function: ease-in-out;
   -moz-transform-origin: 50% 50%;
   -moz-animation-iteration-count: infinite;
+  -ms-animation-name: jitter;
+  -ms-animation-duration: 2s;
+  -ms-animation-timing-function: ease-in-out;
+  -ms-transform-origin: 50% 50%;
+  -ms-animation-iteration-count: infinite;
+  -o-animation-name: jitter;
+  -o-animation-duration: 2s;
+  -o-animation-timing-function: ease-in-out;
+  -o-transform-origin: 50% 50%;
+  -o-animation-iteration-count: infinite;
 }
+*/
 
 body[data-href='home'] section#updates
 {
@@ -1446,8 +1485,19 @@ body[data-href='home'] section#updates ul
   margin: .5em 0 !important;
 }
 
+body[data-href='home'] #latest_articles_feed {
+  width: 60%;
+}
+
+body[data-href='home'] #latest_articles_feed li {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 body[data-href='home'] #latest_articles_feed .title {
-  width:auto;
+  max-width: 75%;
+  /*display: inline-block;*/
+  width: auto;
 }
 
 #updates_title
@@ -1603,12 +1653,7 @@ article.profile section
   height: 248px;
 }
 
-.profile img[itemprop=photo]
-{
-  float: left;
-  margin-right: 19px;
-  width: 75px;
-  height: 75px;
+img[itemprop=photo] {
   -webkit-filter: grayscale(0.75) sepia(0.5);
      -moz-filter: grayscale(0.75) sepia(0.5);
       -ms-filter: grayscale(0.75) sepia(0.5);
@@ -1621,10 +1666,16 @@ article.profile section
        -o-transition: all 0.3s ease-out;
           transition: all 0.3s ease-out;
 }
+.profile img[itemprop=photo] {
+  float: left;
+  margin-right: 19px;
+  width: 75px;
+  height: 75px;
+}
 
 .profile:hover img[itemprop=photo],
-.profile:focus img[itemprop=photo]
-{
+.profile:focus img[itemprop=photo],
+img[itemprop=photo]:hover {
   -webkit-filter: grayscale(0) sepia(0);
      -moz-filter: grayscale(0) sepia(0);
       -ms-filter: grayscale(0) sepia(0);
@@ -1732,6 +1783,7 @@ article.profile section
 {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
@@ -1890,6 +1942,7 @@ article.tutorial .outline_nav_toggle
   left: 10px;
   -webkit-transition: all .25s ease-in-out;
   -moz-transition: all .25s ease-in-out;
+  -ms-transition: all .25s ease-in-out;
   -o-transition: all .25s ease-in-out;
   transition: all .25s ease-in-out;
   z-index: 4;
@@ -1905,6 +1958,7 @@ article.tutorial .outline_nav_toggle
   opacity: 0;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
@@ -2074,6 +2128,7 @@ body[data-href*='features'] .page header section p
   height: 372px;
   -webkit-transition: background-position .25s ease-in-out;
   -moz-transition: background-position .25s ease-in-out;
+  -ms-transition: background-position .25s ease-in-out;
   -o-transition: background-position .25s ease-in-out;
   transition: background-position .25s ease-in-out;
 }
@@ -2119,9 +2174,13 @@ section.updates li
   margin: 0 0 .5em;
   -moz-column-break-after: avoid;
   -webkit-column-break-after: avoid;
+  -o-column-break-after: avoid;
+  -ms-column-break-after: avoid;
   column-break-after: avoid;
   -moz-column-break-inside: avoid;
   -webkit-column-break-inside: avoid;
+  -ms-column-break-inside: avoid;
+  -o-column-break-inside: avoid;
   column-break-inside: avoid;
 }
 
@@ -2145,6 +2204,8 @@ section.updates.two_columns ul
   column-count: 2;
   -moz-column-gap: 20px;
   -webkit-column-gap: 20px;
+  -o-column-gap: 20px;
+  -ms-column-gap: 20px;
   column-gap: 20px;
 }
 
@@ -2186,6 +2247,7 @@ section.support thead th
 {
   -webkit-transition: all .1s ease-in-out;
   -moz-transition: all .1s ease-in-out;
+  -ms-transition: all .1s ease-in-out;
   -o-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
   position: absolute;
@@ -2478,9 +2540,13 @@ ul.definitions
   padding: 0;
   -moz-column-count: 2;
   -webkit-column-count: 2;
+  -ms-column-count: 2;
+  -o-column-count: 2;
   column-count: 2;
   -moz-column-gap: 20px;
   -webkit-column-gap: 20px;
+  -ms-column-gap: 20px;
+  -o-column-gap: 20px;
   column-gap: 20px;
 }
 
@@ -2491,6 +2557,8 @@ ul.definitions li
   padding: .75em 0;
   -moz-column-break-inside: avoid;
   -webkit-column-break-inside: avoid;
+  -o-column-break-inside: avoid;
+  -ms-column-break-inside: avoid;
   column-break-inside: avoid;
 }
 
@@ -2510,6 +2578,8 @@ ul.definitions li a
 {
   -moz-column-count: 1;
   -webkit-column-count: 1;
+  -ms-column-count: 1;
+  -o-column-count: 1;
   column-count: 1;
 }
 
@@ -2852,9 +2922,19 @@ article.tutorial figcaption
 
 pre.prettyprint
 {
-  background: #eee;
+  background: #fff;
   margin: 1em;
   padding: 1em;
+  border-left: 3px solid #5fa4a0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+pre.prettyprint:hover {
+  border-color: #f04530;
 }
 
 pre.prettyprint.small
@@ -3101,10 +3181,11 @@ section.disqus
     top: 0;
     left: -340px;
     -webkit-border-radius: 0;
-    -moz-border-radius: 0;
     border-radius: 0;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
     box-shadow: none;
   }
 
@@ -3146,9 +3227,7 @@ section.disqus
     width: inherit !important;
   }
 
-  .page,
-  .flexbox-container
-  {
+  .page {
     margin: 0 !important;
     width: 100% !important;
   }
@@ -3539,6 +3618,8 @@ section.disqus
   {
     -moz-column-count: 0;
     -webkit-column-count: 0;
+    -ms-column-count: 0;
+    -o-column-count: 0;
     column-count: 0;
   }
 
