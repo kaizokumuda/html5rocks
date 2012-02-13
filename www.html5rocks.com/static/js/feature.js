@@ -43,17 +43,14 @@ window.caniusecallback = function(data) {
     dom.remove();
     page.addClass('caniuseloaded');
 
-    // Hack to make chrome rendered the backgrounds. Otherwise, they somteimes poof, GONE!
-    $('section.support thead:first td').css('backgroundImage', 'url(/static/images/browsers.png)');
 
     // Show names of browsers when hovering over the logo/version cells.
-    // TODO(ericbidelman): This should be done with CSS, not JS.
     $('section.support td').hover(
       function() {
-        $(this).parents('table').find('th:nth-child(' + ($(this).index() + 1) + ')').addClass('current');
+         $('#support th.' + this.className).eq(0).addClass('current');
       },
       function() {
-        $(this).parents('table').find('th:nth-child(' + ($(this).index() + 1) + ')').removeClass('current');
+         $('#support th.' + this.className).eq(0).removeClass('current');
       }
     );
 

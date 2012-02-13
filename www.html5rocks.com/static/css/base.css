@@ -2271,9 +2271,9 @@ section.support thead th.current
 
 section.support thead th:nth-child(1) { left: 0; }
 section.support thead th:nth-child(2) { left: 87px; }
-section.support thead th:nth-child(3) { left: 174px; }
-section.support thead th:nth-child(4) { left: 261px; }
-section.support thead th:nth-child(5) { left: 348px; }
+section.support thead th:nth-child(3) { left: 154px; }
+section.support thead th:nth-child(4) { left: 221px; }
+section.support thead th:nth-child(5) { left: 318px; }
 
 section.support td {
   background-image: url(/static/images/browsers.png);
@@ -2368,12 +2368,12 @@ section.support.multiple table + table
 {
   margin-top: 0;
 }
-
+/*
 section.support.multiple th
 {
   display: none;
 }
-
+*/
 section.support.multiple td
 {
   padding-top: 60px;
