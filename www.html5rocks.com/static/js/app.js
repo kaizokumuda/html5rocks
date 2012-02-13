@@ -1,20 +1,25 @@
 // Controls whether or not the site should function with ajax loads or not.
 var AJAXIFY_SITE = false;
 
+function shiftWatermark(){
+  setTimeout(function(){
+    $('.watermark').css('top', '30px');
+  }, 1000);
+}
+
+
 // Navigation highlighting.
 $('.main nav').on('click','ul li a', function() {
   $('.main nav .current').removeClass('current');
   if (AJAXIFY_SITE) {
     $(this).addClass('current');
   }
-  setTimeout("$('.watermark').css('top', '30px')", 1000);
+  shiftWatermark();
 });
 
 $('.subheader.features').on('click','ul li a', function() {
   $('.main nav .current').removeClass('current');
-  setTimeout(function(){
-    $('.watermark').css('top', '30px')
-  }, 1000);
+  shiftWatermark();
 });
 
 
@@ -192,7 +197,7 @@ window.route = {
 
   onload: function() {
 
-    $('nav.outline.features ul li ul li a').click(function(e) {
+    $('nav.outline.features').on('click', 'ul li ul li a',function(e) {
       var hash = this.href.split('#')[1];
       if (hash) {
         $.scrollTo('#' + hash, 800, {offset: {top: -35}});

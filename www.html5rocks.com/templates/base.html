@@ -414,6 +414,8 @@
         $('.watermark').css('top', '100px');
         $('#features').focus();
       }
+      // don't apply hash
+      if (/#features$/.test(this.href)) return false;
     });
 
     $('#features_hide').click(function() {
