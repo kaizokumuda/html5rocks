@@ -290,7 +290,7 @@ function filterTag(opt_tag) {
   if (filter_arr.length) {
     var filter_str = filter_arr.join(',');
     // Changes location.hash by pushState()
-    window.history.pushState(null, document.tittle,
+    window.history.pushState(null, document.title,
         [window.location.pathname, '#', filter_str].join(''));
     $('#filter_tag').text(filter_str);
     $('#filter').parent().removeClass('hidden');
