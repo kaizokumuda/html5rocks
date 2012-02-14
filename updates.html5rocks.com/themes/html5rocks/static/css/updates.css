@@ -18,13 +18,14 @@ ul.errorlist { list-style-type: none; margin-top: 1em; color: red; margin: 0; pa
 /********/
 /* POST */
 /********/
-.post-info { margin-bottom: 10px; }
-.postheader { margin-bottom: 1em; }
+.post-info { float: right;  }
+.postheader { margin-bottom: 0em; }
 .postmeta, .postfooter { clear: both; margin-top: 1em; }
 .postimage { display: block; max-width: 100%; }
 .left { float: left; margin: 0 1em 1em 0; }
 .right { float: right; margin: 0 0 1em 1em; }
 .top { display: block; margin-bottom: 1em; }
-.time-author { float: right; color: #bbb; font-style: italic; }
+.time-author { margin-bottom: 10px; color: hsl(0, 0%, 45%); font-style: italic; }
 .time-author time { float: none; font-size: 100%; }
-.time-author a, .time-author a:visited { color: #bbb; text-decoration: underline; }
+.time-author a, .time-author a:visited { color: hsl(0, 0%, 19%); text-decoration: underline; }
+.tag { color: hsl(240, 20%, 62%); }
