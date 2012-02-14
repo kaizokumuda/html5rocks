@@ -1646,6 +1646,13 @@ article.profile
   width: 32%;
   position: relative;
   overflow: hidden;
+
+}
+
+article.profile.active {
+   -webkit-animation: inputglow 1.9s 3;  /* just do it three times */
+      -moz-animation: inputglow 1.9s 3;
+       -ms-animation: inputglow 1.9s 3;
 }
 
 article.profile section
@@ -3426,6 +3433,7 @@ section.disqus
   {
     margin-left: 2%;
     width: 49%;
+
   }
 
   article.profile section

@@ -4,13 +4,13 @@ $(function() {
     var lang = document.documentElement.lang || 'en';
     if ($activeProfile.length) {
       var profileID = $activeProfile.attr('id');
-      history.replaceState({}, document.title, '/' + lang + '/profiles/#!/' +
+      history.replaceState({}, document.title, '/' + lang + '/profiles/#' +
                            profileID);
     } else {
       if (!!window.history) {
         history.replaceState({}, document.title, '/' + lang + '/profiles');
       } else {
-        location.hash = "/#!/"; // oh well, old browsers have to live with a #
+        location.hash = "#"; // oh well, old browsers have to live with a #
       }
     }
   }
@@ -27,12 +27,15 @@ $(function() {
   window.scrollToProfile = function(opt_profileID) {
     var profileID = opt_profileID || null;
     if (!profileID && location.hash.length) {
-      profileID = '#' + location.hash.split('#!\/')[1];
+      profileID = location.hash;
     }
     if (profileID) {
-      $.scrollTo(profileID, 800, {offset: {top: -12}, onAfter: function() {
+      $.scrollTo(profileID, 800, {offset: {top: -32}, onAfter: function() {
         $(profileID).addClass("active");
       }});
+      setTimeout(function(){
+        $(profileID).find('.list-articles').click();
+      }, 700);
     }
   };
 
@@ -55,7 +58,7 @@ $(function() {
     if (!location.hash.length) {
       return;
     }
-    onHashChange('#' + location.hash.split('#!\/')[1]);
+    onHashChange(location.hash);
   }, false);
 
 });
