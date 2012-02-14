@@ -5,29 +5,26 @@
 {% endblock %}
 {% block head %}
 <style>
-  h1 b { display:block; font-size: 58px;}
-  .browser_support, #html5badge, #html5badge + nav { display:none; }
-  a[name] { color: currentColor; }
-  blockquote { opacity: 0.9; border-left: 8px solid #ccc; padding-left: 20px; }
-  body { line-height: 1.3; }
-  li { margin: 3px 0;}
+  article.tutorial section h1 b { display:block; font-size: 58px;}
+  article.tutorial section blockquote { opacity: 0.9; border-left: 8px solid #ccc; padding-left: 20px; }
+  article.tutorial section li { margin: 3px 0;}
   h3 { font-size: 19px; }
   h4 { font-size: 15.5px; }
   h5 { font-size: 14px; }
-  #stack { margin: 5px auto;}
-  #stack td, #stack th { border-bottom: 1px dotted #999; }
-  samp { background-color: #f2f2f2; border-radius: 2px; padding: 0 2px; }
-  samp:empty { display:none; }
-  ol.toc { padding-left: 20px; line-height: 1.1; }
-  .autonum *:target { background: hsl(60, 73%, 93%);}
-  cite { display:block; text-align: right; font-size: 80%; }
-  figcaption span:after { content: attr(data-count) ; }
+  article.tutorial section #stack { margin: 5px auto;}
+  article.tutorial section #stack td, #stack th { border-bottom: 1px dotted #999; }
+  article.tutorial section samp { background-color: #f2f2f2; border-radius: 2px; padding: 0 2px; }
+  article.tutorial section samp:empty { display:none; }
+  article.tutorial section ol.toc { padding-left: 20px; line-height: 1.1; }
+  article.tutorial section .autonum *:target { background: hsl(60, 73%, 93%);}
+  article.tutorial section cite { display:block; text-align: right; font-size: 80%; }
+  article.tutorial section figcaption span:after { content: attr(data-count) ; }
 
-  .tocchap, .tocnum { cursor: default; }
-  .tocchap { color: hsl(0, 0%, 60%); margin-bottom: 0; margin-top: 30px; }
-  .tocchap + * { margin-top: 5px; }
-  h2, h3, h4, h5 { position: relative; }
-  .tocnum { position: absolute; left: -56px; width: 50px; text-align: right; font-size: 70%; top: 3px;
+  article.tutorial section .tocchap, .tocnum { cursor: default; }
+  article.tutorial section .tocchap { color: hsl(0, 0%, 60%); margin-bottom: 0; margin-top: 30px; }
+  article.tutorial section .tocchap + * { margin-top: 5px; }
+  article.tutorial section h2, h3, h4, h5 { position: relative; }
+  article.tutorial section .tocnum { position: absolute; left: -56px; width: 50px; text-align: right; font-size: 70%; top: 3px;
     color: hsl(0, 0%, 80%);
     -webkit-transition: all 0.3s ease-out;
        -moz-transition: all 0.3s ease-out;
@@ -35,13 +32,13 @@
          -o-transition: all 0.3s ease-out;
             transition: all 0.3s ease-out;
   }
-  h2:hover .tocnum, h3:hover .tocnum, h4:hover .tocnum, h5:hover .tocnum { color: hsl(0, 0%, 20%); }
-  .preface + hr + .tocchap { visibility: hidden;  }
-  aside.bio  { border: 3px double hsl(0, 0%, 80%); padding: 10px; }
-  aside.bio img { width: 70px; margin: 0 10px 0 0; border: 1px solid hsl(0, 0%, 50%); }
-  aside.bio p { margin: 0; }
+  article.tutorial section h2:hover .tocnum, h3:hover .tocnum, h4:hover .tocnum, h5:hover .tocnum { color: hsl(0, 0%, 20%); }
+  article.tutorial section .preface + hr + .tocchap { visibility: hidden;  }
+  article.tutorial section aside.bio  { border: 3px double hsl(0, 0%, 80%); padding: 10px; }
+  article.tutorial section aside.bio img { width: 70px; margin: 0 10px 0 0; border: 1px solid hsl(0, 0%, 50%); }
+  article.tutorial section aside.bio p { margin: 0; }
 </style>
-<script >
+<script>
   [].forEach.call( document.querySelectorAll('header .date a'), function(elem, i) {
     elem.textContent += ' (' + ['author','editor'][i] + ')';
   });
