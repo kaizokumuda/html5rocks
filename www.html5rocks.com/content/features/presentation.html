@@ -36,13 +36,35 @@
     <style>
     pre         { margin: 1em 2em 2em; }
 
-    #pre1       { -webkit-transform: rotate(-1deg) skewX(5deg); }
+    #pre1       { -webkit-transform: rotate(-1deg) skewX(5deg);
+                     -moz-transform: rotate(-1deg) skewX(5deg);
+                      -ms-transform: rotate(-1deg) skewX(5deg);
+                       -o-transform: rotate(-1deg) skewX(5deg);
+                          transform: rotate(-1deg) skewX(5deg);
+     }
 
-    #pre2       { -webkit-transition: all 1s ease-in-out; padding: .5em; margin: .5em 1.5em; }
+    #pre2       { padding: .5em; margin: .5em 1.5em;
+                  -webkit-transition: all 1s ease-in-out; 
+                     -moz-transition: all 1s ease-in-out; 
+                      -ms-transition: all 1s ease-in-out; 
+                       -o-transition: all 1s ease-in-out; 
+                          transition: all 1s ease-in-out; 
+
+     }
     #pre2:hover { background-color: #cadbda; }
 
-    #pre3       { -webkit-transition: all 1s ease-in-out; -webkit-perspective: 1200; }
-    #pre3:hover { -webkit-transform: rotate3d(1,1,0, 45deg); }
+    #pre3       { -webkit-transition: all 1s ease-in-out; -webkit-perspective: 1200;
+                  -moz-transition: all 1s ease-in-out; -moz-perspective: 1200; 
+                  -ms-transition: all 1s ease-in-out; -ms-perspective: 1200; 
+                  -o-transition: all 1s ease-in-out; -o-perspective: 1200; 
+                  transition: all 1s ease-in-out;   perspective: 1200; 
+     }
+    #pre3:hover { -webkit-transform: rotate3d(1,1,0, 45deg);
+                  -moz-transform: rotate3d(1,1,0, 45deg);
+                  -ms-transform: rotate3d(1,1,0, 45deg);
+                  -o-transform: rotate3d(1,1,0, 45deg);
+                  transform: rotate3d(1,1,0, 45deg);
+     }
     </style>
 
     <p>{% blocktrans %}CSS3 Transformations allow you to apply rotations, scales, skews and translations to any DOM element with simple styles.{% endblocktrans %}</p>

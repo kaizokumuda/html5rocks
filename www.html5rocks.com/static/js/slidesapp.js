@@ -157,8 +157,9 @@ window.FLTR = {
         var curNode = elem;
         while (curNode.nodeName != 'ARTICLE') curNode = curNode.parentNode;
 
-        if (hash[curNode.dataset.event]) return;
-        hash[curNode.dataset.event] = true;
+        var event = curNode.getAttribute('data-event');
+        if (hash[event]) return;
+        hash[event] = true;
         
         curNode.classList.remove('hidden');
         curNode.classList.remove('even');
@@ -199,7 +200,7 @@ window.FLTR = {
     
     FLTR.filterElems(function(elem){
       if (elem.nodeName != 'SPAN') return;
-      var date = new Date(elem.dataset.time);
+      var date = new Date(elem.getAttribute('data-time'));
       return date > choice;
     });
     

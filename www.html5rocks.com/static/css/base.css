@@ -1111,7 +1111,7 @@ header.main h1
 .gsc-completion-container
 {
   border: 1px solid #4f4f4f;
-  margin-top: 8px!important; /* dont let widget override this */
+  margin-top: 14px!important; /* dont let widget override this */
 }
 
 .gsc-completion-container td
@@ -1556,10 +1556,11 @@ body[data-href='home'] article.sectioned section.one_third
 
 #classes li
 {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAABZCAIAAADaaR/4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzlENTUyREIxODFDMTFFMUJFMERBRjIwQzY0Q0UxM0YiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzlENTUyREMxODFDMTFFMUJFMERBRjIwQzY0Q0UxM0YiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3OUQ1NTJEOTE4MUMxMUUxQkUwREFGMjBDNjRDRTEzRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3OUQ1NTJEQTE4MUMxMUUxQkUwREFGMjBDNjRDRTEzRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pl7Srr8AAAIsSURBVHja7JnhbsIwDIRpS3n/Z9yPTaiCdWxAaaHFYBZBFrIixUibvqhCwbZOVmWnF1/Wtu3kX6xhGLIs+9Uuf+XXi9SYvCzLosiH/lCe12Hf6UYsahRv1zaed7dd60ZcEuDFW6MFAWezWRBwOi2u4+XvZOg9QLGIN9cXs9938tv34r1bJnHv9Xo+WhLATGuGJeu7LrrO28hrk8cztrvmoXgjNKP0cjV9rWo1bdaf6m62G3k8r1pkfSwr3YhLEYPxRmhG6dEjP3qEdXkX0mb1otKyWcxfXXVpLQW91duLbsSiRRiPT4tmlB49Qo9EemRVL7Vs3qu5Kxs9eINeV13i0i9ZPD4tmlF6lx45fV3zIriJex+NT4JmlB7nxW2PXNMPrR9ZwkOUigS9ehTrRg/qeHxaNKv0pC4Op0tKO5zXrtnqRozy3PO6jXPF49OiGaVHj9z2iMfM3T1HT+CgV8tMq0vvPPH4tGhG6eXjRwDjBwTPR0sCSI/AO3kX5hzcXQSTcPAxaEbpwcHh4NYcXD/gT0CzSg8ODge/z8GdspCENVujGaWHhggHj/BONEQ0RDRE7mZj72ZoiGiI9Ijd/AINkfkF8ws0ROYXzC/QENEQmV/AO9HN0M3gnehm6GbwTnQzdDN0M3QzdDN0M+5m6GboZvQI8wt0M+YXzC/QzZhfML9AN0M3Y34B70Q3QzeDd6KboZvBO9HN0M3QzdDN0M3QzbiboZuhm/3ZdRRgAKlWPyFURDzZAAAAAElFTkSuQmCC) center top no-repeat;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAABZCAIAAADaaR/4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzlENTUyREIxODFDMTFFMUJFMERBRjIwQzY0Q0UxM0YiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzlENTUyREMxODFDMTFFMUJFMERBRjIwQzY0Q0UxM0YiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3OUQ1NTJEOTE4MUMxMUUxQkUwREFGMjBDNjRDRTEzRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3OUQ1NTJEQTE4MUMxMUUxQkUwREFGMjBDNjRDRTEzRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pl7Srr8AAAIsSURBVHja7JnhbsIwDIRpS3n/Z9yPTaiCdWxAaaHFYBZBFrIixUibvqhCwbZOVmWnF1/Wtu3kX6xhGLIs+9Uuf+XXi9SYvCzLosiH/lCe12Hf6UYsahRv1zaed7dd60ZcEuDFW6MFAWezWRBwOi2u4+XvZOg9QLGIN9cXs9938tv34r1bJnHv9Xo+WhLATGuGJeu7LrrO28hrk8cztrvmoXgjNKP0cjV9rWo1bdaf6m62G3k8r1pkfSwr3YhLEYPxRmhG6dEjP3qEdXkX0mb1otKyWcxfXXVpLQW91duLbsSiRRiPT4tmlB49Qo9EemRVL7Vs3qu5Kxs9eINeV13i0i9ZPD4tmlF6lx45fV3zIriJex+NT4JmlB7nxW2PXNMPrR9ZwkOUigS9ehTrRg/qeHxaNKv0pC4Op0tKO5zXrtnqRozy3PO6jXPF49OiGaVHj9z2iMfM3T1HT+CgV8tMq0vvPPH4tGhG6eXjRwDjBwTPR0sCSI/AO3kX5hzcXQSTcPAxaEbpwcHh4NYcXD/gT0CzSg8ODge/z8GdspCENVujGaWHhggHj/BONEQ0RDRE7mZj72ZoiGiI9Ijd/AINkfkF8ws0ROYXzC/QENEQmV/AO9HN0M3gnehm6GbwTnQzdDN0M3QzdDN0M+5m6GboZvQI8wt0M+YXzC/QzZhfML9AN0M3Y34B70Q3QzeDd6KboZvBO9HN0M3QzdDN0M3QzbiboZuhm/3ZdRRgAKlWPyFURDzZAAAAAElFTkSuQmCC) center 30px no-repeat;
   float: left;
-  margin: 0 4px 0 0;
+  margin: -30px 4px 0 0;
   width: 90px;
+  cursor:pointer;
 }
 
 #classes li a
@@ -1570,8 +1571,8 @@ body[data-href='home'] article.sectioned section.one_third
   display: block;
   text-align: center;
   width: 90px;
-  padding-top: 95px;
-  padding-bottom: 15px;
+  padding-bottom: 76px;
+  margin-top: 40px;
 }
 
 #classes li a:hover,
@@ -1580,7 +1581,7 @@ body[data-href='home'] article.sectioned section.one_third
   color: #5FA4A0;
 }
 
-#classes li.offline a              { background-position: left 25px; }
+#classes li.offline a              { background-position: left   25px; }
 #classes li.storage a              { background-position: left -117px; }
 #classes li.connectivity a         { background-position: left -258px; }
 #classes li.file_access a          { background-position: left -399px; }
@@ -3055,14 +3056,35 @@ section.disqus
 
   .subheader .search input
   {
-    background: transparent;
+    background: hsla(0, 0%, 99%, 0.2);
     border: 0;
-    color: #b0d2d0;
+    color: hsl(176, 27%, 13%);
     font-style: italic;
     text-indent: 5px;
-    width: 750px;
+    width: 745px;
     outline: 0 !important;
+    border-radius: 4px;
+    margin-left: 7px;
   }
+  .subheader .search input[placeholder]::-webkit-input-placeholder { 
+    color: hsla(176, 27%, 33%, 0.4);
+  }
+
+  .subheader .search input:focus {
+    -webkit-animation: inputglow 1.9s infinite; 
+       -moz-animation: inputglow 1.9s infinite; 
+        -ms-animation: inputglow 1.9s infinite; 
+  }
+
+  @-webkit-keyframes inputglow{ from { -webkit-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
+                                55% {  -webkit-box-shadow: 0 0 13px hsl(176, 27%, 13%); }
+                                to {   -webkit-box-shadow: 0 0 2px  hsl(176, 27%, 13%); } }
+  @-moz-keyframes inputglow   { from {    -moz-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
+                                55% {     -moz-box-shadow: 0 0 13px hsl(176, 27%, 13%); }
+                                to {      -moz-box-shadow: 0 0 2px  hsl(176, 27%, 13%); } }
+  @-ms-keyframes inputglow    { from {     -ms-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
+                                55% {      -ms-box-shadow: 0 0 13px hsl(176, 27%, 13%); }
+                                to {       -ms-box-shadow: 0 0 2px  hsl(176, 27%, 13%); } }
 
   .subheader .search input::-webkit-input-placeholder
   {

@@ -101,24 +101,37 @@
   <p>We have re-factored the previous examples to use document styles, rather than inline styles. Not only does it clear the example up, it allows the sample to take advantage of the the <code>:hover</code> pseudo selector.  By using the <code>:hover</code> selector, transitions can be initiated by simply moving the mouse over the element. Awesome!
   </p>
   <style>
-    #anim1 {
-      -webkit-perspective: 800;
-      -moz-perspective: 800;
-      perspective: 800;
-      margin: 100px 0 100px 50px;
-    }
+  
+#anim1 {
+  -webkit-perspective: 800;
+  -moz-perspective: 800;
+  perspective: 800;
+  margin: 100px 0 100px 50px;
+}
 
-    #anim1 iframe {
-      -webkit-transition: -webkit-transform 1s ease-in-out;
-      -webkit-transform: rotate3d(0, 1, 1, 30deg);
-      transition: transform 1s ease-in-out;
-      transform: rotate3d(0, 1, 1, 30deg);
-    }
+#anim1 iframe {
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  -moz-transition: -moz-transform 1s ease-in-out;
+  -o-transition: -o-transform 1s ease-in-out;
+  -ms-transition: -ms-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
 
-    #anim1 iframe:hover {
-      -webkit-transform: rotate3d(0, 0, 1, 30deg);
-      transform: rotate3d(0, 0, 1, 30deg);
-    }
+  -webkit-transform: rotate3d(0, 1, 1, 30deg);
+  -moz-transform: rotate3d(0, 1, 1, 30deg);
+  -o-transform: rotate3d(0, 1, 1, 30deg);
+  -ms-transform: rotate3d(0, 1, 1, 30deg);
+  transform: rotate3d(0, 1, 1, 30deg);
+}
+
+#anim1 iframe:hover {
+  -webkit-transform: rotate3d(0, 0, 1, 30deg);
+  -moz-transform: rotate3d(0, 0, 1, 30deg);
+  -o-transform: rotate3d(0, 0, 1, 30deg);
+  -ms-transform: rotate3d(0, 0, 1, 30deg);
+  transform: rotate3d(0, 0, 1, 30deg);
+}
+
+
   </style>
    <pre class="prettyprint">&lt;div id="anim1"&gt;
   &lt;iframe src="http://www.html5rocks.com/"&gt;&lt;/iframe&gt;
