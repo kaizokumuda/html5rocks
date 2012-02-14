@@ -3,7 +3,7 @@
 {% block body %}
   {% for post in posts %}
 
-   <div class="postheader">
+   <section class="postheader pattern-bg-lighter">
     <h2><a href="{{config.url_prefix}}{{post.path}}">{{post.title|escape}}</a></h2>
     <div class="time-author">By {{post.author_link}} at <time pubdate class="date">{{post.published_tz|date:config.date_format}}</time></div>
     <div class="post-info">
@@ -15,26 +15,29 @@
         </div>
       {% endif %}
     </div>
-   </div>
-
+    <div class="g-plusone" data-size="medium" data-count="true" data-href="http://{{config.host}}{{config.url_prefix}}{{post.path}}"></div>
+   </section>
+   <section class="pattern-bg-lighter">
     {% if post.image_id %}
       <img class="postimage {{post.image_style}}" src="/images/{{post.image_id}}" />
     {% endif %}
     {{post.rendered}}
-    <div class="g-plusone" data-size="small" data-count="true" data-href="http://{{config.host}}{{config.url_prefix}}{{post.path}}"></div>
     <p class="postmeta">
       {% if config.disqus_forum %}
         <a href="{{config.url_prefix}}{{post.path}}#disqus_thread" class="readmore">Comments</a> |
       {% endif %}
       <a href="{{config.url_prefix}}{{post.path}}" class="readmore">permalink</a>
     </p>
+   </section>
   {% endfor %}
+  <section class="pattern-bg-lighter">
   {% if prev_page %}
     <a id="prev" href="{{config.url_prefix}}{{prev_page}}">Newer</a>
   {% endif %}
   {% if next_page %}
     <a id="next" href="{{config.url_prefix}}{{next_page}}">Older</a>
   {% endif %}
+  </section>
   {% if config.disqus_forum %}
     <script type="text/javascript">
     //<![CDATA[

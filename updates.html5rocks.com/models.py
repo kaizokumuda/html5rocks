@@ -73,11 +73,11 @@ class BlogPost(db.Model):
       response = urlfetch.fetch(url)
       if response.status_code == 200:
         name = simplejson.loads(response.content)[self.author_id]
-        return '<a href="%s/profiles/#!/%s">%s %s</a>' % (config.main_site_origin, self.author_id, name['given_name'], name['family_name'])
+        return '<a href="%s/profiles/#%s">%s %s</a>' % (config.main_site_origin, self.author_id, name['given_name'], name['family_name'])
       else:
-        return '<a href="%s/profiles/#!/%s">%s</a>' % (config.main_site_origin, self.author_id, self.author_id)
+        return '<a href="%s/profiles/#%s">%s</a>' % (config.main_site_origin, self.author_id, self.author_id)
     except urlfetch.DownloadError:
-      return '<a href="%s/profiles/#!/%s">%s</a>' % (config.main_site_origin, self.author_id, self.author_id)
+      return '<a href="%s/profiles/#%s">%s</a>' % (config.main_site_origin, self.author_id, self.author_id)
  
   @property
   def published_tz(self):

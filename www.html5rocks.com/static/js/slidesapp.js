@@ -301,7 +301,7 @@ Handlebars.registerHelper('presntr', function(names) {
 
     var lookup = authormap[name.trim()];
     if (lookup) {
-      return '<a href="/profiles/#!/' + lookup + '">' + name + '</a>';
+      return '<a href="/profiles/#' + lookup + '">' + name + '</a>';
     } else {
       return name;
     }
