@@ -46,11 +46,10 @@ ul.errorlist { list-style-type: none; margin-top: 1em; color: red; margin: 0; pa
 /* POST */
 /********/
 .post-info {
-  margin-top: 5px;
+  margin-bottom: 10px;
 }
 .postmeta { border-bottom: 1px solid #ddd; padding: 10px 0; font-size: 11px; }
 .tags { display: block; }
-a.tag { font-size: small; color: #696; text-decoration: underline; margin-right: 0.15em; }
 
 .postheader { margin-bottom: 1em; }
 .postmeta, .postfooter { clear: both; margin-top: 1em; }
