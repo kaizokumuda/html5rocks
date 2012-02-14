@@ -1,33 +1,9 @@
 {% extends "tutorial.html" %}
 
-{% block headauthor %}Tali Garsiel <tgarsiel@gmail.com>{% endblock %}
-{% block pageauthor %}{% profilelinks taligarsiel paulirish %}{% endblock %}
-{% block headtitle %}How Browsers Work: Behind the Scenes of Modern Web Browsers{% endblock %}
-{% block pagetitle %}<b>How Browsers Work: </b> Behind the Scenes of Modern Web Browsers{% endblock %}
-{% block head %}
-
-{% endblock %}
-{% block pagebreadcrumb %}How Browsers Work: Behind the Scenes of Modern Web Browsers{% endblock %}
-{% block date %}August 16, 2011{% endblock %}
-{% block updated %}{% endblock %}
-{% block onload %}{% endblock %}
-
-{% block browsersupport %}
-<span class="browser opera supported"><span class="browser_name">Opera</span><span class="support">supported</span></span>
-<span class="browser ie supported"><span class="browser_name">Internet Explorer</span><span class="support">supported</span></span>
-<span class="browser safari supported"><span class="browser_name">Safari</span><span class="support">supported</span></span>
-<span class="browser ff supported"><span class="browser_name">Firefox</span><span class="support">supported</span></span>
-<span class="browser chrome supported"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
-{% endblock %}
-
 {% block iscompatible %}
 
 {% endblock %}
-
-
-{% block content %}
-
-
+{% block head %}
 <style>
   h1 b { display:block; font-size: 58px;}
   .browser_support, #html5badge, #html5badge + nav { display:none; }
@@ -70,7 +46,9 @@
     elem.textContent += ' (' + ['author','editor'][i] + ')';
   });
 </script>
+{% endblock %}
 
+{% block content %}
 <div class="preface">
 <h2>Preface</h2>
 <p>
@@ -139,7 +117,7 @@ We will see what happens when you type <code>google.com</code> in the address ba
       <li><a href="#The_tokenization_algorithm">The tokenization algorithm</a></li>
     <li><a href="#Tree_construction_algorithm">Tree construction algorithm</a></li>
       <li><a href="#Actions_when_the_parsing_is_finished">Actions when the parsing is finished</a></li>
-      <li><a href="#Browsers_error_tolerance">Browsers error tolerance</a></li>
+      <li><a href="#Browsers_error_tolerance">Browsers' error tolerance</a></li>
   </ol>
   </li>
   <li><a href="#CSS_parsing">CSS parsing</a>
@@ -759,7 +737,7 @@ The document state will be then set to "complete" and a "load" event will be fir
 You can see <a href="http://www.w3.org/TR/html5/syntax.html#html-parser">the full algorithms for tokenization and tree construction in HTML5 specification</a>
 </p>
 
-<h4 id="Browsers_error_tolerance">Browsers error tolerance</h4>
+<h4 id="Browsers_error_tolerance">Browsers' error tolerance</h4>
 <p>
 You never get an "Invalid Syntax" error on an HTML page.
 Browsers fix any invalid content and go on.
