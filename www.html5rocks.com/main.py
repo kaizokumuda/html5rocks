@@ -166,7 +166,7 @@ class ContentHandler(webapp.RequestHandler):
 
     # Add template data to every request.
     template_data = {
-      'toc' : self.get_toc(template_path),
+      'toc': self.get_toc(template_path),
       'self_url': self.request.url,
       'self_pagename': pagename,
       'host': '%s://%s' % (self.request.scheme, self.request.host),
@@ -425,7 +425,6 @@ class ContentHandler(webapp.RequestHandler):
                     .fetch(limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT))
       }
       if relpath == "why":
-        logging.info('WHY?!')
         if os.path.isfile(os.path.join(path, locale, 'why_content.html')):
           data['local_content_path'] = os.path.join('why', locale, 'why_content.html')
         else:
