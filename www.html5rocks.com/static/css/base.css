@@ -1661,6 +1661,7 @@ article.profile section
   height: 248px;
 }
 
+/* Remove filters until crbug.com/112332 is fixed.
 img[itemprop=photo] {
   -webkit-filter: grayscale(0.75) sepia(0.5);
      -moz-filter: grayscale(0.75) sepia(0.5);
@@ -1673,7 +1674,8 @@ img[itemprop=photo] {
       -ms-transition: all 0.3s ease-out;
        -o-transition: all 0.3s ease-out;
           transition: all 0.3s ease-out;
-}
+}*/
+
 .profile img[itemprop=photo] {
   float: left;
   margin-right: 19px;
@@ -1681,6 +1683,7 @@ img[itemprop=photo] {
   height: 75px;
 }
 
+/*/* Remove filters until crbug.com/112332 is fixed.
 .profile:hover img[itemprop=photo],
 .profile:focus img[itemprop=photo],
 img[itemprop=photo]:hover {
@@ -1690,6 +1693,7 @@ img[itemprop=photo]:hover {
        -o-filter: grayscale(0) sepia(0);
           filter: grayscale(0) sepia(0);
 }
+*/
 
 .profile h2,
 .profile h2 span
