@@ -122,7 +122,7 @@ audio:not([controls]) { display: none; }
 
 html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 body { margin: 0; font-size: 13px; line-height: 1.231; overflow: hidden; }
-body, button, input, select, textarea { font-family: sans-serif; color: #222; }
+body, button, input, select, textarea { font-family: sans-serif; color: #000; }
 
 ::-moz-selection { background: #f04530; color: #fff; text-shadow: none; }
 ::selection { background: #f04530; color: #fff; text-shadow: none; }
@@ -1694,7 +1694,7 @@ img[itemprop=photo]:hover {
 .profile h2,
 .profile h2 span
 {
-  color: #222;
+  color: #000;
   font-size: 14px;
   font-weight: 600;
 }
