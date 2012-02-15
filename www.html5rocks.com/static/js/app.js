@@ -177,7 +177,7 @@ window.route = {
   },
 
   init: function(thing) {
-    var commonfn = route[thing.split('-')[0]],
+    var commonfn = route[(thing || '').split('-')[0]],
         pagefn   = route[thing];
 
     route.state = thing;
