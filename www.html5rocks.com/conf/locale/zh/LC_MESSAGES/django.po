@@ -108,7 +108,7 @@ msgstr "您认为自己是什么类型的 HTML 开发人员？"
 
 #: content/index.html:104
 msgid "\n"
-"      HTML5 is the ubiquitous platform for the web. Whether your a mobile web\n"
+"      HTML5 is the ubiquitous platform for the web. Whether you're a mobile web\n"
 "      developer, an enterprise with specific business needs, or a serious game\n"
 "      dev looking to explore the web as a new platform, HTML5 has something for\n"
 "      you! Choose your path:\n"

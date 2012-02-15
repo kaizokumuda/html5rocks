@@ -115,7 +115,7 @@ msgstr ""
 #: content/index.html:104
 msgid ""
 "\n"
-"      HTML5 is the ubiquitous platform for the web. Whether your a mobile "
+"      HTML5 is the ubiquitous platform for the web. Whether you're a mobile "
 "web\n"
 "      developer, an enterprise with specific business needs, or a serious "
 "game\n"
