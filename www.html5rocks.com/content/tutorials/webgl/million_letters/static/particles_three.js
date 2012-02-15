@@ -104,7 +104,7 @@ window.onload = function() {
       shaderMaterial
     );
     book.doubleSided = true;
-    var a = i/n * Math.PI*2;
+    var a = i/n * Math.PI*2 + Math.PI/2;
     book.position.x = Math.cos(Math.PI+a) * r;
     book.position.z = Math.sin(Math.PI+a) * r;
     book.rotation.y = Math.PI/2 - a;
@@ -129,7 +129,7 @@ window.onload = function() {
   var wheelHandler = function(ev) {
     var ds = (ev.detail < 0 || ev.wheelDelta > 0) ? (1/1.25) : 1.25;
     var fov = camera.fov * ds;
-    fov = Math.min(175, Math.max(1, fov));
+    fov = Math.min(120, Math.max(1, fov));
     camera.fov = fov;
     camera.updateProjectionMatrix();
     ev.preventDefault();
@@ -137,16 +137,12 @@ window.onload = function() {
   window.addEventListener('DOMMouseScroll', wheelHandler, false);
   window.addEventListener('mousewheel', wheelHandler, false);
   window.onmouseup = function(){ down = false; };
-  var angle=Math.PI/2;
   window.onmousemove = function(ev) {
     if (down) {
       var dx = ev.clientX - sx;
       var dy = ev.clientY - sy;
-      angle -= dx/100;
-      camera.position.x = Math.cos(angle)*radius;
-      camera.position.y += dy*0.2;
-      camera.position.z = Math.sin(angle)*radius;
-      camera.lookAt(scene.position);
+      camera.rotation.y += dx/500 * (camera.fov/45);;
+      camera.rotation.x += dy/500 * (camera.fov/45);
       sx += dx;
       sy += dy;
     }
@@ -154,14 +150,14 @@ window.onload = function() {
 
   var gui = new dat.GUI();
   var control = {
-    'Animation': 0,
+    'Animation': 5,
     'Books': 1
   };
   gui.add(control, 'Animation', 0, 100).step(1);
   gui.add(control, 'Books', 1, books.length).step(1);
 
   var letterCountTitle = document.createElement('p');
-  letterCountTitle.textContent = 'Letter count: ';
+  letterCountTitle.innerHTML = 'Look around by dragging, zoom with the mouse wheel<br><br>Letter count: ';
   var s = letterCountTitle.style;  
   s.position = 'fixed';
   s.left = s.top = '10px';
