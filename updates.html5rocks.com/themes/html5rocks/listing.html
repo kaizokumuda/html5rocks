@@ -2,8 +2,8 @@
 {% block title %}{{config.blog_name}}{% endblock %}
 {% block body %}
   {% for post in posts %}
-
-   <section class="postheader pattern-bg-lighter">
+<section class="pattern-bg-lighter">
+   <section class="postheader">
     <h2><a href="{{config.url_prefix}}{{post.path}}">{{post.title|escape}}</a></h2>
     <div class="time-author">By {{post.author_link}} at <time pubdate class="date">{{post.published_tz|date:config.date_format}}</time></div>
     <div class="post-info">
@@ -17,7 +17,7 @@
     </div>
     <div class="g-plusone" data-size="medium" data-count="true" data-href="http://{{config.host}}{{config.url_prefix}}{{post.path}}"></div>
    </section>
-   <section class="pattern-bg-lighter">
+   <section>
     {% if post.image_id %}
       <img class="postimage {{post.image_style}}" src="/images/{{post.image_id}}" />
     {% endif %}
@@ -29,8 +29,9 @@
       <a href="{{config.url_prefix}}{{post.path}}" class="readmore">permalink</a>
     </p>
    </section>
+</section>
   {% endfor %}
-  <section class="pattern-bg-lighter">
+  <section>
   {% if prev_page %}
     <a id="prev" href="{{config.url_prefix}}{{prev_page}}">Newer</a>
   {% endif %}
