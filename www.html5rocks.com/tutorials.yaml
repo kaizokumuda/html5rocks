@@ -1,3 +1,19 @@
+title: Mixing Positional Audio and WebGL
+url: /tutorials/webaudio/positional_audio/
+author_id: ilmari
+publication_date: 2012-02-16
+description: "How to use the positional audio features in Web Audio API with Three.js."
+browser_support:
+- chrome
+- safari
+tags:
+- webgl
+- webaudio
+- type:tutorial
+- class:multimedia
+
+---
+
 title: WebGL Fundamentals
 url: /tutorials/webgl/webgl_fundamentals/
 author_id: gman
