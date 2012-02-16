@@ -1,0 +1,125 @@
+{% extends "tutorial.html" %}
+
+{% block html5badge %}
+<img src="/static/images/identity/html5-badge-h-multimedia.png" width="133" height="64" alt="This article is powered by HTML5 Graphics, 3D &amp; Effects" title="This article is powered by HTML5 Graphics, 3D &amp; Effects" />
+{% endblock %}
+
+{% block iscompatible %}
+  return !!Modernizr.webgl && !!Modernizr.webaudio
+{% endblock %}
+
+{% block content %}
+
+<style>
+	iframe.demo {
+		margin-top: 16px;
+		width: 640px;
+		height: 360px;
+		border: 1px gray;
+		border-radius: 10px;
+		box-shadow: 0px 2px 8px rgba(0,0,0,0.25);
+		background: white;
+	}
+</style>
+
+<h1>Mixing positional audio and WebGL</h1>
+
+
+<h2 id="toc-introduction">Introduction</h2>
+
+<p>In this article I’m going to talk about how to use the positional audio feature in the Web Audio API to add 3D sound into your WebGL scenes. To make the audio more believable, I will also introduce you to the environmental effects possible with the Web Audio API.
+
+<p>You can use positional audio with the AudioPannerNode in the Web Audio API. The AudioPannerNode defines the position, orientation and velocity of a sound. Additionally, the Web Audio API audio context has a listener attribute that lets you define the position, orientation and velocity of the listener. With these two things you can create directional sounds with doppler effects and 3D panning.
+
+<figure>
+	<iframe class="demo" src="flat.html"></iframe>
+	<figcaption>Demo of flat audio</figcaption>
+</figure>
+
+
+<h2 id="toc-position">Position</h2>
+
+<p>To get started, create an audio source and attach it to an AudioPannerNode. Then set the position of the AudioPannerNode. Now you have a movable 3D sound. The audio context listener position is at (0,0,0) by default, so when used in this way, the AudioPannerNode position is relative to the camera position. Whenever you move the camera, you need to update the AudioPannerNode position. To make the AudioPannerNode position relative to the world, you need to change the audio context listener position to your camera position.
+
+<figure>
+	<iframe class="demo" src="position.html"></iframe>
+	<figcaption>Audio position demo</figcaption>
+</figure>
+
+
+<h2 id="toc-velocity">Velocity</h2>
+
+<p>Now that we have the positions of the listener and the AudioPannerNode, let’s turn our attention to their velocities. By changing the velocity properties of the listener and the AudioPannerNode, you can create a cool doppler effect to the sound. The easiest way to get the velocities for the listener and the AudioPannerNode is to keep track of their per-frame positions. The velocity of the listener is the camera’s current position minus the camera’s position in the previous frame. Similarly, the velocity of the AudioPannerNode is its current position minus its previous position.
+
+<figure>
+	<iframe class="demo" src="velocity.html"></iframe>
+	<figcaption>Doppler effect demo</figcaption>
+</figure>
+
+
+<h2 id="toc-orientation">Orientation</h2>
+
+<p>To get the orientation vector for the AudioPannerNode, you need to take the rotation part of the model matrix of the sound-emitting 3D object and multiply a vec3(0,0,1) with it to see where it ends up pointing. For the context listener orientation, getting the camera’s look-vector and up-vector suffices. Alternatively, you can get the rotation part of the view matrix for the camera and multiply a vec3(0,0,1) for the orientation and a vec3(0,1,0) for the up-vector.
+
+<p>For orientation to have an effect on your sounds, you also need to define the cone for the sound. The sound cone takes an inner angle, outer angle and outer gain. The sound plays at the normal volume inside the inner angle and gradually changes gain to outer gain as you approach the outer angle. Outside the outer angle the sound plays at outer gain.
+
+<figure>
+	<iframe class="demo" src="orientation.html"></iframe>
+	<figcaption>Audio orientation demo</figcaption>
+</figure>
+
+
+<h2 id="toc-all-together">All together</h2>
+
+<p>Putting it all together, the audio context listener follows the position, orientation and velocity of the camera, and the AudioPannerNodes follow the positions, orientations and velocities of their respective audio sources. On every frame, set the context listener properties like this:
+
+<pre class="prettyprint">
+context.listener.position = camera.position; 
+context.listener.velocity = camera.position - camera.previousPosition; 
+camera.previousPosition = camera.position; 
+context.listener.orientation = [camera.lookAt, camera.up];
+</pre>
+
+<p>Likewise, set the properties of each AudioPannerNode like this: 
+
+<pre class="prettyprint">
+node.position = object.position; 
+node.velocity = object.position - object.previousPosition; 
+object.previousPosition = object.position; 
+node.orientation = normalize(mat3(object.worldMatrix * vec3(0,0,-1));
+</pre>
+
+<figure>
+	<iframe class="demo" src="all_together.html"></iframe>
+	<figcaption>Full positional audio demo</figcaption>
+</figure>
+
+
+<h2 id="toc-enveffects">Environmental effects</h2>
+
+<p>After you’ve got positional audio set up, you can set the environmental effects for your audio to enhance the immersiveness of your 3D scene. Suppose your scene is set inside a large cathedral. On default settings, the sounds in your scene sound like you’re standing outdoors. This discrepancy between the visuals and audio breaks immersion and makes your scene less impressive.
+
+<p>The Web Audio API has a ConvolverNode that lets you set the environmental effect for a sound. Add it to the processing graph for the audio source and you’ll be able to make the sound fit the setting. There are some presets for the environmental effects, and you can also make your own. It may be a bit cumbersome experience as you need to record the impulse response of the place you wish to simulate, but the capability is there if you need it.
+
+<p>In the demo below, you can toggle between different soundscapes.
+
+<figure>
+	<iframe class="demo" src="environment.html"></iframe>
+	<figcaption>Environmental audio demo</figcaption>
+</figure>
+
+
+<h2 id="toc-summary">Summary</h2>
+
+<p>In this article you learned how to add positional audio to your 3D scenes using the Web Audio API. The Web Audio API gives you a way to set the position, orientation and velocity of audio sources and the listener. By setting those to track the objects in your 3D scene, you can create a rich soundscape for your 3D applications.
+
+<p>To make the audio experience even more compelling, you can use the impulse response presets in the Web Audio API to set up the general sound of the environment. From cathedrals to closed rooms, you can simulate the audio effect using the Web Audio API.
+
+<h2 id="toc-references">References</h2>
+
+<ul>
+<li><a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API specification</a>
+<li><a href="http://en.wikipedia.org/wiki/Impulse_response">Impulse response</a>
+<li><a href="https://github.com/mrdoob/three.js">Three.js</a>
+</ul>
+{% endblock %}
