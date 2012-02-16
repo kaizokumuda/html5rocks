@@ -31,10 +31,53 @@
 
 <p>You can use positional audio with the AudioPannerNode in the Web Audio API. The AudioPannerNode defines the position, orientation and velocity of a sound. Additionally, the Web Audio API audio context has a listener attribute that lets you define the position, orientation and velocity of the listener. With these two things you can create directional sounds with doppler effects and 3D panning.
 
+<p>Here's a 3D scene with flat audio. Not very exciting. Just a sound playing without any effects.
 <figure>
 	<iframe class="demo" src="flat.html"></iframe>
 	<figcaption>Demo of flat audio</figcaption>
 </figure>
+
+<p>Let's see what the audio code looks like for the above piece. This is very basic Audio API code. You create a a bunch of Audio API nodes and connect them together. The audio nodes are individual sounds, volume controllers, effect nodes and analyzers and suchlike. After you have built this graph, you need to hook it up to the audio context destination to make it audible.
+
+<pre class="prettyprint">
+// Create a new audio context.
+var ctx = new webkitAudioContext();
+
+// Create a AudioGainNode to control the main volume.
+var mainVolume = ctx.createGainNode();
+// Connect the main volume node to the context destination.
+mainVolume.connect(ctx.destination);
+
+// Create an object with a sound source and a volume control.
+var sound = {};
+sound.source = ctx.createBufferSource();
+sound.volume = ctx.createGainNode();
+
+// Connect the sound source to the volume control.
+sound.source.connect(sound.volume);
+// Hook up the sound volume control to the main volume.
+sound.volume.connect(mainVolume);
+
+// Make the sound source loop.
+sound.source.loop = true;
+
+// Load a sound file using an ArrayBuffer XMLHttpRequest.
+var request = new XMLHttpRequest();
+request.open("GET", soundFileName, true);
+request.responseType = "arraybuffer";
+request.onload = function() {
+
+  // Create a buffer from the response ArrayBuffer.
+  var buffer = ctx.createBuffer(request.response, false);
+  sound.buffer = buffer;
+
+  // Make the sound source use the buffer and start playing it after 20 ms.
+  sound.source.buffer = sound.buffer;
+  sound.source.noteOn(ctx.currentTime + 0.020);
+};
+request.send();
+</pre>
+	
 
 
 <h2 id="toc-position">Position</h2>
@@ -46,6 +89,46 @@
 	<figcaption>Audio position demo</figcaption>
 </figure>
 
+<p>To set up the position tracking, what we need to do is create an AudioPannerNode and wire it up to the main volume.
+
+<pre class="prettyprint">
+...
+sound.panner = ctx.createPannerNode();
+// Instead of hooking up the volume to the main volume, hook it up to the panner.
+sound.volume.connect(sound.panner);
+// And hook up the panner to the main volume.
+sound.panner.connect(mainVolume);
+...
+</pre>
+
+<p>On every frame, update the positions of the AudioPannerNodes. I'm going to be using Three.js in the examples below.
+
+<pre class="prettyprint">
+...
+// In the frame handler function, get the object's position.
+object.position.set(newX, newY, newZ);
+object.updateMatrixWorld();
+var p = object.matrixWorld.getPosition();
+
+// And copy the position over to the sound of the object.
+sound.panner.setPosition(p.x, p.y, p.z);
+...
+</pre>
+
+<p>To track the listener position, set the audio context's listener position to match the camera position.
+<pre class="prettyprint">
+...
+// Get the camera position.
+camera.position.set(newX, newY, newZ);
+camera.updateMatrixWorld();
+var p = camera.matrixWorld.getPosition();
+
+// And copy the position over to the listener.
+ctx.listener.setPosition(p.x, p.y, p.z);
+...
+</pre>
+
+
 
 <h2 id="toc-velocity">Velocity</h2>
 
@@ -56,10 +139,29 @@
 	<figcaption>Doppler effect demo</figcaption>
 </figure>
 
+<p>Tracking the velocity can be done by getting the object's previous position, subtracting it from the current position and dividing the result by the time elapsed since last frame. Here's how to do it in Three.js:
+<pre class="prettyprint">
+...
+var dt = secondsSinceLastFrame;
+
+var p = object.matrixWorld.getPosition();
+var px = p.x, py = p.y, pz = p.z;
+
+object.position.set(newX, newY, newZ);
+object.updateMatrixWorld();
+
+var q = object.matrixWorld.getPosition();
+var dx = q.x-px, dy = q.y-py, dz = q.z-pz;
+
+sound.panner.setPosition(q.x, q.y, q.z);
+sound.panner.setVelocity(dx/dt, dy/dt, dz/dt);
+...
+</pre>
+
 
 <h2 id="toc-orientation">Orientation</h2>
 
-<p>To get the orientation vector for the AudioPannerNode, you need to take the rotation part of the model matrix of the sound-emitting 3D object and multiply a vec3(0,0,1) with it to see where it ends up pointing. For the context listener orientation, getting the camera’s look-vector and up-vector suffices. Alternatively, you can get the rotation part of the view matrix for the camera and multiply a vec3(0,0,1) for the orientation and a vec3(0,1,0) for the up-vector.
+<p>To get the orientation vector for the AudioPannerNode, you need to take the rotation part of the model matrix of the sound-emitting 3D object and multiply a vec3(0,0,1) with it to see where it ends up pointing. For the context listener orientation, you need to get the camera’s orientation vector. The listener orientation also needs an up vector, since it needs to know the roll angle of the listener's head. To compute the listener orientation, get the rotation part of the camera's view matrix and multiply a vec3(0,0,1) for the orientation and a vec3(0,-1,0) for the up-vector.
 
 <p>For orientation to have an effect on your sounds, you also need to define the cone for the sound. The sound cone takes an inner angle, outer angle and outer gain. The sound plays at the normal volume inside the inner angle and gradually changes gain to outer gain as you approach the outer angle. Outside the outer angle the sound plays at outer gain.
 
@@ -68,31 +170,81 @@
 	<figcaption>Audio orientation demo</figcaption>
 </figure>
 
+<p>Tracking the orientation in Three.js is a bit trickier as it involves some vector math and zeroing the translation part of the 4x4 world matrices. Still, not many lines of code.
+
+<pre class="prettyprint">
+...
+var vec = new THREE.Vector3(0,0,1);
+var m = object.matrixWorld;
+
+// Save the translation column and zero it.
+var mx = m.n14, my = m.n24, mz = m.n34;
+m.n14 = m.n24 = m.n34 = 0;
+
+// Multiply the 0,0,1 vector by the world matrix and normalize the result.
+m.multiplyVector3(vec);
+vec.normalize();
+
+sound.panner.setOrientation(vec.x, vec.y, vec.z);
+
+// Restore the translation column.
+m.n14 = mx;
+m.n24 = my; 
+m.n34 = mz;
+...
+</pre>
+
+<p>Camera orientation tracking also requires the up vector, so you need to multiply an up vector with the transformation matrix.
+
+<pre class="prettyprint">
+...
+// The camera's world matrix is named "matrix".
+var m = camera.matrix;
+
+var mx = m.n14, my = m.n24, mz = m.n34;
+m.n14 = m.n24 = m.n34 = 0;
+
+// Multiply the orientation vector by the world matrix of the camera.
+var vec = new THREE.Vector3(0,0,1);
+m.multiplyVector3(vec);
+vec.normalize();
+
+// Multiply the up vector by the world matrix.
+var up = new THREE.Vector3(0,-1,0);
+m.multiplyVector3(up);
+up.normalize();
+
+// Set the orientation and the up-vector for the listener.
+ctx.listener.setOrientation(vec.x, vec.y, vec.z, up.x, up.y, up.z);
+
+m.n14 = mx;
+m.n24 = my; 
+m.n34 = mz;
+...
+</pre>
+
+<p>To set the sound cone for your sound, you set the appropriate properties of the panner node. The cone angles are in degrees and run from 0 to 360.
+
+<pre class="prettyprint">
+...
+sound.panner.coneInnerAngle = innerAngleInDegrees;
+sound.panner.coneOuterAngle = outerAngleInDegrees;
+sound.panner.coneOuterGain = outerGainFactor;
+...
+</pre>
+
 
 <h2 id="toc-all-together">All together</h2>
 
-<p>Putting it all together, the audio context listener follows the position, orientation and velocity of the camera, and the AudioPannerNodes follow the positions, orientations and velocities of their respective audio sources. On every frame, set the context listener properties like this:
-
-<pre class="prettyprint">
-context.listener.position = camera.position; 
-context.listener.velocity = camera.position - camera.previousPosition; 
-camera.previousPosition = camera.position; 
-context.listener.orientation = [camera.lookAt, camera.up];
-</pre>
-
-<p>Likewise, set the properties of each AudioPannerNode like this: 
-
-<pre class="prettyprint">
-node.position = object.position; 
-node.velocity = object.position - object.previousPosition; 
-object.previousPosition = object.position; 
-node.orientation = normalize(mat3(object.worldMatrix * vec3(0,0,-1));
-</pre>
+<p>Putting it all together, the audio context listener follows the position, orientation and velocity of the camera, and the AudioPannerNodes follow the positions, orientations and velocities of their respective audio sources. You need to update the positions, velocities and orientations of the AudioPannerNodes and the audio context listener on every frame.
+	
+<p>Here's a demo with all the above positional audio features working together:
 
 <figure>
 	<iframe class="demo" src="all_together.html"></iframe>
 	<figcaption>Full positional audio demo</figcaption>
 </figure>
+
 
 
 <h2 id="toc-enveffects">Environmental effects</h2>
@@ -109,11 +261,14 @@ node.orientation = normalize(mat3(object.worldMatrix * vec3(0,0,-1));
 </figure>
 
 
+
 <h2 id="toc-summary">Summary</h2>
 
 <p>In this article you learned how to add positional audio to your 3D scenes using the Web Audio API. The Web Audio API gives you a way to set the position, orientation and velocity of audio sources and the listener. By setting those to track the objects in your 3D scene, you can create a rich soundscape for your 3D applications.
 
 <p>To make the audio experience even more compelling, you can use the impulse response presets in the Web Audio API to set up the general sound of the environment. From cathedrals to closed rooms, you can simulate the audio effect using the Web Audio API.
+
+
 
 <h2 id="toc-references">References</h2>
 
