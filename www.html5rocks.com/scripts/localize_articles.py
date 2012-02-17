@@ -358,7 +358,10 @@ class Localizer(object):
 
   def generate_localizable_files(self):
     for article in self.articles:
-      article.generate_localizable_file()
+      try:
+        article.generate_localizable_file()
+      except ArticleException:
+        pass
 
   def import_localized_files(self):
     for article in self.articles:
@@ -383,8 +386,16 @@ def main():
   l7r = Localizer(original_root=Article.ROOT,
                    localized_root=Article.LOCALIZED_ROOT)
   if options.generate_html:
+    try:
+      os.mkdir(Article.UNLOCALIZED_ROOT)
+    except OSError:
+      pass
     l7r.generate_localizable_files()
   if options.import_html:
+    try:
+      os.mkdir(Article.LOCALIZED_ROOT)
+    except OSError:
+      pass
     l7r.import_localized_files()
 
 if __name__ == '__main__':
