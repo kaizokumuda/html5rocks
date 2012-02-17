@@ -24,6 +24,7 @@ __author__ = ('mkwst@google.com (Mike West)')
 import optparse
 import os
 import re
+import glob
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -143,6 +144,8 @@ class Article(object):
   """
 
   ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..', 'content'))
+  LOCALIZED_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..',
+                                                '_localized'))
   UNLOCALIZED_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..',
                                                   '_unlocalized'))
   PATH_DELIMITER = '___===___'
@@ -152,6 +155,7 @@ class Article(object):
       raise ArticleException('`%s` does not exist.' % path)
     self.path = path
     self._locales = None
+    self._available_localizations = None
 
   @property
   def locales(self):
@@ -186,9 +190,83 @@ class Article(object):
     Returns:
       An absolute path to the article's localizable representation.
     """
-    temp = re.sub(r'^%s/' % self.ROOT, '', self.path)
-    temp = re.sub(r'/', self.PATH_DELIMITER, temp)
+    temp = self.path
+    if temp.startswith(self.ROOT):
+      temp = temp.replace(r'%s/' % self.ROOT, '', 1)
+    temp = temp.replace(r'/', self.PATH_DELIMITER)
+    temp = '%s.html' % temp
     return os.path.abspath(os.path.join(self.UNLOCALIZED_ROOT, temp))
+
+  def _index_available_localizations(self):
+    """Populates a list of available localizations for this article.
+  
+    Indexes all files whose paths match
+    `{Article.LOCALIZED_ROOT}/[locale]/path__to__article.html` (where `__`
+    represents `Article.PATH_DELIMITER`), and stores them in
+    self._available_localizations.
+
+    Some articles have "static" directories that are used for all
+    localizations. These are not counted as available localizations.
+    """
+    self._available_localizations = []
+    matches = glob.glob(os.path.join(self.LOCALIZED_ROOT, '*',
+                                     os.path.basename(
+                                         self.localizable_file_path)))
+    for match in matches:
+      if match != "static":
+        # The locale is the name of the directory in which the localized file
+        # sits. `/path/to/article/en/article__is__here.html` has a locale of
+        # "en". "static" is special-cased out.
+        self._available_localizations.append(os.path.basename(os.path.dirname(
+                                                                  match)))
+
+  @property
+  def available_localizations(self):
+    """The finshed localizations available for this article.
+
+    Returns:
+      A list of locales, e.g. ['en', 'de', 'es']
+    """
+    if self._available_localizations is None:
+      self._index_available_localizations()
+    return self._available_localizations
+
+  @property
+  def new_localizations(self):
+    """Determines whether a new localization for this article exists.
+
+    This getter checks whether a file exists in `Article.LOCALIZED_ROOT` that
+    matches this article in a locale that isn't already available.
+
+    Returns:
+      A list of new localizations available, e.g. ['de', 'es'].
+    """
+    return [locale
+            for locale in self.available_localizations
+            if locale not in self.locales]
+
+  def original_file_path(self, locale):
+    """Returns the path for a specific original file.
+
+    This method just generates a path: it doesn't check that the file exists
+    or that it's valid.
+
+    Returns:
+      The path to a potential original file.
+    """
+    return os.path.join(self.ROOT, self.path, locale, 'index.html')
+
+  def localized_file_path(self, locale):
+    """Returns the path for a specific localized file.
+
+    This method just generates a path: it doesn't check that the file exists
+    or that it's valid.
+
+    Returns:
+      The path to a potential localized file.
+    """
+    return os.path.join(self.LOCALIZED_ROOT, locale,
+                        os.path.basename(self.localizable_file_path))
 
   def generate_localizable_file(self):
     """Generates a localizable representation of the article.
@@ -201,14 +279,33 @@ class Article(object):
       An absolute path to the article's localizable representation.
     """
     if not 'en' in self.locales:
-      raise ArticleException('`%s` has no English edition.' % self.path)
+      error = """
+ArticleException:
+- path: %s
+- locales: %s
+- No English edition found.
+"""
+      raise ArticleException(error % (self.path, self.locales))
 
-    original = os.path.join(self.ROOT, self.path, 'en', 'index.html')
+    original = self.original_file_path('en')
     with open(original, 'r') as input:
       with open(self.localizable_file_path, 'w') as output:
-        output.write(TextProcessor.django_to_html(input.read()))
-    
-    return self.localizable_file_path 
+        output.write(TextProcessor.django_to_html(input.read())) 
+    return self.localizable_file_path
+
+  def import_localized_files(self):
+    """If new localized files are available, import them."""
+    for locale in self.new_localizations:
+      if os.path.isfile(self.localized_file_path(locale)):
+        try:
+          os.mkdir(os.path.dirname(self.original_file_path(locale)))
+        except OSError:
+          pass
+        with open(self.localized_file_path(locale), 'r') as infile:
+          with open(self.original_file_path(locale), 'w') as outfile:
+            outfile.write(TextProcessor.html_to_django(infile.read()))
+    self._available_localizations = []
+    self._locales = []
 
 class Localizer(object):
   """Implements the HTML5Rocks article localization workflow.
@@ -254,36 +351,41 @@ class Localizer(object):
     return self._original_articles
 
   @property
-  def original_articles(self):
+  def articles(self):
     if self._articles is None:
       self._index_english_articles()
     return self._original_articles
 
   def generate_localizable_files(self):
-    for article in self.original_articles:
+    for article in self.articles:
       article.generate_localizable_file()
 
-# def main():
-  # parser = optparse.OptionParser()
-  # parser.add_option('--generate_html', dest='generate_html',
-                    # default=False, action='store_true',
-                    # help='Generate HTML from Django templated articles.')
-  # parser.add_option('--generate_django', dest='generate_django',
-                    # default=False, action='store_true',
-                    # help=('Generate Django templates from localized '
-                          # 'HTML articles.'))
+  def import_localized_files(self):
+    for article in self.articles:
+      article.import_localized_files()
 
-  # options = parser.parse_args()[0]
-  # if not options.generate_html or options.generate_django:
-    # parser.error('You must specify either `--generate_html`'
-                 # 'or `--generate_django`.')
+def main():
+  parser = optparse.OptionParser()
+  parser.add_option('--generate', dest='generate_html',
+                    default=False, action='store_true',
+                    help=('Generate HTML from Django templated articles. '
+                          'Store them in `./_unlocalized`.'))
+  parser.add_option('--import', dest='import_html',
+                    default=False, action='store_true',
+                    help=('Generate Django templates from localized '
+                          'HTML articles in `./_localized`.'))
 
-  # l10n = Localizer(Article.DJANGO_ROOT)
-  # if options.generate_html:
-    # l10n.IndexEnglishArticles()
-    # l10n.Htmlize()
-  # if options.generate_django:
-    # l10n.Djangoize()
+  options = parser.parse_args()[0]
+  if not options.generate_html or options.import_html:
+    parser.error('You must specify either `--generate`'
+                 'or `--import`.')
+
+  l7r = Localizer(original_root=Article.ROOT,
+                   localized_root=Article.LOCALIZED_ROOT)
+  if options.generate_html:
+    l7r.generate_localizable_files()
+  if options.import_html:
+    l7r.import_localized_files()
 
 if __name__ == '__main__':
   main()
