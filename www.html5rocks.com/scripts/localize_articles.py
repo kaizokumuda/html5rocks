@@ -379,7 +379,7 @@ def main():
                           'HTML articles in `./_localized`.'))
 
   options = parser.parse_args()[0]
-  if not options.generate_html or options.import_html:
+  if not (options.generate_html or options.import_html):
     parser.error('You must specify either `--generate`'
                  'or `--import`.')
 
