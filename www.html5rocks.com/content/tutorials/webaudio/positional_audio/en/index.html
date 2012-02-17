@@ -260,6 +260,68 @@ sound.panner.coneOuterGain = outerGainFactor;
 	<figcaption>Environmental audio demo</figcaption>
 </figure>
 
+<p>Using ConvolverNodes to do environmental audio requires rewiring the audio processing graph. Instead of passing sound directly to the main volume, you need to route it through the ConvolverNode. And as you may want to control the strength of the environmental effect, you also need to route the audio around the ConvolverNode. To control the mix volumes the ConvolverNode and the plain audio need to have GainNodes attached to them.
+	
+<p>The final audio processing graph I'm using has the audio from the objects going through a GainNode used as a pass-through mixer. From the mixer I pass the audio into the ConvolverNode and another GainNode, which is used to control the volume of the plain audio. The ConvolverNode is hooked into its own GainNode to control the convolved audio volume. The outputs of the GainNodes are connected to the main volume controller.
+	
+<pre>
+...
+var ctx = new webkitAudioContext();
+var mainVolume = ctx.createGainNode();
+
+// Create a convolver to apply environmental effects to the audio.
+var convolver = ctx.createConvolver();
+
+// Create a mixer that receives sound from the panners.
+var mixer = ctx.createGainNode();
+
+sounds.forEach(function(sound){
+  sound.panner.connect(mixer);
+});
+
+// Create volume controllers for the plain audio and the convolver.
+var plainGain = ctx.createGainNode();
+var convolverGain = ctx.createGainNode();
+
+// Send audio from the mixer to plainGain and the convolver node.
+mixer.connect(plainGain);
+mixer.connect(convolver);
+
+// Hook up the convolver to its volume control.
+convolver.connect(convolverGain);
+
+// Send audio from the volume controls to the main volume control.
+plainGain.connect(mainVolume);
+convolverGain.connect(mainVolume);
+
+// Finally, connect the main volume to the audio context's destination.
+volume.connect(ctx.destination);
+...
+</pre> 
+
+<p>To make the ConvolverNode work, you need to load an impulse response sample into a buffer and make the ConvolverNode use it. Loading the sample happens in the same way as with normal sound samples. Below is an example of one way to do it:
+
+<pre>
+...
+loadBuffer(ctx, "impulseResponseExample.wav", function(buffer){
+  convolver.buffer = buffer;
+  convolverGain.gain.value = 0.7;
+  plainGain.gain.value = 0.3;
+})
+...
+function loadBuffer(ctx, filename, callback) {
+  var request = new XMLHttpRequest();
+  request.open("GET", soundFileName, true);
+  request.responseType = "arraybuffer";
+  request.onload = function() {
+    // Create a buffer and keep the channels unchanged.
+    var buffer = ctx.createBuffer(request.response, false);
+    callback(buffer);
+  };
+  request.send();
+  return request;
+}
+</pre>
 
 
 <h2 id="toc-summary">Summary</h2>
