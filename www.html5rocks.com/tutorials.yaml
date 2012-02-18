@@ -815,7 +815,7 @@ title: Native HTML5 Drag and Drop
 url: /tutorials/dnd/basics/
 author_id: ericbidelman
 publication_date: 2010-09-30
-update_date: 2010-12-21
+update_date: 2012-02-17
 description: Drag-and-drop is yet another first class citizen in HTML5! This article explains how to enhance your web applications by adding native DnD functionality.
 browser_support:
 - chrome

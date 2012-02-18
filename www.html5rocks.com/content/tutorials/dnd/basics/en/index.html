@@ -1,12 +1,5 @@
 {% extends "tutorial.html" %}
 
-{% block headauthor %}Eric Bidelman <ericbidelman@chromium.org>{% endblock %}
-{% block pageauthor %}{% profilelinks ericbidelman %}{% endblock %}
-{% block headtitle %}Native HTML5 Drag and Drop{% endblock %}
-{% block pagetitle %}Native HTML5 Drag and Drop{% endblock %}
-{% block pagebreadcrumb %}Native HTML5 Drag and Drop{% endblock %}
-{% block date %}September 30, 2010{% endblock %}
-
 {% block head %}
 <style>
 figure img { border: 1px solid #ccc; }
@@ -30,8 +23,13 @@ dd {
   margin-right: 5px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 3px #000;
+  -moz-box-shadow: inset 0 0 3px #000;
+  -ms-box-shadow: inset 0 0 3px #000;
+  -o-box-shadow: inset 0 0 3px #000;
   box-shadow: inset 0 0 3px #000;
   text-align: center;
   cursor: move;
@@ -47,17 +45,26 @@ dd {
                                color-stop(0, rgb(0,0,0)),
                                color-stop(0.50, rgb(79,79,79)),
                                color-stop(1, rgb(21,21,21)));
+  background: -webkit-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+  background: -ms-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+  background: -o-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
   border-bottom: 1px solid #ddd;
   -webkit-border-top-left-radius: 10px;
   -moz-border-radius-topleft: 10px;
+  -ms-border-radius-topleft: 10px;
+  -o-border-radius-topleft: 10px;
   border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
   -moz-border-radius-topright: 10px;
+  -ms-border-radius-topright: 10px;
+  -o-border-radius-topright: 10px;
   border-top-right-radius: 10px;
 }
 #columns-full .column {
   -webkit-transition: -webkit-transform 0.2s ease-out;
   -moz-transition: -moz-transform 0.2s ease-out;
+  -o-transition: -o-transform 0.2s ease-out;
+  -ms-transition: -ms-transform 0.2s ease-out;
 }
 #columns-full .column.over,
 #columns-dragOver .column.over,
@@ -69,6 +76,8 @@ dd {
   opacity: 0.25;
   -webkit-transform: scale(0.8);
   -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  -o-transform: scale(0.8);
 }
 #columns-full .column .count {
   padding-top: 15px;
@@ -76,18 +85,6 @@ dd {
   text-shadow: #fff 0 1px;
 }
 </style>
-{% endblock %}
-
-{% block browsersupport %}
-<span class="browser opera"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
-<span class="browser ie supported"><span class="browser_name">Internet Explorer</span><span class="support">supported</span></span>
-<span class="browser safari supported"><span class="browser_name">Safari</span><span class="support">supported</span></span>
-<span class="browser ff supported"><span class="browser_name">Firefox</span><span class="support">supported</span></span>
-<span class="browser chrome supported"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
-{% endblock %}
-
-{% block html5badge %}
-<img src="/static/images/identity/html5-badge-h-performance.png" width="133" height="64" alt="This article is powered by HTML5 Performance &amp; Integration" title="This article is powered by HTML5 Performance &amp; Integration" />
 {% endblock %}
 
 {% block iscompatible %}
@@ -177,9 +174,11 @@ if (Modernizr.draganddrop) {
   background-color: #ccc;
   margin-right: 5px;
   -webkit-border-radius: 10px;
+  -ms-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 3px #000;
+  -ms-box-shadow: inset 0 0 3px #000;
   box-shadow: inset 0 0 3px #000;
   text-align: center;
   cursor: move;
@@ -194,11 +193,15 @@ if (Modernizr.draganddrop) {
                                color-stop(0, rgb(0,0,0)),
                                color-stop(0.50, rgb(79,79,79)),
                                color-stop(1, rgb(21,21,21)));
+  background: -webkit-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+  background: -ms-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
   border-bottom: 1px solid #ddd;
   -webkit-border-top-left-radius: 10px;
   -moz-border-radius-topleft: 10px;
+  -ms-border-radius-topleft: 10px;
   border-top-left-radius: 10px;
   -webkit-border-top-right-radius: 10px;
+  -ms-border-top-right-radius: 10px;
   -moz-border-radius-topright: 10px;
   border-top-right-radius: 10px;
 }
@@ -298,11 +301,11 @@ function handleDragStart(e) {
 
 <span class="new">function handleDragEnter(e) {
   // this / e.target is the current hover target.
-  this.addClassName('over');
+  this.classList.add('over');
 }</span>
 
 <span class="new">function handleDragLeave(e) {
-  this.removeClassName('over');  // this / e.target is previous target element.
+  this.classList.remove('over');  // this / e.target is previous target element.
 }</span>
 
 var cols = document.querySelectorAll('#columns .column');
@@ -329,31 +332,6 @@ var cols = document.querySelectorAll('#columns .column');
     to fire on a column hover. Ultimately, that would cause the browser's renderer to do a
     large amount of unnecessary work. Keeping redraws to a minimum is always a good idea.</li>
   </ul>
-
-  <p>The JQuery-esk add/toggle/remove class helpers that I'm using:</p>
-<pre class="prettyprint">
-Element.prototype.hasClassName = function(name) {
-  return new RegExp("(?:^|\\s+)" + name + "(?:\\s+|$)").test(this.className);
-};
-
-Element.prototype.addClassName = function(name) {
-  if (!this.hasClassName(name)) {
-    this.className = this.className ? [this.className, name].join(' ') : name;
-  }
-};
-
-Element.prototype.removeClassName = function(name) {
-  if (this.hasClassName(name)) {
-    var c = this.className;
-    this.className = c.replace(new RegExp("(?:^|\\s+)" + name + "(?:\\s+|$)", "g"), "");
-  }
-};
-</pre>
-
-  <p><strong>Tip</strong>: Instead of defining helper methods like this or using a library like JQuery,
-  you could utilize the new <a href="https://developer.mozilla.org/en/DOM/element.classList">Element.classList</a> API,
-  which is currently supported in the nightly builds of FF, WebKit, and Chromium.
-  </p>
 
   <h3 id="toc-dragend">3. Completing a Drag</h3>
 
@@ -385,7 +363,7 @@ Element.prototype.removeClassName = function(name) {
   // this/e.target is the source node.
 
   [].forEach.call(cols, function (col) {
-    col.removeClassName('over');
+    col.classList.remove('over');
   });
 }</span>
 
@@ -578,6 +556,7 @@ function handleDrop(e) {
   </ul>
 
 <script>
+// Using this polyfill for safety.
 Element.prototype.hasClassName = function(name) {
   return new RegExp("(?:^|\\s+)" + name + "(?:\\s+|$)").test(this.className);
 };
