@@ -27,6 +27,7 @@ import re
 import glob
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+REQUIRED_LOCALES = ['de', 'en', 'es', 'ja', 'pt', 'ru', 'zh']
 
 class TextProcessor(object):
   """Translates text from Django template format to localizable HTML and back."""
@@ -174,6 +175,18 @@ class Article(object):
                        if os.path.exists(os.path.join(self.path, dir,
                                                       'index.html'))]
     return self._locales
+
+  @property
+  def completely_localized(self):
+    """Does the article have localizations for each expected language?
+
+    Returns:
+      True if the article has a localization for each of REQUIRED_LOCALES.
+    """
+    remaining = [locale
+                 for locale in REQUIRED_LOCALES
+                 if locale not in self.locales]
+    return not remaining
 
   @property
   def localizable_file_path(self):
@@ -358,10 +371,11 @@ class Localizer(object):
 
   def generate_localizable_files(self):
     for article in self.articles:
-      try:
-        article.generate_localizable_file()
-      except ArticleException:
-        pass
+      if not article.completely_localized:
+        try:
+          article.generate_localizable_file()
+        except ArticleException:
+          pass
 
   def import_localized_files(self):
     for article in self.articles:
@@ -385,6 +399,7 @@ def main():
 
   l7r = Localizer(original_root=Article.ROOT,
                    localized_root=Article.LOCALIZED_ROOT)
+
   if options.generate_html:
     try:
       os.mkdir(Article.UNLOCALIZED_ROOT)
