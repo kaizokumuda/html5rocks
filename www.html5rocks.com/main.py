@@ -388,10 +388,10 @@ class ContentHandler(webapp.RequestHandler):
                     .fetch(limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT))
       }
       if relpath == "why":
-        if os.path.isfile(os.path.join(path, locale, 'why_content.html')):
-          data['local_content_path'] = os.path.join('why', locale, 'why_content.html')
+        if os.path.isfile(os.path.join(path, locale, 'index.html')):
+          data['local_content_path'] = os.path.join('why', locale, 'index.html')
         else:
-          data['local_content_path'] = os.path.join('why', 'en', 'why_content.html')
+          data['local_content_path'] = os.path.join('why', 'en', 'index.html')
       self.render(data=data, template_path=path + '.html', relpath=relpath)
 
     else:
