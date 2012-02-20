@@ -123,7 +123,7 @@ Demo.prototype = {
 
     a.destination = a.mixer;
     a.mixer.connect(a.flatGain);
-    a.mixer.connect(a.convolver);
+    //a.mixer.connect(a.convolver);
     a.convolver.connect(a.convolverGain);
     a.flatGain.connect(a.volume);
     a.convolverGain.connect(a.volume);
@@ -286,30 +286,74 @@ Demo.prototype = {
     this.keyForward = this.keyBackward = this.keyLeft = this.keyRight = false;
     var self = this;
 
+    var down = false;
+    var mx=0, my=0;
+    this.camera.target = new THREE.Object3D();
+    window.addEventListener('mousedown', function(ev) {
+      mx = ev.clientX;
+      my = ev.clientY;
+      down = true;
+    }, false);
+    window.addEventListener('mouseup', function() {
+      down = false;
+    }, false);
+    this.xangle=Math.PI;
+    this.yangle=0;
+    window.addEventListener('mousemove', function(ev) {
+      if (down) {
+        var dx = ev.clientX - mx;
+        var dy = ev.clientY - my;
+        mx = ev.clientX;
+        my = ev.clientY;
+        self.xangle -= dx/100;
+        self.yangle = Math.min(Math.PI/2, Math.max(-Math.PI/2, self.yangle-dy/100));
+      }
+    }, false);
+
     window.addEventListener('keydown', function(ev) {
        switch (ev.keyCode) {
         case 'W'.charCodeAt(0):
+        case 38:
           self.keyForward = true; break;
         case 'S'.charCodeAt(0):
+        case 40:
           self.keyBackward = true; break;
         case 'A'.charCodeAt(0):
+        case 37:
           self.keyLeft = true; break;
         case 'D'.charCodeAt(0):
+        case 39:
           self.keyRight = true; break;
       }
     }, false);
     window.addEventListener('keyup', function(ev) {
+      console.log(ev.which, ev.keyCode);
       switch (ev.keyCode) {
         case 'W'.charCodeAt(0):
+        case 38:
           self.keyForward = false; break;
         case 'S'.charCodeAt(0):
+        case 40:
           self.keyBackward = false; break;
         case 'A'.charCodeAt(0):
+        case 37:
           self.keyLeft = false; break;
         case 'D'.charCodeAt(0):
+        case 39:
           self.keyRight = false; break;
       }
     }, false);
+  },
+
+  updateCameraTarget: function() {
+    var lx = Math.sin(this.xangle);
+    var ly = Math.sin(this.yangle);
+    var lz = Math.cos(this.xangle);
+    this.camera.target.position.set(
+      this.camera.position.x + lx,
+      this.camera.position.y + ly,
+      this.camera.position.z + lz
+    );
   },
 
   setPositionAndVelocity : function(object, audioNode, x, y, z, dt) {
@@ -367,26 +411,41 @@ Demo.prototype = {
   },
 
   update : function(t, dt) {
+    this.updateCameraTarget();
     var cp = this.camera.position;
     var camZ = cp.z, camX = cp.x, camY = cp.y;
+    var vz = Math.cos(this.xangle);
+    var vx = Math.sin(this.xangle);
+    var speed = 1/60;
     if (this.keyForward) {
-      camZ -= dt/100;
+      camX += vx*dt*speed;
+      camZ += vz*dt*speed;
     }
     if (this.keyBackward) {
-      camZ += dt/100;
+      camX -= vx*dt*speed;
+      camZ -= vz*dt*speed;
     }
     if (this.keyLeft) {
-      camX -= dt/100;
+      camZ -= vx*dt*speed;
+      camX -= -vz*dt*speed;
     }
     if (this.keyRight) {
-      camX += dt/100;
+      camZ += vx*dt*speed;
+      camX += -vz*dt*speed;
     }
+    this.camera.lookAt(this.camera.target.position);
     this.setListenerPosition(this.camera, camX, camY, camZ, dt/1000);
 
-    this.cube.rotation.x += dt/1000;
+    if (this.velocityEnabled && this.orientationEnabled) {
+      this.cube.rotation.x += dt/1000;
+    }
     this.cube.rotation.y += dt/800;
     var cx = Math.cos(t/3000) * 5.00;
     var cz = Math.sin(t/3000) * 5.00;
+    if (this.velocityEnabled && !this.orientationEnabled) {
+      cx = Math.cos(t/1500) * 5.00;
+      cz = Math.sin(t/1500) * 50.00+-10;
+    }
     var cy = Math.sin(t/600) * 1.50;
 
     this.setPosition(this.cube, cx, cy, cz, dt/1000);
