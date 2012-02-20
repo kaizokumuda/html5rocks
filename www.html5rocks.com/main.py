@@ -336,6 +336,12 @@ class ContentHandler(webapp.RequestHandler):
            re.search('gaming/.+', relpath) or
            re.search('business/.+', relpath))
           and not is_feed):
+      # If this is an old-style Mobile article, redirect to the new style.
+      match = re.search('mobile/(?P<slug>[a-z-_]+).html$', relpath)
+      if match:
+        logging.info("Redirecting from old-style Mobile URL")
+        return self.redirect('/%s/mobile/%s/' % (locale, match.group('slug')))
+
       # If no trailing / (e.g. /tutorials/blah), redirect to /tutorials/blah/.
       if (relpath[-1] != '/' and not relpath.endswith('.html')):
         return self.redirect(self.request.url + '/')
