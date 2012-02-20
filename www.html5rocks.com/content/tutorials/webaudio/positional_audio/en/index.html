@@ -37,7 +37,7 @@
 	<figcaption>Demo of flat audio</figcaption>
 </figure>
 
-<p>Let's see what the audio code looks like for the above piece. This is very basic Audio API code. You create a a bunch of Audio API nodes and connect them together. The audio nodes are individual sounds, volume controllers, effect nodes and analyzers and suchlike. After you have built this graph, you need to hook it up to the audio context destination to make it audible.
+<p>Let's see what the audio code looks like for the above scene. This is very basic Audio API code. You create a a bunch of Audio API nodes and connect them together. The audio nodes are individual sounds, volume controllers, effect nodes and analyzers and suchlike. After you have built this graph, you need to hook it up to the audio context destination to make it audible.
 
 <pre class="prettyprint">
 // Create a new audio context.
@@ -132,7 +132,7 @@ ctx.listener.setPosition(p.x, p.y, p.z);
 
 <h2 id="toc-velocity">Velocity</h2>
 
-<p>Now that we have the positions of the listener and the AudioPannerNode, let’s turn our attention to their velocities. By changing the velocity properties of the listener and the AudioPannerNode, you can create a cool doppler effect to the sound. The easiest way to get the velocities for the listener and the AudioPannerNode is to keep track of their per-frame positions. The velocity of the listener is the camera’s current position minus the camera’s position in the previous frame. Similarly, the velocity of the AudioPannerNode is its current position minus its previous position.
+<p>Now that we have the positions of the listener and the AudioPannerNode, let’s turn our attention to their velocities. By changing the velocity properties of the listener and the AudioPannerNode, you can add a doppler effect to the sound. The easiest way to get the velocities for the listener and the AudioPannerNode is to keep track of their per-frame positions. The velocity of the listener is the camera’s current position minus the camera’s position in the previous frame. Similarly, the velocity of the AudioPannerNode is its current position minus its previous position.
 
 <figure>
 	<iframe class="demo" src="velocity.html"></iframe>
@@ -251,7 +251,7 @@ sound.panner.coneOuterGain = outerGainFactor;
 
 <p>After you’ve got positional audio set up, you can set the environmental effects for your audio to enhance the immersiveness of your 3D scene. Suppose your scene is set inside a large cathedral. On default settings, the sounds in your scene sound like you’re standing outdoors. This discrepancy between the visuals and audio breaks immersion and makes your scene less impressive.
 
-<p>The Web Audio API has a ConvolverNode that lets you set the environmental effect for a sound. Add it to the processing graph for the audio source and you’ll be able to make the sound fit the setting. There are some presets for the environmental effects, and you can also make your own. It may be a bit cumbersome experience as you need to record the impulse response of the place you wish to simulate, but the capability is there if you need it.
+<p>The Web Audio API has a ConvolverNode that lets you set the environmental effect for a sound. Add it to the processing graph for the audio source and you’ll be able to make the sound fit the setting. There are some presets for the environmental effects, and you can also make your own. It may be slightly cumbersome experience as you need to record the impulse response of the place you wish to simulate, but the capability is there if you need it.
 
 <p>In the demo below, you can toggle between different soundscapes.
 
@@ -328,7 +328,7 @@ function loadBuffer(ctx, filename, callback) {
 
 <p>In this article you learned how to add positional audio to your 3D scenes using the Web Audio API. The Web Audio API gives you a way to set the position, orientation and velocity of audio sources and the listener. By setting those to track the objects in your 3D scene, you can create a rich soundscape for your 3D applications.
 
-<p>To make the audio experience even more compelling, you can use the impulse response presets in the Web Audio API to set up the general sound of the environment. From cathedrals to closed rooms, you can simulate the audio effect using the Web Audio API.
+<p>To make the audio experience even more compelling, you can use the impulse response presets in the Web Audio API to set up the general sound of the environment. From cathedrals to closed rooms, you can simulate a variety of effects and environments using the Web Audio API.
 
 
 
