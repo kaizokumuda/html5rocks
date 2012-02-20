@@ -36,7 +36,8 @@ publication_date: 2012-02-09
 description: "Fundamentals of using WebGL as a 2D drawing API and using shaders for image processing."
 browser_support:
 - chrome
-- firefox
+- ff
+- safari
 - opera
 tags:
 - webgl
@@ -88,6 +89,7 @@ browser_support:
 - chrome
 - ff
 - safari
+- opera
 tags:
 - webgl
 - three.js

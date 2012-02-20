@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block iscompatible %}
-  return !!Modernizr.webgl && !!Modernizr.webaudio
+  return !!Modernizr.webgl && window.webkitAudioContext
 {% endblock %}
 
 {% block content %}
