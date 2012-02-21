@@ -248,7 +248,7 @@ sound.panner.coneOuterGain = outerGainFactor;
 
 <p>After you’ve got positional audio set up, you can set the environmental effects for your audio to enhance the immersiveness of your 3D scene. Suppose your scene is set inside a large cathedral. On default settings, the sounds in your scene sound like you’re standing outdoors. This discrepancy between the visuals and audio breaks immersion and makes your scene less impressive.
 
-<p>The Web Audio API has a ConvolverNode that lets you set the environmental effect for a sound. Add it to the processing graph for the audio source and you’ll be able to make the sound fit the setting. There are some presets for the environmental effects, and you can also make your own. It may be slightly cumbersome experience as you need to record the impulse response of the place you wish to simulate, but the capability is there if you need it.
+<p>The Web Audio API has a ConvolverNode that lets you set the environmental effect for a sound. Add it to the processing graph for the audio source and you’ll be able to make the sound fit the setting. You can find impulse response samples on the web that you can use with ConvolverNodes, and you can also make your own. It may be slightly cumbersome experience as you need to record the impulse response of the place you wish to simulate, but the capability is there if you need it.
 
 <p>In the demo below, you can toggle between different soundscapes.
 
@@ -325,7 +325,7 @@ function loadBuffer(ctx, filename, callback) {
 
 <p>In this article you learned how to add positional audio to your 3D scenes using the Web Audio API. The Web Audio API gives you a way to set the position, orientation and velocity of audio sources and the listener. By setting those to track the objects in your 3D scene, you can create a rich soundscape for your 3D applications.
 
-<p>To make the audio experience even more compelling, you can use the impulse response presets in the Web Audio API to set up the general sound of the environment. From cathedrals to closed rooms, you can simulate a variety of effects and environments using the Web Audio API.
+<p>To make the audio experience even more compelling, you can use the ConvolverNode in the Web Audio API to set up the general sound of the environment. From cathedrals to closed rooms, you can simulate a variety of effects and environments using the Web Audio API.
 
 
 
