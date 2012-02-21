@@ -11,19 +11,16 @@
 {% block content %}
 
 <style>
-	iframe.demo {
-		margin-top: 16px;
-		width: 640px;
-		height: 360px;
-		border: 1px gray;
-		border-radius: 10px;
-		box-shadow: 0px 2px 8px rgba(0,0,0,0.25);
-		background: white;
-	}
+  iframe.demo {
+    margin-top: 16px;
+    width: 640px;
+    height: 360px;
+    border: 1px gray;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.25);
+    background: white;
+  }
 </style>
-
-<h1>Mixing positional audio and WebGL</h1>
-
 
 <h2 id="toc-introduction">Introduction</h2>
 
@@ -33,8 +30,8 @@
 
 <p>Here's a 3D scene with flat audio. Not very exciting. Just a sound playing without any effects. Use WASD or the arrow keys to move and drag with the mouse to look around.
 <figure>
-	<iframe class="demo" src="flat.html"></iframe>
-	<figcaption>Demo of flat audio</figcaption>
+  <iframe class="demo" src="flat.html"></iframe>
+  <figcaption>Demo of flat audio</figcaption>
 </figure>
 
 <p>Let's see what the audio code looks like for the above scene. This is very basic Audio API code. You create a a bunch of Audio API nodes and connect them together. The audio nodes are individual sounds, volume controllers, effect nodes and analyzers and suchlike. After you have built this graph, you need to hook it up to the audio context destination to make it audible.
@@ -77,7 +74,7 @@ request.onload = function() {
 };
 request.send();
 </pre>
-	
+  
 
 
 <h2 id="toc-position">Position</h2>
@@ -85,8 +82,8 @@ request.send();
 <p>To get started, create an audio source and attach it to an AudioPannerNode. Then set the position of the AudioPannerNode. Now you have a movable 3D sound. The audio context listener position is at (0,0,0) by default, so when used in this way, the AudioPannerNode position is relative to the camera position. Whenever you move the camera, you need to update the AudioPannerNode position. To make the AudioPannerNode position relative to the world, you need to change the audio context listener position to your camera position.
 
 <figure>
-	<iframe class="demo" src="position.html"></iframe>
-	<figcaption>Audio position demo</figcaption>
+  <iframe class="demo" src="position.html"></iframe>
+  <figcaption>Audio position demo</figcaption>
 </figure>
 
 <p>To set up the position tracking, what we need to do is create an AudioPannerNode and wire it up to the main volume.
@@ -135,8 +132,8 @@ ctx.listener.setPosition(p.x, p.y, p.z);
 <p>Now that we have the positions of the listener and the AudioPannerNode, let’s turn our attention to their velocities. By changing the velocity properties of the listener and the AudioPannerNode, you can add a doppler effect to the sound. The easiest way to get the velocities for the listener and the AudioPannerNode is to keep track of their per-frame positions. The velocity of the listener is the camera’s current position minus the camera’s position in the previous frame. Similarly, the velocity of the AudioPannerNode is its current position minus its previous position.
 
 <figure>
-	<iframe class="demo" src="velocity.html"></iframe>
-	<figcaption>Doppler effect demo</figcaption>
+  <iframe class="demo" src="velocity.html"></iframe>
+  <figcaption>Doppler effect demo</figcaption>
 </figure>
 
 <p>Tracking the velocity can be done by getting the object's previous position, subtracting it from the current position and dividing the result by the time elapsed since last frame. Here's how to do it in Three.js:
@@ -166,8 +163,8 @@ sound.panner.setVelocity(dx/dt, dy/dt, dz/dt);
 <p>For orientation to have an effect on your sounds, you also need to define the cone for the sound. The sound cone takes an inner angle, outer angle and outer gain. The sound plays at the normal volume inside the inner angle and gradually changes gain to outer gain as you approach the outer angle. Outside the outer angle the sound plays at outer gain.
 
 <figure>
-	<iframe class="demo" src="orientation.html"></iframe>
-	<figcaption>Audio orientation demo</figcaption>
+  <iframe class="demo" src="orientation.html"></iframe>
+  <figcaption>Audio orientation demo</figcaption>
 </figure>
 
 <p>Tracking the orientation in Three.js is a bit trickier as it involves some vector math and zeroing the translation part of the 4x4 world matrices. Still, not many lines of code.
@@ -237,12 +234,12 @@ sound.panner.coneOuterGain = outerGainFactor;
 <h2 id="toc-all-together">All together</h2>
 
 <p>Putting it all together, the audio context listener follows the position, orientation and velocity of the camera, and the AudioPannerNodes follow the positions, orientations and velocities of their respective audio sources. You need to update the positions, velocities and orientations of the AudioPannerNodes and the audio context listener on every frame.
-	
+  
 <p>Here's a demo with all the above positional audio features working together:
 
 <figure>
-	<iframe class="demo" src="all_together.html"></iframe>
-	<figcaption>Full positional audio demo</figcaption>
+  <iframe class="demo" src="all_together.html"></iframe>
+  <figcaption>Full positional audio demo</figcaption>
 </figure>
 
 
@@ -256,14 +253,14 @@ sound.panner.coneOuterGain = outerGainFactor;
 <p>In the demo below, you can toggle between different soundscapes.
 
 <figure>
-	<iframe class="demo" src="environment.html"></iframe>
-	<figcaption>Environmental audio demo</figcaption>
+  <iframe class="demo" src="environment.html"></iframe>
+  <figcaption>Environmental audio demo</figcaption>
 </figure>
 
 <p>Using ConvolverNodes to do environmental audio requires rewiring the audio processing graph. Instead of passing sound directly to the main volume, you need to route it through the ConvolverNode. And as you may want to control the strength of the environmental effect, you also need to route the audio around the ConvolverNode. To control the mix volumes the ConvolverNode and the plain audio need to have GainNodes attached to them.
-	
+  
 <p>The final audio processing graph I'm using has the audio from the objects going through a GainNode used as a pass-through mixer. From the mixer I pass the audio into the ConvolverNode and another GainNode, which is used to control the volume of the plain audio. The ConvolverNode is hooked into its own GainNode to control the convolved audio volume. The outputs of the GainNodes are connected to the main volume controller.
-	
+  
 <pre>
 ...
 var ctx = new webkitAudioContext();
