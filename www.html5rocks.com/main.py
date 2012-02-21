@@ -55,6 +55,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 
 
 template.register_template_library('templatetags.templatefilters')
+template.register_template_library('templatetags.socialurl')
 
 
 class ContentHandler(webapp.RequestHandler):
