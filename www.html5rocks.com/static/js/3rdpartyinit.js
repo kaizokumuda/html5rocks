@@ -6,7 +6,7 @@ window.thirdParty = {
     init: function() {
       $(window).load(function() {
         setTimeout(function() {
-          thirdParty.GA();
+          //thirdParty.GA(); // moved to base.html to record hits immediately.
           thirdParty.plus1();
           thirdParty.twitter();
           thirdParty.facebook();
