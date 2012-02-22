@@ -53,7 +53,7 @@ window.thirdParty = {
     },
 
     GA: function() {
-        var _gaq = _gaq || [];
+        window._gaq = window._gaq || [];
         _gaq.push(['_setAccount', 'UA-15028909-1']);
         _gaq.push(['_trackPageview']);
         (function() {
