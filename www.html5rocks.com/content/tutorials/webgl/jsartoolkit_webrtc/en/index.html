@@ -143,7 +143,9 @@ for (var idx = 0; idx &lt; markerCount; idx++) {
 
 <h2 id="toc-matrixmapping">Matrix mapping</h2>
 
-<p>Here's the code to copy JSARToolKit matrices over to glMatrix matrices. It works by magic (read: I don't know how ARToolKit matrices are setup).
+<p>Here's the code to copy JSARToolKit matrices over to glMatrix matrices (which are 16-element FloatArrays with the translation column in the last four elements). It works by magic (read: I don't know how ARToolKit matrices are setup). Inverted Y-axis is my guess. Anyway, this bit of sign-reversing voodoo makes a JSARToolKit matrix work the same as a glMatrix.
+
+<p>To use the library with another library, such as Three.js, you need to write a function that converts the ARToolKit matrices to the library's matrix format. You also need to hook into the FLARParam.copyCameraMatrix method. The copyCameraMatrix method writes the FLARParam perspective matrix into a glMatrix-style matrix.
 
 <pre class="prettyprint">
 function copyMarkerMatrix(arMat, glMat) {
@@ -165,6 +167,11 @@ function copyMarkerMatrix(arMat, glMat) {
   glMat[15] = 1;
 }
 </pre>
+
+
+<h2 id="toc-summary">Summary</h2>
+
+<p>In this article we went through the basics of JSARToolKit. Now you are ready to build your own webcam-using augmented reality applications with JavaScript. 
 
 
   <h2 id="toc-references">References</h2>
