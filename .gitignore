@@ -1,7 +1,8 @@
 *~
 *.pyc
 *.DS_Store
-_to_localize
+_localized
+_unlocalized
 
 ^studio\.html5rocks\.com\/samples\/.*\.zip
 

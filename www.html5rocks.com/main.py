@@ -48,6 +48,7 @@ from django.utils.translation import ugettext as _
 
 # Google App Engine Imports
 from google.appengine.api import memcache
+from google.appengine.api import datastore_errors
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
@@ -176,7 +177,13 @@ class ContentHandler(webapp.RequestHandler):
       'sorted_profiles': models.get_sorted_profiles() # TODO: Don't add profile data on every request.
     }
 
-    template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
+    # If the tutorial contains a social URL override, use it.
+    try:
+      template_data['social_url'] = data['tut'].get('social_url')
+    except (KeyError, datastore_errors.BadKeyError):
+      template_data['social_url'] = None
+    if not template_data['social_url']:
+      template_data['social_url'] = template_data['host'] + '/' + path_no_lang
 
     # Request was for an Atom feed. Render one!
     if self.request.path.endswith('.xml'):
@@ -284,58 +291,21 @@ class ContentHandler(webapp.RequestHandler):
         p['tuts_by_author'] = models.Resource.get_tutorials_by_author(p['id'])
       self.render(data={'sorted_profiles': profiles},
                   template_path='content/profiles.html', relpath=relpath)
-
-    elif re.search('tutorials/casestudies', relpath) and not is_feed:
-      # Case Studies look like this on the filesystem:
-      #
-      #   .../tutorials +
-      #                 |
-      #                 +-- casestudies   +
-      #                 |                 |
-      #                 |                 +-- en  +
-      #                 |                 |       |
-      #                 |                 |       +-- case_study_name.html
-      #                 ...
-      #
-      # So, to determine if an HTML page exists for the requested language
-      # `split` the file's path, add in the locale, and check existance:
-      logging.info('Building request for casestudy `%s` in locale `%s`',
-                   path, locale)
-      potentialfile = re.sub('tutorials/casestudies',
-                             'tutorials/casestudies/%s' % locale, path)
-      englishfile = re.sub('tutorials/casestudies',
-                           'tutorials/casestudies/%s' % 'en', path)
-
-      logging.info(englishfile)
-
-      if os.path.isfile(potentialfile):
-        logging.info('Rendering in native: %s' % potentialfile)
-
-        tut = models.Resource.all().filter('url =', '/' + relpath).get()
-
-        # If tutorial is marked as draft, redirect and don't show it.
-        if tut.draft:
-          return self.redirect('/tutorials')
-
-        data = {
-          'tut': tut,
-          'redirect_from_locale': redirect_from_locale
-        }
-
-        self.render(template_path=potentialfile, data=data, relpath=relpath)
-
-      # If the localized file doesn't exist, and the locale isn't English, look
-      # for an english version of the file, and redirect the user there if
-      # it's found:
-      elif os.path.isfile(englishfile):
-        return self.redirect("/en/%s?redirect_from_locale=%s" % (relpath,
-                                                                 locale))
-
     elif ((re.search('tutorials/.+', relpath) or
            re.search('mobile/.+', relpath) or
            re.search('gaming/.+', relpath) or
-           re.search('business/.+', relpath))
+           re.search('business/.+', relpath) or
+           re.search('tutorials/casestudies/.+', relpath))
           and not is_feed):
+      # If this is an old-style mobile article or case study, redirect to the
+      # new style.
+      match = re.search(('(?P<type>mobile|tutorials/casestudies)'
+                         '/(?P<slug>[a-z-_0-9]+).html$'), relpath)
+      if match:
+        logging.info("Redirecting from old-style URL to the new hotness.")
+        return self.redirect('/%s/%s/%s/' % (locale, match.group('type'),
+                                             match.group('slug')))
+
       # If no trailing / (e.g. /tutorials/blah), redirect to /tutorials/blah/.
       if (relpath[-1] != '/' and not relpath.endswith('.html')):
         return self.redirect(self.request.url + '/')
@@ -425,10 +395,10 @@ class ContentHandler(webapp.RequestHandler):
                     .fetch(limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT))
       }
       if relpath == "why":
-        if os.path.isfile(os.path.join(path, locale, 'why_content.html')):
-          data['local_content_path'] = os.path.join('why', locale, 'why_content.html')
+        if os.path.isfile(os.path.join(path, locale, 'index.html')):
+          data['local_content_path'] = os.path.join('why', locale, 'index.html')
         else:
-          data['local_content_path'] = os.path.join('why', 'en', 'why_content.html')
+          data['local_content_path'] = os.path.join('why', 'en', 'index.html')
       self.render(data=data, template_path=path + '.html', relpath=relpath)
 
     else:
@@ -453,6 +423,7 @@ class DBHandler(ContentHandler):
           author=author_key,
           second_author=author_key2,
           url=unicode(res['url']),
+          social_url=unicode(res.get('social_url') or ''),
           browser_support=res.get('browser_support') or [],
           update_date=res.get('update_date'),
           publication_date=res['publication_date'],

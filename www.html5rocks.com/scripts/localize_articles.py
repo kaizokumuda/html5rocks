@@ -1,4 +1,4 @@
-#!/usr/bin/python2.4
+#!/usr/bin/python
 # Copyright 2011 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
@@ -24,150 +24,301 @@ __author__ = ('mkwst@google.com (Mike West)')
 import optparse
 import os
 import re
+import glob
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+REQUIRED_LOCALES = ['de', 'en', 'es', 'ja', 'pt', 'ru', 'zh']
 
+class TextProcessor(object):
+  """Translates text from Django template format to localizable HTML and back."""
+  
+  UNTRANSLATABLE_BEGIN = r'<!--DO_NOT_TRANSLATE_BLOCK>'
+  UNTRANSLATABLE_END = r'</DO_NOT_TRANSLATE_BLOCK-->'
 
-class Article(object):
-  """Represents an article, and maps back and forth between Django and HTML.
-
-  Attributes:
-    DJANGO_ROOT: The root directory in which Django templates are found.
-    HTML_ROOT: The root directory in which HTML files are found .
-    django_: The absolute path to a specific Django template.
-    html_: The absolute path to a specific HTML file.
-  """
-  DJANGO_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..', 'content'))
-  HTML_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..', '_to_localize'))
-
-  UNTRANSLATABLE_LABEL = r'<!--DO_NOT_TRANSLATE_BLOCK>'
-  UNTRANSLATABLE_END_LABEL = r'</DO_NOT_TRANSLATE_BLOCK-->'
-
-  CONTENT_LABEL = """
+  CONTENT_BEGIN = """
 <!--CONTENT_BLOCK ***********************************************************-->
 """
-  CONTENT_LABEL_END = """
+  CONTENT_END = """
 <!--/END_CONTENT_BLOCK ******************************************************-->
 """
 
-  def __init__(self, django=None, html=None):
-    """Creates an Article object.
+  @classmethod
+  def django_to_html(self, text):
+    """Given a Django template's content, return HTML suitable for l10n.
 
     Args:
-      django: The path to a Django file (optional)
-      html: The path to an HTML file (optional)
+      text: The text to convert from Django to HTML.
+
+    Returns:
+      A string containing the newly HTMLized content.
+
+      * Django tags like `{% tag %}` will be rendered inside an HTML comment:
+        `<!--DO_NOT_TRANSLATE_BLOCK>{% tag %}</DO_NOT_TRANSLATE_BLOCK-->`.
+
+      * `pre`, `script`, and `style` tags' content will be likewise wrapped:
+        `<pre><!--DO_NOT_TRANSLATE_BLOCK>Text!</DO_NOT_TRANSLATE_BLOCK-->`.
+
+      * The article's content will be wrapped:
+
+        <!--CONTENT_BLOCK ***********************************************************-->
+        Content goes here!
+        <!--END_CONTENT_BLOCK *******************************************************-->
     """
-    self.django_ = os.path.abspath(django) if django else ''
-    self.html_ = os.path.abspath(html) if html else ''
-    self._NormalizePaths()
-
-  def _NormalizePaths(self):
-    """Ensures that both the Django and HTML paths exist and are absolute."""
-
-    if not self.django_:
-      self.django_ = re.sub(r'^%s' % Article.HTML_ROOT,
-                            Article.DJANGO_ROOT,
-                            self.html_)
-    if not self.html_:
-      self.html_ = re.sub(r'^%s' % Article.DJANGO_ROOT,
-                          Article.HTML_ROOT,
-                          self.django_)
-    self.html_ = os.path.abspath(self.html_)
-    self.django_ = os.path.abspath(self.django_)
-
-  def GenerateHTML(self):
-    """Generates a localizable HTML file from a Django template.
-
-    This function will also create the HTML file's directory if it doesn't
-    already exist.
-    """
-    try:
-      os.makedirs(os.path.dirname(self.html_))
-    except os.error:
-      pass
-    print '* Generating `%s`' % self.html_
-    with open(self.html_, 'w') as outfile:
-      with open(self.django_, 'r') as infile:
-        in_content = False
-        for line in infile:
-          (line, in_content) = self._HtmlizeLine(line, in_content)
-          outfile.write(line)
-
-  def _HtmlizeLine(self, line, in_content):
-    """Given a line of a Django template, returns the corresponding HTML line
-
-    * Replaces Django tags with comments in the form:
-        <!--DO_NOT_TRANSLATE_BLOCK-->{DJANGO_TAG}<!--/DO_NOT_TRANSLATE_BLOCK-->
-
-    * Replaces script/style/pre tags with comments in the form:
-        <TAG_GOES_HERE><!--DO_NOT_TRANSLATE_BLOCK-->
-        ...
-        <!--/DO_NOT_TRANSLATE_BLOCK--></TAG_GOES_HERE>
-    """
-
     UNESCAPED_DJANGO = r'(?P<tag>{%.+?%})'
-    ESCAPED_DJANGO = r'%s\g<tag>%s' % (Article.UNTRANSLATABLE_LABEL,
-                                       Article.UNTRANSLATABLE_END_LABEL,)
+    ESCAPED_DJANGO = r'%s\g<tag>%s' % (self.UNTRANSLATABLE_BEGIN,
+                                       self.UNTRANSLATABLE_END,)
 
     UNESCAPED_UNTRANSLATABLE = r'(?P<tag><(?:pre|script|style)[^>]*?>)'
-    ESCAPED_UNTRANSLATABLE = r'\g<tag>%s' % Article.UNTRANSLATABLE_LABEL
+    ESCAPED_UNTRANSLATABLE = r'\g<tag>%s' % self.UNTRANSLATABLE_BEGIN
 
     UNESCAPED_UNTRANSLATABLE_END = r'(?P<tag></(?:pre|script|style)[^>]*?>)'
-    ESCAPED_UNTRANSLATABLE_END = r'%s\g<tag>' % Article.UNTRANSLATABLE_END_LABEL
+    ESCAPED_UNTRANSLATABLE_END = r'%s\g<tag>' % self.UNTRANSLATABLE_END
 
-    UNESCAPED_CONTENT = r'{% block content %}'
-    UNESCAPED_CONTENT_END = r'{% endblock %}'
+    CONTENT_BEGIN = r'{% block content %}'
+    CONTENT_END = r'{% endblock %}'
+   
+    # Walk the given text line by line
+    to_return = []
+    in_content = False
+    for line in text.splitlines(True):
+      # Process Django tags
+      line = re.sub(UNESCAPED_DJANGO, ESCAPED_DJANGO, line)
+      # Preprocess script/pre/style blocks
+      line = re.sub(UNESCAPED_UNTRANSLATABLE, ESCAPED_UNTRANSLATABLE, line)
+      line = re.sub(UNESCAPED_UNTRANSLATABLE_END,
+                    ESCAPED_UNTRANSLATABLE_END,
+                    line)
+      # Preprocess content block
+      if re.search(CONTENT_BEGIN, line):
+        line = self.CONTENT_BEGIN
+        in_content = True
+      elif re.search(CONTENT_END, line) and in_content:
+        line = self.CONTENT_END
+        in_content = False
 
-    # Preprocess Django tags
-    line = re.sub(UNESCAPED_DJANGO, ESCAPED_DJANGO, line)
-    # Preprocess script/pre/style blocks
-    line = re.sub(UNESCAPED_UNTRANSLATABLE, ESCAPED_UNTRANSLATABLE, line)
-    line = re.sub(UNESCAPED_UNTRANSLATABLE_END,
-                  ESCAPED_UNTRANSLATABLE_END,
-                  line)
-    # Preprocess content block
-    if not in_content and re.search(UNESCAPED_CONTENT, line):
-      line = Article.CONTENT_LABEL
-      in_content = True
-    if in_content and re.search(UNESCAPED_CONTENT_END, line):
-      line = Article.CONTENT_LABEL_END
-      in_content = False
-    return (line, in_content)
+      to_return.append(line)
 
-  def GenerateDjango(self):
-    """Generates a Django template from a localized HTML file.
+    return ''.join(to_return)
 
-    Implemented trivially by stripping comments in the form:
-    `<!--DJANGO>...</DJANGO-->`. This function will also create the Django
-    template's directory if it doesn't already exist.
+  @classmethod
+  def html_to_django(self, text):
+    """Given localized HTML, return text formatted as a Django template.
+
+    Args:
+      text: The text to convert from HTML to Django.
+
+    Returns:
+      A string containing the newly Djangoized content, stripped of leading
+      and trailing whitespace.
+
+      See the documentation for `django_to_html` and imagine the inverse. :)
     """
-    try:
-      os.makedirs(os.path.dirname(self.django_))
-    except os.error:
-      pass
-    with open(self.html_, 'r') as infile:
-      with open(self.django_, 'w') as outfile:
-        for line in infile:
-          # Preprocess Django tags
-          line = re.sub(Article.ESCAPED_DJANGO, Article.UNESCAPED_DJANGO, line)
-          # Preprocess script blocks
-          line = line.replace(Article.ESCAPED_SCRIPT, Article.UNESCAPED_SCRIPT)
-          line = line.replace(Article.ESCAPED_SCRIPT_END,
-                              Article.UNESCAPED_SCRIPT_END)
-          # Preprocess style blocks
-          line = line.replace(Article.ESCAPED_STYLE, Article.UNESCAPED_STYLE)
-          line = line.replace(Article.ESCAPED_STYLE_END,
-                              Article.UNESCAPED_STYLE_END)
-          outfile.write(line)
+    # Strip UNTRANSLATABLE_BEGIN and UNTRANSLATABLE_END comments.
+    text = text.replace(self.UNTRANSLATABLE_BEGIN, '')
+    text = text.replace(self.UNTRANSLATABLE_END, '')
 
+    # Replace CONTENT_BEGIN with `{% block content %}` and CONTENT_END with
+    # `{% endblock %}`.
+    text = text.replace(self.CONTENT_BEGIN, '{% block content %}\n')
+    text = text.replace(self.CONTENT_END, '{% endblock %}')
 
-  def __str__(self):
-    """String representation of an Article."""
+    # Return the result, stripped of leading/training whitespace.
+    return text.strip()
 
-    return ('Article:\n'
-            '- HTML Path:   `%s`\n'
-            '- Django Path: `%s`\n') % (self.html_, self.django_)
+class ArticleException(Exception):
+  pass
 
+class Article(object):
+  """Represents an article.
+  
+  Articles live at `{Article.ROOT}/path/to/article`, and can have one or more
+  localizations, which live at `{Article.ROOT}/path/to/article/{locale}`. This
+  class allows a mapping between a single article in three states:
+  
+  1. An article's finished localizations.
+  2. An unlocalized representation of the article in HTML format.
+  3. A newly localized instance of the article in a specific locale.
+
+  Attributes:
+    path: The path to the article's root: `{Article.ROOT}/path/to/article`.
+    locales: The article's available completed localizations.
+  """
+
+  ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..', 'content'))
+  LOCALIZED_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..',
+                                                '_localized'))
+  UNLOCALIZED_ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..',
+                                                  '_unlocalized'))
+  PATH_DELIMITER = '___===___'
+
+  def __init__(self, path):
+    if not os.path.exists(path):
+      raise ArticleException('`%s` does not exist.' % path)
+    self.path = path
+    self._locales = None
+    self._available_localizations = None
+
+  @property
+  def locales(self):
+    """Returns the article's localizations.
+
+    We assume that each of the subdirectories under |path| that contain an
+    `index.html` file are localizations. This getter scans the filesystem
+    to generate that list, then caches it for future calls.
+
+    Returns:
+      A list of locales, e.g. ['de','en','es']
+    """
+    if not self._locales:
+      self._locales = [dir
+                       for dir in os.listdir(self.path)
+                       if os.path.exists(os.path.join(self.path, dir,
+                                                      'index.html'))]
+    return self._locales
+
+  @property
+  def completely_localized(self):
+    """Does the article have localizations for each expected language?
+
+    Returns:
+      True if the article has a localization for each of REQUIRED_LOCALES.
+    """
+    remaining = [locale
+                 for locale in REQUIRED_LOCALES
+                 if locale not in self.locales]
+    return not remaining
+
+  @property
+  def localizable_file_path(self):
+    """The path to an article's localizable representation.
+
+    Unlocalized articles live under `{Article.UNLOCALIZED_ROOT}`, and are named
+    by jamming the elements of the article's path together into one reversable
+    string (the localization system doesn't like subdirectories).
+
+    `{Article.ROOT}/path/to/article` would return
+    `{Article.UNLOCALIZED_ROOT}/path__to__article.html` (where `__` represents
+    `Article.PATH_DELIMITER`).
+
+    Returns:
+      An absolute path to the article's localizable representation.
+    """
+    temp = self.path
+    if temp.startswith(self.ROOT):
+      temp = temp.replace(r'%s/' % self.ROOT, '', 1)
+    temp = temp.replace(r'/', self.PATH_DELIMITER)
+    temp = '%s.html' % temp
+    return os.path.abspath(os.path.join(self.UNLOCALIZED_ROOT, temp))
+
+  def _index_available_localizations(self):
+    """Populates a list of available localizations for this article.
+  
+    Indexes all files whose paths match
+    `{Article.LOCALIZED_ROOT}/[locale]/path__to__article.html` (where `__`
+    represents `Article.PATH_DELIMITER`), and stores them in
+    self._available_localizations.
+
+    Some articles have "static" directories that are used for all
+    localizations. These are not counted as available localizations.
+    """
+    self._available_localizations = []
+    matches = glob.glob(os.path.join(self.LOCALIZED_ROOT, '*',
+                                     os.path.basename(
+                                         self.localizable_file_path)))
+    for match in matches:
+      if match != "static":
+        # The locale is the name of the directory in which the localized file
+        # sits. `/path/to/article/en/article__is__here.html` has a locale of
+        # "en". "static" is special-cased out.
+        self._available_localizations.append(os.path.basename(os.path.dirname(
+                                                                  match)))
+
+  @property
+  def available_localizations(self):
+    """The finshed localizations available for this article.
+
+    Returns:
+      A list of locales, e.g. ['en', 'de', 'es']
+    """
+    if self._available_localizations is None:
+      self._index_available_localizations()
+    return self._available_localizations
+
+  @property
+  def new_localizations(self):
+    """Determines whether a new localization for this article exists.
+
+    This getter checks whether a file exists in `Article.LOCALIZED_ROOT` that
+    matches this article in a locale that isn't already available.
+
+    Returns:
+      A list of new localizations available, e.g. ['de', 'es'].
+    """
+    return [locale
+            for locale in self.available_localizations
+            if locale not in self.locales]
+
+  def original_file_path(self, locale):
+    """Returns the path for a specific original file.
+
+    This method just generates a path: it doesn't check that the file exists
+    or that it's valid.
+
+    Returns:
+      The path to a potential original file.
+    """
+    return os.path.join(self.ROOT, self.path, locale, 'index.html')
+
+  def localized_file_path(self, locale):
+    """Returns the path for a specific localized file.
+
+    This method just generates a path: it doesn't check that the file exists
+    or that it's valid.
+
+    Returns:
+      The path to a potential localized file.
+    """
+    return os.path.join(self.LOCALIZED_ROOT, locale,
+                        os.path.basename(self.localizable_file_path))
+
+  def generate_localizable_file(self):
+    """Generates a localizable representation of the article.
+
+    This method grabs the English version of the article, runs the text through
+    `TextProcessor.django_to_html`, and writes the result to
+    `localizableFilePath`.
+
+    Returns:
+      An absolute path to the article's localizable representation.
+    """
+    if not 'en' in self.locales:
+      error = """
+ArticleException:
+- path: %s
+- locales: %s
+- No English edition found.
+"""
+      raise ArticleException(error % (self.path, self.locales))
+
+    original = self.original_file_path('en')
+    with open(original, 'r') as input:
+      with open(self.localizable_file_path, 'w') as output:
+        output.write(TextProcessor.django_to_html(input.read())) 
+    return self.localizable_file_path
+
+  def import_localized_files(self):
+    """If new localized files are available, import them."""
+    for locale in self.new_localizations:
+      if os.path.isfile(self.localized_file_path(locale)):
+        try:
+          os.mkdir(os.path.dirname(self.original_file_path(locale)))
+        except OSError:
+          pass
+        with open(self.localized_file_path(locale), 'r') as infile:
+          with open(self.original_file_path(locale), 'w') as outfile:
+            outfile.write(TextProcessor.html_to_django(infile.read()))
+    self._available_localizations = []
+    self._locales = []
 
 class Localizer(object):
   """Implements the HTML5Rocks article localization workflow.
@@ -181,73 +332,86 @@ class Localizer(object):
 
   Localizer also goes in the other direction, converting localized HTML files
   into Django-template counterparts that can be rendered as part of HTML5Rocks.
-
-  Attributes:
-    root_: The root directory from which Localizer scans
-    articles_: A list of Article objects found during a scan.
   """
 
-  def __init__(self, root):
+  def __init__(self, original_root=None, localized_root=None):
     """Constructs a Localizer object.
 
     Args:
-      root: The root directory from which Localizer should scan.
+      original_root: The directory which Localizer should scan for original
+          articles.
+      localized_root: The directory Localizer should scan for finished
+          localizations.
     """
-    self.root_ = root
-    self.articles_ = []
+    self._original_root = original_root
+    self._localized_root = localized_root
+    self._articles = None
 
-  def Scan(self):
-    """Scans the root directory for articles.
+  def _index_english_articles(self):
+    """Scans the original_root directory for English articles.
 
-    Populates `self.articles_` with a list of Article objects.
+    Populates `self.articles_` with a list of Article objects representing
+    each.
 
     Returns:
         list of Article objects
     """
-    self.articles_ = []
-    for root, _, files in os.walk(Article.DJANGO_ROOT):
+    self._original_articles = []
+    for root, _, files in os.walk(self._original_root):
       for name in files:
         if not name == '.DS_Store' and re.search(r'\/en$', root):
-          self.articles_.append(Article(django=os.path.join(root,
-                                                            name)))
-    return self.articles_
+          self._original_articles.append(Article(os.path.dirname(root)))
+    return self._original_articles
 
-  def Htmlize(self):
-    """Generates localizable HTML from Django templates."""
+  @property
+  def articles(self):
+    if self._articles is None:
+      self._index_english_articles()
+    return self._original_articles
 
-    print ('Generating Localizable HTML\n'
-           '===========================\n')
-    for article in self.articles_:
-      article.GenerateHTML()
+  def generate_localizable_files(self):
+    for article in self.articles:
+      if not article.completely_localized:
+        try:
+          article.generate_localizable_file()
+        except ArticleException:
+          pass
 
-  def Djangoize(self):
-    """Generates Django templates from localized HTML."""
-
-    # TODO(mkwst): I should implement this function. :)
-    print 'Not finished (read: started) yet. Come back later.'
-
+  def import_localized_files(self):
+    for article in self.articles:
+      article.import_localized_files()
 
 def main():
   parser = optparse.OptionParser()
-  parser.add_option('--generate_html', dest='generate_html',
+  parser.add_option('--generate', dest='generate_html',
                     default=False, action='store_true',
-                    help='Generate HTML from Django templated articles.')
-  parser.add_option('--generate_django', dest='generate_django',
+                    help=('Generate HTML from Django templated articles. '
+                          'Store them in `./_unlocalized`.'))
+  parser.add_option('--import', dest='import_html',
                     default=False, action='store_true',
                     help=('Generate Django templates from localized '
-                          'HTML articles.'))
+                          'HTML articles in `./_localized`.'))
 
   options = parser.parse_args()[0]
-  if not options.generate_html or options.generate_django:
-    parser.error('You must specify either `--generate_html`'
-                 'or `--generate_django`.')
+  if not (options.generate_html or options.import_html):
+    parser.error('You must specify either `--generate`'
+                 'or `--import`.')
 
-  l10n = Localizer(Article.DJANGO_ROOT)
-  l10n.Scan()
+  l7r = Localizer(original_root=Article.ROOT,
+                   localized_root=Article.LOCALIZED_ROOT)
+
   if options.generate_html:
-    l10n.Htmlize()
-  if options.generate_django:
-    l10n.Djangoize()
+    try:
+      os.mkdir(Article.UNLOCALIZED_ROOT)
+    except OSError:
+      pass
+    l7r.generate_localizable_files()
+  if options.import_html:
+    try:
+      os.mkdir(Article.LOCALIZED_ROOT)
+    except OSError:
+      pass
+    l7r.import_localized_files()
 
 if __name__ == '__main__':
   main()
