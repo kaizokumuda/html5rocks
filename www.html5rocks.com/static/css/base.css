@@ -127,8 +127,8 @@ body, button, input, select, textarea { font-family: sans-serif; color: #000; }
 ::-moz-selection { background: #f04530; color: #fff; text-shadow: none; }
 ::selection { background: #f04530; color: #fff; text-shadow: none; }
 
-a { color: #5fa4a0; text-decoration: none;}
-a:visited { color: #5fa4a0; }
+a { color: #508B88; text-decoration: none;}
+a:visited { color: #508B88; }
 a:hover, a:focus { color: #f04530; }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }

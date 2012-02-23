@@ -33,7 +33,7 @@ function finishPanelLoad(pagePanel, elemstate) {
   // doesn't take care of this.
   $.scrollTo(pagePanel, 600, {queue: true, offset: {top: -60, left: 0}, onAfter: function(){
     $('.subheader.features').slideUp('fast', function() {
-      if (elemstate.popped != 'popped')
+      if (elemstate.popped !== 'popped')
         state.push( elemstate );
 
       route.init(page);
