@@ -185,7 +185,7 @@ tags:
 ---
 
 title: HTML5 Techniques for Optimizing Mobile Performance
-url: /mobile/optimization-and-performance.html
+url: /mobile/optimization-and-performance/
 author_id: wesleyhales
 publication_date: 2011-09-19
 description: Learn the fundamentals of an HTML5 mobile framework. From network detection to sliding, flipping, and more.
@@ -291,7 +291,7 @@ tags:
 ---
 
 title: "Case Study: Auto-Resizing HTML5 Games"
-url: /tutorials/casestudies/gopherwoord-studios-resizing-html5-games.html
+url: /tutorials/casestudies/gopherwoord-studios-resizing-html5-games/
 author_id: derekdetweiler
 publication_date: 2011-07-03
 description: Resizing your game to fit a variety of form factors and window sizes.
@@ -344,7 +344,7 @@ tags:
 ---
 
 title: "HTML5 vs Native: The Mobile App Debate"
-url: /mobile/nativedebate.html
+url: /mobile/nativedebate/
 author_id: mahemoff
 publication_date: 2011-06-03
 description: There are still compelling reasons to go native, and clearly, many developers are indeed going that route. This article is a debate on native versus web. We'll examine each point in favor of native, then we'll let the web come in and give its best defense.
@@ -411,7 +411,7 @@ tags:
 ---
 
 title: Working Off the Grid with HTML5 Offline
-url: /mobile/workingoffthegrid.html
+url: /mobile/workingoffthegrid/
 author_id: paulkinlan
 publication_date: 2011-06-01
 description: This article covers practical techniques and examples for handling connectivity flakiness.
@@ -512,7 +512,7 @@ tags:
 ---
 
 title: Multi-touch Web Development
-url: /mobile/touch.html
+url: /mobile/touch/
 author_id: smus
 publication_date: 2011-08-21
 description: Introduction on touch events for mobile devices.
@@ -529,7 +529,7 @@ tags:
 ---
 
 title: "Case Study: Real-time Updates in Stream Congress"
-url: /tutorials/casestudies/sunlight_streamcongress.html
+url: /tutorials/casestudies/sunlight_streamcongress/
 author_id: luigimontanez
 publication_date: 2011-03-17
 description: Choosing the right technology to accomplish real-time, asynchronous updates.
@@ -546,7 +546,7 @@ tags:
 ---
 
 title: "Case Study: Converting Wordico from Flash to HTML5"
-url: /tutorials/casestudies/wordico.html
+url: /tutorials/casestudies/wordico/
 author_id: adammark
 author_id2: adriangould
 publication_date: 2011-03-10
@@ -564,7 +564,7 @@ tags:
 ---
 
 title: '"Mobifying" Your HTML5 Site'
-url: /mobile/mobifying.html
+url: /mobile/mobifying/
 author_id: ericbidelman
 publication_date: 2011-03-03
 description: A guide on how to create a mobile version of an existing HTML5 website. This study
@@ -620,7 +620,7 @@ tags:
 ---
 
 title: "Case Study: Onslaught! Arena"
-url: /tutorials/casestudies/onslaught.html
+url: /tutorials/casestudies/onslaught/
 author_id: matthackett
 author_id2: geoffblair
 publication_date: 2011-02-10 
@@ -655,7 +655,7 @@ tags:
 ---
 
 title: "Case Study: HTML5 MathBoard"
-url: /tutorials/casestudies/mathboard.html
+url: /tutorials/casestudies/mathboard/
 author_id: jeremychone
 publication_date: 2011-01-28
 description: A discussion on how the iPad's popular <a href="https://chrome.google.com/webstore/detail/elcilkmmbpmchojdmdohhoalmfmkcklk">MathBoard</a> application was ported to HTML5.
@@ -670,7 +670,7 @@ tags:
 ---
 
 title: "Case Study: Page Flip Effect from 20thingsilearned.com"
-url: /tutorials/casestudies/20things_pageflip.html
+url: /tutorials/casestudies/20things_pageflip/
 author_id: hakimelhattab
 publication_date: 2011-01-20
 description: Learn how to re-create the page flip effect found on <a href="http://www.20thingsilearned.com">20thingsilearned.com</a> using the Canvas API.
@@ -722,7 +722,7 @@ tags:
 ---
 
 title: "Case Study: Getting Entangled with HTML5 Canvas"
-url: /tutorials/casestudies/entanglement.html
+url: /tutorials/casestudies/entanglement/
 author_id: derekdetweiler
 publication_date: 2010-12-14
 description: "Entanglement is a puzzle game made by Gopherwood Studios. This article talks about Entanglement's usage of the &lt;canvas&gt; tag."
@@ -832,7 +832,7 @@ tags:
 ---
 
 title: "Case Study: HTML5 in deviantART muro"
-url: /tutorials/casestudies/html5_in_deviantart_muro.html
+url: /tutorials/casestudies/html5_in_deviantart_muro/
 author_id: michaeldewey
 publication_date: 2010-09-28 
 description: Learn how deviantART used HTML5 drawing features in deviantART muro.
@@ -848,7 +848,7 @@ tags:
 ---
 
 title: "Case Study: Drag and Drop Download in Chrome"
-url: /tutorials/casestudies/box_dnd_download.html
+url: /tutorials/casestudies/box_dnd_download/
 author_id: davidtong
 publication_date: 2010-09-25
 description: Learn how Box.net implemented GMail's attachment drag and drop to the desktop.
