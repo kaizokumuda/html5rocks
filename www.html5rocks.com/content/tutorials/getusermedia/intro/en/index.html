@@ -103,45 +103,45 @@
 
 <h2 id="toc-into">Introduction</h2>
 
-<p>Audio/Video capture has been a "Holy Grail" of web development for a long time.
-For many years we've had to rely on a browser plugin (<a href="http://www.kevinmusselman.com/2009/02/access-webcam-with-flash/">Flash</a> or
+<p>Audio/Video capture has been <em>the</em> "Holy Grail" of web development for a long time.
+For many years we've had to rely on browser plugins (<a href="http://www.kevinmusselman.com/2009/02/access-webcam-with-flash/">Flash</a> or
 <a href="http://www.silverlightshow.net/items/Capturing-the-Webcam-in-Silverlight-4.aspx">Silverlight</a>)
 to get the job done. <a href="http://www.youtube.com/watch?v=SP_9zH9Q44o" target="_blank">Come on!</a></p>
-<p>HTML5 to the rescue. Though you may not realize it, with the rise of HTML5, we've
-seen a surge of access to device hardware. <a href="/tutorials/geolocation/trip_meter/">Geolocation</a> (GPS),
+<p>HTML5 to the rescue. It might not be apparent, but the rise of HTML5 has brought
+a surge of access to device hardware. <a href="/tutorials/geolocation/trip_meter/">Geolocation</a> (GPS),
 the <a href="/tutorials/device/orientation/">Orientation API</a> (accelerometer), <a href="/tutorials/webgl/shaders/">WebGL</a> (GPU),
 and the <a href="/tutorials/webaudio/intro/">Web Audio API</a> (audio hardware) are perfect examples. These features
-are ridiculously powerful because they expose high level JavaScript APIs that sit
-on top of the system's underlying hardware.</p>
-<p>This tutorial introduces a new API, the <a href="http://dev.w3.org/2011/webrtc/editor/getusermedia.html"><code>navigator.getUserMedia()</code></a> API, which allows
+are ridiculously powerful, exposing high level JavaScript APIs that sit
+on top of the system's underlying hardware capabilities.</p>
+<p>This tutorial introduces a new API, <a href="http://dev.w3.org/2011/webrtc/editor/getusermedia.html"><code>navigator.getUserMedia()</code></a>, which allows
 web apps to access a user's camera and microphone.</p>
 <h2 id="toc-history">The road to getUserMedia()</h2>
 
-<p>If you're not aware of its history, the way we arrived at <code>getUserMedia()</code> is a rather interesting story.</p>
+<p>If you're not aware of its history, the way we arrived at the <code>getUserMedia()</code> API is an interesting tale.</p>
 <p>Several variants of "Media Capture APIs" have evolved over the past few years.
 Many folks recognized the need to be able to access native devices on the web, but
-that lead to everyone and their mom putting together a new spec! Things got
-so messy that the W3C finally decided to form a working group who's sole purpose
-is to make sense of the madness. The <a href="http://www.w3.org/2009/dap/">Device APIs Policy (DAP) Working Group</a>
+that led everyone and their mom to put together a new spec. Things got
+so messy that the W3C finally decided to form a working group. Their sole purpose?
+Make sense of the madness! The <a href="http://www.w3.org/2009/dap/">Device APIs Policy (DAP) Working Group</a>
 has been tasked to consolidate + standardize the plethora of proposals.</p>
-<p>I'll try to summarize what happened in 2011:</p>
-<h3 id="toc-round1">Round 1: HTML5 Media Capture</h3>
+<p>I'll try to summarize what happened in 2011...</p>
+<h3 id="toc-round1">Round 1: HTML Media Capture</h3>
 
 <p><a href="http://dev.w3.org/2009/dap/camera/">HTML Media Capture</a> was the DAP's first go at
 standardizing media capture on the web. It works by overloading the <code>&lt;input type="file"&gt;</code>
 and adding new values for the <code>accept</code> parameter.</p>
-<p>If you wanted to let users take a photo snapshot of themselves with the webcam,
-that's done with the <code>capture=camera</code> value:</p>
+<p>If you wanted to let users take a snapshot of themselves with the webcam,
+that's possible with <code>capture=camera</code>:</p>
 <pre class="prettyprint"><code>&lt;input type="file" accept="image/*;capture=camera"&gt;
 </code></pre>
 <p>Recording a video or audio is similar:</p>
-<pre class="prettyprint"><code>&lt;input type="file" accept="audio/*;capture=microphone"&gt;
-&lt;input type="file" accept="video/*;capture=camcorder"&gt;
+<pre class="prettyprint"><code>&lt;input type="file" accept="video/*;capture=camcorder"&gt;
+&lt;input type="file" accept="audio/*;capture=microphone"&gt;
 </code></pre>
-<p>Kinda nice right? I particularly love that it reuses the file input. Semantically,
-it makes a lot of sense. Where this API lacks is the ability to do realtime effects.
-For example, render a live webcam feed to a <code>&lt;canvas&gt;</code> and apply WebGL filter effects.
-HTML5 Media Capture only allows you to record a video/audio file or take a snapshot of the user.</p>
+<p>Kinda nice right? I particularly like that it reuses a file input. Semantically,
+it makes a lot of sense. Where this particular "API" falls short is the ability to do realtime effects
+(e.g. render live webcam data to a <code>&lt;canvas&gt;</code> and apply WebGL filters).
+HTML Media Capture only allows you to record a media file or take a snapshot in time.</p>
 <p><strong>Support:</strong></p>
 <ul>
 <li><a href="http://developer.android.com/sdk/android-3.0.html">Android 3.0 browser</a> -
@@ -149,12 +149,12 @@ one of the first implementations. Check out <a href="http://davidbcalhoun.com/20
 <li>Chrome for Android (0.16)</li>
 </ul>
 <p>My recommendation is to stay clear from this one. Browser vendors are moving towards
-<code>getUserMedia()</code>, so it is very unlikely anyone else will implement HTML Media Capture
-for the long term.</p>
+<code>getUserMedia()</code>. It's very unlikely anyone else will implement HTML Media Capture
+in the long term.</p>
 <h3 id="toc-round2">Round 2: device element</h3>
 
-<p>Many thought the HTML Media Capture was too limiting, so a new spec
-emerged to support any type of future device. Not surprisingly, the design called
+<p>Many thought HTML Media Capture was too limiting, so a new spec
+emerged that supported any type of (future) device. Not surprisingly, the design called
 for a new element, the <a href="http://dev.w3.org/html5/html-device/"><code>&lt;device&gt;</code> element</a>,
 which became the predecessor to <code>getUserMedia()</code>.</p>
 <p>Opera was among the first browsers to create <a href="http://my.opera.com/core/blog/2011/03/14/web-meet-device">initial implementations</a>
@@ -162,7 +162,7 @@ of video capture based the <code>&lt;device&gt;</code> element. Soon after
 (<a href="http://my.opera.com/core/blog/2011/03/23/webcam-orientation-preview">the same day</a> to be precise),
 the WhatWG decided to scrap the <code>&lt;device&gt;</code> tag in favor of another up and comer, this time a JavaScript API called
 the <code>navigator.getUserMedia()</code>. A week later, Opera put out new builds that included
-support for the updated spec and <code>getUserMedia()</code>. Then, later that year,
+support for the updated <code>getUserMedia()</code> spec. Later that year,
 Microsoft joined the party by releasing a <a href="http://blogs.msdn.com/b/ie/archive/2011/12/09/media-capture-api-helping-web-developers-directly-import-image-video-and-sound-data-into-web-apps.aspx">Lab for IE9</a>
 supporting the new spec.</p>
 <p>Here's out <code>&lt;device&gt;</code> would have looked like:</p>
@@ -175,15 +175,15 @@ supporting the new spec.</p>
 &lt;/script&gt;
 </code></pre>
 <p><strong>Support:</strong></p>
-<p>Unfortunately, no working browser ever implemented the <code>&lt;device&gt;</code> element.
-One less API to worry about I guess! <code>&lt;device&gt;</code> did have two great things going
+<p>Unfortunately, no released browser ever included <code>&lt;device&gt;</code>.
+One less API to worry about I guess :) <code>&lt;device&gt;</code> did have two great things going
 for it though: 1.) it was semantic, and 2.) it was easily extendible to support
 more than just audio/video devices.</p>
 <p>Take a breath. This stuff moves fast!</p>
 <h3 id="toc-round3">Round 3: WebRTC</h3>
 
 <p>The <code>&lt;device&gt;</code> element eventually went the way of the Dodo.</p>
-<p>The pace to find a suitable audio/video capture API accelerated in recent months
+<p>The pace to find a suitable capture API accelerated in recent months
 thanks to larger effort called <a href="http://dev.w3.org/2011/webrtc/editor/webrtc.html">WebRTC</a> (Web Real Time Communications).
 The spec is overseen by the <a href="http://www.w3.org/2011/04/webrtc/">W3C WebRTC Working Group</a>.
 Google, Opera, Mozilla, and <a href="http://webrtc.org">a few others</a> are currently working
@@ -229,7 +229,7 @@ pass <code>"video, audio"</code>:</p>
   };
 
   // Not showing vendor prefixes.
-  navigator.getUserMedia({audio: true, video: true}, function(localMediaStream) {
+  navigator.getUserMedia('video, audio', function(localMediaStream) {
     var video = document.querySelector('video');
     video.src = window.URL.createObjectURL(localMediaStream);
 
@@ -242,21 +242,21 @@ pass <code>"video, audio"</code>:</p>
 &lt;/script&gt;
 </code></pre>
 <p>OK. So what's going on here? Media capture is a perfect example of new HTML5 APIs
-working together. The API works in conjunction with our other HTML5 buddies, <code>&lt;audio&gt;</code> and <code>&lt;video&gt;</code>.
+working together. It works in conjunction with our other HTML5 buddies, <code>&lt;audio&gt;</code> and <code>&lt;video&gt;</code>.
 Notice that we're not setting a <code>src</code> attribute or including <code>&lt;source&gt;</code> elements
 on the <code>&lt;video&gt;</code> element. Instead of feeding the video a URL to a media file, we're feeding
 it a <a href="/tutorials/workers/basics/#toc-inlineworkers-bloburis">Blob URL</a> obtained
-from the <code>LocalMediaStream</code> object representing the webcam.</p>
+from a <code>LocalMediaStream</code> object representing the webcam.</p>
 <p>I'm also telling the <code>&lt;video&gt;</code> to <code>autoplay</code>, otherwise it would be frozen on
-the first frame. Adding <code>controls</code> also works as expected.</p>
+the first frame. Adding <code>controls</code> also works as you'd expected.</p>
 <p class="notice" style="text-align:center">
 <strong>Note:</strong> There's a bug in Chrome where passing just "audio" does
-not work: <a href="http://crbug.com/112367">crbug.com/112367</a>. I also couldn't
-get <code>&lt;audio&gt;</code> working in Opera.
+not work: <a href="http://crbug.com/112367">crbug.com/112367</a>. I couldn't
+get <code>&lt;audio&gt;</code> working in Opera either.
 </p>
 
 <p>Both Opera and Chrome implement different versions of <a href="getusermedia-spec">the specification</a>.
-This makes practical use a little more rowdy than it eventually will be.</p>
+This makes practical usage a little more "challenging" than it eventually will be.</p>
 <p><strong>In Chrome:</strong></p>
 <p>This snippet works in <span class="browser chrome supported" style="float:none;display:inline-block;"><span class="browser_name">Chrome</span></span> 18+ (enable in <code>about:flags</code>):</p>
 <pre class="prettyprint"><code>navigator.webkitGetUserMedia('audio, video', function(localMediaStream) {
@@ -297,13 +297,17 @@ if (navigator.getUserMedia) {
 <p>Be sure to check out <a href="http://twitter.com/miketaylr">Mike Taylor</a>
 and <a href="http://twitter.com/akamike">Mike Robinson</a>'s <a href="https://gist.github.com/f2ac64ed7fc467ccdfe3">gUM Shield</a>.
 It does a great job of "normalizing" the inconsistencies between browser implementations.</p>
+<h3 id="toc-security">Security</h3>
+
+<p>In the future, browser's might throw up an infobar upon calling <code>getUserMedia()</code>,
+which would give users the option to grant or deny access to their camera/mic.
+The spec unfortunately is very quiet when it comes to security. At this point,
+no one implements a permission bar.</p>
 <h3 id="toc-fallback">Providing fallback</h3>
 
 <p>For users that don't have support for <code>getUserMedia()</code>, one option is to fallback
 to an existing video file if the API isn't supported and/or the call fails for some reason:</p>
 <pre class="prettyprint"><code>// Not showing vendor prefixes or code that works cross-browser:
-
-var video = document.querySelector('video');
 
 function fallback(e) {
   video.src = 'fallbackvideo.webm';
@@ -329,8 +333,9 @@ if (!navigator.getUserMedia) {
 <h2 id="toc-screenshot">Taking screenshots</h2>
 
 <p>The <code>&lt;canvas&gt;</code> API's <code>ctx.drawImage(video, 0, 0)</code> method makes it trivial to draw
-frames from a <code>&lt;video&gt;</code> element into a <code>&lt;canvas&gt;</code>. Of course, now that we have video
-input via <code>getUserMedia()</code>,  it's just as easy to create a photo booth application:</p>
+<code>&lt;video&gt;</code> frames to <code>&lt;canvas&gt;</code>. Of course, now that we have video
+input via <code>getUserMedia()</code>,  it's just as easy to create a photo booth application
+with realtime video:</p>
 <pre class="prettyprint"><code>&lt;video autoplay&gt;&lt;/video&gt;
 &lt;img src=""&gt;
 &lt;canvas style="display:none;"&gt;&lt;/canvas&gt;
@@ -368,7 +373,7 @@ navigator.getUserMedia({video: true}, function(stream) {
 <h3 id="toc-effects-css">CSS Filters</h3>
 
 <p>Using <a href="https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html">CSS Filters</a>, we can apply some gnarly effects to the <code>&lt;video&gt;</code>
-as it is being captured:</p>
+as it is captured:</p>
 <pre class="prettyprint"><code>&lt;style&gt;
 video {
   width: 307px;
@@ -401,7 +406,7 @@ var filters = ['grayscale', 'sepia', 'blur', 'brightness', 'contrast', 'hue-rota
 function changeFilter(e) {
   var el = e.target;
   el.className = '';
-  var effect = filters[idx++ % filters.length]; // loop trough filters.
+  var effect = filters[idx++ % filters.length]; // loop through filters.
   if (effect) {
     el.classList.add(effect);
   }
@@ -410,9 +415,12 @@ function changeFilter(e) {
 document.querySelector('video').addEventListener('click', changeFilter, false);
 &lt;/script&gt;
 </code></pre>
-<p>CSS filters are currently supported in WebKit nightlies and Chrome Dev channel 18+.
+<p class="notice" style="text-align:center">
+<strong>Note:</strong> CSS filters are currently supported in WebKit nightlies and Chrome Dev channel 18+.
 I'm using <code>-vendor-</code> here to signify that you'll want to add additional vendor
-prefixes as other browsers implement this feature.</p>
+prefixes as other browsers implement this feature.
+</p>
+
 <div style="text-align:center;">
   <video id="cssfilters-stream" class="videostream" autoplay title="Click me to apply CSS Filters" alt="Click me to apply CSS Filters"></video>
   <p>Click the video to cycle through CSS filters</p>
@@ -421,8 +429,8 @@ prefixes as other browsers implement this feature.</p>
 
 <h3 id="toc-effects-webgl">WebGL Textures</h3>
 
-<p>One amazing use case for media capture is to render live video to a WebGL texture.
-Since I know absolutely nothing about WebGL (other than it's amazing), I'm going
+<p>One amazing use case for video capture is to render live input as a WebGL texture.
+Since I know absolutely nothing about WebGL (other than it's sweet), I'm going
 to suggest you give Jerome Etienne's <a href="http://learningthreejs.com/blog/2012/02/07/live-video-in-webgl/">tutorial</a>
 and <a href="http://learningthreejs.com/data/live-video-in-webgl/">demo</a> a look. 
 It talks about how to use <code>getUserMedia()</code> and <a href="/tutorials/three/intro/">Three.js</a>
@@ -434,11 +442,11 @@ to render live video into WebGL.</p>
 to the current API.
 </p>
 
-<p>One of my dreams is to build AutoTune in the browser with nothing but open web tech!
+<p>One of my dreams is to build AutoTune in the browser with nothing more than open web technology!
 We're actually not too far from that reality. We already have <code>getUserMedia()</code>
 for mic input. Sprinkle in the <a href="/tutorials/webaudio/intro/">Web Audio API</a> for realtime
 effects, and we're set. Integrating the two is the missing piece (<a href="http://crbug.com/112404">crbug.com/112404</a>),
-though here's a <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/webrtc-integration.html">primarily proposal</a>
+though there's a <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/webrtc-integration.html">preliminary proposal</a>
 in the works to make it happen.</p>
 <p>Piping microphone input to the Web Audio API <em>could</em> look like this someday:</p>
 <pre class="prettyprint"><code>var context = new window.webkitAudioContext();
@@ -460,8 +468,8 @@ navigator.webkitGetUserMedia({audio: true}, function(stream) {
 few have succeeded. Most of the early ideas have never taken hold outside of a
 propriety environment nor have they gained widespread adoption.</p>
 <p>The real problem is that the web's security model is <em>very</em> different from native world.
-For example, I may not want every Joe Shmoe web site to have random access to my
-video camera! It's a tough problem to get right.</p>
+For example, I probably don't want every Joe Shmoe web site to have random access to my
+video camera. It's a tough problem to get right.</p>
 <p>Bridging frameworks like <a href="http://phonegap.com/">PhoneGap</a> have helped push the boundary,
 but they're a start and a temporary solution to an underlying problem. To make web
 apps competitive to their desktop counterparts, we need access to native devices.</p>
