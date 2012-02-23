@@ -6,7 +6,7 @@ window.thirdParty = {
     init: function() {
       $(window).load(function() {
         setTimeout(function() {
-          thirdParty.GA();
+          //thirdParty.GA(); // moved to base.html to record hits immediately.
           thirdParty.plus1();
           thirdParty.twitter();
           thirdParty.facebook();
@@ -53,7 +53,7 @@ window.thirdParty = {
     },
 
     GA: function() {
-        var _gaq = _gaq || [];
+        window._gaq = window._gaq || [];
         _gaq.push(['_setAccount', 'UA-15028909-1']);
         _gaq.push(['_trackPageview']);
         (function() {

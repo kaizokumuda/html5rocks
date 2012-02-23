@@ -1,7 +1,7 @@
 title: "Capturing Audio & Video in HTML5"
 url: /tutorials/getusermedia/intro/
 author_id: ericbidelman
-publication_date: 2012-02-17
+publication_date: 2012-02-22
 description: "How to capture audio and video using the navigator.getUserMedia() API."
 browser_support:
 - chrome

@@ -127,8 +127,8 @@ body, button, input, select, textarea { font-family: sans-serif; color: #000; }
 ::-moz-selection { background: #f04530; color: #fff; text-shadow: none; }
 ::selection { background: #f04530; color: #fff; text-shadow: none; }
 
-a { color: #5fa4a0; text-decoration: none;}
-a:visited { color: #5fa4a0; }
+a { color: #508B88; text-decoration: none;}
+a:visited { color: #508B88; }
 a:hover, a:focus { color: #f04530; }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
@@ -2900,6 +2900,13 @@ article.tutorial figure
 {
   display: block;
   text-align: center;
+}
+
+article.tutorial .notice {
+  background: hsla(60, 70%, 92%, 1);
+  padding: 1px 10px;
+  border: 1px solid hsla(47, 100%, 72%, 1);
+  border-radius: 2px;
 }
 
 article.tutorial figure img
