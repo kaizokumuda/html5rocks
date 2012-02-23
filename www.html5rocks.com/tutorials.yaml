@@ -14,7 +14,7 @@ tags:
 ---
 
 title: "Case Study: Bouncy Mouse"
-url: /tutorials/casestudies/munkadoo_bouncymouse.html
+url: /tutorials/casestudies/munkadoo_bouncymouse/
 author_id: ericrk
 publication_date: 2012-02-18
 description: "Bouncy Mouse is a slingshot platformer by Munkadoo Games. This article talks about porting the game to HTML5 and WebAudio."
