@@ -70,6 +70,7 @@ class Resource(DictModel):
   author = db.ReferenceProperty(Author, collection_name='author_one_set')
   second_author = db.ReferenceProperty(Author, collection_name='author_two_set')
   url = db.StringProperty()
+  social_url = db.StringProperty()
   browser_support = db.StringListProperty()
   update_date = db.DateProperty()
   publication_date = db.DateProperty()
@@ -134,6 +135,8 @@ class TutorialForm(djangoforms.ModelForm):
   update_date = forms.DateField(label='Updated date')#,initial=datetime.date.today)
   url = forms.CharField(label='URL',
       help_text='An abs. or relative url (e.g. /tutorials/feature/something)')
+  social_url = forms.CharField(label='Social URL',
+      help_text='A relative URL that should be used for social widgets (G+)')
 
   def __init__(self, *args, **keyargs):
     super(TutorialForm, self).__init__(*args, **keyargs)

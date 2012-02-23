@@ -48,6 +48,7 @@ from django.utils.translation import ugettext as _
 
 # Google App Engine Imports
 from google.appengine.api import memcache
+from google.appengine.api import datastore_errors
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
@@ -55,7 +56,6 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 
 
 template.register_template_library('templatetags.templatefilters')
-template.register_template_library('templatetags.socialurl')
 
 
 class ContentHandler(webapp.RequestHandler):
@@ -177,7 +177,13 @@ class ContentHandler(webapp.RequestHandler):
       'sorted_profiles': models.get_sorted_profiles() # TODO: Don't add profile data on every request.
     }
 
-    template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
+    # If the tutorial contains a social URL override, use it.
+    try:
+      template_data['social_url'] = data['tut'].get('social_url')
+    except (KeyError, datastore_errors.BadKeyError):
+      template_data['social_url'] = None
+    if not template_data['social_url']:
+      template_data['social_url'] = template_data['host'] + '/' + path_no_lang
 
     # Request was for an Atom feed. Render one!
     if self.request.path.endswith('.xml'):
@@ -294,7 +300,7 @@ class ContentHandler(webapp.RequestHandler):
       # If this is an old-style mobile article or case study, redirect to the
       # new style.
       match = re.search(('(?P<type>mobile|tutorials/casestudies)'
-                         '/(?P<slug>[a-z-_]+).html$'), relpath)
+                         '/(?P<slug>[a-z-_0-9]+).html$'), relpath)
       if match:
         logging.info("Redirecting from old-style URL to the new hotness.")
         return self.redirect('/%s/%s/%s/' % (locale, match.group('type'),
@@ -417,6 +423,7 @@ class DBHandler(ContentHandler):
           author=author_key,
           second_author=author_key2,
           url=unicode(res['url']),
+          social_url=unicode(res.get('social_url') or ''),
           browser_support=res.get('browser_support') or [],
           update_date=res.get('update_date'),
           publication_date=res['publication_date'],
