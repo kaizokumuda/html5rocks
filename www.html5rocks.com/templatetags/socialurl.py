@@ -40,4 +40,7 @@ class SocialUrlNode(django.template.Node):
       GlobalSocialURL = url
 
   def render(self, context):
-    return GlobalSocialURL if GlobalSocialURL else context['disqus_url']
+    if GlobalSocialURL:
+      return "%s%s" % (context['host'], GlobalSocialURL)
+    else:
+      return context['disqus_url']
