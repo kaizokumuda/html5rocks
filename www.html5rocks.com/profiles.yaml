@@ -700,3 +700,23 @@ homepage: http://games.greggman.com/game/
 google: 112274749534477530569
 twitter: 
 email:
+
+---
+
+id: ericrk
+name:
+  given: Eric
+  family: Karl
+org:
+  name: Munkadoo Games LLC
+  unit: Developer
+address:
+  locality: Seattle
+  region: Washington
+  country: USA
+  lat: 47.643958
+  lon: -122.147899
+homepage: http://allthecodes.tumblr.com
+google: ericrk
+twitter: ericrkarlSF
+email: ek@munkadoo.com
