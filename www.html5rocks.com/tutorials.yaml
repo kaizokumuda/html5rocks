@@ -1,3 +1,18 @@
+title: "Developing Game Audio with the Web Audio API"
+url: /tutorials/webaudio/games/
+author_id: smus
+publication_date: 2012-02-28
+description: "Web Audio for Games."
+browser_support:
+- chrome
+- safari
+tags:
+- type:tutorial
+- class:multimedia
+- gaming
+- webaudio
+
+---
 title: "Capturing Audio & Video in HTML5"
 url: /tutorials/getusermedia/intro/
 author_id: ericbidelman
@@ -20,6 +35,7 @@ publication_date: 2012-02-18
 description: "Bouncy Mouse is a slingshot platformer by Munkadoo Games. This article talks about porting the game to HTML5 and WebAudio."
 browser_support:
 - chrome
+- safari
 tags:
 - gaming
 - webaudio
