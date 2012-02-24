@@ -159,14 +159,14 @@ emerged that supported any type of (future) device. Not surprisingly, the design
 for a new element, the <a href="http://dev.w3.org/html5/html-device/"><code>&lt;device&gt;</code> element</a>,
 which became the predecessor to <code>getUserMedia()</code>.</p>
 <p>Opera was among the first browsers to create <a href="http://my.opera.com/core/blog/2011/03/14/web-meet-device">initial implementations</a>
-of video capture based the <code>&lt;device&gt;</code> element. Soon after 
+of video capture based on the <code>&lt;device&gt;</code> element. Soon after 
 (<a href="http://my.opera.com/core/blog/2011/03/23/webcam-orientation-preview">the same day</a> to be precise),
-the WhatWG decided to scrap the <code>&lt;device&gt;</code> tag in favor of another up and comer, this time a JavaScript API called
-the <code>navigator.getUserMedia()</code>. A week later, Opera put out new builds that included
+the WhatWG decided to scrap the <code>&lt;device&gt;</code> tag in favor of another up and comer, this time a JavaScript API called 
+<code>navigator.getUserMedia()</code>. A week later, Opera put out new builds that included
 support for the updated <code>getUserMedia()</code> spec. Later that year,
 Microsoft joined the party by releasing a <a href="http://blogs.msdn.com/b/ie/archive/2011/12/09/media-capture-api-helping-web-developers-directly-import-image-video-and-sound-data-into-web-apps.aspx">Lab for IE9</a>
 supporting the new spec.</p>
-<p>Here's out <code>&lt;device&gt;</code> would have looked like:</p>
+<p>Here's what <code>&lt;device&gt;</code> would have looked like:</p>
 <pre class="prettyprint"><code>&lt;device type="media" onchange="update(this.data)"&gt;&lt;/device&gt;
 &lt;video autoplay&gt;&lt;/video&gt;
 &lt;script&gt;
@@ -185,14 +185,14 @@ more than just audio/video devices.</p>
 
 <p>The <code>&lt;device&gt;</code> element eventually went the way of the Dodo.</p>
 <p>The pace to find a suitable capture API accelerated in recent months
-thanks to larger effort called <a href="http://dev.w3.org/2011/webrtc/editor/webrtc.html">WebRTC</a> (Web Real Time Communications).
+thanks to a larger effort called <a href="http://dev.w3.org/2011/webrtc/editor/webrtc.html">WebRTC</a> (Web Real Time Communications).
 The spec is overseen by the <a href="http://www.w3.org/2011/04/webrtc/">W3C WebRTC Working Group</a>.
 Google, Opera, Mozilla, and <a href="http://webrtc.org">a few others</a> are currently working
 on bringing implementations to their browsers.</p>
 <p><code>getUserMedia()</code> is related to WebRTC because it's the gateway into that set of APIs.
 It provides the means to access the user's local camera/microphone stream.</p>
 <p><strong>Support:</strong></p>
-<p>WebRTC can be enabled in Chrome dev channel 18.0.1008+ under <code>about:flags</code>.</p>
+<p>WebRTC can be enabled in Chrome 18.0.1008+ under <code>about:flags</code>.</p>
 <h2 id="toc-gettingstarted">Getting started</h2>
 
 <p>With <code>navigator.getUserMedia()</code>, we can finally tap into webcam and microphone input without a plugin.
@@ -224,7 +224,7 @@ if (hasGetUserMedia()) {
 </code></pre>
 <h3 id="toc-acccess">Gaining access to an input device</h3>
 
-<p>To use the webcam or microphone, we need to request permission to use it.
+<p>To use the webcam or microphone, we need to request permission.
 The first parameter to <code>getUserMedia()</code> is for specifying the type of media you
 want to access. For example, if you want to request the webcam, the
 first parameter should be <code>"video"</code>. To use both the microphone and camera,
@@ -307,7 +307,7 @@ and <a href="http://twitter.com/akamike">Mike Robinson</a>'s <a href="https://gi
 It does a great job of "normalizing" the inconsistencies between browser implementations.</p>
 <h3 id="toc-security">Security</h3>
 
-<p>In the future, browser's might throw up an infobar upon calling <code>getUserMedia()</code>,
+<p>In the future, browsers might throw up an infobar upon calling <code>getUserMedia()</code>,
 which would give users the option to grant or deny access to their camera/mic.
 The spec unfortunately is very quiet when it comes to security. At this point,
 no one implements a permission bar.</p>
@@ -381,7 +381,7 @@ navigator.getUserMedia({video: true}, function(stream) {
 <h3 id="toc-effects-css">CSS Filters</h3>
 
 <p class="notice" style="text-align:center">
-CSS filters are currently supported in WebKit nightlies and Chrome Dev channel 18+.
+CSS filters are currently supported in WebKit nightlies and Chrome 18+.
 </p>
 
 <p>Using <a href="https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html">CSS Filters</a>, we can apply some gnarly effects to the <code>&lt;video&gt;</code>
@@ -469,12 +469,12 @@ navigator.webkitGetUserMedia({audio: true}, function(stream) {
 <p>In general, device access on the web has been a tough cookie to crack. Many
 <a href="http://www.slideshare.net/jamesgpearce/mobile-device-apis">people have tried</a>,
 few have succeeded. Most of the early ideas have never taken hold outside of a
-propriety environment nor have they gained widespread adoption.</p>
-<p>The real problem is that the web's security model is <em>very</em> different from native world.
+proprietary environment nor have they gained widespread adoption.</p>
+<p>The real problem is that the web's security model is <em>very</em> different from the native world.
 For example, I probably don't want every Joe Shmoe web site to have random access to my
 video camera. It's a tough problem to get right.</p>
 <p>Bridging frameworks like <a href="http://phonegap.com/">PhoneGap</a> have helped push the boundary,
-but they're a start and a temporary solution to an underlying problem. To make web
+but they're only a start and a temporary solution to an underlying problem. To make web
 apps competitive to their desktop counterparts, we need access to native devices.</p>
 <p><code>getUserMedia()</code> is but the first wave of access to new types of devices. I hope
 we'll continue to see more in the very near future!</p>

@@ -69,15 +69,15 @@ for a new element, the [`&lt;device&gt;` element](http://dev.w3.org/html5/html-d
 which became the predecessor to `getUserMedia()`.
 
 Opera was among the first browsers to create [initial implementations](http://my.opera.com/core/blog/2011/03/14/web-meet-device)
-of video capture based the `<device>` element. Soon after 
+of video capture based on the `<device>` element. Soon after 
 ([the same day](http://my.opera.com/core/blog/2011/03/23/webcam-orientation-preview) to be precise),
-the WhatWG decided to scrap the `<device>` tag in favor of another up and comer, this time a JavaScript API called
-the `navigator.getUserMedia()`. A week later, Opera put out new builds that included
+the WhatWG decided to scrap the `<device>` tag in favor of another up and comer, this time a JavaScript API called 
+`navigator.getUserMedia()`. A week later, Opera put out new builds that included
 support for the updated `getUserMedia()` spec. Later that year,
 Microsoft joined the party by releasing a [Lab for IE9](http://blogs.msdn.com/b/ie/archive/2011/12/09/media-capture-api-helping-web-developers-directly-import-image-video-and-sound-data-into-web-apps.aspx)
 supporting the new spec.
 
-Here's out `<device>` would have looked like:
+Here's what `<device>` would have looked like:
 
     <device type="media" onchange="update(this.data)"></device>
     <video autoplay></video>
@@ -101,7 +101,7 @@ Take a breath. This stuff moves fast!
 The `<device>` element eventually went the way of the Dodo.
 
 The pace to find a suitable capture API accelerated in recent months
-thanks to larger effort called [WebRTC][webrtc-spec] (Web Real Time Communications).
+thanks to a larger effort called [WebRTC][webrtc-spec] (Web Real Time Communications).
 The spec is overseen by the [W3C WebRTC Working Group](http://www.w3.org/2011/04/webrtc/).
 Google, Opera, Mozilla, and [a few others](http://webrtc.org) are currently working
 on bringing implementations to their browsers.
@@ -111,7 +111,7 @@ It provides the means to access the user's local camera/microphone stream.
 
 **Support:**
 
-WebRTC can be enabled in Chrome dev channel 18.0.1008+ under `about:flags`.
+WebRTC can be enabled in Chrome 18.0.1008+ under `about:flags`.
 
 <h2 id="toc-gettingstarted">Getting started</h2>
 
@@ -149,7 +149,7 @@ Feature detecting is a simple check for the existence of `navigator.getUserMedia
 
 <h3 id="toc-acccess">Gaining access to an input device</h3>
 
-To use the webcam or microphone, we need to request permission to use it.
+To use the webcam or microphone, we need to request permission.
 The first parameter to `getUserMedia()` is for specifying the type of media you
 want to access. For example, if you want to request the webcam, the
 first parameter should be `"video"`. To use both the microphone and camera,
@@ -243,7 +243,7 @@ It does a great job of "normalizing" the inconsistencies between browser impleme
 
 <h3 id="toc-security">Security</h3>
 
-In the future, browser's might throw up an infobar upon calling `getUserMedia()`,
+In the future, browsers might throw up an infobar upon calling `getUserMedia()`,
 which would give users the option to grant or deny access to their camera/mic.
 The spec unfortunately is very quiet when it comes to security. At this point,
 no one implements a permission bar.
@@ -321,7 +321,7 @@ with realtime video:
 <h3 id="toc-effects-css">CSS Filters</h3>
 
 <p class="notice" style="text-align:center">
-CSS filters are currently supported in WebKit nightlies and Chrome Dev channel 18+.
+CSS filters are currently supported in WebKit nightlies and Chrome 18+.
 </p>
 
 Using [CSS Filters][cssfilters-spec], we can apply some gnarly effects to the `<video>`
@@ -414,14 +414,14 @@ If you want to see `getUserMedia()` hooked up to the Web Audio API, star [crbug.
 In general, device access on the web has been a tough cookie to crack. Many
 [people have tried](http://www.slideshare.net/jamesgpearce/mobile-device-apis),
 few have succeeded. Most of the early ideas have never taken hold outside of a
-propriety environment nor have they gained widespread adoption.
+proprietary environment nor have they gained widespread adoption.
 
-The real problem is that the web's security model is *very* different from native world.
+The real problem is that the web's security model is *very* different from the native world.
 For example, I probably don't want every Joe Shmoe web site to have random access to my
 video camera. It's a tough problem to get right.
 
 Bridging frameworks like [PhoneGap](http://phonegap.com/) have helped push the boundary,
-but they're a start and a temporary solution to an underlying problem. To make web
+but they're only a start and a temporary solution to an underlying problem. To make web
 apps competitive to their desktop counterparts, we need access to native devices.
 
 `getUserMedia()` is but the first wave of access to new types of devices. I hope
