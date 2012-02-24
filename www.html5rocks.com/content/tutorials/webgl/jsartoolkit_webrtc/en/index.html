@@ -147,7 +147,7 @@ for (var idx = 0; idx &lt; markerCount; idx++) {
 
 <h2 id="toc-matrixmapping">Matrix mapping</h2>
 
-<p>Here's the code to copy JSARToolKit matrices over to glMatrix matrices (which are 16-element FloatArrays with the translation column in the last four elements). It works by magic (read: I don't know how ARToolKit matrices are setup). Inverted Y-axis is my guess. Anyway, this bit of sign-reversing voodoo makes a JSARToolKit matrix work the same as a glMatrix.
+<p>Here's the code to copy JSARToolKit matrices over to glMatrix matrices (which are 16-element FloatArrays with the translation column in the last four elements). It works by magic (read: I don't know how ARToolKit matrices are setup. Inverted Y-axis is my guess.) Anyway, this bit of sign-reversing voodoo makes a JSARToolKit matrix work the same as a glMatrix.
 
 <p>To use the library with another library, such as Three.js, you need to write a function that converts the ARToolKit matrices to the library's matrix format. You also need to hook into the FLARParam.copyCameraMatrix method. The copyCameraMatrix method writes the FLARParam perspective matrix into a glMatrix-style matrix.
 
@@ -176,7 +176,7 @@ function copyMarkerMatrix(arMat, glMat) {
 
 <p>Three.js is a popular JavaScript 3D engine. I'm going to go through how to use JSARToolKit output in Three.js. You need three things: a full screen quad with the video image drawn onto it, a camera with the FLARParam perspective matrix and an object with marker matrix as its transform. I'll walk you through the integration in the code below.
 
-<p>Here's <a href="AR_mediaStream_three.js">a link to the Three.js demo</a> in action. It has debugging output enabled, so you can see some internal workings of the JSARToolKit library.
+<p>Here's <a href="AR_mediaStream_three.html">a link to the Three.js demo</a> in action. It has debugging output enabled, so you can see some internal workings of the JSARToolKit library.
 
 <pre class="prettyprint">
 // I'm going to use a glMatrix-style matrix as an intermediary.
