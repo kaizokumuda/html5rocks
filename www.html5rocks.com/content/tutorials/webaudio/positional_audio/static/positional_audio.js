@@ -327,7 +327,6 @@ Demo.prototype = {
       }
     }, false);
     window.addEventListener('keyup', function(ev) {
-      console.log(ev.which, ev.keyCode);
       switch (ev.keyCode) {
         case 'W'.charCodeAt(0):
         case 38:
