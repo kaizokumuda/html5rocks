@@ -33,7 +33,8 @@ messages:
 	@for locale in $(LANGUAGES) ; do \
 		PYTHONPATH=$(DJANGO_ROOT) $(DJANGO_ROOT)/django/bin/django-admin.py makemessages -l $$locale ; \
 	done
-	@python ./scripts/localize_articles.py --generate_html
+	@python ./scripts/localize_articles.py --generate
 
 compile:
 	@PYTHONPATH=$(DJANGO_ROOT) $(DJANGO_ROOT)/django/bin/django-admin.py compilemessages
+	@python ./scripts/localize_articles.py --import
