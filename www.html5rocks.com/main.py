@@ -336,6 +336,12 @@ class ContentHandler(webapp.RequestHandler):
         if tut and tut.draft:
           return self.redirect('/tutorials')
 
+        # Localize title and description.
+        if tut.title:
+          tut.title = _(tut.title)
+        if tut.description:
+          tut.description = _(tut.description)
+
         data = {
           'tut': tut,
           'redirect_from_locale': redirect_from_locale
@@ -363,6 +369,12 @@ class ContentHandler(webapp.RequestHandler):
         resource_type = [x for x in r.tags if x.startswith('type:')]
         if len(resource_type):
           resource_type = resource_type[0].replace('type:', '')
+
+        # Localize title and description.
+        if r.title:
+          r.title = _(r.title)
+        if r.description:
+          r.description = _(r.description)
 
         tutorials.append(r)
         tutorials[-1].classes = [x.replace('class:', '') for x in r.tags
