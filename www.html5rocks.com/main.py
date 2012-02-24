@@ -178,12 +178,13 @@ class ContentHandler(webapp.RequestHandler):
     }
 
     # If the tutorial contains a social URL override, use it.
-    try:
-      template_data['social_url'] = data['tut'].get('social_url')
-    except (KeyError, datastore_errors.BadKeyError):
-      template_data['social_url'] = None
-    if not template_data['social_url']:
-      template_data['social_url'] = template_data['host'] + '/' + path_no_lang
+    if data.get('tut'):
+      try:
+        template_data['social_url'] = data['tut'].get('social_url')
+      except (KeyError, datastore_errors.BadKeyError):
+        template_data['social_url'] = None
+      if not template_data['social_url']:
+        template_data['social_url'] = template_data['host'] + '/' + path_no_lang
 
     # Request was for an Atom feed. Render one!
     if self.request.path.endswith('.xml'):
