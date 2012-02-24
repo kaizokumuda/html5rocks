@@ -24,9 +24,9 @@
 
 <h2 id="toc-introduction">Introduction</h2>
 
-<p>In this article I’m going to talk about how to use the positional audio feature in the Web Audio API to add 3D sound into your WebGL scenes. To make the audio more believable, I will also introduce you to the environmental effects possible with the Web Audio API.
+<p>In this article I’m going to talk about how to use the positional audio feature in the <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API</a> to add 3D sound into your WebGL scenes. To make the audio more believable, I will also introduce you to the environmental effects possible with the Web Audio API. To get a more thorough introduction to the Web Audio API, check out the <a href="http://www.html5rocks.com/en/tutorials/webaudio/intro/">Getting started with Web Audio API</a> article by Boris Smus.
 
-<p>You can use positional audio with the AudioPannerNode in the Web Audio API. The AudioPannerNode defines the position, orientation and velocity of a sound. Additionally, the Web Audio API audio context has a listener attribute that lets you define the position, orientation and velocity of the listener. With these two things you can create directional sounds with doppler effects and 3D panning.
+<p>To do positional audio, you use the AudioPannerNode in the Web Audio API. The AudioPannerNode defines the position, orientation and velocity of a sound. Additionally, the Web Audio API audio context has a listener attribute that lets you define the position, orientation and velocity of the listener. With these two things you can create directional sounds with doppler effects and 3D panning.
 
 <p>Here's a 3D scene with flat audio. Not very exciting. Just a sound playing without any effects. Use WASD or the arrow keys to move and drag with the mouse to look around.
 <figure>
@@ -34,11 +34,22 @@
   <figcaption>Demo of flat audio</figcaption>
 </figure>
 
-<p>Let's see what the audio code looks like for the above scene. This is very basic Audio API code. You create a a bunch of Audio API nodes and connect them together. The audio nodes are individual sounds, volume controllers, effect nodes and analyzers and suchlike. After you have built this graph, you need to hook it up to the audio context destination to make it audible.
+<p>Let's see what the audio code looks like for the above scene. This is very basic Audio API code. You create a bunch of Audio API nodes and connect them together. The audio nodes are individual sounds, volume controllers, effect nodes and analyzers and suchlike. After you have built this graph, you need to hook it up to the audio context destination to make it audible.
 
 <pre class="prettyprint">
+// Detect if the audio context is supported.
+window.AudioContext = (
+  window.AudioContext ||
+  window.webkitAudioContext ||
+  null
+);
+
+if (!AudioContext) {
+  throw new Error("AudioContext not supported!");
+} 
+
 // Create a new audio context.
-var ctx = new webkitAudioContext();
+var ctx = new AudioContext();
 
 // Create a AudioGainNode to control the main volume.
 var mainVolume = ctx.createGainNode();
@@ -62,15 +73,15 @@ sound.source.loop = true;
 var request = new XMLHttpRequest();
 request.open("GET", soundFileName, true);
 request.responseType = "arraybuffer";
-request.onload = function() {
+request.onload = function(e) {
 
   // Create a buffer from the response ArrayBuffer.
-  var buffer = ctx.createBuffer(request.response, false);
+  var buffer = ctx.createBuffer(this.response, false);
   sound.buffer = buffer;
 
-  // Make the sound source use the buffer and start playing it after 20 ms.
+  // Make the sound source use the buffer and start playing it.
   sound.source.buffer = sound.buffer;
-  sound.source.noteOn(ctx.currentTime + 0.020);
+  sound.source.noteOn(ctx.currentTime);
 };
 request.send();
 </pre>
@@ -79,6 +90,8 @@ request.send();
 
 <h2 id="toc-position">Position</h2>
 
+<p>Positional audio uses the position of your audio sources and the position of the listener to determine how to mix the sound to the speakers. An audio source on the left side of the listener would be louder in the left speaker, and vice versa for the right side.
+
 <p>To get started, create an audio source and attach it to an AudioPannerNode. Then set the position of the AudioPannerNode. Now you have a movable 3D sound. The audio context listener position is at (0,0,0) by default, so when used in this way, the AudioPannerNode position is relative to the camera position. Whenever you move the camera, you need to update the AudioPannerNode position. To make the AudioPannerNode position relative to the world, you need to change the audio context listener position to your camera position.
 
 <figure>
@@ -86,7 +99,7 @@ request.send();
   <figcaption>Audio position demo</figcaption>
 </figure>
 
-<p>To set up the position tracking, what we need to do is create an AudioPannerNode and wire it up to the main volume.
+<p>To set up the position tracking, we need to create an AudioPannerNode and wire it up to the main volume.
 
 <pre class="prettyprint">
 ...
@@ -129,7 +142,9 @@ ctx.listener.setPosition(p.x, p.y, p.z);
 
 <h2 id="toc-velocity">Velocity</h2>
 
-<p>Now that we have the positions of the listener and the AudioPannerNode, let’s turn our attention to their velocities. By changing the velocity properties of the listener and the AudioPannerNode, you can add a doppler effect to the sound. The easiest way to get the velocities for the listener and the AudioPannerNode is to keep track of their per-frame positions. The velocity of the listener is the camera’s current position minus the camera’s position in the previous frame. Similarly, the velocity of the AudioPannerNode is its current position minus its previous position.
+<p>Now that we have the positions of the listener and the AudioPannerNode, let’s turn our attention to their velocities. By changing the velocity properties of the listener and the AudioPannerNode, you can add a doppler effect to the sound. There are some nice doppler effect examples on the Web Audio API <a href="http://chromium.googlecode.com/svn/trunk/samples/audio/index.html">examples page</a>.
+
+<p>The easiest way to get the velocities for the listener and the AudioPannerNode is to keep track of their per-frame positions. The velocity of the listener is the camera’s current position minus the camera’s position in the previous frame. Similarly, the velocity of the AudioPannerNode is its current position minus its previous position.
 
 <figure>
   <iframe class="demo" src="velocity.html"></iframe>
@@ -157,6 +172,8 @@ sound.panner.setVelocity(dx/dt, dy/dt, dz/dt);
 
 
 <h2 id="toc-orientation">Orientation</h2>
+
+<p>Orientation is the direction the sound source is pointing to and the direction the listener is facing. With orientation, you can simulate directional sound sources. For an example, think of a directional speaker. If you stand in front of the speaker, the sound is going to be louder than if you stand behind the speaker. More importantly, you need listener orientation to determine which side of the listener the sounds are coming from. A sound coming from your left needs to switch to the right when you turn around.
 
 <p>To get the orientation vector for the AudioPannerNode, you need to take the rotation part of the model matrix of the sound-emitting 3D object and multiply a vec3(0,0,1) with it to see where it ends up pointing. For the context listener orientation, you need to get the camera’s orientation vector. The listener orientation also needs an up vector, since it needs to know the roll angle of the listener's head. To compute the listener orientation, get the rotation part of the camera's view matrix and multiply a vec3(0,0,1) for the orientation and a vec3(0,-1,0) for the up-vector.
 
@@ -316,7 +333,6 @@ function loadBuffer(ctx, filename, callback) {
     callback(buffer);
   };
   request.send();
-  return request;
 }
 </pre>
 
@@ -335,5 +351,7 @@ function loadBuffer(ctx, filename, callback) {
 <li><a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API specification</a>
 <li><a href="http://en.wikipedia.org/wiki/Impulse_response">Impulse response</a>
 <li><a href="https://github.com/mrdoob/three.js">Three.js</a>
+<li><a href="http://apps.playcanvas.com/dave/tutorials/3d_audio">A cool 3D Positional Audio example</a>
+<li><a href="http://chromium.googlecode.com/svn/trunk/samples/audio/index.html">Web Audio Examples</a> has a lot of good examples on using Web Audio API features.
 </ul>
 {% endblock %}
