@@ -21,9 +21,36 @@ import tempfile
 import shutil
 import unittest
 
-from localize_articles import TextProcessor, Article, Localizer
+from localize_articles import Article
+from localize_articles import ArticleException
+from localize_articles import Localizer
+from localize_articles import TextProcessor
+from localize_articles import YamlProcessor
 
 TEST_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+class TestYamlProcessor(unittest.TestCase):
+  def test_nonexistent_article(self):
+    path = os.path.join(TEST_ROOT, 'test_fixtures', 'yaml',
+                        'does_not_exist', 'test.yaml')
+    self.assertRaises(ArticleException, YamlProcessor, path)
+
+  def test_single_article(self):
+    test = YamlProcessor(os.path.join(TEST_ROOT, 'test_fixtures', 'yaml',
+                                      'single', 'test.yaml'))
+    expected = ('{% blocktrans %}Article 1.{% endblocktrans %}\n'
+                '{% blocktrans %}Description for article 1.{% endblocktrans %}')
+    self.assertEqual(expected, test.localizable_text)
+
+  def test_two_articles(self):
+    test = YamlProcessor(os.path.join(TEST_ROOT, 'test_fixtures', 'yaml',
+                                      'double', 'test.yaml'))
+    expected = (
+        '{% blocktrans %}Article 1.{% endblocktrans %}\n'
+        '{% blocktrans %}Description for article 1.{% endblocktrans %}\n'
+        '{% blocktrans %}Article 2.{% endblocktrans %}\n'
+        '{% blocktrans %}Description for article 2.{% endblocktrans %}')
+    self.assertEqual(expected, test.localizable_text)
 
 class TestTextProcessor(unittest.TestCase):
   def test_identity(self):
@@ -132,6 +159,11 @@ class TestArticlePaths(unittest.TestCase):
   def setUp(self):
     # A little bit of monkey patching never hurt nobody.
     Article.ROOT = TEST_ROOT
+
+  def test_nonexistent_path(self):
+    path = os.path.join(TEST_ROOT, 'test_fixtures', 'article_path',
+                        'does_not_exist')
+    self.assertRaises(ArticleException, Article, path)
 
   def test_article_path(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures', 'article_path'))

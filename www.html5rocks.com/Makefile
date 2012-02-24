@@ -29,11 +29,15 @@ export HEREDOC
 help:
 	@echo "$$HEREDOC"
 
-messages:
+yaml:
+	@python ./scripts/localize_articles.py --generate --yaml=tutorials.yaml
+
+messages: yaml
 	@for locale in $(LANGUAGES) ; do \
 		PYTHONPATH=$(DJANGO_ROOT) $(DJANGO_ROOT)/django/bin/django-admin.py makemessages -l $$locale ; \
 	done
 	@python ./scripts/localize_articles.py --generate
+	@rm -f ./_tutorials.yaml.html
 
 compile:
 	@PYTHONPATH=$(DJANGO_ROOT) $(DJANGO_ROOT)/django/bin/django-admin.py compilemessages
