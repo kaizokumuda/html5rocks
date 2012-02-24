@@ -1,3 +1,5 @@
+{% include "warning.html" %}
+
 <h2 id="toc-into">Introduction</h2>
 
 Audio/Video capture has been *the* "Holy Grail" of web development for a long time.
@@ -55,9 +57,9 @@ HTML Media Capture only allows you to record a media file or take a snapshot in 
 one of the first implementations. Check out [this video](http://davidbcalhoun.com/2011/android-3-0-honeycomb-is-first-to-implement-the-device-api) to see it in action.
 - Chrome for Android (0.16)
 
-My recommendation is to stay clear from this one. Browser vendors are moving towards
-`getUserMedia()`. It's very unlikely anyone else will implement HTML Media Capture
-in the long term.
+My recommendation is to stay clear from this one unless you're working with one
+of the mobile browsers above. Vendors are moving towards `getUserMedia()`.
+It's very unlikely anyone else will implement HTML Media Capture in the long term.
 
 <h3 id="toc-round2">Round 2: device element</h3>
 
@@ -116,9 +118,18 @@ WebRTC can be enabled in Chrome dev channel 18.0.1008+ under `about:flags`.
 With `navigator.getUserMedia()`, we can finally tap into webcam and microphone input without a plugin.
 Camera access is now a call away, not an install away. It's baked directly into the browser. Excited yet?
 
+<h3 id="toc-enabling">Enabling</h3>
+
 The `getUserMedia()` API is still very new, and only Google and Opera
 have developer builds that include it. In Chrome 18+, the API can be enabled by
-visiting `about:flags`. For Opera, download one of their experimental [Android and desktop builds](http://dev.opera.com/articles/view/labs-more-fun-using-the-web-with-getusermedia-and-native-pages/).
+visiting `about:flags`.
+
+<figure>
+<img src="aboutflags.png">
+<figcaption>Enabling the <code>getUserMedia()</code> in Chrome's '<code>about:flags</code> page.</figcaption>
+</figure>
+
+For Opera, download one of their experimental [Android and desktop builds](http://dev.opera.com/articles/view/labs-more-fun-using-the-web-with-getusermedia-and-native-pages/).
 
 <h3 id="toc-featuredecting">Feature detection</h3>
 
@@ -309,6 +320,10 @@ with realtime video:
 
 <h3 id="toc-effects-css">CSS Filters</h3>
 
+<p class="notice" style="text-align:center">
+CSS filters are currently supported in WebKit nightlies and Chrome Dev channel 18+.
+</p>
+
 Using [CSS Filters][cssfilters-spec], we can apply some gnarly effects to the `<video>`
 as it is captured:
 
@@ -320,16 +335,13 @@ as it is captured:
       border: 1px solid #ccc;
     }
     .grayscale {
-      -webkit-filter: grayscale(1);
-      -vendor-filter: grayscale(1);
+      -webkit-filter: grayscale(1); /* add other vendor prefixes when available. */
     }
     .sepia {
       -webkit-filter: sepia(1);
-      -vendor-filter: sepia(1);
     }
     .blur {
       -webkit-filter: blur(3px);
-      -vendor-filter: blur(3px);
     }
     ...
     </style>
@@ -353,12 +365,6 @@ as it is captured:
     document.querySelector('video').addEventListener('click', changeFilter, false);
     </script>
 
-<p class="notice" style="text-align:center">
-<strong>Note:</strong> CSS filters are currently supported in WebKit nightlies and Chrome Dev channel 18+.
-I'm using <code>-vendor-</code> here to signify that you'll want to add additional vendor
-prefixes as other browsers implement this feature.
-</p>
-
 <div style="text-align:center;">
   <video id="cssfilters-stream" class="videostream" autoplay title="Click me to apply CSS Filters" alt="Click me to apply CSS Filters"></video>
   <p>Click the video to cycle through CSS filters</p>
@@ -377,7 +383,7 @@ to render live video into WebGL.
 <h2 id="toc-webaudio-api">Using getUserMedia with the Web Audio API</h2>
 
 <p class="notice" style="text-align:center">
-<strong>Note:</strong> This section discusses possible future improvements and extensions
+This section discusses possible future improvements and extensions
 to the current API.
 </p>
 
@@ -449,7 +455,7 @@ var localMediaStream = null;
 
 button.addEventListener('click', function(e) {
   if (navigator.getUserMedia) {
-    navigator.getUserMedia({video: true}, function(stream) {
+    navigator.getUserMedia('video', function(stream) {
       video.src = stream;
       video.controls = true;
       localMediaStream = stream;
@@ -501,7 +507,7 @@ button.addEventListener('click', function(e) {
   }
 
   if (navigator.getUserMedia) {
-    navigator.getUserMedia({video: true}, function(stream) {
+    navigator.getUserMedia('video', function(stream) {
       video.src = stream;
       localMediaStream = stream;
       sizeCanvas();
@@ -556,7 +562,7 @@ function changeFilter(e) {
 
 button.addEventListener('click', function(e) {
   if (navigator.getUserMedia) {
-    navigator.getUserMedia({audio: true, video: true}, function(stream) {
+    navigator.getUserMedia('video, audio', function(stream) {
       video.src = stream;
       localMediaStream = stream;
     }, onFailSoHard);
