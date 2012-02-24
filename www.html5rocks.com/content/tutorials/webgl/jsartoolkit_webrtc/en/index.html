@@ -13,7 +13,7 @@
 <h2 id="toc-intro">Introduction</h2>
 <p>This article is about using the <a href="https://github.com/kig/JSARToolKit">JSARToolKit</a> library with <a href="http://webrtc.org">WebRTC</a> to do augmented reality applications on the web. For rendering, I'm using WebGL due to the increased performance it offers. The end result of this article is a demo application that puts a 3D model on top of an augmented reality marker in webcam video.
 
-<p>JSARToolKit is an augmented reality library for JavaScript. It's an open source library released under the GPL. JSARToolKit is a direct port of the Flash <a href="http://www.libspark.org/wiki/saqoosha/FLARToolKit/en">FLARToolKit</a> that I made for the Mozilla <a href="https://developer.mozilla.org/en-US/demos/detail/remixing-reality/launch">Remixing Reality demo</a>. FLARToolKit itself is port of the Java <a href="http://nyatla.jp/nyartoolkit/wp/">NyARToolKit</a>, which is a port of the C <a href="http://www.hitl.washington.edu/artoolkit/">ARToolKit</a>. Long way, but here we are. 
+<p>JSARToolKit is an augmented reality library for JavaScript. It's an open source library released under the GPL. JSARToolKit is a direct port of the Flash <a href="http://www.libspark.org/wiki/saqoosha/FLARToolKit/en">FLARToolKit</a> that I made for the Mozilla <a href="https://developer.mozilla.org/en-US/demos/detail/remixing-reality/launch">Remixing Reality demo</a>. FLARToolKit itself is port of the Java <a href="http://nyatla.jp/nyartoolkit/wp/">NyARToolKit</a>, which is a port of the C <a href="http://www.hitl.washington.edu/artoolkit/">ARToolKit</a>. Long way, but here we are.
 
 <p>JSARToolKit operates on canvas elements. As it needs to read the image off the canvas, the image needs to come from the same origin as the page or use CORS to get around same-origin policy. When you pass a canvas to JSARToolKit for analysis, JSARToolKit returns a list of AR markers found in the image and the corresponding transformation matrices. To draw a 3D object on top of a marker, you pass the transformation matrix to whatever 3D rendering library you're using so that your object is transformed using the matrix. Draw the video frame in your WebGL scene and draw the object on top of that and you're good to go.
 
@@ -41,13 +41,14 @@
 
 
 <h2 id="toc-setup">Setting up JSARToolKit</h2>
-<p>The JSARToolKit API is quite Java-like, so you'll have to do some contortions to use it. The basic idea is that you have a detector object that operates on a raster object. Between the detector and the raster is a camera parameter object that transforms raster coordinates to camera coordinates. To get the detected markers from the detector, you iterate over them and copy their transformation matrices over to your code. 
+<p>The JSARToolKit API is quite Java-like, so you'll have to do some contortions to use it. The basic idea is that you have a detector object that operates on a raster object. Between the detector and the raster is a camera parameter object that transforms raster coordinates to camera coordinates. To get the detected markers from the detector, you iterate over them and copy their transformation matrices over to your code.
 
 <p>The first step is to create the raster object, the camera parameter object and the detector object.
 
 <pre class="prettyprint">
 // Create a RGB raster object for the 2D canvas.
 // JSARToolKit uses raster objects to read image data.
+// Note that you need to set canvas.changed = true on every frame.
 var raster = new NyARRgbRaster_Canvas2D(canvas);
 
 // FLARParam is the thing used by FLARToolKit to set camera parameters.
@@ -95,6 +96,9 @@ navigator.webkitGetUserMedia('video',
 // Draw the video frame to the raster canvas, scaled to 320x240.
 canvas.getContext('2d').drawImage(video, 0,0,320,240);
 
+// Tell the raster object that the underlying canvas has changed.
+canvas.changed = true;
+
 // Do marker detection by using the detector object on the raster object.
 // The threshold parameter determines the threshold value
 // for turning the video frame into a 1-bit black-and-white image.
@@ -135,7 +139,7 @@ for (var idx = 0; idx &lt; markerCount; idx++) {
   // Get the transformation matrix for the detected marker.
   detector.getTransformMatrix(idx, resultMat);
 
-  // Copy the result matrix into the marker object.
+  // Copy the result matrix into our marker tracker object.
   markers[currId].transform = Object.asCopy(resultMat);
 }
 </pre>
@@ -168,15 +172,116 @@ function copyMarkerMatrix(arMat, glMat) {
 }
 </pre>
 
+<h2 id="toc-threejs">Three.js integration</h2>
+
+<p>Three.js is a popular JavaScript 3D engine. I'm going to go through how to use JSARToolKit output in Three.js. You need three things: a full screen quad with the video image drawn onto it, a camera with the FLARParam perspective matrix and an object with marker matrix as its transform. I'll walk you through the integration in the code below.
+
+<p>Here's <a href="AR_mediaStream_three.js">a link to the Three.js demo</a> in action. It has debugging output enabled, so you can see some internal workings of the JSARToolKit library.
+
+<pre class="prettyprint">
+// I'm going to use a glMatrix-style matrix as an intermediary.
+// So the first step is to create a function to convert a glMatrix matrix into a Three.js Matrix4.
+THREE.Matrix4.prototype.setFromArray = function(m) {
+  return this.set(
+    m[0], m[4], m[8], m[12],
+    m[1], m[5], m[9], m[13],
+    m[2], m[6], m[10], m[14],
+    m[3], m[7], m[11], m[15]
+  );
+};
+
+// glMatrix matrices are flat arrays.
+var tmp = new Float32Array(16);
+
+// Create a camera and a marker root object for your Three.js scene.
+var camera = new THREE.Camera();
+scene.add(camera);
+
+var markerRoot = new THREE.Object3D();
+markerRoot.matrixAutoUpdate = false;
+
+// Add the marker models and suchlike into your marker root object.
+var cube = new THREE.Mesh(
+  new THREE.CubeGeometry(100,100,100),
+  new THREE.MeshBasicMaterial({color: 0xff00ff})
+);
+cube.position.z = -50;
+markerRoot.add(cube);
+
+// Add the marker root to your scene.
+scene.add(markerRoot);
+
+// Next we need to make the Three.js camera use the FLARParam matrix.
+param.copyCameraMatrix(tmp, 10, 10000);
+camera.projectionMatrix.setFromArray(tmp);
+
+
+// To display the video, first create a texture from it.
+var videoTex = new THREE.Texture(videoCanvas);
+
+// Then create a plane textured with the video.
+var plane = new THREE.Mesh(
+  new THREE.PlaneGeometry(2, 2, 0),
+  new THREE.MeshBasicMaterial({map: videoTex})
+);
+
+// The video plane shouldn't care about the z-buffer.
+plane.material.depthTest = false;
+plane.material.depthWrite = false;
+
+// Create a camera and a scene for the video plane and
+// add the camera and the video plane to the scene.
+var videoCam = new THREE.Camera();
+var videoScene = new THREE.Scene();
+videoScene.add(plane);
+videoScene.add(videoCam);
+
+...
+
+// On every frame do the following:
+function tick() {
+  // Draw the video frame to the canvas.
+  videoCanvas.getContext('2d').drawImage(video, 0, 0);
+  canvas.getContext('2d').drawImage(videoCanvas, 0, 0, canvas.width, canvas.height);
+
+  // Tell JSARToolKit that the canvas has changed.
+  canvas.changed = true;
+
+  // Update the video texture.
+  videoTex.needsUpdate = true;
+
+  // Detect the markers in the video frame.
+  var markerCount = detector.detectMarkerLite(raster, threshold);
+  for (var i=0; i&lt;markerCount; i++) {
+    // Get the marker matrix into the result matrix.
+    detector.getTransformMatrix(i, resultMat);
+
+    // Copy the marker matrix to the tmp matrix.
+    copyMarkerMatrix(resultMat, tmp);
+
+    // Copy the marker matrix over to your marker root object.
+    markerRoot.matrix.setFromArray(tmp);
+  }
+
+  // Render the scene.
+  renderer.autoClear = false;
+  renderer.clear();
+  renderer.render(videoScene, videoCam);
+  renderer.render(scene, camera);
+}
+</pre>
+
 
 <h2 id="toc-summary">Summary</h2>
 
-<p>In this article we went through the basics of JSARToolKit. Now you are ready to build your own webcam-using augmented reality applications with JavaScript. 
+<p>In this article we went through the basics of JSARToolKit. Now you are ready to build your own webcam-using augmented reality applications with JavaScript.
 
+<p>Integrating JSARToolKit with Three.js is a bit of a hassle, but it is certainly possible. I'm not 100% certain if I'm doing it right in my demo, so please let me know if  you know of a better way of achieving the integration. Patches are welcome :)
 
   <h2 id="toc-references">References</h2>
   <ul>
     <li><a href="https://github.com/kig/JSARToolKit/">JSARToolKit</a></li>
+    <li><a href="https://github.com/kig/magi/">Magi</a></li>
     <li><a href="https://github.com/mrdoob/three.js/">Three.js</a></li>
   </ul>
 

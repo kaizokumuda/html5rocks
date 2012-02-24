@@ -4,7 +4,7 @@
 <script>
 <!--
   threshold = 128;
-  DEBUG = false;
+  DEBUG = true;
 
   var video = document.createElement('video');
   video.width = 352;
@@ -60,7 +60,6 @@
     renderer.setSize(960, 720);
 
     var glCanvas = renderer.domElement;
-    document.body.style.webkitTransform = 'scale(-1.0, 1.0)';
     var s = glCanvas.style;
     document.body.appendChild(glCanvas);
 
@@ -111,8 +110,8 @@
       ctx.drawImage(videoCanvas, 0,0,320,240);
       var dt = new Date().getTime();
 
-      videoTex.needsUpdate = true;
       canvas.changed = true;
+      videoTex.needsUpdate = true;
 
       var t = new Date();
       var detected = detector.detectMarkerLite(raster, threshold);
