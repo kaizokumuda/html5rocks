@@ -21,13 +21,44 @@ from __future__ import with_statement
 
 __author__ = ('mkwst@google.com (Mike West)')
 
+import codecs
+import glob
 import optparse
 import os
 import re
-import glob
+import yaml
 
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 REQUIRED_LOCALES = ['de', 'en', 'es', 'ja', 'pt', 'ru', 'zh']
+
+class YamlProcessor(object):
+  """Extracts localizable text from a YAML file.
+
+  HTML5Rocks contains a `tutorials.yaml` file that contains metadata for the
+  site's articles. The titles and descriptions in this file need to be pulled
+  out for localization when `make messages` is run.
+  """
+  
+  TEMPLATE = u'{%% blocktrans %%}%s{%% endblocktrans %%}'
+
+  def __init__(self, path):
+    if not os.path.exists(path):
+      raise ArticleException('`%s` does not exist.' % path)
+    self._path = path
+    self._output = None
+
+  @property
+  def localizable_text(self):
+    if self._output is None:
+      self._output = []
+      with codecs.open(self._path, 'r', 'UTF-8') as infile:
+        data = yaml.load_all(infile)
+        for article in data:
+          self._output.append(self.TEMPLATE % article.get('title', ''))
+          self._output.append(self.TEMPLATE % article.get('description', ''))
+      self._output = '\n'.join(self._output)
+    return self._output
+
 
 class TextProcessor(object):
   """Translates text from Django template format to localizable HTML and back."""
@@ -140,8 +171,15 @@ class Article(object):
   3. A newly localized instance of the article in a specific locale.
 
   Attributes:
+    available_localizations: The finished localizations available for this
+        article (e.g. ['en', 'de', 'es'])
+    completely_localized: Does the article have localizations for each of the
+        expected language?
+    locales: The article's completed localizations. (e.g. ['en', 'de'])
+    localizable_file_path: The path to the article's localizable
+        representation, living under `{Article.UNLOCALIZED_ROOT}`.
+    new_localizations: Are new localizations available for this article?
     path: The path to the article's root: `{Article.ROOT}/path/to/article`.
-    locales: The article's available completed localizations.
   """
 
   ROOT = os.path.abspath(os.path.join(ROOT_DIR, '..', 'content'))
@@ -301,8 +339,8 @@ ArticleException:
       raise ArticleException(error % (self.path, self.locales))
 
     original = self.original_file_path('en')
-    with open(original, 'r') as input:
-      with open(self.localizable_file_path, 'w') as output:
+    with codecs.open(original, 'r', 'UTF-8') as input:
+      with codecs.open(self.localizable_file_path, 'w', 'UTF-8') as output:
         output.write(TextProcessor.django_to_html(input.read())) 
     return self.localizable_file_path
 
@@ -314,8 +352,10 @@ ArticleException:
           os.mkdir(os.path.dirname(self.original_file_path(locale)))
         except OSError:
           pass
-        with open(self.localized_file_path(locale), 'r') as infile:
-          with open(self.original_file_path(locale), 'w') as outfile:
+        in_path = self.localized_file_path(locale)
+        out_path = self.original_file_path(locale)
+        with codecs.open(in_path, 'r', 'UTF-8') as infile:
+          with codecs.open(out_path, 'w', 'UTF-8') as outfile:
             outfile.write(TextProcessor.html_to_django(infile.read()))
     self._available_localizations = []
     self._locales = []
@@ -377,6 +417,12 @@ class Localizer(object):
         except ArticleException:
           pass
 
+  def generate_localizable_yaml(self, path):
+    processor = YamlProcessor(path)
+    with codecs.open('_%s.html' % path, 'w', 'UTF-8') as outfile:
+      outfile.write(processor.localizable_text)
+      
+
   def import_localized_files(self):
     for article in self.articles:
       article.import_localized_files()
@@ -385,28 +431,37 @@ def main():
   parser = optparse.OptionParser()
   parser.add_option('--generate', dest='generate_html',
                     default=False, action='store_true',
-                    help=('Generate HTML from Django templated articles. '
-                          'Store them in `./_unlocalized`.'))
+                    help=('Generate HTML from Django templated articles and '
+                          'stores them in `./_unlocalized`. If `--yaml` is '
+                          'also specified, then only the YAML template is '
+                          'generated.'))
   parser.add_option('--import', dest='import_html',
                     default=False, action='store_true',
                     help=('Generate Django templates from localized '
                           'HTML articles in `./_localized`.'))
+  parser.add_option('--yaml', dest='yaml_infile', default='',
+                    help=('Generate localizable template from a specified YAML '
+                          'file. Output is written to `./[filename].html`'))
 
   options = parser.parse_args()[0]
   if not (options.generate_html or options.import_html):
-    parser.error('You must specify either `--generate`'
-                 'or `--import`.')
+    parser.error('You must specify either `--generate` or `--import`.')
 
   l7r = Localizer(original_root=Article.ROOT,
                    localized_root=Article.LOCALIZED_ROOT)
 
-  if options.generate_html:
+  if options.generate_html and options.yaml_infile:
+    try:
+      l7r.generate_localizable_yaml(options.yaml_infile)
+    except ArticleException:
+      parser.error('`%s` couldn\'t be read.' % options.yaml_infile)
+  elif options.generate_html:
     try:
       os.mkdir(Article.UNLOCALIZED_ROOT)
     except OSError:
       pass
     l7r.generate_localizable_files()
-  if options.import_html:
+  elif options.import_html:
     try:
       os.mkdir(Article.LOCALIZED_ROOT)
     except OSError:

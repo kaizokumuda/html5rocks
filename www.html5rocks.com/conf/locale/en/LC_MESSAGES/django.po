@@ -8,39 +8,697 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 15:27+0100\n"
+"POT-Creation-Date: 2012-02-24 12:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 
-#: main.py:188
+#: _tutorials.yaml.html:1
+msgid "Developing Game Audio with the Web Audio API"
+msgstr ""
+
+#: _tutorials.yaml.html:2
+msgid "Web Audio for Games."
+msgstr ""
+
+#: _tutorials.yaml.html:3
+msgid "Capturing Audio & Video in HTML5"
+msgstr ""
+
+#: _tutorials.yaml.html:4
+msgid "How to capture audio and video using the navigator.getUserMedia() API."
+msgstr ""
+
+#: _tutorials.yaml.html:5
+msgid "Case Study: Bouncy Mouse"
+msgstr ""
+
+#: _tutorials.yaml.html:6
+msgid ""
+"Bouncy Mouse is a slingshot platformer by Munkadoo Games. This article talks "
+"about porting the game to HTML5 and WebAudio."
+msgstr ""
+
+#: _tutorials.yaml.html:7
+msgid "Mixing Positional Audio and WebGL"
+msgstr ""
+
+#: _tutorials.yaml.html:8
+msgid ""
+"How to use the positional audio features in Web Audio API with Three.js."
+msgstr ""
+
+#: _tutorials.yaml.html:9
+msgid "WebGL Fundamentals"
+msgstr ""
+
+#: _tutorials.yaml.html:10
+msgid ""
+"Fundamentals of using WebGL as a 2D drawing API and using shaders for image "
+"processing."
+msgstr ""
+
+#: _tutorials.yaml.html:11
+msgid "Getting Started With the Track Element"
+msgstr ""
+
+#: _tutorials.yaml.html:12
+msgid ""
+"The track element provides a simple, standardized way to add subtitles and "
+"captions to video and audio, but can also be used with other kinds of timed "
+"data, to improve searchability and enable deep linking."
+msgstr ""
+
+#: _tutorials.yaml.html:13
+msgid "Google Photography Prize Gallery"
+msgstr ""
+
+#: _tutorials.yaml.html:14
+msgid ""
+"Building the gallery widget for the Google Photography Prize site using "
+"Closure."
+msgstr ""
+
+#: _tutorials.yaml.html:15
+msgid "Animating a Million Letters Using Three.js"
+msgstr ""
+
+#: _tutorials.yaml.html:16
+msgid "A guide to using shaders to animate large amounts of particles."
+msgstr ""
+
+#: _tutorials.yaml.html:17
+msgid "Case Study: Building the Stanisław Lem Google doodle"
+msgstr ""
+
+#: _tutorials.yaml.html:18
+msgid ""
+"A walk through of the HTML5 tech behind the Stanisław Lem Google doodle."
+msgstr ""
+
+#: _tutorials.yaml.html:19
+msgid "Migrating your WebSQL DB to IndexedDB"
+msgstr ""
+
+#: _tutorials.yaml.html:20
+msgid ""
+"A look at what it would take to port a WebSQL based application to IndexedDB."
+msgstr ""
+
+#: _tutorials.yaml.html:21
+msgid "Using CORS"
+msgstr ""
+
+#: _tutorials.yaml.html:22
+msgid ""
+"An introduction to Cross Origin Resource Sharing (CORS), which gives scripts "
+"the ability to make cross-origin XHRs."
+msgstr ""
+
+#: _tutorials.yaml.html:23
+msgid "The Synchronous FileSystem API for Workers"
+msgstr ""
+
+#: _tutorials.yaml.html:24
+msgid ""
+"The HTML5 FileSystem API offers an synchronous version to be used in the "
+"context of Web Workers. The tutorial introduces the Synchronous API, and "
+"gives practical examples of using it."
+msgstr ""
+
+#: _tutorials.yaml.html:25
+msgid "Getting Started with Web Audio API"
+msgstr ""
+
+#: _tutorials.yaml.html:26
+msgid ""
+"A gentle introduction to loading and playing, cross-fading, and filtering "
+"sound using the Web Audio API."
+msgstr ""
+
+#: _tutorials.yaml.html:27
+msgid "HTML5 Techniques for Optimizing Mobile Performance"
+msgstr ""
+
+#: _tutorials.yaml.html:28
+msgid ""
+"Learn the fundamentals of an HTML5 mobile framework. From network detection "
+"to sliding, flipping, and more."
+msgstr ""
+
+#: _tutorials.yaml.html:29
+msgid "Introduction to Raphaël.js"
+msgstr ""
+
+#: _tutorials.yaml.html:30
+msgid "Learn how to use Raphaël.js to create cross-platform SVG scenes."
+msgstr ""
+
+#: _tutorials.yaml.html:31
+msgid "Measuring Page Load Speed with Navigation Timing"
+msgstr ""
+
+#: _tutorials.yaml.html:32
+msgid ""
+"Get accurate and detailed timing statistics-natively-for page navigation and "
+"load events."
+msgstr ""
+
+#: _tutorials.yaml.html:33
+msgid "Improving HTML5 Canvas Performance"
+msgstr ""
+
+#: _tutorials.yaml.html:34
+msgid ""
+"Ten tips to make your canvas applications and games faster. Every technique "
+"is backed up by a performance test."
+msgstr ""
+
+#: _tutorials.yaml.html:35
+msgid "How Browsers Work: Behind the scenes of modern web browsers"
+msgstr ""
+
+#: _tutorials.yaml.html:36
+msgid ""
+"In this comprehensive primer, you will learn what happens in the browser "
+"between when you type google.com in the address bar until you see the Google "
+"page on the browser screen."
+msgstr ""
+
+#: _tutorials.yaml.html:37
+msgid "Integrating Canvas into your Web App"
+msgstr ""
+
+#: _tutorials.yaml.html:38
+msgid ""
+"Use the HTML5 canvas element to create, edit, open, export images and tips "
+"on how these techniques can be applied to an existing web application."
+msgstr ""
+
+#: _tutorials.yaml.html:39
+msgid "Case Study: Auto-Resizing HTML5 Games"
+msgstr ""
+
+#: _tutorials.yaml.html:40
+msgid "Resizing your game to fit a variety of form factors and window sizes."
+msgstr ""
+
+#: _tutorials.yaml.html:41
+msgid "Simple Asset Management for HTML5 Games"
+msgstr ""
+
+#: _tutorials.yaml.html:42
+msgid "Centralize and manage the asset downloads for your HTML5 game."
+msgstr ""
+
+#: _tutorials.yaml.html:43
+msgid ""
+"Feature, Browser, and Form Factor Detection: It's Good for the Environment"
+msgstr ""
+
+#: _tutorials.yaml.html:44
+msgid ""
+"Tune your app to the environment it's running in using Feature Detection, "
+"Browser Detection, and Form Factor detection."
+msgstr ""
+
+#: _tutorials.yaml.html:45
+msgid "HTML5 vs Native: The Mobile App Debate"
+msgstr ""
+
+#: _tutorials.yaml.html:46
+msgid ""
+"There are still compelling reasons to go native, and clearly, many "
+"developers are indeed going that route. This article is a debate on native "
+"versus web. We'll examine each point in favor of native, then we'll let the "
+"web come in and give its best defense."
+msgstr ""
+
+#: _tutorials.yaml.html:47
+msgid "An Introduction to Shaders"
+msgstr ""
+
+#: _tutorials.yaml.html:48
+msgid ""
+"Want to learn about WebGL shaders but don't know where to start? I'm here to "
+"help!"
+msgstr ""
+
+#: _tutorials.yaml.html:49
+msgid "Getting Started with Three.js"
+msgstr ""
+
+#: _tutorials.yaml.html:50
+msgid ""
+"Three.js is a powerful engine for doing native 3D work in your browser. But "
+"how do you get going?"
+msgstr ""
+
+#: _tutorials.yaml.html:51
+msgid "Making Forms Fabulous with HTML5"
+msgstr ""
+
+#: _tutorials.yaml.html:52
+msgid ""
+"Take advantage of improved forms support in HTML5 to build better forms, "
+"more easily."
+msgstr ""
+
+#: _tutorials.yaml.html:53
+msgid "Working Off the Grid with HTML5 Offline"
+msgstr ""
+
+#: _tutorials.yaml.html:54
+msgid ""
+"This article covers practical techniques and examples for handling "
+"connectivity flakiness."
+msgstr ""
+
+#: _tutorials.yaml.html:55
+msgid "Rendering HTML5 in older browsers with Google Chrome Frame"
+msgstr ""
+
+#: _tutorials.yaml.html:56
+msgid ""
+"HTML5 adds a multitude of new awesome tools to the web developer toolbox. "
+"Google Chrome Frame helps bringing these features to older browsers. This "
+"article will tell you how to use Chrome Frame on your site."
+msgstr ""
+
+#: _tutorials.yaml.html:57
+msgid "New Tricks in XMLHttpRequest2"
+msgstr ""
+
+#: _tutorials.yaml.html:58
+msgid ""
+"There has been a slew of improvements to our old friend "
+"<code>XMLHttpRequest</code> for working with different types of data. This "
+"tutorial covers the new hotness."
+msgstr ""
+
+#: _tutorials.yaml.html:59
+msgid "Chrome Experiments Demo Harness"
+msgstr ""
+
+#: _tutorials.yaml.html:60
+msgid ""
+"Experiences from building a kiosk-style demo station with HTML and WebGL."
+msgstr ""
+
+#: _tutorials.yaml.html:61
+msgid "Image Filters with Canvas"
+msgstr ""
+
+#: _tutorials.yaml.html:62
+msgid "A quick guide to writing custom image filters with &lt;canvas&gt;."
+msgstr ""
+
+#: _tutorials.yaml.html:63
+msgid "This End Up: Using Device Orientation"
+msgstr ""
+
+#: _tutorials.yaml.html:64
+msgid ""
+"Learn how to use device orientation and device motion events to tell when "
+"your computer is moving."
+msgstr ""
+
+#: _tutorials.yaml.html:65
+msgid "Multi-touch Web Development"
+msgstr ""
+
+#: _tutorials.yaml.html:66
+msgid "Introduction on touch events for mobile devices."
+msgstr ""
+
+#: _tutorials.yaml.html:67
+msgid "Case Study: Real-time Updates in Stream Congress"
+msgstr ""
+
+#: _tutorials.yaml.html:68
+msgid ""
+"Choosing the right technology to accomplish real-time, asynchronous updates."
+msgstr ""
+
+#: _tutorials.yaml.html:69
+msgid "Case Study: Converting Wordico from Flash to HTML5"
+msgstr ""
+
+#: _tutorials.yaml.html:70
+msgid ""
+"Learn how we converted our <a href=\"https://chrome.google.com/webstore/"
+"detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl\">Wordico</a> crossword game from "
+"Flash to HTML5."
+msgstr ""
+
+#: _tutorials.yaml.html:71
+msgid "\"Mobifying\" Your HTML5 Site"
+msgstr ""
+
+#: _tutorials.yaml.html:72
+msgid ""
+"A guide on how to create a mobile version of an existing HTML5 website. This "
+"study looks at what was required to make html5rocks.com friendly to mobile "
+"users."
+msgstr ""
+
+#: _tutorials.yaml.html:73
+msgid "Typographic effects in canvas"
+msgstr ""
+
+#: _tutorials.yaml.html:74
+msgid ""
+"Effects in canvas inner/outer shadows, neon-glows, reflections, space-age, "
+"pattern/gradient overlays, stereoscopic imaging, and other text/vector-"
+"effects..."
+msgstr ""
+
+#: _tutorials.yaml.html:75
+msgid "Improving the Performance of your HTML5 App"
+msgstr ""
+
+#: _tutorials.yaml.html:76
+msgid "Optimization strategies and techniques for HTML5 applications."
+msgstr ""
+
+#: _tutorials.yaml.html:77
+msgid "Case Study: Onslaught! Arena"
+msgstr ""
+
+#: _tutorials.yaml.html:78
+msgid ""
+"Learn how <a href=\"https://chrome.google.com/webstore/detail/"
+"khodnfbkbanejphecblcofbghjdgfaih\">Onslaught! Arena</a> created their fast-"
+"paced, arcade-style medieval fantasy shoot 'em up."
+msgstr ""
+
+#: _tutorials.yaml.html:79
+msgid "No Tears Guide to HTML5 Games"
+msgstr ""
+
+#: _tutorials.yaml.html:80
+msgid "Building an HTML5 game using &lt;canvas&gt;, the no tears way."
+msgstr ""
+
+#: _tutorials.yaml.html:81
+msgid "Case Study: HTML5 MathBoard"
+msgstr ""
+
+#: _tutorials.yaml.html:82
+msgid ""
+"A discussion on how the iPad's popular <a href=\"https://chrome.google.com/"
+"webstore/detail/elcilkmmbpmchojdmdohhoalmfmkcklk\">MathBoard</a> application "
+"was ported to HTML5."
+msgstr ""
+
+#: _tutorials.yaml.html:83
+msgid "Case Study: Page Flip Effect from 20thingsilearned.com"
+msgstr ""
+
+#: _tutorials.yaml.html:84
+msgid ""
+"Learn how to re-create the page flip effect found on <a href=\"http://"
+"www.20thingsilearned.com\">20thingsilearned.com</a> using the Canvas API."
+msgstr ""
+
+#: _tutorials.yaml.html:85
+msgid "Exploring the FileSystem APIs"
+msgstr ""
+
+#: _tutorials.yaml.html:86
+msgid ""
+"The FileSystem APIs give applications the ability to read/write files and "
+"directories in a secure, sandboxed file system on a user's local machine."
+msgstr ""
+
+#: _tutorials.yaml.html:87
+msgid "A Simple TODO list using HTML5 IndexedDB"
+msgstr ""
+
+#: _tutorials.yaml.html:88
+msgid ""
+"IndexedDB represents the future of query-able client-side storage. This "
+"tutorial presents a real world application implementing the basics of the "
+"IndexedDB API."
+msgstr ""
+
+#: _tutorials.yaml.html:89
+msgid "Case Study: Getting Entangled with HTML5 Canvas"
+msgstr ""
+
+#: _tutorials.yaml.html:90
+msgid ""
+"Entanglement is a puzzle game made by Gopherwood Studios. This article talks "
+"about Entanglement's usage of the &lt;canvas&gt; tag."
+msgstr ""
+
+#: _tutorials.yaml.html:91
+msgid "Stream Updates with Server-Sent Events"
+msgstr ""
+
+#: _tutorials.yaml.html:92
+msgid ""
+"The EventSource API is designed for receiving push notifications from a "
+"server, removing the need for client-size XHR polling."
+msgstr ""
+
+#: _tutorials.yaml.html:93
+msgid "Introducing WebSockets: Bringing Sockets to the Web"
+msgstr ""
+
+#: _tutorials.yaml.html:94
+msgid ""
+"Learn how to use WebSockets to add low latency bidirectional client-server "
+"communication to your web app."
+msgstr ""
+
+#: _tutorials.yaml.html:95
+msgid "Quick hits with the Flexible Box Model"
+msgstr ""
+
+#: _tutorials.yaml.html:96
+msgid ""
+"An introduction to <q>flexbox</q>, an alternative <abbr title=\"Cascading "
+"Style Sheets\">CSS</abbr> layout scheme based on vboxes and hboxes."
+msgstr ""
+
+#: _tutorials.yaml.html:97
+msgid "Client-Side Storage"
+msgstr ""
+
+#: _tutorials.yaml.html:98
+msgid ""
+"An overview of client-side storage techniques: Web Storage (local/session "
+"storage), Web SQL Database, Indexed Database, Filesystem."
+msgstr ""
+
+#: _tutorials.yaml.html:99
+msgid "Native HTML5 Drag and Drop"
+msgstr ""
+
+#: _tutorials.yaml.html:100
+msgid ""
+"Drag-and-drop is yet another first class citizen in HTML5! This article "
+"explains how to enhance your web applications by adding native DnD "
+"functionality."
+msgstr ""
+
+#: _tutorials.yaml.html:101
+msgid "Case Study: HTML5 in deviantART muro"
+msgstr ""
+
+#: _tutorials.yaml.html:102
+msgid "Learn how deviantART used HTML5 drawing features in deviantART muro."
+msgstr ""
+
+#: _tutorials.yaml.html:103
+msgid "Case Study: Drag and Drop Download in Chrome"
+msgstr ""
+
+#: _tutorials.yaml.html:104
+msgid ""
+"Learn how Box.net implemented GMail's attachment drag and drop to the "
+"desktop."
+msgstr ""
+
+#: _tutorials.yaml.html:105
+msgid "3D and CSS"
+msgstr ""
+
+#: _tutorials.yaml.html:106
+msgid "Learn how to build exciting 3D user interfaces using the power of CSS."
+msgstr ""
+
+#: _tutorials.yaml.html:107
+msgid "HTML5 Video"
+msgstr ""
+
+#: _tutorials.yaml.html:108
+msgid ""
+"Video is one of the most interesting and widely supported features of HTML5. "
+"This tutorial covers the mechanics of incorporating native video into your "
+"site (without a plugin) and gives interesting examples of using the &gt;"
+"video&lt; tag."
+msgstr ""
+
+#: _tutorials.yaml.html:109
+msgid "\"Offline\": What does it mean and why should I care?"
+msgstr ""
+
+#: _tutorials.yaml.html:110
+msgid ""
+"A discussion of what it means to take an application \"offline\" and the "
+"options available to developers for doing so."
+msgstr ""
+
+#: _tutorials.yaml.html:111
+msgid "Quick guide to webfonts via @font-face"
+msgstr ""
+
+#: _tutorials.yaml.html:112
+msgid ""
+"Webfonts give new typographic freedom to designers while retaining "
+"scalability and accessibility."
+msgstr ""
+
+#: _tutorials.yaml.html:113
+msgid "Auditing Your Web App For Speed"
+msgstr ""
+
+#: _tutorials.yaml.html:114
+msgid ""
+"The Audit Panel is an excellent tool for examining latency in your web apps. "
+"It offers customized recommendations to enhance performance and reduce "
+"latency."
+msgstr ""
+
+#: _tutorials.yaml.html:115
+msgid "The Basics of Web Workers"
+msgstr ""
+
+#: _tutorials.yaml.html:116
+msgid ""
+"Web Workers are a means of spawning background scripts in your application, "
+"giving thread-like message passing for handling computationally intensive "
+"tasks."
+msgstr ""
+
+#: _tutorials.yaml.html:117
+msgid "Introduction to Chrome Developer Tools, Part One"
+msgstr ""
+
+#: _tutorials.yaml.html:118
+msgid ""
+"An introduction to the tools available in Google Chrome that make a "
+"developer's life easier!"
+msgstr ""
+
+#: _tutorials.yaml.html:119
+msgid "Best Practices for a Faster Web App with HTML5"
+msgstr ""
+
+#: _tutorials.yaml.html:120
+msgid ""
+"How to effectively use features from HTML5 to improve the performance and "
+"responsiveness of your app."
+msgstr ""
+
+#: _tutorials.yaml.html:121
+msgid "A Beginner's Guide to Using the Application Cache"
+msgstr ""
+
+#: _tutorials.yaml.html:122
+msgid ""
+"A step-by-step guide to taking your web app offline using the application "
+"cache APIs."
+msgstr ""
+
+#: _tutorials.yaml.html:123
+msgid "Practical Guide to Take Your TODO List Offline"
+msgstr ""
+
+#: _tutorials.yaml.html:124
+#, python-format
+msgid ""
+"Expanding on the <a href=\"/%(LANGUAGE_CODE)s/tutorials/webdatabase/todo/"
+"\">simple TODO list</a>, this tutorial gives a practical guide for taking "
+"the sample offline using the application cache."
+msgstr ""
+
+#: _tutorials.yaml.html:125
+msgid "Reading files in JavaScript using the File APIs"
+msgstr ""
+
+#: _tutorials.yaml.html:126
+msgid ""
+"Starter guide for using the File/FileList/FileReader APIs to process and "
+"read binary files in JavaScript."
+msgstr ""
+
+#: _tutorials.yaml.html:127
+msgid "A Simple Trip Meter using the Geolocation API"
+msgstr ""
+
+#: _tutorials.yaml.html:128
+msgid ""
+"Learn how to implement geolocation very quickly including a distance "
+"calculator"
+msgstr ""
+
+#: _tutorials.yaml.html:129
+msgid "Using the Notifications API"
+msgstr ""
+
+#: _tutorials.yaml.html:130
+msgid "Learn the notification basics creating a twitter notification"
+msgstr ""
+
+#: _tutorials.yaml.html:131
+msgid "A Simple TODO list using HTML5 WebDatabases"
+msgstr ""
+
+#: _tutorials.yaml.html:132
+msgid "Create a TODO list which persists data using a client side database."
+msgstr ""
+
+#: _tutorials.yaml.html:133
+msgid "Quick Guide to Implementing the HTML5 Audio Tag"
+msgstr ""
+
+#: _tutorials.yaml.html:134
+msgid ""
+"Learn how to use the HTML5 audio tag and fall back to Flash on platforms "
+"which do not support it."
+msgstr ""
+
+#: main.py:196
 msgid "this feature"
 msgstr ""
 
-#: main.py:199
+#: main.py:207
 msgid "HTML5Rocks - Tutorials & Updates"
 msgstr ""
 
-#: main.py:201
+#: main.py:209
 msgid "Take a guided tour through code that uses HTML5."
 msgstr ""
 
-#: main.py:265
+#: main.py:273
 msgid ""
 "Sorry, this article isn't available in your native language; we've "
 "redirected you to the English version."
 msgstr ""
 
 #: content/community.html:5 content/features/index.html:11
-#: templates/base.html:160
+#: templates/base.html:170
 msgid "Home"
 msgstr ""
 
-#: content/community.html:78 content/index.html:233 content/resources.html:284
+#: content/community.html:78 content/index.html:241 content/resources.html:291
 msgid "Community"
 msgstr ""
 
@@ -84,35 +742,42 @@ msgstr ""
 msgid "HTML5 Events"
 msgstr ""
 
-#: content/index.html:5 templates/base.html:29
+#: content/index.html:5 templates/base.html:32
 msgid "A resource for open web HTML5 developers"
 msgstr ""
 
-#: content/index.html:87
+#: content/index.html:88
 msgid "Latest Updates"
 msgstr ""
 
-#: content/index.html:89
+#: content/index.html:90
 msgid "RSS"
 msgstr ""
 
-#: content/index.html:92
+#: content/index.html:93
 msgid "loading feed..."
 msgstr ""
 
-#: content/index.html:93
-msgid "See more &rarr;"
-msgstr ""
-
-#: content/index.html:100
-msgid "Welcome to HTML5ROCKS"
+#: content/index.html:98 content/profiles.html:51 content/resources.html:42
+#: content/slides.html:164 content/why.html:32
+#: content/features/feature.html:25 content/tutorials/index.html:69
+#: templates/tutorial.html:118
+msgid "Tweet"
 msgstr ""
 
 #: content/index.html:101
+msgid "See more &rarr;"
+msgstr ""
+
+#: content/index.html:108
+msgid "Welcome to HTML5ROCKS"
+msgstr ""
+
+#: content/index.html:109
 msgid "What kind of HTML dev do you think you are?"
 msgstr ""
 
-#: content/index.html:104
+#: content/index.html:112
 msgid ""
 "\n"
 "      HTML5 is the ubiquitous platform for the web. Whether you're a mobile "
@@ -125,13 +790,13 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/index.html:116 content/mobile/index.html:31
-#: content/mobile/index.html.py:50 templates/base.html:157
-#: templates/base.html.py:164
+#: content/index.html:124 content/mobile/index.html:30
+#: content/mobile/index.html.py:52 templates/base.html:167
+#: templates/base.html.py:174
 msgid "Mobile"
 msgstr ""
 
-#: content/index.html:118
+#: content/index.html:126
 msgid ""
 "\n"
 "          Web developers can use the same set of technologies they know and "
@@ -141,13 +806,13 @@ msgid ""
 "          "
 msgstr ""
 
-#: content/index.html:129 content/gaming/index.html:35
-#: content/gaming/index.html.py:54 templates/base.html:161
-#: templates/base.html.py:168
+#: content/index.html:137 content/gaming/index.html:34
+#: content/gaming/index.html.py:56 templates/base.html:171
+#: templates/base.html.py:178
 msgid "Gaming"
 msgstr ""
 
-#: content/index.html:131
+#: content/index.html:139
 msgid ""
 "\n"
 "          High performance 2D/3D graphics, offline asset storage, rich "
@@ -158,12 +823,12 @@ msgid ""
 "          "
 msgstr ""
 
-#: content/index.html:142 content/business/index.html:34
-#: content/business/index.html.py:53 templates/base.html:165
+#: content/index.html:150 content/business/index.html:33
+#: content/business/index.html.py:55 templates/base.html:175
 msgid "Business"
 msgstr ""
 
-#: content/index.html:144
+#: content/index.html:152
 msgid ""
 "\n"
 "          HTML5 brings substantial benefits for companies that no other IT "
@@ -173,15 +838,15 @@ msgid ""
 "          "
 msgstr ""
 
-#: content/index.html:154
+#: content/index.html:162
 msgid "Or get straight to the tech!"
 msgstr ""
 
-#: content/index.html:160
+#: content/index.html:168
 msgid "HTML5 Features"
 msgstr ""
 
-#: content/index.html:163
+#: content/index.html:171
 msgid ""
 "\n"
 "        HTML5 is making the web platform more powerful in a number of "
@@ -190,79 +855,79 @@ msgid ""
 "        "
 msgstr ""
 
-#: content/index.html:170 content/features/index.html:19
+#: content/index.html:178 content/features/index.html:19
 #: content/features/offline.html:5 content/features/offline.html.py:6
-#: templates/base.html:100 templates/base.html.py:177 templates/base.html:222
+#: templates/base.html:110 templates/base.html.py:188 templates/base.html:232
 msgid "Offline"
 msgstr ""
 
-#: content/index.html:171 content/features/_feature_blank.html:5
+#: content/index.html:179 content/features/_feature_blank.html:5
 #: content/features/_feature_blank.html:6 content/features/index.html:22
 #: content/features/storage.html:5 content/features/storage.html.py:6
-#: templates/base.html:105 templates/base.html.py:174 templates/base.html:181
-#: templates/base.html.py:233
+#: templates/base.html:115 templates/base.html.py:185 templates/base.html:192
+#: templates/base.html.py:243
 msgid "Storage"
 msgstr ""
 
-#: content/index.html:172 content/features/connectivity.html:5
-#: content/features/connectivity.html:6 templates/base.html:110
-#: templates/base.html.py:178 templates/base.html:185
-#: templates/base.html.py:244
+#: content/index.html:180 content/features/connectivity.html:5
+#: content/features/connectivity.html:6 templates/base.html:120
+#: templates/base.html.py:189 templates/base.html:196
+#: templates/base.html.py:254
 msgid "Connectivity"
 msgstr ""
 
-#: content/index.html:173 content/features/file_access.html:5
+#: content/index.html:181 content/features/file_access.html:5
 #: content/features/file_access.html:6 content/features/index.html:16
-#: templates/base.html:115 templates/base.html.py:182 templates/base.html:189
-#: templates/base.html.py:255
+#: templates/base.html:125 templates/base.html.py:193 templates/base.html:200
+#: templates/base.html.py:265
 msgid "File Access"
 msgstr ""
 
-#: content/index.html:174 content/features/semantics.html:5
-#: content/features/semantics.html.py:6 templates/base.html:120
-#: templates/base.html.py:186 templates/base.html:193
-#: templates/base.html.py:266
+#: content/index.html:182 content/features/semantics.html:5
+#: content/features/semantics.html.py:6 templates/base.html:130
+#: templates/base.html.py:197 templates/base.html:204
+#: templates/base.html.py:276
 msgid "Semantics"
 msgstr ""
 
-#: content/index.html:175 templates/base.html:125 templates/base.html.py:190
-#: templates/base.html:197 templates/base.html.py:277
+#: content/index.html:183 templates/base.html:135 templates/base.html.py:201
+#: templates/base.html:208 templates/base.html.py:287
 msgid "Audio/Video"
 msgstr ""
 
-#: content/index.html:176 templates/base.html:130 templates/base.html.py:194
-#: templates/base.html:201 templates/base.html.py:288
+#: content/index.html:184 templates/base.html:140 templates/base.html.py:205
+#: templates/base.html:212 templates/base.html.py:298
 msgid "3D/Graphics"
 msgstr ""
 
-#: content/index.html:177 content/features/index.html:21
+#: content/index.html:185 content/features/index.html:21
 #: content/features/presentation.html:5 content/features/presentation.html:6
-#: templates/base.html:135 templates/base.html.py:198 templates/base.html:205
-#: templates/base.html.py:299
+#: templates/base.html:145 templates/base.html.py:209 templates/base.html:216
+#: templates/base.html.py:309
 msgid "Presentation"
 msgstr ""
 
-#: content/index.html:178 content/features/index.html:20
+#: content/index.html:186 content/features/index.html:20
 #: content/features/performance.html:5 content/features/performance.html:6
-#: templates/base.html:140 templates/base.html.py:202 templates/base.html:209
-#: templates/base.html.py:310
+#: templates/base.html:150 templates/base.html.py:213 templates/base.html:220
+#: templates/base.html.py:320
 msgid "Performance"
 msgstr ""
 
-#: content/index.html:179 templates/base.html:145 templates/base.html.py:206
-#: templates/base.html:322
+#: content/index.html:187 templates/base.html:155 templates/base.html.py:217
+#: templates/base.html:332
 msgid "Nuts &amp; Bolts"
 msgstr ""
 
-#: content/index.html:186
+#: content/index.html:194
 msgid "Why HTML5?"
 msgstr ""
 
-#: content/index.html:188
+#: content/index.html:196
 msgid "Why you should care."
 msgstr ""
 
-#: content/index.html:190
+#: content/index.html:198
 msgid ""
 "\n"
 "          HTML5 introduces many cutting-edge features that enable developers "
@@ -271,17 +936,17 @@ msgid ""
 "          "
 msgstr ""
 
-#: content/index.html:200 content/business/index.html:34
-#: content/gaming/index.html:35 content/mobile/index.html:31
+#: content/index.html:208 content/business/index.html:33
+#: content/gaming/index.html:34 content/mobile/index.html:30
 #: content/tutorials/index.html:15
 msgid "Updates"
 msgstr ""
 
-#: content/index.html:202
+#: content/index.html:210
 msgid "Learn what's new."
 msgstr ""
 
-#: content/index.html:203
+#: content/index.html:211
 msgid ""
 "\n"
 "          Articles, tutorials, case studies, and demos that show you how to "
@@ -290,21 +955,21 @@ msgid ""
 "          "
 msgstr ""
 
-#: content/index.html:213 content/resources.html:5
-#: content/resources.html.py:15 templates/base.html:75
-#: templates/base.html.py:229 templates/base.html:240
-#: templates/base.html.py:251 templates/base.html:262
-#: templates/base.html.py:273 templates/base.html:284
-#: templates/base.html.py:295 templates/base.html:306
-#: templates/base.html.py:329
+#: content/index.html:221 content/resources.html:5
+#: content/resources.html.py:15 templates/base.html:80
+#: templates/base.html.py:239 templates/base.html:250
+#: templates/base.html.py:261 templates/base.html:272
+#: templates/base.html.py:283 templates/base.html:294
+#: templates/base.html.py:305 templates/base.html:316
+#: templates/base.html.py:339
 msgid "Resources"
 msgstr ""
 
-#: content/index.html:215 content/resources.html:20
+#: content/index.html:223 content/resources.html:20
 msgid "All HTML5, all the time."
 msgstr ""
 
-#: content/index.html:216
+#: content/index.html:224
 msgid ""
 "\n"
 "          Cultivated list of additional resources to help you on your HTML5\n"
@@ -312,15 +977,15 @@ msgid ""
 "          "
 msgstr ""
 
-#: content/index.html:227
+#: content/index.html:235
 msgid "Contributors"
 msgstr ""
 
-#: content/index.html:232
+#: content/index.html:240
 msgid "HTML5 Gurus Rock"
 msgstr ""
 
-#: content/index.html:236
+#: content/index.html:244
 msgid ""
 "\n"
 "      HTML5Rocks is <a href=\"http://code.google.com/p/html5rocks/\" rel="
@@ -354,20 +1019,21 @@ msgstr ""
 msgid "Author Profiles"
 msgstr ""
 
-#: content/profiles.html:16 content/resources.html:14 templates/base.html:29
-#: templates/base.html.py:64 templates/base.html:66 templates/tutorial.html:12
+#: content/profiles.html:17 content/resources.html:14 templates/base.html:29
+#: templates/base.html.py:32 templates/base.html:69 templates/base.html.py:71
+#: templates/base.html:99 templates/tutorial.html:12
 msgid "HTML5 Rocks"
 msgstr ""
 
-#: content/profiles.html:17
+#: content/profiles.html:18
 msgid "Authors"
 msgstr ""
 
-#: content/profiles.html:22
+#: content/profiles.html:23
 msgid "Our honorable contributors."
 msgstr ""
 
-#: content/profiles.html:25 content/resources.html:23
+#: content/profiles.html:26 content/resources.html:23
 #, python-format
 msgid ""
 "\n"
@@ -382,7 +1048,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: content/profiles.html:33 content/resources.html:31
+#: content/profiles.html:34
 msgid ""
 "\n"
 "          <strong>HTML5 Rocks</strong> is a <strong><img src=\"/static/"
@@ -391,17 +1057,19 @@ msgid ""
 "        "
 msgstr ""
 
-#: content/profiles.html:44 content/resources.html:42 content/slides.html:98
-#: content/why.html:32 content/features/feature.html:25
-#: content/tutorials/index.html:68 templates/tutorial.html:118
-msgid "Tweet"
-msgstr ""
-
-#: content/profiles.html:94
+#: content/profiles.html:101
 msgid "Contributions"
 msgstr ""
 
-#: content/resources.html:51 templates/base.html:77
+#: content/resources.html:31
+msgid ""
+"\n"
+"          <strong>HTML5 Rocks</strong> is a <strong><img src=\"/static/"
+"images/google_logo_small.png\" alt=\"Google\"></strong> project.\n"
+"        "
+msgstr ""
+
+#: content/resources.html:51 templates/base.html:82
 msgid "Contribute"
 msgstr ""
 
@@ -472,81 +1140,85 @@ msgid "Results of DOM and CSS properties tests in major browsers."
 msgstr ""
 
 #: content/resources.html:151
+msgid "A guide to help developers build great web applications."
+msgstr ""
+
+#: content/resources.html:158
 msgid "Documentation"
 msgstr ""
 
-#: content/resources.html:157
+#: content/resources.html:164
 msgid "Lightweight version of the W3c spec, perfect for web developers."
 msgstr ""
 
-#: content/resources.html:165
+#: content/resources.html:172
 msgid "Learn HTML5 and have a laugh at the same time."
 msgstr ""
 
-#: content/resources.html:173
+#: content/resources.html:180
 msgid "Excellent WebKit-oriented development documentation."
 msgstr ""
 
-#: content/resources.html:180
+#: content/resources.html:187
 msgid "Excellent documentation and guides."
 msgstr ""
 
-#: content/resources.html:187
+#: content/resources.html:194
 msgid "Working draft spec of everything under the larger HTML5 umbrella."
 msgstr ""
 
-#: content/resources.html:194 templates/base.html:317
+#: content/resources.html:201 templates/base.html:327
 msgid "Tools"
 msgstr ""
 
-#: content/resources.html:200
+#: content/resources.html:207
 msgid ""
 "Javascript library for feature detection and control fallback cases of HTML5."
 msgstr ""
 
-#: content/resources.html:207
+#: content/resources.html:214
 msgid "Javascript patch to make IE support, and print, the new tag elements."
 msgstr ""
 
-#: content/resources.html:214
+#: content/resources.html:221
 msgid ""
 "An set of HTML/CSS/JS templates with best practices for HTML5 and front-end "
 "dev built in."
 msgstr ""
 
-#: content/resources.html:221
+#: content/resources.html:228
 msgid "The collection of scripts that enable HTML5 features in all browsers."
 msgstr ""
 
-#: content/resources.html:228 content/resources.html.py:235
+#: content/resources.html:235 content/resources.html.py:242
 msgid "Preview CSS buttons with a fancy interface to play with the parameters."
 msgstr ""
 
-#: content/resources.html:242
+#: content/resources.html:249
 msgid "Test and get the code of the fanciest CSS features."
 msgstr ""
 
-#: content/resources.html:249
+#: content/resources.html:256
 msgid "Generate CSS code for gradients on the fly."
 msgstr ""
 
-#: content/resources.html:256
+#: content/resources.html:263
 msgid "Use CSS3 without having to worry about xbrowser differences."
 msgstr ""
 
-#: content/resources.html:263
+#: content/resources.html:270
 msgid "Test your fonts using drag and drop."
 msgstr ""
 
-#: content/resources.html:270
+#: content/resources.html:277
 msgid "Most complete tool to generate code for you font-face support."
 msgstr ""
 
-#: content/resources.html:277
+#: content/resources.html:284
 msgid "Complete list of tools related to web performance."
 msgstr ""
 
-#: content/resources.html:357
+#: content/resources.html:364
 msgid "Books"
 msgstr ""
 
@@ -554,7 +1226,7 @@ msgstr ""
 msgid "Search Results"
 msgstr ""
 
-#: content/search.html:171
+#: content/search.html:175
 msgid "Loading"
 msgstr ""
 
@@ -562,11 +1234,11 @@ msgstr ""
 msgid "Videos and Presentations"
 msgstr ""
 
-#: content/slides.html:70
+#: content/slides.html:137
 msgid "Slides, Presen&shy;ta&shy;tions & Videos"
 msgstr ""
 
-#: content/slides.html:76
+#: content/slides.html:142
 msgid ""
 "\n"
 "          Below you can get your hands on the most recent presentations by "
@@ -575,19 +1247,19 @@ msgid ""
 "        "
 msgstr ""
 
-#: content/slides.html:81
+#: content/slides.html:147
 msgid "Filter the talks to your liking"
 msgstr ""
 
-#: content/slides.html:84
+#: content/slides.html:150
 msgid "filter by topic, person, etc"
 msgstr ""
 
-#: content/slides.html:85
+#: content/slides.html:151
 msgid "Only show talks more recent than:"
 msgstr ""
 
-#: content/slides.html:117
+#: content/slides.html:178
 msgid "Loading..."
 msgstr ""
 
@@ -631,31 +1303,32 @@ msgid ""
 "        "
 msgstr ""
 
-#: content/business/index.html:28 content/gaming/index.html:29
-#: content/mobile/index.html:25
+#: content/business/index.html:51 content/business/index.html.py:71
+#: content/gaming/index.html:52 content/gaming/index.html.py:72
+#: content/mobile/index.html:48 content/mobile/index.html.py:68
 msgid "Give me everything"
 msgstr ""
 
-#: content/business/index.html:53 content/gaming/index.html:54
-#: content/mobile/index.html:50 content/tutorials/index.html:5
+#: content/business/index.html:55 content/gaming/index.html:56
+#: content/mobile/index.html:52 content/tutorials/index.html:5
 #: templates/tutorial.html:13
 msgid "Tutorials"
 msgstr ""
 
-#: content/business/index.html:72
+#: content/business/index.html:75
 msgid "Why move to HTML5 now than later?"
 msgstr ""
 
-#: content/business/index.html:89 content/gaming/index.html:74
+#: content/business/index.html:92 content/gaming/index.html:77
 msgid "Tools &amp; Frameworks"
 msgstr ""
 
-#: content/business/index.html:107
+#: content/business/index.html:110
 msgid "Additional Resources"
 msgstr ""
 
-#: content/business/index.html:121 content/gaming/index.html:93
-#: content/mobile/index.html:130
+#: content/business/index.html:124 content/gaming/index.html:97
+#: content/mobile/index.html:133
 msgid "Recent Contributors"
 msgstr ""
 
@@ -752,56 +1425,56 @@ msgstr ""
 msgid "Feature"
 msgstr ""
 
-#: content/features/feature.html:32 templates/base.html:226
-#: templates/base.html.py:237 templates/base.html:248
-#: templates/base.html.py:259 templates/base.html:270
-#: templates/base.html.py:281 templates/base.html:292
-#: templates/base.html.py:303 templates/base.html:313
-#: templates/base.html.py:326
+#: content/features/feature.html:32 templates/base.html:236
+#: templates/base.html.py:247 templates/base.html:258
+#: templates/base.html.py:269 templates/base.html:280
+#: templates/base.html.py:291 templates/base.html:302
+#: templates/base.html.py:313 templates/base.html:323
+#: templates/base.html.py:336
 msgid "What&rsquo;s New"
 msgstr ""
 
-#: content/features/feature.html:50
+#: content/features/feature.html:52
 msgid "loading&hellip;"
 msgstr ""
 
-#: content/features/feature.html:55 templates/tutorial.html:85
+#: content/features/feature.html:57 templates/tutorial.html:85
 msgid "Chrome"
 msgstr ""
 
-#: content/features/feature.html:56 templates/tutorial.html:75
+#: content/features/feature.html:58 templates/tutorial.html:75
 msgid "Firefox"
 msgstr ""
 
-#: content/features/feature.html:57 templates/tutorial.html:65
+#: content/features/feature.html:59 templates/tutorial.html:65
 msgid "Safari"
 msgstr ""
 
-#: content/features/feature.html:58 templates/tutorial.html:45
+#: content/features/feature.html:60 templates/tutorial.html:45
 msgid "Opera"
 msgstr ""
 
-#: content/features/feature.html:59
+#: content/features/feature.html:61
 msgid "IE"
 msgstr ""
 
-#: content/features/feature.html:76
+#: content/features/feature.html:78
 msgid "iOS Safari"
 msgstr ""
 
-#: content/features/feature.html:77
+#: content/features/feature.html:79
 msgid "Android"
 msgstr ""
 
-#: content/features/feature.html:78
+#: content/features/feature.html:80
 msgid "Opera Mini"
 msgstr ""
 
-#: content/features/feature.html:79
+#: content/features/feature.html:81
 msgid "Opera Mobile"
 msgstr ""
 
-#: content/features/feature.html:93
+#: content/features/feature.html:95
 msgid ""
 "Data courtesy of <a href=\"http://caniuse.com/\">caniuse.com</a> and <a href="
 "\"http://dev.chromium.org/developers/web-platform-status\">Chrome Platform "
@@ -925,11 +1598,11 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/features/graphics.html:42 templates/base.html:225
-#: templates/base.html.py:236 templates/base.html:247
-#: templates/base.html.py:258 templates/base.html:269
-#: templates/base.html.py:280 templates/base.html:291
-#: templates/base.html.py:302 templates/base.html:325
+#: content/features/graphics.html:42 templates/base.html:235
+#: templates/base.html.py:246 templates/base.html:257
+#: templates/base.html.py:268 templates/base.html:279
+#: templates/base.html.py:290 templates/base.html:301
+#: templates/base.html.py:312 templates/base.html:335
 msgid "Browser Support"
 msgstr ""
 
@@ -1079,7 +1752,7 @@ msgid ""
 "compositing in Chrome"
 msgstr ""
 
-#: content/features/index.html:5 templates/base.html:96
+#: content/features/index.html:5 templates/base.html:106
 msgid "Features"
 msgstr ""
 
@@ -1190,8 +1863,8 @@ msgid ""
 "New selectors: <a href=\"http://slides.html5rocks.com/#new-selectors"
 "\"><code>querySelector()</code></a>, <a href=\"http://slides.html5rocks.com/"
 "#new-selectors\"><code>querySelectorAll()</code></a>, <a href=\"http://html5-"
-"demos.appspot.com/static/html5-whats-new/template/index.html#13"
-"\"><code>matchesSelector()</code></a>"
+"demos.appspot.com/static/html5-whats-new/template/index."
+"html#13\"><code>matchesSelector()</code></a>"
 msgstr ""
 
 #: content/features/nuts_and_bolts.html:43
@@ -1206,8 +1879,8 @@ msgstr ""
 
 #: content/features/nuts_and_bolts.html:46
 msgid ""
-"<a href=\"http://lists.w3.org/Archives/Public/public-webapps/2011JulSep/1622."
-"html\">Mutation Observers</a>"
+"<a href=\"http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#mutation-"
+"observers\">Mutation Observers</a>"
 msgstr ""
 
 #: content/features/nuts_and_bolts.html:47
@@ -1359,39 +2032,39 @@ msgid ""
 "persistent between user sessions and when reloading and restoring pages."
 msgstr ""
 
-#: content/features/offline.html:93
+#: content/features/offline.html:90
 msgid "Presented by Nikolas Coukouma, January 5, 2011"
 msgstr ""
 
-#: content/features/offline.html:97
+#: content/features/offline.html:94
 msgid ""
 "The w3c spec has the strict details on how the cache.manifest and "
 "applicationCache APIs work."
 msgstr ""
 
-#: content/features/offline.html:101
+#: content/features/offline.html:98
 msgid "Mark Pilgrim dives into using the app cache in practice."
 msgstr ""
 
-#: content/features/offline.html:108
+#: content/features/offline.html:105
 msgid ""
 "Mozilla Developer Center reference documentation and guides, covering online "
 "and offline events and app cache."
 msgstr ""
 
-#: content/features/offline.html:112
+#: content/features/offline.html:109
 msgid ""
 "Creating a todo list manager using localStorage, app cache and offline "
 "events. Putting everything together."
 msgstr ""
 
-#: content/features/offline.html:116
+#: content/features/offline.html:113
 msgid ""
 "The app cache explained with solid examples showing different features and "
 "configurations in use."
 msgstr ""
 
-#: content/features/offline.html:120
+#: content/features/offline.html:117
 msgid "The C code used by Webkit for the app cache"
 msgstr ""
 
@@ -1416,9 +2089,9 @@ msgid ""
 "ranking.html\">Google now incorporates site speed in page ranking</a>.  <a "
 "href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf"
 "\">Amazon has found that every 100 ms increase in page load time decreased "
-"sales by 1%%</a>. Also, <a href=\"http://exp-platform.com/Documents/2007-"
-"10EmetricsExperimenation.pdf\">Microsoft found that slowing a page by 2 "
-"seconds decreased ad clicks by 4%%</a>.\n"
+"sales by 1%%</a>. Also, <a href=\"http://exp-platform.com/"
+"Documents/2007-10EmetricsExperimenation.pdf\">Microsoft found that slowing a "
+"page by 2 seconds decreased ad clicks by 4%%</a>.\n"
 "      "
 msgstr ""
 
@@ -1850,13 +2523,13 @@ msgid ""
 "      "
 msgstr ""
 
-#: content/features/presentation.html:48
+#: content/features/presentation.html:70
 msgid ""
 "CSS3 Transformations allow you to apply rotations, scales, skews and "
 "translations to any DOM element with simple styles."
 msgstr ""
 
-#: content/features/presentation.html:54
+#: content/features/presentation.html:76
 msgid ""
 "Transitions allow you to specify how the style on a DOM element will animate "
 "between transformed states.  For example, you can animate the background "
@@ -1864,40 +2537,40 @@ msgid ""
 "strong>"
 msgstr ""
 
-#: content/features/presentation.html:65
+#: content/features/presentation.html:87
 msgid ""
 "Applying 3D transforms is simple too.  Just specify the transformation in 3d "
 "co-ordinates and you are ready. <strong>Hover over this code!</strong>"
 msgstr ""
 
-#: content/features/presentation.html:124
+#: content/features/presentation.html:146
 msgid "A list of the current status of the CSS3 specifications."
 msgstr ""
 
-#: content/features/presentation.html:128
+#: content/features/presentation.html:150
 msgid ""
 "This W3C specification defines the new selectors available to developers."
 msgstr ""
 
-#: content/features/presentation.html:132
+#: content/features/presentation.html:154
 msgid ""
 "This W3C specification defines how rotations, transformations, skews and "
 "scaling should be applied to DOM elements in 2 dimensions."
 msgstr ""
 
-#: content/features/presentation.html:136
+#: content/features/presentation.html:158
 msgid ""
 "This W3C specification defines how 3d transformations should be applied to "
 "DOM elements."
 msgstr ""
 
-#: content/features/presentation.html:140
+#: content/features/presentation.html:162
 msgid ""
 "This W3C specification defines how properties should be animated between "
 "states."
 msgstr ""
 
-#: content/features/presentation.html:144
+#: content/features/presentation.html:166
 msgid "This W3C specification defines the new animation properties available."
 msgstr ""
 
@@ -2062,27 +2735,27 @@ msgstr ""
 msgid "Mozilla explains its views on Web SQL Database and Indexed Database"
 msgstr ""
 
-#: content/mobile/index.html:70
+#: content/mobile/index.html:73
 msgid "Frameworks"
 msgstr ""
 
-#: content/mobile/index.html:89
+#: content/mobile/index.html:92
 msgid "Development Tools"
 msgstr ""
 
-#: content/mobile/index.html:109
+#: content/mobile/index.html:112
 msgid "Compatibility"
 msgstr ""
 
-#: content/mobile/index.html:120
+#: content/mobile/index.html:123
 msgid "Inspiration"
 msgstr ""
 
-#: content/tutorials/index.html:76
+#: content/tutorials/index.html:83
 msgid "Filtering by tag"
 msgstr ""
 
-#: content/tutorials/index.html:77
+#: content/tutorials/index.html:84
 msgid "[Clear filter]"
 msgstr ""
 
@@ -2109,8 +2782,8 @@ msgstr ""
 #: html5lib/constants.py:25
 #, python-format
 msgid ""
-"Numeric entity couldn't be converted to character (codepoint U+%(charAsInt)"
-"08x)."
+"Numeric entity couldn't be converted to character (codepoint U+"
+"%(charAsInt)08x)."
 msgstr ""
 
 #: html5lib/constants.py:28
@@ -2757,114 +3430,108 @@ msgid ""
 "audio,video,drag and drop,chrome,sse,mobile"
 msgstr ""
 
-#: templates/base.html:31
-msgid "HTML5Rocks RSS"
+#: templates/base.html:34
+msgid "HTML5 Rocks RSS"
 msgstr ""
 
-#: templates/base.html:73
+#: templates/base.html:78
 msgid "Updates &amp; Tutorials"
 msgstr ""
 
-#: templates/base.html:74
+#: templates/base.html:79
 msgid "Slides"
 msgstr ""
 
-#: templates/base.html:76
+#: templates/base.html:81
 msgid "Who We Are"
 msgstr ""
 
-#: templates/base.html:78 templates/base.html.py:89
+#: templates/base.html:85 templates/base.html.py:99
 msgid "Search"
 msgstr ""
 
-#: templates/base.html:89
-msgid "HTML5Rocks"
-msgstr ""
-
-#: templates/base.html:224 templates/base.html.py:235 templates/base.html:246
-#: templates/base.html.py:257 templates/base.html:268
-#: templates/base.html.py:279 templates/base.html:290
-#: templates/base.html.py:301 templates/base.html:312
-#: templates/base.html.py:324
+#: templates/base.html:234 templates/base.html.py:245 templates/base.html:256
+#: templates/base.html.py:267 templates/base.html:278
+#: templates/base.html.py:289 templates/base.html:300
+#: templates/base.html.py:311 templates/base.html:322
+#: templates/base.html.py:334
 msgid "Intro"
 msgstr ""
 
-#: templates/base.html:227 templates/base.html.py:238 templates/base.html:249
-#: templates/base.html.py:260 templates/base.html:271
-#: templates/base.html.py:282 templates/base.html:293
-#: templates/base.html.py:304 templates/base.html:327
+#: templates/base.html:237 templates/base.html.py:248 templates/base.html:259
+#: templates/base.html.py:270 templates/base.html:281
+#: templates/base.html.py:292 templates/base.html:303
+#: templates/base.html.py:314 templates/base.html:337
 msgid "Demos"
 msgstr ""
 
-#: templates/base.html:228 templates/base.html.py:239 templates/base.html:250
-#: templates/base.html.py:261 templates/base.html:272
-#: templates/base.html.py:283 templates/base.html:294
-#: templates/base.html.py:305 templates/base.html:328
+#: templates/base.html:238 templates/base.html.py:249 templates/base.html:260
+#: templates/base.html.py:271 templates/base.html:282
+#: templates/base.html.py:293 templates/base.html:304
+#: templates/base.html.py:315 templates/base.html:338
 msgid "In the Wild"
 msgstr ""
 
-#: templates/base.html:314
+#: templates/base.html:324
 msgid "Themes"
 msgstr ""
 
-#: templates/base.html:315
+#: templates/base.html:325
 msgid "Technologies"
 msgstr ""
 
-#: templates/base.html:316
+#: templates/base.html:326
 msgid "Techniques"
 msgstr ""
 
-#: templates/base.html:318
+#: templates/base.html:328
 msgid "Further Reading"
 msgstr ""
 
-#: templates/base.html:367
+#: templates/base.html:354
 msgid "HTML5 Logo"
 msgstr ""
 
-#: templates/base.html:371
+#: templates/base.html:358
 msgid "Terms"
 msgstr ""
 
-#: templates/base.html:372
+#: templates/base.html:359
 msgid "Privacy"
 msgstr ""
 
-#: templates/base.html:373
+#: templates/base.html:360
 msgid "Report bug or request a feature"
 msgstr ""
 
-#: templates/base.html:374
+#: templates/base.html:361
 msgid "Follow us on Twitter"
 msgstr ""
 
-#: templates/base.html:375
+#: templates/base.html:362
 msgid "About Authors"
 msgstr ""
 
-#: templates/base.html:377
+#: templates/base.html:364
 msgid "Made by Google"
 msgstr ""
 
-#: templates/base.html:378
+#: templates/base.html:365
 msgid ""
 "This site contains information on APIs that are not part of the W3C HTML5 "
 "specification."
 msgstr ""
 
-#: templates/base.html:450
+#: templates/base.html:410
 msgid "A new version of this site is available. Load it?"
 msgstr ""
 
 #: templates/tutorial.html:26
-#, python-format
-msgid "Published <strong>%(tut.publication_date)s</strong>"
+msgid "Published"
 msgstr ""
 
 #: templates/tutorial.html:27
-#, python-format
-msgid "Updated <strong>%(tut.update_date)s</strong>"
+msgid "Updated"
 msgstr ""
 
 #: templates/tutorial.html:35
