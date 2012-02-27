@@ -642,6 +642,7 @@ class DBHandler(ContentHandler):
           tutorial.publication_date = datetime.date(pub.year, pub.month, pub.day)
           tutorial.tags = tags
           tutorial.draft = self.request.get('draft') == 'on'
+          tutorial.social_url = unicode(self.request.get('social_url') or '')
         except TypeError:
           pass
       else:
@@ -657,7 +658,8 @@ class DBHandler(ContentHandler):
               update_date=datetime.date.today(),
               publication_date=datetime.date(pub.year, pub.month, pub.day),
               tags=tags,
-              draft=self.request.get('draft') == 'on'
+              draft=self.request.get('draft') == 'on',
+              social_url=self.request.get('social_url') or None
               )
         except TypeError:
           pass

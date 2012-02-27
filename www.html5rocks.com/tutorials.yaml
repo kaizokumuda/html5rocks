@@ -1,6 +1,6 @@
 title: "Case Study: Building Technitone.com"
 url: /tutorials/casestudies/technitone/
-author_id: gskinner
+author_id: gskinnerdotcom
 publication_date: 2012-02-27
 description: "How Technitone.com was built with the Web Audio API, WebGL, WebSockets, and a decent amount of magic."
 browser_support:
