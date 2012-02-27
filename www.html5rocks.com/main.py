@@ -337,10 +337,11 @@ class ContentHandler(webapp.RequestHandler):
           return self.redirect('/tutorials')
 
         # Localize title and description.
-        if tut.title:
-          tut.title = _(tut.title)
-        if tut.description:
-          tut.description = _(tut.description)
+        if tut:
+          if tut.title:
+            tut.title = _(tut.title)
+          if tut.description:
+            tut.description = _(tut.description)
 
         data = {
           'tut': tut,
