@@ -70,10 +70,14 @@ MeteringSample.prototype.checkClipping = function(buffer) {
     }
   }
   this.isClipping = isClipping;
+  if (isClipping) {
+    this.lastClipTime = new Date();
+  }
 }
 
 MeteringSample.prototype.renderMeter = function() {
-  this.meterElement.className = this.isClipping ? 'clip' : 'noclip';
+  var didRecentlyClip = (new Date() - this.lastClipTime) < 100;
+  this.meterElement.className = didRecentlyClip ? 'clip' : 'noclip';
   var ctx = this;
   webkitRequestAnimationFrame(function() { ctx.renderMeter.call(ctx) });
 }
