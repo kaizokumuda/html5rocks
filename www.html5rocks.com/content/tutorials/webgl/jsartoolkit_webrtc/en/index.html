@@ -10,18 +10,22 @@
 
 {% block content %}
 
+{% include "warning.html" %}
+
 <h2 id="toc-intro">Introduction</h2>
-<p>This article is about using the <a href="https://github.com/kig/JSARToolKit">JSARToolKit</a> library with <a href="http://webrtc.org">WebRTC</a> to do augmented reality applications on the web. For rendering, I'm using WebGL due to the increased performance it offers. The end result of this article is a demo application that puts a 3D model on top of an augmented reality marker in webcam video.
+<p>This article is about using the <a href="https://github.com/kig/JSARToolKit">JSARToolKit</a> library with the <a href="http://webrtc.org">WebRTC</a> getUserMedia API to do augmented reality applications on the web. For rendering, I'm using WebGL due to the increased performance it offers. The end result of this article is a demo application that puts a 3D model on top of an augmented reality marker in webcam video.
 
-<p>JSARToolKit is an augmented reality library for JavaScript. It's an open source library released under the GPL. JSARToolKit is a direct port of the Flash <a href="http://www.libspark.org/wiki/saqoosha/FLARToolKit/en">FLARToolKit</a> that I made for the Mozilla <a href="https://developer.mozilla.org/en-US/demos/detail/remixing-reality/launch">Remixing Reality demo</a>. FLARToolKit itself is port of the Java <a href="http://nyatla.jp/nyartoolkit/wp/">NyARToolKit</a>, which is a port of the C <a href="http://www.hitl.washington.edu/artoolkit/">ARToolKit</a>. Long way, but here we are.
+<p>JSARToolKit is an augmented reality library for JavaScript. It's an open source library released under the GPL and a direct port of the Flash <a href="http://www.libspark.org/wiki/saqoosha/FLARToolKit/en">FLARToolKit</a> that I made for the Mozilla <a href="https://developer.mozilla.org/en-US/demos/detail/remixing-reality/launch">Remixing Reality demo</a>. FLARToolKit itself is port of the Java <a href="http://nyatla.jp/nyartoolkit/wp/">NyARToolKit</a>, which is a port of the C <a href="http://www.hitl.washington.edu/artoolkit/">ARToolKit</a>. Long way, but here we are.
 
-<p>JSARToolKit operates on canvas elements. As it needs to read the image off the canvas, the image needs to come from the same origin as the page or use CORS to get around same-origin policy. When you pass a canvas to JSARToolKit for analysis, JSARToolKit returns a list of AR markers found in the image and the corresponding transformation matrices. To draw a 3D object on top of a marker, you pass the transformation matrix to whatever 3D rendering library you're using so that your object is transformed using the matrix. Draw the video frame in your WebGL scene and draw the object on top of that and you're good to go.
+<p>JSARToolKit operates on canvas elements. As it needs to read the image off the canvas, the image needs to come from the same origin as the page or <a href="http://updates.html5rocks.com/2011/07/Using-Cross-domain-images-in-WebGL">use CORS</a> to get around same-origin policy. In a nutshell, set the <code>crossOrigin</code>-property on the image or video element you want to use as a texture to <code>''</code> or <code>'anonymous'</code>.
+
+<p>When you pass a canvas to JSARToolKit for analysis, JSARToolKit returns a list of AR markers found in the image and the corresponding transformation matrices. To draw a 3D object on top of a marker, you pass the transformation matrix to whatever 3D rendering library you're using so that your object is transformed using the matrix. Then, draw the video frame in your WebGL scene and draw the object on top of that and you're good to go.
 
 <p>To analyze video using the JSARToolKit, draw the video on a canvas, then pass the canvas to JSARToolKit. Do this for every frame and you've got video AR tracking. JSARToolKit is fast enough on modern JavaScript engines to do this in realtime even on 640x480 video frames. However, the larger the video frame, the longer it takes to process. A good video frame size is 320x240, but if you expect to use small markers or multiple markers, 640x480 is preferable.
 
 <h2 id="toc-videodemo">Demo</h2>
 
-<p>To view the webcam demo, you need to have WebRTC enabled in your browser (on Chrome, go the about:flags and enable MediaStream). You also need to print out the AR marker below. You can try opening the marker image on your phone or tablet and showing it to the webcam.
+<p>To view the webcam demo, you need to have WebRTC enabled in your browser (on Chrome, go the about:flags and enable MediaStream). You also need to print out the AR marker below. You can also try opening the marker image on your phone or tablet and showing it to the webcam.
 
 <figure>
   <img src="marker.png">
@@ -30,10 +34,10 @@
   </figcaption>
 </figure>
 
-<p>Here is a demo of what we're aiming for. This demo creates an image slideshow using AR markers. Show a marker to the camera and it will have a photo on it. Move the marker out of the camera's view and show it again and the image has changed.
+<p>Here is a demo of what we're aiming for. This demo creates an image slideshow using AR markers. Show a marker to the camera and it will place a photo on it. Move the marker out of the camera's view and show it again and the image has changed.
 
 <figure>
-  <img src="AR_slideshow.jpg">
+  <a href="AR_mediaStream.html"><img src="AR_slideshow.jpg"></a>
   <figcaption>
     <a href="AR_mediaStream.html">AR webcam demo</a> (if you don't have WebRTC, here's a <a href="AR_slideshow.html">version with pre-canned video</a>)
   </figcaption>
@@ -53,7 +57,7 @@ var raster = new NyARRgbRaster_Canvas2D(canvas);
 
 // FLARParam is the thing used by FLARToolKit to set camera parameters.
 // Here we create a FLARParam for images with 320x240 pixel dimensions.
-var param = new FLARParam(320,240);
+var param = new FLARParam(320, 240);
 
 // The FLARMultiIdMarkerDetector is the actual detection engine for marker detection.
 // It detects multiple ID markers. ID markers are special markers that encode a number.
@@ -69,24 +73,49 @@ param.copyCameraMatrix(display.camera.perspectiveMatrix, 10, 10000);
 </pre>
 
 
-<h2 id="toc-webrtc">Using WebRTC to access the webcam</h2>
+<h2 id="toc-webrtc">Using getUserMedia to access the webcam</h2>
 
-<p>Next, I'm going to create a video element that's getting webcam video through WebRTC. For pre-recorded videos, just set the source attribute of the video to the video URL. If you're doing marker detection from still images, you can use a image element in much the same way.
+<p>Next, I'm going to create a video element that's getting webcam video through the WebRTC APIs. For pre-recorded videos, just set the source attribute of the video to the video URL. If you're doing marker detection from still images, you can use a image element in much the same way.
+
+<p>As WebRTC and getUserMedia are still new emerging technologies, you need to feature detect them. For more details, check out Eric Bidelman's article on <a href="/tutorials/getusermedia/intro/">Capturing Audio & Video in HTML5</a>.
+
 
 <pre class="prettyprint">
 var video = document.createElement('video');
 video.width = 320;
 video.height = 240;
-navigator.webkitGetUserMedia('video',
+
+var getUserMedia = function(t, onsuccess, onerror) {
+  if (navigator.getUserMedia) {
+    return navigator.getUserMedia(t, onsuccess, onerror);
+  } else if (navigator.webkitGetUserMedia) {
+    return navigator.webkitGetUserMedia(t, onsuccess, onerror);
+  } else if (navigator.mozGetUserMedia) {
+    return navigator.mozGetUserMedia(t, onsuccess, onerror);
+  } else if (navigator.msGetUserMedia) {
+    return navigator.msGetUserMedia(t, onsuccess, onerror);
+  } else {
+    onerror(new Error("No getUserMedia implementation found."));
+  }
+};
+
+var URL = window.URL || window.webkitURL;
+var createObjectURL = URL.createObjectURL || webkitURL.createObjectURL;
+if (!createObjectURL) {
+  throw new Error("URL.createObjectURL not found.");
+}
+
+getUserMedia('video',
   function(stream) {
-    var url = webkitURL.createObjectURL(stream);
+    var url = createObjectURL(stream);
     video.src = url;
   },
   function(error) {
-    alert('No WebRTC webcam found.');
+    alert("Couldn't access webcam.");
   }
 );
 </pre>
+
 
 <h2 id="toc-detecting">Detecting markers</h2>
 
@@ -94,7 +123,7 @@ navigator.webkitGetUserMedia('video',
 
 <pre class="prettyprint">
 // Draw the video frame to the raster canvas, scaled to 320x240.
-canvas.getContext('2d').drawImage(video, 0,0,320,240);
+canvas.getContext('2d').drawImage(video, 0, 0, 320, 240);
 
 // Tell the raster object that the underlying canvas has changed.
 canvas.changed = true;
@@ -147,7 +176,7 @@ for (var idx = 0; idx &lt; markerCount; idx++) {
 
 <h2 id="toc-matrixmapping">Matrix mapping</h2>
 
-<p>Here's the code to copy JSARToolKit matrices over to glMatrix matrices (which are 16-element FloatArrays with the translation column in the last four elements). It works by magic (read: I don't know how ARToolKit matrices are setup. Inverted Y-axis is my guess.) Anyway, this bit of sign-reversing voodoo makes a JSARToolKit matrix work the same as a glMatrix.
+<p>Here's the code to copy JSARToolKit matrices over to glMatrix matrices (which are 16-element <a href="https://developer.mozilla.org/en/JavaScript_typed_arrays">FloatArrays</a> with the translation column in the last four elements). It works by magic (read: I don't know how ARToolKit matrices are setup. Inverted Y-axis is my guess.) Anyway, this bit of sign-reversing voodoo makes a JSARToolKit matrix work the same as a glMatrix.
 
 <p>To use the library with another library, such as Three.js, you need to write a function that converts the ARToolKit matrices to the library's matrix format. You also need to hook into the FLARParam.copyCameraMatrix method. The copyCameraMatrix method writes the FLARParam perspective matrix into a glMatrix-style matrix.
 
@@ -276,7 +305,7 @@ function tick() {
 
 <p>In this article we went through the basics of JSARToolKit. Now you are ready to build your own webcam-using augmented reality applications with JavaScript.
 
-<p>Integrating JSARToolKit with Three.js is a bit of a hassle, but it is certainly possible. I'm not 100% certain if I'm doing it right in my demo, so please let me know if  you know of a better way of achieving the integration. Patches are welcome :)
+<p>Integrating JSARToolKit with Three.js is a bit of a hassle, but it is certainly possible. I'm not 100% certain if I'm doing it right in my demo, so please let me know if  you know of a better way of achieving the integration. <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide">Patches are welcome</a> :)
 
   <h2 id="toc-references">References</h2>
   <ul>
