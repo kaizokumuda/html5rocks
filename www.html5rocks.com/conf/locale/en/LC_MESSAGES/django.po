@@ -8,229 +8,239 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-24 12:19+0100\n"
+"POT-Creation-Date: 2012-02-27 15:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
 
 #: _tutorials.yaml.html:1
-msgid "Developing Game Audio with the Web Audio API"
+msgid "Writing Augmented Reality Applications using JSARToolKit"
 msgstr ""
 
 #: _tutorials.yaml.html:2
-msgid "Web Audio for Games."
+msgid ""
+"Using the JSARToolKit library with WebRTC to build augmented reality "
+"applications in JavaScript."
 msgstr ""
 
 #: _tutorials.yaml.html:3
-msgid "Capturing Audio & Video in HTML5"
+msgid "Developing Game Audio with the Web Audio API"
 msgstr ""
 
 #: _tutorials.yaml.html:4
-msgid "How to capture audio and video using the navigator.getUserMedia() API."
+msgid "Web Audio for Games."
 msgstr ""
 
 #: _tutorials.yaml.html:5
-msgid "Case Study: Bouncy Mouse"
+msgid "Capturing Audio & Video in HTML5"
 msgstr ""
 
 #: _tutorials.yaml.html:6
+msgid "How to capture audio and video using the navigator.getUserMedia() API."
+msgstr ""
+
+#: _tutorials.yaml.html:7
+msgid "Case Study: Bouncy Mouse"
+msgstr ""
+
+#: _tutorials.yaml.html:8
 msgid ""
 "Bouncy Mouse is a slingshot platformer by Munkadoo Games. This article talks "
 "about porting the game to HTML5 and WebAudio."
 msgstr ""
 
-#: _tutorials.yaml.html:7
+#: _tutorials.yaml.html:9
 msgid "Mixing Positional Audio and WebGL"
 msgstr ""
 
-#: _tutorials.yaml.html:8
+#: _tutorials.yaml.html:10
 msgid ""
 "How to use the positional audio features in Web Audio API with Three.js."
 msgstr ""
 
-#: _tutorials.yaml.html:9
+#: _tutorials.yaml.html:11
 msgid "WebGL Fundamentals"
 msgstr ""
 
-#: _tutorials.yaml.html:10
+#: _tutorials.yaml.html:12
 msgid ""
 "Fundamentals of using WebGL as a 2D drawing API and using shaders for image "
 "processing."
 msgstr ""
 
-#: _tutorials.yaml.html:11
+#: _tutorials.yaml.html:13
 msgid "Getting Started With the Track Element"
 msgstr ""
 
-#: _tutorials.yaml.html:12
+#: _tutorials.yaml.html:14
 msgid ""
 "The track element provides a simple, standardized way to add subtitles and "
 "captions to video and audio, but can also be used with other kinds of timed "
 "data, to improve searchability and enable deep linking."
 msgstr ""
 
-#: _tutorials.yaml.html:13
+#: _tutorials.yaml.html:15
 msgid "Google Photography Prize Gallery"
 msgstr ""
 
-#: _tutorials.yaml.html:14
+#: _tutorials.yaml.html:16
 msgid ""
 "Building the gallery widget for the Google Photography Prize site using "
 "Closure."
 msgstr ""
 
-#: _tutorials.yaml.html:15
+#: _tutorials.yaml.html:17
 msgid "Animating a Million Letters Using Three.js"
 msgstr ""
 
-#: _tutorials.yaml.html:16
+#: _tutorials.yaml.html:18
 msgid "A guide to using shaders to animate large amounts of particles."
 msgstr ""
 
-#: _tutorials.yaml.html:17
-msgid "Case Study: Building the Stanisław Lem Google doodle"
-msgstr ""
-
-#: _tutorials.yaml.html:18
-msgid ""
-"A walk through of the HTML5 tech behind the Stanisław Lem Google doodle."
-msgstr ""
-
 #: _tutorials.yaml.html:19
-msgid "Migrating your WebSQL DB to IndexedDB"
+msgid "Case Study: Building the Stanisław Lem Google doodle"
 msgstr ""
 
 #: _tutorials.yaml.html:20
 msgid ""
-"A look at what it would take to port a WebSQL based application to IndexedDB."
+"A walk through of the HTML5 tech behind the Stanisław Lem Google doodle."
 msgstr ""
 
 #: _tutorials.yaml.html:21
-msgid "Using CORS"
+msgid "Migrating your WebSQL DB to IndexedDB"
 msgstr ""
 
 #: _tutorials.yaml.html:22
+msgid ""
+"A look at what it would take to port a WebSQL based application to IndexedDB."
+msgstr ""
+
+#: _tutorials.yaml.html:23
+msgid "Using CORS"
+msgstr ""
+
+#: _tutorials.yaml.html:24
 msgid ""
 "An introduction to Cross Origin Resource Sharing (CORS), which gives scripts "
 "the ability to make cross-origin XHRs."
 msgstr ""
 
-#: _tutorials.yaml.html:23
+#: _tutorials.yaml.html:25
 msgid "The Synchronous FileSystem API for Workers"
 msgstr ""
 
-#: _tutorials.yaml.html:24
+#: _tutorials.yaml.html:26
 msgid ""
 "The HTML5 FileSystem API offers an synchronous version to be used in the "
 "context of Web Workers. The tutorial introduces the Synchronous API, and "
 "gives practical examples of using it."
 msgstr ""
 
-#: _tutorials.yaml.html:25
+#: _tutorials.yaml.html:27
 msgid "Getting Started with Web Audio API"
 msgstr ""
 
-#: _tutorials.yaml.html:26
+#: _tutorials.yaml.html:28
 msgid ""
 "A gentle introduction to loading and playing, cross-fading, and filtering "
 "sound using the Web Audio API."
 msgstr ""
 
-#: _tutorials.yaml.html:27
+#: _tutorials.yaml.html:29
 msgid "HTML5 Techniques for Optimizing Mobile Performance"
 msgstr ""
 
-#: _tutorials.yaml.html:28
+#: _tutorials.yaml.html:30
 msgid ""
 "Learn the fundamentals of an HTML5 mobile framework. From network detection "
 "to sliding, flipping, and more."
 msgstr ""
 
-#: _tutorials.yaml.html:29
+#: _tutorials.yaml.html:31
 msgid "Introduction to Raphaël.js"
 msgstr ""
 
-#: _tutorials.yaml.html:30
+#: _tutorials.yaml.html:32
 msgid "Learn how to use Raphaël.js to create cross-platform SVG scenes."
 msgstr ""
 
-#: _tutorials.yaml.html:31
+#: _tutorials.yaml.html:33
 msgid "Measuring Page Load Speed with Navigation Timing"
 msgstr ""
 
-#: _tutorials.yaml.html:32
+#: _tutorials.yaml.html:34
 msgid ""
 "Get accurate and detailed timing statistics-natively-for page navigation and "
 "load events."
 msgstr ""
 
-#: _tutorials.yaml.html:33
+#: _tutorials.yaml.html:35
 msgid "Improving HTML5 Canvas Performance"
 msgstr ""
 
-#: _tutorials.yaml.html:34
+#: _tutorials.yaml.html:36
 msgid ""
 "Ten tips to make your canvas applications and games faster. Every technique "
 "is backed up by a performance test."
 msgstr ""
 
-#: _tutorials.yaml.html:35
+#: _tutorials.yaml.html:37
 msgid "How Browsers Work: Behind the scenes of modern web browsers"
 msgstr ""
 
-#: _tutorials.yaml.html:36
+#: _tutorials.yaml.html:38
 msgid ""
 "In this comprehensive primer, you will learn what happens in the browser "
 "between when you type google.com in the address bar until you see the Google "
 "page on the browser screen."
 msgstr ""
 
-#: _tutorials.yaml.html:37
+#: _tutorials.yaml.html:39
 msgid "Integrating Canvas into your Web App"
 msgstr ""
 
-#: _tutorials.yaml.html:38
+#: _tutorials.yaml.html:40
 msgid ""
 "Use the HTML5 canvas element to create, edit, open, export images and tips "
 "on how these techniques can be applied to an existing web application."
 msgstr ""
 
-#: _tutorials.yaml.html:39
+#: _tutorials.yaml.html:41
 msgid "Case Study: Auto-Resizing HTML5 Games"
 msgstr ""
 
-#: _tutorials.yaml.html:40
+#: _tutorials.yaml.html:42
 msgid "Resizing your game to fit a variety of form factors and window sizes."
 msgstr ""
 
-#: _tutorials.yaml.html:41
+#: _tutorials.yaml.html:43
 msgid "Simple Asset Management for HTML5 Games"
 msgstr ""
 
-#: _tutorials.yaml.html:42
+#: _tutorials.yaml.html:44
 msgid "Centralize and manage the asset downloads for your HTML5 game."
 msgstr ""
 
-#: _tutorials.yaml.html:43
+#: _tutorials.yaml.html:45
 msgid ""
 "Feature, Browser, and Form Factor Detection: It's Good for the Environment"
 msgstr ""
 
-#: _tutorials.yaml.html:44
+#: _tutorials.yaml.html:46
 msgid ""
 "Tune your app to the environment it's running in using Feature Detection, "
 "Browser Detection, and Form Factor detection."
 msgstr ""
 
-#: _tutorials.yaml.html:45
+#: _tutorials.yaml.html:47
 msgid "HTML5 vs Native: The Mobile App Debate"
 msgstr ""
 
-#: _tutorials.yaml.html:46
+#: _tutorials.yaml.html:48
 msgid ""
 "There are still compelling reasons to go native, and clearly, many "
 "developers are indeed going that route. This article is a debate on native "
@@ -238,306 +248,306 @@ msgid ""
 "web come in and give its best defense."
 msgstr ""
 
-#: _tutorials.yaml.html:47
+#: _tutorials.yaml.html:49
 msgid "An Introduction to Shaders"
 msgstr ""
 
-#: _tutorials.yaml.html:48
+#: _tutorials.yaml.html:50
 msgid ""
 "Want to learn about WebGL shaders but don't know where to start? I'm here to "
 "help!"
 msgstr ""
 
-#: _tutorials.yaml.html:49
+#: _tutorials.yaml.html:51
 msgid "Getting Started with Three.js"
 msgstr ""
 
-#: _tutorials.yaml.html:50
+#: _tutorials.yaml.html:52
 msgid ""
 "Three.js is a powerful engine for doing native 3D work in your browser. But "
 "how do you get going?"
 msgstr ""
 
-#: _tutorials.yaml.html:51
+#: _tutorials.yaml.html:53
 msgid "Making Forms Fabulous with HTML5"
 msgstr ""
 
-#: _tutorials.yaml.html:52
+#: _tutorials.yaml.html:54
 msgid ""
 "Take advantage of improved forms support in HTML5 to build better forms, "
 "more easily."
 msgstr ""
 
-#: _tutorials.yaml.html:53
+#: _tutorials.yaml.html:55
 msgid "Working Off the Grid with HTML5 Offline"
 msgstr ""
 
-#: _tutorials.yaml.html:54
+#: _tutorials.yaml.html:56
 msgid ""
 "This article covers practical techniques and examples for handling "
 "connectivity flakiness."
 msgstr ""
 
-#: _tutorials.yaml.html:55
+#: _tutorials.yaml.html:57
 msgid "Rendering HTML5 in older browsers with Google Chrome Frame"
 msgstr ""
 
-#: _tutorials.yaml.html:56
+#: _tutorials.yaml.html:58
 msgid ""
 "HTML5 adds a multitude of new awesome tools to the web developer toolbox. "
 "Google Chrome Frame helps bringing these features to older browsers. This "
 "article will tell you how to use Chrome Frame on your site."
 msgstr ""
 
-#: _tutorials.yaml.html:57
+#: _tutorials.yaml.html:59
 msgid "New Tricks in XMLHttpRequest2"
 msgstr ""
 
-#: _tutorials.yaml.html:58
+#: _tutorials.yaml.html:60
 msgid ""
 "There has been a slew of improvements to our old friend "
 "<code>XMLHttpRequest</code> for working with different types of data. This "
 "tutorial covers the new hotness."
 msgstr ""
 
-#: _tutorials.yaml.html:59
+#: _tutorials.yaml.html:61
 msgid "Chrome Experiments Demo Harness"
 msgstr ""
 
-#: _tutorials.yaml.html:60
+#: _tutorials.yaml.html:62
 msgid ""
 "Experiences from building a kiosk-style demo station with HTML and WebGL."
 msgstr ""
 
-#: _tutorials.yaml.html:61
+#: _tutorials.yaml.html:63
 msgid "Image Filters with Canvas"
 msgstr ""
 
-#: _tutorials.yaml.html:62
+#: _tutorials.yaml.html:64
 msgid "A quick guide to writing custom image filters with &lt;canvas&gt;."
 msgstr ""
 
-#: _tutorials.yaml.html:63
+#: _tutorials.yaml.html:65
 msgid "This End Up: Using Device Orientation"
 msgstr ""
 
-#: _tutorials.yaml.html:64
+#: _tutorials.yaml.html:66
 msgid ""
 "Learn how to use device orientation and device motion events to tell when "
 "your computer is moving."
 msgstr ""
 
-#: _tutorials.yaml.html:65
+#: _tutorials.yaml.html:67
 msgid "Multi-touch Web Development"
 msgstr ""
 
-#: _tutorials.yaml.html:66
+#: _tutorials.yaml.html:68
 msgid "Introduction on touch events for mobile devices."
 msgstr ""
 
-#: _tutorials.yaml.html:67
+#: _tutorials.yaml.html:69
 msgid "Case Study: Real-time Updates in Stream Congress"
 msgstr ""
 
-#: _tutorials.yaml.html:68
+#: _tutorials.yaml.html:70
 msgid ""
 "Choosing the right technology to accomplish real-time, asynchronous updates."
 msgstr ""
 
-#: _tutorials.yaml.html:69
+#: _tutorials.yaml.html:71
 msgid "Case Study: Converting Wordico from Flash to HTML5"
 msgstr ""
 
-#: _tutorials.yaml.html:70
+#: _tutorials.yaml.html:72
 msgid ""
 "Learn how we converted our <a href=\"https://chrome.google.com/webstore/"
 "detail/ehehfnkgbccpcjmfhdkbeakkpibbcfdl\">Wordico</a> crossword game from "
 "Flash to HTML5."
 msgstr ""
 
-#: _tutorials.yaml.html:71
+#: _tutorials.yaml.html:73
 msgid "\"Mobifying\" Your HTML5 Site"
 msgstr ""
 
-#: _tutorials.yaml.html:72
+#: _tutorials.yaml.html:74
 msgid ""
 "A guide on how to create a mobile version of an existing HTML5 website. This "
 "study looks at what was required to make html5rocks.com friendly to mobile "
 "users."
 msgstr ""
 
-#: _tutorials.yaml.html:73
+#: _tutorials.yaml.html:75
 msgid "Typographic effects in canvas"
 msgstr ""
 
-#: _tutorials.yaml.html:74
+#: _tutorials.yaml.html:76
 msgid ""
 "Effects in canvas inner/outer shadows, neon-glows, reflections, space-age, "
 "pattern/gradient overlays, stereoscopic imaging, and other text/vector-"
 "effects..."
 msgstr ""
 
-#: _tutorials.yaml.html:75
+#: _tutorials.yaml.html:77
 msgid "Improving the Performance of your HTML5 App"
 msgstr ""
 
-#: _tutorials.yaml.html:76
+#: _tutorials.yaml.html:78
 msgid "Optimization strategies and techniques for HTML5 applications."
 msgstr ""
 
-#: _tutorials.yaml.html:77
+#: _tutorials.yaml.html:79
 msgid "Case Study: Onslaught! Arena"
 msgstr ""
 
-#: _tutorials.yaml.html:78
+#: _tutorials.yaml.html:80
 msgid ""
 "Learn how <a href=\"https://chrome.google.com/webstore/detail/"
 "khodnfbkbanejphecblcofbghjdgfaih\">Onslaught! Arena</a> created their fast-"
 "paced, arcade-style medieval fantasy shoot 'em up."
 msgstr ""
 
-#: _tutorials.yaml.html:79
+#: _tutorials.yaml.html:81
 msgid "No Tears Guide to HTML5 Games"
 msgstr ""
 
-#: _tutorials.yaml.html:80
+#: _tutorials.yaml.html:82
 msgid "Building an HTML5 game using &lt;canvas&gt;, the no tears way."
 msgstr ""
 
-#: _tutorials.yaml.html:81
+#: _tutorials.yaml.html:83
 msgid "Case Study: HTML5 MathBoard"
 msgstr ""
 
-#: _tutorials.yaml.html:82
+#: _tutorials.yaml.html:84
 msgid ""
 "A discussion on how the iPad's popular <a href=\"https://chrome.google.com/"
 "webstore/detail/elcilkmmbpmchojdmdohhoalmfmkcklk\">MathBoard</a> application "
 "was ported to HTML5."
 msgstr ""
 
-#: _tutorials.yaml.html:83
+#: _tutorials.yaml.html:85
 msgid "Case Study: Page Flip Effect from 20thingsilearned.com"
 msgstr ""
 
-#: _tutorials.yaml.html:84
+#: _tutorials.yaml.html:86
 msgid ""
 "Learn how to re-create the page flip effect found on <a href=\"http://"
 "www.20thingsilearned.com\">20thingsilearned.com</a> using the Canvas API."
 msgstr ""
 
-#: _tutorials.yaml.html:85
+#: _tutorials.yaml.html:87
 msgid "Exploring the FileSystem APIs"
 msgstr ""
 
-#: _tutorials.yaml.html:86
+#: _tutorials.yaml.html:88
 msgid ""
 "The FileSystem APIs give applications the ability to read/write files and "
 "directories in a secure, sandboxed file system on a user's local machine."
 msgstr ""
 
-#: _tutorials.yaml.html:87
+#: _tutorials.yaml.html:89
 msgid "A Simple TODO list using HTML5 IndexedDB"
 msgstr ""
 
-#: _tutorials.yaml.html:88
+#: _tutorials.yaml.html:90
 msgid ""
 "IndexedDB represents the future of query-able client-side storage. This "
 "tutorial presents a real world application implementing the basics of the "
 "IndexedDB API."
 msgstr ""
 
-#: _tutorials.yaml.html:89
+#: _tutorials.yaml.html:91
 msgid "Case Study: Getting Entangled with HTML5 Canvas"
 msgstr ""
 
-#: _tutorials.yaml.html:90
+#: _tutorials.yaml.html:92
 msgid ""
 "Entanglement is a puzzle game made by Gopherwood Studios. This article talks "
 "about Entanglement's usage of the &lt;canvas&gt; tag."
 msgstr ""
 
-#: _tutorials.yaml.html:91
+#: _tutorials.yaml.html:93
 msgid "Stream Updates with Server-Sent Events"
 msgstr ""
 
-#: _tutorials.yaml.html:92
+#: _tutorials.yaml.html:94
 msgid ""
 "The EventSource API is designed for receiving push notifications from a "
 "server, removing the need for client-size XHR polling."
 msgstr ""
 
-#: _tutorials.yaml.html:93
+#: _tutorials.yaml.html:95
 msgid "Introducing WebSockets: Bringing Sockets to the Web"
 msgstr ""
 
-#: _tutorials.yaml.html:94
+#: _tutorials.yaml.html:96
 msgid ""
 "Learn how to use WebSockets to add low latency bidirectional client-server "
 "communication to your web app."
 msgstr ""
 
-#: _tutorials.yaml.html:95
+#: _tutorials.yaml.html:97
 msgid "Quick hits with the Flexible Box Model"
 msgstr ""
 
-#: _tutorials.yaml.html:96
+#: _tutorials.yaml.html:98
 msgid ""
 "An introduction to <q>flexbox</q>, an alternative <abbr title=\"Cascading "
 "Style Sheets\">CSS</abbr> layout scheme based on vboxes and hboxes."
 msgstr ""
 
-#: _tutorials.yaml.html:97
+#: _tutorials.yaml.html:99
 msgid "Client-Side Storage"
 msgstr ""
 
-#: _tutorials.yaml.html:98
+#: _tutorials.yaml.html:100
 msgid ""
 "An overview of client-side storage techniques: Web Storage (local/session "
 "storage), Web SQL Database, Indexed Database, Filesystem."
 msgstr ""
 
-#: _tutorials.yaml.html:99
+#: _tutorials.yaml.html:101
 msgid "Native HTML5 Drag and Drop"
 msgstr ""
 
-#: _tutorials.yaml.html:100
+#: _tutorials.yaml.html:102
 msgid ""
 "Drag-and-drop is yet another first class citizen in HTML5! This article "
 "explains how to enhance your web applications by adding native DnD "
 "functionality."
 msgstr ""
 
-#: _tutorials.yaml.html:101
+#: _tutorials.yaml.html:103
 msgid "Case Study: HTML5 in deviantART muro"
 msgstr ""
 
-#: _tutorials.yaml.html:102
+#: _tutorials.yaml.html:104
 msgid "Learn how deviantART used HTML5 drawing features in deviantART muro."
 msgstr ""
 
-#: _tutorials.yaml.html:103
+#: _tutorials.yaml.html:105
 msgid "Case Study: Drag and Drop Download in Chrome"
 msgstr ""
 
-#: _tutorials.yaml.html:104
+#: _tutorials.yaml.html:106
 msgid ""
 "Learn how Box.net implemented GMail's attachment drag and drop to the "
 "desktop."
 msgstr ""
 
-#: _tutorials.yaml.html:105
+#: _tutorials.yaml.html:107
 msgid "3D and CSS"
 msgstr ""
 
-#: _tutorials.yaml.html:106
+#: _tutorials.yaml.html:108
 msgid "Learn how to build exciting 3D user interfaces using the power of CSS."
 msgstr ""
 
-#: _tutorials.yaml.html:107
+#: _tutorials.yaml.html:109
 msgid "HTML5 Video"
 msgstr ""
 
-#: _tutorials.yaml.html:108
+#: _tutorials.yaml.html:110
 msgid ""
 "Video is one of the most interesting and widely supported features of HTML5. "
 "This tutorial covers the mechanics of incorporating native video into your "
@@ -545,83 +555,83 @@ msgid ""
 "video&lt; tag."
 msgstr ""
 
-#: _tutorials.yaml.html:109
+#: _tutorials.yaml.html:111
 msgid "\"Offline\": What does it mean and why should I care?"
 msgstr ""
 
-#: _tutorials.yaml.html:110
+#: _tutorials.yaml.html:112
 msgid ""
 "A discussion of what it means to take an application \"offline\" and the "
 "options available to developers for doing so."
 msgstr ""
 
-#: _tutorials.yaml.html:111
+#: _tutorials.yaml.html:113
 msgid "Quick guide to webfonts via @font-face"
 msgstr ""
 
-#: _tutorials.yaml.html:112
+#: _tutorials.yaml.html:114
 msgid ""
 "Webfonts give new typographic freedom to designers while retaining "
 "scalability and accessibility."
 msgstr ""
 
-#: _tutorials.yaml.html:113
+#: _tutorials.yaml.html:115
 msgid "Auditing Your Web App For Speed"
 msgstr ""
 
-#: _tutorials.yaml.html:114
+#: _tutorials.yaml.html:116
 msgid ""
 "The Audit Panel is an excellent tool for examining latency in your web apps. "
 "It offers customized recommendations to enhance performance and reduce "
 "latency."
 msgstr ""
 
-#: _tutorials.yaml.html:115
+#: _tutorials.yaml.html:117
 msgid "The Basics of Web Workers"
 msgstr ""
 
-#: _tutorials.yaml.html:116
+#: _tutorials.yaml.html:118
 msgid ""
 "Web Workers are a means of spawning background scripts in your application, "
 "giving thread-like message passing for handling computationally intensive "
 "tasks."
 msgstr ""
 
-#: _tutorials.yaml.html:117
+#: _tutorials.yaml.html:119
 msgid "Introduction to Chrome Developer Tools, Part One"
 msgstr ""
 
-#: _tutorials.yaml.html:118
+#: _tutorials.yaml.html:120
 msgid ""
 "An introduction to the tools available in Google Chrome that make a "
 "developer's life easier!"
 msgstr ""
 
-#: _tutorials.yaml.html:119
+#: _tutorials.yaml.html:121
 msgid "Best Practices for a Faster Web App with HTML5"
 msgstr ""
 
-#: _tutorials.yaml.html:120
+#: _tutorials.yaml.html:122
 msgid ""
 "How to effectively use features from HTML5 to improve the performance and "
 "responsiveness of your app."
 msgstr ""
 
-#: _tutorials.yaml.html:121
+#: _tutorials.yaml.html:123
 msgid "A Beginner's Guide to Using the Application Cache"
 msgstr ""
 
-#: _tutorials.yaml.html:122
+#: _tutorials.yaml.html:124
 msgid ""
 "A step-by-step guide to taking your web app offline using the application "
 "cache APIs."
 msgstr ""
 
-#: _tutorials.yaml.html:123
+#: _tutorials.yaml.html:125
 msgid "Practical Guide to Take Your TODO List Offline"
 msgstr ""
 
-#: _tutorials.yaml.html:124
+#: _tutorials.yaml.html:126
 #, python-format
 msgid ""
 "Expanding on the <a href=\"/%(LANGUAGE_CODE)s/tutorials/webdatabase/todo/"
@@ -629,47 +639,47 @@ msgid ""
 "the sample offline using the application cache."
 msgstr ""
 
-#: _tutorials.yaml.html:125
+#: _tutorials.yaml.html:127
 msgid "Reading files in JavaScript using the File APIs"
 msgstr ""
 
-#: _tutorials.yaml.html:126
+#: _tutorials.yaml.html:128
 msgid ""
 "Starter guide for using the File/FileList/FileReader APIs to process and "
 "read binary files in JavaScript."
 msgstr ""
 
-#: _tutorials.yaml.html:127
+#: _tutorials.yaml.html:129
 msgid "A Simple Trip Meter using the Geolocation API"
 msgstr ""
 
-#: _tutorials.yaml.html:128
+#: _tutorials.yaml.html:130
 msgid ""
 "Learn how to implement geolocation very quickly including a distance "
 "calculator"
 msgstr ""
 
-#: _tutorials.yaml.html:129
+#: _tutorials.yaml.html:131
 msgid "Using the Notifications API"
 msgstr ""
 
-#: _tutorials.yaml.html:130
+#: _tutorials.yaml.html:132
 msgid "Learn the notification basics creating a twitter notification"
 msgstr ""
 
-#: _tutorials.yaml.html:131
+#: _tutorials.yaml.html:133
 msgid "A Simple TODO list using HTML5 WebDatabases"
 msgstr ""
 
-#: _tutorials.yaml.html:132
+#: _tutorials.yaml.html:134
 msgid "Create a TODO list which persists data using a client side database."
 msgstr ""
 
-#: _tutorials.yaml.html:133
+#: _tutorials.yaml.html:135
 msgid "Quick Guide to Implementing the HTML5 Audio Tag"
 msgstr ""
 
-#: _tutorials.yaml.html:134
+#: _tutorials.yaml.html:136
 msgid ""
 "Learn how to use the HTML5 audio tag and fall back to Flash on platforms "
 "which do not support it."
@@ -1863,8 +1873,8 @@ msgid ""
 "New selectors: <a href=\"http://slides.html5rocks.com/#new-selectors"
 "\"><code>querySelector()</code></a>, <a href=\"http://slides.html5rocks.com/"
 "#new-selectors\"><code>querySelectorAll()</code></a>, <a href=\"http://html5-"
-"demos.appspot.com/static/html5-whats-new/template/index."
-"html#13\"><code>matchesSelector()</code></a>"
+"demos.appspot.com/static/html5-whats-new/template/index.html#13"
+"\"><code>matchesSelector()</code></a>"
 msgstr ""
 
 #: content/features/nuts_and_bolts.html:43
@@ -2089,9 +2099,9 @@ msgid ""
 "ranking.html\">Google now incorporates site speed in page ranking</a>.  <a "
 "href=\"http://exp-platform.com/Documents/2007-10EmetricsExperimenation.pdf"
 "\">Amazon has found that every 100 ms increase in page load time decreased "
-"sales by 1%%</a>. Also, <a href=\"http://exp-platform.com/"
-"Documents/2007-10EmetricsExperimenation.pdf\">Microsoft found that slowing a "
-"page by 2 seconds decreased ad clicks by 4%%</a>.\n"
+"sales by 1%%</a>. Also, <a href=\"http://exp-platform.com/Documents/2007-"
+"10EmetricsExperimenation.pdf\">Microsoft found that slowing a page by 2 "
+"seconds decreased ad clicks by 4%%</a>.\n"
 "      "
 msgstr ""
 
@@ -2782,8 +2792,8 @@ msgstr ""
 #: html5lib/constants.py:25
 #, python-format
 msgid ""
-"Numeric entity couldn't be converted to character (codepoint U+"
-"%(charAsInt)08x)."
+"Numeric entity couldn't be converted to character (codepoint U+%(charAsInt)"
+"08x)."
 msgstr ""
 
 #: html5lib/constants.py:28
