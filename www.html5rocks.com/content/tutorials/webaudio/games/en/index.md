@@ -55,7 +55,8 @@ tutorial][wa-intro].
 
 <h2 id="toc-bg">Background music</h2>
 
-Games often have background music playing on a loop. For example,
+Games often have background music playing on a loop. For example, a
+background track like:
 
 <audio controls loop>
 <source src="res/nyan.wav">
@@ -73,8 +74,8 @@ might have several mixes varying in emotional range from atmospheric to
 foreshadowing to intense. Music synthesis software often allows you to
 export several mixes (of the same length) based on a piece by picking
 the set of tracks to use in the export. That way you have some internal
-consistency and avoid having jarring transitions from one track to
-another.
+consistency and avoid having jarring transitions as you cross-fade from
+one track to another.
 
 ![garageband][]
 
@@ -126,7 +127,14 @@ boss
 If this complexity isn't something your game needs, you plan on just
 using an `<audio>` tag for the background music, relying on the Web Audio
 API for everything else. Even if you go this route, there's now a way to
-bring `<audio>` contexts into the Web Audio API:
+bring `<audio>` contexts into the Web Audio API.
+
+This technique can be useful since the `<audio>` tag can work with
+streaming content, which lets you immediately play the background music
+instead of having to wait for it all to download. By bringing the stream
+into the Web Audio API, you can manipulate or analyze the stream. The
+following example applies a low pass filter to the music played through
+the `<audio>` tag:
 
     var audioElement = document.querySelector('audio');
     var mediaSourceNode = context.createMediaElementSource(audioElement);
@@ -136,7 +144,7 @@ bring `<audio>` contexts into the Web Audio API:
     mediaSourceNode.connect(filter);
     filter.connect(context.destination);
 
-For a more complete discussion about integrating the audio tag with the
+For a more complete discussion about integrating the `<audio>` tag with the
 Web Audio API, see this [short article][audiotag].
 
 [audiotag]: http://updates.html5rocks.com/2012/02/HTML5-audio-and-the-Web-Audio-API-are-BFFs
@@ -208,7 +216,7 @@ increase the immersiveness of the experience. Luckily, Web Audio API
 comes with built-in hardware accelerated positional audio features that
 are quite straight forward to use. By the way, you should make sure that
 you've got stereo speakers (preferably headphones) for the following
-example to make sense:
+example to make sense.
 
 <span id="position-sample" style="border: 1px solid black; display: inline-block;">
 </span>
@@ -217,11 +225,11 @@ example to make sense:
 
 In the above example, there is a listener (person icon) in the middle of
 the canvas, and the mouse affects the position of the source (speaker
-icon). You can change the direction of the source by using the arrow
-keys. The above is a simple example of using [AudioPannerNode][]s to
-achieve this sort of effect.
+icon). You can change the direction of the source by scrolling with your
+mouse inside the sample.  The above is a simple example of using
+[AudioPannerNode][] to achieve this sort of effect.
 
-The model is pretty straight forward, and based largely on
+The positional model is pretty straightforward, and based largely on
 [OpenAL][openal]. For more details, see sections 3 and 4 of the
 above-linked spec.
 
@@ -230,7 +238,7 @@ above-linked spec.
 There is a single [AudioListener][] attached to the Web Audio API
 context which can be configured in space through position and
 orientation. Each source can be passed through an AudioPannerNode, which
-spacializes the input audio. The panner node has position and
+spatializes the input audio. The panner node has position and
 orientation, as well as a distance and directional model.
 
 The distance model specifies the amount of gain depending on proximity
@@ -255,7 +263,7 @@ detailed tutorial on [mixing positional audio and WebGL][webgl].
 [doppler]: http://chromium.googlecode.com/svn/trunk/samples/audio/doppler.html
 [openal]: http://connect.creativelabs.com/openal/Documentation/OpenAL%201.1%20Specification.pdf
 [position-model]: res/position-model.png
-[webgl]: #
+[webgl]: /tutorials/webaudio/positional_audio/
 
 <h2 id="toc-room">Room effects and filters</h2>
 
@@ -337,11 +345,11 @@ you need to fix it.
 
 <h3 id="toc-clip-detect">Detect clipping</h3>
 
-To detect clipping, put a [JavaScriptAudioNode][jsan] into your graph, and make
-sure that the raw absolute value of the left and right channel data
-through the node remain within the valid range, between -1 and 1. If
-values exceed this threshold, we're clipping. The audio graph would be
-setup as follows:
+From a technical perspective, clipping happens when the value of the
+signal in any channel exceeds the valid range, namely between -1 and 1.
+Once this is detected, it's useful to give visual feedback that this is
+happening. To do this reliably, put a [JavaScriptAudioNode][jsan] into
+your graph. The audio graph would be setup as follows:
 
     // Assume entire sound output is being piped through the mix node.
     var meter = context.createJavaScriptNode(2048, 1, 1);
@@ -364,6 +372,15 @@ And clipping could be detected in the following `processAudio` handler:
         }
       }
     }
+
+In general, be careful not to overuse the `JavaScriptAudioNode` for
+performance reasons. In this case, an alternative implementation of
+metering could poll a `RealtimeAnalyserNode` in the audio graph for
+`getByteFrequencyData`, at render time, as determined by
+`requestAnimationFrame`. This approach is more efficient, but misses
+most of the signal (including places where it potentially clips), since
+rendering happens at most at 60 times a second, whereas the audio signal
+changes far more quickly.
 
 Because clip detection is so important, it's likely that we will see a
 built-in `MeterNode` Web Audio API node in the future.
@@ -397,9 +414,12 @@ Meter level: <span id="meter"></span>
 
 <h3 id="toc-sweet">Add a bit of sugar</h3>
 
-Another extremely useful tool is the `DynamicsCompressorNode`, which can
-be inserted in your audio graph to give a louder, richer and fuller
-sound, and also help with clipping. Directly quoting the spec, this node
+Compressors are commonly used in music and game production to smooth
+over the signal and control spikes in the overall signal. This
+functionality is available in the Web Audio world via the
+`DynamicsCompressorNode`, which can be inserted in your audio graph to
+give a louder, richer and fuller sound, and also help with clipping.
+Directly quoting the spec, this node
 
 > ...lowers the volume of the loudest parts of the signal and raises the
 > volume of the softest parts... It is especially important in games and
@@ -445,6 +465,12 @@ pause sound if your tab goes to the background using the [page
 visibility API][vapi], otherwise you will create a potentially
 frustrating experience for your user.
 
+For additional information about Web Audio, take a look at the
+more introductory [getting started article][wa-intro], and if you have a
+question, see if it's already answered in the [web audio FAQ][wa-faq].
+Finally, if you have additional questions, ask them on [Stack
+Overflow][so] using the [web-audio][so] tag.
+
 Before I sign off, let me leave you with some awesome uses of the Web
 Audio API in real games today:
 
@@ -452,12 +478,15 @@ Audio API in real games today:
   [technical details][fieldrunners-bocoup].
 * [Angry Birds][angrybirds], recently switched to Web Audio API. See
   [this writeup][angrybirds-wa] for more information.
-* What other good games use Web Audio API?
+* [Skid Racer][skid]
 
 [angrybirds]: http://chrome.angrybirds.com
 [angrybirds-wa]: http://googlecode.blogspot.com/2012/01/angry-birds-chrome-now-uses-web-audio.html
 [fieldrunners]: http://fieldrunnershtml5.appspot.com/
 [fieldrunners-bocoup]: http://weblog.bocoup.com/fieldrunners-playing-to-the-strengths-of-html5-audio-and-web-audio/
+[wa-faq]: http://updates.html5rocks.com/2012/01/Web-Audio-FAQ
+[so]: http://stackoverflow.com/questions/tagged/web-audio
+[skid]: https://skid.gamagio.com/play/
 
 [vapi]: http://www.samdutton.com/pageVisibility/
 
