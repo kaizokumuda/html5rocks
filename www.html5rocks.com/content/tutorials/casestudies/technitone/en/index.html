@@ -9,10 +9,10 @@
 
 
 {% block content %}
+<section id='main-text'>
 
 
-
-  <link href='styles/styles.css' rel='stylesheet'>
+  <link href='/tutorials/doodles/lem/styles.css' rel='stylesheet'>
 
 
 	<style type="text/css">
@@ -319,7 +319,13 @@
 	<h3 id="toc-htmlfound">HTML: The Foundation</h3>
 
 	<p>We needed three color regions for the demo: two user selected color regions and a third mixed color region. We built the simplest DOM structure we could think of that support CSS3 transitions and the fewest HTTP requests for our illustration.</p>
-	<pre src='assets/demos/colorShiftDemo/snippets/html-setup.html#1-5'></pre>
+	<pre>
+&lt;!-- Basic HTML Setup -->
+&lt;div class="illo color-mixed">		
+	&lt;div class="illo color-primary">&lt;/div>
+	&lt;div class="illo color-secondary">&lt;/div>
+&lt;/div>
+	</pre>
 
 	<h3 id="toc-css">CSS: Simple Structure with Style</h3>
 
@@ -619,8 +625,8 @@
 
 
 
-	<script src='js/prettify-newer.js'></script> 	<!-- //mg: Downloaded from HTML5Rocks.com, Doodle Case Study -->
-	<script src='js/scripts.js'></script> 			<!-- //mg: Downloaded from HTML5Rocks.com, Doodle Case Study -->
+	<script src='/tutorials/doodles/lem/prettify-newer.js'></script> 	<!-- //mg: Downloaded from HTML5Rocks.com, Doodle Case Study -->
+	<script src='/tutorials/doodles/lem/scripts.js'></script> 			<!-- //mg: Downloaded from HTML5Rocks.com, Doodle Case Study -->
 
 	<script>
 		initialize();	
@@ -628,6 +634,6 @@
 	</script>
 
 
-
+</script>
 {% endblock %}
 

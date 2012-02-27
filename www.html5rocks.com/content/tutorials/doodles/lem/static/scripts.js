@@ -272,7 +272,7 @@ function processExcerptSrc(src) {
 }
 
 function preloadInlineCodeEls() {
-  var els = document.querySelectorAll('pre');
+  var els = document.querySelectorAll('pre[src]');
 
   for (var i = 0, el; el = els[i]; i++) {
     var data = processExcerptSrc(el.getAttribute('src'));
@@ -292,7 +292,7 @@ function prepareInlineCodeEl(el) {
 }
 
 function prepareInlineCodeEls() {
-  var els = document.querySelectorAll('pre');
+  var els = document.querySelectorAll('pre[src]');
 
   for (var i = 0, el; el = els[i]; i++) {
     prepareInlineCodeEl(el);
@@ -485,6 +485,8 @@ function loadCodeFile(url) {
 
   codeFiles[url] = '';
 
+  console.log('codefiles', url)
+
   var client = new XMLHttpRequest();
   client.url = url;
 
@@ -544,7 +546,7 @@ function allCodeFilesLoaded() {
 }
 
 function initialize() {
-  mainTextEl = document.querySelector('#main-text');
+  mainTextEl = document.querySelectorAll('#main-text')[0];
 
   addPlatformStylesheet();
 
