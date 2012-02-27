@@ -1,3 +1,4 @@
+
 {% extends "tutorial.html" %}
 
 {% block head %}{% endblock %}
@@ -169,7 +170,10 @@
 	  </select><br />
 	<div id="webglDemo1" hidden="true">
 	  Planes are drawn by joining 4 vertices together with two connected triangles. <br />
-	  <input id="wire" type="checkbox" value="false" onchange="onToggleWireframe(event)">Wireframe</input>
+	  <label>
+	  	<input id="wire" type="checkbox" value="false" onchange="onToggleWireframe(event)">
+	  	Wireframe
+	  </label>
 	</div>
 	<div id="webglDemo2" hidden="true">
 	  Light is created by adjusting color in the shaders according to the normal vertex. <br />
