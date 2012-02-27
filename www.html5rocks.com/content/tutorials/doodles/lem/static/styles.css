@@ -419,7 +419,7 @@ pre .line-numbers {
  }
 
 .button-download::before {
-  content:  url('../assets/images/download-gem.png');
+  content:  url('/tutorials/casestudies/technitone/assets/images/download-gem.png');
   position:       absolute;
   top:            8px;
   left:           10px;
