@@ -488,8 +488,6 @@ function loadCodeFile(url) {
 
   codeFiles[url] = '';
 
-  console.log('codefiles', url)
-
   var client = new XMLHttpRequest();
   client.url = url;
 
