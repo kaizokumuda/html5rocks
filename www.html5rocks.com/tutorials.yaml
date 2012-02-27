@@ -8,8 +8,10 @@ browser_support:
 tags:
 - type:casestudy
 - class:graphics
+- class:multimedia
 - audio
 - webgl
+- webaudio
 
 ---
 
