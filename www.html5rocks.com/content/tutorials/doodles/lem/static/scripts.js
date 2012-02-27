@@ -91,6 +91,7 @@ function showCodePopupPart1(linkEl) {
   var el = document.createElement('div');
   el.classList.add('code-popup');
   el.classList.add('showing');
+  el.classList.add('prettyprint');
   el.classList.add('pretty-print');
 
   el.originLeft = pos.left;
@@ -159,6 +160,7 @@ function showCodePopupPart3(el) {
 
   var preEl = el.querySelector('pre');
   preEl.classList.add('pretty-print');
+  preEl.classList.add('prettyprint');
   prettyPrintOneEl(preEl);
 
   addLineNumbers(preEl, el.lineStart);
@@ -286,6 +288,7 @@ function prepareInlineCodeEl(el) {
   el.innerHTML = escapeEntities(code);
 
   el.classList.add('pretty-print');
+  el.classList.add('prettyprint');
   prettyPrintOneEl(el);
 
   addLineNumbers(el, data.lineStart);
