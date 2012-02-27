@@ -720,3 +720,26 @@ homepage: http://allthecodes.tumblr.com
 google: ericrk
 twitter: ericrkarlSF
 email: ek@munkadoo.com
+
+
+---
+
+id: gskinner
+name:
+  given: gskinner
+  family: dot com
+org:
+  name: gskinner
+  unit: Agency
+address:
+  locality: Edmonton
+  region: Alberta
+  country: Canada
+  lat: 53.53
+  lon: -113.51
+homepage: http://gskinner.com/
+google: 111971493588974288901
+twitter: gskinner
+email: info@gskinner.com
+
+

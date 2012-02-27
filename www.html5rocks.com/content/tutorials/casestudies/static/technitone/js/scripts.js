@@ -544,7 +544,7 @@ function allCodeFilesLoaded() {
 }
 
 function initialize() {
-  mainTextEl = document.querySelector('#main-text');
+  window.mainTextEl = document.querySelector('article.tutorial');
 
   addPlatformStylesheet();
 

@@ -4,12 +4,15 @@
 {% block onload %}{% endblock %}
 
 {% block iscompatible %}
-  return !!Modernizr.webgls
+  return !!Modernizr.webgl && !!window.webkitAudioContext;
 {% endblock %}
 
 
 {% block content %}
 
+
+
+  <link href='styles/styles.css' rel='stylesheet'>
 
   <!-- WebGL code -->
 
@@ -247,7 +250,7 @@
       function onToggleNormal(event) {
           this.webglDemo.useNormal = document.getElementById("useTextureNormal").checked;
         }      
-     window.addEventListner('load',init, false);
+     
     </script>
 
 
@@ -609,18 +612,12 @@
 
 	<p>Thanks for reading, maybe we'll be <a href="http://www.technitone.com">jamming with you</a> soon!</a></p>
 
-	<p>--</p>										<!-- //mg: Begin Footer -->
-
-	<p class='note'>we build innovative interactive experiences, games, applications, &amp; frameworks using technology such as Flash, Flex, AIR, Silverlight, HTML5, iOS, &amp; Android.</p>
-
-	<p class='note' style="padding-bottom:100px">gskinner.com&nbsp;&nbsp;|&nbsp;&nbsp;Build stuff. Have fun.</p>
-
 	<script src='js/prettify-newer.js'></script> 	<!-- //mg: Downloaded from HTML5Rocks.com, Doodle Case Study -->
 	<script src='js/scripts.js'></script> 			<!-- //mg: Downloaded from HTML5Rocks.com, Doodle Case Study -->
 
 	<script>
-		initialize();								<!-- //mg: Downloaded from HTML5Rocks.com, Doodle Case Study -->
-		//engine.init();							<!-- //mg: Downloaded from HTML5Rocks.com, Doodle Case Study -->
+		initialize();	
+		window.addEventListener('load',init, false);
 	</script>
 
 
