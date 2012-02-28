@@ -451,6 +451,10 @@
     var impulseResponseVoice = null;
 
     function init() {
+      // don't double load.
+      if (init.run) return;
+      init.run = true;
+
       onNewWebGLDemo();
 
       if (typeof webkitAudioContext != "function") {
@@ -644,6 +648,9 @@
   <script>
     initialize(); 
     window.addEventListener('load',init, false);
+    setTimeout(function(){
+      init();
+    }, 7*1000); // random double run to attempt to fix init() not running..
   </script>
 
 
