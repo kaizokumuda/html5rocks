@@ -278,7 +278,7 @@ sound.panner.coneOuterGain = outerGainFactor;
   
 <p>The final audio processing graph I'm using has the audio from the objects going through a GainNode used as a pass-through mixer. From the mixer I pass the audio into the ConvolverNode and another GainNode, which is used to control the volume of the plain audio. The ConvolverNode is hooked into its own GainNode to control the convolved audio volume. The outputs of the GainNodes are connected to the main volume controller.
   
-<pre>
+<pre class="prettyprint">
 ...
 var ctx = new webkitAudioContext();
 var mainVolume = ctx.createGainNode();
@@ -315,7 +315,7 @@ volume.connect(ctx.destination);
 
 <p>To make the ConvolverNode work, you need to load an impulse response sample into a buffer and make the ConvolverNode use it. Loading the sample happens in the same way as with normal sound samples. Below is an example of one way to do it:
 
-<pre>
+<pre class="prettyprint">
 ...
 loadBuffer(ctx, "impulseResponseExample.wav", function(buffer){
   convolver.buffer = buffer;
