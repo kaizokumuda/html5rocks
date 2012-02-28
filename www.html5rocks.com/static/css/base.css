@@ -1,8 +1,9 @@
 /*
   # AVAILABLE WEIGHTS/STYLES
 
-    300
-    300 italic
+    300 (for headlines only)
+    400 (body text)
+    400 italic
     600
     800
 
@@ -122,7 +123,7 @@ audio:not([controls]) { display: none; }
 
 html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 body { margin: 0; font-size: 13px; line-height: 1.231; overflow: hidden; }
-body, button, input, select, textarea { font-family: sans-serif; color: #000; }
+body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
 ::-moz-selection { background: #f04530; color: #fff; text-shadow: none; }
 ::selection { background: #f04530; color: #fff; text-shadow: none; }
@@ -903,7 +904,7 @@ div.one_half    { width: 50%; }
   background: transparent;
   color: #333;
   font-size: 11px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1;
   padding: 3px 5px;
   position: absolute;
@@ -999,7 +1000,7 @@ body,
 input
 {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 header.main
@@ -2084,7 +2085,7 @@ nav.outline.features ul ul
 nav.outline.features ul ul a
 {
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 400;
   padding: .3em 0 .3em 18px;
 }
 
@@ -2263,7 +2264,7 @@ section.support thead th
   top: -20px;
   color: #333;
   font-size: 11px;
-  font-weight: 300;
+  font-weight: 400;
   padding: 3px 0;
   text-align: center;
   text-transform: uppercase;
@@ -2508,7 +2509,7 @@ ul.figures li a p
 
 ul.figures li a
 {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 ul.figures li a strong
