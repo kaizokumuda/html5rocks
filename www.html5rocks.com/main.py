@@ -180,11 +180,11 @@ class ContentHandler(webapp.RequestHandler):
     # If the tutorial contains a social URL override, use it.
     if data.get('tut'):
       try:
-        template_data['social_url'] = data['tut'].get('social_url')
+        template_data['disqus_url'] = data['tut'].get('social_url')
       except (KeyError, datastore_errors.BadKeyError):
-        template_data['social_url'] = None
-      if not template_data['social_url']:
-        template_data['social_url'] = template_data['host'] + '/' + path_no_lang
+        template_data['disqus_url'] = None
+      if not template_data['disqus_url']:
+        template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
 
     # Request was for an Atom feed. Render one!
     if self.request.path.endswith('.xml'):
@@ -642,6 +642,7 @@ class DBHandler(ContentHandler):
           tutorial.publication_date = datetime.date(pub.year, pub.month, pub.day)
           tutorial.tags = tags
           tutorial.draft = self.request.get('draft') == 'on'
+          tutorial.social_url = unicode(self.request.get('social_url') or '')
         except TypeError:
           pass
       else:
@@ -657,7 +658,8 @@ class DBHandler(ContentHandler):
               update_date=datetime.date.today(),
               publication_date=datetime.date(pub.year, pub.month, pub.day),
               tags=tags,
-              draft=self.request.get('draft') == 'on'
+              draft=self.request.get('draft') == 'on',
+              social_url=self.request.get('social_url') or None
               )
         except TypeError:
           pass
