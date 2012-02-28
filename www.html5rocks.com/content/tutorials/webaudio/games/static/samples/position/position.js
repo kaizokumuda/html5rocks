@@ -32,8 +32,11 @@ function Field(canvas) {
   this.speakerIcon = new Image();
   this.speakerIcon.src = 'res/speaker.svg';
 
-  // Render the scene.
-  this.render();
+  // Render the scene when the icon has loaded.
+  var ctx = this;
+  this.manIcon.onload = function() {
+    ctx.render();
+  }
 }
 
 Field.prototype.render = function() {
@@ -80,6 +83,7 @@ Field.prototype.handleMouseMove = function(e) {
     this.render();
     // Callback.
     if (this.callback) {
+      // Callback with -0.5 < x, y < 0.5
       this.callback({x: this.point.x - this.center.x,
                      y: this.point.y - this.center.y});
     }
@@ -97,7 +101,7 @@ Field.prototype.handleKeyDown = function(e) {
 
 Field.prototype.handleMouseWheel = function(e) {
   e.preventDefault();
-  this.changeAngleHelper(e.wheelDelta/100);
+  this.changeAngleHelper(e.wheelDelta/500);
 };
 
 Field.prototype.changeAngleHelper = function(delta) {
@@ -150,6 +154,7 @@ PositionSample.prototype.play = function() {
   // Hook up the audio graph for this sample.
   var source = context.createBufferSource();
   source.buffer = this.buffer;
+  source.loop = true;
   var panner = context.createPanner();
   panner.coneOuterGain = 0.1;
   panner.coneOuterAngle = 180;
@@ -159,6 +164,8 @@ PositionSample.prototype.play = function() {
   panner.connect(context.destination);
   source.connect(panner);
   source.noteOn(0);
+  // Position the listener at the origin.
+  context.listener.setPosition(0, 0, 0);
 
   // Expose parts of the audio graph to other functions.
   this.source = source;
@@ -176,9 +183,9 @@ PositionSample.prototype.changePosition = function(position) {
     if (!this.isPlaying) {
       this.play();
     }
-    var a = position.x / this.size.width;
-    var b = position.y / this.size.height;
-    this.panner.setPosition(a, b, 0);
+    var x = position.x / this.size.width;
+    var y = -position.y / this.size.height;
+    this.panner.setPosition(x, y, -1);
   } else {
     this.stop();
   }
