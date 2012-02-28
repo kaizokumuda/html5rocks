@@ -8,6 +8,7 @@
 # Copyright 2011 Eric Bidelman <ericbidelman@chromium.org>
 
 ./compress_js_css.sh
+./generate_thumbs.sh
 ./cachebust.py
 echo \# `date` >> ../cache.appcache
 appcfg.py update ../
