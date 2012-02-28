@@ -302,7 +302,7 @@ window.feed = {
                 //
                 // TODO(ericbidelman): Why is this being loaded via a feed,
                 // anyway? Don't we have a database?
-                entry.author ? '<img src="/static/images/profiles/' + entry.author + '.png" alt="">' : '',
+                entry.author ? '<img src="/static/images/profiles/75/' + entry.author + '.75.png" alt="">' : '',
                 '</span></span>',
                 '<span class="details"><span class="title">',
                 entry.title.link(entry.link), '</span>', classes
