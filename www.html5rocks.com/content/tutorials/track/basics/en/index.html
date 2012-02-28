@@ -97,14 +97,12 @@ opacity: 1;
 
 <p>The track element is currently available in <a href="http://ie.microsoft.com/testdrive/" title="Internet Explorer 10 download">Internet Explorer 10</a> and <a href="http://tools.google.com/dlpage/chromesxs" title="Chrome Canary download">Chrome 18</a>+. Firefox support is <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=629350" title="Firefox track element implementation bug report">not yet implemented</a>. In Chrome, track element support must be enabled from the <a href="chrome://flags" title="chrome://flags page">chrome://flags</a> page.</p>
 
-<!-- 
 <p>Below is a simple example of a video with a track element. Play it to see subtitles in English:</p>
  
 <video controls class="trackSupported">
   <source src="treeOfLife/video/developerStories-en.webm" type='video/webm; codecs="vp8, vorbis"' />
   <track src="treeOfLife/tracks/developerStories-subtitles-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default />
 </video>
- -->
 
 <p class="warningMessage trackNotSupported">This demo requires a browser such as <a href="http://tools.google.com/dlpage/chromesxs" title="Google Chrome Canary download">Google Chrome Canary</a> that supports the track element. In Chrome you must enable track element support on the chrome://flags page.</p>
 
@@ -310,11 +308,8 @@ track.removeCue(activeCue);
 
 <p>If you try this out, you'll notice that a rendered cue is removed as soon as the code is called.</p>
 
-<!-- <p>Tracks have a <code>mode</code> attribute, which can be 0 (<code>TextTrack.OFF</code> in spec, <code>TextTrack.DISABLED</code> in Chrome), 1 (<code>TextTrack.HIDDEN</code>) or 2 (<code>TextTrack.SHOWING</code>). This can be useful if you want to use track events but turn off default rendering&ndash;play the following video to see an example of this (built by <a href="http://html5-demos.appspot.com/static/whats-new-with-html5-media/template/index.html#3" title="Eric Bidelman HTML5 demo slide deck">Eric Bidelman</a>):</p> -->
+<p>Tracks have a <code>mode</code> attribute, which can be 0 (<code>TextTrack.OFF</code> in spec, <code>TextTrack.DISABLED</code> in Chrome), 1 (<code>TextTrack.HIDDEN</code>) or 2 (<code>TextTrack.SHOWING</code>). This can be useful if you want to use track events but turn off default rendering&ndash;play the following video to see an example of this (built by <a href="http://html5-demos.appspot.com/static/whats-new-with-html5-media/template/index.html#3" title="Eric Bidelman HTML5 demo slide deck">Eric Bidelman</a>):</p>
 
-<p>Tracks have a <code>mode</code> attribute, which can be 0 (<code>TextTrack.OFF</code> in spec, <code>TextTrack.DISABLED</code> in Chrome), 1 (<code>TextTrack.HIDDEN</code>) or 2 (<code>TextTrack.SHOWING</code>). This can be useful if you want to use track events but turn off default rendering.</p>
-
-<!-- 
 <div id="eric">
   <video width="400" controls>
     <source src="treeOfLife/video/developerStories-en.webm" type='video/webm; codecs="vp8, vorbis"'>
@@ -362,9 +357,8 @@ track.oncuechange = function(e) {
 
 })();
 </script>
- -->
 
-<!-- <p>This example uses the <code>getCueAsHTML()</code> method, which returns an HTML version of each cue, converting from WebVTT format to an HTML <code>DocumentFragment</code> using the WebVTT cue text <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#webvtt-cue-text-parsing-rules" title="WebVTT cue text parsing rules documentation">parsing</a> and <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#webvtt-cue-text-dom-construction-rules" title="WebVTT cue text DOM construction rule documentation">DOM construction</a> rules. Use the <code>text</code> property of a cue if you just want to get the raw text value of the cue as it is in the <code>src</code> file.</p> -->
+<p>This example uses the <code>getCueAsHTML()</code> method, which returns an HTML version of each cue, converting from WebVTT format to an HTML <code>DocumentFragment</code> using the WebVTT cue text <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#webvtt-cue-text-parsing-rules" title="WebVTT cue text parsing rules documentation">parsing</a> and <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#webvtt-cue-text-dom-construction-rules" title="WebVTT cue text DOM construction rule documentation">DOM construction</a> rules. Use the <code>text</code> property of a cue if you just want to get the raw text value of the cue as it is in the <code>src</code> file.</p>
 
 <p>In this context, it can be useful to use the <code>getCueAsHTML()</code> method, which returns an HTML version of each cue, converting from WebVTT format to an HTML <code>DocumentFragment</code> using the WebVTT cue text <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#webvtt-cue-text-parsing-rules" title="WebVTT cue text parsing rules documentation">parsing</a> and <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/infrastructure.html#webvtt-cue-text-dom-construction-rules" title="WebVTT cue text DOM construction rule documentation">DOM construction</a> rules. Use the <code>text</code> property of a cue if you just want to get the raw text value of the cue as it is in the <code>src</code> file.</p>
 
