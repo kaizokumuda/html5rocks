@@ -98,16 +98,33 @@ nearer or further from the final boss battle, the game can vary the gain
 values for each of the respective nodes in the chain, using a gain
 amount algorithm like the following:
 
-    for (var i = 0, length = this.gains.length; i < length; i++) {
-      var x = i / (length - 1);
-      var y = computeGaussian(x, value, 0.01);
-      // Max gain is 1.
-      this.gains[i].gain.value = Math.min(1, y);
+    // Assume gains is an array of AudioGainNode, normVal is the intensity
+    // between 0 and 1.
+    var value = normVal * (gains.length - 1);
+    // First reset gains on all nodes.
+    for (var i = 0; i < gains.length; i++) {
+      gains[i].gain.value = 0;
+    }
+    // Decide which two nodes we are currently between, and do an equal
+    // power crossfade between them.
+    var leftNode = Math.floor(value);
+    // Normalize the value between 0 and 1.
+    var x = value - leftNode;
+    var gain1 = Math.cos(x * 0.5*Math.PI);
+    var gain2 = Math.cos((1.0 - x) * 0.5*Math.PI);
+    // Set the two gains accordingly.
+    gains[leftNode].gain.value = gain1;
+    // Check to make sure that there's a right node.
+    if (leftNode < gains.length - 1) {
+      // If there is, adjust its gain.
+      gains[leftNode + 1].gain.value = gain2;
     }
 
-I used this strategy to come up with a simple demonstration of
-background music gradually ramping up in intensity based on an Orc theme
-from Warcraft 2:
+In the above approach, two sources play at once, and we crossfade
+between them using equal power curves (as described in the
+[intro][wa-intro]). This strategy is used in the following sample, a
+demonstration of background music gradually ramping up in intensity
+based on a theme from Warcraft 2:
 
 <div>
 <button id="bg-button">Play/pause</button>
@@ -124,10 +141,9 @@ boss
 
 <h3 id="toc-tag">The missing link: Audio tag to Web Audio</h3>
 
-If this complexity isn't something your game needs, you plan on just
-using an `<audio>` tag for the background music, relying on the Web Audio
-API for everything else. Even if you go this route, there's now a way to
-bring `<audio>` contexts into the Web Audio API.
+Many game developers today use the `<audio>` tag for their background
+music, because it is well suited to streaming content. Now you can bring
+content from the `<audio>` tag into a Web Audio context.
 
 This technique can be useful since the `<audio>` tag can work with
 streaming content, which lets you immediately play the background music
@@ -156,7 +172,7 @@ in game state. Like background music, however, sound effects can get
 annoying very quickly. To avoid this, it's often useful to have a pool
 of similar but different sounds to play. This can vary from mild
 variations of footstep samples, to drastic variations, as seen in the
-Warcraft series in response to clicking on units.
+[Warcraft series][war-sounds] in response to clicking on units.
 
 Another key feature of sound effects in games is that there can be many
 of them simultaneously. Imagine you're in the middle of a gunfight with
@@ -175,8 +191,7 @@ playback is staggered in time.
       source.noteOn(time + i * interval);
     }
 
-Here's this code in action (might want to turn your volume down a
-little):
+Here's this code in action:
 
 <button onclick="mgun.shootRound(0, 3, 0.1);">Short burst M4A1</button>
 <button onclick="mgun.shootRound(1, 3, 0.1);">Short burst M1 Garand</button><br/>
@@ -197,7 +212,7 @@ to easily tweak the example above in two ways:
 
 These two effects are shown below:
 
-<button onclick="mgun.shootRound(0, 10, 0.08, 0.001);">Time-randomized M4A1</button>
+<button onclick="mgun.shootRound(0, 10, 0.08, 0.05);">Time-randomized M4A1</button>
 <button onclick="mgun.shootRound(1, 10, 0.08, 0, 1);">Pitch-randomized Garand</button>
 
 [full source code](samples/machine-gun/gun.js)
@@ -207,6 +222,7 @@ at the [Pool Table demo][pooltable], which uses random sampling and varies
 playbackRate for a more interesting ball collision sound.
 
 [pooltable]: http://chromium.googlecode.com/svn/trunk/samples/audio/o3d-webgl-samples/pool.html
+[war-sounds]: http://www.youtube.com/watch?v=MXgr6SYYNZM
 
 <h2 id="toc-3d">3D positional sound</h2>
 
@@ -216,7 +232,8 @@ increase the immersiveness of the experience. Luckily, Web Audio API
 comes with built-in hardware accelerated positional audio features that
 are quite straight forward to use. By the way, you should make sure that
 you've got stereo speakers (preferably headphones) for the following
-example to make sense.
+example to make sense. In the following sample, you can change the angle
+of the source by scrolling while the mouse is over the canvas.
 
 <span id="position-sample" style="border: 1px solid black; display: inline-block;">
 </span>
@@ -225,12 +242,40 @@ example to make sense.
 
 In the above example, there is a listener (person icon) in the middle of
 the canvas, and the mouse affects the position of the source (speaker
-icon). You can change the direction of the source by scrolling with your
-mouse inside the sample.  The above is a simple example of using
-[AudioPannerNode][] to achieve this sort of effect.
+icon). The above is a simple example of using [AudioPannerNode][] to
+achieve this sort of effect. The basic idea of the sample above is to
+respond to mouse movement by setting the position of the audio source,
+as follows:
 
-The positional model is pretty straightforward, and based largely on
-[OpenAL][openal]. For more details, see sections 3 and 4 of the
+    PositionSample.prototype.changePosition = function(position) {
+      // Position coordinates are in normalized canvas coordinates
+      // with -0.5 < x, y < 0.5
+      if (position) {
+        if (!this.isPlaying) {
+          this.play();
+        }
+        var mul = 2;
+        var x = position.x / this.size.width;
+        var y = -position.y / this.size.height;
+        this.panner.setPosition(x * mul, y * mul, -0.5);
+      } else {
+        this.stop();
+      }
+    };
+
+Things to know about Web Audio's treatment of spatialization:
+
+* The listener is at the origin (0, 0, 0) by default.
+* Web Audio positional APIs are unitless, so I introduced a multiplier
+  to make the demo sound better.
+* Web Audio uses the y-is-up cartesian coordinates (the opposite of most
+  computer graphics systems). That's why I'm swapping the y-axis in the
+  snippet above
+
+<h3 id="toc-3d-adv">Advanced: sound cones</h3>
+
+The positional model is very powerful and quite advanced, largely based
+on [OpenAL][openal]. For more details, see sections 3 and 4 of the
 above-linked spec.
 
 ![position-model][]
@@ -245,18 +290,21 @@ The distance model specifies the amount of gain depending on proximity
 to the source, while the directional model can be configured by
 specifying  an inner and outer cone, which determine amount of (usually
 negative) gain if the listener is within the inner cone, between the
-inner and outer cone, or outside the outer cone. The great thing about
-all of this is that it generalizes easily to many sound sources in 3D.
+inner and outer cone, or outside the outer cone. 
 
     var panner = context.createPanner();
     panner.coneOuterGain = 0.5;
     panner.coneOuterAngle = 180;
     panner.coneInnerAngle = 0;
 
-One thing that I did not mention is that this positional sound model
-also optionally includes velocity for the doppler shifts. This example
-shows the [doppler effect][doppler] in more detail. Also see this more
-detailed tutorial on [mixing positional audio and WebGL][webgl].
+Though my example is in 2D, this model generalizes easily to the third
+dimension. For an example of sound spatialized in 3D, see this
+[positional sample][3d-sample]. In addition to position, the Web Audio
+sound model also optionally includes velocity for doppler shifts. This
+example shows the [doppler effect][doppler] in more detail.
+
+For more information on this topic, read this detailed tutorial on
+[mixing positional audio and WebGL][webgl].
 
 [AudioPannerNode]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioPannerNode-section
 [AudioListener]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioListener-section
@@ -264,6 +312,7 @@ detailed tutorial on [mixing positional audio and WebGL][webgl].
 [openal]: http://connect.creativelabs.com/openal/Documentation/OpenAL%201.1%20Specification.pdf
 [position-model]: res/position-model.png
 [webgl]: /tutorials/webaudio/positional_audio/
+[3d-sample]: http://chromium.googlecode.com/svn/trunk/samples/audio/simple.html
 
 <h2 id="toc-room">Room effects and filters</h2>
 
@@ -311,13 +360,15 @@ impulse responses:
 [full source code](samples/room-effects/room-effects.js)
 
 Also see this [demo of room effects][effects] on the Web Audio API spec
-page.
+page, as well as [this example][drywet] which gives you control over dry
+(raw) and wet (processed via convolver) mixing of a great Jazz standard.
 
 [convolution]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#Convolution-section
 [ConvolverNode]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#ConvolverNode-section
 [ir-google]: https://www.google.com/search?q=impulse+responses
 [ir-wiki]: http://en.wikipedia.org/wiki/Impulse_response
 [effects]: http://chromium.googlecode.com/svn/trunk/samples/audio/convolution-effects.html
+[drywet]: http://kevincennis.com/audio/
 
 <h2 id="toc-final">The final countdown</h2>
 
@@ -334,14 +385,19 @@ The waveform looks something like this:
 
 <img src="res/clipping.png" style="width: 100%; max-width: 500px;"/>
 
-And sounds like this:
+Here's a real example of clipping in action. The waveform looks bad:
 
-<audio src="sounds/clipped.mp3">
+<img src="res/clipping2.png" style="width: 100%; max-width: 500px;"/>
+
+And sounds bad:
+
+<audio controls loop>
+<source src="res/clipping.mp3">
+</audio>
 
 It's important to listen to harsh distortions like the one above, or
 conversely, overly subdued mixes that force your listeners to crank up
-the volume. If you're in this situation, or if your sound is too quiet,
-you need to fix it.
+the volume. If you're in this situation, you really need to fix it!
 
 <h3 id="toc-clip-detect">Detect clipping</h3>
 
@@ -427,9 +483,13 @@ Directly quoting the spec, this node
 > played simultaneous to control the overall signal level and help avoid
 > clipping.
 
-Using dynamics compression is generally a good idea, except for cases
-where you're dealing with painstakingly mastered sounds that sounds
-"just right".
+Using dynamics compression is generally a good idea, especially in a
+game setting, where, as previously discussed, you don't know exactly
+what sounds will play and when. [Plink][plink] from DinahMoe labs is a
+great example of this, since the sounds that are played back completely
+depends on you and other participants. A compressor is useful in most
+cases, except some rare ones, where you're dealing with painstakingly
+mastered tracks that have been tuned to sound "just right" already.
 
 Implementing this is simply a matter of including a
 DynamicsCompressorNode in your audio graph, generally as the last node
@@ -454,6 +514,7 @@ compressor node. Your audio graph might look something like this:
 [dcwp]: http://en.wikipedia.org/wiki/Dynamic_range_compression
 [ct-remix]: http://ocremix.org/remix/OCR00883/
 [ct-composer]: http://en.wikipedia.org/wiki/Yasunori_Mitsuda
+[plink]: http://labs.dinahmoe.com/plink
 
 <h2 id="toc-conclusion">Conclusion</h2>
 
@@ -478,7 +539,7 @@ Audio API in real games today:
   [technical details][fieldrunners-bocoup].
 * [Angry Birds][angrybirds], recently switched to Web Audio API. See
   [this writeup][angrybirds-wa] for more information.
-* [Skid Racer][skid]
+* [Skid Racer][skid], which makes great use of spatialized audio.
 
 [angrybirds]: http://chrome.angrybirds.com
 [angrybirds-wa]: http://googlecode.blogspot.com/2012/01/angry-birds-chrome-now-uses-web-audio.html

@@ -179,13 +179,16 @@ PositionSample.prototype.stop = function() {
 }
 
 PositionSample.prototype.changePosition = function(position) {
+  // Position coordinates are in normalized canvas coordinates
+  // with -0.5 < x, y < 0.5
   if (position) {
     if (!this.isPlaying) {
       this.play();
     }
+    var mul = 2;
     var x = position.x / this.size.width;
     var y = -position.y / this.size.height;
-    this.panner.setPosition(x, y, -1);
+    this.panner.setPosition(x * mul, y * mul, -0.5);
   } else {
     this.stop();
   }
@@ -194,5 +197,5 @@ PositionSample.prototype.changePosition = function(position) {
 PositionSample.prototype.changeAngle = function(angle) {
   console.log(angle);
   // Compute the vector for this angle.
-  this.panner.setOrientation(Math.cos(angle), Math.sin(angle), 1);
+  this.panner.setOrientation(Math.cos(angle), -Math.sin(angle), 1);
 };

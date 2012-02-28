@@ -46,13 +46,26 @@ BackgroundIntensity.prototype.playPause = function() {
   this.playing = !this.playing;
 }
 
-BackgroundIntensity.prototype.setIntensity = function(value) {
-  // Set the gain values appropriately.
-  for (var i = 0, length = this.gains.length; i < length; i++) {
-    var x = i / (length - 1);
-    var y = computeGaussian(x, value, 0.01);
-    // Max gain is 1.
-    this.gains[i].gain.value = Math.min(1, y);
+BackgroundIntensity.prototype.setIntensity = function(normVal) {
+  var value = normVal * (this.gains.length - 1);
+  // First reset gains on all nodes.
+  for (var i = 0; i < this.gains.length; i++) {
+    this.gains[i].gain.value = 0;
+  }
+  // Decide which two nodes we are currently between, and do an equal
+  // power crossfade between them.
+  var leftNode = Math.floor(value);
+  // Normalize the value between 0 and 1.
+  var x = value - leftNode;
+  var gain1 = Math.cos(x * 0.5*Math.PI);
+  var gain2 = Math.cos((1.0 - x) * 0.5*Math.PI);
+  console.log(gain1, gain2);
+  // Set the two gains accordingly.
+  this.gains[leftNode].gain.value = gain1;
+  // Check to make sure that there's a right node.
+  if (leftNode < this.gains.length - 1) {
+    // If there is, adjust its gain.
+    this.gains[leftNode + 1].gain.value = gain2;
   }
 }
 
@@ -69,24 +82,4 @@ BackgroundIntensity.prototype.playSound = function(index, targetTime) {
   this.sources[index] = source;
   this.gains[index] = gainNode;
   source.noteOn(targetTime);
-}
-
-
-var context;
-window.addEventListener('load', init, false);
-function init() {
-  try {
-    context = new webkitAudioContext();
-  }
-  catch(e) {
-    alert('Web Audio API is not supported in this browser');
-  }
-  sample = new BackgroundIntensity(document.querySelector('button'),
-                                   document.querySelector('input'),
-                                   context);
-}
-
-function computeGaussian(x, mu, sd2) {
-  return Math.exp(- (x - mu)*(x - mu)/(2 * sd2)) /
-    Math.sqrt(2 * Math.PI * sd2);
 }

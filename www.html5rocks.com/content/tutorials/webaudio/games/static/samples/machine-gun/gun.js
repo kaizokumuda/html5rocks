@@ -27,7 +27,7 @@ MachineGun.prototype.makeSource = function(buffer) {
   var source = context.createBufferSource();
   var compressor = context.createDynamicsCompressor();
   var gain = context.createGainNode();
-  gain.gain.value = 0.5;
+  gain.gain.value = 0.2;
   source.buffer = buffer;
   source.connect(gain);
   gain.connect(compressor);
