@@ -179,11 +179,9 @@ class ContentHandler(webapp.RequestHandler):
     }
 
     # If the tutorial contains a social URL override, use it.
-    if data.get('tut'):
-      if  data['tut'].social_url:
-        template_data['disqus_url'] = template_data['host'] + data['tut'].social_url
-      else:
-        template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
+    template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
+    if data.get('tut') and data['tut'].social_url:
+      template_data['disqus_url'] = template_data['host'] + data['tut'].social_url
 
     # Request was for an Atom feed. Render one!
     if self.request.path.endswith('.xml'):
