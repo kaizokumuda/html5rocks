@@ -180,8 +180,8 @@ class ContentHandler(webapp.RequestHandler):
     # If the tutorial contains a social URL override, use it.
     if data.get('tut'):
       try:
-        template_data['disqus_url'] = data['tut'].get('social_url')
-      except (KeyError, datastore_errors.BadKeyError):
+        template_data['disqus_url'] = data['tut'].social_url
+      except:
         template_data['disqus_url'] = None
       if not template_data['disqus_url']:
         template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
