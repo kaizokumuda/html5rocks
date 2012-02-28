@@ -156,6 +156,7 @@ class ContentHandler(webapp.RequestHandler):
     # Strip out language code from path. Urls changed for i18n work and correct
     # disqus comment thread won't load with the changed urls.
     path_no_lang = re.sub('^\/\w{2,3}\/', '', self.request.path, 1)
+    logging.info(path_no_lang)
 
     pagename = ''
     if (path_no_lang == ''):
@@ -178,13 +179,9 @@ class ContentHandler(webapp.RequestHandler):
     }
 
     # If the tutorial contains a social URL override, use it.
-    if data.get('tut'):
-      try:
-        template_data['disqus_url'] = data['tut'].get('social_url')
-      except (KeyError, datastore_errors.BadKeyError):
-        template_data['disqus_url'] = None
-      if not template_data['disqus_url']:
-        template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
+    template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
+    if data.get('tut') and data['tut'].social_url:
+      template_data['disqus_url'] = template_data['host'] + data['tut'].social_url
 
     # Request was for an Atom feed. Render one!
     if self.request.path.endswith('.xml'):
