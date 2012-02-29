@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block iscompatible %}
-  return !!(Modernizr.webgl && window.webkitAudioContext);
+  return Modernizr.webgl && !!(window.AudioContext || window.webkitAudioContext);
 {% endblock %}
 
 {% block content %}
@@ -21,6 +21,8 @@
     background: white;
   }
 </style>
+
+{% include "warning.html" %}
 
 <h2 id="toc-introduction">Introduction</h2>
 
