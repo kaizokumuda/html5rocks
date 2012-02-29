@@ -19,7 +19,10 @@ __author__ = ('mkwst@google.com (Mike West)')
 
 import codecs
 import os
+import re
 
+from article import Article
+from article import ArticleException
 
 class Localizer(object):
   """Implements the HTML5Rocks article localization workflow.

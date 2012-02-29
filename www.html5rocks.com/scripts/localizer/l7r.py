@@ -35,9 +35,11 @@ Usage:
 
 __author__ = ('mkwst@google.com (Mike West)')
 
-import article
-import localizer
 import optparse
+import os
+
+from article import Article
+from localizer import Localizer
 
 if __name__ == '__main__':
   parser = optparse.OptionParser()
