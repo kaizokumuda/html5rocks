@@ -23,6 +23,7 @@ import re
 
 from article import Article
 from article import ArticleException
+from yaml_processor import YamlProcessor
 
 class Localizer(object):
   """Implements the HTML5Rocks article localization workflow.

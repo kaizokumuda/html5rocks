@@ -39,7 +39,9 @@ import optparse
 import os
 
 from article import Article
+from article import ArticleException
 from localizer import Localizer
+from yaml_processor import YamlProcessorException
 
 if __name__ == '__main__':
   parser = optparse.OptionParser()
@@ -67,7 +69,7 @@ if __name__ == '__main__':
   if options.generate_html and options.yaml_infile:
     try:
       l7r.generate_localizable_yaml(options.yaml_infile)
-    except ArticleException:
+    except YamlProcessorException:
       parser.error('`%s` couldn\'t be read.' % options.yaml_infile)
   elif options.generate_html:
     try:
