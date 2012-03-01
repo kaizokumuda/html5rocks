@@ -162,11 +162,11 @@ tags:
 
 ---
 
-title: "Case Study: Building the Stanisław Lem Google doodle"
+title: "Case Study: Building the Stanis&#x0142;aw Lem Google doodle"
 url: /tutorials/doodles/lem/
 author_id: marcinwichary
 publication_date: 2011-12-21
-description: A walk through of the HTML5 tech behind the Stanisław Lem Google doodle.
+description: A walk through of the HTML5 tech behind the Stanis&#x0142;aw Lem Google doodle.
 browser_support:
 - chrome
 - ie
@@ -264,11 +264,11 @@ tags:
 
 ---
 
-title: Introduction to Raphaël.js
+title: Introduction to Rapha&euml;l.js
 url: /tutorials/raphael/intro/
 author_id: jameswilliams
 publication_date: 2011-09-08
-description: Learn how to use Raphaël.js to create cross-platform SVG scenes.
+description: Learn how to use Rapha&euml;l.js to create cross-platform SVG scenes.
 browser_support:
 - chrome
 - opera
