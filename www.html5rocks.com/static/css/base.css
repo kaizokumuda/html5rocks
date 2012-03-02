@@ -2019,12 +2019,27 @@ nav.outline.toc
 nav.outline.toc ul
 {
   margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+nav.outline.toc p {
+  font-size: 13px;
+}
+
+nav.outline.toc ul:last-child
+{
+  margin-bottom: 0;
 }
 
 nav.outline.toc a
 {
   margin-left: -1.5em;
   text-indent: 1.5em;
+}
+
+nav.outline.toc p a
+{
+  margin-left: 0;
 }
 
 nav.outline.toc li

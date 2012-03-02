@@ -19,6 +19,7 @@ __author__ = ('kurrik@html5rocks.com (Arne Kurrik) ',
 
 # Standard Imports
 import datetime
+import glob
 import logging
 import os
 import re
@@ -340,8 +341,29 @@ class ContentHandler(webapp.RequestHandler):
           if tut.description:
             tut.description = _(tut.description)
 
+        # Gather list of localizations by globbing matching directories, then
+        # stripping out the current locale and 'static'. Once we have a list,
+        # convert it to a series of dictionaries containing the localization's
+        # path and name:
+        langs = {
+          'de': 'Deutsch',
+          'en': 'English',
+          'es': 'Español',
+          'ja': '日本語',
+          'pt': 'Português (Brasil)',
+          'ru': 'Pусский',
+          'zh': '中文 (简体)'
+        }
+        loc_list = []
+        for d in glob.glob(os.path.join(dir, '*', 'index.html')):
+          loc = os.path.basename(os.path.dirname(d))
+          if loc not in [locale, 'static']:
+            loc_list.append({'path': '/%s/%s' % (loc, relpath),
+                             'lang': langs[loc]})
+
         data = {
           'tut': tut,
+          'localizations': loc_list,
           'redirect_from_locale': redirect_from_locale
         }
         self.render(template_path=os.path.join(dir, locale, filename),

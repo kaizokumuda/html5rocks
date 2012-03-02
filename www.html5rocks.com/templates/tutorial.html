@@ -134,6 +134,16 @@
         <h3>{% trans "Table of Contents" %}</h3>
 
         {% toc %}
+        
+        {% if localizations %}
+        <h3>{% trans "Localizations" %}</h3>
+        <p>{% trans "This article is additionally available in the following languages:" %}</p>
+        <ul>
+          {% for alt_locale in localizations %}
+          <li><a href="{{ alt_locale.path }}">{{ alt_locale.lang }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </nav>
     </div>
     <section>
