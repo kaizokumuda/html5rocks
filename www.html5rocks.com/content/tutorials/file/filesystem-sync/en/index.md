@@ -149,20 +149,22 @@ described in [Basics of Web Workers](/tutorials/workers/basics/).
 
         // Setup handler to process messages from the worker.
         worker.onmessage = function(e) {
-          console.log(e.data);
+
+          // Read each file aysnc. as an array buffer.
+          for (var i = 0, file; file = files[i]; ++i) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              console.log(this.result); // this.result is the read file as an ArrayBuffer.
+            };
+            reader.onerror = function(e) {
+              console.log(e);
+            };
+            reader.readAsArrayBuffer(file);
+          }
+
         };
 
-        // Read each file aysnc. as an array buffer.
-        for (var i = 0, file; file = files[i]; ++i) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            console.log(this.result); // this.result is the read file as an ArrayBuffer.
-          };
-          reader.onerror = function(e) {
-            console.log(e);
-          };
-          reader.readAsArrayBuffer(file);
-        }
+        worker.postMessage(files);
       });
     }, false);
 
@@ -249,9 +251,7 @@ are nice and certainly make things more readable. The real downside of the
 synchronous API stems from the limitations of Workers.
 
 For security reasons, data between the calling app and a Web Worker thread is
-never shared. This is going to
-[change in the future](https://bugs.webkit.org/show_bug.cgi?id=65209), but for
-now, data is always copied to and from the Worker when `postMessage()` is called.
+never shared. Data is always copied to and from the Worker when `postMessage()` is called.
 As a result, not every data type can be passed.
 
 Unfortunately, `FileEntrySync` and `DirectoryEntrySync` don't currently fall

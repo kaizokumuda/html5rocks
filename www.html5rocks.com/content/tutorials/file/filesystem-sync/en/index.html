@@ -147,20 +147,22 @@ document.querySelector('input[type="file"]').addEventListener('change', function
 
     // Setup handler to process messages from the worker.
     worker.onmessage = function(e) {
-      console.log(e.data);
+
+      // Read each file aysnc. as an array buffer.
+      for (var i = 0, file; file = files[i]; ++i) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          console.log(this.result); // this.result is the read file as an ArrayBuffer.
+        };
+        reader.onerror = function(e) {
+          console.log(e);
+        };
+        reader.readAsArrayBuffer(file);
+      }
+
     };
 
-    // Read each file aysnc. as an array buffer.
-    for (var i = 0, file; file = files[i]; ++i) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        console.log(this.result); // this.result is the read file as an ArrayBuffer.
-      };
-      reader.onerror = function(e) {
-        console.log(e);
-      };
-      reader.readAsArrayBuffer(file);
-    }
+    worker.postMessage(files);
   });
 }, false);
 
@@ -238,9 +240,7 @@ returns the read file.</p>
 are nice and certainly make things more readable. The real downside of the
 synchronous API stems from the limitations of Workers.</p>
 <p>For security reasons, data between the calling app and a Web Worker thread is
-never shared. This is going to
-<a href="https://bugs.webkit.org/show_bug.cgi?id=65209">change in the future</a>, but for
-now, data is always copied to and from the Worker when <code>postMessage()</code> is called.
+never shared. Data is always copied to and from the Worker when <code>postMessage()</code> is called.
 As a result, not every data type can be passed.</p>
 <p>Unfortunately, <code>FileEntrySync</code> and <code>DirectoryEntrySync</code> don't currently fall
 into the accepted types. So how can you get entries back to the calling app?
