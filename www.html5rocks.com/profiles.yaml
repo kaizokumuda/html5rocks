@@ -742,4 +742,23 @@ google: 111971493588974288901
 twitter: gskinner
 email: info@gskinner.com
 
+---
+
+id: adanilo
+name:
+  given: Alex
+  family: Danilo
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Sydney
+  region: NSW
+  country: Australia
+  lat: -33.866674
+  lon: 151.195650
+homepage:
+google: adanilo
+twitter: alexanderdanilo
+email: adanilo@google.com
 
