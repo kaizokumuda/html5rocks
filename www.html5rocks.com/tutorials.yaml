@@ -18,7 +18,7 @@ title: "Developing Game Audio with the Web Audio API"
 url: /tutorials/webaudio/games/
 author_id: smus
 publication_date: 2012-02-28
-description: "Web Audio for Games."
+description: "Varied intensity background music, overlapping sound effects and randomization, sound source and listener spatialization (and directional sound cones), room effects via convolution, detect and prevent clipping, and implement dynamics compression. Including interactive inline demos!"
 browser_support:
 - chrome
 - safari
