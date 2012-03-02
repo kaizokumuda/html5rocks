@@ -648,7 +648,7 @@ Basic example - tokenizing the following HTML:
 
 The initial state is the "Data state".
 When the <code>&lt;</code> character is encountered, the state is changed to <b>"Tag open state"</b>.
-Consuming an <code>a-z</code> character causes creation of a "Start tag token", the state is change to <b>"Tag name state"</b>.
+Consuming an <code>a-z</code> character causes creation of a "Start tag token", the state is changed to <b>"Tag name state"</b>.
 We stay in this state until the <code>&gt;</code> character is consumed. Each character is appended to the new token name. In our case the created token is an <code>html</code> token.
 
 </p><p>
@@ -1096,7 +1096,7 @@ Attachment is synchronous, node insertion to the DOM tree calls the new node "at
 Processing the html and body tags results in the construction of the render tree root.
 The root render object corresponds to what the CSS spec calls the containing block - the top most block that contains all other blocks. Its dimensions are the viewport - the browser window display area dimensions.
 Firefox calls it <code>ViewPortFrame</code> and Webkit calls it <code>RenderView</code>.
-This is the render object that the document point to.
+This is the render object that the document points to.
 The rest of the tree is constructed as a DOM nodes insertion.
 </p>
 <p>
@@ -1113,7 +1113,7 @@ This is done by calculating the style properties of each element.
 The style includes style sheets of various origins, inline style elements and visual properties in the HTML (like the "bgcolor" property).The later is translated to matching CSS style properties.
 </p>
 <p>
-The origins of style sheets are the browser's default style sheets, the style sheets provided by the page author and user style sheets - these are style sheets provides by the browser user (browsers let you define your favorite style. In Firefox, for instance, this is done by placing a style sheet in the "Firefox Profile" folder).
+The origins of style sheets are the browser's default style sheets, the style sheets provided by the page author and user style sheets - these are style sheets provided by the browser user (browsers let you define your favorite style. In Firefox, for instance, this is done by placing a style sheet in the "Firefox Profile" folder).
 </p>
 <p>
 Style computation brings up a few difficulties:
@@ -1337,7 +1337,7 @@ The last two are easily matched to the element since he owns the style attribute
 As noted previously in <a href="#issue2">issue #2</a>, the CSS rule matching can be trickier.
 To solve the difficulty, the rules are manipulated for easier access.
 </p><p>
-After parsing the style sheet, the rules are added one of several hash maps, according to the selector.
+After parsing the style sheet, the rules are added to one of several hash maps, according to the selector.
 There are maps by id, by class name, by tag name and a general map for anything that doesn't fit into those categories.
 If the selector is an id, the rule will be added to the id map, if it's a class it will be added to the class map etc.
 <br>
@@ -1401,7 +1401,7 @@ The HTML visual attributes are translated to matching CSS declarations . They ar
 <p>
 The selector specificity is defined by the <a href="http://www.w3.org/TR/CSS2/cascade.html#specificity">CSS2 specification</a> as follows:
 <ul>
-    <li>count 1 if the declaration is from is a 'style' attribute rather than a rule with a selector, 0 otherwise (= a)</li>
+    <li>count 1 if the declaration it is from is a 'style' attribute rather than a rule with a selector, 0 otherwise (= a)</li>
     <li>count the number of ID attributes in the selector (= b) </li>
     <li>count the number of other attributes and pseudo-classes in the selector (= c) </li>
     <li>count the number of element names and pseudo-elements in the selector (= d) </li>
@@ -1447,7 +1447,7 @@ static bool operator >(CSSRuleData& r1, CSSRuleData& r2)
 <h4 id="Gradual_process">Gradual process</h4>
 <p>
 Webkit uses a flag  that marks if all top level style sheets (including @imports) have been loaded.
-If the style is not fully loaded when attaching - place holders are used and it s marked in the document, and they will be recalculated once the style sheets were loaded.
+If the style is not fully loaded when attaching - place holders are used and it is marked in the document, and they will be recalculated once the style sheets were loaded.
 </p>
 
 
@@ -1464,13 +1464,13 @@ The coordinate system is relative to the root frame.  Top and left coordinates a
 <p>
 Layout is a recursive process.  It begins at the root renderer, which corresponds to the <code>&lt;html></code> element of the HTML document. Layout continues recursively through some or all of the frame hierarchy, computing geometric information for each renderer that requires it.
 </p>
-The position of the root renderer is 0,0 and its dimensions is the viewport - the visible part of the browser window.
+The position of the root renderer is 0,0 and its dimensions are the viewport - the visible part of the browser window.
 <p>
 All renderers have a "layout" or "reflow" method, each renderer invokes the layout method of its children that need layout.
 </p>
 <h4 id="Dirty_bit_system">Dirty bit system</h4>
 <p>
-In order not to do a full layout for every small change, browser use a "dirty bit" system.
+In order not to do a full layout for every small change, browsers use a "dirty bit" system.
 A renderer that is changed or added marks itself and its children as "dirty" - needing layout.
 </p>
 <p>
@@ -1522,24 +1522,24 @@ The layout usually has the following pattern:
     <li>Calls child layout if needed(they are dirty or we are in a global layout or some other reason) - this calculates the child's height.</li>
   </ol>
 </li>
-<li>Parent uses children accumulative heights and the heights of the margins and paddings to set it own height - this will be used by the parent renderer's parent.</li>
+<li>Parent uses children accumulative heights and the heights of the margins and paddings to set it's own height - this will be used by the parent renderer's parent.</li>
 <li>Sets its dirty bit to false.</li>
 </ol>
 </p>
 <p>
 Firefox uses a "state" object(nsHTMLReflowState) as a parameter to layout (termed "reflow"). Among others the state includes the parents width.
 <br>
-The output of Firefox layout is a "metrics" object(nsHTMLReflowMetrics). It will contain the renderer computed height.
+The output of the Firefox layout is a "metrics" object(nsHTMLReflowMetrics). It will contain the renderer computed height.
 </p>
 <h4 id="Width_calculation">Width calculation</h4>
 <p>
-The renderer's width is calculated using the container block's width , the renderer's style "width" property, the margins and borders.
+The renderer's width is calculated using the container block's width, the renderer's style "width" property, the margins and borders.
 <br>
 For example the width of the following div:
 <pre class="prettyprint">
 &lt;div style="width:30%"/&gt;
 </pre>
-Would be calculated by Webkit as following(class RenderBox method calcWidth):
+Would be calculated by Webkit as the following(class RenderBox method calcWidth):
 <ul>
 <li>The container width is the maximum of the containers availableWidth and 0.
 The availableWidth in this case is the contentWidth which is calculated as:
@@ -1805,7 +1805,7 @@ It represents the 3rd dimension of the box, its position along the "z axis".
 </p>
 <p>
 The boxes are divided to <a id="stackingcontext">stacks</a> (called stacking contexts).
-In each stack the back elements will be painted first and the forward elements on top, closer to the user.  In case of overlap the will hide the former element.
+In each stack the back elements will be painted first and the forward elements on top, closer to the user.  In case of overlap the foremost element will hide the former element.
 <br>
 The stacks are ordered according to the z-index property.
 Boxes with "z-index" property form a local stack.
