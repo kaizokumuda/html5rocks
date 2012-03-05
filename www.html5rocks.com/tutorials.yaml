@@ -836,13 +836,14 @@ tags:
 title: "Introducing WebSockets: Bringing Sockets to the Web"
 url: /tutorials/websockets/basics/
 author_id: malteubl
+author_id2: agektmr
 publication_date: 2010-10-20
 description: Learn how to use WebSockets to add low latency bidirectional client-server communication to your web app.
 browser_support:
 - chrome
 - ff
 - safari
-- opera
+- ie
 tags:
 - websockets
 - gaming
