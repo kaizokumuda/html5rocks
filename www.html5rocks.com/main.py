@@ -202,9 +202,11 @@ class ContentHandler(webapp.RequestHandler):
     prefix = '%s://%s' % (self.request.scheme, self.request.host)
 
     feed = feedgenerator.Atom1Feed(
-        title=_(u'HTML5Rocks - Tutorials & Updates'),
+        title=_(u'HTML5Rocks - Posts & Tutorials'),
         link=prefix,
-        description=_(u'Take a guided tour through code that uses HTML5.'),
+        description=_(u'A resource for developers looking to put HTML5 to use '
+                      'today, including information on specific features and '
+                      'when to use them in your apps.'),
         language=u'en'
         )
     for tut in data:
