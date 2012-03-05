@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# Copyright 2011 Google Inc. All Rights Reserved.
+# Copyright 2012 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Unit Tests for the article l10n script."""
+"""Unit Tests for the Localizer class."""
 
 __author__ = ('mkwst@google.com (Mike West)')
 
@@ -22,13 +21,14 @@ import os
 import tempfile
 import unittest
 
-from localizer import Localizer
 from article import Article
+from localizer import Localizer
 
 TEST_ROOT = os.path.abspath(os.path.dirname(__file__))
 
+
 class TestLocalizerIndex(unittest.TestCase):
-  def test_simple(self):
+  def testSimple(self):
     l7r = Localizer(original_root=os.path.join(TEST_ROOT, 'test_fixtures',
                                                'localizer_simple'))
     self.assertEqual(3, len(l7r.articles))
@@ -42,7 +42,7 @@ class TestLocalizerIndex(unittest.TestCase):
                                   'localizer_simple', 'article3'),
                      l7r.articles[2].path)
 
-  def test_deeper(self):
+  def testDeeper(self):
     l7r = Localizer(original_root=os.path.join(TEST_ROOT, 'test_fixtures',
                                                'localizer_deeper'))
     self.assertEqual(6, len(l7r.articles))
@@ -71,24 +71,25 @@ class TestLocalizerIndex(unittest.TestCase):
                                   'article6'),
                      l7r.articles[5].path)
 
+
 class TestLocalizerLocalizableFileGeneration(unittest.TestCase):
   def setUp(self):
     # A little bit of monkey patching never hurt nobody.
     Article.ROOT = TEST_ROOT
     Article.UNLOCALIZED_ROOT = tempfile.mkdtemp(prefix='Unlocalized_')
-    self._created_files = []
+    self.__created_files = []
 
   def tearDown(self):
-    for file in self._created_files:
-      os.remove(file)
+    for f in self.__created_files:
+      os.remove(f)
     os.removedirs(Article.UNLOCALIZED_ROOT)
 
-  def test_simple(self):
+  def testSimple(self):
     l7r = Localizer(original_root=os.path.join(TEST_ROOT, 'test_fixtures',
                                                'localizer_simple'))
-    l7r.generate_localizable_files()
+    l7r.GenerateLocalizableFiles()
     for article in l7r.articles:
-      self._created_files.append(article.localizable_file_path)
+      self.__created_files.append(article.localizable_file_path)
       self.assertTrue(os.path.exists(article.localizable_file_path))
       self.assertTrue(os.path.isfile(article.localizable_file_path))
 

@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# Copyright 2011 Google Inc. All Rights Reserved.
+# Copyright 2012 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,38 +26,40 @@ from article import ArticleException
 
 TEST_ROOT = os.path.abspath(os.path.dirname(__file__))
 
+
 class TestArticleLocales(unittest.TestCase):
   ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 
-  def test_article_locales_none(self):
+  def testArticleLocalesNone(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures',
                                 'article_locales', 'none'))
     self.assertEqual([], temp.locales)
 
-  def test_article_locales_files(self):
+  def testArticleLocalesFiles(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures',
                                 'article_locales', 'files'))
     self.assertEqual([], temp.locales)
 
-  def test_article_locales_single(self):
+  def testArticleLocalesSingle(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures',
                                 'article_locales', 'single'))
     self.assertEqual(['en'], temp.locales)
 
-  def test_article_locales_static(self):
+  def testArticleLocalesStatic(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures',
                                 'article_locales', 'single'))
     self.assertEqual(['en'], temp.locales)
 
-  def test_article_locales_multiple(self):
+  def testArticleLocalesMultiple(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures',
                                 'article_locales', 'multiple'))
     self.assertEqual(['de', 'en', 'es'], temp.locales)
 
-  def test_article_locales_multiple_no_index(self):
+  def testArticleLocalesMultipleNoIndex(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures',
                                 'article_locales', 'multiple_no_index'))
     self.assertEqual(['de', 'es'], temp.locales)
+
 
 class TestArticlePaths(unittest.TestCase):
   ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -67,12 +68,12 @@ class TestArticlePaths(unittest.TestCase):
     # A little bit of monkey patching never hurt nobody.
     Article.ROOT = TEST_ROOT
 
-  def test_nonexistent_path(self):
+  def testNonexistentPath(self):
     path = os.path.join(TEST_ROOT, 'test_fixtures', 'article_path',
                         'does_not_exist')
     self.assertRaises(ArticleException, Article, path)
 
-  def test_article_path(self):
+  def testPath(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures', 'article_path'))
     expected = os.path.join(Article.UNLOCALIZED_ROOT,
                             Article.PATH_DELIMITER.join(
@@ -80,7 +81,7 @@ class TestArticlePaths(unittest.TestCase):
     expected = '%s.html' % expected
     self.assertEqual(expected, temp.localizable_file_path)
 
-  def test_article_multiple(self):
+  def testMultiple(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures',
                                 'article_path_multiple', 'path1', 'path2'))
     expected = os.path.join(Article.UNLOCALIZED_ROOT,
@@ -103,13 +104,14 @@ class TestArticleUnlocalizedGeneration(unittest.TestCase):
       os.remove(self._created_file)
     os.removedirs(Article.UNLOCALIZED_ROOT)
 
-  def test_simple(self):
+  def testSimple(self):
     temp = Article(os.path.join(TEST_ROOT, 'test_fixtures',
                                 'article_locales', 'single'))
-    self._created_file = temp.generate_localizable_file()
+    self._created_file = temp.GenerateLocalizableFile()
     self.assertEqual(temp.localizable_file_path, self._created_file)
     self.assertTrue(os.path.exists(temp.localizable_file_path))
     self.assertTrue(os.path.isfile(temp.localizable_file_path))
+
 
 class TestArticleLocalizedFiles(unittest.TestCase):
   def setUp(self):
@@ -118,22 +120,22 @@ class TestArticleLocalizedFiles(unittest.TestCase):
                                 'article_localizations', 'article_root')
     Article.LOCALIZED_ROOT = os.path.join(Article.ROOT, '..', 'localized_root')
 
-  def test_available_localizations_none(self):
+  def testAvailableLocalizationsNone(self):
     temp = Article(os.path.join(Article.ROOT, 'none'))
     self.assertEqual([], temp.available_localizations)
     self.assertEqual([], temp.new_localizations)
 
-  def test_available_localizations_static(self):
+  def testAvailableLocalizationsStatic(self):
     temp = Article(os.path.join(Article.ROOT, 'none'))
     self.assertEqual([], temp.available_localizations)
     self.assertEqual([], temp.new_localizations)
 
-  def test_available_localizations_only_english(self):
+  def testAvailableLocalizationsOnlyEnglish(self):
     temp = Article(os.path.join(Article.ROOT, 'only_english'))
     self.assertEqual(['en'], temp.available_localizations)
     self.assertEqual([], temp.new_localizations)
 
-  def test_available_localizations_one_new(self):
+  def testAvailableLocalizationsOneNew(self):
     temp = Article(os.path.join(Article.ROOT, 'one_new'))
     self.assertEqual(['de', 'en'], temp.available_localizations)
     self.assertEqual(['de'], temp.new_localizations)

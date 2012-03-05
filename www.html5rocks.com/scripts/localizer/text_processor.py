@@ -1,5 +1,3 @@
-#!/usr/bin/python
-#
 # Copyright 2012 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
@@ -14,6 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+"""Converts a given string from Django template to HTML and back."""
 
 __author__ = ('mkwst@google.com (Mike West)')
 
@@ -37,23 +37,24 @@ class TextProcessor(object):
     dango: The Django template representation of the text.
     html: The HTML representation of the text.
   """
-  def __init__(self, django="", html=""):
+
+  def __init__(self, django='', html=''):
     self._django = django
     self._html = html
 
   @property
   def django(self):
     if not self._django:
-      self._django = self._html_to_django(self._html)
+      self._django = self.__HtmlToDjango(self._html)
     return self._django
 
   @property
   def html(self):
     if not self._html:
-      self._html = self._django_to_html(self._django)
+      self._html = self.__DjangoToHtml(self._django)
     return self._html
 
-  def _django_to_html(self, text):
+  def __DjangoToHtml(self, text):
     """Given a Django template's content, return HTML suitable for l10n.
 
     Args:
@@ -108,7 +109,7 @@ class TextProcessor(object):
 
     return ''.join(to_return)
 
-  def _html_to_django(self, text):
+  def __HtmlToDjango(self, text):
     """Given localized HTML, return text formatted as a Django template.
 
     Args:

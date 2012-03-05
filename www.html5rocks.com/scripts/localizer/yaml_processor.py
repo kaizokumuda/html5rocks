@@ -1,5 +1,3 @@
-#!/usr/bin/python
-#
 # Copyright 2012 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
@@ -15,11 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Extracts localizable text from HTML5Rocks' YAML tutorial list."""
+
 __author__ = ('mkwst@google.com (Mike West)')
 
 import codecs
 import os
 import yaml
+
 
 class YamlProcessorException(Exception):
   pass

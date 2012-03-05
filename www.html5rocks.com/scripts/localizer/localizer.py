@@ -1,5 +1,3 @@
-#!/usr/bin/python
-#
 # Copyright 2012 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
@@ -15,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Implements the HTML5Rocks article localization workflow."""
+
 __author__ = ('mkwst@google.com (Mike West)')
 
 import codecs
@@ -24,6 +24,7 @@ import re
 from article import Article
 from article import ArticleException
 from yaml_processor import YamlProcessor
+
 
 class Localizer(object):
   """Implements the HTML5Rocks article localization workflow.
@@ -48,11 +49,11 @@ class Localizer(object):
       localized_root: The directory Localizer should scan for finished
           localizations.
     """
-    self._original_root = original_root
-    self._localized_root = localized_root
-    self._articles = None
+    self.__original_root = original_root
+    self.__localized_root = localized_root
+    self.__articles = None
 
-  def _index_english_articles(self):
+  def __IndexEnglishArticles(self):
     """Scans the original_root directory for English articles.
 
     Populates `self.articles_` with a list of Article objects representing
@@ -61,32 +62,32 @@ class Localizer(object):
     Returns:
         list of Article objects
     """
-    self._original_articles = []
-    for root, _, files in os.walk(self._original_root):
+    self.__original_articles = []
+    for root, _, files in os.walk(self.__original_root):
       for name in files:
         if not name == '.DS_Store' and re.search(r'\/en$', root):
-          self._original_articles.append(Article(os.path.dirname(root)))
-    return self._original_articles
+          self.__original_articles.append(Article(os.path.dirname(root)))
+    return self.__original_articles
 
   @property
   def articles(self):
-    if self._articles is None:
-      self._index_english_articles()
-    return self._original_articles
+    if self.__articles is None:
+      self.__IndexEnglishArticles()
+    return self.__original_articles
 
-  def generate_localizable_files(self):
+  def GenerateLocalizableFiles(self):
     for article in self.articles:
       if not article.completely_localized:
         try:
-          article.generate_localizable_file()
+          article.GenerateLocalizableFile()
         except ArticleException:
           pass
 
-  def generate_localizable_yaml(self, path):
+  def GenerateLocalizableYaml(self, path):
     processor = YamlProcessor(path)
     with codecs.open('_%s.html' % path, 'w', 'UTF-8') as outfile:
       outfile.write(processor.localizable_text)
 
-  def import_localized_files(self):
+  def ImportLocalizedFiles(self):
     for article in self.articles:
-      article.import_localized_files()
+      article.ImportLocalizedFiles()

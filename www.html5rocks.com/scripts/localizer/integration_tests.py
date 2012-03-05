@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# Copyright 2011 Google Inc. All Rights Reserved.
+# Copyright 2012 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -63,20 +62,20 @@ class Integration(unittest.TestCase):
     self.assertEqual(1, len(l7r.articles))
 
     # Test writing localizable HTML
-    l7r.generate_localizable_files()
+    l7r.GenerateLocalizableFiles()
     self.assertTrue(os.path.exists(l7r.articles[0].localizable_file_path))
     self.assertTrue(os.path.isfile(l7r.articles[0].localizable_file_path))
 
     # Test importataion.
-    l7r.import_localized_files()
+    l7r.ImportLocalizedFiles()
     self.assertEqual([], l7r.articles[0].new_localizations)
-    self.assertTrue(os.path.exists(l7r.articles[0].original_file_path('en')))
-    self.assertTrue(os.path.isfile(l7r.articles[0].original_file_path('en')))
-    self.assertTrue(os.path.exists(l7r.articles[0].original_file_path('de')))
-    self.assertTrue(os.path.isfile(l7r.articles[0].original_file_path('de')))
+    self.assertTrue(os.path.exists(l7r.articles[0].GetOriginalFilePath('en')))
+    self.assertTrue(os.path.isfile(l7r.articles[0].GetOriginalFilePath('en')))
+    self.assertTrue(os.path.exists(l7r.articles[0].GetOriginalFilePath('de')))
+    self.assertTrue(os.path.isfile(l7r.articles[0].GetOriginalFilePath('de')))
 
     # Verify contents
-    with open(l7r.articles[0].original_file_path('de'), 'r') as infile:
+    with open(l7r.articles[0].GetOriginalFilePath('de'), 'r') as infile:
       contents = infile.read()
       self.assertEqual("{% tag %}Beispiel", contents)
 

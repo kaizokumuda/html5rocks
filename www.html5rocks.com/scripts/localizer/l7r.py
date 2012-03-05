@@ -1,5 +1,3 @@
-#!/usr/bin/python
-#
 # Copyright 2012 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
@@ -68,7 +66,7 @@ if __name__ == '__main__':
 
   if options.generate_html and options.yaml_infile:
     try:
-      l7r.generate_localizable_yaml(options.yaml_infile)
+      l7r.GenerateLocalizableYaml(options.yaml_infile)
     except YamlProcessorException:
       parser.error('`%s` couldn\'t be read.' % options.yaml_infile)
   elif options.generate_html:
@@ -76,10 +74,10 @@ if __name__ == '__main__':
       os.mkdir(Article.UNLOCALIZED_ROOT)
     except OSError:
       pass
-    l7r.generate_localizable_files()
+    l7r.GenerateLocalizableFiles()
   elif options.import_html:
     try:
       os.mkdir(Article.LOCALIZED_ROOT)
     except OSError:
       pass
-    l7r.import_localized_files()
+    l7r.ImportLocalizedFiles()

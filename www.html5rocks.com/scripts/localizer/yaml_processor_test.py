@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# Copyright 2011 Google Inc. All Rights Reserved.
+# Copyright 2012 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-__author__ = ('mkwst@google.com (Mike West)')
+"""Unit Tests for the YamlProcessor class."""
 
-"""Unit Tests for the article l10n script."""
+__author__ = ('mkwst@google.com (Mike West)')
 
 import os
 import unittest
@@ -26,20 +25,21 @@ from yaml_processor import YamlProcessorException
 
 TEST_ROOT = os.path.abspath(os.path.dirname(__file__))
 
+
 class TestYamlProcessor(unittest.TestCase):
-  def test_nonexistent_article(self):
+  def testNonexistentArticle(self):
     path = os.path.join(TEST_ROOT, 'test_fixtures', 'yaml',
                         'does_not_exist', 'test.yaml')
     self.assertRaises(YamlProcessorException, YamlProcessor, path)
 
-  def test_single_article(self):
+  def testSingleArticle(self):
     test = YamlProcessor(os.path.join(TEST_ROOT, 'test_fixtures', 'yaml',
                                       'single', 'test.yaml'))
     expected = ('{% blocktrans %}Article 1.{% endblocktrans %}\n'
                 '{% blocktrans %}Description for article 1.{% endblocktrans %}')
     self.assertEqual(expected, test.localizable_text)
 
-  def test_two_articles(self):
+  def testTwoArticles(self):
     test = YamlProcessor(os.path.join(TEST_ROOT, 'test_fixtures', 'yaml',
                                       'double', 'test.yaml'))
     expected = (

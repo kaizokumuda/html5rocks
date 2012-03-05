@@ -1,5 +1,3 @@
-#!/usr/bin/python
-#
 # Copyright 2012 Google Inc. All Rights Reserved.
 # -*- coding: utf-8 -*-
 #
@@ -63,8 +61,8 @@ class Article(object):
     if not os.path.exists(path):
       raise ArticleException('`%s` does not exist.' % path)
     self.path = path
-    self._locales = None
-    self._available_localizations = None
+    self.__locales = None
+    self.__available_localizations = None
 
   @property
   def locales(self):
@@ -77,12 +75,12 @@ class Article(object):
     Returns:
       A list of locales, e.g. ['de','en','es']
     """
-    if not self._locales:
-      self._locales = [directory
-                       for directory in os.listdir(self.path)
-                       if os.path.exists(os.path.join(self.path, directory,
-                                                      'index.html'))]
-    return self._locales
+    if not self.__locales:
+      self.__locales = [directory
+                        for directory in os.listdir(self.path)
+                        if os.path.exists(os.path.join(self.path, directory,
+                                                       'index.html'))]
+    return self.__locales
 
   @property
   def completely_localized(self):
@@ -118,7 +116,7 @@ class Article(object):
     temp = '%s.html' % temp
     return os.path.abspath(os.path.join(self.UNLOCALIZED_ROOT, temp))
 
-  def _index_available_localizations(self):
+  def __IndexAvailableLocalizations(self):
     """Populates a list of available localizations for this article.
 
     Indexes all files whose paths match
@@ -129,17 +127,17 @@ class Article(object):
     Some articles have "static" directories that are used for all
     localizations. These are not counted as available localizations.
     """
-    self._available_localizations = []
+    self.__available_localizations = []
     matches = glob.glob(os.path.join(self.LOCALIZED_ROOT, '*',
                                      os.path.basename(
                                          self.localizable_file_path)))
     for match in matches:
-      if match != "static":
+      if match != 'static':
         # The locale is the name of the directory in which the localized file
         # sits. `/path/to/article/en/article__is__here.html` has a locale of
         # "en". "static" is special-cased out.
-        self._available_localizations.append(os.path.basename(os.path.dirname(
-                                                                  match)))
+        self.__available_localizations.append(os.path.basename(
+            os.path.dirname(match)))
 
   @property
   def available_localizations(self):
@@ -148,9 +146,9 @@ class Article(object):
     Returns:
       A list of locales, e.g. ['en', 'de', 'es']
     """
-    if self._available_localizations is None:
-      self._index_available_localizations()
-    return self._available_localizations
+    if self.__available_localizations is None:
+      self.__IndexAvailableLocalizations()
+    return self.__available_localizations
 
   @property
   def new_localizations(self):
@@ -166,7 +164,7 @@ class Article(object):
             for locale in self.available_localizations
             if locale not in self.locales]
 
-  def original_file_path(self, locale):
+  def GetOriginalFilePath(self, locale):
     """Returns the path for a specific original file.
 
     This method just generates a path: it doesn't check that the file exists
@@ -177,7 +175,7 @@ class Article(object):
     """
     return os.path.join(self.ROOT, self.path, locale, 'index.html')
 
-  def localized_file_path(self, locale):
+  def GetLocalizedFilePath(self, locale):
     """Returns the path for a specific localized file.
 
     This method just generates a path: it doesn't check that the file exists
@@ -189,7 +187,7 @@ class Article(object):
     return os.path.join(self.LOCALIZED_ROOT, locale,
                         os.path.basename(self.localizable_file_path))
 
-  def generate_localizable_file(self):
+  def GenerateLocalizableFile(self):
     """Generates a localizable representation of the article.
 
     This method grabs the English version of the article, runs the text through
@@ -210,30 +208,30 @@ ArticleException:
 """
       raise ArticleException(error % (self.path, self.locales))
 
-    original = self.original_file_path('en')
+    original = self.GetOriginalFilePath('en')
     with codecs.open(original, 'r', 'UTF-8') as infile:
       with codecs.open(self.localizable_file_path, 'w', 'UTF-8') as output:
         temp = TextProcessor(django=infile.read())
         output.write(temp.html)
     return self.localizable_file_path
 
-  def import_localized_files(self):
+  def ImportLocalizedFiles(self):
     """If new localized files are available, import them.
 
     This method sifts through the available localized files, and imports each
     to the correct location under CONTENT_ROOT.
     """
     for locale in self.new_localizations:
-      if os.path.isfile(self.localized_file_path(locale)):
+      if os.path.isfile(self.GetLocalizedFilePath(locale)):
         try:
-          os.mkdir(os.path.dirname(self.original_file_path(locale)))
+          os.mkdir(os.path.dirname(self.GetOriginalFilePath(locale)))
         except OSError:
           pass
-        in_path = self.localized_file_path(locale)
-        out_path = self.original_file_path(locale)
+        in_path = self.GetLocalizedFilePath(locale)
+        out_path = self.GetOriginalFilePath(locale)
         with codecs.open(in_path, 'r', 'UTF-8') as infile:
           with codecs.open(out_path, 'w', 'UTF-8') as outfile:
             temp = TextProcessor(html=infile.read())
             outfile.write(temp.django)
-    self._available_localizations = []
-    self._locales = []
+    self.__available_localizations = []
+    self.__locales = []
