@@ -30,15 +30,15 @@ help:
 	@echo "$$HEREDOC"
 
 yaml:
-	@python ./scripts/localize_articles.py --generate --yaml=tutorials.yaml
+	@python ./scripts/localizer/l7r.py --generate --yaml=tutorials.yaml
 
 messages: yaml
 	@for locale in $(LANGUAGES) ; do \
 		PYTHONPATH=$(DJANGO_ROOT) $(DJANGO_ROOT)/django/bin/django-admin.py makemessages -l $$locale ; \
 	done
-	@python ./scripts/localize_articles.py --generate
+	@python ./scripts/localizer/l7r.py --generate
 	@rm -f ./_tutorials.yaml.html
 
 compile:
 	@PYTHONPATH=$(DJANGO_ROOT) $(DJANGO_ROOT)/django/bin/django-admin.py compilemessages
-	@python ./scripts/localize_articles.py --import
+	@python ./scripts/localizer/l7r.py --import
