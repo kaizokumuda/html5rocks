@@ -1,3 +1,20 @@
+title: WebGL Transforms
+url: /tutorials/webgl/webgl_transforms/
+author_id: gman
+publication_date: 2012-02-09
+description: "How 3D transforms work and how you can use them in WebGL."
+browser_support:
+- chrome
+- ff
+- safari
+- opera
+tags:
+- webgl
+- type:tutorial
+- class:graphics
+
+---
+
 title: "Writing Augmented Reality Applications using JSARToolKit"
 url: /tutorials/webgl/jsartoolkit_webrtc/
 author_id: ilmari
