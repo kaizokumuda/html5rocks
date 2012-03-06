@@ -114,10 +114,13 @@ class MixinAnnotation(django.template.Node):
     prefix_list = '\n'.join(
         ['%s-%s ...' % (x, self.prop) for x in PREFIXES])
     prefix_list += '\n        %s ...' % (self.prop) # Include unprefixed version.
-    prefix_list = '/* Property requires vendor prefixes: */\n' + prefix_list
-    
-    return ('<span data-tooltip="%s" class="tooltip">+<span class="property">'
-            '%s</span> %s</span>' % (prefix_list, self.prop, self.val))
+    prefix_list = '/*Vendor prefixes required. Try Compass/SASS.*/\n' + prefix_list
+
+    url = 'http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#including_a_mixin'
+
+    return ('<a href="%s" target="_blank" data-tooltip="%s" '
+            'class="noexternal tooltip">+<span class="property">%s</span> '
+            '%s</a>' % (url, prefix_list, self.prop, self.val))
 
 
 def do_mixin_annotation(parser, token):
