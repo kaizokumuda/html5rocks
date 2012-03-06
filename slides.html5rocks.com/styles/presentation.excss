@@ -132,11 +132,15 @@ body, html, #flex-container, .slides {
   margin: 0;
   padding: 0;
 }
-
+html {
+  overflow: scroll;
+}
 #flex-container {
   @mixin displayAsBox;
   @mixin boxPack(center);
   @mixin boxAlign(center);
+  min-height: 704px;
+  min-width: 904px;
 }
 
 body {
@@ -144,6 +148,8 @@ body {
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   background: #778;
+  min-height: 704px;
+  min-width: 904px;
 }
 
 .slides {

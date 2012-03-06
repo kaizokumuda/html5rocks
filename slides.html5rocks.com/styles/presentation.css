@@ -4,6 +4,9 @@ body, html, #flex-container, .slides {
   margin: 0;
   padding: 0;
 }
+html {
+  overflow: scroll;
+}
 #flex-container {
   display: -webkit-box;
   display: -moz-box;
@@ -14,12 +17,16 @@ body, html, #flex-container, .slides {
   -webkit-box-align: center;
   -moz-box-align: center;
   box-align: center;
+  min-height: 704px;
+  min-width: 904px;
 }
 body {
   overflow: hidden;
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
   background: #778;
+  min-height: 704px;
+  min-width: 904px;
 }
 .slides {
   position: relative;
