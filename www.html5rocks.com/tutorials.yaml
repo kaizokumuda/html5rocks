@@ -855,6 +855,7 @@ url: /tutorials/websockets/basics/
 author_id: malteubl
 author_id2: agektmr
 publication_date: 2010-10-20
+update_date: 20112-03-06
 description: Learn how to use WebSockets to add low latency bidirectional client-server communication to your web app.
 browser_support:
 - chrome

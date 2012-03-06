@@ -20,7 +20,12 @@
       <section class="byline">
         <a href="/profiles/#{{ tut.author.key.name }}"><img src="/static/images/profiles/75/{{ tut.author.key.name }}.75.png" itemprop="photo" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}"></a>
         <hgroup>
-          <h2>By <strong><a href="/profiles/#{{ tut.author.key.name }}">{{ tut.author.given_name }} {{ tut.author.family_name }}</a></strong></h2>
+          <h2>
+            By <strong><a href="/profiles/#{{ tut.author.key.name }}">{{ tut.author.given_name }} {{ tut.author.family_name }}</a></strong>
+            {% if tut.second_author %}
+              &amp; <strong><a href="/profiles/#{{ tut.second_author.key.name }}">{{ tut.second_author.given_name }} {{ tut.second_author.family_name }}</a></strong>
+            {% endif %}
+          </h2>
         </hgroup>
         <div class="date">
           <time pubdate>{% blocktrans %}Published{% endblocktrans %} <strong>{{ tut.publication_date }}</strong></time>
