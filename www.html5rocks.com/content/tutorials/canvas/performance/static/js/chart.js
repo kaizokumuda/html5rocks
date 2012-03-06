@@ -14,7 +14,7 @@ function Chart(testId) {
 
 Chart.URL_FORMAT = 'http://www.browserscope.org/user/tests/table/{ID}?o=json&v=top&callback=?';
 Chart.MODERN = /Firefox [4-9]|Chrome 1[0-9]|IE 9|IE 10|Safari [5-9]/;
-Chart.MOBILE = /iPhone|iPad|Android/
+Chart.MOBILE = /iPhone|iPad|Android|Chrome Mobile/
 
 /**
  * Renders a graph for the corresponding test
