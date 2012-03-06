@@ -2936,8 +2936,28 @@ article.tutorial figcaption
   font-style: italic;
 }
 
-.page header .disqus_comments
-{
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+.tooltip .property {
+  border-bottom: 1px dotted #333;
+}
+.tooltip:hover:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 5px 9px;
+  color: #fff;
+  border-radius: 3px;
+  left: 0;
+  top: 25px;
+  width: 325px;
+  z-index: 100;
+  /*white-space: nowrap;*/
+}
+
+.page header .disqus_comments {
   clear: both;
   float: left;
   display: block;
