@@ -782,6 +782,7 @@ class TagsHandler(ContentHandler):
 
     resources = self._query_to_serializable_list(query)
 
+    self.response.headers.add_header('Access-Control-Allow-Origin', '*')
     self.response.headers['Content-Type'] = 'application/json'
     self.response.out.write(simplejson.dumps(resources))
     #self.response.out.write(resources)
