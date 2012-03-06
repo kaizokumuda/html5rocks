@@ -110,10 +110,10 @@ class MixinAnnotation(django.template.Node):
       self.val += ';'
 
   def render(self, context):
-    PREFIXES = ['moz', 'ms', 'o', 'webkit']
+    PREFIXES = ['-webkit', '   -moz', '    -ms', '     -o']
     prefix_list = '\n'.join(
-        ['-%s-%s ...' % (x, self.prop) for x in PREFIXES])
-    prefix_list += '\n%s ...' % (self.prop) # Include unprefixed version.
+        ['%s-%s ...' % (x, self.prop) for x in PREFIXES])
+    prefix_list += '\n        %s ...' % (self.prop) # Include unprefixed version.
     prefix_list = '/* Property requires vendor prefixes: */\n' + prefix_list
     
     return ('<span data-tooltip="%s" class="tooltip">+<span class="property">'
