@@ -98,3 +98,31 @@ def do_simple_profile_link(parser, token):
   return ProfileLinkSimple(ids)
 
 register.tag('simpleprofilelink', do_simple_profile_link)
+
+
+class MixinAnnotation(django.template.Node):
+  def __init__(self, props):
+    self.prop = props[0]
+    self.val = ' '.join(props[1:])
+    if self.prop[-1] != ':':
+      self.prop += ':'
+    if self.val[-1] != ';':
+      self.val += ';'
+
+  def render(self, context):
+    PREFIXES = ['-webkit', '   -moz', '    -ms', '     -o']
+    prefix_list = '\n'.join(
+        ['%s-%s ...' % (x, self.prop) for x in PREFIXES])
+    prefix_list += '\n        %s ...' % (self.prop) # Include unprefixed version.
+    prefix_list = '/* Property requires vendor prefixes: */\n' + prefix_list
+    
+    return ('<span data-tooltip="%s" class="tooltip">+<span class="property">'
+            '%s</span> %s</span>' % (prefix_list, self.prop, self.val))
+
+
+def do_mixin_annotation(parser, token):
+  props = token.split_contents()
+  props.pop(0)  # Remove tag name
+  return MixinAnnotation(props)
+
+register.tag('mixin', do_mixin_annotation)

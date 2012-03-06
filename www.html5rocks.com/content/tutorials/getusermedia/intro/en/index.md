@@ -335,13 +335,13 @@ as it is captured:
       border: 1px solid #ccc;
     }
     .grayscale {
-      -webkit-filter: grayscale(1); /* add other vendor prefixes when available. */
+      {% mixin filter: grayscale(1); %}
     }
     .sepia {
-      -webkit-filter: sepia(1);
+      {% mixin filter: sepia(1); %}
     }
     .blur {
-      -webkit-filter: blur(3px);
+      {% mixin filter: blur(3px); %}
     }
     ...
     </style>

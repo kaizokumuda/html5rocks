@@ -762,3 +762,24 @@ google: 113205278198625312096
 twitter: alexanderdanilo
 email: adanilo@google.com
 
+---
+
+id: chriswilson
+name:
+  given: Chris
+  family: Wilson
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: Seattle
+  region: Washington
+  country: USA
+  lat: 47.652
+  lon: -122.350
+homepage:
+google: 106422711035746240826
+twitter: cwilso
+email: cwilso@google.com
+
+
