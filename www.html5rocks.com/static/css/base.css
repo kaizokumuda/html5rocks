@@ -1142,6 +1142,7 @@ header.main h1
 .subheader .features
 {
   padding-top: 8px;
+  padding-bottom: 8px;
   overflow: hidden;
 }
 
@@ -1174,7 +1175,9 @@ header.main h1
   padding: 10px 0 0 20px;
   width: 710px;
 }
-html[lang=de] .subheader .features ul {
+html[lang=de] .subheader .features ul,
+html[lang=es] .subheader .features ul,
+html[lang=ru] .subheader .features ul {
   width: 600px;
 }
 
@@ -1194,6 +1197,15 @@ html[lang=de] .subheader .features ul {
   padding: 3px 0 4px 30px;
   text-transform: uppercase;
   width: 112px;
+}
+
+html[lang=es] .subheader .features ul li,
+html[lang=ru] .subheader .features ul li {
+  width: 200px;
+}
+html[lang=es] .subheader .features ul li a,
+html[lang=ru] .subheader .features ul li a {
+  width: auto;
 }
 
 .subheader .features ul li a.offline        { background-position: 0    2px; }
@@ -3132,7 +3144,7 @@ section.disqus
   .subheader .search
   {
     font-size: 48px;
-    padding-top: 7px;
+    padding-top: 10px;
   }
 
   .subheader .search label
