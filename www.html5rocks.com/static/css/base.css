@@ -1491,16 +1491,16 @@ body[data-href='home'] section#updates ul
   margin: .5em 0 !important;
 }
 
-body[data-href='home'] #latest_articles_feed {
+body[data-href='home'] #updates_list {
   width: 60%;
 }
 
-body[data-href='home'] #latest_articles_feed li {
+body[data-href='home'] #updates_list li {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-body[data-href='home'] #latest_articles_feed .title {
+body[data-href='home'] #updates_list .title {
   max-width: 75%;
   /*display: inline-block;*/
   width: auto;

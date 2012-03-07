@@ -11,17 +11,21 @@ window.updates = {
         success: function(data) {
           var entries = [];
           for (var i = 0, entry; entry = result.feed.entries[i]; ++i) {
-            if ($.inArray(selfPage, entry.categories) != -1) {
+            if ($.inArray(selfPage, entry.categories) != -1 || selfPage == 'home') {
               var date = new Date(entry.publishedDate);
               entry.formattedDateStr = (date.getMonth() + 1) + '/' + date.getDate();
               entries.push(entry);
             }
           }
 
+          // If we're on the homepage, cut the results to max 5.
+          if (selfPage == 'home') {
+            entries = entries.slice(0, 5);
+          }
+
           updates.tmpl = Handlebars.compile(data);
           var html = updates.tmpl({updates: entries});
           $('#updates_list').append(html);
-
           updates.resort();
         }
       });

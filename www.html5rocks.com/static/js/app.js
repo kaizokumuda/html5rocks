@@ -165,7 +165,7 @@ window.route = {
   },
 
   home: function() {
-    feed.grabPipe()
+
   },
 
   tutorials: function() {
@@ -241,115 +241,6 @@ window.state = {
 
 };
 
-// yahoo pipe returning our feed to do stuff with it.
-// called from inside route[home|tutorials]()
-window.feed = {
-
-  pipeURL: 'http://pipes.yahoo.com/pipes/pipe.run?_id='+
-            '647030be6aceb6d005c3775a1c19401c&_render=json&',
-            // 119e0da707bc08778cbf04df91bc4418 htmlfiverocks
-
-  grabPipe: function() {
-    $.ajax({
-      dataType: 'jsonp',
-      localCache: true, // use localStorage
-      cache: true,      // jQuery dont cachebust
-      url : feed.pipeURL + '_callback=?',
-      success: function(data) {
-        feed[route.state](data);
-      }
-    });
-  },
-
-  // homepage.
-  home: function(result) {
-    var container = document.getElementById('latest_articles_feed');
-    if (!container) return;
-    result = feed.process(result);
-    var html = feed.generateHTML(result);
-
-    if (container.textContent == 'loading feed...') {
-      container.textContent = '';
-    }
-    container.innerHTML += html;
-  },
-
-
-
-  generateHTML: function(result) { 
-
-    var html = [];
-
-    for (var i = 0, entry; entry = result.value.items[i]; ++i) {
-
-      var classes = '<span class="classes">';
-      if (entry.category && entry.category.length) {
-        entry.category.forEach(function(cat) {
-          var CLASS_PREFIX = 'class:';
-          if (cat.term.indexOf(CLASS_PREFIX) == 0) {
-            cat.term = cat.term.substring(CLASS_PREFIX.length);
-          }
-          classes += '<span class="class ' + cat.term + '"><span class="class_name">' + cat.term + '</span></span>';
-        });
-      }
-      classes += '</span>';
-
-      html.push('<li><span class="byline"><span class="date">',
-                entry.formattedDateStr, '</span> ', '<span class="author">',
-                // TODO(mkwst): This shouldn't be a blank alt-attribute. It
-                // should contain the author's name. That apparently isn't
-                // available in the feed.
-                //
-                // TODO(ericbidelman): Why is this being loaded via a feed,
-                // anyway? Don't we have a database?
-                entry.author ? '<img src="/static/images/profiles/75/' + entry.author + '.75.png" alt="">' : '',
-                '</span></span>',
-                '<span class="details"><span class="title">',
-                entry.title.link(entry.link), '</span>', classes
-                //,'<span data-type="', entry.type, '" class="type">', entry.type, '</span></span></li>'
-                );
-    }
-    return html.join('');
-
-  },
-  
-
-  // normalize feed data.
-  process : function(result) {
-    
-    if (!result.value.items) return;
-
-    for (var i = 0, entry; entry = result.value.items[i]; ++i) {
-      var date = new Date(entry.pubDate.split('T')[0].replace(/-/g, '/'));
-      var formattedDateStr = date.getUTCMonth() + 1 + '/' + date.getUTCDate();
-
-      var author = '';
-      if (entry.author) {
-        author = entry.author.name;
-      }
-
-      var type = '';
-      if (entry.id.match('www.html5rocks.com') || entry.id.match('htmlfiverocks')) {
-        type = 'tutorial';
-      } else if (entry.id.match('updates.html5rocks.com')) {
-        type = 'update';
-      }
-
-      entry.date = date;
-      entry.formattedDateStr = formattedDateStr;
-      entry.author = author;
-      entry.type = type;
-
-    }
-    
-    return result;
-
-  } // eo process()
-} // eo feed{}
-
-
-
-
 
 // github.com/paulirish/jquery-ajax-localstorage-cache
 // dependent on Modernizr's localStorage test
@@ -408,11 +299,8 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
 });
 
 
-
-
-
-
 if (AJAXIFY_SITE) {
   window.addEventListener('popstate', state, false);
 }
+
 window.addEventListener('DOMContentLoaded', route.onload, false);

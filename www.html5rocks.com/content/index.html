@@ -90,7 +90,23 @@
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJpSURBVDjLfVNJT1NRGL0/wY0/wonaEesOAxoTF4bEpY1GFGGBqEUhggjYaCVIcIKC1TiHiCEBiXEhVdm4EDaaKI2WofTRlqbYR8sbOhzfd5v3tEK8i5d3F+fcM3wf+3x065bZc9t6F5rNCLeYsXTJgkibBUK7FcsdVkS7bIh57Ihfs2PFa0fihgOx6w4QhrCMfmKXnYi4y7DcbEK8zYxEhwVJjxW/vDaIPXak+xxYv1MOqX8PlEEn1PtOKP4KTsLoZQLHvQeRfjeAzPsBiE9O/Rec9e+F7HMiqiljJJteXvXX4O9TkEUon4awPlS5KThzq5xbY+SZZCf7DkGa8kH9Mo58SvjDpKwh+/biBnCq245opw2MAtvMszxah0IiaPDkPl4tASc9Nh40ow+B089ruexceBrqVC/kB5Vcdj44YZDIr5sM8Eq71larBYyqopczw6dLMuDSR11cdm52wshltaeCg6MtVLtGQD3rsqVHh6FOdqEgCgaJOuLisvVcMgEfBwtuExYvmMEoyQ1VPd5vSC9oQPH2PqRHzhfvksjB4YYyLLh3g9GE6eD83AcUhBkemPKwylCSHrvCZROYTtR7BPP1uzB3ViOg8SSwOl5v2M9HprlsOXCz6ORbgMuWvk7ye/KlF6GTOxE6YwKj2SbZ2eFq7pmOOvOCp732tJbfs8J3Ljv1pr9IMHYXP47vwM8GjYAWQx8S5Vk1pFd1JVUlB2uQuHeCe15qPQCh+xjmm6oQdG1HqFGzQAtBi/HvkOhV6YGRZ5JNLxN4sbG4kUxfZ1oMaoTGk4aLhoR6pqoobQqMPJNsellf598J2Or0Mh3FtwAAAABJRU5ErkJggg==" width="16" height="16" alt="{% trans "RSS" %}" />
       </a>
     </h2>
-    <ul id="latest_articles_feed"><li><i>{% trans "loading feed..." %}</i></li></ul>
+    <ul id="updates_list">
+      {% for tut in tutorials %}
+        {% if forloop.counter0 < 5 %}
+          <li data-pubdate="{{tut.publication_date}}">
+            <span class="date">{{tut.publication_date.month}}/{{tut.publication_date.day}}</span> <span class="author" data-author_id="{{ tut.author.key.name }}"><img src="/static/images/profiles/75/{{tut.author.key.name}}.75.png" alt="{{ tut.author.given_name }} {{ tut.author.family_name }}" title="{{ tut.author.given_name }} {{ tut.author.family_name }}"></span>
+            <span class="title"><a href="{{tut.url}}">{{tut.title|safe}}</a></span>
+            <span class="classes">
+              {% for tag in tut.classes %}
+                <span class="class {{tag}}"><span class="class_name">{{tag}}</span></span>
+              {% endfor %}
+            </span>
+          </li>
+        {% endif %}
+      {% empty %}
+        Sorry, nothing available yet. Become a <a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">contributor</a>.
+      {% endfor %}
+    </ul>
     <span class="share" style="right:260px;left: auto;">
       <ul>
         <li class="googleplus"><div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div></li>
@@ -298,6 +314,10 @@
     }, false);
   })();
 {% endif %}
-</script>
 
+var selfPage = '{{self_pagename}}'; // Need to pass in current page id to persona.js via template.
+</script>
+</script>
+<script defer src="/static/js/handlebars-1{% if prod %}.min{% endif %}.js"></script>
+<script defer src="/static/js/persona{% if prod %}.min{% endif %}.js"></script>
 {% endblock %}
