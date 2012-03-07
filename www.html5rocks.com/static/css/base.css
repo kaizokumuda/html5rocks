@@ -3055,8 +3055,24 @@ section.disqus
 #google_plus_page_link {
   float: right;
 }
+
 #google_plus_page_link a {
   background: none;
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+  font: 13px/16px arial,sans-serif;
+  text-decoration: none;
+  padding: 0;
+}
+
+#google_plus_page_link a span {
+  background: url(https://ssl.gstatic.com/images/icons/gplus-16.png);
+  display: inline-block;
+  height: 16px;
+  overflow: hidden;
+  text-indent: 16px;
+  width: 16px;
 }
 
 /* PRINT */
