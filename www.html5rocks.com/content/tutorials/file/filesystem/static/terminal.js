@@ -502,7 +502,9 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
 
         // Attempt to create a folder to test if we can.
         cwd_.getDirectory('testquotaforfsfolder', {create: true}, function(dirEntry) {
-          dirEntry.remove(); // If successfully created, just delete it.
+          dirEntry.remove(function() { // If successfully created, just delete it.
+            // noop.
+          });
         }, function(e) {
           if (e.code == FileError.QUOTA_EXCEEDED_ERR) {
             output('ERROR: Write access to the FileSystem is unavailable. ' +
