@@ -977,7 +977,7 @@ msgstr "Leistung"
 #: content/index.html:187 templates/base.html:155 templates/base.html.py:217
 #: templates/base.html:332
 msgid "Nuts &amp; Bolts"
-msgstr "Praktische Grundlagen"
+msgstr "Grundlagen"
 
 #: content/index.html:194
 msgid "Why HTML5?"
