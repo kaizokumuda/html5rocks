@@ -2948,6 +2948,9 @@ article.tutorial figcaption
 .tooltip .property {
   border-bottom: 1px dotted #333;
 }
+.tooltip .property .kwd {
+  color: #508B88;
+}
 .tooltip:hover:after {
   content: attr(data-tooltip);
   position: absolute;
