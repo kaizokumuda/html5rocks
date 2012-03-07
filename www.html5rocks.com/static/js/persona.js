@@ -13,7 +13,7 @@ window.updates = {
           for (var i = 0, entry; entry = result.feed.entries[i]; ++i) {
             if ($.inArray(selfPage, entry.categories) != -1 || selfPage == 'home') {
               var date = new Date(entry.publishedDate);
-              entry.formattedDateStr = (date.getMonth() + 1) + '/' + date.getDate();
+              entry.formattedDateStr = (date.getUTCMonth() + 1) + '/' + date.getUTCDate();
               entries.push(entry);
             }
           }
