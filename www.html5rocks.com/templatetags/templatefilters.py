@@ -15,10 +15,9 @@
 
 import os
 import logging
+import time
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
-
-#import common
 
 import django.template
 
@@ -101,6 +100,7 @@ register.tag('simpleprofilelink', do_simple_profile_link)
 
 
 class MixinAnnotation(django.template.Node):
+
   def __init__(self, props):
     self.prop = props[0]
     self.val = ' '.join(props[1:])
@@ -118,9 +118,13 @@ class MixinAnnotation(django.template.Node):
 
     url = 'http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#including_a_mixin'
 
-    return ('<a href="%s" target="_blank" data-tooltip="%s" '
-            'class="noexternal tooltip">+<span class="property">%s</span> '
-            '%s</a>' % (url, prefix_list, self.prop, self.val))
+    tooltip_id = 'tooltip' + str(time.clock())
+
+    return ('<a href="%s" id="%s" target="_blank" data-tooltip="%s" role="tooltip" '
+            'aria-describedby="%s" class="noexternal tooltip">+'
+            '<span class="property">%s</span> %s</a>' % (url, tooltip_id,
+                                                         prefix_list, tooltip_id,
+                                                         self.prop, self.val))
 
 
 def do_mixin_annotation(parser, token):
