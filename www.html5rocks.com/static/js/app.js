@@ -267,11 +267,7 @@ window.feed = {
     if (!container) return;
     result = feed.process(result);
     var html = feed.generateHTML(result);
-
-    if (container.textContent == 'loading feed...') {
-      container.textContent = '';
-    }
-    container.innerHTML += html;
+    container.innerHTML = html;
   },
 
 

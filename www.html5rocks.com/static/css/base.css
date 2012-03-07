@@ -521,6 +521,10 @@ article section.link_target
   margin-left: 2em;
   padding: 0;
 }
+html[lang=de] article section.link_target
+{
+  height: 200px;
+}
 
 article.profile section,
 section.link_target a
@@ -1170,6 +1174,9 @@ header.main h1
   padding: 10px 0 0 20px;
   width: 710px;
 }
+html[lang=de] .subheader .features ul {
+  width: 600px;
+}
 
 .subheader .features ul li
 {
@@ -1548,6 +1555,15 @@ body[data-href='home'] article.sectioned section.one_third
   float: left;
   margin: 0 0 1em !important;
   width: 67%;
+}
+
+html[lang=de] #classes hgroup
+{
+  width: 40%;
+}
+html[lang=de] #classes hgroup + p
+{
+  width: 60% 
 }
 
 #classes ul
@@ -3068,7 +3084,7 @@ section.disqus
   .subheader
   {
     background: #65A8A5;
-    height: 82px;
+    height: auto;
   }
 
   .subheader::before
