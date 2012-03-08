@@ -241,7 +241,6 @@ window.state = {
 
 };
 
-
 // github.com/paulirish/jquery-ajax-localstorage-cache
 // dependent on Modernizr's localStorage test
 

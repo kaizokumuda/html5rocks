@@ -521,6 +521,10 @@ article section.link_target
   margin-left: 2em;
   padding: 0;
 }
+html[lang=de] article section.link_target
+{
+  height: 200px;
+}
 
 article.profile section,
 section.link_target a
@@ -1138,6 +1142,7 @@ header.main h1
 .subheader .features
 {
   padding-top: 8px;
+  padding-bottom: 8px;
   overflow: hidden;
 }
 
@@ -1170,6 +1175,11 @@ header.main h1
   padding: 10px 0 0 20px;
   width: 710px;
 }
+html[lang=de] .subheader .features ul,
+html[lang=es] .subheader .features ul,
+html[lang=ru] .subheader .features ul {
+  width: 600px;
+}
 
 .subheader .features ul li
 {
@@ -1187,6 +1197,15 @@ header.main h1
   padding: 3px 0 4px 30px;
   text-transform: uppercase;
   width: 112px;
+}
+
+html[lang=es] .subheader .features ul li,
+html[lang=ru] .subheader .features ul li {
+  width: 200px;
+}
+html[lang=es] .subheader .features ul li a,
+html[lang=ru] .subheader .features ul li a {
+  width: auto;
 }
 
 .subheader .features ul li a.offline        { background-position: 0    2px; }
@@ -1547,6 +1566,15 @@ body[data-href='home'] article.sectioned section.one_third
   float: left;
   margin: 0 0 1em !important;
   width: 67%;
+}
+
+html[lang=de] #classes hgroup
+{
+  width: 40%;
+}
+html[lang=de] #classes hgroup + p
+{
+  width: 60% 
 }
 
 #classes ul
@@ -3041,8 +3069,24 @@ section.disqus
 #google_plus_page_link {
   float: right;
 }
+
 #google_plus_page_link a {
   background: none;
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+  font: 13px/16px arial,sans-serif;
+  text-decoration: none;
+  padding: 0;
+}
+
+#google_plus_page_link a span {
+  background: url(https://ssl.gstatic.com/images/icons/gplus-16.png);
+  display: inline-block;
+  height: 16px;
+  overflow: hidden;
+  text-indent: 16px;
+  width: 16px;
 }
 
 /* PRINT */
@@ -3070,7 +3114,7 @@ section.disqus
   .subheader
   {
     background: #65A8A5;
-    height: 82px;
+    height: auto;
   }
 
   .subheader::before
@@ -3102,7 +3146,7 @@ section.disqus
   .subheader .search
   {
     font-size: 48px;
-    padding-top: 7px;
+    padding-top: 10px;
   }
 
   .subheader .search label
