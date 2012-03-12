@@ -276,7 +276,7 @@ textTrack.oncuechange = function (){
 
 <pre class="prettyprint">
 var sfx = new Audio('sfx.wav');
-var track = sfx.addTrack('metadata');
+var track = sfx.addTextTrack('metadata'); // previously implemented as addTrack()
 
 // Add cues for sounds we care about.
 track.addCue(new TextTrackCue('dog bark', 12.783, 13.612, '', '', '', true));
