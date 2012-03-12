@@ -235,6 +235,14 @@ class ContentHandler(webapp.RequestHandler):
 
     self._set_cache_param()
 
+    # Handle bug redirects before anything else, as it's trivial:
+    if (relpath == 'i18n-bug'):
+      return self.redirect(("http://code.google.com/p/html5rocks/issues/"
+                            "entry?template=Bug%20in%20i18n/l10n"))
+    if (relpath == 'new-bug'):
+      return self.redirect(("http://code.google.com/p/html5rocks/issues/"
+                            "entry?template=Defect%20report%20from%20user"))
+
     # Handle humans before locale, to prevent redirect to /en/
     # (but still ensure it's dynamic, ie we can't just redirect to a static url)
     if (relpath == 'humans.txt'):
