@@ -105,7 +105,7 @@ request.send();
 
 <pre class="prettyprint">
 ...
-sound.panner = ctx.createPannerNode();
+sound.panner = ctx.createPanner();
 // Instead of hooking up the volume to the main volume, hook it up to the panner.
 sound.volume.connect(sound.panner);
 // And hook up the panner to the main volume.
