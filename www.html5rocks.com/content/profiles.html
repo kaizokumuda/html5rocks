@@ -88,7 +88,7 @@
             {% if profile.homepage %}
             <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
             {% endif %}
-            {% if profile.google_account %}
+            {% if profile.google_account and profile.google_account != 'None' %}
             <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google_account}}">&nbsp;</a></li>
             {% endif %}
             {% if profile.twitter_account %}
