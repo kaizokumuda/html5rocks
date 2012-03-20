@@ -11,7 +11,7 @@ window.SLD = {
   receiveSpreadsheet : function(data) {
     if (data.feed)
       data.feed.entry.forEach(SLD.normalizeData);
-      
+
     // fix the sort order in case.
     SLD.talks = SLD.talks.sort(function(a, b){
 
@@ -24,14 +24,14 @@ window.SLD = {
     });
 
     SLD.talksdfr.resolve();
-    
+
   }, // eo receiveSpreadsheet()
 
   normalizeData : function(obj, i) {
-      
+
     var talk = {};
     talk.title = obj.title.$t;
-    
+
     // split up the weird list view. all key names start with 'omg'
     var items = obj.content.$t.split(/(^|,\s)omg/)
           // drop whitespace items
@@ -41,22 +41,22 @@ window.SLD = {
             var splitted = item.split(':');
             talk[splitted.shift()] = splitted.join(':').trim();
     });
-    
+
     SLD.talks.push(talk);
-    
+
   }, // eo normalizeData()
 
-    
+
   render : function(talks) {
     var html    = SLD.template({ talksArr: talks })
       , output  = document.querySelector('#output')
       , elems
-      
+
     output.innerHTML = html;
 
     SLD.lazyEmbed();
     FLTR.setup();
-    
+
   }, // eo render()
 
   lazyEmbed : function() {
@@ -66,20 +66,20 @@ window.SLD = {
     });
 
   },
-    
+
   offline : function() {
     SLD.receiveSpreadsheet(SLD.talks = SLD.backuptalks);
   },
 
   init : function(){
-    
+
     $.ajax({
      url      :"https://spreadsheets.google.com/feeds/list/0ArK1Uipy0SbDdHpQMzFWVFlMX1Zyd0tOWUxNeUE5QUE/od6/public/basic?alt=json-in-script",
      dataType :'jsonp',
      fail     : SLD.offline,
      success  : SLD.receiveSpreadsheet
     });
-    
+
     var tmplXHR = $.ajax({
      url        :"/static/js/talkstmpl.html",
      dataType   :'text',
@@ -98,60 +98,77 @@ window.SLD = {
       SLD.render(talks);
     });
 
-  } // eo init()
+  }, // eo init()
+
+  url2png : function(url,size){
+
+    var api_key = "P4EA9CF92E4F9C";
+    var f2 = 'F2';
+    var private_key = ("4024A1" + f2 + "D6FD6S").split('').reverse().join('');
+
+    url = url.trim()
+
+    var token = md5("" + private_key + '+' + url);
+
+    size = size || "s1280x1024-t459x359";
+
+    return "http://api.url2png.com/v4/" + [api_key, token, size, url].join('/');
+
+  } // eo url2png
 
 
 } // eo SLD{}
 
 // handles filtering
 window.FLTR = {
-  
+
   input     : document.querySelector('input#filter'),
   dateinput : document.querySelector('input#datefilter'),
   dateoutput: document.querySelector('output'),
-  
+
   elems   : undefined,
   entries : undefined,
   value   : undefined,
-  
+
   setup : function(){
     inputPlaceholder( FLTR.input );
-    FLTR.elems = document.querySelector('#output').querySelectorAll('h2,h4,p,span.date');
+    FLTR.elems = document.querySelector('#output').querySelectorAll('h2,h3,h4,p,span.date');
     FLTR.entries = document.querySelector('#output').querySelectorAll('article');
-    FLTR.input.addEventListener('keyup', FLTR.keyup, false);
+    $(FLTR.input).on('keyup', FLTR.keyup);
     FLTR.dateinput.addEventListener('change', FLTR.datechange, false)
     FLTR.datechange();
-    FLTR.keyup(); 
-    
+    FLTR.keyup();
+    FLTR.readFromHash();
+
     // hide slider if not supported.
     var input = document.createElement('input');
     input.setAttribute('type', 'range');
     if (input.type != 'range') FLTR.dateinput.parentNode.style.display = 'none';
   },
-  
+
   keyup : function(e){
     var val = FLTR.value = (e && e.target.value.toLowerCase()) || '';
-    
+
     FLTR.toggle(false);
-    
+
     FLTR.filterElems(function(elem){
       var text = elem.innerText || elem.textContent;
       return ~text.toLowerCase().indexOf(val);
     });
-    
-    
+
+
     if (val == ''){
       FLTR.toggle(true);
       FLTR.filterElems(function(elem){ return true; });
     }
-        
+
   },
-  
+
   // include the elements if they match the callback
   filterElems : function(callback) {
     var i    = 0
       , hash = {};
-    
+
     [].forEach.call( FLTR.elems, function(elem){
       if (callback(elem)){
         var curNode = elem;
@@ -160,52 +177,59 @@ window.FLTR = {
         var event = curNode.getAttribute('data-event');
         if (hash[event]) return;
         hash[event] = true;
-        
+
         curNode.classList.remove('hidden');
         curNode.classList.remove('even');
         if (++i % 2) curNode.classList.add('even')
       }
     });
   },
-  
+
   toggle : function(bool){
     [].forEach.call( FLTR.entries, function(elem) {
       // can't do elem.classList[ bool ? 'remove' : 'add' ]('hidden') because of the polyfill
       if (bool) {
         elem.classList.remove('hidden')
-      } 
+      }
       else {
         elem.classList.add('hidden')
       }
     });
   },
-  
+
   datechange : function(e) {
     var val = (e && e.target.value) || '0';
-    
+
     // earliest date in there.
     var min = new Date(SLD.talks[SLD.talks.length - 1].dateexact);
     // today
     var max = new Date();
     // num days since min
     var choice = new Date(+new Date(((max - min) * val / 100)) + +min);
-    
-    var months = ["January", "February", "March", 
-                  "April", "May", "June", "July", "August", "September", 
+
+    var months = ["January", "February", "March",
+                  "April", "May", "June", "July", "August", "September",
                   "October", "November", "December"];
-                  
-    FLTR.dateoutput.textContent = [months[choice.getMonth()], choice.getDate() + ',', choice.getFullYear()].join(' ');  
-    
+
+    FLTR.dateoutput.textContent = [months[choice.getMonth()], choice.getDate() + ',', choice.getFullYear()].join(' ');
+
     FLTR.toggle(false);
-    
+
     FLTR.filterElems(function(elem){
       if (elem.nodeName != 'SPAN') return;
       var date = new Date(elem.getAttribute('data-time'));
       return date > choice;
     });
-    
-  } // eo datechange()
-  
+
+  }, // eo datechange()
+
+  readFromHash : function(){
+    var hash = location.hash.replace(/^#/,'');
+    if (hash){
+      $(FLTR.input).val(hash).keyup();
+    }
+  } // eo readFromHash
+
 };
 
 
@@ -221,60 +245,67 @@ $(SLD.init);
 
 // handlebars helpers
 Handlebars.registerHelper('video', function(video) {
-  
+
   var uri = parseUri(video)
     , domain = uri.host
     , id
     , html
-  
+
   if (/youtube\.com$/.test(domain)){
     id = uri.queryKey.v;
-    iframe = '<iframe src=\'http://www.youtube.com/embed/' + id + 
+    iframe = '<iframe src=\'http://www.youtube.com/embed/' + id +
            '?autoplay=1\' frameborder=\'0\' allowfullscreen></iframe>';
     html = '<div data-embed="' + iframe + '"><span></span>' + // ▶  ▷
-             '<img src="http://i.ytimg.com/vi/' + id + '/hqdefault.jpg">' +
+             '<img src="http://i.ytimg.com/vi/' + id + '/hqdefault.jpg">' +  // ideally this is 'hqdefault.jpg', but can be 'default' if HQ isnt available.
            '</div>';
-    
+
   } else if (/vimeo\.com$/.test(domain)){
     id = uri.path.match(/\d+/)[0];
     html = '<iframe src="http://player.vimeo.com/video/' + id +
            '?title=0&amp;byline=0&amp;portrait=0&amp;color=0" frameborder="0"></iframe>';
   } else if (~video.indexOf('blip.tv')){
-   
+
     html = '<iframe src="' + video.match(/src="(.*?)"/)[1] +
            '" frameborder="0" scrolling="no"></iframe>';
   }
-  
+
   return new Handlebars.SafeString('<div class="video">' + html + '</div>');
 });
 
 
 Handlebars.registerHelper('slides', function(slides) {
-  
+
   var uri = parseUri(slides)
     , domain = uri.host
     , id
     , html
-  
+
   if (~slides.indexOf('docs.google.com/present')){
     id = uri.queryKey.id;
-    html = '<iframe src="https://docs.google.com/present/view?id=' + id + 
+    html = '<iframe src="https://docs.google.com/present/view?id=' + id +
            '&revision=_latest&start=0&theme=blank&cwj=true" frameborder="0"></iframe> ';
-    
+
   } else if (/slideshare\.net$/.test(domain)){
 
     html = '<iframe ' +
-           'src="http://icant.co.uk/slidesharehtml/embed.php?url=' + uri.source + 
+           'src="http://icant.co.uk/slidesharehtml/embed.php?url=' + uri.source +
            '&width=450"></iframe>';
   }
-  
+
   return new Handlebars.SafeString('<div class="slides">' + html + '</div>');
 });
 
 
-Handlebars.registerHelper('img', function(image) {
-  if (~image.indexOf('/')) return image;
-  return '/static/images/pres/' + image;
+
+
+Handlebars.registerHelper('img', function() {
+
+  var image = this.image;
+
+  if (image && ~image.indexOf('/')) return image;
+  if (image) return '/static/images/pres/' + image;
+  // return 'http://www.awwwards.com/awards/images/1284023910slides.jpg';
+  return SLD.url2png(this.slideslink);
 });
 
 
@@ -289,11 +320,11 @@ Handlebars.registerHelper('presntr', function(names) {
   var authormap = {};
   for (author in SLD.authors){
     var obj = SLD.authors[author];
-    authormap[obj.given_name + ' ' + obj.family_name] = author; 
+    authormap[obj.given_name + ' ' + obj.family_name] = author;
   }
 
   var html = '';
-  
+
   names = names.split(/ and|&|, /)
 
   // using map polyfill and string.trim
@@ -307,7 +338,6 @@ Handlebars.registerHelper('presntr', function(names) {
     }
 
   }).join(' & ');
-  
+
   return new Handlebars.SafeString(html);
 });
-
