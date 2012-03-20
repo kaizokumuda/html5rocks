@@ -112,7 +112,11 @@ window.SLD = {
 
     size = size || "s1280x1024-t459x359";
 
-    return "http://api.url2png.com/v4/" + [api_key, token, size, url].join('/');
+    // v4: // currently not resolving some things..
+    // return "http://api.url2png.com/v4/" + [api_key, token, size, url].join('/');
+
+    // v3:
+    return "//api.url2png.com/v3/" + [api_key, token, '459x359', url].join('/');
 
   } // eo url2png
 
