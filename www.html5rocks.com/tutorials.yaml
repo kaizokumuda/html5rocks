@@ -364,7 +364,7 @@ browser_support:
 - opera
 - safari
 - ie
-- ff 
+- ff
 tags:
 - internals
 - class:performance
@@ -382,7 +382,7 @@ browser_support:
 - opera
 - safari
 - ie
-- ff  
+- ff
 tags:
 - canvas
 - class:graphics
@@ -401,7 +401,7 @@ browser_support:
 - opera
 - safari
 - ie
-- ff 
+- ff
 tags:
 - gaming
 - canvas
@@ -419,7 +419,7 @@ browser_support:
 - opera
 - safari
 - ie
-- ff 
+- ff
 tags:
 - gaming
 - type:tutorial
@@ -436,7 +436,7 @@ browser_support:
 - opera
 - safari
 - ie
-- ff 
+- ff
 tags:
 - mobile
 - feature detection
@@ -498,7 +498,7 @@ tags:
 title: Making Forms Fabulous with HTML5
 url: /tutorials/forms/html5forms/
 author_id: jankleinert
-publication_date: 2011-06-02 
+publication_date: 2011-06-02
 description: Take advantage of improved forms support in HTML5 to build better forms, more easily.
 browser_support:
 - chrome
@@ -523,7 +523,7 @@ browser_support:
 - opera
 - safari
 - ff
-- ie 
+- ie
 tags:
 - business
 - mobile
@@ -731,7 +731,7 @@ url: /tutorials/casestudies/onslaught/
 social_url: /tutorials/casestudies/onslaught.html
 author_id: matthackett
 author_id2: geoffblair
-publication_date: 2011-02-10 
+publication_date: 2011-02-10
 description: Learn how <a href="https://chrome.google.com/webstore/detail/khodnfbkbanejphecblcofbghjdgfaih">Onslaught! Arena</a> created their fast-paced, arcade-style medieval fantasy shoot 'em up.
 browser_support:
 - chrome
@@ -907,7 +907,7 @@ tags:
 title: Client-Side Storage
 url: /tutorials/offline/storage/
 author_id: mahemoff
-publication_date: 2010-10-01 
+publication_date: 2010-10-01
 description: "An overview of client-side storage techniques: Web Storage (local/session storage), Web SQL Database, Indexed Database, Filesystem."
 browser_support:
 - chrome
@@ -948,7 +948,7 @@ title: "Case Study: HTML5 in deviantART muro"
 url: /tutorials/casestudies/html5_in_deviantart_muro/
 social_url: /tutorials/casestudies/html5_in_deviantart_muro.html
 author_id: michaeldewey
-publication_date: 2010-09-28 
+publication_date: 2010-09-28
 description: Learn how deviantART used HTML5 drawing features in deviantART muro.
 browser_support:
 - chrome
@@ -1084,7 +1084,7 @@ tags:
 title: "Introduction to Chrome Developer Tools, Part One"
 url: /tutorials/developertools/part1/
 author_id: sethladd
-publication_date: 2010-06-18 
+publication_date: 2010-06-18
 description: "An introduction to the tools available in Google Chrome that make a developer's life easier!"
 browser_support:
 - chrome
@@ -1235,3 +1235,18 @@ tags:
 - flash
 - class:multimedia
 - type:tutorial
+
+
+---
+
+title: Introduction to JavaScript Source Maps
+url: /tutorials/developertools/sourcemaps/
+author_id: ryanseddon
+publication_date: 2010-04-21
+description: Have you ever found yourself wishing you could keep your client-side code readable and more importantly debuggable even after you've combined and minified it, without impacting performance? Well now you can through the magic of source maps.
+browser_support:
+- chrome
+tags:
+- devtools
+- class:performance
+- type:article
