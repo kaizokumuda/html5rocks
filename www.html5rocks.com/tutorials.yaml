@@ -1242,7 +1242,7 @@ tags:
 title: Introduction to JavaScript Source Maps
 url: /tutorials/developertools/sourcemaps/
 author_id: ryanseddon
-publication_date: 2010-04-21
+publication_date: 2010-03-21
 description: Have you ever found yourself wishing you could keep your client-side code readable and more importantly debuggable even after you've combined and minified it, without impacting performance? Well now you can through the magic of source maps.
 browser_support:
 - chrome
