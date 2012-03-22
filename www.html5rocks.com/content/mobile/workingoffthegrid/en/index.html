@@ -133,7 +133,7 @@ window.addEventListener("online", function(e) {
       }
     }
   };
-  xhr.open("GET", url); 
+  xhr.open("GET", url);
   xhr.send();
 };</pre>
 
@@ -150,7 +150,7 @@ window.addEventListener("online", function(e) {
 
 <pre class="prettyprint">var fetch = function(url, callback) {
   var xhr = new XMLHttpRequest();
- 
+
   var noResponseTimer = setTimeout(function() {
     xhr.abort();
     <b>fireEvent("connectiontimeout", {});</b>
@@ -183,14 +183,14 @@ window.addEventListener("online", function(e) {
       }
     }
   };
-  xhr.open("GET", url); 
+  xhr.open("GET", url);
   xhr.send();
 };</pre>
 
 <p>We can now build applications that are notified when there is a failure somewhere in the network.</p>
 
 <pre class="prettyprint">window.addEventListener("connectionerror", function(e) {
-  alert("There is a connection error"); 
+  alert("There is a connection error");
 });</pre>
 
 <h3 id="toc-keep-alive">Periodically checking network state</h3>
@@ -210,7 +210,7 @@ window.addEventListener("online", function(e) {
 <pre class="prettyprint">-- index.html --
 &lt;html manifest="cache.manifest"&gt;
 
--- cache.manifest -- 
+-- cache.manifest --
 CACHE:
 /js/logic.js
 /js/options.js
@@ -232,7 +232,7 @@ NETWORK:
 <pre class="prettyprint">yepnope({
   <b>test : isOnline,</b>
   yep  : ['normal.js', 'controller.js', 'assets.js'],
-  nope : 'errors.js' 
+  nope : 'errors.js'
 });</pre>
 
 <p>The above example is sligthly contrived, but you can see how given knowledge of the connection state, you can easily start to load more of your application in at run-time, and, if offline load a different set of scripts that can handle the failure cases.</p>
@@ -263,6 +263,6 @@ else {
 
 <h2 id="toc-further">Further Reading</h2>
 
-<p><a href="http://html5rocks.com">HTML5Rocks</a> has many <a href="http://www.html5rocks.com/tutorials/#offline">tutorials on offline technologies</a>, where you can get hands-on with code examples.</p>
+<p><a href="http://html5rocks.com">HTML5Rocks</a> has many <a href="http://www.html5rocks.com/en/tutorials#technology:offline">tutorials on offline technologies</a>, where you can get hands-on with code examples.</p>
 
 {% endblock %}
