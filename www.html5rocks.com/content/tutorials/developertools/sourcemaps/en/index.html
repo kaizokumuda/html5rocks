@@ -21,7 +21,7 @@
 
 {% block head %}
 <style>
-
+h2 code { text-transform: none; }
 </style>
 {% endblock %}
 
@@ -33,17 +33,27 @@
 
 <p>Basically it's a way to map a combined/minified file back to an unbuilt state. When you build for production, along with minifying and combining your JavaScript files, you generate a source map which holds information about your original files. When you query a certain line and column number in your generated JavaScript you can do a lookup in the source map which returns the original location. Developer tools (currently WebKit nightly builds, or Google Chrome Canary) can parse the source map automatically and make it appear as though you're running unminified and uncombined files. As of writing Firefox has a blocked status for Source Map support. See <a href="https://wiki.mozilla.org/DevTools/Features/SourceMap">MozillaWiki Source Map</a> entry for more details.</p>
 
-<p>This <a href="http://www.thecssninja.com/demo/source_mapping/">demo</a> allows you to right click anywhere in the textarea containing the generated source. Select "Get original location" will query the source map by passing in the generated line and column number, and return the position in the original code. Make sure your console is open so you can see the output.</p>
 
-<img src="source-map-demo.png" alt="Source map demo screenshot" title="Example of the Mozilla JavaScript source map library in action" width="609" height="155" class="article-img main-img" />
+<a class="button-download demo" href="http://www.thecssninja.com/demo/source_mapping/">Demo: Get original location</a>
+
+<p>The above demo allows you to right click anywhere in the textarea containing the generated source. Select "Get original location" will query the source map by passing in the generated line and column number, and return the position in the original code. Make sure your console is open so you can see the output.</p>
+
+<figure>
+    <img src="source-map-demo.png" alt="Source map demo screenshot" title="Example of the Mozilla JavaScript source map library in action" width="609" height="155" class="article-img main-img" />
+</figure>
 
 <h2 class="subtitle02" id="toc-realworld">Real world</h2>
 
 <p>Before you view the following real world implementation of Source Maps make sure you've enabled the source maps feature in either Chrome Canary or WebKit nightly by clicking the settings cog in the dev tools panel and checking the "Enable source maps" option. See screenshot below.</p>
 
-<img src="enable-source-maps.png" alt="" title="How to enable source maps in WebKit dev tools" width="609" height="232" class="article-img main-img" />
+<figure>
+    <img src="enable-source-maps.png" alt="" title="How to enable source maps in WebKit dev tools" width="609" height="232" class="article-img main-img" />
+</figure>
 
 <p>So... That Source Map query demo is cool and all but what about a real world use case? Take a look at the special build of font dragr at <a href="http://dev.fontdragr.com/">dev.fontdragr.com</a> in Chrome Canary or WebKit nightly, with source mapping enabled, and you'll notice that the JavaScript isn't compiled and you can see all the individual JavaScript files it references. This is using source mapping, but behind the scenes actually running the compiled code. Any errors, logs and breakpoints will map to the dev code for awesome debugging! So in effect it gives you the illusion that you're running a dev site in production.</p>
+
+
+<a class="button-download demo" href="http://dev.fontdragr.com/">Demo: View scripts panel (with source maps) on fontdragr.com</a>
 
 <h2 id="toc-whycare" class="subtitle02">Why should I care about source maps?</h2>
 
@@ -68,7 +78,16 @@
 
 <p>Another example I've put together uses Google's <a href="http://code.google.com/p/traceur-compiler/">Traceur</a> library which allows you to write ES6 (ECMAScript 6 or Next) and compile it to ES3 compatible code. The Traceur compiler also generates a source map. Take a look at this <a href="http://www.thecssninja.com/demo/source_mapping/ES6/">demo</a> of ES6 traits and classes being used like they're supported natively in the browser, thanks to the source map. The textarea in the demo also allows you to write ES6 which will be compiled on the fly and generate a source map plus the equivalent ES3 code.</p>
 
-<img src="source-map-es6.png" alt="" title="Traceur ES6 debugging using source maps" width="609" height="263" class="article-img main-img" />
+
+
+
+<figure>
+    <a href="http://www.thecssninja.com/demo/source_mapping/ES6/">
+        <img src="source-map-es6.png" alt="" title="Traceur ES6 debugging using source maps" width="609" height="263" class="article-img main-img" />
+    </a>
+</figure>
+
+<a class="button-download demo" href="http://www.thecssninja.com/demo/source_mapping/ES6/">Demo: Write ES6, debug it, view source mapping in action</a>
 
 <h2 id="toc-howwork" class="subtitle02">How does the source map work?</h2>
 
@@ -205,19 +224,26 @@ V    V
 
 <p>As shown above, the first three characters are sliced to check if they match the syntax error in the spec and if so removes all characters leading up to the first new line entity (\n).</p>
 
-<h2 id="toc-sourceurl" class="subtitle02">@sourceURL and displayName in action: Eval and anonymous functions</h2>
+<h2 id="toc-sourceurl" class="subtitle02"><code>@sourceURL</code> and <code>displayName</code> in action: Eval and anonymous functions</h2>
 
 <p>While not part of the source map spec the following two conventions allow you to make development much easier when working with evals and anonymous functions.</p>
 
-<p>The first helper looks very similar to the <code>//@ sourceMappingURL</code> property and is actually mentioned in the source map V3 spec. By including the following special comment in your code, which will be evaled, you can name evals so they appear as more logical names in your dev tools. Check out a <a href="http://www.thecssninja.com/demo/source_mapping/compile.html">simple demo</a> using the CoffeeScript compiler.</p>
+<p>The first helper looks very similar to the <code>//@ sourceMappingURL</code> property and is actually mentioned in the source map V3 spec. By including the following special comment in your code, which will be evaled, you can name evals so they appear as more logical names in your dev tools. Check out a simple demo using the CoffeeScript compiler:
+
+<a class="button-download demo" href="http://www.thecssninja.com/demo/source_mapping/compile.html">Demo: See <code>eval()</code>'d code show as a script via @sourceURL</a>
+
 
 <div class="code syntax">
 <pre class="prettyprint">//@ sourceURL=sqrt.coffee</pre>
 </div>
 
-<img src="source-url.png" alt="" title="What sourceURL special comment looks like in dev tools" width="609" height="195" class="article-img main-img" />
+<figure>
+    <img src="source-url.png" alt="" title="What sourceURL special comment looks like in dev tools" width="609" height="195" class="article-img main-img" />
+</figure>
 
 <p>The other helper allows you to name anonymous functions by using the <code>displayName</code> property available on the current context of the anonymous function. Profile the <a href="http://www.thecssninja.com/demo/source_mapping/displayName.html">following demo</a> to see the <code>displayName</code> property in action.</p>
+
+<a class="button-download demo" href="http://www.thecssninja.com/demo/source_mapping/displayName.html">Demo: Named anonymous functions via displayName (FF only)</a>
 
 <div class="code syntax">
 <pre class="prettyprint"><span class="nx">btns</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
@@ -269,5 +295,7 @@ V    V
 </ul>
 
 <p>Source maps are a very powerful utility in a developer's tool set. It's super useful to be able to keep your web app lean but easily debuggable. It's also a very powerful learning tool for newer developers to see how experienced devs structure and write their apps without having to wade through unreadable minified code. What are you waiting for? Start generating source maps for all projects now!</p>
+
+<link rel=stylesheet href="/en/tutorials/doodles/lem/styles.css">
 
 {% endblock %}
