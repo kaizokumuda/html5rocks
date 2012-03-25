@@ -441,7 +441,7 @@ we'll continue to see more in the very near future!
 - Paul Neave's [WebGL Camera Effects](http://neave.com/webcam/html5/)
 - [Snapster](http://html5photobooth.com/)
 - [Live video in WebGL](http://learningthreejs.com/data/live-video-in-webgl/)
-
+- [Play Xylophone with your hands](http://www.soundstep.com/blog/experiments/jsdetection/)
 <script>
 function onFailSoHard(e) {
   alert('getUserMedia() not supported in your browser.');

@@ -494,19 +494,18 @@ we'll continue to see more in the very near future!</p>
 <li>Paul Neave's <a href="http://neave.com/webcam/html5/">WebGL Camera Effects</a></li>
 <li><a href="http://html5photobooth.com/">Snapster</a></li>
 <li><a href="http://learningthreejs.com/data/live-video-in-webgl/">Live video in WebGL</a></li>
-</ul>
+<li><a href="http://www.soundstep.com/blog/experiments/jsdetection/">Play Xylophone with your hands</a>
 <script>
 function onFailSoHard(e) {
   alert('getUserMedia() not supported in your browser.');
   e.target.src = 'http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.ogv';
-}
-
-(function() {
+}</li>
+</ul>
+<p>(function() {
 var video = document.querySelector('#basic-stream');
 var button = document.querySelector('#capture-button');
-var localMediaStream = null;
-
-button.addEventListener('click', function(e) {
+var localMediaStream = null;</p>
+<p>button.addEventListener('click', function(e) {
   if (navigator.getUserMedia) {
     navigator.getUserMedia('video', function(stream) {
       video.src = stream;
@@ -522,23 +521,20 @@ button.addEventListener('click', function(e) {
   } else {
     onFailSoHard({target: video});
   }
-}, false);
-
-document.querySelector('#stop-button').addEventListener('click', function(e) {
+}, false);</p>
+<p>document.querySelector('#stop-button').addEventListener('click', function(e) {
   video.pause();
   localMediaStream.stop(); // Doesn't do anything in Chrome.
 }, false);
-})();
-
-(function() {
+})();</p>
+<p>(function() {
 var video = document.querySelector('#screenshot-stream');
 var button = document.querySelector('#screenshot-button');
 var canvas = document.querySelector('#screenshot-canvas');
 var img = document.querySelector('#screenshot');
 var ctx = canvas.getContext('2d');
-var localMediaStream = null;
-
-function sizeCanvas() {
+var localMediaStream = null;</p>
+<p>function sizeCanvas() {
   // video.onloadedmetadata not firing in Chrome. See crbug.com/110938.
   setTimeout(function() {
     canvas.width = video.videoWidth;
@@ -546,20 +542,17 @@ function sizeCanvas() {
     img.height = video.videoHeight;
     img.width = video.videoWidth;
   }, 50);
-}
-
-function snapshot() {
+}</p>
+<p>function snapshot() {
   ctx.drawImage(video, 0, 0);
   img.src = canvas.toDataURL('image/webp');
-}
-
-button.addEventListener('click', function(e) {
+}</p>
+<p>button.addEventListener('click', function(e) {
   if (localMediaStream) {
     snapshot();
     return;
-  }
-
-if (navigator.getUserMedia) {
+  }</p>
+<p>if (navigator.getUserMedia) {
     navigator.getUserMedia('video', function(stream) {
       video.src = stream;
       localMediaStream = stream;
@@ -576,22 +569,18 @@ if (navigator.getUserMedia) {
   } else {
     onFailSoHard({target: video});
   }
-}, false);
-
-video.addEventListener('click', snapshot, false);
-
-document.querySelector('#screenshot-stop-button').addEventListener('click', function(e) {
+}, false);</p>
+<p>video.addEventListener('click', snapshot, false);</p>
+<p>document.querySelector('#screenshot-stop-button').addEventListener('click', function(e) {
   video.pause();
   localMediaStream.stop(); // Doesn't do anything in Chrome.
 }, false);
-})();
-
-(function() {
+})();</p>
+<p>(function() {
 var video = document.querySelector('#cssfilters-stream');
 var button = document.querySelector('#capture-button2');
-var localMediaStream = null;
-
-var idx = 0;
+var localMediaStream = null;</p>
+<p>var idx = 0;
 var filters = [
   'grayscale',
   'sepia',
@@ -602,18 +591,16 @@ var filters = [
   'saturate',
   'invert',
   ''
-];
-
-function changeFilter(e) {
+];</p>
+<p>function changeFilter(e) {
   var el = e.target;
   el.className = '';
   var effect = filters[idx++ % filters.length];
   if (effect) {
     el.classList.add(effect);
   }
-}
-
-button.addEventListener('click', function(e) {
+}</p>
+<p>button.addEventListener('click', function(e) {
   if (navigator.getUserMedia) {
     navigator.getUserMedia('video, audio', function(stream) {
       video.src = stream;
@@ -627,14 +614,12 @@ button.addEventListener('click', function(e) {
   } else {
     onFailSoHard({target: video});
   }
-}, false);
-
-document.querySelector('#stop-button2').addEventListener('click', function(e) {
+}, false);</p>
+<p>document.querySelector('#stop-button2').addEventListener('click', function(e) {
   video.pause();
   localMediaStream.stop(); // Doesn't do anything in Chrome.
-}, false);
-
-video.addEventListener('click', changeFilter, false);
+}, false);</p>
+<p>video.addEventListener('click', changeFilter, false);
 })();
-</script>
+</script></p>
 {% endblock %}
