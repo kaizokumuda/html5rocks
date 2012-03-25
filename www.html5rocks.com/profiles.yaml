@@ -462,7 +462,7 @@ twitter: jankleinert
 email: jkleinert@google.com
 
 ---
-    
+
 id: paullewis
 name:
   given: Paul
@@ -481,7 +481,7 @@ twitter: aerotwist
 email: website@aerotwist.com
 
 ---
-    
+
 id: eligrey
 name:
   given: Eli
@@ -508,10 +508,10 @@ name:
   family: Garsiel
 org:
   name: Incapsula
-  unit: Developer 
+  unit: Developer
 address:
-  locality: 
-  region: 
+  locality:
+  region:
   country: Israel
   lat: 31.5
   lon: 34.75
@@ -529,11 +529,11 @@ org:
   unit: Developer Relations
 address:
   locality: Tokyo
-  region: 
+  region:
   country: Japan
   lat: 35.666
   lon: 139.766666667
-homepage: 
+homepage:
 google: agektmr
 twitter: agektmr
 email: agektmr@google.com
@@ -593,8 +593,8 @@ address:
   locality: Atlanta
   region: Georgia
   country: USA
-  lat: 33.845701 
-  lon: -84.369196 
+  lat: 33.845701
+  lon: -84.369196
 homepage: http://wesleyhales.com
 google: wesleyhales
 twitter: wesleyhales
@@ -698,7 +698,7 @@ address:
   lon: -122.087824
 homepage: http://games.greggman.com/game/
 google: 112274749534477530569
-twitter: 
+twitter:
 email:
 
 ---
@@ -781,5 +781,27 @@ homepage:
 google: 106422711035746240826
 twitter: cwilso
 email: cwilso@google.com
+
+
+
+---
+
+id: ryanseddon
+name:
+  given: Ryan
+  family: Seddon
+org:
+  name:
+  unit: Front-end developer
+address:
+  locality: Melbourne
+  region:
+  country: Australia
+  lat: -37.816667
+  lon: 144.966667
+homepage:
+google: 101336834325039935793
+twitter: ryanseddon
+email: seddon.ryan@gmail.com
 
 
