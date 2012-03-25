@@ -1,7 +1,7 @@
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman
-publication_date: 2012-03-10
+publication_date: 2012-03-26
 description: "Techniques for streaming content using various HTML5 APIs."
 browser_support:
 - chrome
@@ -19,7 +19,7 @@ tags:
 title: WebGL Transforms
 url: /tutorials/webgl/webgl_transforms/
 author_id: gman
-publication_date: 2012-02-09
+publication_date: 2012-03-25
 description: "How 3D transforms work and how you can use them in WebGL."
 browser_support:
 - chrome
@@ -28,8 +28,23 @@ browser_support:
 - opera
 tags:
 - webgl
+- 3D
 - type:tutorial
 - class:graphics
+
+---
+
+title: "Introduction to JavaScript Source Maps"
+url: /tutorials/developertools/sourcemaps/
+author_id: ryanseddon
+publication_date: 2012-03-21
+description: "Have you ever found yourself wishing you could keep your client-side code readable and more importantly debuggable even after you've combined and minified it, without impacting performance? Well now you can through the magic of source maps."
+browser_support:
+- chrome
+tags:
+- devtools
+- class:performance
+- type:article
 
 ---
 
