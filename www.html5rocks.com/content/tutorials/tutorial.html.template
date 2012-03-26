@@ -1,47 +1,52 @@
+<!--
+1. Add your author info to profiles.yaml.
+2. Add your tutorial/article metata info to tutorials.yaml.
+3. Update the {% block iscompatible %} below with your feature detection check.
+-->
+
 {% extends "tutorial.html" %}
 
-{% block headauthor %}___FIRSTNAME___ ___LASTNAME___ <___EMAIL___>{% endblock %}
-{% block pageauthor %}{% profilelinks ___PROFILEID___ %}{% endblock %}
-{% block headtitle %}___ARTICLE_TITLE___{% endblock %}
-{% block pagetitle %}___ARTICLE_TITLE___{% endblock %}
+{% block pagebreadcrumb %}{{ tut.title }}{% endblock %}
+
 {% block head %}
-
-{% endblock %}
-{% block pagebreadcrumb %}___ARTICLE_TITLE___{% endblock %}
-{% block date %}___ARTICLE_DATE___{% endblock %}
-{% block updated %}{% endblock %}
-{% block onload %}{% endblock %}
-
-{% block browsersupport %}
-___BROWSER_SUPPORT___
+<!-- CSS/JS can go here or at the bottom of the article just before the content {% endblock %} -->
 {% endblock %}
 
 {% block iscompatible %}
   return !!Modernizr.___COMPAT_TEST___
 {% endblock %}
 
+{% block html5badge %}
+{% endblock %}
+
+
 {% block content %}
-  <h2 id="toc-introduction">Introduction</h2>
 
-  <p>Ipsum Lorem.</p>
+<!-- Uncomment if this is a bleeding edge feature
+  <p>{% include "warning.html" %}</p>
+-->
 
-  <h2 id="toc-topic">Heading</h2>
+<h2 id="toc-introduction">Introduction</h2>
 
-  <p>Yada Yada:</p>
+<p>Ipsum Lorem.</p>
 
-  <pre class="prettyprint">
+<h2 id="toc-topic">Heading</h2>
+
+<p>Yada Yada:</p>
+
+<pre class="prettyprint">
 // Example code snippet goes here.
 </pre>
 
-  <h3 id="toc-topic-subtopic">SubHeading</h3>
+<h3 id="toc-topic-subtopic">SubHeading</h3>
 
-  <p>Yada Yada:</p>
+<p>Yada Yada:</p>
 
-  <h2 id="toc-references">References</h2>
-  <ul>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
+<h2 id="toc-references">References</h2>
+<ul>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
 
 {% endblock %}
