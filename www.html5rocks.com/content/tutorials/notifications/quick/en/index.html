@@ -24,6 +24,7 @@
 {% endblock %}
 
 {% block content %}
+  <p class="notice">Google Chrome supports <a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">an older version of the spec</a>. The <a href="http://www.w3.org/TR/notifications/">newer version at W3C</a> is not currently implemented.</p>
   <h2 id="toc-introduction">Introduction</h2>
   <p>The <a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">Notifications API</a> allows you to display notifications to the user for given events,
   both passively (new emails, tweets or calendar events) and on user interactions regardless of which tab has focus.
@@ -170,15 +171,22 @@ function fetchTweets(data) {
   /*
    * Example 2
    */
-  var displayed_tweets = {};
+  var errorTweet = [{
+    "user": {"name":"Twitter API Error"},
+    "id": 184745151095999999,
+    "text": "The twitter API is not reponding properly right now. Try this sample again in a few minutes."
+  }];
+  var displayedTweets = {};
   var interval = null;
-  document.querySelector('#show_tweets').addEventListener('click', function() {
+  document.querySelector('#show_tweets').addEventListener(
+      'click', function() {
     this.innerHTML = "checking...";
     readTweets();
     if (interval) {
       clearInterval(interval);
     }
-    interval = setInterval(readTweets, 60000); // Check for new tweets every 60 seconds.
+    // Check for new tweets every 60 seconds.
+    interval = setInterval(readTweets, 60000);
   }, false);
 
   function readTweets() {
@@ -193,19 +201,26 @@ function fetchTweets(data) {
     document.body.appendChild(script);
   }
 
-  function fetchTweets(data) {
+  function fetchTweets(tweetStream) {
     var tweet;
-    var i = data.length;
+    if (!tweetStream.length) {
+      alert('No data are returned for that username.');
+    } else if (tweetStream[0] && tweetStream[0].name === 'undefined') {
+      tweetStream = errorTweet;
+    }
+    var i = tweetStream.length;
     document.getElementById('show_tweets').innerHTML = 'Show tweets';
     while (i--) {
-      tweet = data[i];
+      tweet = tweetStream[i];
       // display tweets only once
-      if (typeof displayed_tweets[tweet.id] === 'undefined') {
+      if (typeof displayedTweets[tweet.id] === 'undefined') {
         if (window.webkitNotifications.checkPermission() == 0) {
-          window.webkitNotifications.createNotification(tweet.user.profile_image_url, tweet.user.name, tweet.text).show(); // note the show()
-          displayed_tweets[tweet.id] = tweet.text;
+          window.webkitNotifications.createNotification(
+              tweet.user.profile_image_url, tweet.user.name, tweet.text).show();
+              // note the show()
+          displayedTweets[tweet.id] = tweet.text;
         } else {
-          // Note that we can't call requestPermission from here as we are in the callback function and not triggered just on user action 
+          // Notice that we can't call requestPermission from here as we are in the callback function and not triggered just on user action 
           document.getElementById('show_tweets').innerHTML = "Show tweets";
           alert('You have to click on "Set notification permissions for this page" first to be able to receive notifications.');
           return;
