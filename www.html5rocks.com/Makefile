@@ -1,9 +1,10 @@
 #
 #	`make messages`
 #
-LANGUAGES=en de ja pt ru zh es
+LANGUAGES=en de fr ja pt ru zh es
 MAC_DJANGO_ROOT=/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine/lib/django_1_2
 LINUX_DJANGO_ROOT=/usr/local/google/google_appengine/lib/django_1_2
+IMPORT_ROOT=~/git/html5/google3/blaze-genfiles/devrel/html5rocks/po_files/server/tc_dump
 ifeq "$(shell uname)" "Darwin"
 	DJANGO_ROOT=$(MAC_DJANGO_ROOT)
 else
@@ -26,6 +27,19 @@ languages, edit the `LANGUAGES` variable in the Makefile.
 endef
 export HEREDOC
 
+define EXPORT
+
+Export to Translation Console
+=============================
+
+Hi! I've copied the newly generated English PO file to your local checkout
+of the TC directory. Assuming that went well, head over to ~/git/html5/google3
+and generate a CL, then drop a line to the TC team once it lands.
+
+If you have questions, ask mkwst@google.com. :)
+endef
+export EXPORT
+
 help:
 	@echo "$$HEREDOC"
 
@@ -42,3 +56,13 @@ messages: yaml
 compile:
 	@PYTHONPATH=$(DJANGO_ROOT) $(DJANGO_ROOT)/django/bin/django-admin.py compilemessages
 	@python ./scripts/localizer/l7r.py --import
+
+export: messages
+	@cp ./conf/locale/en/LC_MESSAGES/django.po ~/git/html5/google3/devrel/html5rocks/po_files/django.po
+	@echo "$$EXPORT"
+
+import:
+	@for locale in $(LANGUAGES) ; do \
+	  [ -r $(IMPORT_ROOT)/$$locale/django.po ] && cp $(IMPORT_ROOT)/$$locale/django.po ./conf/locale/$$locale/LC_MESSAGES/django.po ; \
+	done
+
