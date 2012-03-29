@@ -26,6 +26,19 @@ languages, edit the `LANGUAGES` variable in the Makefile.
 endef
 export HEREDOC
 
+define EXPORT
+
+Export to Translation Console
+=============================
+
+Hi! I've copied the newly generated English PO file to your local checkout
+of the TC directory. Assuming that went well, head over to ~/git/html5/google3
+and generate a CL, then drop a line to the TC team once it lands.
+
+If you have questions, ask mkwst@google.com. :)
+endef
+export EXPORT
+
 help:
 	@echo "$$HEREDOC"
 
@@ -42,3 +55,7 @@ messages: yaml
 compile:
 	@PYTHONPATH=$(DJANGO_ROOT) $(DJANGO_ROOT)/django/bin/django-admin.py compilemessages
 	@python ./scripts/localizer/l7r.py --import
+
+export: messages
+	@cp ./conf/locale/en/LC_MESSAGES/django.po ~/git/html5/google3/devrel/html5rocks/po_files/django.po
+	@echo "$$EXPORT"
