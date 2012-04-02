@@ -324,8 +324,10 @@ void main() {
 
   // Rotate the position
   vec2 rotatedPosition = vec2(
-     scaledPosition.x * u_rotation.y + scaledPosition.y * u_rotation.x,
-     scaledPosition.y * u_rotation.y - scaledPosition.x * u_rotation.x);
+     scaledPosition.x * u_rotation.y +
+        scaledPosition.y * u_rotation.x,
+     scaledPosition.y * u_rotation.y -
+        scaledPosition.x * u_rotation.x);
 
   // Add in the translation.
   vec2 position = rotatedPosition + u_translation;
@@ -366,7 +368,7 @@ void main() {
 <div class="webgl_bottombar">
 <h3>Why an 'F'?</h3>
 <p>
-The first time I saw someone use a 'F' was on a texture. The 'F' itself is not important. What is important is that you can tell its orientation from any direction. If we used a heart ? or a triangle △ for example we couldn't tell if it was flipped horizontally. A circle ○ would be even worse. A colored rectangle would arguably work with different colors on each corner but then you'd have to remember which corner was which. An F's orientation is instantly recognizable. 
+The first time I saw someone use a 'F' was on a texture. The 'F' itself is not important. What is important is that you can tell its orientation from any direction. If we used a heart ♥ or a triangle △ for example we couldn't tell if it was flipped horizontally. A circle ○ would be even worse. A colored rectangle would arguably work with different colors on each corner but then you'd have to remember which corner was which. An F's orientation is instantly recognizable. 
 </p>
 <img src="webgl/resources/f-orientation.svg" class="webgl_center"/>
 <p>
@@ -375,7 +377,7 @@ Any shape that you can tell the orientation of would work, I've just used 'F' ev
 </div>
 
     <h2 id="toc-matrices">WebGL 2D Matrices</h2>
-<p>In the last 3 chapters we went over how to translate geometry, rotate geometry, and scale geometry. Translation, rotation and scale are each considered a type of 'transformation'. Each of these transformations required changes to the shader and each of the 3 transformations was order dependent. In <a href="webgl-2d-scale.html">our previous example</a> we scaled, then rotated, the translated. If we applied those in a different order we'd get a different result.
+<p>In the last 3 chapters we went over how to translate geometry, rotate geometry, and scale geometry. Translation, rotation and scale are each considered a type of 'transformation'. Each of these transformations required changes to the shader and each of the 3 transformations was order dependent. In <a href="webgl-2d-scale.html">our previous example</a> we scaled, then rotated, then translated. If we applied those in a different order we'd get a different result.
 <!--more-->
 For example here is a scale of 2, 1, rotation of 30%, and translation of 100, 0.</p>
 <p><img src="webgl/resources/f-scale-rotation-translation.svg" class="webgl_center" width="400" /></p>
@@ -412,17 +414,17 @@ For example here is a scale of 2, 1, rotation of 30%, and translation of 100, 0.
 <tr><td></td><td class="glocal-blk">1</td><td class="glocal-blk"> * </td><td>tx</td><td> </td><td></td><td class="glocal-blk">1</td><td class="glocal-blk"> * </td><td>ty</td><td>  </td><td></td><td>1</td><td class="glocal-blk"> * </td><td class="glocal-blk">1.0</td><td> <td></tr></table></div>
 
 <p>or more succinctly</p>
-<div class="webgl_center">
+<pre class="prettyprint">
 newX = x + tx;
 newY = y + ty;
-</div>
+</pre>
 
 <p>And extra we don't really care about. That looks surprisingly like the translation code from our translation example.</p>
 <p>Similarly let's do rotation. Like we pointed out in the rotation post we just need the sine and cosine of the angle at which we want to rotate so.</p>
-<div class="webgl_center">
+<pre class="prettyprint">
 s = Math.sin(angleToRotateInRadians);
 c = Math.cos(angleToRotateInRadians);
-</div>
+</pre>
 
 <p>And we build a matrix like this</p>
 <div class="glocal-center"><table class="glocal-center-content glocal-mat"><tr><td>c</td><td>-s</td><td>0.0</td></tr><tr><td>s</td><td>c</td><td>0.0</td></tr><tr><td>0.0</td><td>0.0</td><td>1.0</td></tr></table></div>
@@ -442,10 +444,10 @@ c = Math.cos(angleToRotateInRadians);
 <tr><td></td><td class="glocal-blk">1</td><td class="glocal-blk"> * </td><td class="glocal-blk">0.0</td><td> </td><td></td><td class="glocal-blk">1</td><td class="glocal-blk"> * </td><td class="glocal-blk">0.0</td><td>  </td><td></td><td>1</td><td class="glocal-blk"> * </td><td class="glocal-blk">1.0</td><td> <td></tr></table></div>
 
 <p>And simplifying we get</p>
-<div class="webgl_center">
+<pre class="prettyprint">
 newX = x *  c + y * s;
 newY = x * -s + y * c;
-</div>
+</pre>
 
 <p>Which is exactly what we had in our rotation sample.</p>
 <p>And lastly scale. We'll call our 2 scale factors sx and sy</p>
@@ -467,10 +469,10 @@ newY = x * -s + y * c;
 <tr><td></td><td class="glocal-blk">1</td><td class="glocal-blk"> * </td><td class="glocal-blk">0.0</td><td> </td><td></td><td class="glocal-blk">1</td><td class="glocal-blk"> * </td><td class="glocal-blk">0.0</td><td>  </td><td></td><td>1</td><td class="glocal-blk"> * </td><td class="glocal-blk">1.0</td><td> <td></tr></table></div>
 
 <p>which simplified is</p>
-<div class="webgl_center">
+<pre class="prettyprint">
 newX = x * sx;
 newY = y * sy;
-</div>
+</pre>
 
 <p>Which is the same as our scaling sample.</p>
 <p>Now I'm sure you might still be thinking. So what? What's the point. That seems like a lot of work just to do the same thing we were already doing?</p>
@@ -550,7 +552,8 @@ void main() {
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     // Compute the matrices
-    var translationMatrix = makeTranslation(translation[0], translation[1]);
+    var translationMatrix =
+       makeTranslation(translation[0], translation[1]);
     var rotationMatrix = makeRotation(angleInRadians);
     var scaleMatrix = makeScale(scale[0], scale[1]);
 
@@ -637,7 +640,8 @@ function makeIdentity() {
 <p>One more example, In every sample so far our 'F' rotates around its top left corner. This is because the math we are using always rotates around the origin and the top left corner of our 'F' is at the origin, (0, 0)</p>
 <p>But now, because we can do matrix math and we can choose the order that transforms are applied we can move the origin before the rest of the transforms are applied.</p>
 <pre class="prettyprint">
-    // make a matrix that will move the origin of the 'F' to its center.
+    // make a matrix that will move the origin of the 'F' to
+    // its center.
     var moveOriginMatrix = makeTranslation(-50, -75);
     ...
 
@@ -699,7 +703,8 @@ void main() {
   function drawScene() {
     ...
     // Compute the matrices
-    var projectionMatrix = make2DProjection(canvas.width, canvas.height);
+    var projectionMatrix =
+       make2DProjection(canvas.width, canvas.height);
     ...
 
     // Multiply the matrices.
