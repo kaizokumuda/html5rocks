@@ -56,6 +56,7 @@ HTML Media Capture only allows you to record a media file or take a snapshot in 
 - [Android 3.0 browser](http://developer.android.com/sdk/android-3.0.html) -
 one of the first implementations. Check out [this video](http://davidbcalhoun.com/2011/android-3-0-honeycomb-is-first-to-implement-the-device-api) to see it in action.
 - Chrome for Android (0.16)
+- Firefox Mobile 10.0
 
 My recommendation is to stay clear from this one unless you're working with one
 of the mobile browsers above. Vendors are moving towards `getUserMedia()`.
