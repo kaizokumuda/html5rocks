@@ -61,8 +61,8 @@ if (buttons.length >= 3) {
 
       var fragment = document.createDocumentFragment();
       for (var i = 0, entry; entry = entries[i]; ++i) {
-        var img = entry.isDirectory ? '<img src="http://www.html5rocks.com/static/images/icon-folder.gif">' :
-                                      '<img src="http://www.html5rocks.com/static/images/icon-file.gif">';
+        var img = entry.isDirectory ? '<img src="http://www.html5rocks.com/static/images/tutorials/icon-folder.gif">' :
+                                      '<img src="http://www.html5rocks.com/static/images/tutorials/icon-file.gif">';
         var li = document.createElement('li');
         li.innerHTML = [img, '<span>', entry.name, '</span>'].join('');
         fragment.appendChild(li);

@@ -263,11 +263,11 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           // Remove each file passed as an argument.
           args.forEach(function(fileName, i) {
             cwd_.getFile(fileName, {}, function(fileEntry) {
-              fileEntry.remove(null, errorHandler_);
+              fileEntry.remove(function() {}, errorHandler_);
             }, function(e) {
               if (recursive && e.code == FileError.TYPE_MISMATCH_ERR) {
                 cwd_.getDirectory(fileName, {}, function(dirEntry) {
-                  dirEntry.removeRecursively(null, errorHandler_);
+                  dirEntry.removeRecursively(function() {}, errorHandler_);
                 }, errorHandler_);
               } else if (e.code == FileError.INVALID_STATE_ERR) {
                 output(cmd + ': ' + fileName + ': is a directory<br>');
@@ -281,7 +281,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
           // Remove each directory passed as an argument.
           args.forEach(function(dirName, i) {
             cwd_.getDirectory(dirName, {}, function(dirEntry) {
-              dirEntry.remove(null, function(e) {
+              dirEntry.remove(function() {}, function(e) {
                 if (e.code == FileError.INVALID_MODIFICATION_ERR) {
                   output(cmd + ': ' + dirName + ': Directory not empty<br>');
                 } else {
