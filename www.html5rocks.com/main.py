@@ -135,7 +135,8 @@ class ContentHandler(webapp.RequestHandler):
 
         articles.append(article)
 
-      memcache.set('feed_rocking|%s' % path, articles, 86400) # Cache feed for 24hrs.
+      # Cache feed for 24hrs.
+      memcache.set('feed_rocking|%s' % path, articles, 86400)
 
     return articles
 
@@ -177,13 +178,15 @@ class ContentHandler(webapp.RequestHandler):
       'is_mobile': self.is_awesome_mobile_device(),
       'current': current,
       'prod': common.PROD,
-      'sorted_profiles': models.get_sorted_profiles() # TODO: Don't add profile data on every request.
+      # TODO: Don't add profile data on every request.
+      'sorted_profiles': models.get_sorted_profiles()
     }
 
     # If the tutorial contains a social URL override, use it.
     template_data['disqus_url'] = template_data['host'] + '/' + path_no_lang
     if data.get('tut') and data['tut'].social_url:
-      template_data['disqus_url'] = template_data['host'] + data['tut'].social_url
+      template_data['disqus_url'] = (template_data['host'] +
+                                     data['tut'].social_url)
 
     # Request was for an Atom feed. Render one!
     if self.request.path.endswith('.xml'):
@@ -284,8 +287,8 @@ class ContentHandler(webapp.RequestHandler):
 
     # Landing page or /tutorials|features|mobile|gaming|business\/?
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
-        (relpath in ['mobile', 'tutorials', 'features', 'gaming', 'business'] and
-        relpath[-1] != '/')):
+        (relpath[-1] != '/' and relpath in ['mobile', 'tutorials', 'features',
+                                            'gaming', 'business'])):
       path = os.path.join(BASEDIR, 'content', relpath, 'index.html')
     else:
       path = os.path.join(BASEDIR, 'content', relpath)
@@ -401,7 +404,8 @@ class ContentHandler(webapp.RequestHandler):
 
         if r.url.startswith('/'):
           # Localize title and description if article is localized.
-          filepath = os.path.join(BASEDIR, 'content', r.url[1:], self.locale, 'index.html')
+          filepath = os.path.join(BASEDIR, 'content', r.url[1:], self.locale,
+                                  'index.html')
           if os.path.isfile(filepath):
             if r.title:
               r.title = _(r.title)
@@ -441,7 +445,8 @@ class ContentHandler(webapp.RequestHandler):
       for r in updates:
         if r.url.startswith('/'):
           # Localize title if article is localized.
-          filepath = os.path.join(BASEDIR, 'content', r.url[1:], self.locale, 'index.html')
+          filepath = os.path.join(BASEDIR, 'content', r.url[1:], self.locale,
+                                  'index.html')
           if r.url.startswith('/') and os.path.isfile(filepath) and r.title:
             r.title = _(r.title)
           # Point the article to the localized version, regardless.
@@ -490,7 +495,8 @@ class DBHandler(ContentHandler):
         resource.put()
 
       except TypeError:
-        pass # TODO(ericbidelman): Not sure why this is throwing an error, but ignore it.
+        pass # TODO(ericbidelman): Not sure why this is throwing an error, but
+             # ignore it, whatever it is.
     f.close()
 
   def _AddTestResources(self):
@@ -589,7 +595,8 @@ class DBHandler(ContentHandler):
         post = models.Resource.get_by_id(int(post_id))
         if post:
           author_id = post.author.key().name()
-          second_author_id = post.second_author and post.second_author.key().name()
+          second_author_id = (post.second_author and
+                              post.second_author.key().name())
 
           # Adjust browser support so it renders to the checkboxes correctly.
           browser_support = [b.capitalize() for b in post.browser_support]
@@ -606,7 +613,8 @@ class DBHandler(ContentHandler):
 
       template_data = {
         'tutorial_form': tutorial_form,
-        'resources': models.Resource.all().order('-publication_date'), # get_all() not used b/c we don't care about caching on this page.
+        # get_all() not used b/c we don't care about caching on this page.
+        'resources': models.Resource.all().order('-publication_date'),
         'post_id': post_id and int(post_id) or ''
       }
       return self.render(data=template_data,
@@ -682,7 +690,8 @@ class DBHandler(ContentHandler):
           tutorial.url = self.request.get('url') or None
           tutorial.browser_support = browser_support
           tutorial.update_date = datetime.date.today()
-          tutorial.publication_date = datetime.date(pub.year, pub.month, pub.day)
+          tutorial.publication_date = datetime.date(pub.year, pub.month,
+                                                    pub.day)
           tutorial.tags = tags
           tutorial.draft = self.request.get('draft') == 'on'
           tutorial.social_url = unicode(self.request.get('social_url') or '')
