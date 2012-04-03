@@ -1064,6 +1064,10 @@ header.main nav ul li a
 {
   float: left;
   padding: 6px 1em;
+  max-width: 125px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
 
 body[data-href*='features'] header.main nav li#features_show,
@@ -1176,9 +1180,11 @@ header.main h1
   width: 710px;
 }
 html[lang=de] .subheader .features ul,
-html[lang=es] .subheader .features ul,
 html[lang=ru] .subheader .features ul {
   width: 600px;
+}
+html[lang=es] .subheader .features ul {
+  width: 543px;
 }
 
 .subheader .features ul li
@@ -1199,7 +1205,9 @@ html[lang=ru] .subheader .features ul {
   width: 112px;
 }
 
-html[lang=es] .subheader .features ul li,
+html[lang=es] .subheader .features ul li {
+  width: 180px;
+}
 html[lang=ru] .subheader .features ul li {
   width: 200px;
 }
