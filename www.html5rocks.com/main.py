@@ -58,6 +58,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 
 template.register_template_library('templatetags.templatefilters')
 
+BASEDIR = os.path.dirname(__file__)
 
 class ContentHandler(webapp.RequestHandler):
 
@@ -258,8 +259,6 @@ class ContentHandler(webapp.RequestHandler):
     if not locale:
       return self.redirect("/en/%s" % relpath, permanent=True)
 
-    basedir = os.path.dirname(__file__)
-
     # Strip off leading `/[en|de|fr|...]/`
     relpath = re.sub('^/?\w{2,3}/', '', relpath)
 
@@ -287,9 +286,9 @@ class ContentHandler(webapp.RequestHandler):
     if ((relpath == '' or relpath[-1] == '/') or  # Landing page.
         (relpath in ['mobile', 'tutorials', 'features', 'gaming', 'business'] and
         relpath[-1] != '/')):
-      path = os.path.join(basedir, 'content', relpath, 'index.html')
+      path = os.path.join(BASEDIR, 'content', relpath, 'index.html')
     else:
-      path = os.path.join(basedir, 'content', relpath)
+      path = os.path.join(BASEDIR, 'content', relpath)
 
     # Render the .html page if it exists. Otherwise, check that the Atom feed
     # the user is requesting has a corresponding .html page that exists.
@@ -400,14 +399,15 @@ class ContentHandler(webapp.RequestHandler):
         if len(resource_type):
           resource_type = resource_type[0].replace('type:', '')
 
-        # Localize title and description.
-        if r.title:
-          r.title = _(r.title)
-        if r.description:
-          r.description = _(r.description)
-
-        # Point the article to the localized version.
         if r.url.startswith('/'):
+          # Localize title and description if article is localized.
+          filepath = os.path.join(BASEDIR, 'content', r.url[1:], self.locale, 'index.html')
+          if os.path.isfile(filepath):
+            if r.title:
+              r.title = _(r.title)
+            if r.description:
+              r.description = _(r.description)
+          # Point the article to the localized version, regardless.
           r.url = "/%s%s" % (self.locale, r.url)
 
         tutorials.append(r)
@@ -436,10 +436,20 @@ class ContentHandler(webapp.RequestHandler):
 
     elif os.path.isfile(path + '.html'):
       category = relpath.replace('features/', '')
+      updates = (TagsHandler().get_as_db('class:' + category)
+                    .fetch(limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT))
+      for r in updates:
+        if r.url.startswith('/'):
+          # Localize title if article is localized.
+          filepath = os.path.join(BASEDIR, 'content', r.url[1:], self.locale, 'index.html')
+          if r.url.startswith('/') and os.path.isfile(filepath) and r.title:
+            r.title = _(r.title)
+          # Point the article to the localized version, regardless.
+          r.url = "/%s%s" % (self.locale, r.url)
+
       data = {
         'category': category,
-        'updates': (TagsHandler().get_as_db('class:' + category)
-                    .fetch(limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT))
+        'updates': updates
       }
       if relpath == "why":
         if os.path.isfile(os.path.join(path, locale, 'index.html')):
@@ -450,7 +460,7 @@ class ContentHandler(webapp.RequestHandler):
 
     else:
       self.render(status=404, message='Page Not Found',
-                  template_path=os.path.join(basedir, 'templates/404.html'))
+                  template_path=os.path.join(BASEDIR, 'templates/404.html'))
 
 
 class DBHandler(ContentHandler):
