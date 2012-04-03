@@ -2339,7 +2339,7 @@ msgstr "Inspiration"
 
 #: content/tutorials/index.html:15
 msgid "Posts & Tutorials"
-msgstr "Beiträge & Anleitung"
+msgstr "Anleitungen"
 
 #: content/tutorials/index.html:86
 msgid "Filtering by tag"
@@ -3000,7 +3000,7 @@ msgstr "HTML5 Rocks-RSS"
 
 #: templates/base.html:78
 msgid "Posts &amp; Tutorials"
-msgstr "Beiträge &amp; Anleitung"
+msgstr "Anleitungen"
 
 #: templates/base.html:79
 msgid "Slides"

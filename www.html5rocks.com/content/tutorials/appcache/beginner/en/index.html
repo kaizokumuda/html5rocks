@@ -1,21 +1,5 @@
 {% extends "tutorial.html" %}
 
-{% block headauthor %}Eric Bidelman <e.bidelman@chromium.org>{% endblock %}
-{% block pageauthor %}{% profilelinks ericbidelman %}{% endblock %}
-{% block headtitle %}A Beginner's Guide to Using the Application Cache{% endblock %}
-{% block pagetitle %}A Beginner's Guide to Using the Application Cache{% endblock %}
-{% block pagebreadcrumb %}A Beginner's Guide to Using the Application Cache{% endblock %}
-{% block date %}June 18, 2010{% endblock %}
-{% block updated %}May 27, 2011{% endblock %}
-
-{% block browsersupport %}
-<span class="browser opera supported"><span class="browser_name">Opera</span><span class="support">supported</span></span>
-<span class="browser ie"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
-<span class="browser safari supported"><span class="browser_name">Safari</span><span class="support">supported</span></span>
-<span class="browser ff supported"><span class="browser_name">Firefox</span><span class="support">supported</span></span>
-<span class="browser chrome supported"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
-{% endblock %}
-
 {% block html5badge %}
 <img src="/static/images/identity/html5-badge-h-performance-storage.png" width="165" height="64" alt="This article is powered by HTML5 Performance &amp; Integration, and Offline &amp; Storage" title="This article is powered by HTML5 Performance &amp; Integration, and Offline &amp; Storage" />
 {% endblock %}
@@ -200,7 +184,7 @@ images/logo3.png
   <ol>
     <li>The user clears their browser's data storage for your site.</li>
     <li>The manifest file is modified. Note: updating a file listed in the manifest doesn't mean
-    the browser will re-cache that resource. The manifest file itself must be alternated.</li>
+    the browser will re-cache that resource. The manifest file itself must be altered.</li>
     <li>The app cache is programatically updated.</li>
   </ol>
 
