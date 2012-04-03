@@ -406,6 +406,10 @@ class ContentHandler(webapp.RequestHandler):
         if r.description:
           r.description = _(r.description)
 
+        # Point the article to the localized version.
+        if r.url.startswith('/'):
+          r.url = "/%s%s" % (self.locale, r.url)
+
         tutorials.append(r)
         tutorials[-1].classes = [x.replace('class:', '') for x in r.tags
                                  if x.startswith('class:')]
