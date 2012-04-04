@@ -1044,7 +1044,8 @@ header.main h1 a
 
 header.main nav
 {
-  height: 25px;
+  min-height: 25px;
+  overflow: hidden;
 }
 
 header.main nav ul
@@ -1064,10 +1065,7 @@ header.main nav ul li a
 {
   float: left;
   padding: 6px 1em;
-  max-width: 125px;
-  text-overflow: ellipsis;
   white-space: nowrap;
-  overflow-x: hidden;
 }
 
 body[data-href*='features'] header.main nav li#features_show,
