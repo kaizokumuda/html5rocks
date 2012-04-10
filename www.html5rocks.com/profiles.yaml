@@ -802,4 +802,23 @@ google: 101336834325039935793
 twitter: ryanseddon
 email: seddon.ryan@gmail.com
 
+id: bradfrost
+name:
+  given: Brad
+  family: Frost
+org:
+  name: RG/A
+  unit: Front-end designer
+address:
+  locality: New York
+  region: New York
+  country: USA
+  lat: 40.714353
+  lon: -74.005973
+homepage: http://http://bradfrostweb.com/
+google: 103751101313992876152
+twitter: brad_frost
+email: brad@bradfrostweb.com
+
+---
 
