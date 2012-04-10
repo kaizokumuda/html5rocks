@@ -21,12 +21,12 @@
     <img class="postimage {{post.image_style}}" src="/images/{{post.image_id}}" />
   {% endif %}
   {{post.rendered}}
-  <p>
+  <p class="prevnext">
     {% if prev %}
-      <a id="prev" href="{{config.url_prefix}}{{prev.path}}">Previous Post</a>
+      <a id="prev" href="{{config.url_prefix}}{{prev.path}}">&#10218; {{prev.title|escape}}</a>
     {% endif %}
     {% if next %}
-      <a id="next" href="{{config.url_prefix}}{{next.path}}">Next Post</a>
+      <a id="next" href="{{config.url_prefix}}{{next.path}}">{{next.title|escape}} &#10219;</a>
     {% endif %}
   </p>
  </section>

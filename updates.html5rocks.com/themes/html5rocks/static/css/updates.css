@@ -12,7 +12,6 @@ form table th label { font-weight: normal; }
 #submit { width: auto; }
 /* mandatory */
 [for=name], [for=message], [for=id_tags], [for=id_author_id] { font-weight: bold; }
-
 [for="id_tags"]:after {
 	content: "\A(one per line)"; font-weight: normal;
 }
@@ -36,3 +35,6 @@ ul.errorlist { list-style-type: none; margin-top: 1em; color: red; margin: 0; pa
 .time-author time { float: none; font-size: 100%; }
 .time-author a, .time-author a:visited { color: hsl(0, 0%, 19%); text-decoration: underline; }
 .tag { color: hsl(240, 20%, 62%); margin-left: 10px;}
+
+.prevnext { border-top: 3px double hsl(0, 0%, 80%); text-align: center; }
+.prevnext a { padding: 0 15px; }
