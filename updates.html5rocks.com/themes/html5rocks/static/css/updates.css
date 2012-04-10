@@ -1,6 +1,6 @@
 /**********************************************************************/
 /* ::::HTML5Rocks Updates Stream - Overrides::::
- * In here are customisations for Bloggart and overrides of the 
+ * In here are customisations for Bloggart and overrides of the
  * default HTML5Rocks stylesheet
  ****************************************/
 /*********/
@@ -12,6 +12,13 @@ form table th label { font-weight: normal; }
 #submit { width: auto; }
 /* mandatory */
 [for=name], [for=message], [for=id_tags], [for=id_author_id] { font-weight: bold; }
+
+[for="id_tags"]:after {
+	content: "\A(one per line)"; font-weight: normal;
+}
+
+
+
 ul.errorlist { list-style-type: none; margin-top: 1em; color: red; margin: 0; padding: 0; }
 .textile { font-style: italic; }
 
