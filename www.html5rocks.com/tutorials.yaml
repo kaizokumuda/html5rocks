@@ -1,3 +1,20 @@
+title: Creating a Mobile-First Responsive Web Design
+url: /mobile/responsivedesign/
+author_id: bradfrost
+publication_date: 2012-04-10
+description: "Responsive web design gives web creators some tools for making layouts that respond to any screen size. This article uses fluid grids, flexible images and media queries to get the layout looking great regardless of the size of the device's screen dimensions."
+browser_support:
+    - chrome
+    - ie
+    - ff
+    - safari
+    - opera
+tags:
+- mobile
+- type:article
+
+---
+
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman
