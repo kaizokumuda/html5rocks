@@ -105,7 +105,12 @@ class MixinAnnotation(django.template.Node):
     self.prop = props[0]
     self.val = ' '.join(props[1:])
     if self.prop[-1] != ':':
-      self.prop += ':'
+      idx = self.prop.find('(')
+      if idx == -1:
+        self.prop += ':'
+      else:
+        self.prop = self.prop[0:idx]
+        self.val = props[0][idx:] + ' ' + self.val
     if self.val[-1] != ';':
       self.val += ';'
 
