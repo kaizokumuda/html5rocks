@@ -1,9 +1,3 @@
-<!--
-1. Add your author info to profiles.yaml.
-2. Add your tutorial/article metata info to tutorials.yaml.
-3. Update the {% block iscompatible %} below with your feature detection check.
--->
-
 {% extends "tutorial.html" %}
 
 {% block pagebreadcrumb %}Creating a Mobile-First Responsive Web Design{% endblock %}
@@ -14,23 +8,19 @@
 {% block iscompatible %}
 {% endblock %}
 
-{% block html5badge %}
-{% endblock %}
-
 
 {% block content %}
-
-
 <h2 id="toc-introduction">Introduction</h2>
 
 <p>We're going to walk through how to create an adaptive web experience that's designed mobile-first. This article and <a href="http://bradfrostweb.com/demo/mobile-first/">demo</a> will go over the following:</p>
 
 <ul>
-	<li>Why we need to create mobile-first, responsive, adaptive experiences</li>
-	<li>How to structure HTML for an adaptive site in order to optimize performance and prioritize flexibility</li>
-	<li>How to write CSS that defines shared styles first, builds up styles for larger screens with media queries, and uses relative units</li>
-	<li>How to write unobtrusive Javascript to conditionally load in content fragments, take advantage of touch events and geolocation</li>
-	<li>What we could do to further enhance our adaptive experience</li>
+
+  <li>Why we need to create mobile-first, responsive, adaptive experiences</li>
+  <li>How to structure HTML for an adaptive site in order to optimize performance and prioritize flexibility</li>
+  <li>How to write CSS that defines shared styles first, builds up styles for larger screens with media queries, and uses relative units</li>
+  <li>How to write unobtrusive Javascript to conditionally load in content fragments, take advantage of touch events and geolocation</li>
+  <li>What we could do to further enhance our adaptive experience</li>
 </ul>
 
 <h2 id="toc-theneed">The Need for Adaptivity</h2>
@@ -101,23 +91,24 @@
 
 <pre class="prettyprint">/*Large screen styles first - Avoid*/
 .product-img {
-      width: 50%;
-      float: left;
+  width: 50%;
+  float: left;
 }
 @media screen and (max-width: 40.5em) {
-    .product-img {
-             width: auto;
-             float: none;
-        }
+  .product-img {
+    width: auto;
+    float: none;
+  }
 }</pre>
 
 <p>We want to avoid complexity as much as we can, so here's what a mobile-first approach looks like:</p>
 
-<pre class="prettyprint">@media screen and (min-width: 40.5em) {
-    .product-img {
-              width: 50%;
-             float: left;
-        }
+<pre class="prettyprint">
+@media screen and (min-width: 40.5em) {
+  .product-img {
+    width: 50%;
+    float: left;
+  }
 }</pre>
 
 <p>Instead of declaring large screen rules first only to override them for smaller screens, we'll simply define rules as more real estate becomes available. The web by default is a fluid thing so we'll do our best to work with it instead of against it. It's important to note that some mobile browsers (Symbian browsers, Blackberry &lt;OS 6.0, Netfront, WP7 pre-Mango, etc) don't support media queries, so serving base styles by default reaches more devices and browsers. As <a href="http://www.slideshare.net/bryanrieger/rethinking-the-mobile-web-by-yiibu">Bryan Rieger puts it</a>, "the absence of support for @media queries is in fact the first @media query."</p>
@@ -128,21 +119,21 @@
 
 <pre class="prettyprint">/*Default styles*/
 .related-products li {
-	float: left;
-	width: 50%;
+  float: left;
+  width: 50%;
 }
 
 /*Display 3 per row for medium displays (like mobile phones in landscape or smaller tablets)*/
 @media screen and (min-width: 28.75em) {
-	.related-products li {
-		width: 33.3333333%;
-	}
+  .related-products li {
+    width: 33.3333333%;
+  }
 }
 /*Display 6 to a row for large displays (like medium tablets and up) */
 @media screen and min-width: 40.5em) {
-	.related-products li {
-		width: 16.6666667%;
-	}
+  .related-products li {
+    width: 16.6666667%;
+  }
 }</pre>
 
 <p>Assuming small screen by default allows us to support more platforms and also makes it easy add more breakpoints without having to modify existing styles.  Defining styles as they're needed also keeps file size down, reduces complexity and keeps code more maintainable.</p>
@@ -161,27 +152,22 @@
 
 <pre class="prettyprint">/*Using CSS gradients instead of background images*/
 header[role="banner"] {
-	position: relative;
-	background: #111; 
-	background: -moz-linear-gradient(top, #111 0%, #222 100%); 
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#111), color-stop(100%,#222)); 
-	background: -webkit-linear-gradient(top, #111 0%,#222 100%); 
-	background: -o-linear-gradient(top, #111 0%,#222 100%);
-	background: -ms-linear-gradient(top, #111 0%,#222 100%); 
-	background: linear-gradient(top, #111 0%,#222 100%);
+  position: relative;
+  background: #111; 
+  background: {% mixin linear-gradient(top, #111 0%, #222 100%); %}
 }</pre>
 
 <p>We're also using <a href="http://bradfrostweb.com/demo/mobile-first/article.html">data URIs</a> instead of background images for some of the smaller icons (for icons like search, social features and location). While data URIs might look a bit ugly and can increase up the stylesheet file size, the reduction of requests results in a <a href="http://tech.groups.yahoo.com/group/mobile-web/message/609">faster perceived download time</a>.</p>
 
 <pre class="prettyprint">/*Using a Data URI for Background Image*/
 .find-nearby {
-	background: url(data:image/png;base64,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) no-repeat 100% 43%;
+  background: url(data:image/png;base64,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) no-repeat 100% 43%;
 }
 </pre>
 
 <h2 id="toc-behavior">Behavior</h2>
 
-<p>Now that we have our structure and style in place, we'll add javascript enhancements to add functionality to the navigation, image gallery and auxiliary content.</p>
+<p>Now that we have our structure and style in place, we'll add JavaScript enhancements to add functionality to the navigation, image gallery and auxiliary content.</p>
 
 <h3 id="toc-behavior-navigation">Navigation</h3>
 
@@ -189,43 +175,43 @@ header[role="banner"] {
 in our markup we've created a list called #nav-anchors, which will be used to toggle the visibility of the navigation and search bar for small screens.</p>
 
 <pre class="prettyprint">&lt;ul  id="nav-anchors" class="nav-anchors"&gt;
-	&lt;li&gt;&lt;a href="#nav" id="menu-anchor"&gt;Menu&lt;/a&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;a href="#search" id="search-anchor"&gt;Search&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#nav" id="menu-anchor"&gt;Menu&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#search" id="search-anchor"&gt;Search&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;form id="search" action="#" method="post" class="search reveal"&gt;
-	&lt;fieldset&gt;
-		&lt;legend>Search the Site&lt;/legend&gt;
-		&lt;input type="search" placeholder="Search Store" /&gt;
-		&lt;input type="submit" value="Search" /&gt;
-	&lt;/fieldset&gt;
+  &lt;fieldset&gt;
+    &lt;legend>Search the Site&lt;/legend&gt;
+    &lt;input type="search" placeholder="Search Store" /&gt;
+    &lt;input type="submit" value="Search" /&gt;
+  &lt;/fieldset&gt;
 &lt;/form&gt;
 &lt;nav id="nav" class="nav reveal"&gt;
-    &lt;ul role="navigation"&gt;
-        &lt;li&gt;&lt;a href="#"&gt;T-shirts&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Hoodies&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#"&gt;Pants&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
+  &lt;ul role="navigation"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;T-shirts&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Hoodies&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Pants&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
 &lt;/nav&gt;</pre>
 
 <p>We'll add a resize listener which will determine whether there's enough room to show the navigation and search bar.</p>
 
 <pre class="prettyprint">$(w).resize(function(){ //Update dimensions on resize
-	sw = document.documentElement.clientWidth;
-	sh = document.documentElement.clientHeight;
-	checkMobile();
+  sw = document.documentElement.clientWidth;
+  sh = document.documentElement.clientHeight;
+  checkMobile();
 });
-	
+  
 //Check if Mobile
 function checkMobile() {
-	mobile = (sw &gt; breakpoint) ? false : true;
+  mobile = (sw &gt; breakpoint) ? false : true;
 
-	if (!mobile) { //If Not Mobile
-		$('[role="tabpanel"],#nav,#search').show(); //Show full navigation and search
-	} else { //Hide 
-		if(!$('#nav-anchors a').hasClass('active')) {
-			$('#nav,#search').hide(); //Hide full navigation and search
-		}
-	}
+  if (!mobile) { //If Not Mobile
+    $('[role="tabpanel"],#nav,#search').show(); //Show full navigation and search
+  } else { //Hide 
+    if(!$('#nav-anchors a').hasClass('active')) {
+      $('#nav,#search').hide(); //Hide full navigation and search
+    }
+  }
 }</pre>
 
 <h3 id="toc-behavior-gallery">Image Gallery</h3>
@@ -233,72 +219,73 @@ function checkMobile() {
 <p>By default the image gallery is simply a large image with thumbnail images that click through to their larger counterparts. This means that they're accessible to browsers and devices with poor or no JavaScript support.</p>
 
 <pre class="prettyprint">&lt;div id="product-img" class="product-img"&gt;
-	&lt;figure class="img-container" id="img-container"&gt;
-		&lt;img src="images/product_img_1.jpg" alt="Super Ffly T-shirt" /&gt;
-	&lt;/figure&gt;
-	&lt;nav&gt;
-		&lt;ul&gt;
-			&lt;li&gt;&lt;a href="images/product_img_1.jpg"&gt;&lt;img src="images/product_img_1_thumb.jpg" alt="Super Ffly Men's Shirt" /&gt;&lt;/a&gt;&lt;/li&gt;
-			&lt;li&gt;&lt;a href="images/product_img_2.jpg"&gt;&lt;img src="images/product_img_2_thumb.jpg" alt="Super Ffly Women's Shirt" /&gt;&lt;/a&gt;&lt;/li&gt;
-			&lt;li&gt;&lt;a href="images/product_img_3.png"&gt;&lt;img src="images/product_img_3_thumb.jpg" alt="Ffly Logo" /&gt;&lt;/a&gt;&lt;/li&gt;
-		&lt;/ul&gt;
-	&lt;/nav&gt;
+  &lt;figure class="img-container" id="img-container"&gt;
+    &lt;img src="images/product_img_1.jpg" alt="Super Ffly T-shirt" /&gt;
+  &lt;/figure&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="images/product_img_1.jpg"&gt;&lt;img src="images/product_img_1_thumb.jpg" alt="Super Ffly Men's Shirt" /&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="images/product_img_2.jpg"&gt;&lt;img src="images/product_img_2_thumb.jpg" alt="Super Ffly Women's Shirt" /&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="images/product_img_3.png"&gt;&lt;img src="images/product_img_3_thumb.jpg" alt="Ffly Logo" /&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
 &lt;/div&gt;</pre>
 
 <p>We'll build an image carousel from the available thumbnail images:</p>
 
 <pre class="prettyprint">function buildGallery() {
-	container.html('&lt;div id="img-list"&gt;&lt;ul /&gt;&lt;/div&gt;');
-	imgList = $('#img-list');
-	nav.find('a:first').addClass('active');
-	
-	//For Each Navigation Link
-	nav.find('a').each(function() {
-		var $this = $(this),
-			href = $this.attr('href');
-			
-		//Prepare list item with image source in data attribute
-		arr += '&lt;li data-imgsrc="'+href+'"&gt;&lt;/li&gt;';
-	});
-	
-	//Append to #img-list
-	imgList.find('ul').append(arr);
-			
-	//Nav Thumbnail Click
-	nav.on('click','a',function(e) {
-		var pos = $(this).parent().index();
-		e.preventDefault();
-		loadImg(pos);
-		if(swipeEnabled) {
-			mySwipe.slide(index,300);
-		}
-		updateNav(pos);
-	});
+  container.html('&lt;div id="img-list"&gt;&lt;ul /&gt;&lt;/div&gt;');
+  imgList = $('#img-list');
+  nav.find('a:first').addClass('active');
+  
+  //For Each Navigation Link
+  nav.find('a').each(function() {
+    var $this = $(this);
+    var href = $this.attr('href');
+      
+    //Prepare list item with image source in data attribute
+    arr += '&lt;li data-imgsrc="'+href+'"&gt;&lt;/li&gt;';
+  });
+  
+  //Append to #img-list
+  imgList.find('ul').append(arr);
+      
+  //Nav Thumbnail Click
+  nav.on('click', 'a', function(e) {
+    var pos = $(this).parent().index();
+    e.preventDefault();
+    loadImg(pos);
+    if(swipeEnabled) {
+      mySwipe.slide(index, 300);
+    }
+    updateNav(pos);
+  });
 }
 </pre>
 
 <p>To enhance the experience further, we're using <a href="http://www.modernizr.com/">Modernizr</a> to detect for the presence of touch events and CSS transitions, and if they are supported, we'll load in a library called <a href="http://swipejs.com/">SwipeJS</a> to make a touch-friendly image carousel.</p>
 
-<pre class="prettyprint">Modernizr.load({
-	  test: Modernizr.touch &amp;&amp; Modernizr.csstransitions,
-	  yep : 'js/swipe.js',
-	  complete : function() {
-		if(Modernizr.touch &amp;&amp; Modernizr.csstransitions) {
-			swipeEnabled = true;
-			buildSwipe();
-		}
-	  }
+<pre class="prettyprint">
+Modernizr.load({
+  test: Modernizr.touch &amp;&amp; Modernizr.csstransitions,
+  yep: 'js/swipe.js',
+  complete: function() {
+    if (Modernizr.touch &amp;&amp; Modernizr.csstransitions) {
+      swipeEnabled = true;
+      buildSwipe();
+    }
+  }
 });
 
 //Build Swipe Carousel
 function buildSwipe() {
-	//Initialize Swipe.js
-	w.mySwipe = new Swipe(document.getElementById('img-list'), {
-		callback: function(event, index, elem) {
-			updateNav(index);
-			loadImg(index+1);
-		}	
-	});
+  //Initialize Swipe.js
+  w.mySwipe = new Swipe(document.getElementById('img-list'), {
+    callback: function(event, index, elem) {
+      updateNav(index);
+      loadImg(index + 1);
+    } 
+  });
 }</pre>
 
 <p>We now have an accessible image gallery with added enhancements for touch-enabled devices.</p>
@@ -308,25 +295,25 @@ function buildSwipe() {
 <p>In order to keep Initial page size down, we're not loading auxiliary content, namely the related t-shirts and product reviews, by default. Instead, they exist as their own HTML pages, which are accessed by links as a default behavior.</p>
 
 <pre class="prettyprint">&lt;section class="aux related-products" id="related-products"&gt;
-	&lt;header id="tab-related"&gt;
-		&lt;a href="related.html"&gt;
-			&lt;h2&gt;Similar T-shirts&lt;/h2&gt;
-		&lt;/a&gt;
-	&lt;/header&gt;
+  &lt;header id="tab-related"&gt;
+    &lt;a href="related.html"&gt;
+      &lt;h2&gt;Similar T-shirts&lt;/h2&gt;
+    &lt;/a&gt;
+  &lt;/header&gt;
 &lt;/section&gt;
 &lt;section class="aux reviews" id="reviews"&gt;
-	&lt;header id="tab-reviews"&gt;
-		&lt;a href="reviews.html"&gt;
-	        	&lt;h2>8 Reviews&lt;/h2&gt;
-	        	&lt;ol class="star"&gt;
-		            &lt;li class="on"&gt;&amp;#9733;&lt;/li&gt;
-		            &lt;li class="on"&gt;&amp;#9733;&lt;/li&gt;
-		            &lt;li class="on"&gt;&amp;#9733;&lt;/li&gt;
-		            &lt;li class="on"&gt;&amp;#9733;&lt;/li&gt;
-		            &lt;li&gt;&amp;#9734;&lt;/li&gt;
-	        	&lt;/ol&gt;
-		&lt;/a&gt;
-	&lt;/header&gt;
+  &lt;header id="tab-reviews"&gt;
+    &lt;a href="reviews.html"&gt;
+      &lt;h2>8 Reviews&lt;/h2&gt;
+      &lt;ol class="star"&gt;
+        &lt;li class="on"&gt;&amp;#9733;&lt;/li&gt;
+        &lt;li class="on"&gt;&amp;#9733;&lt;/li&gt;
+        &lt;li class="on"&gt;&amp;#9733;&lt;/li&gt;
+        &lt;li class="on"&gt;&amp;#9733;&lt;/li&gt;
+        &lt;li&gt;&amp;#9734;&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/a&gt;
+  &lt;/header&gt;
 &lt;/section&gt;</pre>
 
 <p>We'll pull in the related content when one of two conditions are met:
@@ -335,36 +322,36 @@ When the screen has enough room to load in the auxiliary content.</p>
 
 <pre class="prettyprint">//Check if Mobile
 function checkMobile() {
-	if(sw &gt; breakpoint) {
-		mobile = false; //Not Mobile
-	} else {
-		mobile = true; //Mobile
-	}
-	
-	if (!mobile) { //If Not Mobile
-		loadAux(); //Load auxiliary content
-	}
+  if(sw &gt; breakpoint) {
+    mobile = false; //Not Mobile
+  } else {
+    mobile = true; //Mobile
+  }
+  
+  if (!mobile) { //If Not Mobile
+    loadAux(); //Load auxiliary content
+  }
 }
 
 //Set up Auxiliary content
 function loadAux() {
-	var $aux = $('.aux');
-	$aux.each(function(index) {
-		var $this = $(this),
-			auxLink = $this.find('a'), 
-			auxFragment = auxLink.attr('href'),
-			auxContent = $this.find('[role=tabpanel]');
-		if(auxContent.size()===0 &amp;&amp; $this.hasClass('loaded')===false){
-			loadContent(auxFragment,$this);
-		}
-	});
+  var $aux = $('.aux');
+  $aux.each(function(index) {
+    var $this = $(this);
+    var auxLink = $this.find('a');
+    var auxFragment = auxLink.attr('href');
+    var auxContent = $this.find('[role=tabpanel]');
+    if (auxContent.size()===0 &amp;&amp; $this.hasClass('loaded')===false) {
+      loadContent(auxFragment,$this);
+    }
+  });
 }
 
-function loadContent(src,container) { //Load Tab Content
-	container.addClass('loaded');
-	$('&lt;div role="tabpanel" /&gt;').load(src +' #content &gt; div',function() {
-		$(this).appendTo(container);
-	});
+function loadContent(src,container) { // Load Tab Content
+  container.addClass('loaded');
+  $('&lt;div role="tabpanel" /&gt;').load(src +' #content &gt; div',function() {
+    $(this).appendTo(container);
+  });
 }</pre>
 
 <p>note: we're using screen size to determine when to load in content, but this is in no way perfect. Keep an eye out for <a href="http://davidbcalhoun.com/2010/using-navigator-connection-android">navigator.connection</a> for a better way to determine whether it's worth introducing extra content.</p>
@@ -392,13 +379,13 @@ function loadContent(src,container) { //Load Tab Content
 <p>We've created an experience that is mindful to user context and adapts both layout and functionality based the browser and device's features. We've also set up a foundation that can adapt to future devices and browsers. Here's some key takeaways:</p>
 
 <ul>
-	<li>Author semantic HTML5 markup as a foundation for adaptive experiences.</li>
-	<li>Create mobile first CSS to keep things lightweight, simple and maintainable.</li>
-	<li>Use relative units like ems and percentages to keep styles as fluid and flexible as possible.</li>
-	<li>Let content determine the breakpoints for media queries.</li>
-	<li>Exploit opportunities to reduce HTTP requests by conditionally-loading content and using HTML characters, CSS gradients, Data URIs and more</li>
-	<li>Author unobtrusive javascript and use tools like Modernizr to detect features.</li>
-	<li>Take advantage of mobile-centric features like touch events, telephone links and geolocation to deliver enhanced experiences to mobile users.</li>
+  <li>Author semantic HTML5 markup as a foundation for adaptive experiences.</li>
+  <li>Create mobile first CSS to keep things lightweight, simple and maintainable.</li>
+  <li>Use relative units like ems and percentages to keep styles as fluid and flexible as possible.</li>
+  <li>Let content determine the breakpoints for media queries.</li>
+  <li>Exploit opportunities to reduce HTTP requests by conditionally-loading content and using HTML characters, CSS gradients, Data URIs and more</li>
+  <li>Author unobtrusive javascript and use tools like Modernizr to detect features.</li>
+  <li>Take advantage of mobile-centric features like touch events, telephone links and geolocation to deliver enhanced experiences to mobile users.</li>
 </ul>
 
 <p>Creating adaptive experiences allows your content to go more places, which means more opportunities to reach potential customers wherever they may be. By adhering to the principles of progressive enhancement and addressing constraints first, we're laying a <a href="http://futurefriend.ly">future-friendly</a> foundation that gives our site a better chance of working in future browsers and environments.</p>
