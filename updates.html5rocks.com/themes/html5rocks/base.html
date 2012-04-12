@@ -67,11 +67,11 @@
     <nav>
       <ul>
         <li><a class="home" href="{{config.main_site_origin}}">Home</a></li>
-        <li><a class="why" href="{{config.main_site_origin}}/why">Why HTML5?</a></li>
-        <li id="features_show"><a href="#features">HTML5 Features</a></li>
         <li><a href="{{config.main_site_origin}}/tutorials/" class="tutorials">{% trans "Posts &amp; Tutorials" %}</a></li>
+        <li id="features_show"><a href="#features">HTML5 Features</a></li>
         <li><a href="{{config.main_site_origin}}/slides" class="slides">{% trans "Slides" %}</a></li>
         <li><a href="{{config.main_site_origin}}/resources" class="resources">{% trans "Resources" %}</a></li>
+        <li><a class="why" href="{{config.main_site_origin}}/why">Why HTML5?</a></li>
         <li><a href="{{config.main_site_origin}}/profiles" class="profiles"}>{% trans "Who We Are" %}</a></li>
         <li><a href="http://code.google.com/p/html5rocks/wiki/ContributorsGuide" target="_blank">{% trans "Contribute" %}</a></li>
         <li id="search_show">
@@ -154,7 +154,7 @@
     </div>
   </header>
 
-  <a class="watermark" href="http://www.html5rocks.com/"></a>
+  <a class="watermark" href="{{config.main_site_origin}}"></a>
 
   <nav class="paginator home">
     <ul class="home">
