@@ -456,11 +456,17 @@ class ContentHandler(webapp.RequestHandler):
         'category': category,
         'updates': updates
       }
-      if relpath == "why":
+      if relpath == 'why' or relpath == 'live':
+        if relpath == 'live':
+          data['hangout_url'] = ''
+          live_data = models.LiveData.all().get()
+          if live_data:
+            data['hangout_url'] = live_data.hangout_url
         if os.path.isfile(os.path.join(path, locale, 'index.html')):
-          data['local_content_path'] = os.path.join('why', locale, 'index.html')
+          data['local_content_path'] = os.path.join(relpath, locale, 'index.html')
         else:
-          data['local_content_path'] = os.path.join('why', 'en', 'index.html')
+          data['local_content_path'] = os.path.join(relpath, 'en', 'index.html')
+        
       self.render(data=data, template_path=path + '.html', relpath=relpath)
 
     else:
@@ -551,10 +557,27 @@ class DBHandler(ContentHandler):
   # /database/resource/1234
   # /database/load_all
   # /database/drop_all
+  # /database/author
+  # /database/live
   def get(self, relpath, post_id=None):
     self._set_cache_param()
 
-    if (relpath == 'author'):
+    if (relpath == 'live'):
+      entity = models.LiveData.all().get()
+      if entity:
+        live_form = models.LiveForm(instance=entity, initial={
+            'hangout_url': entity.hangout_url})
+      else:
+        live_form = models.LiveForm()
+
+      template_data = {
+        'live_form': live_form
+      }
+      return self.render(data=template_data,
+                         template_path='database/live.html',
+                         relpath=relpath)
+
+    elif (relpath == 'author'):
       # adds a new author information into DataStore.
       sorted_profiles = models.get_sorted_profiles(update_cache=True)
       template_data = {
@@ -626,7 +649,19 @@ class DBHandler(ContentHandler):
 
   def post(self, relpath):
 
-    if relpath == 'author':
+    if relpath == 'live':
+      # Get first (and only) result.
+      live_data = models.LiveData.all().get()
+      if live_data is None:
+        live_data = models.LiveData()
+      
+      live_data.hangout_url = self.request.get('hangout_url') or None
+
+      live_data.put()
+
+      return self.redirect('/database/live')
+
+    elif relpath == 'author':
       try:
         given_name = self.request.get('given_name')
         family_name = self.request.get('family_name')

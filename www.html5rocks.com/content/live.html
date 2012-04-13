@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block headtitle %}{% trans "Google Developers Live" %}{% endblock %}
+
+{% block head %}
+<style>
+iframe {
+  border: none;
+  width: 100%;
+  height: 500px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<article class="pattern-bg-lighter">
+	<h1>Live</h1>
+  {% if hangout_url %}
+    <iframe src="{{ hangout_url }}"></iframe>
+  {% else %}
+    Come back next time!
+  {% endif %}
+</article>
+{% endblock %}
