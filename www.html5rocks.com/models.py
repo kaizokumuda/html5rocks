@@ -144,3 +144,18 @@ class TutorialForm(djangoforms.ModelForm):
     for field in self.fields:
       if self.Meta.model.properties()[field].required and field != 'browser_support':
         self.fields[field].widget.attrs['required'] = 'required'
+
+
+class LiveData(db.Model):
+  """GDU metadata for the site."""
+
+  hangout_url = db.StringProperty()
+
+
+class LiveForm(djangoforms.ModelForm):
+
+  #class Meta:
+  #  model = LiveData
+
+  hangout_url = forms.CharField(label='Hangout URL',
+      help_text='The URL of the Hangout to embed')

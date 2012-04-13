@@ -1,3 +1,18 @@
+title: "Developing Game Audio with the Web Audio API"
+url: /tutorials/webaudio/games/
+author_id: zgoddard
+publication_date: 2012-04-13
+description: "Gradient Studios ported their award-winning Fieldrunners game to Chrome.  This article chronicles their journey in utilizing the Web Audio API to implement sound for Fieldrunners."
+browser_support:
+- chrome
+tags:
+- type:tutorial
+- class:multimedia
+- gaming
+- webaudio
+
+---
+
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman

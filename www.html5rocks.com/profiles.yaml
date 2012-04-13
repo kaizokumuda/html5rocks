@@ -809,7 +809,7 @@ name:
   given: Brad
   family: Frost
 org:
-  name: RG/A
+  name: R/GA
   unit: Front-end designer
 address:
   locality: New York
@@ -817,7 +817,28 @@ address:
   country: USA
   lat: 40.714353
   lon: -74.005973
-homepage: http://http://bradfrostweb.com/
+homepage: http://bradfrostweb.com/
 google: 103751101313992876152
 twitter: brad_frost
 email: brad@bradfrostweb.com
+
+---
+
+id: zgoddard
+name:
+  given: Z
+  family: Goddard
+org:
+  name: Gradient Studios, Inc.
+  unit: Game Developer
+address:
+  locality: Boston
+  region: Massachusetts
+  country: USA
+  lat: 42.358431
+  lon: -71.059773
+homepage: http://gradientstudios.com/
+google: 114124719754245668250
+twitter: ZofGames
+email: z@gradientstudios.com
+
