@@ -1,14 +1,13 @@
-<!--
-1. Add your author info to profiles.yaml.
-2. Add your tutorial/article metata info to tutorials.yaml.
-3. Update the {% block iscompatible %} below with your feature detection check.
--->
-
 {% extends "tutorial.html" %}
 
 {% block pagebreadcrumb %}A Tale of An HTML5 Game with Web Audio{% endblock %}
 
 {% block head %}
+<style>
+figure img {
+  height: 400px;
+}
+</style>
 {% endblock %}
 
 {% block iscompatible %}
@@ -23,7 +22,10 @@
 
 <h2 id="toc-introduction">Fieldrunners</h2>
 
-<p><img src="grasslands.png" alt="Fieldrunners screenshot"></p>
+<figure>
+  <img src="grasslands1.png" alt="Fieldrunners screenshot" title="Fieldrunners screenshot">
+  <figcaption>Fieldrunners screenshos</figcaption>
+</figure>
 
 <p>Fieldrunners is an award-winning tower-defense style game that was originally released for <a href="http://itunes.apple.com/us/app/fieldrunners/id292421271?mt=8">iPhone</a> in 2008. Since then it has been ported to many other platforms. One of the most recent platforms was the <a href="https://chrome.google.com/webstore/detail/lkpikhjbfbffdblahfidklcohlaeabak">Chrome browser</a> in October 2011. One of the challenges of porting Fieldrunners to an HTML5 platform was how to play sound.</p>
 
@@ -54,13 +56,13 @@
 <p>Fieldrunners has a very simple audio model. That model can support the following feature set:</p>
 
 <ul>
-	<li>Control the volume of sound effects.
-	<li>Control the volume of the background music track.
-	<li>Mute all audio. 
-	<li>Turn off playing sounds when the game is paused.
-	<li>Turn those same sounds back on when the game is resumed.
-	<li>Turn off all audio when the game's tab loses focus.
-	<li>Restart playback after a sound is played as needed.
+  <li>Control the volume of sound effects.
+  <li>Control the volume of the background music track.
+  <li>Mute all audio. 
+  <li>Turn off playing sounds when the game is paused.
+  <li>Turn those same sounds back on when the game is resumed.
+  <li>Turn off all audio when the game's tab loses focus.
+  <li>Restart playback after a sound is played as needed.
 </ul>
 
 <p>To achieve the above features with Web Audio, it used 3 of the provided possible nodes: DestinationNode, GainNode, AudioBufferSourceNode. The AudioBufferSourceNodes play the sounds. The GainNodes connect the AudioBufferSourceNodes together. The DestinationNode, created by the Web Audio context, called destination, plays sounds for the player. Web Audio has many more types of nodes but with only these we can create a very simple graph for sounds in a game.</p>
