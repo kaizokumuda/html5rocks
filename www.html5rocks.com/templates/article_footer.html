@@ -29,7 +29,16 @@
     var disqus_developer = {% if not prod %}1{% else %}0{% endif %};
 
     var disqus_config = function () {
-      this.language = "{{LANGUAGE_CODE}}";
+      var funky_language_code_mapping = {
+        'de': 'de_inf',
+        'es': 'es_ES',
+        'pt': 'pt_EU',
+        'sr': 'sr_CYRL',
+        'sv': 'sv_SE',
+        'zh': 'zh_HANT'
+      };
+      this.language = funky_language_code_mapping['{{LANGUAGE_CODE}}'] ||
+                      '{{LANGUAGE_CODE}}';
     };
 
     window.addEventListener('load', function(e) {
