@@ -7,7 +7,7 @@ site depending on screen size. See [this article][rwd] for more
 information about responsive design and check out some of these fine
 examples of media queries usage here: [mediaqueri.es][mq].
 
-However, as Brad Frost points out in an [earlier article][bf], changing
+However, as Brad points out in an [earlier article][bf], changing
 the look is only one of many things to consider when building for the
 mobile web. If the only thing you do when you build your mobile website
 is customize your layout with media queries, then we have the following
@@ -41,7 +41,7 @@ input, devices with pressure sensitivity, smart watches, toasters and
 refrigerators, and many more. Some of these devices are ubiquitous,
 while others are very rare.
 
-    IMAGE
+![A variety of devices](/static/demos/cross-device/variety.png)
 
 To create a good user experience, you need to know who your users are.
 If you build a user interface for a desktop user with a mouse and a
@@ -84,17 +84,20 @@ out [this great resource][acc].
 
 There are many examples of developers creating drastically different
 experiences for different form factors. Google search does this, as does
-Facebook. Considerations for this
+Facebook. Considerations for this include both performance (in page, and
+load time) and more general user experience.
 
 In the world of native apps, many developers choose to tailor their
-experience to a device class. For example, Flipboard for iPad is a very
-different user experience compared to Flipboard on iPhone. The tablet
-version is optimized for two hand use and horizontal flipping while the
-phone version is intended for single hand interaction and a vertical
-flip. Many other iOS applications also provide significantly different
-phone and tablet versions, such as Things.
+experience to a device class. For example, [Flipboard][flipboard] for
+iPad is a very different user experience compared to Flipboard on
+iPhone. The tablet version is optimized for two hand use and horizontal
+flipping while the phone version is intended for single hand interaction
+and a vertical flip. Many other iOS applications also provide
+significantly different phone and tablet versions, such as
+[Things][things].
 
-    SCREENSHOT OF FLIPBOARD, THINGS?
+![Total customization for phone and
+tablet](/static/demos/cross-device/phone-tablet.png)
 
 To reiterate, creating a separate version for each app is generally a
 good idea for performance reasons or if the versions you want to serve
@@ -121,7 +124,7 @@ The retina Mobile Safari UAs still report the same device-width to avoid
 breaking the web. As other devices (eg. Android) get higher resolution
 displays, they are doing the same device-width trick.
 
-    IMAGE OF DEVICES
+![Device resolution (in pixels)](/static/demos/cross-device/devices.png)
 
 Complicating this decision, however, is the importance of considering
 both portrait and layout modes. We don’t want to reload the page or load
@@ -132,7 +135,7 @@ In the following diagram, squares represent the max dimensions of each
 device, as a result of overlaying the portrait and landscape outlines
 (and completing the square):
 
-    IMAGE OF SQUARE DEVICES
+![Portrait + landscape resolution (in pixels)](/static/demos/cross-device/devices-portland.png)
 
 By setting the threshold to `650px`, we classify iPhone, Galaxy Nexus as
 smalltouch, and iPad, Galaxy Tab as bigtouch. The androgynous Galaxy
@@ -169,8 +172,10 @@ like this:
 See a sample of the [UA-detection approach][ua-sample] in action.
 
 [csspx]: http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html
-[feature-sample]: feature/
-[ua-sample]: ua/
+[feature-sample]: /static/demos/cross-device/feature/index.html
+[ua-sample]: /static/demos/cross-device/ua/index.html
+[things]: http://culturedcode.com/things/
+[flipboard]: http://flipboard.com/
 
 <h2 id="toc-server-detect">Server-side detection</h2>
 
@@ -201,7 +206,7 @@ tablet support only through an [ad-hoc set of tweaks][dmb-tablet].
 If you’re doing UA detection on your server, you can decide what CSS,
 JavaScript and DOM to serve when you get a new request. However, if
 you’re doing client-side detection, the situation is more complex. You
-have several two options:
+have several options:
 
 1. Redirect to a device-type-specific URL that contains the version for
    this device type.
@@ -245,26 +250,22 @@ client-side redirection.
 
 <h2 id="toc-client-server">Deciding client or server</h2>
 
-<table>
-  <tr>
-    <th>Pro client</th>
-    <th>Pro server</th>
-  </tr>
-  <tr>
-    <td>More future proof since based on screen sizes/capabilities rather than UA.</td>
-    <td>Full control of what version to serve to what devices.</td>
-  </tr>
-  <tr>
-    <td>No need to constantly update UA list.</td>
-    <td>Better performance: no need for client redirects, or dynamic loading.</td>
-  </tr>
-</table>
+These are the tradeoffs between the approaches:
 
-These are the tradeoffs between the approaches. My personal preference
-is to start with device.js and client-side detection. As your
-application evolves, if you find the client-side redirect to be a
-significant performance drawback, you can easily remove the device.js
-script, and implement UA detection on the server.
+**Pro client**:
+
+- More future proof since based on screen sizes/capabilities rather than UA.
+- No need to constantly update UA list.
+
+**Pro server**:
+
+- Full control of what version to serve to what devices.
+- Better performance: no need for client redirects or dynamic loading.
+
+My personal preference is to start with device.js and client-side
+detection. As your application evolves, if you find the client-side
+redirect to be a significant performance drawback, you can easily remove
+the device.js script, and implement UA detection on the server.
 
 <h2 id="toc-mvc">Separate concerns for code sharing</h2>
 
@@ -283,7 +284,7 @@ can easily move your views into separate files, creating a custom view
 for each device type. Then you can serve the same code to all devices,
 except the view layer:
 
-    IMAGE OF CROSS DEVICE MVC
+![Cross-device MVC](/static/demos/cross-device/mvc.png)
 
 Your project might have the following structure (of course, you are free
 to choose the structure that makes the most sense depending on your
