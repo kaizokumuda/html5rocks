@@ -28,6 +28,10 @@ involves classifying your visitor’s device into the right device
 classes, and serving the appropriate version to that device, while
 maximizing code reuse between versions.
 
+[rwd]: /mobile/responsivedesign
+[mq]: http://mediaqueri.es/
+[bf]: http://bradfrostweb.com/blog/web/responsive-web-design-missing-the-point/
+
 <h2 id="toc-device-classes">Device classes</h2>
 
 There are tons of internet-connected devices out there, and nearly all
@@ -72,7 +76,9 @@ devices without touch screens (eg. feature phones, some dedicated ebook
 readers). However, most of these have keyboard navigation or screen
 reader software installed, which will work fine if you build your site
 with accessibility in mind.  For more information on this subject, check
-out [w15y.com][w15y].
+out [this great resource][acc].
+
+[acc]: #
 
 ### Examples
 
@@ -162,6 +168,10 @@ like this:
 
 See a sample of the [UA-detection approach][ua-sample] in action.
 
+[csspx]: http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html
+[feature-sample]: feature/
+[ua-sample]: ua/
+
 <h2 id="toc-server-detect">Server-side detection</h2>
 
 On the server, we have a much more limited understanding of the device
@@ -212,6 +222,8 @@ original HTML that was served to you. Of course, you can manipulate it
 with JavaScript, but this may be slow and/or inelegant, depending on
 your application.
 
+[history-api]: http://diveintohtml5.info/history.html
+
 <h2 id="toc-device-js">Device.js</h2>
 
 Device.js is a starting point for doing semantic, media query-based
@@ -228,8 +240,8 @@ For more information, see the [device.js project page][devicejs], and
 also a [fake application][devicejs-sample] that uses device.js for
 client-side redirection.
 
-[devicejs]: 
-[devicejs-sample]: 
+[devicejs]: https://github.com/borismus/device.js
+[devicejs-sample]: http://borismus.github.com/device.js/sample/
 
 <h2 id="toc-client-server">Deciding client or server</h2>
 
@@ -322,10 +334,12 @@ your production HTML looking something like the following (for phone):
     </body>
 
 Note that the `(touch-enabled: 0)` media query is non-standard (only
-implemented in Firefox), but is handled correctly (via
-[Modernizr][modernizr]) by device.js.
+implemented in Firefox behind a `moz` vendor prefix), but is handled
+correctly (thanks to [Modernizr.touch][modernizr]) by device.js.
 
-[modernizr]: #
+[mvc]: http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
+[mvc-js]: http://addyosmani.github.com/todomvc/
+[modernizr]: http://modernizr.com/
 
 <h2 id="toc-misc">Version override</h2>
 

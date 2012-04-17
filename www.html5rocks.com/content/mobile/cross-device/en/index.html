@@ -19,18 +19,16 @@
 {% endblock %}
 
 {% block content %}
-
-{% include "warning.html" %}
 <h2 id="toc-intro">Introduction</h2>
 
 <p>Media queries are awesome, a godsend for website developers that want to
 make small tweaks to their stylesheets to give a better experience for
 their users. Media queries essentially let you customize the CSS of your
-site depending on screen size. See [this article][rwd] for more
+site depending on screen size. See <a href="/mobile/responsivedesign">this article</a> for more
 information about responsive design and check out some of these fine
-examples of media queries usage here: [mediaqueri.es][mq].</p>
+examples of media queries usage here: <a href="http://mediaqueri.es/">mediaqueri.es</a>.</p>
 
-<p>However, as Brad Frost points out in an [earlier article][bf], changing
+<p>However, as Brad Frost points out in an <a href="http://bradfrostweb.com/blog/web/responsive-web-design-missing-the-point/">earlier article</a>, changing
 the look is only one of many things to consider when building for the
 mobile web. If the only thing you do when you build your mobile website
 is customize your layout with media queries, then we have the following
@@ -101,7 +99,7 @@ devices without touch screens (eg. feature phones, some dedicated ebook
 readers). However, most of these have keyboard navigation or screen
 reader software installed, which will work fine if you build your site
 with accessibility in mind.  For more information on this subject, check
-out [w15y.com][w15y].</p>
+out <a href="#">this great resource</a>.</p>
 
 <h3>Examples</h3>
 
@@ -138,8 +136,8 @@ corresponding screen resolutions). The asterisk indicates that the
 device comes or can come in doubled density. Though the pixel density
 may be doubled, CSS still reports the same sizes.</p>
 
-<p>A quick aside on pixels in CSS: CSS pixels on the mobile web [aren’t the
-same][csspx] as screen pixels. iOS retina devices introduced the
+<p>A quick aside on pixels in CSS: CSS pixels on the mobile web <a href="http://www.quirksmode.org/blog/archives/2010/04/a_pixel_is_not.html">aren’t the
+same</a> as screen pixels. iOS retina devices introduced the
 practice of doubling pixel density (eg. iPhone 3GS vs 4, iPad 2 vs 3).
 The retina Mobile Safari UAs still report the same device-width to avoid
 breaking the web. As other devices (eg. Android) get higher resolution
@@ -178,7 +176,7 @@ layout.</p>
 }
 </code></pre>
 
-<p>See a minimal sample of the [feature-detection approach][feature-sample] in action.</p>
+<p>See a minimal sample of the <a href="feature/">feature-detection approach</a> in action.</p>
 
 <p>The alternative approach here is to use UA sniffing to detect device
 type. Basically you would have a set of heuristics and match them
@@ -194,7 +192,7 @@ for (var re in RULES) {
 }
 </code></pre>
 
-<p>See a sample of the [UA-detection approach][ua-sample] in action.</p>
+<p>See a sample of the <a href="ua/">UA-detection approach</a> in action.</p>
 
 <h2 id="toc-server-detect">Server-side detection</h2>
 
@@ -233,7 +231,7 @@ this device type.</li>
 <p>The first approach is straightforward, requiring a redirect via
 <code>window.location.href = '/tablet'</code>. However, your URL will now have this
 device type information appended to it, so you may want to use the
-[History API][history-api] to clean up your URL. Unfortunately this
+<a href="http://diveintohtml5.info/history.html">History API</a> to clean up your URL. Unfortunately this
 approach involves a redirect, which can be slow, especially on mobile
 devices.</p>
 
@@ -257,8 +255,8 @@ provide. Next, you can either do server-side UA detection and handle
 version redirection on your own, or use the device.js script to do
 feature-based client-side redirection.</p>
 
-<p>For more information, see the <a href="[devicejs-sample]:">device.js project page</a>, and
-also a [fake application][devicejs-sample] that uses device.js for
+<p>For more information, see the <a href="https://github.com/borismus/device.js">device.js project page</a>, and
+also a <a href="http://borismus.github.com/device.js/sample/">fake application</a> that uses device.js for
 client-side redirection.</p>
 
 <h2 id="toc-client-server">Deciding client or server</h2>
@@ -293,8 +291,8 @@ different apps, one for each device type. There is a better way!</p>
 Ember, etc. If you have been, you are familiar with the principle of
 separation of concerns, specifically that your UI (view layer) should be
 decoupled from your logic (model layer). If this is new to you, check
-out some of these great [resources on MVC][mvc], and [MVC in
-JavaScript][mvc-js].</p>
+out some of these great <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">resources on MVC</a>, and <a href="http://addyosmani.github.com/todomvc/">MVC in
+JavaScript</a>.</p>
 
 <p>The cross-device story fits neatly into your existing MVC framework. You
 can easily move your views into separate files, creating a custom view
@@ -355,8 +353,8 @@ your production HTML looking something like the following (for phone):</p>
 </code></pre>
 
 <p>Note that the <code>(touch-enabled: 0)</code> media query is non-standard (only
-implemented in Firefox), but is handled correctly (via
-<a href="#">Modernizr</a>) by device.js.</p>
+implemented in Firefox behind a <code>moz</code> vendor prefix), but is handled
+correctly (thanks to <a href="http://modernizr.com/">Modernizr.touch</a>) by device.js.</p>
 
 <h2 id="toc-misc">Version override</h2>
 
@@ -378,7 +376,7 @@ this functionality with the <code>device</code> GET parameter.</p>
 classify devices into classes.</li>
 <li>Build your MVC app with strong separation of concerns, splitting
 views from the rest of the codebase.</li>
-<li>Use <a href="[devicejs-sample]:">device.js</a> to do client side device class detection.</li>
+<li>Use <a href="https://github.com/borismus/device.js">device.js</a> to do client side device class detection.</li>
 <li>When you're ready, package your script and stylesheets into one of
 each per device class.</li>
 <li>If client-side redirection performance is an issue, drop device.js

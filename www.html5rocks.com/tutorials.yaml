@@ -1,3 +1,21 @@
+title: Building Cross-device Web User Interfaces
+url: /mobile/cross-device/
+author_id: smus
+publication_date: 2012-04-23
+description: "Media queries are great for changing the styling of your UIs depending on screen size, but as your projects increase in complexity, you may want to serve custom versions of your client depending on what kind of device your visitors are using. This article covers classifying visitor’s devices into device classes, and serving the appropriate version, while maximizing code reuse between versions."
+browser_support:
+- chrome
+- ie
+- ff
+- safari
+- opera
+tags:
+- mobile
+- type:article
+- class:multimedia
+
+---
+
 title: "Developing Game Audio with the Web Audio API"
 url: /tutorials/webaudio/games/
 author_id: zgoddard
