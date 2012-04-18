@@ -590,21 +590,34 @@ class DBHandler(ContentHandler):
                          relpath=relpath)
 
     elif (relpath == 'drop_all'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._NukeDB()
 
     elif (relpath == 'load_tutorials'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._AddTestResources()
 
     elif (relpath == 'load_authors'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._AddTestAuthors()
 
     elif (relpath == 'load_playground_samples'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._AddTestPlaygroundSamples()
 
     elif (relpath == 'load_studio_samples'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._AddTestStudioSamples()
 
     elif (relpath == 'load_all'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')
+
       # TODO(ericbidelman): Make this async.
       self._AddTestAuthors()
       self._AddTestResources()
