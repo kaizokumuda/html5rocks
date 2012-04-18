@@ -2,10 +2,11 @@
 
 Media queries are awesome, a godsend for website developers that want to
 make small tweaks to their stylesheets to give a better experience for
-their users. Media queries essentially let you customize the CSS of your
-site depending on screen size. See [this article][rwd] for more
-information about responsive design and check out some of these fine
-examples of media queries usage here: [mediaqueri.es][mq].
+users on devices of various sizes. Media queries essentially let you
+customize the CSS of your site depending on screen size. See [this
+article][rwd] for more information about responsive design and check out
+some of these fine examples of media queries usage here:
+[mediaqueri.es][mq].
 
 However, as Brad points out in an [earlier article][bf], changing
 the look is only one of many things to consider when building for the
@@ -20,51 +21,66 @@ situation:
 - Little flexibility to specify custom interactions tailored to each
   device.
 
-As the UIs you build increase in complexity, and you gravitate toward
-single-page webapps, you’ll want to do more to customize UIs for each
-type of device. This article will teach you how to do these
-customizations with a minimal amount of effort. The general approach
-involves classifying your visitor’s device into the right device
-classes, and serving the appropriate version to that device, while
-maximizing code reuse between versions.
+Some of these issues can be resolved with approaches such as [responsive
+images][respimg], dynamic script loading, etc. However, at a certain
+point, you may find yourself doing too many incremental tweaks, and
+may be better off serving different versions of your page. As the UIs
+you build increase in complexity, and you gravitate toward single-page
+webapps, you’ll want to do more to customize UIs for each type of
+device. This article will teach you how to do these customizations with
+a minimal amount of effort. The general approach involves classifying
+your visitor’s device into the right device classes, and serving the
+appropriate version to that device, while maximizing code reuse between
+versions.
 
 [rwd]: /mobile/responsivedesign
 [mq]: http://mediaqueri.es/
 [bf]: http://bradfrostweb.com/blog/web/responsive-web-design-missing-the-point/
+[respimg]: http://www.alistapart.com/articles/responsive-images-how-they-almost-worked-and-what-we-need/
 
 <h2 id="toc-device-classes">Device classes</h2>
 
 There are tons of internet-connected devices out there, and nearly all
-of them have browsers: Mac Laptops, Windows workstations, iPhones,
-iPads, Android phones with touch input, scroll wheels, keyboards, voice
-input, devices with pressure sensitivity, smart watches, toasters and
-refrigerators, and many more. Some of these devices are ubiquitous,
-while others are very rare.
+of them have browsers. The complication lies in their diversity: Mac
+Laptops, Windows workstations, iPhones, iPads, Android phones with touch
+input, scroll wheels, keyboards, voice input, devices with pressure
+sensitivity, smart watches, toasters and refrigerators, and many more.
+Some of these devices are ubiquitous, while others are very rare.
 
 ![A variety of devices](/static/demos/cross-device/variety.png)
 
-To create a good user experience, you need to know who your users are.
-If you build a user interface for a desktop user with a mouse and a
-keyboard and give it to a smartphone user, your interface will be
-frustrating to them. If you are building a complex webapp, there are two
-extremes:
+To create a good user experience, you need to know who your users are
+and what devices they are using. If you build a user interface for a
+desktop user with a mouse and a keyboard and give it to a smartphone
+user, your interface will be a frustration because it's designed for
+another screen size, and another input modality.
+
+There are two extreme approaches:
 
 1. Build one version that works on all devices. UX will suffer as a
    result, since different device have different design considerations.
 
 2. Build a version for each device you want to support. This will take
-   forever, because you’ll be building 1000s of versions of your
-   application.
+   forever, because you’ll be building too many versions of your
+   application. Also, when the next new smartphone arrives
+   (which happens roughly weekly), you will be forced to create yet
+   another version.
 
 There is a fundamental tradeoff here: the more device categories you
 have, the better a user experience you can deliver, but the more work it
 will take to design, implement and maintain.
 
+Creating a separate version for each device class you decide on may be a
+good idea for performance reasons or if the versions you want to serve
+to different device classes vary hugely. Otherwise, [responsive web
+design][rwd] is a perfectly reasonable approach.
+
 ### A potential solution
 
 Here’s a compromise: classify devices into categories, and design the
 best possible experience for each category. What categories you choose
-depend on your product and target user.
+depend on your product and target user. Here's a sample classification
+that nicely spans across popular web-capable devices that exist today.
 
 1. small screens + touch (mostly phones)
 2. large screens + touch (mostly tablets)
@@ -75,34 +91,26 @@ of sense at the time of writing. Missing from the above list are mobile
 devices without touch screens (eg. feature phones, some dedicated ebook
 readers). However, most of these have keyboard navigation or screen
 reader software installed, which will work fine if you build your site
-with accessibility in mind.  For more information on this subject, check
-out [this great resource][acc].
-
-[acc]: #
+with accessibility in mind.
 
 ### Examples
 
-There are many examples of developers creating drastically different
-experiences for different form factors. Google search does this, as does
+There are many examples of web properties serving entirely different
+versions for different form factors. Google search does this, as does
 Facebook. Considerations for this include both performance (in page, and
 load time) and more general user experience.
 
 In the world of native apps, many developers choose to tailor their
 experience to a device class. For example, [Flipboard][flipboard] for
-iPad is a very different user experience compared to Flipboard on
-iPhone. The tablet version is optimized for two hand use and horizontal
-flipping while the phone version is intended for single hand interaction
-and a vertical flip. Many other iOS applications also provide
-significantly different phone and tablet versions, such as
-[Things][things].
+iPad is a very different UI compared to Flipboard on iPhone. The tablet
+version is optimized for two hand use and horizontal flipping while the
+phone version is intended for single hand interaction and a vertical
+flip. Many other iOS applications also provide significantly different
+phone and tablet versions, such as [Things][things] (todo list), and
+[Showyou][showu] (social video), featured below:
 
 ![Total customization for phone and
 tablet](/static/demos/cross-device/phone-tablet.png)
-
-To reiterate, creating a separate version for each app is generally a
-good idea for performance reasons or if the versions you want to serve
-to different device classes vary hugely. Otherwise, responsive web
-design is a reasonable approach.
 
 <h2 id="toc-client-detect">Client-side detection</h2>
 
@@ -176,6 +184,7 @@ See a sample of the [UA-detection approach][ua-sample] in action.
 [ua-sample]: /static/demos/cross-device/ua/index.html
 [things]: http://culturedcode.com/things/
 [flipboard]: http://flipboard.com/
+[showu]: http://showyou.com/
 
 <h2 id="toc-server-detect">Server-side detection</h2>
 
@@ -220,12 +229,12 @@ approach involves a redirect, which can be slow, especially on mobile
 devices.
 
 The second approach is quite a bit more complex to implement. You need a
-mechanism to dynamically load CSS and JS, and won’t be able to do things
-like customize `<meta viewport>` depending on your device, which may be a
-deal breaker. Also, since you’re not redirecting, you’re stuck with the
-original HTML that was served to you. Of course, you can manipulate it
-with JavaScript, but this may be slow and/or inelegant, depending on
-your application.
+mechanism to dynamically load CSS and JS, and (browser-depending) may
+not be able to do things like customize `<meta viewport>` depending on
+your device, which may be a deal breaker. Also, since you’re not
+redirecting, you’re stuck with the original HTML that was served to you.
+Of course, you can manipulate it with JavaScript, but this may be slow
+and/or inelegant, depending on your application.
 
 [history-api]: http://diveintohtml5.info/history.html
 
@@ -263,26 +272,27 @@ These are the tradeoffs between the approaches:
 - Better performance: no need for client redirects or dynamic loading.
 
 My personal preference is to start with device.js and client-side
-detection. As your application evolves, if you find the client-side
-redirect to be a significant performance drawback, you can easily remove
-the device.js script, and implement UA detection on the server.
+detection. As your application evolves, if you find client-side redirect
+to be a significant performance drawback, you can easily remove the
+device.js script, and implement UA detection on the server.
 
 <h2 id="toc-mvc">Separate concerns for code sharing</h2>
 
 By now you’re probably thinking that I’m telling you to build three
-different apps, one for each device type. There is a better way!
+completely separate apps, one for each device type. No! Code sharing is
+the key.
 
 Hopefully you have been using an MVC-like framework, such as Backbone,
 Ember, etc. If you have been, you are familiar with the principle of
 separation of concerns, specifically that your UI (view layer) should be
-decoupled from your logic (model layer). If this is new to you, check
-out some of these great [resources on MVC][mvc], and [MVC in
+decoupled from your logic (model layer). If this is new to you, get
+started with some of these [resources on MVC][mvc], and [MVC in
 JavaScript][mvc-js].
 
 The cross-device story fits neatly into your existing MVC framework. You
 can easily move your views into separate files, creating a custom view
 for each device type. Then you can serve the same code to all devices,
-except the view layer:
+except the view layer.
 
 ![Cross-device MVC](/static/demos/cross-device/mvc.png)
 
@@ -307,9 +317,16 @@ application):
           item.js
           item-list.js
 
+This sort of structure enables you to fully control what assets each
+version loads, since you have custom HTML, CSS and JS Views for each
+device. This is very powerful, and can lead to the leanest, most
+performant way of developing for the cross-device web, without relying
+on tricks for adaptive images.
+
 Once you run your favorite build tool, you’ll concatenate and minify all
 of your JavaScript and CSS into single files for faster loading, with
-your production HTML looking something like the following (for phone):
+your production HTML looking something like the following (for phone,
+using device.js):
 
     <!doctype html>
     <head>
@@ -327,6 +344,7 @@ your production HTML looking something like the following (for phone):
       <!-- Viewport is very important, since it affects results of media
            query matching. -->
       <meta name="viewport" content="width=device-width">
+      <script src=”device.js”></script>
 
       <link rel=”style” href=”phone.min.css”>
     </head>
@@ -355,7 +373,8 @@ this functionality with the `device` GET parameter.
 
 <h2 id="toc-conclusion">Concluding</h2>
 
-To summarize, when building cross-device single-page UIs, do this:
+To summarize, when building cross-device single-page UIs, that don't fit
+neatly into the world of responsive design, do this:
 
 1. Pick a set of device classes to support, and criteria by which to
    classify devices into classes.
