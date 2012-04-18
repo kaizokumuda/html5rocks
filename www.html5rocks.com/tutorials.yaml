@@ -1,8 +1,26 @@
+title: "Techniques for Streaming Multimedia"
+url: /tutorials/streaming/multimedia/
+author_id: ericbidelman
+publication_date: 2012-05-01
+description: "Techniques for streaming content using various HTML5 APIs."
+browser_support:
+- chrome
+tags:
+- streaming
+- websockets
+- mediasource
+- type:article
+- class:multimedia
+- class:connectivity
+- class:nuts_and_bolts
+
+---
+
 title: Building Cross-device Web User Interfaces
 url: /mobile/cross-device/
 author_id: smus
 publication_date: 2012-04-23
-description: "Media queries are great for changing the styling of your UIs depending on screen size, but as your projects increase in complexity, you may want to serve custom versions of your client depending on what kind of device your visitors are using. This article covers classifying visitor’s devices into device classes, and serving the appropriate version, while maximizing code reuse between versions."
+description: "Media queries are great for changing the styling of your UIs depending on screen size, but as your projects increase in complexity, you may want to serve custom versions of your client depending on what kind of device your visitors are using. This article covers classifying visitor's devices into device classes, and serving the appropriate version, while maximizing code reuse between versions."
 browser_support:
 - chrome
 - ie
@@ -12,7 +30,25 @@ browser_support:
 tags:
 - mobile
 - type:article
-- class:multimedia
+- class:nuts_and_bolts
+
+---
+
+title: WebGL Transforms
+url: /tutorials/webgl/webgl_transforms/
+author_id: gman
+publication_date: 2012-04-18
+description: "How 3D transforms work and how you can use them in WebGL."
+browser_support:
+- chrome
+- ff
+- safari
+- opera
+tags:
+- webgl
+- 3D
+- type:tutorial
+- class:graphics
 
 ---
 
@@ -31,24 +67,6 @@ tags:
 
 ---
 
-title: "Techniques for Streaming Multimedia"
-url: /tutorials/streaming/multimedia/
-author_id: ericbidelman
-publication_date: 2012-04-18
-description: "Techniques for streaming content using various HTML5 APIs."
-browser_support:
-- chrome
-tags:
-- streaming
-- websockets
-- mediasource
-- type:article
-- class:multimedia
-- class:connectivity
-- class:nuts_and_bolts
-
----
-
 title: Creating a Mobile-First Responsive Web Design
 url: /mobile/responsivedesign/
 author_id: bradfrost
@@ -64,24 +82,6 @@ tags:
 - mobile
 - type:article
 - class:performance
-
----
-
-title: WebGL Transforms
-url: /tutorials/webgl/webgl_transforms/
-author_id: gman
-publication_date: 2012-03-25
-description: "How 3D transforms work and how you can use them in WebGL."
-browser_support:
-- chrome
-- ff
-- safari
-- opera
-tags:
-- webgl
-- 3D
-- type:tutorial
-- class:graphics
 
 ---
 
