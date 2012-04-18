@@ -34,6 +34,21 @@ tags:
 
 ---
 
+title: "Case Study: A Tale of An HTML5 Game with Web Audio"
+url: /tutorials/webaudio/fieldrunners/
+author_id: zgoddard
+publication_date: 2012-04-20
+description: "Gradient Studios ported their award-winning Fieldrunners game to HTML5. This article chronicles their journey in utilizing the Web Audio API to implement sound for Fieldrunners."
+browser_support:
+- chrome
+tags:
+- type:casestudy
+- class:multimedia
+- gaming
+- webaudio
+
+---
+
 title: WebGL Transforms
 url: /tutorials/webgl/webgl_transforms/
 author_id: gman
@@ -49,21 +64,6 @@ tags:
 - 3D
 - type:tutorial
 - class:graphics
-
----
-
-title: "Case Study: A Tale of An HTML5 Game with Web Audio"
-url: /tutorials/webaudio/fieldrunners/
-author_id: zgoddard
-publication_date: 2012-04-13
-description: "Gradient Studios ported their award-winning Fieldrunners game to HTML5.  This article chronicles their journey in utilizing the Web Audio API to implement sound for Fieldrunners."
-browser_support:
-- chrome
-tags:
-- type:casestudy
-- class:multimedia
-- gaming
-- webaudio
 
 ---
 
