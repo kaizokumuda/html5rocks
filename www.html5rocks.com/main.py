@@ -473,6 +473,14 @@ class ContentHandler(webapp.RequestHandler):
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(BASEDIR, 'templates/404.html'))
 
+  def handle_exception(self, exception, debug_mode):
+    if debug_mode:
+      super(ContentHandler, self).handle_exception(exception, debug_mode)
+    else:
+      # Display a generic 500 error page.
+      self.render(status=500, message='Server Error',
+                  template_path=os.path.join(BASEDIR, 'templates/500.html'))
+
 
 class DBHandler(ContentHandler):
 
@@ -878,7 +886,7 @@ def main():
     ('/database/(.*)', DBHandler),
     ('/tags/(.*)/(.*)', TagsHandler),
     ('/(.*)', ContentHandler)
-  ], debug=True)
+  ], debug=not common.PROD)
   run_wsgi_app(application)
 
 if __name__ == '__main__':

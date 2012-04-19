@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block headtitle %}{% trans "404 - Page Not Found" %}{% endblock %}
+{% block headtitle %}{% trans "500 - Server Error" %}{% endblock %}
 
 {% block head %}
 <style>
@@ -55,6 +55,6 @@
        title="{% trans "I pity da foo who doesn't use HTML5!" %}"
        alt="{% trans "I pity da foo who doesn't use HTML5!" %}"
        width="256" height="256"/>
-  <h2>{% trans "Oops!! We didn't find any HTML5 resources for ya." %}</h2>
+  <h2>{% trans "&#x2639; Something went wrong." %}</h2>
 </div>
 {% endblock %}
