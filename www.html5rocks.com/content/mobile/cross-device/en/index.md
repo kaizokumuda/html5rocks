@@ -344,6 +344,8 @@ using device.js):
       <!-- Viewport is very important, since it affects results of media
            query matching. -->
       <meta name="viewport" content="width=device-width">
+
+      <!-- Include device.js in each version for redirection. -->
       <script src=”device.js”></script>
 
       <link rel=”style” href=”phone.min.css”>
