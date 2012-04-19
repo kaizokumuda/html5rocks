@@ -20,6 +20,11 @@ indexes:
   properties:
   - name: draft
   - name: publication_date
+
+- kind: Resource
+  properties:
+  - name: draft
+  - name: publication_date
     direction: desc
 
 - kind: Resource

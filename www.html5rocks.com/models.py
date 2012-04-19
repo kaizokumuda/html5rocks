@@ -3,19 +3,20 @@ from google.appengine.ext import db
 from google.appengine.ext.db import djangoforms
 from django import forms
 
+import common
 
 def get_profiles(update_cache=False):
-  profiles = memcache.get('profiles_rocking')
+  profiles = memcache.get('%s|profiles' % (common.MEMCACHE_KEY_PREFIX))
   if profiles is None or update_cache:
     profiles = {}
-    authors = Author.all()
+    authors = Author.all().fetch(limit=common.MAX_FETCH_LIMIT)
 
     for author in authors:
       author_id = author.key().name()
       profiles[author_id] = author.to_dict()
       profiles[author_id]['id'] = author_id
 
-    memcache.set('profiles_rocking', profiles)
+    memcache.set('%s|profiles' % (common.MEMCACHE_KEY_PREFIX), profiles)
 
   return profiles
 
@@ -79,18 +80,38 @@ class Resource(DictModel):
   draft = db.BooleanProperty(default=True) # Don't publish by default.
 
   @classmethod
-  def get_all(self):
-    tutorials_query = memcache.get('tutorials_rocking')
-    if tutorials_query is None:
-      tutorials_query = self.all()
-      tutorials_query.filter('draft =', False) # Never return drafts.
-      memcache.set('tutorials_rocking', tutorials_query)
+  def get_all(self, order=None, limit=None, qfilter=None):
+    limit = limit or common.MAX_FETCH_LIMIT
 
-    return tutorials_query
+    key = '%s|tutorials' % (common.MEMCACHE_KEY_PREFIX,)
+
+    if order is not None:
+      key += '|%s' % (order,)
+
+    if qfilter is not None:
+      key += '|%s%s' % (qfilter[0], qfilter[1])
+
+    key += '|%s' % (str(limit),)
+
+    #import logging
+    #logging.info(key)
+
+    results = memcache.get(key)
+    if results is None:
+      query = self.all()
+      query.order(order)
+      if qfilter is not None:
+        query.filter(qfilter[0], qfilter[1])
+      query.filter('draft =', False) # Never return drafts by default.
+      results = query.fetch(limit=limit)
+      memcache.set(key, results)
+
+    return results
 
   @classmethod
   def get_tutorials_by_author(self, author_id):
-    tutorials_by_author = memcache.get('tutorials_rocking_by_' + author_id)
+    tutorials_by_author = memcache.get(
+        '%s|tutorials_by|%s' % (common.MEMCACHE_KEY_PREFIX, author_id))
     if tutorials_by_author is None:
       tutorials_by_author1 = Author.get_by_key_name(author_id).author_one_set
       tutorials_by_author2 = Author.get_by_key_name(author_id).author_two_set
@@ -102,7 +123,9 @@ class Resource(DictModel):
       # Order by published date. Latest first.
       tutorials_by_author.sort(key=lambda x: x.publication_date, reverse=True)
 
-      memcache.set('tutorials_rocking_by_' + author_id, tutorials_by_author)
+      memcache.set(
+          '%s|tutorials_by|%s' % (common.MEMCACHE_KEY_PREFIX, author_id),
+          tutorials_by_author)
 
     return tutorials_by_author
 
