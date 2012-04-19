@@ -776,13 +776,11 @@ class DBHandler(ContentHandler):
 
       tutorial.put()
 
-      return self.redirect('/database/resource')
-
     # TODO: Don't use flush_all. Use flush_all_async() or only purge tutorials.
     # Once new entry is saved, flush memcache.
     memcache.flush_all()
 
-    return '/database'
+    return self.redirect('/database/')
 
 
 class APIHandler(ContentHandler):
