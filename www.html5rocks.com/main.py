@@ -83,7 +83,7 @@ class ContentHandler(webapp.RequestHandler):
     if not (re.search('', path) or re.search('/mobile/', path)):
       return ''
 
-    toc = memcache.get('toc_rocking|%s' % path)
+    toc = memcache.get('%s|toc|%s' % (common.MEMCACHE_KEY_PREFIX, path))
     if toc is None or not self.request.cache:
       template_text = template.render(path, {})
       parser = html5lib.HTMLParser(tree=treebuilders.getTreeBuilder("dom"))
@@ -106,16 +106,16 @@ class ContentHandler(webapp.RequestHandler):
         elif element['type'] == 'EndTag' and current is not None:
           toc.append(current)
           current = None
-      memcache.set('toc_rocking|%s' % path, toc, 3600)
+      memcache.set('%s|toc|%s' % (common.MEMCACHE_KEY_PREFIX, path), toc, 3600)
 
     return toc
 
   def get_feed(self, path):
-    articles = memcache.get('feed_rocking|%s' % path)
+    articles = memcache.get('%s|feed|%s' % (common.MEMCACHE_KEY_PREFIX, path))
     if articles is None or not self.request.cache:
       # DB query is memcached in get_all(). Limit to last several results
-      tutorials = (models.Resource.get_all().order('-publication_date')
-                                  .fetch(limit=self.FEED_RESULTS_LIMIT))
+      tutorials = models.Resource.get_all(order='-publication_date',
+                                          limit=self.FEED_RESULTS_LIMIT)
 
       articles = []
       for tut in tutorials:
@@ -136,7 +136,8 @@ class ContentHandler(webapp.RequestHandler):
         articles.append(article)
 
       # Cache feed for 24hrs.
-      memcache.set('feed_rocking|%s' % path, articles, 86400)
+      memcache.set(
+          '%s|feed|%s' % (common.MEMCACHE_KEY_PREFIX, path), articles, 86400)
 
     return articles
 
@@ -339,7 +340,7 @@ class ContentHandler(webapp.RequestHandler):
       if os.path.isfile(os.path.join(dir, locale, filename)):
         # Lookup tutorial by its url. Return the first one that matches.
         # get_all() not used because we don't care about caching on individual
-        # tut pages.
+        # tut page.
         tut = models.Resource.all().filter('url =', '/' + relpath).get()
 
         # If tutorial is marked as draft, redirect and don't show it.
@@ -390,14 +391,14 @@ class ContentHandler(webapp.RequestHandler):
     elif os.path.isfile(path):
       #TODO(ericbidelman): Don't need these tutorial/update results for query.
       if relpath in ['mobile', 'gaming', 'business']:
-        result = (TagsHandler().get_as_db(relpath)
-                               .fetch(limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT))
+        results = TagsHandler().get_as_db(
+            relpath, limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT)
       else:
-        result = models.Resource.get_all().order('-publication_date')
+        results = models.Resource.get_all(order='-publication_date')
 
       tutorials = [] # List of final result set.
       authors = [] # List of authors related to the result set.
-      for r in result:
+      for r in results:
         resource_type = [x for x in r.tags if x.startswith('type:')]
         if len(resource_type):
           resource_type = resource_type[0].replace('type:', '')
@@ -440,8 +441,8 @@ class ContentHandler(webapp.RequestHandler):
 
     elif os.path.isfile(path + '.html'):
       category = relpath.replace('features/', '')
-      updates = (TagsHandler().get_as_db('class:' + category)
-                    .fetch(limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT))
+      updates = TagsHandler().get_as_db(
+          'class:' + category, limit=self.FEATURE_PAGE_WHATS_NEW_LIMIT)
       for r in updates:
         if r.url.startswith('/'):
           # Localize title if article is localized.
@@ -459,7 +460,7 @@ class ContentHandler(webapp.RequestHandler):
       if relpath == 'why' or relpath == 'live':
         if relpath == 'live':
           data['hangout_url'] = ''
-          live_data = models.LiveData.all().get()
+          live_data = models.LiveData.all().get() # Return first result.
           if live_data:
             data['hangout_url'] = live_data.hangout_url
         if os.path.isfile(os.path.join(path, locale, 'index.html')):
@@ -472,6 +473,14 @@ class ContentHandler(webapp.RequestHandler):
     else:
       self.render(status=404, message='Page Not Found',
                   template_path=os.path.join(BASEDIR, 'templates/404.html'))
+
+  def handle_exception(self, exception, debug_mode):
+    if debug_mode:
+      super(ContentHandler, self).handle_exception(exception, debug_mode)
+    else:
+      # Display a generic 500 error page.
+      self.render(status=500, message='Server Error',
+                  template_path=os.path.join(BASEDIR, 'templates/500.html'))
 
 
 class DBHandler(ContentHandler):
@@ -590,21 +599,34 @@ class DBHandler(ContentHandler):
                          relpath=relpath)
 
     elif (relpath == 'drop_all'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._NukeDB()
 
     elif (relpath == 'load_tutorials'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._AddTestResources()
 
     elif (relpath == 'load_authors'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._AddTestAuthors()
 
     elif (relpath == 'load_playground_samples'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._AddTestPlaygroundSamples()
 
     elif (relpath == 'load_studio_samples'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')  
       self._AddTestStudioSamples()
 
     elif (relpath == 'load_all'):
+      if common.PROD:
+        return self.response.out.write('Handler not allowed in production.')
+
       # TODO(ericbidelman): Make this async.
       self._AddTestAuthors()
       self._AddTestResources()
@@ -637,7 +659,8 @@ class DBHandler(ContentHandler):
       template_data = {
         'tutorial_form': tutorial_form,
         # get_all() not used b/c we don't care about caching on this page.
-        'resources': models.Resource.all().order('-publication_date'),
+        'resources': (models.Resource.all().order('-publication_date')
+                                     .fetch(limit=common.MAX_FETCH_LIMIT)),
         'post_id': post_id and int(post_id) or ''
       }
       return self.render(data=template_data,
@@ -753,13 +776,11 @@ class DBHandler(ContentHandler):
 
       tutorial.put()
 
-      return self.redirect('/database/resource')
-
     # TODO: Don't use flush_all. Use flush_all_async() or only purge tutorials.
     # Once new entry is saved, flush memcache.
     memcache.flush_all()
 
-    return '/database'
+    return self.redirect('/database/')
 
 
 class APIHandler(ContentHandler):
@@ -777,7 +798,7 @@ class APIHandler(ContentHandler):
       output = profiles
     elif relpath == 'tutorials':
       output = TagsHandler()._query_to_serializable_list(
-          TagsHandler().get_as_db('type:tutorial'))
+         TagsHandler().get_as_db('type:tutorial'))
     elif relpath == 'articles':
       output = TagsHandler()._query_to_serializable_list(
           TagsHandler().get_as_db('type:article'))
@@ -807,9 +828,9 @@ class APIHandler(ContentHandler):
 
 class TagsHandler(ContentHandler):
 
-  def _query_to_serializable_list(self, query):
+  def _query_to_serializable_list(self, results):
     resources = []
-    for r in query:
+    for r in results:
       second_author = None
       if r.second_author:
         second_author = r.second_author.key().name()
@@ -826,12 +847,14 @@ class TagsHandler(ContentHandler):
 
     return resources
 
-  def _get(self, tag):
+  def _get(self, tag, order=None, limit=None):
     tag = urllib2.unquote(tag)
 
+    order = order or '-publication_date'
+
     # DB query is memcached in get_all().
-    return (models.Resource.get_all().filter('tags =', tag)
-                                     .order('-publication_date'))
+    return models.Resource.get_all(order=order, qfilter=('tags =', tag),
+                                   limit=limit)
 
   # /tags/json/type:demo
   # /tags/json/class:file_access
@@ -844,18 +867,17 @@ class TagsHandler(ContentHandler):
       return self.get_as_db(tag)
 
   def get_as_json(self, tag):
-    query = self._get(tag)
+    results = self._get(tag)
 
-    resources = self._query_to_serializable_list(query)
+    resources = self._query_to_serializable_list(results)
 
     self.response.headers.add_header('Access-Control-Allow-Origin', '*')
     self.response.headers['Content-Type'] = 'application/json'
     self.response.out.write(simplejson.dumps(resources))
-    #self.response.out.write(resources)
     return
 
-  def get_as_db(self, tag):
-    return self._get(tag)
+  def get_as_db(self, tag, order=None, limit=None):
+    return self._get(tag, order=order, limit=limit)
 
 
 def main():
@@ -865,7 +887,7 @@ def main():
     ('/database/(.*)', DBHandler),
     ('/tags/(.*)/(.*)', TagsHandler),
     ('/(.*)', ContentHandler)
-  ], debug=True)
+  ], debug=not common.PROD)
   run_wsgi_app(application)
 
 if __name__ == '__main__':

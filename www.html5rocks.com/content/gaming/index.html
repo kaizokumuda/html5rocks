@@ -56,7 +56,7 @@
       <h3>{% trans "Gaming" %} {% trans "Tutorials" %}</h3>
       <ul class="definitions">
       {% for r in tutorials %}
-        {% if forloop.counter0 < 4 %}
+        {% if forloop.counter0 < 10 %}
           {% if r.type == 'tutorial' or r.type == 'article' %}
           <li>
             <a href="{{r.url}}">{{r.title}}</a><br>

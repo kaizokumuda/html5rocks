@@ -1,40 +1,7 @@
-title: Building Cross-device Web User Interfaces
-url: /mobile/cross-device/
-author_id: smus
-publication_date: 2012-04-23
-description: "Media queries are great for changing the styling of your UIs depending on screen size, but as your projects increase in complexity, you may want to serve custom versions of your client depending on what kind of device your visitors are using. This article covers classifying visitor’s devices into device classes, and serving the appropriate version, while maximizing code reuse between versions."
-browser_support:
-- chrome
-- ie
-- ff
-- safari
-- opera
-tags:
-- mobile
-- type:article
-- class:multimedia
-
----
-
-title: "Case Study: A Tale of An HTML5 Game with Web Audio"
-url: /tutorials/webaudio/fieldrunners/
-author_id: zgoddard
-publication_date: 2012-04-13
-description: "Gradient Studios ported their award-winning Fieldrunners game to HTML5.  This article chronicles their journey in utilizing the Web Audio API to implement sound for Fieldrunners."
-browser_support:
-- chrome
-tags:
-- type:casestudy
-- class:multimedia
-- gaming
-- webaudio
-
----
-
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman
-publication_date: 2012-04-18
+publication_date: 2012-05-01
 description: "Techniques for streaming content using various HTML5 APIs."
 browser_support:
 - chrome
@@ -46,6 +13,57 @@ tags:
 - class:multimedia
 - class:connectivity
 - class:nuts_and_bolts
+
+---
+
+title: Building Cross-device Web User Interfaces
+url: /mobile/cross-device/
+author_id: smus
+publication_date: 2012-04-23
+description: "Media queries are great for changing the styling of your UIs depending on screen size, but as your projects increase in complexity, you may want to serve custom versions of your client depending on what kind of device your visitors are using. This article covers classifying visitor's devices into device classes, and serving the appropriate version, while maximizing code reuse between versions."
+browser_support:
+- chrome
+- ie
+- ff
+- safari
+- opera
+tags:
+- mobile
+- type:article
+- class:nuts_and_bolts
+
+---
+
+title: "Case Study: A Tale of An HTML5 Game with Web Audio"
+url: /tutorials/webaudio/fieldrunners/
+author_id: zgoddard
+publication_date: 2012-04-20
+description: "Gradient Studios ported their award-winning Fieldrunners game to HTML5. This article chronicles their journey in utilizing the Web Audio API to implement sound for Fieldrunners."
+browser_support:
+- chrome
+tags:
+- type:casestudy
+- class:multimedia
+- gaming
+- webaudio
+
+---
+
+title: WebGL Transforms
+url: /tutorials/webgl/webgl_transforms/
+author_id: gman
+publication_date: 2012-04-18
+description: "How 3D transforms work and how you can use them in WebGL."
+browser_support:
+- chrome
+- ff
+- safari
+- opera
+tags:
+- webgl
+- 3D
+- type:tutorial
+- class:graphics
 
 ---
 
@@ -64,24 +82,6 @@ tags:
 - mobile
 - type:article
 - class:performance
-
----
-
-title: WebGL Transforms
-url: /tutorials/webgl/webgl_transforms/
-author_id: gman
-publication_date: 2012-03-25
-description: "How 3D transforms work and how you can use them in WebGL."
-browser_support:
-- chrome
-- ff
-- safari
-- opera
-tags:
-- webgl
-- 3D
-- type:tutorial
-- class:graphics
 
 ---
 
