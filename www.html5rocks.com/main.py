@@ -159,8 +159,8 @@ class ContentHandler(webapp.RequestHandler):
 
     # Strip out language code from path. Urls changed for i18n work and correct
     # disqus comment thread won't load with the changed urls.
-    path_no_lang = re.sub('^\/\w{2,3}\/', '', self.request.path, 1)
-    logging.info(path_no_lang)
+    path_no_lang = re.sub('^\/\w{2,3}(?:/|$)?', '', self.request.path, 1)
+    logging.info("path after removing lang: %s" % path_no_lang)
 
     pagename = ''
     if (path_no_lang == ''):
@@ -264,7 +264,7 @@ class ContentHandler(webapp.RequestHandler):
       return self.redirect("/en/%s" % relpath, permanent=True)
 
     # Strip off leading `/[en|de|fr|...]/`
-    relpath = re.sub('^/?\w{2,3}/', '', relpath)
+    relpath = re.sub('^/?\w{2,3}(?:/)?', '', relpath)
 
     # Are we looking for a feed?
     is_feed = self.request.path.endswith('.xml')
