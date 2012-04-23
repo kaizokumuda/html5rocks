@@ -3,16 +3,15 @@
 Media queries are awesome, a godsend for website developers that want to
 make small tweaks to their stylesheets to give a better experience for
 users on devices of various sizes. Media queries essentially let you
-customize the CSS of your site depending on screen size. See [this
-article][rwd] for more information about responsive design and check out
-some of these fine examples of media queries usage here:
+customize the CSS of your site depending on screen size. Before you dive
+into this article, learn more about [responsive design][rwd] and check
+out some of these fine examples of media queries usage here:
 [mediaqueri.es][mq].
 
-However, as Brad points out in an [earlier article][bf], changing
-the look is only one of many things to consider when building for the
-mobile web. If the only thing you do when you build your mobile website
-is customize your layout with media queries, then we have the following
-situation:
+As Brad points out in an [earlier article][bf], changing the look is
+only one of many things to consider when building for the mobile web. If
+the only thing you do when you build your mobile website is customize
+your layout with media queries, then we have the following situation:
 
 - All devices get the same JavaScript, CSS, and assets (images, videos),
   resulting in longer than necessary load times.
