@@ -65,6 +65,10 @@ class ContentHandler(webapp.RequestHandler):
   FEED_RESULTS_LIMIT = 20
   FEATURE_PAGE_WHATS_NEW_LIMIT = 10
 
+  def is_language_missing_leading_slash(self):
+    lang_match = re.match("^/(\w{2,3})$", self.request.path)
+    return lang_match.group(1) if lang_match else None
+    
   def get_language(self):
     lang_match = re.match("^/(\w{2,3})(?:/|$)", self.request.path)
     self.locale = lang_match.group(1) if lang_match else settings.LANGUAGE_CODE
@@ -263,6 +267,9 @@ class ContentHandler(webapp.RequestHandler):
     if not locale:
       return self.redirect("/en/%s" % relpath, permanent=True)
 
+    if self.is_language_missing_leading_slash():
+      return self.redirect("/%s/" % locale, permanent=True)
+    
     # Strip off leading `/[en|de|fr|...]/`
     relpath = re.sub('^/?\w{2,3}(?:/)?', '', relpath)
 
