@@ -51,13 +51,14 @@
 }
 html, body {
 	height: 100%;
+	overflow: hidden;
 }
 body {
-  background: -moz-radial-gradient(center center, #fff, #ccc);
-  background: -webkit-radial-gradient(center center, #fff, #ccc);
-  background: -ms-radial-gradient(center center, #fff, #ccc);
-  background: -o-radial-gradient(center center, #fff, #ccc);
-  background: radial-gradient(center center, #fff, #ccc);
+  background: -moz-radial-gradient(center center, circle, white 200px, #ddd 400px, #222 2000px);
+  background: -webkit-radial-gradient(center center, circle, white 200px, #ddd 400px, #222 2000px);
+  background: -ms-radial-gradient(center center, circle, white 200px, #ddd 400px, #222 2000px);
+  background: -o-radial-gradient(center center, circle, white 200px, #ddd 400px, #222 2000px);
+  background: radial-gradient(center center, circle, white 200px, #ddd 400px, #222 2000px);
 }
 body .page {
 	height: 80%;
@@ -67,6 +68,9 @@ body .page {
   display: -moz-box;
   -moz-box-align: center;
   -moz-box-pack: center;
+}
+header.main {
+	display: none;
 }
 .page h1, .page h3 {
 	margin: 0;
@@ -116,6 +120,6 @@ h1 {
   </hgroup>
 </div>
 <script>
-   //Modernizr.cssgradients && document.body.classList.remove('pattern-bg');
+   Modernizr.cssgradients && document.body.classList.remove('pattern-bg');
 </script>
 {% endblock %}
