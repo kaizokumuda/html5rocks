@@ -24,7 +24,7 @@ figure img {
 
 <figure>
   <img src="grasslands1.png" alt="Fieldrunners screenshot" title="Fieldrunners screenshot">
-  <figcaption>Fieldrunners screenshos</figcaption>
+  <figcaption>Fieldrunners screenshot</figcaption>
 </figure>
 
 <p>Fieldrunners is an award-winning tower-defense style game that was originally released for <a href="http://itunes.apple.com/us/app/fieldrunners/id292421271?mt=8">iPhone</a> in 2008. Since then it has been ported to many other platforms. One of the most recent platforms was the <a href="https://chrome.google.com/webstore/detail/lkpikhjbfbffdblahfidklcohlaeabak">Chrome browser</a> in October 2011. One of the challenges of porting Fieldrunners to an HTML5 platform was how to play sound.</p>
@@ -33,11 +33,11 @@ figure img {
 
 <h2 id="toc-somechallenges">Some Challenges Appeared</h2>
 
-<p>While porting Fieldrunners to HTML5 we encountered issues with audio playback with the Audio tag and early on decided to focus on WebAudio instead. Using WebAudio helped us solve issues like giving us the high number of concurrent effect playback Fieldrunners requires. Still, while developing an audio system for Fieldrunners HTML5 we hit a few nuanced problems that other developers may want to be aware of.</p>
+<p>While porting Fieldrunners to HTML5 we encountered issues with audio playback with the Audio tag and early on decided to focus on the <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API</a> instead. Using WebAudio helped us solve issues like giving us the high number of concurrent effects playing back that Fieldrunners requires. Still, while developing an audio system for Fieldrunners HTML5 we hit a few nuanced problems that other developers may want to be aware of.</p>
 
 <h3 id="toc-somechallenges-ABSN">Nature of AudioBufferSourceNodes</h3>
 
-<p>AudioBufferSourceNodes are your primary method of playing sounds with WebAudio. It is very important to understand that they are a one time use object. Create an AudioBufferSourceNode, assign it a buffer, connect it to the graph, and play it with noteOn or noteGrainOn. After that you can call noteOff to stop playback but you won't be able to play the source again by calling noteOn or noteGrainOn - you have to create another AudioBufferSourceNode. You can - and this is key - reuse the same underlying AudioBuffer object, however (in fact, you can even have multiple active AudioBufferSourceNodes that point to the same AudioBuffer instance!).  You can find a playback snippet from Fieldrunners in Give Me a Beat.</p>
+<p>AudioBufferSourceNodes are your primary method of playing sounds with WebAudio. It is very important to understand that they are a one time use object. You create an AudioBufferSourceNode, assign it a buffer, connect it to the graph, and play it with noteOn or noteGrainOn. After that you can call noteOff to stop playback, but you won't be able to play the source again by calling noteOn or noteGrainOn - you have to create another AudioBufferSourceNode. You can - and this is key - reuse the same underlying AudioBuffer object, however (in fact, you can even have multiple active AudioBufferSourceNodes that point to the same AudioBuffer instance!).  You can find a playback snippet from Fieldrunners in Give Me a Beat.</p>
 
 <h3 id="toc-somechallenges-ABSN">Non-caching content</h3>
 
@@ -45,11 +45,11 @@ figure img {
 
 <h3 id="toc-somechallenges-ABSN">Silencing when out of focus</h3>
 
-<p>Detecting when your game's tab is out of focus was difficult previously. Fieldrunners began porting before Chrome 13 where the Visibility API replaced the need for our convoluted code to detect tab blurring. Every game should use the Visibility API to write a small snippet to mute or pause their sound if not pause the whole game. As Fieldrunners used requestAnimationFrame game pausing was implicitly handled but not sound pausing.</p>
+<p>Detecting when your game's tab is out of focus was difficult previously. Fieldrunners began porting before Chrome 13 where the <a href="http://www.w3.org/TR/2011/WD-page-visibility-20110602/">Page Visibility API</a> replaced the need for our convoluted code to detect tab blurring. Every game should use the Visibility API to write a small snippet to mute or pause their sound if not pause the whole game. Since Fieldrunners used the <a href="http://paulirish.com/2011/requestanimationframe-for-smart-animating/">requestAnimationFrame</a> API, game pausing was implicitly handled, but not sound pausing.</p>
 
 <h3 id="toc-somechallenges-ABSN">Pausing sounds</h3>
 
-<p>Oddly enough while getting feedback to this article we were informed that the technique we were using for pausing sounds wasn't appropriate - we were utilizing a bug in Web Audio's current implementation to pause playback of sounds. As this will be fixed in the future you cannot just pause sound by disconnecting a node or subgraph to halt playback.</p>
+<p>Oddly enough while getting feedback to this article we were informed that the technique we were using for pausing sounds wasn't appropriate - we were utilizing a bug in Web Audio's current implementation to pause playback of sounds. Since this will be fixed in the future, you cannot just pause sound by disconnecting a node or subgraph to halt playback.</p>
 
 <h2 id="toc-simple">A Simple Web Audio Node Architecture</h2>
 
@@ -108,8 +108,8 @@ figure img {
   musicGainNode.gain.value = 0.5;
 }</pre>
 
-<p>We can use this same ability to control the volume of everything, of sound effects and music. Setting the gain of the master node will affect all sound from the game. If you set the gain value to 0 you will mute the sound and music.</p>
-<p>AudioBufferSourceNodes have a gain value as well. You could track a list of all playing sound and adjust their gain values individually for overall volume. If you were making sound effects with Audio tags, this is what you would have to do. Instead Web Audio's node graph makes it much easier to modify the sound volume of countless sounds.</p>
+<p>We can use this same ability to control the volume of everything, of sound effects and music. Setting the gain of the master node will affect all sound from the game. If you set the gain value to 0, you will mute the sound and music.</p>
+<p>AudioBufferSourceNodes have a gain parameter as well. You could track a list of all playing sound and adjust their gain values individually for overall volume. If you were making sound effects with Audio tags, this is what you would have to do. Instead Web Audio's node graph makes it much easier to modify the sound volume of countless sounds.</p>
 <p>Controlling volume this way also gives you extra power without complication. We could just attach a AudioBufferSourceNode directly to the master node for playing music and control its own gain. But you would have to set this value every time you create a AudioBufferSourceNode for the purpose of playing music. Instead you change one node only when a player changes the music volume and at launch. Now we have a gain value on buffer sources to do something else. For music one common use can be for creating a cross fade from one audio track to another as one leaves and another comes in. Web Audio provides a nice method for performing this easily.</p>
 
 <pre class="prettyprint">function arbitraryCrossfade( track1, track2 ) {
@@ -191,16 +191,15 @@ AudioManager.prototype.resumeEffects = function() {
   });
 }</pre>
 
-<p>Before writing this article we thought disconnecting the master would be enough to pause all sound instead of muting it. By disconnecting the node at the time, we stopped it and its children from processing and playing. When it was reconnected all of the sounds and music would begin playing where they left at just as the game play will continue where it left at. But this is unexpected behaviour. It isn't enough to just disconnect to halt playback.</p>
+<p>Before writing this article, we thought disconnecting the master would be enough to pause all sound instead of muting it. By disconnecting the node at the time, we stopped it and its children from processing and playing. When it was reconnected all of the sounds and music would begin playing where they left at just as the game play will continue where it left at. But this is unexpected behaviour. It isn't enough to just disconnect to halt playback.</p>
 
-<p>The Visibility API makes it very easy to know when your tab is no longer in focus. If you already having effective code to pause sounds, it only takes a few lines to write in sound pausing when the games tab is hidden.</p>
+<p>The Page Visibility API makes it very easy to know when your tab is no longer in focus. If you already have effective code to pause sounds, it only takes a few lines to write in sound pausing when the games tab is hidden.</p>
 
 <h2 id="toc-beat">Give Me a Beat</h2>
 
-<p>We have a few things set up now. We have a graph of nodes. We can pause sounds when the player pauses the game and play new sounds for elements such as game menus. We can pause all sound and music when the user switches to a new tab. Now lets actually play a sound.</p>
+<p>We have a few things set up now. We have a graph of nodes. We can pause sounds when the player pauses the game, and play new sounds for elements such as game menus. We can pause all sound and music when the user switches to a new tab. Now we need to actually play a sound.</p>
 
-<p>Instead of playing multiple copies of the sound for multiple instances of a game entity like a character dying, Fieldrunners plays one sound only once for its duration. If the sound is needed after it has finished playing then it can restart but not while already playing. This is a decision for Fieldrunners' audio design as it has sounds that are requested to be played rapidly which would otherwise stutter if allowed to restart or create an un-enjoyable cacophony if allowed to play multiple instances.
-AudioBufferSourceNodes are expected to be used as one-shots. Create a node, attach a buffer, set loop boolean value if needed, connect to a node on the graph that will lead to destination, call noteOn or noteGrainOn, and optionally call noteOff.</p>
+<p>Instead of playing multiple copies of the sound for multiple instances of a game entity like a character dying, Fieldrunners plays one sound only once for its duration. If the sound is needed after it has finished playing then it can restart but not while already playing. This is a decision for Fieldrunners' audio design as it has sounds that are requested to be played rapidly which would otherwise stutter if allowed to restart or create an un-enjoyable cacophony if allowed to play multiple instances. AudioBufferSourceNodes are expected to be used as one-shots. Create a node, attach a buffer, set loop boolean value if needed, connect to a node on the graph that will lead to destination, call noteOn or noteGrainOn, and optionally call noteOff.</p>
 
 <p>For Fieldrunners it looks something like:</p>
 
@@ -268,7 +267,7 @@ AudioBufferSourceNodes are expected to be used as one-shots. Create a node, atta
 
 <h2 id="toc-streaming">Too Much Streaming</h2>
 
-<p>Fieldrunners was originally launched with background music played with an Audio tag. At release we discovered that music files were being requested an disproportionate number of times to that which the rest of the game content was requested. After some research we discovered that at the time the Chrome browser was not caching the streamed chunks of the music files. This resulted in the browser requesting the playing track every few minutes as it finished. In more recent testing, Chrome cached streamed tracks however other browsers may not be doing this yet. Streaming large audio files with the Audio tag for functionality like music playback is optimal but for some browser versions you may want to load your music the same way you load sound effects.</p>
+<p>Fieldrunners was originally launched with background music played with an Audio tag. At release, we discovered that music files were being requested an disproportionate number of times to that which the rest of the game content was requested. After some research we discovered that at the time the Chrome browser was not caching the streamed chunks of the music files. This resulted in the browser requesting the playing track every few minutes as it finished. In more recent testing, Chrome cached streamed tracks however other browsers may not be doing this yet. Streaming large audio files with the Audio tag for functionality like music playback is optimal but for some browser versions you may want to load your music the same way you load sound effects.</p>
 
 <p>Since all the sound effects were playing through Web Audio we moved playing of the background music to Web Audio as well. This meant that we would load the tracks the same way we loaded all the effects with XMLHttpRequests and the arraybuffer response type.</p>
 

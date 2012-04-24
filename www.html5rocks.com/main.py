@@ -67,10 +67,12 @@ class ContentHandler(webapp.RequestHandler):
 
   def get_language(self):
     lang_match = re.match("^/(\w{2,3})(?:/|$)", self.request.path)
-    self.locale = lang_match.group(1) if lang_match else settings.LANGUAGE_CODE
+    return lang_match.group(1) if lang_match else None
+    
+  def activate_language(self, language_code):
+    self.locale = language_code or settings.LANGUAGE_CODE
     logging.info("Set Language as %s" % self.locale)
     translation.activate( self.locale )
-    return self.locale if lang_match else None
 
   def browser(self):
     return str(self.request.headers['User-Agent'])
@@ -263,6 +265,15 @@ class ContentHandler(webapp.RequestHandler):
     if not locale:
       return self.redirect("/en/%s" % relpath, permanent=True)
 
+    # If there is a locale specified but it has no leading slash, redirect
+    if not relpath.startswith("%s/" % locale):
+      return self.redirect("/%s/" % locale, permanent=True)
+
+    # If we get here, is because the language is specified correctly, 
+    # so let's activate it
+    self.activate_language(locale)
+
+    
     # Strip off leading `/[en|de|fr|...]/`
     relpath = re.sub('^/?\w{2,3}(?:/)?', '', relpath)
 
