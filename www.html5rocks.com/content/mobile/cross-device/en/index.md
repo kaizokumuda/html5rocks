@@ -20,17 +20,22 @@ your layout with media queries, then we have the following situation:
 - Little flexibility to specify custom interactions tailored to each
   device.
 
-Some of these issues can be resolved with approaches such as [responsive
-images][respimg], dynamic script loading, etc. However, at a certain
-point, you may find yourself doing too many incremental tweaks, and
-may be better off serving different versions of your page. As the UIs
-you build increase in complexity, and you gravitate toward single-page
-webapps, you’ll want to do more to customize UIs for each type of
-device. This article will teach you how to do these customizations with
-a minimal amount of effort. The general approach involves classifying
-your visitor’s device into the right device classes, and serving the
-appropriate version to that device, while maximizing code reuse between
-versions.
+<h3 id="toc-hater">Webapps need more than media queries</h3>
+
+Don't get me wrong. I don't hate responsive design via media queries,
+and definitely think it has a place in the world. Furthermore, some of
+the above mentioned issues can be resolved with approaches such as
+[responsive images][respimg], dynamic script loading, etc. However, at a
+certain point, you may find yourself doing too many incremental tweaks,
+and may be better off serving different versions.
+
+As the UIs you build increase in complexity, and you gravitate toward
+single-page webapps, you’ll want to do more to customize UIs for each
+type of device. This article will teach you how to do these
+customizations with a minimal amount of effort. The general approach
+involves classifying your visitor’s device into the right device
+classes, and serving the appropriate version to that device, while
+maximizing code reuse between versions.
 
 [rwd]: /mobile/responsivedesign
 [mq]: http://mediaqueri.es/
