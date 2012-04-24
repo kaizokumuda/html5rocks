@@ -5,12 +5,11 @@ make small tweaks to their stylesheets to give a better experience for
 users on devices of various sizes. Media queries essentially let you
 customize the CSS of your site depending on screen size. Before you dive
 into this article, learn more about [responsive design][rwd] and check
-out some of these fine examples of media queries usage here:
-[mediaqueri.es][mq].
+out some fine examples of media queries usage here: [mediaqueri.es][mq].
 
-As Brad points out in an [earlier article][bf], changing the look is
-only one of many things to consider when building for the mobile web. If
-the only thing you do when you build your mobile website is customize
+As Brad Frost points out in an [earlier article][bf], changing the look
+is only one of many things to consider when building for the mobile web.
+If the only thing you do when you build your mobile website is customize
 your layout with media queries, then we have the following situation:
 
 - All devices get the same JavaScript, CSS, and assets (images, videos),
@@ -34,7 +33,7 @@ single-page webapps, you’ll want to do more to customize UIs for each
 type of device. This article will teach you how to do these
 customizations with a minimal amount of effort. The general approach
 involves classifying your visitor’s device into the right device
-classes, and serving the appropriate version to that device, while
+class, and serving the appropriate version to that device, while
 maximizing code reuse between versions.
 
 [rwd]: /mobile/responsivedesign
@@ -65,7 +64,7 @@ another screen size, and another input modality.
 There are two extreme ends to the spectrum of approaches:
 
 1. Build one version that works on all devices. UX will suffer as a
-   result, since different device have different design considerations.
+   result, since different devices have different design considerations.
 
 2. Build a version for each device you want to support. This will take
    forever, because you’ll be building too many versions of your
@@ -87,7 +86,7 @@ design][rwd] is a perfectly reasonable approach.
 Here’s a compromise: classify devices into categories, and design the
 best possible experience for each category. What categories you choose
 depend on your product and target user. Here's a sample classification
-that nicely spans across popular web-capable devices that exist today.
+that nicely spans popular web-capable devices that exist today.
 
 1. small screens + touch (mostly phones)
 2. large screens + touch (mostly tablets)
@@ -104,12 +103,12 @@ with accessibility in mind.
 
 There are many examples of web properties serving entirely different
 versions for different form factors. Google search does this, as does
-Facebook. Considerations for this include both performance (in page, and
-load time) and more general user experience.
+Facebook. Considerations for this include both performance (fetching
+assets, rendering pages) and more general user experience.
 
 In the world of native apps, many developers choose to tailor their
 experience to a device class. For example, [Flipboard][flipboard] for
-iPad is a very different UI compared to Flipboard on iPhone. The tablet
+iPad has a very different UI compared to Flipboard on iPhone. The tablet
 version is optimized for two hand use and horizontal flipping while the
 phone version is intended for single hand interaction and a vertical
 flip. Many other iOS applications also provide significantly different
@@ -124,11 +123,11 @@ phone and tablet versions, such as [Things][things] (todo list), and
 <h2 id="toc-server-detect">Approach #1: Server-side detection</h2>
 
 On the server, we have a much more limited understanding of the device
-that we’re dealing with. One of the few useful queues that are passed is
-the user agent string, which is supplied via the User-Agent header on
+that we’re dealing with. Probably the most useful clue that's available
+is the user agent string, which is supplied via the User-Agent header on
 every request. Because of this, the same UA sniffing approach will work
 here. In fact, the DeviceAtlas and WURFL projects do this already (and
-give a whole lot of information about the device).
+give a whole lot of additional information about the device).
 
 Unfortunately each of these present their own challenges. WURFL is very
 large, containing 20MB of XML, potentially incurring significant
@@ -139,7 +138,7 @@ requires a paid license to use.
 There are simpler, free alternatives too, like the [Detect Mobile
 Browsers][dmb] project. The drawback, of course, is that device
 detection will inevitably be less comprehensive. Also, it only
-distinguishes between mobile and non-mobile devices providing limited
+distinguishes between mobile and non-mobile devices, providing limited
 tablet support only through an [ad-hoc set of tweaks][dmb-tablet].
 
 [dmb]: http://detectmobilebrowsers.com/
@@ -172,9 +171,9 @@ displays, they are doing the same device-width trick.
 </figure>
 
 Complicating this decision, however, is the importance of considering
-both portrait and layout modes. We don’t want to reload the page or load
-additional scripts every time we re-orient the device, though we may
-want to render the page differently.
+both portrait and landscape modes. We don’t want to reload the page or
+load additional scripts every time we re-orient the device, though we
+may want to render the page differently.
 
 In the following diagram, squares represent the max dimensions of each
 device, as a result of overlaying the portrait and landscape outlines
@@ -186,8 +185,8 @@ device, as a result of overlaying the portrait and landscape outlines
 </figure>
 
 By setting the threshold to `650px`, we classify iPhone, Galaxy Nexus as
-smalltouch, and iPad, Galaxy Tab as bigtouch. The androgynous Galaxy
-Note is in this case classified as smalltouch, and will get the phone
+smalltouch, and iPad, Galaxy Tab as "tablet". The androgynous Galaxy
+Note is in this case classified as "phone", and will get the phone
 layout.
 
 And so, a reasonable strategy might look like this:
@@ -205,9 +204,9 @@ And so, a reasonable strategy might look like this:
 See a minimal sample of the [feature-detection approach][feature-sample] in action.
 
 The alternative approach here is to use UA sniffing to detect device
-type. Basically you would have a set of heuristics and match them
-against your user’s `navigator.userAgent`. Pseudo code looks something
-like this:
+type. Basically you create a set of heuristics and match them against
+your user’s `navigator.userAgent`. Pseudo code looks something like
+this:
 
     var ua = navigator.userAgent;
     for (var re in RULES) {
@@ -237,20 +236,19 @@ have several options:
    this device type.
 2. Dynamically load the device type-specific assets.
 
-The first approach is straightforward, requiring a redirect via
-`window.location.href = '/tablet'`. However, your URL will now have this
-device type information appended to it, so you may want to use the
+The first approach is straightforward, requiring a redirect such as
+`window.location.href = '/tablet'`. However, the location will now have
+this device type information appended to it, so you may want to use the
 [History API][history-api] to clean up your URL. Unfortunately this
 approach involves a redirect, which can be slow, especially on mobile
 devices.
 
 The second approach is quite a bit more complex to implement. You need a
-mechanism to dynamically load CSS and JS, and (browser-depending) may
-not be able to do things like customize `<meta viewport>` depending on
-your device, which may be a deal breaker. Also, since you’re not
-redirecting, you’re stuck with the original HTML that was served to you.
-Of course, you can manipulate it with JavaScript, but this may be slow
-and/or inelegant, depending on your application.
+mechanism to dynamically load CSS and JS, and (browser-depending), you
+may not be able to do things like customize `<meta viewport>`. Also,
+since there's no redirect, you’re stuck with the original HTML that was
+served. Of course, you can manipulate it with JavaScript, but this may
+be slow and/or inelegant, depending on your application.
 
 [history-api]: http://diveintohtml5.info/history.html
 
@@ -343,10 +341,10 @@ application):
           item-list.js
 
 This sort of structure enables you to fully control what assets each
-version loads, since you have custom HTML, CSS and JS Views for each
+version loads, since you have custom HTML, CSS and JavaScript for each
 device. This is very powerful, and can lead to the leanest, most
 performant way of developing for the cross-device web, without relying
-on tricks for adaptive images.
+on tricks such as adaptive images.
 
 Once you run your favorite build tool, you’ll concatenate and minify all
 of your JavaScript and CSS into single files for faster loading, with
@@ -395,7 +393,7 @@ using a Galaxy Note), so it’s important to give your users a choice of
 which version of your site to use if they want to manually override.
 
 The usual approach is to provide a link to the desktop version from your
-mobile version. This is easy enough to implement, but Device.js supports
+mobile version. This is easy enough to implement, but device.js supports
 this functionality with the `device` GET parameter.
 
 <h2 id="toc-conclusion">Concluding</h2>
