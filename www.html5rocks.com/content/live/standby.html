@@ -80,6 +80,7 @@ h1 {
 	font-size: 70px;
 	line-height: 1.2;
 	padding-top: 10px;
+	position: relative;
 }
 h3 {
 	line-height: 1.8;
@@ -88,8 +89,8 @@ h3 {
 	background-color: red;
 	border-radius: 50%;
 	display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   -webkit-animation-name: glowRed;
   -moz-animation-name: glowRed;
   -o-animation-name: glowRed;
@@ -107,7 +108,9 @@ h3 {
   -o-animation-iteration-count: infinite;
   -o-animation-timing-function: linear;
   position: absolute;
-  right: 0;
+  top: 25px;
+  right: 95px;
+  opacity: 0.8;
 }
 .watermark {
 	display: none;
@@ -127,11 +130,10 @@ h3 {
 {% endblock %}
 
 {% block body %}
-<div style="position:relative">
-	<span class="record"></span>
+<div>
   <img src="/static/images/site_title.png" width="388" height="320">
   <hgroup style="text-align: center;">
-  	<h1>LIVE</h1>
+  	<h1>LIVE <span class="record"></span></h1>
     <h3>Starts in <span id="timer">0:00</span><span> minutes</span></h3>
   </hgroup>
 </div>
