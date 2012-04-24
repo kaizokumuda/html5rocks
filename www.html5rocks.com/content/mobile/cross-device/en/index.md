@@ -46,7 +46,10 @@ input, scroll wheels, keyboards, voice input, devices with pressure
 sensitivity, smart watches, toasters and refrigerators, and many more.
 Some of these devices are ubiquitous, while others are very rare.
 
-![A variety of devices](/static/demos/cross-device/variety.png)
+<figure>
+<img src="/static/demos/cross-device/variety.png"/>
+<figcaption>A variety of devices.</figcaption>
+</figure>
 
 To create a good user experience, you need to know who your users are
 and what devices they are using. If you build a user interface for a
@@ -108,8 +111,10 @@ flip. Many other iOS applications also provide significantly different
 phone and tablet versions, such as [Things][things] (todo list), and
 [Showyou][showu] (social video), featured below:
 
-![Total customization for phone and
-tablet](/static/demos/cross-device/phone-tablet.png)
+<figure>
+<img src="/static/demos/cross-device/phone-tablet.png"/>
+<figcaption>Significant UI customization for phone and tablet.</figcaption>
+</figure>
 
 <h2 id="toc-client-detect">Client-side detection</h2>
 
@@ -131,7 +136,10 @@ The retina Mobile Safari UAs still report the same device-width to avoid
 breaking the web. As other devices (eg. Android) get higher resolution
 displays, they are doing the same device-width trick.
 
-![Device resolution (in pixels)](/static/demos/cross-device/devices.png)
+<figure>
+<img src="/static/demos/cross-device/devices.png"/>
+<figcaption>Device resolution (in pixels).</figcaption>
+</figure>
 
 Complicating this decision, however, is the importance of considering
 both portrait and layout modes. We don’t want to reload the page or load
@@ -142,7 +150,10 @@ In the following diagram, squares represent the max dimensions of each
 device, as a result of overlaying the portrait and landscape outlines
 (and completing the square):
 
-![Portrait + landscape resolution (in pixels)](/static/demos/cross-device/devices-portland.png)
+<figure>
+<img src="/static/demos/cross-device/devices-portland.png"/>
+<figcaption>Portrait + landscape resolution (in pixels)</figcaption>
+</figure>
 
 By setting the threshold to `650px`, we classify iPhone, Galaxy Nexus as
 smalltouch, and iPad, Galaxy Tab as bigtouch. The androgynous Galaxy
@@ -293,7 +304,10 @@ can easily move your views into separate files, creating a custom view
 for each device type. Then you can serve the same code to all devices,
 except the view layer.
 
-![Cross-device MVC](/static/demos/cross-device/mvc.png)
+<figure>
+<img src="/static/demos/cross-device/mvc.png"/>
+<figcaption>Cross-device MVC.</figcaption>
+</figure>
 
 Your project might have the following structure (of course, you are free
 to choose the structure that makes the most sense depending on your
