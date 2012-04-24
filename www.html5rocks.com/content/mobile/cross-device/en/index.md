@@ -41,7 +41,7 @@ versions.
 
 There are tons of internet-connected devices out there, and nearly all
 of them have browsers. The complication lies in their diversity: Mac
-Laptops, Windows workstations, iPhones, iPads, Android phones with touch
+laptops, Windows workstations, iPhones, iPads, Android phones with touch
 input, scroll wheels, keyboards, voice input, devices with pressure
 sensitivity, smart watches, toasters and refrigerators, and many more.
 Some of these devices are ubiquitous, while others are very rare.
@@ -54,7 +54,7 @@ desktop user with a mouse and a keyboard and give it to a smartphone
 user, your interface will be a frustration because it's designed for
 another screen size, and another input modality.
 
-There are two extreme approaches:
+There are two extreme ends to the spectrum of approaches:
 
 1. Build one version that works on all devices. UX will suffer as a
    result, since different device have different design considerations.
