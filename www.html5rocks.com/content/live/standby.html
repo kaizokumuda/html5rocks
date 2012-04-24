@@ -76,8 +76,13 @@ header.main {
 	margin: 0;
 }
 h1 {
+	border-top: 1px solid #ccc;
 	font-size: 70px;
 	line-height: 1.2;
+	padding-top: 10px;
+}
+h3 {
+	line-height: 1.8;
 }
 .record {
 	background-color: red;
@@ -107,6 +112,17 @@ h1 {
 .watermark {
 	display: none;
 }
+#timer {
+	font-weight: 600;
+	-webkit-transition: all 60s linear;
+	-mos-transition: all 60s linear;
+	-o-transition: all 60s linear;
+	-ms-transition: all 60s linear;
+	transition: all 60s linear;
+}
+#timer.near {
+	color: red;
+}
 </style>
 {% endblock %}
 
@@ -116,10 +132,43 @@ h1 {
   <img src="/static/images/site_title.png" width="388" height="320">
   <hgroup style="text-align: center;">
   	<h1>LIVE</h1>
-    <h3>... Please standby ...</h3>
+    <h3>Starts in <span id="timer">0:00</span><span> minutes</span></h3>
   </hgroup>
 </div>
 <script>
-   Modernizr.cssgradients && document.body.classList.remove('pattern-bg');
+Modernizr.cssgradients && document.body.classList.remove('pattern-bg');
+
+// Countdown. startIn(5) is 5 minutes.
+function startIn(minutes) {
+	if (!minutes) {
+		return;
+	}
+  var timer = document.querySelector('#timer');
+  var units = timer.nextSibling;
+
+  var end = new Date(Date.now() + minutes * 60 * 1000);
+
+  var id = setInterval(function() {
+    var now = new Date();
+    var delta = end - now;
+    var toc = new Date(delta);
+
+    if (delta <= 0) {
+    	clearInterval(id);
+    	timer.parentElement.innerHTML = 'NOW!'
+    } else {
+    	var seconds = toc.getSeconds();
+    	timer.textContent = toc.getMinutes() + ':' + (seconds < 10 ? '0' + seconds : seconds);
+    	if (toc.getMinutes() >= 1) {
+    		units.textContent = ' minutes';
+    	} else {
+    		if (!timer.classList.contains('near')) {
+    			timer.classList.add('near');
+    		}
+    		units.textContent = ' seconds';
+    	}
+    }
+  }, 1000);
+}
 </script>
 {% endblock %}
