@@ -64,7 +64,10 @@ input, scroll wheels, keyboards, voice input, devices with pressure
 sensitivity, smart watches, toasters and refrigerators, and many more.
 Some of these devices are ubiquitous, while others are very rare.</p>
 
-<p><img src="/static/demos/cross-device/variety.png" alt="A variety of devices" /></p>
+<figure>
+<img src="/static/demos/cross-device/variety.png"/>
+<figcaption>A variety of devices.</figcaption>
+</figure>
 
 <p>To create a good user experience, you need to know who your users are
 and what devices they are using. If you build a user interface for a
@@ -129,8 +132,10 @@ flip. Many other iOS applications also provide significantly different
 phone and tablet versions, such as <a href="http://culturedcode.com/things/">Things</a> (todo list), and
 <a href="http://showyou.com/">Showyou</a> (social video), featured below:</p>
 
-<p><img src="/static/demos/cross-device/phone-tablet.png" alt="Total customization for phone and
-tablet" /></p>
+<figure>
+<img src="/static/demos/cross-device/phone-tablet.png"/>
+<figcaption>Significant UI customization for phone and tablet.</figcaption>
+</figure>
 
 <h2 id="toc-client-detect">Client-side detection</h2>
 
@@ -152,7 +157,10 @@ The retina Mobile Safari UAs still report the same device-width to avoid
 breaking the web. As other devices (eg. Android) get higher resolution
 displays, they are doing the same device-width trick.</p>
 
-<p><img src="/static/demos/cross-device/devices.png" alt="Device resolution (in pixels)" /></p>
+<figure>
+<img src="/static/demos/cross-device/devices.png"/>
+<figcaption>Device resolution (in pixels).</figcaption>
+</figure>
 
 <p>Complicating this decision, however, is the importance of considering
 both portrait and layout modes. We don’t want to reload the page or load
@@ -163,7 +171,10 @@ want to render the page differently.</p>
 device, as a result of overlaying the portrait and landscape outlines
 (and completing the square):</p>
 
-<p><img src="/static/demos/cross-device/devices-portland.png" alt="Portrait + landscape resolution (in pixels)" /></p>
+<figure>
+<img src="/static/demos/cross-device/devices-portland.png"/>
+<figcaption>Portrait + landscape resolution (in pixels)</figcaption>
+</figure>
 
 <p>By setting the threshold to <code>650px</code>, we classify iPhone, Galaxy Nexus as
 smalltouch, and iPad, Galaxy Tab as bigtouch. The androgynous Galaxy
@@ -307,7 +318,10 @@ can easily move your views into separate files, creating a custom view
 for each device type. Then you can serve the same code to all devices,
 except the view layer.</p>
 
-<p><img src="/static/demos/cross-device/mvc.png" alt="Cross-device MVC" /></p>
+<figure>
+<img src="/static/demos/cross-device/mvc.png"/>
+<figcaption>Cross-device MVC.</figcaption>
+</figure>
 
 <p>Your project might have the following structure (of course, you are free
 to choose the structure that makes the most sense depending on your
