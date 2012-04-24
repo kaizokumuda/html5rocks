@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block headtitle %}{% trans "Standby" %}{% endblock %}
+
+{% block head %}
+<style>
+@-webkit-keyframes glowRed {
+  from {
+    -webkit-box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+  }
+  50% {
+    -webkit-box-shadow: rgba(255, 0, 0, 1) 0 0 25px 3px;
+  }
+  to {
+    -webkit-box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+  }
+}
+@-moz-keyframes glowRed {
+  from {
+    -moz-box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+  }
+  50% {
+    -moz-box-shadow: rgba(255, 0, 0, 1) 0 0 25px 3px;
+  }
+  to {
+    -moz-box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+  }
+}
+@-ms-keyframes glowRed {
+  from {
+    -ms-box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+  }
+  50% {
+    -ms-box-shadow: rgba(255, 0, 0, 1) 0 0 25px 3px;
+  }
+  to {
+    -ms-box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+  }
+}
+@-o-keyframes glowRed {
+  from {
+    -o-box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+  }
+  50% {
+    -o-box-shadow: rgba(255, 0, 0, 1) 0 0 25px 3px;
+  }
+  to {
+    -o-box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+  }
+}
+html, body {
+	height: 100%;
+}
+body {
+  background: -moz-radial-gradient(center center, #fff, #ccc);
+  background: -webkit-radial-gradient(center center, #fff, #ccc);
+  background: -ms-radial-gradient(center center, #fff, #ccc);
+  background: -o-radial-gradient(center center, #fff, #ccc);
+  background: radial-gradient(center center, #fff, #ccc);
+}
+body .page {
+	height: 80%;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  display: -moz-box;
+  -moz-box-align: center;
+  -moz-box-pack: center;
+}
+.page h1, .page h3 {
+	margin: 0;
+}
+h1 {
+	font-size: 70px;
+	line-height: 1.2;
+}
+.record {
+	background-color: red;
+	border-radius: 50%;
+	display: inline-block;
+  width: 30px;
+  height: 30px;
+  -webkit-animation-name: glowRed;
+  -moz-animation-name: glowRed;
+  -o-animation-name: glowRed;
+  -ms-animation-name: glowRed;
+  -webkit-animation-duration: 4s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-duration: 4s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-duration: 4s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  -o-animation-duration: 4s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear;
+  position: absolute;
+  right: 0;
+}
+.watermark {
+	display: none;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div style="position:relative">
+	<span class="record"></span>
+  <img src="/static/images/site_title.png" width="388" height="320">
+  <hgroup style="text-align: center;">
+  	<h1>LIVE</h1>
+    <h3>... Please standby ...</h3>
+  </hgroup>
+</div>
+<script>
+   //Modernizr.cssgradients && document.body.classList.remove('pattern-bg');
+</script>
+{% endblock %}
