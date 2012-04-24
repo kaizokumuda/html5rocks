@@ -1,4 +1,4 @@
-<h2 id="toc-intro">Introduction</h2>
+<h2 id="toc-intro">Media queries are great, but...</h2>
 
 Media queries are awesome, a godsend for website developers that want to
 make small tweaks to their stylesheets to give a better experience for
@@ -20,24 +20,29 @@ your layout with media queries, then we have the following situation:
 - Little flexibility to specify custom interactions tailored to each
   device.
 
-Some of these issues can be resolved with approaches such as [responsive
-images][respimg], dynamic script loading, etc. However, at a certain
-point, you may find yourself doing too many incremental tweaks, and
-may be better off serving different versions of your page. As the UIs
-you build increase in complexity, and you gravitate toward single-page
-webapps, you’ll want to do more to customize UIs for each type of
-device. This article will teach you how to do these customizations with
-a minimal amount of effort. The general approach involves classifying
-your visitor’s device into the right device classes, and serving the
-appropriate version to that device, while maximizing code reuse between
-versions.
+<h3 id="toc-hater">Webapps need more than media queries</h3>
+
+Don't get me wrong. I don't hate responsive design via media queries,
+and definitely think it has a place in the world. Furthermore, some of
+the above mentioned issues can be resolved with approaches such as
+[responsive images][respimg], dynamic script loading, etc. However, at a
+certain point, you may find yourself doing too many incremental tweaks,
+and may be better off serving different versions.
+
+As the UIs you build increase in complexity, and you gravitate toward
+single-page webapps, you’ll want to do more to customize UIs for each
+type of device. This article will teach you how to do these
+customizations with a minimal amount of effort. The general approach
+involves classifying your visitor’s device into the right device
+classes, and serving the appropriate version to that device, while
+maximizing code reuse between versions.
 
 [rwd]: /mobile/responsivedesign
 [mq]: http://mediaqueri.es/
 [bf]: http://bradfrostweb.com/blog/web/responsive-web-design-missing-the-point/
 [respimg]: http://www.alistapart.com/articles/responsive-images-how-they-almost-worked-and-what-we-need/
 
-<h2 id="toc-device-classes">Device classes</h2>
+<h2 id="toc-device-classes">What device classes are you targeting?</h2>
 
 There are tons of internet-connected devices out there, and nearly all
 of them have browsers. The complication lies in their diversity: Mac
@@ -77,7 +82,7 @@ good idea for performance reasons or if the versions you want to serve
 to different device classes vary hugely. Otherwise, [responsive web
 design][rwd] is a perfectly reasonable approach.
 
-### A potential solution
+<h3 id="toc-potential">A potential solution</h3>
 
 Here’s a compromise: classify devices into categories, and design the
 best possible experience for each category. What categories you choose
@@ -95,7 +100,7 @@ readers). However, most of these have keyboard navigation or screen
 reader software installed, which will work fine if you build your site
 with accessibility in mind.
 
-### Examples
+<h3 id="toc-examples">Examples of form factor-specific web apps</h3>
 
 There are many examples of web properties serving entirely different
 versions for different form factors. Google search does this, as does
@@ -116,7 +121,32 @@ phone and tablet versions, such as [Things][things] (todo list), and
 <figcaption>Significant UI customization for phone and tablet.</figcaption>
 </figure>
 
-<h2 id="toc-client-detect">Client-side detection</h2>
+<h2 id="toc-server-detect">Approach #1: Server-side detection</h2>
+
+On the server, we have a much more limited understanding of the device
+that we’re dealing with. One of the few useful queues that are passed is
+the user agent string, which is supplied via the User-Agent header on
+every request. Because of this, the same UA sniffing approach will work
+here. In fact, the DeviceAtlas and WURFL projects do this already (and
+give a whole lot of information about the device).
+
+Unfortunately each of these present their own challenges. WURFL is very
+large, containing 20MB of XML, potentially incurring significant
+server-side overhead for each request. There are projects that split the
+XML for performance reasons. DeviceAtlas is not open source, and
+requires a paid license to use.
+
+There are simpler, free alternatives too, like the [Detect Mobile
+Browsers][dmb] project. The drawback, of course, is that device
+detection will inevitably be less comprehensive. Also, it only
+distinguishes between mobile and non-mobile devices providing limited
+tablet support only through an [ad-hoc set of tweaks][dmb-tablet].
+
+[dmb]: http://detectmobilebrowsers.com/
+[dmb-tablet]: http://detectmobilebrowsers.com/about
+
+
+<h2 id="toc-client-detect">Approach #2: Client-side detection</h2>
 
 We can learn a lot about the user’s browser and device by using feature
 detection. The main things we need to determine are if the device has
@@ -196,31 +226,7 @@ See a sample of the [UA-detection approach][ua-sample] in action.
 [flipboard]: http://flipboard.com/
 [showu]: http://showyou.com/
 
-<h2 id="toc-server-detect">Server-side detection</h2>
-
-On the server, we have a much more limited understanding of the device
-that we’re dealing with. One of the few useful queues that are passed is
-the user agent string, which is supplied via the User-Agent header on
-every request. Because of this, the same UA sniffing approach will work
-here. In fact, the DeviceAtlas and WURFL projects do this already (and
-give a whole lot of information about the device).
-
-Unfortunately each of these present their own challenges. WURFL is very
-large, containing 20MB of XML, potentially incurring significant
-server-side overhead for each request. There are projects that split the
-XML for performance reasons. DeviceAtlas is not open source, and
-requires a paid license to use.
-
-There are simpler, free alternatives too, like the [Detect Mobile
-Browsers][dmb] project. The drawback, of course, is that device
-detection will inevitably be less comprehensive. Also, it only
-distinguishes between mobile and non-mobile devices providing limited
-tablet support only through an [ad-hoc set of tweaks][dmb-tablet].
-
-[dmb]: http://detectmobilebrowsers.com/
-[dmb-tablet]: http://detectmobilebrowsers.com/about
-
-<h2 id="toc-client-load">Client-side loading</h2>
+<h3 id="toc-client-load">A note on client-side loading</h3>
 
 If you’re doing UA detection on your server, you can decide what CSS,
 JavaScript and DOM to serve when you get a new request. However, if
@@ -248,25 +254,6 @@ and/or inelegant, depending on your application.
 
 [history-api]: http://diveintohtml5.info/history.html
 
-<h2 id="toc-device-js">Device.js</h2>
-
-Device.js is a starting point for doing semantic, media query-based
-device detection without needing special server-side configuration,
-saving the time and effort required to do user agent string parsing.
-
-The idea is that you provide search-engine-friendly markup at the top of
-your `<head>` which indicates what versions of your site you want to
-provide. Next, you can either do server-side UA detection and handle
-version redirection on your own, or use the device.js script to do
-feature-based client-side redirection.
-
-For more information, see the [device.js project page][devicejs], and
-also a [fake application][devicejs-sample] that uses device.js for
-client-side redirection.
-
-[devicejs]: https://github.com/borismus/device.js
-[devicejs-sample]: http://borismus.github.com/device.js/sample/
-
 <h2 id="toc-client-server">Deciding client or server</h2>
 
 These are the tradeoffs between the approaches:
@@ -286,7 +273,32 @@ detection. As your application evolves, if you find client-side redirect
 to be a significant performance drawback, you can easily remove the
 device.js script, and implement UA detection on the server.
 
-<h2 id="toc-mvc">Separate concerns for code sharing</h2>
+<h2 id="toc-device-js">Introducing device.js</h2>
+
+Device.js is a starting point for doing semantic, media query-based
+device detection without needing special server-side configuration,
+saving the time and effort required to do user agent string parsing.
+
+The idea is that you provide search-engine-friendly markup ([link
+rel=alternate][link]) at the top of your `<head>` indicating which
+versions of your site you want to provide.
+
+    <link rel="alternate" href="http://foo.com" id="desktop"
+        media="only screen and (touch-enabled: 0)">
+
+Next, you can either do server-side UA detection and handle
+version redirection on your own, or use the device.js script to do
+feature-based client-side redirection.
+
+For more information, see the [device.js project page][devicejs], and
+also a [fake application][devicejs-sample] that uses device.js for
+client-side redirection.
+
+[link]: http://blog.whatwg.org/the-road-to-html-5-link-relations#rel-alternate
+[devicejs]: https://github.com/borismus/device.js
+[devicejs-sample]: http://borismus.github.com/device.js/sample/
+
+<h2 id="toc-mvc">Recommendation: MVC with form-factor specific views</h2>
 
 By now you’re probably thinking that I’m telling you to build three
 completely separate apps, one for each device type. No! Code sharing is
@@ -343,7 +355,7 @@ using device.js):
 
     <!doctype html>
     <head>
-      <title>Mobile Web Rocks!</title>
+      <title>Mobile Web Rocks! (Phone Edition)</title>
 
       <!-- Every version of your webapp should include a list of all
            versions. -->
@@ -375,7 +387,7 @@ correctly (thanks to [Modernizr.touch][modernizr]) by device.js.
 [mvc-js]: http://addyosmani.github.com/todomvc/
 [modernizr]: http://modernizr.com/
 
-<h2 id="toc-misc">Version override</h2>
+<h3 id="toc-misc">Version override</h3>
 
 Device detection can sometimes go wrong, and in some cases, a user may
 prefer to look at the tablet layout on their phone (perhaps they are
@@ -398,5 +410,5 @@ neatly into the world of responsive design, do this:
 3. Use [device.js][devicejs] to do client side device class detection.
 4. When you're ready, package your script and stylesheets into one of
    each per device class.
-5. If client-side redirection performance is an issue, drop device.js
+5. If client-side redirection performance is an issue, abandon device.js
    and switch to serverside UA-detection.

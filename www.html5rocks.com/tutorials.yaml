@@ -16,11 +16,11 @@ tags:
 
 ---
 
-title: Building for the Cross-device Web
+title: A non-responsive approach to building cross-device webapps
 url: /mobile/cross-device/
 author_id: smus
 publication_date: 2012-04-23
-description: "Media queries are great for changing the styling of your UIs depending on screen size, but as your projects increase in complexity, you may want to serve custom versions of your client depending on what kind of device your visitors are using. This article covers classifying visitor's devices into device classes, and serving the appropriate version, while maximizing code reuse between versions."
+description: "Responsive design is great for changing the styling of your UIs depending on screen size, but as your projects increase in complexity, you may want to serve custom versions of your client depending on what kind of device your visitors are using. This article covers classifying visitor's devices into device classes, and serving the appropriate version, while maximizing code reuse between versions."
 browser_support:
 - chrome
 - ie
