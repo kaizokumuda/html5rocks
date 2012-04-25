@@ -1187,7 +1187,7 @@ title: "A Beginner's Guide to Using the Application Cache"
 url: /tutorials/appcache/beginner/
 author_id: ericbidelman
 publication_date: 2010-06-18
-update_date: 2011-05-27
+update_date: 2012-04-25
 description: A step-by-step guide to taking your web app offline using the application cache APIs.
 browser_support:
 - chrome
