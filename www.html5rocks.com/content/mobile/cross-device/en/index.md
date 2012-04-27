@@ -52,7 +52,8 @@ Some of these devices are ubiquitous, while others are very rare.
 
 <figure>
 <img src="/static/demos/cross-device/variety.png"/>
-<figcaption>A variety of devices.</figcaption>
+<figcaption>A variety of devices (<a
+href="http://www.flickr.com/photos/brad_frost/6164723945/in/set-72157627712478230/">source</a>).</figcaption>
 </figure>
 
 To create a good user experience, you need to know who your users are
