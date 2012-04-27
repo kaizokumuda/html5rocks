@@ -84,9 +84,10 @@ scripts/main.js
   <p>There are a couple of things to note:</p>
   <ul>
     <li>The <code>CACHE MANIFEST</code> string is the first line and is required.</li>
-    <li>Sites are limited to 5MB worth of cached data. However, if you are writing an
-    app for the <a href="http://code.google.com/chrome/apps/docs/developers_guide.html">Chrome Web Store</a>,
-    using the <code>unlimitedStorage</code> removes that restriction.</li>
+    <li>Some browsers place restrictions on the amount of storage quota available
+    to your app. In Chrome for example, AppCache uses a <a href="https://developers.google.com/chrome/whitepapers/storage#table">shared pool</a> of TEMPORARY
+    storage that other offline APIs can share. If you are writing an app for the
+    <a href="http://code.google.com/chrome/apps/docs/developers_guide.html">Chrome Web Store</a>, using the <code>unlimitedStorage</code> removes that restriction.</li>
     <li>If the manifest file or a resource specified in it fails to download,
     the entire cache update process fails. The browser will keep using the old
     application cache in the event of failure.</li>
