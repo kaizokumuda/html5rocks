@@ -51,10 +51,10 @@
               box-shadow: 0px 3px 8px hsl(202,69%,23%);
     }
 
- 
+
     .video div[data-embed]{
       cursor: pointer;
-    
+
       position: relative;
 }
 
@@ -67,13 +67,13 @@
       width:100px;
       height:100px;
       border-radius:50px;
-   
-      
+
+
       font-size: 80px;
       color: hsl(0, 0%, 86%);
       border-width:50px;
       border-color:rgba(0,0,0,0);
-      
+
       -webkit-transition:0.2s ease;
       -moz-transition:0.2s ease;
       -ms-transition:0.2s ease;
@@ -89,13 +89,13 @@
 
     .video div[data-embed] span:before {
       /* content: "\25B6"; */
-    } 
+    }
 
     .video div[data-embed]:hover span {
 
       border-width:0;
       border-color:rgba(0,0,0,0.5);
-      
+
       -webkit-transition-duration:0.5s;
       -moz-transition-duration:0.5s;
       -ms-transition-duration:0.5s;
@@ -161,7 +161,7 @@
       <ul>
         <li class="googleplus"><div class="g-plusone" data-size="medium" data-count="true" data-href="{{disqus_url}}"></div></li>
         <li class="facebook" data-url="{{disqus_url}}"></li>
-        <li class="twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-url="{{disqus_url}}" data-via="ChromiumDev" data-lang="{{LANGUAGE_CODE}}" data-related="ChromiumDev:News and announcements for developers from the Google Chrome team and makers of HTML5 Rocks.">{% trans "Tweet" %}</a></li>
+        <li class="twitter"><a href="http://twitter.com/share" class="twitter-share-button" data-url="{{disqus_url}}" data-lang="{{LANGUAGE_CODE}}" data-related="ChromiumDev:News and announcements for developers from the Google Chrome team and makers of HTML5 Rocks.">{% trans "Tweet" %}</a></li>
       </ul>
     </span>
     {% endif %}
