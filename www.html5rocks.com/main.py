@@ -200,6 +200,13 @@ class ContentHandler(webapp.RequestHandler):
     if not 'category' in template_data:
       template_data['category'] = _('this feature')
 
+    # Add H5RLive hangout url.
+    # TODO: memcache this db query.
+    template_data['hangout_url'] = ''
+    live_data = models.LiveData.all().get() # Return first result.
+    if live_data:
+      template_data['hangout_url'] = live_data.hangout_url
+
     # Add CORS support entire site.
     self.response.headers.add_header('Access-Control-Allow-Origin', '*')
     self.response.headers.add_header('X-UA-Compatible', 'IE=Edge,chrome=1')
@@ -468,12 +475,7 @@ class ContentHandler(webapp.RequestHandler):
         'category': category,
         'updates': updates
       }
-      if relpath == 'why' or relpath == 'live':
-        if relpath == 'live':
-          data['hangout_url'] = ''
-          live_data = models.LiveData.all().get() # Return first result.
-          if live_data:
-            data['hangout_url'] = live_data.hangout_url
+      if relpath == 'why':
         if os.path.isfile(os.path.join(path, locale, 'index.html')):
           data['local_content_path'] = os.path.join(relpath, locale, 'index.html')
         else:

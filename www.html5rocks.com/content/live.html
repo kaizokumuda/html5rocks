@@ -9,8 +9,21 @@
 iframe {
   border: none;
   width: 100%;
-  height: 400px;
 }
+#youtube {
+	width: 500px;
+	height: 315px;
+}
+/*#tlkio {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 450px;
+  height: 315px;
+  display: inline-block;
+}*/
 #tlkio {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -18,24 +31,61 @@ iframe {
 	-ms-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 100%;
-	height: 500px;
+	height: 315px;
+  border:8px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px hsla(0,0%,0%,.2);
+  -webkit-box-shadow: 0 1px 2px hsla(0,0%,0%,.2);
+  -moz-box-shadow: 0 1px 2px hsla(0,0%,0%,.2);
+  -o-box-shadow: 0 1px 2px hsla(0,0%,0%,.2);
+  -ms-box-shadow: 0 1px 2px hsla(0,0%,0%,.2);
+  box-shadow: 0 1px 2px hsla(0,0%,0%,.2);
+  margin-top: 1em;
+}
+#tlkio iframe {
+	width: 100%;
+  height: 100%;
+}
+#moderator {
+	height: 600px;
+}
+.info {
+	display: inline-block;
+  vertical-align: top;
+  margin-left: 2em;
+}
+#google_plus_page_link {
+	display: block;
 }
 </style>
 {% endblock %}
 
 {% block body %}
 <article class="pattern-bg-lighter">
-	<h1>Live</h1>
+	<iframe id="youtube" src="{{ hangout_url|default:'http://www.youtube.com/embed/videoseries?list=PL76A6AE687EEACAE0&amp;hl=en_US' }}"></iframe>
+	<div class="info">
+  	<h1>HTML5 Rocks Live</h1>
+    <div id="google_plus_page_link" class="g-plus" data-href="https://plus.google.com/102860501900098846931?rel=publisher" data-width="300" data-height="131" data-theme="light"></div>
+  </div>
   {% if hangout_url %}
-    <iframe src="{{ hangout_url }}"></iframe>
-  {% else %}
-    Come back next time!
+    <div id="tlkio" data-channel="html5rocks"></div>
+    <script src="//tlk.io/embed.js"></script>
   {% endif %}
 </article>
 
-<article id="tlkio" data-channel="html5rocks" class="pattern-bg-lighter">
-	<h1>Chat</h1>
+{% if hangout_url %}
+<article class="pattern-bg-lighter">
+	<h1 style="float:left">Questions</h1>
+	<a href="https://www.google.com/moderator/#15/e=200a87&t=200a87.41" target="_blank" style="float:right">Ask a Question</a>
+	<iframe id="moderator" src="https://www.google.com/moderator/#1/e=200a87&t=200a87.41"></iframe>
+	<!--<div id="moderator-embed-target"></div>-->
+	<!--<script src="//www.google.com/moderator/static/moderator-embed-api.js"></script>
+	<script> 
+var mod = new MODERATOR("https://www.google.com/moderator/#1/e=200a87&t=200a87.41"); 
+mod.hl = "{{LANGUAGE_CODE}}"; 
+mod.embed("moderator-embed-target"); 
+</script>-->
 </article>
-<script src="//tlk.io/embed.js"></script>
+{% endif %}
 
 {% endblock %}
