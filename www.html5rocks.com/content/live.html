@@ -11,7 +11,8 @@ iframe {
   width: 100%;
 }
 #youtube {
-	width: 500px;
+	/*width: 500px;*/
+	width: 100%;
 	height: 315px;
 }
 /*#tlkio {
@@ -49,11 +50,6 @@ iframe {
 #moderator {
 	height: 600px;
 }
-.info {
-	display: inline-block;
-  vertical-align: top;
-  margin-left: 2em;
-}
 #google_plus_page_link {
 	display: block;
 }
@@ -62,14 +58,13 @@ iframe {
 
 {% block body %}
 <article class="pattern-bg-lighter">
-	<iframe id="youtube" src="{{ hangout_url|default:'http://www.youtube.com/embed/videoseries?list=PL76A6AE687EEACAE0&amp;hl=en_US' }}"></iframe>
-	<div class="info">
-  	<h1>HTML5 Rocks Live</h1>
-    <div id="google_plus_page_link" class="g-plus" data-href="https://plus.google.com/102860501900098846931?rel=publisher" data-width="300" data-height="131" data-theme="light"></div>
-  </div>
+	<iframe id="youtube" src="http://www.youtube.com/embed/{{ hangout_url|default:'videoseries?list=PL76A6AE687EEACAE0&amp;hl=en_US' }}"></iframe>
   {% if hangout_url %}
-    <div id="tlkio" data-channel="html5rocks"></div>
+    <div id="tlkio" data-channel="{{ hangout_url }}"></div>
     <script src="//tlk.io/embed.js"></script>
+  {% else %}
+    <h1>HTML5 Rocks Live</h1>
+    <div id="google_plus_page_link" class="g-plus" data-href="https://plus.google.com/102860501900098846931?rel=publisher" data-width="300" data-height="131" data-theme="light"></div>
   {% endif %}
 </article>
 

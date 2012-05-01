@@ -181,4 +181,4 @@ class LiveForm(djangoforms.ModelForm):
   #  model = LiveData
 
   hangout_url = forms.CharField(label='Hangout URL',
-      help_text='The URL of the Hangout to embed. NOTE: this will put a banner across the site when set.')
+      help_text='The YouTube video ID of the video to embed. NOTE: this will put a banner across the site when set.')
