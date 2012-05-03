@@ -3101,7 +3101,7 @@ section.disqus
 #livebanner {
   position: fixed;
   top: -50px;
-  right: -90px;
+  right: -95px;
   background: #508B88;
   color: white;
   -webkit-transform: rotateZ(40deg);

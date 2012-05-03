@@ -203,9 +203,11 @@ class ContentHandler(webapp.RequestHandler):
     # Add H5RLive hangout url.
     # TODO: memcache this db query.
     template_data['hangout_url'] = ''
+    template_data['moderator_topic_id'] = ''
     live_data = models.LiveData.all().get() # Return first result.
     if live_data:
       template_data['hangout_url'] = live_data.hangout_url
+      template_data['moderator_topic_id'] = live_data.moderator_topic_id
 
     # Add CORS support entire site.
     self.response.headers.add_header('Access-Control-Allow-Origin', '*')
@@ -588,7 +590,9 @@ class DBHandler(ContentHandler):
       entity = models.LiveData.all().get()
       if entity:
         live_form = models.LiveForm(instance=entity, initial={
-            'hangout_url': entity.hangout_url})
+            'hangout_url': entity.hangout_url,
+            'moderator_topic_id': entity.moderator_topic_id
+            })
       else:
         live_form = models.LiveForm()
 
@@ -692,6 +696,7 @@ class DBHandler(ContentHandler):
         live_data = models.LiveData()
       
       live_data.hangout_url = self.request.get('hangout_url') or None
+      live_data.moderator_topic_id = self.request.get('moderator_topic_id') or None
 
       live_data.put()
 

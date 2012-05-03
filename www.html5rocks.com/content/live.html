@@ -59,20 +59,28 @@ iframe {
 {% block body %}
 <article class="pattern-bg-lighter">
 	<iframe id="youtube" src="http://www.youtube.com/embed/{{ hangout_url|default:'videoseries?list=PL76A6AE687EEACAE0&amp;hl=en_US' }}"></iframe>
-  {% if hangout_url %}
-    <div id="tlkio" data-channel="{{ hangout_url }}"></div>
-    <script src="//tlk.io/embed.js"></script>
-  {% else %}
-    <h1>HTML5 Rocks Live</h1>
-    <div id="google_plus_page_link" class="g-plus" data-href="https://plus.google.com/102860501900098846931?rel=publisher" data-width="300" data-height="131" data-theme="light"></div>
-  {% endif %}
+</article>
+
+<article class="pattern-bg-lighter">
+{% if hangout_url %}
+	<h2>Chat</h2>
+	<div id="tlkio" data-channel="{{ hangout_url }}"></div>
+  <script src="//tlk.io/embed.js"></script>
+{% else %}
+<div style="margin-top: 1em">
+	<h1>HTML5 Rocks Live</h1>
+  <p>We're off the air right now, but check out our past episodes above
+	and stay tuned for future episodes via our <a href="//plus.google.com/102860501900098846931?rel=publisher" target="_blank">Google+ Page</a>.</p>
+</div>
+<!--<div id="google_plus_page_link" class="g-plus" data-href="https://plus.google.com/102860501900098846931?rel=publisher" data-width="300" data-height="131" data-theme="light"></div>-->
+{% endif %}
 </article>
 
 {% if hangout_url %}
 <article class="pattern-bg-lighter">
-	<h1 style="float:left">Questions</h1>
-	<a href="https://www.google.com/moderator/#15/e=200a87&t=200a87.41" target="_blank" style="float:right">Ask a Question</a>
-	<iframe id="moderator" src="https://www.google.com/moderator/#1/e=200a87&t=200a87.41"></iframe>
+	<h2 style="float:left">Questions</h2>
+	<a href="https://www.google.com/moderator/#15/e=200a87&t=200a87.{{ moderator_topic_id|default:'' }}" target="_blank" style="float:right">Ask a Question</a>
+	<iframe id="moderator" src="https://www.google.com/moderator/#1/e=200a87&t=200a87.{{ moderator_topic_id|default:'' }}"></iframe>
 	<!--<div id="moderator-embed-target"></div>-->
 	<!--<script src="//www.google.com/moderator/static/moderator-embed-api.js"></script>
 	<script> 
