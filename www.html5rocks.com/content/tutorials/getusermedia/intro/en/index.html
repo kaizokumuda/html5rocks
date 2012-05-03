@@ -4,15 +4,13 @@
 
 {% block head %}
 <style>
-.videostream, #cssfilters-stream {
+.videostream, #cssfilters-stream, #screenshot {
   width: 307px;
   height: 250px;
+}
+.videostream, #cssfilters-stream {
   background: rgba(255,255,255,0.5);
   border: 1px solid #ccc;
-}
-#screenshot-stream {
-  width: initial;
-  height: initial;
 }
 #screenshot {
   vertical-align: top;
@@ -193,7 +191,7 @@ on bringing implementations to their browsers.</p>
 <p><code>getUserMedia()</code> is related to WebRTC because it's the gateway into that set of APIs.
 It provides the means to access the user's local camera/microphone stream.</p>
 <p><strong>Support:</strong></p>
-<p>WebRTC can be enabled in Chrome 18.0.1008+ under <code>about:flags</code>.</p>
+<p>WebRTC can be implemented in Chrome 18.0.1008+ and can be enabled in <code>about:flags</code>.</p>
 <h2 id="toc-gettingstarted">Getting started</h2>
 
 <p>With <code>navigator.getUserMedia()</code>, we can finally tap into webcam and microphone input without a plugin.
@@ -205,7 +203,7 @@ have developer builds that include it. In Chrome 18+, the API can be enabled by
 visiting <code>about:flags</code>.</p>
 <p><figure>
 <img src="aboutflags.png">
-<figcaption>Enabling the <code>getUserMedia()</code> in Chrome's '<code>about:flags</code> page.</figcaption>
+<figcaption>Enabling the <code>getUserMedia()</code> in Chrome's <code>about:flags</code> page.</figcaption>
 </figure></p>
 <p>For Opera, download one of their experimental <a href="http://dev.opera.com/articles/view/labs-more-fun-using-the-web-with-getusermedia-and-native-pages/">Android and desktop builds</a>.</p>
 <h3 id="toc-featuredecting">Feature detection</h3>
@@ -226,10 +224,10 @@ if (hasGetUserMedia()) {
 <h3 id="toc-acccess">Gaining access to an input device</h3>
 
 <p>To use the webcam or microphone, we need to request permission.
-The first parameter to <code>getUserMedia()</code> is for specifying the type of media you
-want to access. For example, if you want to request the webcam, the
-first parameter should be <code>"video"</code>. To use both the microphone and camera,
-pass <code>"video, audio"</code>:</p>
+The first parameter to <code>getUserMedia()</code> is an object specifying the type of
+media you want to access. For example, if you want to access the webcam, the
+first parameter should be <code>{video: true}</code>. To use both the microphone and camera,
+pass <code>{video: true, audio: true}</code>:</p>
 <pre class="prettyprint"><code>&lt;video autoplay&gt;&lt;/video&gt;
 
 &lt;script&gt;
@@ -238,7 +236,7 @@ pass <code>"video, audio"</code>:</p>
   };
 
   // Not showing vendor prefixes.
-  navigator.getUserMedia('video, audio', function(localMediaStream) {
+  navigator.getUserMedia({video: true, audio: true}, function(localMediaStream) {
     var video = document.querySelector('video');
     video.src = window.URL.createObjectURL(localMediaStream);
 
@@ -259,7 +257,7 @@ from a <code>LocalMediaStream</code> object representing the webcam.</p>
 <p>I'm also telling the <code>&lt;video&gt;</code> to <code>autoplay</code>, otherwise it would be frozen on
 the first frame. Adding <code>controls</code> also works as you'd expected.</p>
 <p class="notice" style="text-align:center">
-<strong>Note:</strong> There's a bug in Chrome where passing just "audio" does
+<strong>Note:</strong> There's a bug in Chrome where passing just <code>{audio: true}</code> does
 not work: <a href="http://crbug.com/112367">crbug.com/112367</a>. I couldn't
 get <code>&lt;audio&gt;</code> working in Opera either.
 </p>
@@ -267,15 +265,20 @@ get <code>&lt;audio&gt;</code> working in Opera either.
 <p>Both Opera and Chrome implement different versions of <a href="getusermedia-spec">the specification</a>.
 This makes practical usage a little more "challenging" than it eventually will be.</p>
 <p><strong>In Chrome:</strong></p>
-<p>This snippet works in <span class="browser chrome supported" style="float:none;display:inline-block;"><span class="browser_name">Chrome</span></span> 18+ (enable in <code>about:flags</code>):</p>
+<p>This snippet works in Chrome 18 (enabled in <code>about:flags</code>):</p>
 <pre class="prettyprint"><code>navigator.webkitGetUserMedia('audio, video', function(localMediaStream) {
   var video = document.querySelector('video');
   video.src = window.webkitURL.createObjectURL(localMediaStream);
 }, onFailSoHard);
 </code></pre>
+<p>This snippet works in Chrome 20+ (enabled in <code>about:flags</code>):</p>
+<pre class="prettyprint"><code>navigator.webkitGetUserMedia({video: true, audio: true}, function(localMediaStream) {
+  var video = document.querySelector('video');
+  video.src = window.webkitURL.createObjectURL(localMediaStream);
+}, onFailSoHard);
+</code></pre>
 <p><strong>In Opera:</strong></p>
-<p>Opera developer builds work against an updated version of the spec. This snippet
-works in <span class="browser opera supported" style="float:none;display:inline-block;"><span class="browser_name">Opera</span></span>:</p>
+<p>In Opera developer builds, things are a bit different:</p>
 <pre class="prettyprint"><code>navigator.getUserMedia({audio: true, video: true}, function(localMediaStream) {
   video.src = localMediaStream;
 }, onFailSoHard);
@@ -283,21 +286,22 @@ works in <span class="browser opera supported" style="float:none;display:inline-
 <p>The key differences are:</p>
 <ul>
 <li><code>getUserMedia()</code> is unprefixed.</li>
-<li>An object is passed as the first arg instead of a string list.</li>
 <li><code>video.src</code> is set directly to the <code>LocalMediaStream</code> object instead of a Blob URL.
 I'm told Opera will eventually update this to require a Blob URL.</li>
 </ul>
 <p><strong>In Both:</strong></p>
-<p>If you want something that works cross-browser (but is very brittle), try this:</p>
-<pre class="prettyprint"><code>var video = document.querySelector('video');
+<p>If you want something that works cross-browser, try this:</p>
+<pre class="prettyprint"><code>navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+
+var video = document.querySelector('video');
 
 if (navigator.getUserMedia) {
   navigator.getUserMedia({audio: true, video: true}, function(stream) {
-    video.src = stream;
-  }, onFailSoHard);
-} else if (navigator.webkitGetUserMedia) {
-  navigator.webkitGetUserMedia('audio, video', function(stream) {
-    video.src = window.webkitURL.createObjectURL(stream);
+    if (navigator.webkitGetUserMedia) {
+      video.src = window.webkitURL.createObjectURL(stream);
+    } else {
+      video.src = stream; // Opera
+    }
   }, onFailSoHard);
 } else {
   video.src = 'somevideo.webm'; // fallback.
@@ -308,10 +312,14 @@ and <a href="http://twitter.com/akamike">Mike Robinson</a>'s <a href="https://gi
 It does a great job of "normalizing" the inconsistencies between browser implementations.</p>
 <h3 id="toc-security">Security</h3>
 
-<p>In the future, browsers might throw up an infobar upon calling <code>getUserMedia()</code>,
-which would give users the option to grant or deny access to their camera/mic.
-The spec unfortunately is very quiet when it comes to security. At this point,
-no one implements a permission bar.</p>
+<p>Some browsers throw up an infobar upon calling <code>getUserMedia()</code>,
+which gives users the option to grant or deny access to their camera/mic.
+The spec unfortunately is very quiet when it comes to security. At this point, 
+only Chrome implements a permission dialog.</p>
+<p><figure>
+<img src="permission.png" alt="Permission dialog in Chrome" title="Permission dialog in Chrome">
+<figcaption>Permission dialog in Chrome</figcaption>
+</figure></p>
 <h3 id="toc-fallback">Providing fallback</h3>
 
 <p>For users that don't have support for <code>getUserMedia()</code>, one option is to fallback
@@ -499,8 +507,12 @@ we'll continue to see more in the very near future!</p>
 </ul>
 <script>
 function onFailSoHard(e) {
-  alert('getUserMedia() not supported in your browser.');
-  e.target.src = 'http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.ogv';
+  if (e.code == 1) {
+    alert('User denied access to their camera');
+  } else {
+    alert('getUserMedia() not supported in your browser.');
+  }
+  //e.target.src = 'http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.ogv';
 }
 
 (function() {
@@ -516,7 +528,7 @@ button.addEventListener('click', function(e) {
       localMediaStream = stream;
     }, onFailSoHard);
   } else if (navigator.webkitGetUserMedia) {
-    navigator.webkitGetUserMedia('video', function(stream) {
+    navigator.webkitGetUserMedia({video: true}, function(stream) {
       video.src = window.webkitURL.createObjectURL(stream);
       video.controls = true;
       localMediaStream = stream;
@@ -569,7 +581,7 @@ if (navigator.getUserMedia) {
       button.textContent = 'Take Shot';
     }, onFailSoHard);
   } else if (navigator.webkitGetUserMedia) {
-    navigator.webkitGetUserMedia('video', function(stream) {
+    navigator.webkitGetUserMedia({video: true}, function(stream) {
       video.src = window.webkitURL.createObjectURL(stream);
       localMediaStream = stream;
       sizeCanvas();
@@ -622,7 +634,7 @@ button.addEventListener('click', function(e) {
       localMediaStream = stream;
     }, onFailSoHard);
   } else if (navigator.webkitGetUserMedia) {
-    navigator.webkitGetUserMedia('video', function(stream) {
+    navigator.webkitGetUserMedia({video: true}, function(stream) {
       video.src = window.webkitURL.createObjectURL(stream);
       localMediaStream = stream;
     }, onFailSoHard);
