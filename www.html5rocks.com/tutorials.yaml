@@ -1,27 +1,7 @@
-title: "Profiling your WebGL Game with the about:tracing flag"
-url: /tutorials/games/abouttracing/
-author_id: lillithompson
-publication_date: 2012-05-07
-description: "The about:tracing tool provides the insight that helps you avoid hasty workarounds aimed at performance improvement, but which are essentially well-intentioned guesswork. You’ll save a lot of time and energy, get a clearer picture of what Chrome is doing with each frame, and use this information to optimize your game."
-browser_support:
-- chrome
-tags:
-- webgl
-- gaming
-- performance
-- devtools
-- internals
-- type:article
-- class:performance
-- class:nuts_and_bolts
-- class:graphics
-
----
-
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman
-publication_date: 2012-05-01
+publication_date: 2012-06-01
 description: "Techniques for streaming content using various HTML5 APIs."
 browser_support:
 - chrome
@@ -33,6 +13,25 @@ tags:
 - class:multimedia
 - class:connectivity
 - class:nuts_and_bolts
+
+---
+
+title: "Profiling your WebGL Game with the about:tracing flag"
+url: /tutorials/games/abouttracing/
+author_id: lillithompson
+publication_date: 2012-05-07
+description: "The about:tracing tool provides the insight that helps you avoid hasty workarounds aimed at performance improvement, but which are essentially well-intentioned guesswork. You’ll save a lot of time and energy, get a clearer picture of what Chrome is doing with each frame, and use this information to optimize your game."
+browser_support:
+- chrome
+tags:
+- webgl
+- gaming
+- devtools
+- internals
+- type:article
+- class:performance
+- class:nuts_and_bolts
+- class:graphics
 
 ---
 
