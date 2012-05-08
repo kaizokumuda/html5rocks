@@ -163,6 +163,10 @@ handlers:
   static_files: static/robots.txt
   upload: static/robots.txt
 
+- url: /database/live
+  script: main.py
+  login: required
+
 - url: /database/.*
   script: main.py
   login: admin

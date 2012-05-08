@@ -48,13 +48,13 @@ from django.utils import translation
 from django.utils.translation import ugettext as _
 
 # Google App Engine Imports
-from google.appengine.api import memcache
 from google.appengine.api import datastore_errors
+from google.appengine.api import memcache
+from google.appengine.api import users
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
-
 
 template.register_template_library('templatetags.templatefilters')
 
@@ -587,6 +587,13 @@ class DBHandler(ContentHandler):
     self._set_cache_param()
 
     if (relpath == 'live'):
+      user = users.get_current_user()
+
+      # Restrict access to this page to admins and whitelisted users. 
+      if (not users.is_current_user_admin() and
+          user.email() not in common.WHITELISTED_USERS):
+        return self.redirect('/')
+
       entity = models.LiveData.all().get()
       if entity:
         live_form = models.LiveForm(instance=entity, initial={
