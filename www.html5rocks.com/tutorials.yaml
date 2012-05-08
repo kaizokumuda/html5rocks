@@ -1,3 +1,23 @@
+title: "Profiling your WebGL Game with the about:tracing flag"
+url: /tutorials/games/abouttracing/
+author_id: lillithompson
+publication_date: 2012-05-07
+description: "The about:tracing tool provides the insight that helps you avoid hasty workarounds aimed at performance improvement, but which are essentially well-intentioned guesswork. You’ll save a lot of time and energy, get a clearer picture of what Chrome is doing with each frame, and use this information to optimize your game."
+browser_support:
+- chrome
+tags:
+- webgl
+- gaming
+- performance
+- devtools
+- internals
+- type:article
+- class:performance
+- class:nuts_and_bolts
+- class:graphics
+
+---
+
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman
