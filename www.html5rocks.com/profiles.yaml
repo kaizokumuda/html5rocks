@@ -849,14 +849,14 @@ name:
   given: Lilli
   family: Thompson
 org:
-  name: 
-  unit: 
+  name: Independent
+  unit: Game Developer
 address:
   locality: San Francisco Bay Area
   region: California
   country: USA
-  lat: 37.42192
-  lon: -122.087824
+  lat: 37.774966
+  lon: -122.419404
 homepage: 
 google: 111647958621817995641
 twitter: lillithompson
