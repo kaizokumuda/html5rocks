@@ -732,8 +732,8 @@ body[data-href='business'] .page header
 }
 
 .page header .share li.googleplus { left: 0; }
-.page header .share li.facebook   { left: 85px; width: 47px; overflow: hidden; }
-.page header .share li.twitter    { left: 158px; }
+.page header .share li.facebook   { left: 85px; }
+.page header .share li.twitter    { left: 180px; }
 .page header .share li.twitter a  { color: #5cd6ff; }
 
 .page header.two_columns /* There is too much unpredictable behavior with CSS3 columns for this to reliable. Using floats for now. */
