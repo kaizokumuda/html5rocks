@@ -521,6 +521,11 @@ article section.link_target
   margin-left: 2em;
   padding: 0;
 }
+html[lang=pt] article section.link_target
+{
+  height: 188px;
+}
+
 html[lang=de] article section.link_target
 {
   height: 200px;
@@ -750,6 +755,11 @@ body[data-href='business'] .page header
   padding: 0 3% 0 0;
   float: left;
   width: 48%;
+}
+
+html[lang=pt] .page header.two_columns hgroup
+{
+  width: 53%;
 }
 
 .page header.two_columns section
@@ -1576,6 +1586,15 @@ body[data-href='home'] article.sectioned section.one_third
   width: 67%;
 }
 
+html[lang=pt] #classes hgroup
+{
+  width: 53%;
+}
+html[lang=pt] #classes hgroup + p
+{
+  width: 47% 
+}
+
 html[lang=de] #classes hgroup
 {
   width: 40%;
@@ -1678,6 +1697,11 @@ html[lang=de] #classes hgroup + p
 {
   display: inline;
   font-size: 12px;
+}
+
+html[lang=pt] #classes li h3
+{
+  font-size: 10px;
 }
 
 article.profile

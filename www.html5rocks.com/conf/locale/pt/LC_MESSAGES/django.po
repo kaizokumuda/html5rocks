@@ -1128,7 +1128,7 @@ msgid ""
 msgstr ""
 "\n"
 "        O HTML5 está tornando a plataforma da web mais poderosa em diversas "
-"áreas. Tente aprender por grupos dos principais recursos do HTML5."
+"áreas. Aprenda pelos principais grupos de recursos do HTML5."
 
 #: content/index.html:194 content/features/index.html:19
 #: content/features/offline.html:5 content/features/offline.html.py:6
@@ -1159,7 +1159,7 @@ msgstr "Conectividade"
 #: templates/base.html.py:196 templates/base.html:203
 #: templates/base.html.py:268
 msgid "File Access"
-msgstr "Acesso ao arquivo"
+msgstr "Acesso a arquivos"
 
 #: content/index.html:198 content/features/semantics.html:5
 #: content/features/semantics.html.py:6 content/tutorials/index.html:48
@@ -1199,7 +1199,7 @@ msgstr "Desempenho"
 #: content/index.html:203 content/tutorials/index.html:53
 #: templates/base.html:158 templates/base.html.py:220 templates/base.html:335
 msgid "Nuts &amp; Bolts"
-msgstr "Porcas e parafusos"
+msgstr "Aspectos Básicos"
 
 #: content/index.html:210 templates/base.html:83
 msgid "Why HTML5?"
@@ -2330,7 +2330,7 @@ msgstr ""
 #: content/features/nuts_and_bolts.html:5
 #: content/features/nuts_and_bolts.html:6
 msgid "Nuts & Bolts"
-msgstr "Porcas e parafusos"
+msgstr "Aspectos Básicos"
 
 #: content/features/nuts_and_bolts.html:15
 msgid ""
