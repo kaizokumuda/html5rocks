@@ -38,7 +38,7 @@ if (!createObjectURL) {
   throw new Error("URL.createObjectURL not found.");
 }
 
-getUserMedia('video',
+getUserMedia({'video': true},
   function(stream) {
     var url = createObjectURL(stream);
     video.src = url;
