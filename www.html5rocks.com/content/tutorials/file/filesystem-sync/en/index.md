@@ -401,21 +401,20 @@ expanding it to download a set of files.
 
         var fileEntry = fs.root.getFile(data.fileName, {create: true});
 
-        postMessage('Got file handle.');
-
-        var writer = fileEntry.createWriter();
-        writer.onerror = onError;
-        writer.onwrite = function(e) {
-          postMessage('Write complete!');
-          postMessage(fileEntry.toURL());
-        };
+        postMessage('Got file entry.');
 
         var bb = new BlobBuilder();
         bb.append(makeRequest(data.url)); // Append the arrayBuffer XHR response.
 
-        postMessage('Begin writing');
+        try {
+          postMessage('Begin writing');
+          fileEntry.createWriter().write(bb.getBlob(data.type));
+          postMessage('Writing complete');
+          postMessage(fileEntry.toURL());
+        } catch (e) {
+          onError(e);
+        }
 
-        writer.write(bb.getBlob(data.type));
       } catch (e) {
         onError(e);
       }
