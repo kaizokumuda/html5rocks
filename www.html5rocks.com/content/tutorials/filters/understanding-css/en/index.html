@@ -11,20 +11,6 @@
 	}
 </style>
 {% endblock %}
-{% block headauthor %}Alex Danilo <adanilo@google.com>{% endblock %}
-{% block pageauthor %}{% profilelinks adanilo %}{% endblock %}
-{% block headtitle %}Understanding CSS filter effects{% endblock %}
-{% block pagetitle %}Understanding CSS filter effects{% endblock %}
-{% block pagebreadcrumb %}Understanding CSS filter effects{% endblock %}
-{% block date %}May 23, 20102{% endblock %}
-
-{% block browsersupport %}
-<span class="browser opera"><span class="browser_name">Opera</span><span class="support">unsupported</span></span>
-<span class="browser ie"><span class="browser_name">Internet Explorer</span><span class="support">unsupported</span></span>
-<span class="browser safari supported"><span class="browser_name">Safari</span><span class="support">unsupported</span></span>
-<span class="browser ff supported"><span class="browser_name">Firefox</span><span class="support">supported</span></span>
-<span class="browser chrome supported"><span class="browser_name">Chrome</span><span class="support">supported</span></span>
-{% endblock %}
 
 {% block html5badge %}
 <img src="/static/images/identity/html5-badge-h-css3-graphics.png" width="165" height="64" alt="This article is powered by HTML5 CSS3 / Styling, and Graphics Effects" title="This article is powered by HTML5 CSS3 / Styling, and Graphics Effects" />
@@ -35,6 +21,8 @@
 {% endblock %}
 
 {% block content %}
+  {% include "warning.html" %}
+
   <div><figure><img src="images/lens.jpg"></figure></div>
   <h2 id="toc-introduction">Introduction</h2>
   <p>Filters are a powerful tool that web authors can use to achieve interesting visual effects. In this article we’ll cover the history of filter effects, what they do and how to use them. We’ll cover examples of all the predefined filters defined for CSS with some examples. We’ll also cover performance considerations for using them on desktop and mobile devices since knowing the speed impact of filters is important for a good user experience. Finally we’ll review the current state of implementation in modern browsers.
@@ -80,7 +68,7 @@ Note: The description and examples below use the official W3C syntax that will b
 Using filters from CSS is done by using the ‘filter’ property applied to any visible element on your web page. For a very simple example you could write something like
 </p>
 <pre class="prettyprint">
-	<code>div { filter: grayscale(100%) }</code>
+	<code>div { {% mixin filter: grayscale(100%); %} }</code>
 </pre>
 <p>
 and that would make the content inside all &lt;div&gt; elements on the page turn gray. Great for making your page look like a TV image from the 1940s.
@@ -99,7 +87,7 @@ and that would make the content inside all &lt;div&gt; elements on the page turn
 Most filters take some form of parameter to control how much filtering is done. So for example if you wanted to style your content to be half way between the original color and a grayscale version you’d do it like this:
 </p>
 <pre class="prettyprint">
-	<code>div { filter: grayscale(50%) }</code>
+	<code>div { {% mixin filter: grayscale(50%); %} }</code>
 </pre>
 <p>
 	<figure>
@@ -110,7 +98,7 @@ Most filters take some form of parameter to control how much filtering is done. 
 If you want to apply a number of different filters one after another, it’s easy - just place them in order in your CSS like so:
 </p>
 <pre class="prettyprint">
-	<code>div { filter: grayscale(100%) sepia(100%) }</code>
+	<code>div { {% mixin filter: grayscale(100%) sepia(100%); %} }</code>
 </pre>
 <p>
 That example will first make all the original color grayscale and then apply a sepia effect, and would end up looking like:</p>
@@ -324,7 +312,7 @@ Let’s take a look at each of them and see what they do.
 	then from CSS you could do something as simple as:
 
 	<pre class="prettyprint">
-	<code>div { filter: url(#foo) }</code></pre>
+	<code>div { {% mixin filter: url(#foo); %} }</code></pre>
 	<p>
 	and voila! All the &lt;div&gt;s in your document will be styled with the SVG filter definitions.
 	</p>
