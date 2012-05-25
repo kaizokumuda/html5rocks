@@ -1,3 +1,24 @@
+title: "Leaner, Meaner, Faster Animations with requestAnimationFrame"
+url: /tutorials/speed/animations/
+author_id: aerotwist
+publication_date: 2012-05-28
+description: "Let's take requestAnimationFrame to the next level and use it for debouncing resize events. We'll also dig into how to debug performance and smooth out your code."
+browser_support:
+- chrome
+- ff
+- safari
+- ie
+- opera
+tags:
+- animations
+- performance
+- type:article
+- class:performance
+- class:graphics
+- class:nuts_and_bolts
+
+---
+
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman
