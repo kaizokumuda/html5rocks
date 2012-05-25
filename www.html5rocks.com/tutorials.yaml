@@ -1336,3 +1336,19 @@ tags:
 - devtools
 - class:performance
 - type:article
+
+
+---
+
+title: Understanding CSS filter effects
+url: /tutorials/filters/understanding-css/
+author_id: alexdanilo
+publication_date: 2012-05-25
+description: Learn how CSS filters work, their performance impact and what each filter effect does.
+browser_support:
+- chrome
+- ff
+- safari
+tags:
+- class:graphics
+- type:tutorial
