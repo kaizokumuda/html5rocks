@@ -16,10 +16,27 @@ tags:
 
 ---
 
+title: Understanding CSS Filter Effects
+url: /tutorials/filters/understanding-css/
+author_id: alexdanilo
+publication_date: 2012-05-25
+description: "Learn how CSS filters work, their performance impact and what each filter effect does."
+browser_support:
+- chrome
+- ff
+- safari
+tags:
+- css
+- filters
+- class:graphics
+- type:tutorial
+
+---
+
 title: "Profiling your WebGL Game with the about:tracing flag"
 url: /tutorials/games/abouttracing/
 author_id: lillithompson
-publication_date: 2012-05-07
+publication_date: 2012-05-24
 description: "The about:tracing tool provides the insight that helps you avoid hasty workarounds aimed at performance improvement, but which are essentially well-intentioned guesswork. You’ll save a lot of time and energy, get a clearer picture of what Chrome is doing with each frame, and use this information to optimize your game."
 browser_support:
 - chrome
@@ -1320,35 +1337,4 @@ tags:
 - audio
 - flash
 - class:multimedia
-- type:tutorial
-
-
----
-
-title: Introduction to JavaScript Source Maps
-url: /tutorials/developertools/sourcemaps/
-author_id: ryanseddon
-publication_date: 2010-03-21
-description: Have you ever found yourself wishing you could keep your client-side code readable and more importantly debuggable even after you've combined and minified it, without impacting performance? Well now you can through the magic of source maps.
-browser_support:
-- chrome
-tags:
-- devtools
-- class:performance
-- type:article
-
-
----
-
-title: Understanding CSS filter effects
-url: /tutorials/filters/understanding-css/
-author_id: alexdanilo
-publication_date: 2012-05-25
-description: Learn how CSS filters work, their performance impact and what each filter effect does.
-browser_support:
-- chrome
-- ff
-- safari
-tags:
-- class:graphics
 - type:tutorial
