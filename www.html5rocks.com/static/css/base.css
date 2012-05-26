@@ -1592,7 +1592,7 @@ html[lang=pt] #classes hgroup
 }
 html[lang=pt] #classes hgroup + p
 {
-  width: 47% 
+  width: 47%
 }
 
 html[lang=de] #classes hgroup
@@ -1601,7 +1601,7 @@ html[lang=de] #classes hgroup
 }
 html[lang=de] #classes hgroup + p
 {
-  width: 60% 
+  width: 60%
 }
 
 #classes ul
@@ -3039,6 +3039,13 @@ article.tutorial figcaption
   text-align: center;
 }
 
+code {
+  background: hsl(7, 84%, 90%);
+  padding: 0 3px;
+  border-radius: 2px;
+}
+pre code { background: transparent; padding: 0; border-radius: initial;}
+
 pre.prettyprint
 {
   background: #fff;
@@ -3061,6 +3068,8 @@ pre.prettyprint.small
   margin: 1em;
   padding: .5em;
 }
+
+
 
 
 /* DISABLE SELECTION  */
@@ -3239,14 +3248,14 @@ section.disqus
     border-radius: 4px;
     margin-left: 7px;
   }
-  .subheader .search input[placeholder]::-webkit-input-placeholder { 
+  .subheader .search input[placeholder]::-webkit-input-placeholder {
     color: hsla(176, 27%, 33%, 0.4);
   }
 
   .subheader .search input:focus {
-    -webkit-animation: inputglow 1.9s infinite; 
-       -moz-animation: inputglow 1.9s infinite; 
-        -ms-animation: inputglow 1.9s infinite; 
+    -webkit-animation: inputglow 1.9s infinite;
+       -moz-animation: inputglow 1.9s infinite;
+        -ms-animation: inputglow 1.9s infinite;
   }
 
   @-webkit-keyframes inputglow{ from { -webkit-box-shadow: 0 0 2px  hsl(176, 27%, 13%); }
