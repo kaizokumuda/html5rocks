@@ -23,17 +23,13 @@
 {% endblock %}
 
 {% block content %}
-<h1 id="leaner-meaner-faster-animations">Leaner, Meaner, Faster Animations</h1>
+<p>It&rsquo;s a fair bet you&rsquo;ve done some animation work in your time as a developer, whether that&rsquo;s smaller UI effects or large iteractive canvas pieces. Chances are you&rsquo;ve also come across <code>requestAnimationFrame</code>, or rAF (we say it <em>raff</em> around these parts, and hopefully you&rsquo;ve had chance to use it in your projects. In case you don&rsquo;t know, <code>requestAnimationFrame</code> is the browser&rsquo;s native way of handling your animations. Because rAF is specifically designed to deal with animation and rendering, the browser can schedule it at the most appropriate time and, if we play our cards right, it will help us get a buttery smooth 60 frames per second.</p>
 
-<p>It&rsquo;s a fair bet you&rsquo;ve done some animation work in your time as a developer, whether that&rsquo;s smaller UI effects or large iteractive canvas pieces. Chances are you&rsquo;ve also come across <code>requestAnimationFrame</code>, or rAF, and hopefully you&rsquo;ve had chance to use it in your projects. In case you don&rsquo;t know, <code>requestAnimationFrame</code> is the browser&rsquo;s native way of handling your animations. Because rAF is specifically designed to deal with animation and rendering, the browser can schedule it at the most appropriate time and, if we play our cards right, it will help us get a buttery smooth 60 frames per second.</p>
+<p>What we want to do in this article is <strong>outline some additional ways to ensure you&rsquo;re getting the maximum benefit from your animation code.</strong> Even if you&rsquo;re using <code>requestAnimationFrame</code> there are other ways you can end up with bottlenecks in your animations. At 60 frames per second each frame that you draw has 16.67ms to get everything done. That&rsquo;s not a lot, so every optimisation counts!</p>
 
-<p>What we want to do in this article is outline some additional ways to ensure you&rsquo;re getting the maximum benefit from your animation code. Even if you&rsquo;re using <code>requestAnimationFrame</code> there are other ways you can end up with bottlenecks in your animations. At 60 frames per second each frame that you draw has 16.67ms to get everything done. That&rsquo;s not a lot, so every optimisation counts!</p>
-
-<p>&ndash; boxout &ndash;</p>
-
-<p>TL;DR - Decouple your events from animations; avoid animations that result in reflow-repaint loops; update your rAF calls to expect a high resolution timestamp as the first parameter; only call rAF when you need to</p>
-
-<p>&ndash; end boxout &ndash;</p>
+<blockquote>
+  <p><strong>TL;DR</strong> Decouple your events from animations; avoid animations that result in reflow-repaint loops; update your rAF calls to expect a high resolution timestamp as the first parameter; only call rAF when you have visual updates to do.s</p>
+</blockquote>
 
 <h2 id="debouncing-scroll-events">Debouncing Scroll Events</h2>
 
@@ -63,7 +59,7 @@ function update() {
 window.addEventListener('scroll', onScroll, false);
 </code></pre>
 
-<p>The main issue here is that we are triggering a reflow and repaint whenever we get a scroll event: we ask the browser to recalculate the <strong>real positions</strong> of DOM elements, an expensive reflow operation, and then we apply some CSS classes, which causes the browser to repaint. We end up ping-ponging between reflowing and repainting, and this is going to undermine your app&rsquo;s performance. We&rsquo;re picking on scroll events here, but the same applies to resize events. In fact, any event that you&rsquo;re going to make use of in this way can cause performance issues. For a breakdown of properties that cause a reflow in WebKit check out <a href="http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html">Tony Gentilcore&rsquo;s Fastersite blog post</a>.</p>
+<p>The main issue here is that we are triggering a reflow and repaint whenever we get a scroll event: we ask the browser to recalculate the <strong>real positions</strong> of DOM elements, an expensive reflow operation, and then we apply some CSS classes, which causes the browser to repaint. We end up ping-ponging between reflowing and repainting, and this is going to undermine your app&rsquo;s performance. We&rsquo;re picking on scroll events here, but the same applies to resize events. In fact, any event that you&rsquo;re going to make use of in this way can cause performance issues. Read Tony Gentilcore&rsquo;s Fastersite blog post for a <a href="http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html">breakdown of properties that cause a reflow in WebKit</a>.</p>
 
 <p>What we now need to do is decouple the scroll event from the <code>update</code> function, and this is exactly where <code>requestAnimationFrame</code> steps in to help. We need to change things around so that we are listening to our scroll events, but we will only store the most recent value:</p>
 
@@ -134,7 +130,7 @@ function requestTick() {
 // update();
 </code></pre>
 
-<p>Hopefully you can see the benefits of debouncing the animations in your app from any scroll or resize events that influence it. If you&rsquo;re still in any doubt, John Resig wrote a <a href="http://ejohn.org/blog/learning-from-twitter/">great article</a> about how Twitter was affected by this issue a while ago.</p>
+<p>Hopefully you can see the benefits of debouncing the animations in your app from any scroll or resize events that influence it. If you&rsquo;re still in any doubt, John Resig wrote a great article about how <a href="http://ejohn.org/blog/learning-from-twitter/">Twitter was affected by scroll events</a> a while ago. Had rAF been around back then, this above technique would likely been his recommendation.</p>
 
 <h2 id="debouncing-mouse-events">Debouncing Mouse Events</h2>
 
@@ -168,7 +164,7 @@ function update() {
 }
 
 document.addEventListener('mousedown', onMouseDown, false);
-document.addEventListener('mouseup', onMouseUp, false);
+document.addEventListener('mouseup',   onMouseUp,   false);
 document.addEventListener('mousemove', onMouseMove, false);
 </code></pre>
 
@@ -226,7 +222,7 @@ function calculateObjectMovement() {
   <li>You&rsquo;ll need to update any code you have in place today that expects an object or element to be the first parameter</li>
 </ol>
 
-<p>&ndash; insert link to your rAF stuff &ndash;</p>
+<p>Get the full rundown of this at: <a href="http://updates.html5rocks.com/2012/05/requestAnimationFrame-API-now-with-sub-millisecond-precision">requestAnimationFrame API: now with sub-millisecond precision</a></p>
 
 <h2 id="an-example">An Example</h2>
 
@@ -288,13 +284,22 @@ function update() {
 window.addEventListener('load', update, false);
 </code></pre>
 
-<p>If you check out the page <a href="pre.html">here</a> you&rsquo;ll see it really struggle to keep up as you scroll, and there are a number of reasons why. Firstly we are brute force calling the <code>requestAnimationFrame</code>, whereas what we really should do is only calculate any changes when we get a scroll event. Secondly we are calling <code>offsetTop</code> which causes a reflow, but then we immediately apply the <code>className</code> change and that&rsquo;s going to cause a repaint. And then thirdly, for our bonus performance killer, we are using <code>className</code> rather than <code>classList</code>.</p>
+<figure>
+  <a href="pre.html">
+  <img src="pre-particle.jpg" />
+  </a>
+  <figcaption>
+  Our demo page before performance and rAF optimizations
+  </figcaption>
+</figure>
+
+<p>If you check out the <a href="pre.html">pre-optimized page</a> you&rsquo;ll see it really struggle to keep up as you scroll, and there are a number of reasons why. Firstly we are brute force calling the <code>requestAnimationFrame</code>, whereas what we really should do is only calculate any changes when we get a scroll event. Secondly we are calling <code>offsetTop</code> which causes a reflow, but then we immediately apply the <code>className</code> change and that&rsquo;s going to cause a repaint. And then thirdly, for our bonus performance killer, we are using <code>className</code> rather than <code>classList</code>.</p>
 
 <p>The reason using <code>className</code> is less performant than <code>classList</code> is that <code>className</code> will <em>always</em> affect the DOM element, even if the value of <code>className</code> hasn&rsquo;t changed. By just setting the value we trigger a repaint, which can be very expensive. Using <code>classList</code>, however, allows the browser to be much more intelligent about updates, and it will leave the element alone should the list already contain the class you&rsquo;re adding (which is <code>left</code> in our case).</p>
 
 <p>If you want more information on using <code>classList</code> and the new-and-extremely-useful frame breakdown mode in Chrome&rsquo;s Dev Tools you should watch this video by Paul Irish:</p>
 
-<p>&ndash; Embed: http://www.youtube.com/watch?v=hZJacl2VkKo &ndash;</p>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/hZJacl2VkKo?rel=0" frameborder="0" allowfullscreen=""></iframe>
 
 <p>So let&rsquo;s take a look at what a better version of this would look like:</p>
 
@@ -375,7 +380,16 @@ function update() {
 window.addEventListener('scroll', onScroll, false);
 </code></pre>
 
-<p>If you look at <a href="post.html">this demo</a> you will see much smoother animations as you scroll up and down the page. We&rsquo;ve stopped calling <code>requestAnimationFrame</code> indiscriminantly, we now only do it when we scroll (and we ensure there is only one call scheduled). We&rsquo;ve also moved the <code>offsetTop</code> property lookups into one loop and put the class changes into a second loop which means that we&rsquo;re avoiding the reflow-repaint problem. We&rsquo;ve decoupled our events from the draw call so they can happen as often as they like and we won&rsquo;t be doing unnecessary drawing. Finally we&rsquo;ve switched out <code>className</code> for <code>classList</code>, which is a massive performance saver.</p>
+<figure>
+  <a href="post.html">
+  <img src="post-particle.jpg" />
+  </a>
+  <figcaption>
+  Our demo page after performance and rAF optimizations
+  </figcaption>
+</figure>
+
+<p>If you look at <a href="post.html">our new optimized version of the demo</a> you will see much smoother animations as you scroll up and down the page. We&rsquo;ve stopped calling <code>requestAnimationFrame</code> indiscriminantly, we now only do it when we scroll (and we ensure there is only one call scheduled). We&rsquo;ve also moved the <code>offsetTop</code> property lookups into one loop and put the class changes into a second loop which means that we&rsquo;re avoiding the reflow-repaint problem. We&rsquo;ve decoupled our events from the draw call so they can happen as often as they like and we won&rsquo;t be doing unnecessary drawing. Finally we&rsquo;ve switched out <code>className</code> for <code>classList</code>, which is a massive performance saver.</p>
 
 <p>Of course there are other things we can do to take this further, in particular not iterating through <em>all 800</em> DOM elements on each pass, but even just the changes we&rsquo;ve made have given us great performance improvements.</p>
 
