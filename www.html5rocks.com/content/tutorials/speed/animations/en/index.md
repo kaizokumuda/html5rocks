@@ -1,8 +1,8 @@
-It's a fair bet you've done some animation work in your time as a developer, whether that's smaller UI effects or large iteractive canvas pieces. Chances are you've also come across `requestAnimationFrame`, or rAF (we say it _raff_ around these parts, and hopefully you've had chance to use it in your projects. In case you don't know, `requestAnimationFrame` is the browser's native way of handling your animations. Because rAF is specifically designed to deal with animation and rendering, the browser can schedule it at the most appropriate time and, if we play our cards right, it will help us get a buttery smooth 60 frames per second.
+It's a fair bet you've done some animation work in your time as a developer, whether that's smaller UI effects or large iteractive canvas pieces. Chances are you've also come across `requestAnimationFrame`, or rAF (we say it _raff_ around these parts), and hopefully you've had chance to use it in your projects. In case you don't know, `requestAnimationFrame` is the browser's native way of handling your animations. Because rAF is specifically designed to deal with animation and rendering, the browser can schedule it at the most appropriate time and, if we play our cards right, it will help us get a buttery smooth 60 frames per second.
 
 What we want to do in this article is **outline some additional ways to ensure you're getting the maximum benefit from your animation code.** Even if you're using `requestAnimationFrame` there are other ways you can end up with bottlenecks in your animations. At 60 frames per second each frame that you draw has 16.67ms to get everything done. That's not a lot, so every optimisation counts!
 
-> **TL;DR** Decouple your events from animations; avoid animations that result in reflow-repaint loops; update your rAF calls to expect a high resolution timestamp as the first parameter; only call rAF when you have visual updates to do.s
+> **TL;DR** Decouple your events from animations; avoid animations that result in reflow-repaint loops; update your rAF calls to expect a high resolution timestamp as the first parameter; only call rAF when you have visual updates to do.
 
 
 ## Debouncing Scroll Events
@@ -100,7 +100,7 @@ Thanks to this setup we no longer need to call `requestAnimationFrame` at the to
 	// kick off - no longer needed! Woo.
 	// update();
 
-Hopefully you can see the benefits of debouncing the animations in your app from any scroll or resize events that influence it. If you're still in any doubt, John Resig wrote a great article about how [Twitter was affected by scroll events](http://ejohn.org/blog/learning-from-twitter/) a while ago. Had rAF been around back then, this above technique would likely been his recommendation.
+Hopefully you can see the benefits of debouncing the animations in your app from any scroll or resize events that influence it. If you're still in any doubt, John Resig wrote a great article about how [Twitter was affected by scroll events](http://ejohn.org/blog/learning-from-twitter/) a while ago. Had rAF been around back then, the above technique would likely been his recommendation.
 
 ## Debouncing Mouse Events
 
