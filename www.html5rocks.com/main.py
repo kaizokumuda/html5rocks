@@ -381,6 +381,7 @@ class ContentHandler(webapp.RequestHandler):
         langs = {
           'de': 'Deutsch',
           'en': 'English',
+          'fr': 'Français',
           'es': 'Español',
           'ja': '日本語',
           'pt': 'Português (Brasil)',
