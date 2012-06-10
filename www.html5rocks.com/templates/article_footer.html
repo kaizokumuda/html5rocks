@@ -19,8 +19,16 @@
     </p>
   </noscript>
 
+  <script>
+    function _prettyPrint() {
+      if (customPrettyPrintLanguage)
+        customPrettyPrintLanguage();
+      prettyPrint();
+    }
+  </script>
+
   <script async src="https://apis.google.com/js/plusone.js"></script>
-  <script async src="/static/js/prettify{% if prod %}.min{% endif %}.js" onload="prettyPrint()"></script>
+  <script async src="/static/js/prettify{% if prod %}.min{% endif %}.js" onload="_prettyPrint()"></script>
   <script async src="http://platform.twitter.com/widgets.js"></script>
   <script>
     var disqus_shortname = 'html5rocks';
