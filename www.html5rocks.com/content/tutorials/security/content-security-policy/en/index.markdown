@@ -1,7 +1,3 @@
-# An Introduction to Content Security Policy
-
-Supported in: Chrome, Firefox, IE (10, sorta), Safari (soon)
-
 The web's security model is rooted in the [_same origin policy_](http://en.wikipedia.org/wiki/Same_origin_policy). Code from `https://mybank.com` should only have access to `https://mybank.com`'s data, and `https://evil.example.com` should certainly never be allowed access. Each origin is kept isolated from the rest of the web, giving developers a safe sandbox in which to build and play. In theory, this is perfectly brilliant. In practice, attackers have found clever ways to subvert the system. 
 
 [Cross-site scripting (XSS)](http://en.wikipedia.org/wiki/Cross-site_scripting) attacks, for example, bypass the same origin policy by tricking a site into delivering malicious code along with the intended content. This is a huge problem, as browsers trust all of the code that shows up on a page as being legitimately part of that page's security origin. The [XSS Cheat Sheet](http://ha.ckers.org/xss.html) is an old but representative cross-section of the methods an attacker might use to violate this trust by injecting malicious code. If an attacker successfully injects _any_ code at all, it's pretty much game over: user session data is compromised and information that should be kept secret is exfiltrated to The Bad Guys™. We'd obviously like to prevent that if possible. 
@@ -22,7 +18,7 @@ Simple, right? As you probably guessed, **`script-src`** is a directive that con
 
 With this policy defined, the browser will simply throw an error instead of loading script from any other source. When a clever attacker does manage to inject code into your site, she'll run headlong into an error message, rather than the success she was expecting:
 
-[!Console error: "Refused to load the script 'http://evil.example.com/evil.js' because it violates the following Content Security Policy directive: "script-src 'self' https://apis.google.com"."](#TODO)
+![Console error: "Refused to load the script 'http://evil.example.com/evil.js' because it violates the following Content Security Policy directive: "script-src 'self' https://apis.google.com"."](csp-error.png)
 
 ### Policy applies to a wide variety of resources
 
@@ -42,10 +38,11 @@ You can override this default behavior by specifying a **`default-src`** directi
 
 You can use as many or as few of these directives as makes sense for your specific application, simply listing each in the HTTP header, separating directives with semicolons. You'll want to make sure that you list _all_ required resources of a specific type in a _single_ directive. If wrote something like `script-src https://host1.com; script-src https://host2.com` the second directive would simply be ignored. `script-src https://host1.com https://host2.com` would correctly specify both origins as valid.
 
-If, for example, you have an application that loads all of it's resources from a content delivery network (say, `https://cdn.example.net`), and know that you don't need `iframe`d content or any plugins at all, then your policy might look like the following:
+If, for example, you have an application that loads all of it's resources from a content delivery network (say, `https://cdn.example.net`), and know that you don't need framed content or any plugins at all, then your policy might look like the following:
 
     Content-Security-Policy: default-src https://cdn.example.net; frame-src 'none'; object-src 'none'
-Implementation Details
+
+### Implementation Details
 
 Before moving further, it's important to note that the canonical header I've used in the examples is `Content-Security-Policy`, but current browsers have implemented the feature behind a prefix: Firefox uses `X-Content-Security-Policy`, and WebKit-based browsers (Safari and Chrome) use `X-WebKit-CSP`. The implementations are quite similar, however, and are converging rapidly on the standard. This article will continue to use `Content-Security-Policy`, as browsers will migrate to that header, but the prefixes are essential for the moment.
 
@@ -81,10 +78,10 @@ This ban includes not only scripts embedded directly in `script` tags, but also 
 
 to something more like:
 
-    // amazing.html
+    <!-- amazing.html -->
     <script src='amazing.js'></script>
     <button id='amazing'>Am I amazing?</button>
-  
+^ 
     // amazing.js
     function doAmazingThings() {
       alert('YOU AM AMAZING!');
@@ -106,8 +103,8 @@ Even when an attacker can't inject script directly, she might be able to trick y
 
 This has a more than few impacts on the way you build applications:
 
-* Parse JSON via the built-in `JSON.parse`, rather than relying on `eval`. Native JSON operations are available in [every browser since IE8](http://caniuse.com/#feat=json), and they're completely safe.
-* Rewrite any `setTimeout` or `setInterval` calls you're currently making with inline functions rather than strings. For example:
+*   Parse JSON via the built-in `JSON.parse`, rather than relying on `eval`. Native JSON operations are available in [every browser since IE8](http://caniuse.com/#feat=json), and they're completely safe.
+*   Rewrite any `setTimeout` or `setInterval` calls you're currently making with inline functions rather than strings. For example:
 
         setTimeout("document.querySelector('a').style.display = 'none';", 10);
 
@@ -117,7 +114,7 @@ This has a more than few impacts on the way you build applications:
           document.querySelector('a').style.display = 'none';
         }, 10);
     
-* Avoid inline templating at runtime: Many templating libraries use `new Function()` liberally to speed up template generation at runtime. It's a nifty application of dynamic programming, but comes at the risk of evaluating malicious text. Some frameworks support CSP out of the box, falling back to a robust parser in the absence of `eval`; [AngularJS's ng-csp directive](http://docs.angularjs.org/api/angular.module.ng.$compileProvider.directive.ngCsp) is a good example of this.
+*   Avoid inline templating at runtime: Many templating libraries use `new Function()` liberally to speed up template generation at runtime. It's a nifty application of dynamic programming, but comes at the risk of evaluating malicious text. Some frameworks support CSP out of the box, falling back to a robust parser in the absence of `eval`; [AngularJS's ng-csp directive](http://docs.angularjs.org/api/angular.module.ng.$compileProvider.directive.ngCsp) is a good example of this.
 
 You're even better off, however, if your templating language of choice offers precompilation ([Handlebars does](http://handlebarsjs.com/precompilation.html), for instance). Precompiling your templates can make the user experience even faster than the fastest runtime implementation, and it's safer too. Win, win!
 If eval and its text-to-JavaScript brethren are completely essential to your application, you can enable them by adding `'unsafe-eval'` as an allowed source in a `script-src` directive. But, again, please don't. Banning the ability to execute strings makes it much more difficult for an attacker to execute unauthorized code on your site. 
@@ -126,7 +123,7 @@ If eval and its text-to-JavaScript brethren are completely essential to your app
 
 CSP's ability to block untrusted resources client-side is a huge win for your users, but it would be quite helpful indeed to get some sort of notification sent back to the server so that you can identify and squash any bugs that allow malicious injection in the first place. To this end, you can instruct the browser to `POST` JSON-formatted violation reports to a location specified in a **`report-uri`** directive.
 
-    Content-Security-Policy: default-src 'self'; …; report-uri /my_amazing_csp_report_parser;
+    Content-Security-Policy: default-src 'self'; ...; report-uri /my_amazing_csp_report_parser;
 
 Those reports will look something like the following:
 
@@ -149,7 +146,8 @@ If you're just starting out with CSP, it makes sense to evaluate the current sta
     Content-Security-Policy-Report-Only: default-src 'self'; ...; report-uri /my_amazing_csp_report_parser;
 
 The policy specified in report-only mode won't block restricted resources, but it will send violation reports to the location you specify. You can even send _both_ headers, enforcing one policy while monitoring another. This is a great way to evaluate the effect of changes to your application's CSP: turn on reporting for a new policy, monitor the violation reports and fix any bugs that turn up, then start enforcing the new policy once you're satisfied with its effect.
-Real World Usage
+
+## Real World Usage
 
 CSP is quite usable in Chrome 16+ and Firefox 4+, and it's expected to gain at least limited support in IE 10. Safari's current implementation is lacking, but WebKit nightlies work just as well as Chrome, so there's hope for the next iteration of Safari. Massive sites like Twitter have deployed the header ([Twitter's case study](http://engineering.twitter.com/2011/03/improving-browser-security-with-csp.html%20) is worth a read), and the standard is very much ready for you to start playing around on your own sites.
 
