@@ -1,3 +1,22 @@
+title: "An Introduction to Content Security Policy"
+url: /tutorials/security/content-security-policy/
+author_id: mkwst
+publication_date: 2012-06-11
+description: "Techniques for streaming content using various HTML5 APIs."
+description: "Mitigate the risk of cross-site scripting attacks by whitelisting trusted origins with a Content Security Policy."
+browser_support:
+- chrome
+- ff
+tags:
+- security
+- xss
+- csp
+- eval
+- type:article
+- class:nuts_and_bolts
+
+---
+
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman
