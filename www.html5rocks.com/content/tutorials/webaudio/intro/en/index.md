@@ -56,7 +56,7 @@ fetching sound files.
 
 The API supports loading audio file data in multiple formats, such as
 WAV, MP3, AAC, OGG and [others][formats]. Browser support for different
-audio formats [varies][formats2]. 
+audio formats [varies][formats2].
 
 The following snippet demonstrates loading a sound sample:
 
@@ -124,7 +124,7 @@ pre-loaded.
 [xhr]: https://developer.mozilla.org/En/XMLHttpRequest/Using_XMLHttpRequest
 [xhr2]: http://www.html5rocks.com/en/tutorials/file/xhr2/
 [formats]: http://en.wikipedia.org/wiki/Audio_file_format
-[formats2]: http://thebrowsereview.com/2010/html5-audio-tag-and-format-support/
+[formats2]: https://developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements#Browser_compatibility
 
 <h2 id="toc-abstract">Abstracting the Web Audio API</h2>
 
