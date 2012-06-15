@@ -882,3 +882,23 @@ google: 104437754419996754779
 twitter: mikewest
 email: mkwst@google.com
 
+---
+
+id: mangini
+name:
+  given: Renato
+  family: Mangini
+org:
+  name: Google
+  unit: Developer Relations
+address:
+  locality: São Paulo
+  region: São Paulo
+  country: Brazil
+  lat: -23.590242
+  lon: -46.681724
+homepage: http://renatomangini.com/
+google: 102180419759627664875
+twitter: renatomangini
+email: mangini@google.com
+
