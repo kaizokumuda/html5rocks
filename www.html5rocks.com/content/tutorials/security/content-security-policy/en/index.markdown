@@ -149,7 +149,7 @@ The policy specified in report-only mode won't block restricted resources, but i
 
 ## Real World Usage
 
-CSP is quite usable in Chrome 16+ and Firefox 4+, and it's expected to gain at least limited support in IE 10. Safari's current implementation is lacking, but WebKit nightlies work just as well as Chrome, so there's hope for the next iteration of Safari. Massive sites like Twitter have deployed the header ([Twitter's case study](http://engineering.twitter.com/2011/03/improving-browser-security-with-csp.html%20) is worth a read), and the standard is very much ready for you to start playing around on your own sites.
+CSP is quite usable in Chrome 16+ and Firefox 4+, and it's expected to gain at least limited support in IE 10. Safari's current implementation is lacking, but WebKit nightlies work just as well as Chrome, so there's hope for the next iteration of Safari. Massive sites like Twitter have deployed the header ([Twitter's case study](http://engineering.twitter.com/2011/03/improving-browser-security-with-csp.html) is worth a read), and the standard is very much ready for you to start playing around on your own sites.
 
 The first step towards crafting a policy for your application is to evaluate the resources you're actually loading. Once you think you have a handle on how things are put together in your app, set up a policy based on those requirements. Let's walk through a few common use-cases, and determine how we'd best be able to support them within the protective confines of CSP:
 
