@@ -147,18 +147,19 @@ function handleSeed() {
     /*
     This is how we handle the initial data seed. Normally this would be via AJAX
     */
-    db.transaction(["employee"], "readonly").objectStore("employee").count().onsuccess = function(e) {
+    db.transaction(["employee"], IDBTransaction.READ_ONLY).objectStore("employee").count().onsuccess = function(e) {
         var count = e.target.result;
         if (count == 0) {
             console.log("Need to generate fake data - stand by please...");
             $("#status").text("Please stand by, loading in our initial data.");
             var done = 0;
+            var employees = db.transaction(["employee"], IDBTransaction.READ_WRITE).objectStore("employee");
             // Generate 1k people
             for (var i=0; i<1000; i++) {
                  var person = generateFakePerson();
                  // Modify our data to add a searchable field
                  person.searchkey = person.lastname.toLowerCase();
-                 resp = db.transaction(["employee"], "readwrite").objectStore("employee").add(person);
+                 resp = employees.add(person);
                  resp.onsuccess = function(e) {
                      done++;
                      if (done == 1000) {
@@ -166,7 +167,7 @@ function handleSeed() {
                          $("#status").text("");
                          setupAutoComplete();
                      } else if (done % 100 == 0) {
-                         $("#status").text("Appromimately "+Math.floor(done/10) +"% done.");
+                         $("#status").text("Approximately "+Math.floor(done/10) +"% done.");
                      }
                  }
             }
@@ -181,7 +182,7 @@ function handleSeed() {
 <p>The very first line is a little complex as we’ve got multiple operations chained to each other, so let’s break it down:
 
 <pre class="prettyprint">
-db.transaction(["employee"], "readonly");
+db.transaction(["employee"], IDBTransaction.READ_ONLY);
 </pre>
 
 <p>This creates a new read only transaction. All data operations with IndexedDB require a transaction of some sort.
@@ -224,7 +225,7 @@ person.searchkey = person.lastname.toLowerCase();
 
 <p>As this is a client-specific modification, it’s done here as opposed to on the back-end server (or in our case, the imaginary back-end server).
 
-<p>Interestingly enough - while Firefox does a better job of obeying the spec, it also is a bit slow. Not terribly slow, but you can see it with the simple progress meter in the code above. It takes Firefox about 40-60 seconds to create one thousand objects. That seems acceptable. But in Chrome, this same operation takes 2-3 seconds. Most likely you won’t even notice this in Chrome. Here’s a quick shot of the seed operation in action.
+<p>To perform the database additions in a performant fashion, you should reuse the transaction for all the batched writes. If you create a new transaction for each write, the browser may cause a disk write for each transaction, and that's going to make your performance terrible when adding a lot of items (think "1 minute to write a 1000 objects"-terrible). 
 
 <figure>
 <img src="https://lh3.googleusercontent.com/4m9jpgYPPGItefHJqK5xCrJuw5n4phWX0EI0g_e0ty0Ykal3_pKsB7HF1n-9Eowh1GfzVMG6ZNbsLFAKbMOajjUlwvbukrsF03G805QWyXR3cN5WF5k">
