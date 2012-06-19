@@ -21,7 +21,7 @@
 
   <script>
     function _prettyPrint() {
-      if (customPrettyPrintLanguage)
+      if (typeof customPrettyPrintLanguage != 'undefined')
         customPrettyPrintLanguage();
       prettyPrint();
     }
