@@ -63,14 +63,14 @@ function handleSeed() {
 	/*
 	This is how we handle the initial data seed. Normally this would be via AJAX
 	*/
-	db.transaction(["employee"], IDBTransaction.READ_ONLY).objectStore("employee").count().onsuccess = function(e) {
+	db.transaction(["employee"], "readonly").objectStore("employee").count().onsuccess = function(e) {
 		var count = e.target.result;
 		if(count == 0 ) {
 			console.log("Need to generate fake data - stand by please...");
 			$("#status").text("Please stand by, loading in our initial data.");
 			var done = 0;
 			//Generate 1k people
-			var trans = db.transaction(["employee"], IDBTransaction.READ_WRITE);
+			var trans = db.transaction(["employee"], "readwrite");
                         var employees = trans.objectStore("employee");
 			for(var i=0; i<1000; i++) {
 				var person = generateFakePerson();
