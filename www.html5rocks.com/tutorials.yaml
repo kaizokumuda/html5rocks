@@ -16,6 +16,23 @@ tags:
 
 ---
 
+title: "Databinding UI Elements with IndexedDB"
+url: /tutorials/streaming/multimedia/
+author_id: raymondcamden
+publication_date: 2012-06-19
+description: "Use JQuery UI to bind data from IndexedDB"
+browser_support:
+- chrome
+- ff
+- ie
+tags:
+- business
+- indexeddb
+- class:offline
+- type:tutorial
+
+---
+
 title: WebGL Orthographic 3D
 url: /tutorials/webgl/webgl_orthographic_3d/
 author_id: gman
