@@ -1,21 +1,3 @@
-title: WebGL Orthographic 3D
-url: /tutorials/webgl/webgl_orthographic_3d/
-author_id: gman
-publication_date: 2012-06-19
-description: "How orthographic 3D transforms work in WebGL."
-browser_support:
-- chrome
-- ff
-- safari
-- opera
-tags:
-- webgl
-- 3D
-- type:tutorial
-- class:graphics
-
----
-
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman
@@ -31,6 +13,24 @@ tags:
 - class:multimedia
 - class:connectivity
 - class:nuts_and_bolts
+
+---
+
+title: WebGL Orthographic 3D
+url: /tutorials/webgl/webgl_orthographic_3d/
+author_id: gman
+publication_date: 2012-06-19
+description: "How orthographic 3D transforms work in WebGL."
+browser_support:
+- chrome
+- ff
+- safari
+- opera
+tags:
+- webgl
+- 3D
+- type:tutorial
+- class:graphics
 
 ---
 
