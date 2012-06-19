@@ -147,13 +147,13 @@ function handleSeed() {
     /*
     This is how we handle the initial data seed. Normally this would be via AJAX
     */
-    db.transaction(["employee"], IDBTransaction.READ_ONLY).objectStore("employee").count().onsuccess = function(e) {
+    db.transaction(["employee"], "readonly").objectStore("employee").count().onsuccess = function(e) {
         var count = e.target.result;
         if (count == 0) {
             console.log("Need to generate fake data - stand by please...");
             $("#status").text("Please stand by, loading in our initial data.");
             var done = 0;
-            var employees = db.transaction(["employee"], IDBTransaction.READ_WRITE).objectStore("employee");
+            var employees = db.transaction(["employee"], "readwrite").objectStore("employee");
             // Generate 1k people
             for (var i=0; i<1000; i++) {
                  var person = generateFakePerson();
@@ -182,7 +182,7 @@ function handleSeed() {
 <p>The very first line is a little complex as we’ve got multiple operations chained to each other, so let’s break it down:
 
 <pre class="prettyprint">
-db.transaction(["employee"], IDBTransaction.READ_ONLY);
+db.transaction(["employee"], "readonly");
 </pre>
 
 <p>This creates a new read only transaction. All data operations with IndexedDB require a transaction of some sort.
@@ -248,7 +248,7 @@ function setupAutoComplete() {
 
             $("#displayEmployee").hide();
 
-            var transaction = db.transaction(["employee"], IDBTransaction.READ_ONLY);
+            var transaction = db.transaction(["employee"], "readonly");
             var result = [];
 
             transaction.oncomplete = function(event) {
