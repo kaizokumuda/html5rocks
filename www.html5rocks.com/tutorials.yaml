@@ -16,11 +16,45 @@ tags:
 
 ---
 
+title: "Databinding UI Elements with IndexedDB"
+url: /tutorials/streaming/multimedia/
+author_id: raymondcamden
+publication_date: 2012-06-19
+description: "Use JQuery UI to bind data from IndexedDB"
+browser_support:
+- chrome
+- ff
+- ie
+tags:
+- business
+- indexeddb
+- class:offline
+- type:tutorial
+
+---
+
+title: WebGL Orthographic 3D
+url: /tutorials/webgl/webgl_orthographic_3d/
+author_id: gman
+publication_date: 2012-06-19
+description: "How orthographic 3D transforms work in WebGL."
+browser_support:
+- chrome
+- ff
+- safari
+- opera
+tags:
+- webgl
+- 3D
+- type:tutorial
+- class:graphics
+
+---
+
 title: "An Introduction to Content Security Policy"
 url: /tutorials/security/content-security-policy/
 author_id: mikewest
 publication_date: 2012-06-15
-description: "Techniques for streaming content using various HTML5 APIs."
 description: "Mitigate the risk of cross-site scripting attacks by whitelisting trusted origins with a Content Security Policy."
 browser_support:
 - chrome
@@ -129,7 +163,7 @@ title: WebGL Transforms
 url: /tutorials/webgl/webgl_transforms/
 author_id: gman
 publication_date: 2012-04-18
-description: "How 3D transforms work and how you can use them in WebGL."
+description: "How 2D transforms work and how you can use them in WebGL."
 browser_support:
 - chrome
 - ff

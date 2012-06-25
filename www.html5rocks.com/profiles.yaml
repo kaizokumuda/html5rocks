@@ -902,3 +902,22 @@ google: 102180419759627664875
 twitter: renatomangini
 email: mangini@google.com
 
+---
+
+id: raymondcamden
+name:
+ given: Raymond
+ family: Camden
+org:
+ name: Adobe
+ unit: Developer Relations
+address:
+ locality: Lafayette
+ region: LA
+ country: USA
+ lat: 30.2240897
+ lon: -92.0198427
+homepage: http://www.raymondcamden.com
+google: 115106614688778962135
+twitter: cfjedimaster
+email: raymondcamden@gmail.com
