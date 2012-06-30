@@ -9,6 +9,11 @@
 {% endblock %}
 
 {% block content %}
+<style>
+  figure iframe {
+    border: 1px solid grey;
+  }
+</style>
 
 <h2 id="toc-intro">Introduction to the World Wonders 3D globe</h2>
 
@@ -20,21 +25,50 @@
 
 <h2 id="toc-">Setting up the WebGL Globe</h2>
 
-<p>The first step in making the globe widget was to download the WebGL Globe and get it up and running. The WebGL Globe is online at <a href="">Google Code</a>, and it's simple to download and run. Clone the repo, cd into it and python -m SimpleHTTPServer && open http://localhost:8000/
+<p>The first step in making the globe widget was to download the WebGL Globe and get it up and running. The WebGL Globe is online at <a href="http://code.google.com/p/webgl-globe/">Google Code</a>, and it's simple to download and run. Download and extract <a href="http://code.google.com/p/webgl-globe/downloads/detail?name=webgl-globe.zip">the zip</a>, cd into it and python -m SimpleHTTPServer && open http://localhost:8000/globe/
+
+<figure>
+  <iframe data-src="globe/index.html" width="958" height="400"></iframe>
+  <figcaption>WebGL Globe</figcaption>
+</figure>
 
 <p>With the WebGL Globe up and running it was time to cut off all the unneeded parts. I edited the HTML to excise the UI bits and removed the globe bar graph setup stuff from the globe initialization function. At the end of that process, I had a very barebones WebGL Globe on my screen. You can spin it around and it looks cool, but that's about it.
+
+<figure>
+  <iframe data-src="bare_globe.html" width="958" height="400"></iframe>
+  <figcaption>Barebones WebGL Globe</figcaption>
+</figure>
 
 <h2 id="toc-">Adding the continent geometry</h2>
 
 <p>We wanted to have the camera close to the globe surface, but when we tested the globe zoomed in the lack of texture resolution became apparent. Zoomed in, the WebGL Globe's texture becomes blocky and blurry. We could have used a larger image, but that would make the globe slower to download and run, so we opted to go with a vector representation of the landmasses and borders.
 
-<p>For the landmass geometry, I turned to the open source GlobeTweeter demo and loaded the 3D model in that to Three.js. With the model loaded and rendering, it was time to start polishing the look for the globe. First problem was that the globe landmass model wasn't spherical enough to be flush with the WebGL Globe, so I ended up writing a small (and bad) mesh splitting algorithm that made the landmass model more spherical. With a spherical landmass model, I was able to place it just slightly offset from the globe surface, creating floating continents outlined with a black 2px line below them for a shadow of sorts. I also experimented with neon-colored outlines to make for a Tron-like look. 
+<p>For the landmass geometry, I turned to the open source GlobeTweeter demo and loaded the 3D model in that to Three.js. With the model loaded and rendering, it was time to start polishing the look for the globe. First problem was that the globe landmass model wasn't spherical enough to be flush with the WebGL Globe, so I ended up writing a small (and bad) mesh splitting algorithm that made the landmass model more spherical. With a spherical landmass model, I was able to place it just slightly offset from the globe surface, creating floating continents outlined with a black 2px line below them for a shadow of sorts. I also experimented with neon-colored outlines to make for a sort of Tron-like look. 
 
-<p>With the globe and the landmasses rendering, I started to experiment with different looks for the globe. As we wanted to go with a understated monochrome look, I stuck with a greyscale globe and landmasses. In addition to the aforementioned neon outlines, I tried out a dark globe with dark landmasses on a light background, which actually looks very cool. But it didn't fit the feel of the project so I scrapped that. Another early thought I had for the globe look was to make it look like glazed porcelain. That one I didn't manage to try out as I didn't manage to write a shader to do the porcelain look (visual material editor would be nice). The closest thing I tried was this white glowing globe with black landmasses. It's kinda neat but too high-contrast. And it doesn't look super nice. So another one for the scrapheap.
+<figure>
+  <iframe data-src="neon_globe.html" width="958" height="400"></iframe>
+  <figcaption>Neon outline globe.</figcaption>
+</figure>
+
+<p>With the globe and the landmasses rendering, I started to experiment with different looks for the globe. As we wanted to go with a understated monochrome look, I stuck with a greyscale globe and landmasses. In addition to the aforementioned neon outlines, I tried out a dark globe with dark landmasses on a light background, which actually looks pretty cool. But it was too low-contrast to be easily readable and it didn't fit the feel of the project so I scrapped that. Another early thought I had for the globe look was to make it look like glazed porcelain. That one I didn't manage to try out as I didn't manage to write a shader to do the porcelain look (visual material editor would be nice). The closest thing I tried was this white glowing globe with black landmasses. It's kinda neat but too high-contrast. And it doesn't look super nice. So another one for the scrapheap.
+
+<figure>
+  <iframe data-src="black_globe.html" width="958" height="400"></iframe>
+  <figcaption>Black rubber globe.</figcaption>
+</figure>
+<figure>
+  <iframe data-src="white_globe.html" width="958" height="400"></iframe>
+  <figcaption>White globe with black continents.</figcaption>
+</figure>
 
 <p>The shaders in the black and white globes are using a sort of bogus diffuse backlit lighting. The lightness of the globe depends on the distance of the surface normal to the screen plane. So pixels at the middle of the globe that are pointing at the screen are dark and pixels at the edges of the globe are light. Combined with a light background you get a look where the globe is reflecting the diffuse bright background, creating a classy showroom look. The black globe is also using the WebGL Globe texture as a gloss map, so that the continental shelves (shallow water areas) look shiny compared to the other parts of the globe. 
 
 <p>In the end I went with a dark globe with light-grey landmasses lit from above. It was closest to the design brief and looked nice and readable. In addition, having the globe be a bit low-contrast makes the markers and the rest of the content stand out more in comparison.
+
+<figure>
+  <iframe data-src="grey_globe.html" width="958" height="400"></iframe>
+  <figcaption>Final globe colors.</figcaption>
+</figure>
 
 <h2 id="toc-">Creating the markers with CSS</h2>
 
@@ -45,6 +79,11 @@
 <p>In the end, the fastest approach was to use CSS transforms for moving the markers, not use opacity fading as it was triggering a slow path on Firefox and keeping all the markers in the DOM, not removing them when they went behind the globe. We also experimented with using 3D transforms instead of z-indexes, but for some reason it didn't work right in the app (but it did work in a reduced test case, go figure), and we were a few days from the launch at that point so had to leave that part to post-launch maintenance.
 
 <p>When you click on a marker it expands into a list of clickable placenames. This is all normal HTML DOM stuff, so it was super easy to write. All the links and text rendering just work with no extra work on our part.
+
+<figure>
+  <iframe data-src="marker.html" width="958" height="400"></iframe>
+  <figcaption>Marker demo, you can drag around to move the marker.</figcaption>
+</figure>
 
 <p>
 
@@ -73,5 +112,16 @@
     <li><a href="https://github.com/kig/shp.js/">shp.js</a></li>
     <li><a href="https://github.com/mrdoob/three.js/">Three.js</a></li>
   </ul>
+
+<script>
+(function() {
+  var iframes = document.getElementsByTagName('iframe');
+  for (var i=0; i<iframes.length; i++) {
+    var f = iframes[i];
+    /* Make click-to-start stuff */
+    f.setAttribute('src', f.getAttribute('data-src'));
+  }
+})();
+</script>
 
 {% endblock %}
