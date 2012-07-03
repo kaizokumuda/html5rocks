@@ -23,16 +23,18 @@ return !!document.createElement("video").textTracks;
 
 <h2 id="toc-introduction">Getting started with WebRTC</h2>
 
+<blockquote>'WebRTC is a new front in the long war for an open and unencumbered web.'<br />
+&ndash; <a href="http://hacks.mozilla.org/2012/03/video-mobile-and-the-open-web/" title="Brendan Eich blog post: Video, Mobile, and the Open Web">Brendan Eich</a>, inventor of JavaScript
+</blockquote>
 
-<p>Imagine a world where your phone, TV and computer could all communicate on a common platform.</p>
 
-<p>That's the vision of WebRTC.</p>
+<p>Imagine a world where your phone, TV and computer could all communicate on a common platform. That's the vision of WebRTC.</p>
 
 <p>WebRTC implements open standards for realtime, plugin-free video, audio and data communication. The aim is simple: to make it easy for anyone to build realtime communication into cross platform apps.</p> 
 
 <p>The need is real:
   <ul>
-    <li>A lot of web services already use realtime communication (RTC), but with plugins. That includes Skype, Facebook (which uses Skype) and Google Hangouts (which uses the Google Talk plugin).</li>
+    <li>A lot of web services already use Real-time Communication" (RTC), but with plugins. These includes Skype, Facebook (which uses Skype) and Google Hangouts (which uses the Google Talk plugin).</li>
     <li>Plugins can be difficult to deploy, update, debug, troubleshoot, test and maintain. It can be hard to persuade people to install plugins in the first place!</li>
     <li>Plugin download/install/update processes can be complex, error prone and annoying.</li>
   </ul>
@@ -40,7 +42,9 @@ return !!document.createElement("video").textTracks;
 
 <p>The guiding principles of the WebRTC project are that its APIs should be open source, free, standardised, and more efficient than existing technologies. </p>
 
-<p>Want to try it out? Check out the instructions and demos <a href="http://www.webrtc.org/running-the-demos#TOC-Demos" title="webrtc.org instructions and demos">here</a>.</p>
+<p>Want to try it out? WebRTC is available now in Google Chrome, though you will need to enable PeerConnection on the chrome://flags page.</p>
+
+<p>A good place to try out WebRTC is the simple video chat application at <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>. Open the page in Chrome and you'll notice that it redirects to a URL such as <code>https://apprtc.appspot.com/?r=18902167</code>, which includes a query string giving the randomly generated 'room number'. Open that URL in another tab or window (preferably on another computer!) to start up video chat. (If you re-open apprtc.appspot.com, make sure to use the bare URL without the query string <code>/?r=18902167</code> appended.)</p>
 
 <h2 id="toc-history">A very short history of WebRTC</h2>
 
@@ -52,9 +56,9 @@ return !!document.createElement("video").textTracks;
 
 <h2 id="toc-where-are-we">Where are we now?</h2>
 
-<p>WebRTC is available now in <a href="https://tools.google.com/dlpage/chromesxs/" title="Download Chrome Canary">Chrome Canary</a>. Support in Chrome stable is scheduled for Q3 2012. (Chrome Canary is easy to install and configure for WebRTC: follow the <a href="http://www.webrtc.org/running-the-demos" title="Information on webrtc.org about how to run WebRTC demos" target="_blank">instructions on webrtc.org</a>. If you're already familiar with Canary, all you need to do is enable PeerConnection on the chrome://flags page.)</p>
+<p>WebRTC is available now in Google Chrome.</p>
 
-<p><code>getUserMedia()</code> shipped in Opera 12; further WebRTC implementation is planned for Opera this year. Firefox has WebRTC efforts <a href="http://hacks.mozilla.org/2012/04/webrtc-efforts-underway-at-mozilla/" title="Firefox roadmap 2012">underway</a>, and has demonstrated a prototype version of <code>PeerConnection</code>. WebRTC functionality is also available in Internet Explorer <a href="https://groups.google.com/forum/#!topic/discuss-webrtc/tKoh1wrI8ig" title="How to enable WebRTC functionality in Internet Explorer via Chrome Frame">via Chrome Frame</a> and in native implementations such as <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-conversational-voice-and-video-implemented-webkit-gtk" title="Ericsson article about WebKitGTK+">WebKitGTK+</a>. Mobile support is planned for later this year.</p>
+<p>Opera 12 shipped with <code>getUserMedia()</code>; further WebRTC implementation is planned for Opera this year. Firefox has WebRTC efforts <a href="http://hacks.mozilla.org/2012/04/webrtc-efforts-underway-at-mozilla/" title="Firefox roadmap 2012">underway</a>, and has demonstrated a prototype version of <code>PeerConnection</code>. Full <code>getUserMedia()</code> support <a href="http://mozillamediagoddess.org/2012/06/25/the-first-part-of-webrtc-has-landed/" title="mozillamediagoddess blog post">is planned</a> for Firefox 17 on desktop and Android. WebRTC functionality is available in Internet Explorer <a href="https://groups.google.com/forum/#!topic/discuss-webrtc/tKoh1wrI8ig" title="How to enable WebRTC functionality in Internet Explorer via Chrome Frame">via Chrome Frame</a>, and Skype (acquired by Microsoft in 2011) is reputedly <a href="http://gigaom.com/2012/06/26/skype-webrtc-web-client/" title="GigaOM blog post about Skype and WebRTC">planning on using WebRTC</a>. Native implementations with WebRTC include <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-conversational-voice-and-video-implemented-webkit-gtk" title="Ericsson article about WebKitGTK+">WebKitGTK+</a>. Mobile WebRTC support is planned for later this year.</p>
 
 <p>As well as the browser vendors, WebRTC has strong support from Cisco, Ericsson and other companies such as Voxeo, who recently announced the <a href="http://phono.com/webrtc" title="Phono SDK">Phono SDK</a> which makes it simple to build WebRTC-enabled web apps with phone functionality, and messaging in the form of an XMPP client.</p>
 
@@ -82,7 +86,7 @@ return !!document.createElement("video").textTracks;
 
 <p>The MediaStream API represents a source of streaming media. Use <a href="http://html5doctor.com/getusermedia/#api" title="getUserMedia API information on HTML5 Doctor" target="_blank">getUserMedia()</a> to get a MediaStream from a camera (audio is not yet supported); the intention is eventually to make MediaStream available for any streaming source, not just a camera or microphone. A MediaStream can be converted to a <a href="http://www.html5rocks.com/tutorials/workers/basics/#toc-inlineworkers-bloburis" title="HTML5 Rocks: Blob URLs">Blob URL</a>, which can then be set as the <code>src</code> of an audio or video element.</p>
 
-<p>You can try out <code>getUserMedia()</code> with the code below, if you have a webcam. Just paste the code into the console in Chrome Canary, press return, then click the Allow button at the top of the browser window.</p>
+<p>You can try out <code>getUserMedia()</code> with the code below, if you have a webcam. Paste the code into the console in Chrome and press return. Permission to use the camera and microphone will be requested in an infobar at the top of the browser window. Press <em>Allow</em> to proceed. The video stream from the webcam will then be displayed in the video element created by the code.</p>
 
 <pre>
 navigator.webkitGetUserMedia({audio: true, video:true}, function(stream) {
@@ -108,7 +112,7 @@ navigator.webkitGetUserMedia({audio: true, video:true}, function(stream) {
 
 <p>This data is exchanged between caller and callee in the signalling process, and passed to the browser via the PeerConnection API. (There's an excellent animation explaining the process of signalling and streaming in <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-peer-peer-conversational-video" title="Ericsson conversational video demo">Ericsson's demo video</a> for its first WebRTC implementation.)</p>
 
-<p>The initial session description sent by the caller is called an offer, and the response from the callee is called an answer. Note that WebRTC currently only supports one-to-one communication.</p>
+<p>The initial session description sent by the caller is called an <em>offer</em>, and the response from the callee is called an <em>answer</em>. Note that WebRTC currently only supports one-to-one communication.</p>
 
 <p>Signalling proceeds like this:</p>
 <ol>
@@ -118,9 +122,9 @@ navigator.webkitGetUserMedia({audio: true, video:true}, function(stream) {
 	<li>Caller receives answer.</li>
 </ol>
 
-<p>Just to reiterate: these signalling messages are communicated via an whatever mechanism the developer chooses: the signalling mechanism is not specified by WebRTC.</p>
+<p>Just to reiterate: these signalling messages are communicated via whatever mechanism the developer chooses: the signalling mechanism is not specified by WebRTC.</p>
 
-<p>Here's what the signalling code from <a href="http://webrtc-demos.appspot.com/html/pc1.html" title="WebRTC demo">webrtc-demos.appspot.com/html/pc1.html</a> looks like, which uses the Channel API:</p>
+<p>Here's what the signalling JavaScript code from <a href="http://webrtc-demos.appspot.com/html/pc1.html" title="WebRTC demo">webrtc-demos.appspot.com/html/pc1.html</a> looks like, which uses the Channel API:</p>
 
 <pre>
 channel = new goog.appengine.Channel(&lt;token&gt;);
@@ -256,7 +260,7 @@ pc2.startIce();
 	<li>Can be used with or without audio or video.</li>
 </ul>
 
-<p>Syntax is somewhat similar to WebSocket, with <code>send()</code> and <code>onmessage</code>, as you will see in the code sample below:</p>
+<p>The syntax is somewhat similar to WebSocket, with <code>send()</code> and <code>onmessage</code>, as you will see in the code sample below:</p>
 
 <pre>
 // PeerConnection setup and offer-answer exchange omitted  
@@ -296,15 +300,13 @@ function onSend() {
 	<li>A TURN server to handle NAT traversal and other streaming and communication requirements.</li>
 </ul>
 
-<p>TURN, ICE, and the requirements for building a server app for user discovery and signalling is out of the scope of this article.</p>
+<p>TURN, ICE, and the requirements for building a server app for user discovery and signalling is beyond the scope of this article.</p>
 
 <p>However, the source code for the <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a> example below is available from <a href="http://code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/" title="Code for apprtc.appspot.com demo">code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/</a>&ndash;and check out Silvia Pfeiffer's <a href="http://blog.gingertech.net/2012/06/04/video-conferencing-in-html5-webrtc-via-web-sockets/" title="Silvia Pfeiffer blog post: WebRTC via WebSocket">WebSocket app</a>.</p>
 
 <h2 id="doc-simple-video-chat-client">A simple video chat client</h2>
 
-<p>A good place to try out WebRTC is <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>.</p>
-
-<p>This is a simple demonstration of using WebRTC for video chat. Open the page in Chrome and you'll notice it redirects to a URL such as <code>https://apprtc.appspot.com/?r=18902167</code>, which includes a query string giving the randomly generated 'room number'. Open that URL in another tab or window (preferably on another computer!) and you have video chat. (Make sure if you re-open apprtc.appspot.com, that you use the bare URL without the query string: it won't work if you re-open the apge with the query string included.)</p>
+<p>As mentioned above, a good place to try out WebRTC is <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>.</p>
 
 <p>The code in this demo is deliberately verbose in its logging: the console is a good place to understand the order of events.</p>
 
@@ -488,13 +490,14 @@ function onChannelMessage(message) {
 
 <h2 id="toc-conclusion">In conclusion</h2>
 
-<p>As <a href="http://hacks.mozilla.org/2012/03/video-mobile-and-the-open-web/" title="Brendan Eich blog post: Video, Mobile, and the Open Web">Brendan Eich, inventor of JavaScript, put it</a>: 'WebRTC is a new front in the long war for an open and unencumbered web.'</p> 
+<p>As blogger Phil Edholm <a href="http://www.nojitter.com/post/232901042/webrtc-is-it-a-game-changer" title="nojitter blog post: WebRTC: Is it a Game Changer?">put it</a>, 'Potentially, WebRTC and HTML5 could enable the same transformation for real-time communications that the original browser did for information.' The APIs and standards of WebRTC can democratise and decentralise tools for content creation and communication&ndash;for telephony, gaming, video production, music making, news gathering and many other applications. Technology doesn't get much more disruptive than this!</p>
 
-<p>The APIs and standards of WebRTC can democratise and decentralise tools for content creation and communication&ndash;for telephony, gaming, video production, music making, news gathering and many other applications. Technology doesn't get much more disruptive than this.</p>
+<p>We look forward to seeing what inventive developers make of WebRTC as it becomes widely implemented over the next few months.</p>
 
 <h2 id="toc-more">Learn more</h2>
 
 <ul>
+<li><a href="https://www.youtube.com/watch?v=E8C8ouiXHHk" title="Video of Justin Uberti WebRTC session at Google I/O, 27 June 2012">Video of Justin Uberti's WebRTC session at Google I/O, 27 June 2012</a></li>
   <li><a href="http://www.webrtc.org/" title="webrtc.org">webrtc.org</a>: the home for all things WebRTC&ndash;demos, documentation and discussion.</li>
   <li><a href="http://www.webrtc.org/running-the-demos" title="webrtc.org: running demos in Chrome">webrtc.org demo page</a>: links to demos, and instruction on how to configure Google Chrome Canary for WebRTC.</li>
   <li><a href="https://groups.google.com/forum/?fromgroups#!forum/discuss-webrtc" title="discuss-webrt Google Group">discuss-webrtc</a>: Google Group for WebRTC discussion.</li>
