@@ -23,7 +23,7 @@ return !!document.createElement("video").textTracks;
 
 <h2 id="toc-introduction">Getting started with WebRTC</h2>
 
-<blockquote>'WebRTC is a new front in the long war for an open and unencumbered web.'<br />
+<blockquote>WebRTC is a new front in the long war for an open and unencumbered web.<br />
 &ndash; <a href="http://hacks.mozilla.org/2012/03/video-mobile-and-the-open-web/" title="Brendan Eich blog post: Video, Mobile, and the Open Web">Brendan Eich</a>, inventor of JavaScript
 </blockquote>
 
@@ -34,17 +34,17 @@ return !!document.createElement("video").textTracks;
 
 <p>The need is real:
   <ul>
-    <li>A lot of web services already use Real-time Communication" (RTC), but with plugins. These includes Skype, Facebook (which uses Skype) and Google Hangouts (which uses the Google Talk plugin).</li>
+    <li>A lot of web services already use Real-time Communication (RTC), but with plugins. These includes Skype, Facebook (which uses Skype) and Google Hangouts (which use the Google Talk plugin).</li>
     <li>Plugins can be difficult to deploy, update, debug, troubleshoot, test and maintain. It can be hard to persuade people to install plugins in the first place!</li>
-    <li>Plugin download/install/update processes can be complex, error prone and annoying.</li>
+    <li>Plugin download, install and update processes can be complex, error prone and annoying.</li>
   </ul>
 </p>
 
 <p>The guiding principles of the WebRTC project are that its APIs should be open source, free, standardised, and more efficient than existing technologies. </p>
 
-<p>Want to try it out? WebRTC is available now in Google Chrome, though you will need to enable PeerConnection on the chrome://flags page.</p>
+<p>Want to try it out? WebRTC is available now in Google Chrome.</p>
 
-<p>A good place to try out WebRTC is the simple video chat application at <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>. Open the page in Chrome and you'll notice that it redirects to a URL such as <code>https://apprtc.appspot.com/?r=18902167</code>, which includes a query string giving the randomly generated 'room number'. Open that URL in another tab or window (preferably on another computer!) to start up video chat. (If you re-open apprtc.appspot.com, make sure to use the bare URL without the query string <code>/?r=18902167</code> appended.)</p>
+<p>A good place to start with WebRTC is the simple video chat application at <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>. In Chrome, enable PeerConnection on the chrome://flags page, then open the page and you'll notice that it redirects to a URL such as <code>https://apprtc.appspot.com/?r=18902167</code>, which includes a query string giving the randomly generated 'room number'. Open that URL in another tab or window (preferably on another computer!) to start video chat. If you open the page again, make sure to use the bare <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a> URL, without the query string such as <code>/?r=18902167</code> appended: the app must get a fresh room number every time.</p>
 
 <h2 id="toc-history">A very short history of WebRTC</h2>
 
@@ -52,17 +52,17 @@ return !!document.createElement("video").textTracks;
 
 <p>Gmail video chat became popular in 2008, and in 2011 Google introduced Hangouts, which use the same plugin as Gmail. Google bought GIPS, a company which had developed many of the components required for RTC, such as codecs and echo cancellation techniques. Google open sourced the technologies developed by GIPS (around $70 million worth) and engaged with relevant standards bodies, the IETF and W3C, to ensure industry consensus. In May 2011, Ericsson built <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-peer-peer-conversational-video" title="Beyond HTML5: peer to peer conversational video">the first implementation of WebRTC</a>.</p>
 
-<p>APIs used by WebRTC apps, such as <a href="http://html5doctor.com/getusermedia/#api" title="getUserMedia() API information on HTML5 Doctor" target="_blank">getUserMedia()</a> and <a href="http://www.html5rocks.com/en/tutorials/websockets/basics/" title="HTML5 Rocks: Introducing WebSocket">WebSocket</a>, emerged at the same time. Future integration with APIs such as <a href="http://www.html5rocks.com/en/tutorials/webaudio/intro/" title="HTML5 Rocks: Getting Started With Web Audio">Web Audio</a> will make WebRTC even more powerful&ndash;WebRTC has already <a href="https://webglmeeting.appspot.com" title="WebGL WebRTC demo">shown huge promise</a> when teamed up with technologies such as <a href="http://learningwebgl.com" title="Learning WebGL">WebGL</a>.</p>
+<p>APIs used by WebRTC apps, such as <a href="http://html5doctor.com/getusermedia/#api" title="getUserMedia API information on HTML5 Doctor" target="_blank">getUserMedia</a> and <a href="http://www.html5rocks.com/en/tutorials/websockets/basics/" title="HTML5 Rocks: Introducing WebSocket">WebSocket</a>, emerged at the same time. Future integration with APIs such as <a href="http://www.html5rocks.com/en/tutorials/webaudio/intro/" title="HTML5 Rocks: Getting Started With Web Audio">Web Audio</a> will make WebRTC even more powerful&ndash;WebRTC has already <a href="https://webglmeeting.appspot.com" title="WebGL WebRTC demo">shown huge promise</a> when teamed up with technologies such as <a href="http://learningwebgl.com" title="Learning WebGL">WebGL</a>.</p>
 
 <h2 id="toc-where-are-we">Where are we now?</h2>
 
-<p>WebRTC is available now in Google Chrome.</p>
+<p>WebRTC has been available in the stable build of Google Chrome since version 20.</p>
 
-<p>Opera 12 shipped with <code>getUserMedia()</code>; further WebRTC implementation is planned for Opera this year. Firefox has WebRTC efforts <a href="http://hacks.mozilla.org/2012/04/webrtc-efforts-underway-at-mozilla/" title="Firefox roadmap 2012">underway</a>, and has demonstrated a prototype version of <code>PeerConnection</code>. Full <code>getUserMedia()</code> support <a href="http://mozillamediagoddess.org/2012/06/25/the-first-part-of-webrtc-has-landed/" title="mozillamediagoddess blog post">is planned</a> for Firefox 17 on desktop and Android. WebRTC functionality is available in Internet Explorer <a href="https://groups.google.com/forum/#!topic/discuss-webrtc/tKoh1wrI8ig" title="How to enable WebRTC functionality in Internet Explorer via Chrome Frame">via Chrome Frame</a>, and Skype (acquired by Microsoft in 2011) is reputedly <a href="http://gigaom.com/2012/06/26/skype-webrtc-web-client/" title="GigaOM blog post about Skype and WebRTC">planning on using WebRTC</a>. Native implementations with WebRTC include <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-conversational-voice-and-video-implemented-webkit-gtk" title="Ericsson article about WebKitGTK+">WebKitGTK+</a>. Mobile WebRTC support is planned for later this year.</p>
+<p>Opera 12 shipped with getUserMedia; further WebRTC implementation is planned for Opera this year. Firefox has WebRTC efforts <a href="http://hacks.mozilla.org/2012/04/webrtc-efforts-underway-at-mozilla/" title="Firefox roadmap 2012">underway</a>, and has demonstrated a prototype version of <code>PeerConnection</code>. Full getUserMedia support <a href="http://mozillamediagoddess.org/2012/06/25/the-first-part-of-webrtc-has-landed/" title="mozillamediagoddess blog post">is planned</a> for Firefox 17 on desktop and Android. WebRTC functionality is available in Internet Explorer <a href="https://groups.google.com/forum/#!topic/discuss-webrtc/tKoh1wrI8ig" title="How to enable WebRTC functionality in Internet Explorer via Chrome Frame">via Chrome Frame</a>, and Skype (acquired by Microsoft in 2011) is reputedly <a href="http://gigaom.com/2012/06/26/skype-webrtc-web-client/" title="GigaOM blog post about Skype and WebRTC">planning to use WebRTC</a>. Native implementations with WebRTC include <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-conversational-voice-and-video-implemented-webkit-gtk" title="Ericsson article about WebKitGTK+">WebKitGTK+</a>. Mobile WebRTC support is planned for later this year.</p>
 
-<p>As well as the browser vendors, WebRTC has strong support from Cisco, Ericsson and other companies such as Voxeo, who recently announced the <a href="http://phono.com/webrtc" title="Phono SDK">Phono SDK</a> which makes it simple to build WebRTC-enabled web apps with phone functionality, and messaging in the form of an XMPP client.</p>
+<p>As well as the browser vendors, WebRTC has strong support from Cisco, Ericsson and other companies such as Voxeo, who recently announced the <a href="http://phono.com/webrtc" title="Phono SDK">Phono</a> jQuery plugin for building WebRTC-enabled web apps with phone functionality and messaging.</p>
 
-<p>A word of warning: be skeptical of reports that a platform 'supports WebRTC'. Often this actually just means that <code>getUserMedia()</code> is supported&ndash;but <em>not</em> any of the other RTC components.</p>
+<p>A word of warning: be skeptical of reports that a platform 'supports WebRTC'. Often this actually just means that getUserMedia is supported, but not any of the other RTC components.</p>
 
 <h2 id="toc-first">My first WebRTC</h2>
 
@@ -84,11 +84,11 @@ return !!document.createElement("video").textTracks;
 
 <h3 id="toc-streams">Crossing the streams</h3>
 
-<p>The MediaStream API represents a source of streaming media. Use <a href="http://html5doctor.com/getusermedia/#api" title="getUserMedia API information on HTML5 Doctor" target="_blank">getUserMedia()</a> to get a MediaStream from a camera (audio is not yet supported); the intention is eventually to make MediaStream available for any streaming source, not just a camera or microphone. A MediaStream can be converted to a <a href="http://www.html5rocks.com/tutorials/workers/basics/#toc-inlineworkers-bloburis" title="HTML5 Rocks: Blob URLs">Blob URL</a>, which can then be set as the <code>src</code> of an audio or video element.</p>
+<p>The MediaStream API represents a source of streaming media. Use the <code>getUserMedia()</code> function to get a MediaStream from a camera (audio is not yet supported); the intention is eventually to make MediaStream available for any streaming source, not just a camera or microphone. A MediaStream can be converted to a <a href="http://www.html5rocks.com/tutorials/workers/basics/#toc-inlineworkers-bloburis" title="HTML5 Rocks: Blob URLs">Blob URL</a>, which can then be set as the <code>src</code> of an audio or video element.</p>
 
-<p>You can try out <code>getUserMedia()</code> with the code below, if you have a webcam. Paste the code into the console in Chrome and press return. Permission to use the camera and microphone will be requested in an infobar at the top of the browser window. Press <em>Allow</em> to proceed. The video stream from the webcam will then be displayed in the video element created by the code.</p>
+<p>You can try out getUserMedia with the code below, if you have a webcam. Paste the code into the console in Chrome and press return. Permission to use the camera and microphone will be requested in an infobar at the top of the browser window. Press <em>Allow</em> to proceed. The video stream from the webcam will then be displayed in the video element created by the code.</p>
 
-<pre>
+<pre class="prettyprint">
 navigator.webkitGetUserMedia({audio: true, video:true}, function(stream) {
   var video = document.createElement("video");
   video.autoplay = true;
@@ -102,7 +102,7 @@ navigator.webkitGetUserMedia({audio: true, video:true}, function(stream) {
 
 <p>WebRTC uses <code>PeerConnection</code> to communicate streams of data, but also needs some other mechanism to send control messages, a process known as signalling. Signalling methods are <em>not</em> specified by WebRTC. XMLHttpRequest works well for sending requests, but we need something else for the browser to <em>receive</em> messages. The <a href="http://apprtc.appspot.com" title="apprtc WebRTC example">apprtc.appspot.com</a> example uses XHR along with the <a href="https://developers.google.com/appengine/docs/python/channel/overview" title="Google Channel API documentation">Google Channel API</a>; Silvia Pfeiffer has demonstrated <a href="http://blog.gingertech.net/2012/06/04/video-conferencing-in-html5-webrtc-via-web-sockets/" title="Silvia Pfeiffer blog post: WebRTC via WebSocket">WebRTC signalling via WebSocket</a>.</p>
 
-<p>To start a WebRTC session, a client app needs the following:</p>
+<p>To start a WebRTC session, a client application needs the following:</p>
 
 <ul>
 	<li>Local session description: local configuration information.</li>
@@ -126,7 +126,7 @@ navigator.webkitGetUserMedia({audio: true, video:true}, function(stream) {
 
 <p>Here's what the signalling JavaScript code from <a href="http://webrtc-demos.appspot.com/html/pc1.html" title="WebRTC demo">webrtc-demos.appspot.com/html/pc1.html</a> looks like, which uses the Channel API:</p>
 
-<pre>
+<pre class="prettyprint">
 channel = new goog.appengine.Channel(&lt;token&gt;);
 handler = { "onmessage": onChannelMessage };
 socket = channel.open(handler);
@@ -160,7 +160,7 @@ function onChannelMessage(msg) {
 
 <li>
 <p>Create a new PeerConnection and add a stream (for example, from a webcam):</p>
-<pre>
+<pre class="prettyprint">
 PeerConnection(config, iceCallback)
 addStream(stream)
 </pre>
@@ -168,7 +168,7 @@ addStream(stream)
 
 <li>
 <p>Create a local SessionDescription and apply it:</p>
-<pre>
+<pre class="prettyprint">
 createOffer(hints)startIce()
 setLocalDescription(type, description)
 startIce()
@@ -179,7 +179,7 @@ startIce()
 
 <li>
 <p>Receive remote SessionDescription and use it:</p>
-<pre>
+<pre class="prettyprint">
 setRemoteDescription(type, description)
 </pre>
 </li>
@@ -194,7 +194,7 @@ setRemoteDescription(type, description)
 
 <li>
 <p>Create PeerConnection and set description:</p>
-<pre>
+<pre class="prettyprint">
 PeerConnection(config, iceCallback)
 setRemoteDescription(type, desc)
 </pre>
@@ -202,7 +202,7 @@ setRemoteDescription(type, desc)
 
 <li>
 <p>Create local SessionDescription and apply it:</p>
-<pre>
+<pre class="prettyprint">
 createAnswer(offer, hints)
 setLocalDescription(type, desc)
 startIce()
@@ -213,7 +213,7 @@ startIce()
 
 <p>Here's the whole process, as used on <a href="http://webrtc-demos.appspot.com/html/pc1.html" title="WebRTC demo">webrtc-demos.appspot.com/html/pc1.html</a>:</p>
 
-<pre>
+<pre class="prettyprint">
 // create the "sending" PeerConnection
 pc1 = new webkitPeerConnection00(null, onIceCandidate1);  
 // create the "receiving" PeerConnection
@@ -262,7 +262,7 @@ pc2.startIce();
 
 <p>The syntax is somewhat similar to WebSocket, with <code>send()</code> and <code>onmessage</code>, as you will see in the code sample below:</p>
 
-<pre>
+<pre class="prettyprint">
 // PeerConnection setup and offer-answer exchange omitted  
 var dc1 = pc1.createDataChannel("mylabel");  // create the sending DataChannel (reliable mode)
 var dc2 = pc2.createDataChannel("mylabel");  // create the receiving DataChannel (reliable mode)
@@ -284,14 +284,14 @@ function onSend() {
 
 <p>So... That's WebRTC in the browser.</p> 
 
-<p>But WebRTC still needs servers, however simple:</p>
+<p>But WebRTC still needs servers, however simple, to accomplish the following:</p>
 
 <ul>
-	<li>Users can discover each other.</li>
-	<li>Users can send their details to each other.</li>
-	<li>Communication can cope with network issues.</li>
-	<li>WebRTC client applications can communicate data about media such as video format and resolution.</li>
-	<li>WebRTC client applications can traverse <a href="http://en.wikipedia.org/wiki/NAT_traversal" title="Wikipedia article: Network Address Translation traversal">NAT gateways</a>.</li>
+	<li>Users discover each other.</li>
+	<li>Users send their details to each other.</li>
+	<li>Communication copes with network issues.</li>
+	<li>WebRTC client applications communicate data about media such as video format and resolution.</li>
+	<li>WebRTC client applications traverse <a href="http://en.wikipedia.org/wiki/NAT_traversal" title="Wikipedia article: Network Address Translation traversal">NAT gateways</a>.</li>
 </ul>
 
 <p>In a nutshell, WebRTC needs two types of server-side functionality:</p>
@@ -314,7 +314,7 @@ function onSend() {
 
 <h3>What's going on?</h3>
 
-<p>The demo starts by running the initalize() function:</p>
+<p>The demo starts by running the <code>initalize()</code> function:</p>
 
 <pre class="prettyprint">
 function initialize() {
@@ -329,7 +329,7 @@ function initialize() {
 }
 </pre>
 
-<p>This code initialises variables for the HTML video elements that will display video streams from the local camera (<code>localVideo</code>) and from the camera on the remote client (<code>remoteVideo</code>). <code>resetStatus()</code> simply sets a status message.</p>
+<p>This code initializes variables for the HTML video elements that will display video streams from the local camera (<code>localVideo</code>) and from the camera on the remote client (<code>remoteVideo</code>). <code>resetStatus()</code> simply sets a status message.</p>
 
 <p>The <code>openChannel()</code> function sets up messaging between WebRTC clients:</p>
 
@@ -353,11 +353,11 @@ function openChannel() {
 
 <p>Establishing a channel in the example works like this:</p>
 <ol>
-	<li>Client generates a unique ID.</li>
-	<li>Client requests a Channel token from the App Engine app, passing its ID.</li>
+	<li>Client A generates a unique ID.</li>
+	<li>Client A requests a Channel token from the App Engine app, passing its ID.</li>
 	<li>App Engine app requests a channel and a token for the client's ID from the Channel API.</li>
-	<li>App sends the token to the client.</li>
-	<li>Client opens a socket and listens on the channel set up on the server.</li>
+	<li>App sends the token to Client A.</li>
+	<li>Client A opens a socket and listens on the channel set up on the server.</li>
 </ol>
 
 <p>Sending a message works like this:</p>
@@ -404,7 +404,7 @@ function maybeStart() {
 
 <p><code>createPeerConnection()</code> is where the real action takes place&ndash;though most of the code is simply to handle different implementations:</p>
 
-<pre>
+<pre class="prettyprint">
 function createPeerConnection() {
   try {
     pc = new webkitDeprecatedPeerConnection("STUN stun.l.google.com:19302",
@@ -431,7 +431,7 @@ function createPeerConnection() {
 
 <p>The underlying purpose is to set up a connection using a STUN server (more about STUN later) and to set handlers for each of the <code>PeerConnection</code> events: when a signalling message is received, when a session is connecting or open, and when a remote stream is added or removed. In fact these handlers only log status messages, except for <code>onRemoteStreamAdded()</code>, which sets the source for the <code>remoteVideo</code> element:</p>
 
-<pre>
+<pre class="prettyprint">
 function onRemoteStreamAdded(event) {
   console.log("Remote stream added.");
   var url = webkitURL.createObjectURL(event.stream);
@@ -447,7 +447,7 @@ function onRemoteStreamAdded(event) {
 
 <p>When the <code>PeerConnection</code> object is created, it's passed a handler for signalling messages, which in turn calls <code>sendMessage()</code> to make an XHR request:</p>
 
-<pre>
+<pre class="prettyprint">
 pc = new webkitPeerConnection("STUN stun.l.google.com:19302",
  onSignalingMessage);
 
@@ -471,7 +471,7 @@ function sendMessage(path, message) {
 
 <p>For signalling, this demo uses the Google App Engine Channel API. Messages from the API are handled like this:</p>
 
-<pre>
+<pre class="prettyprint">
 function onChannelMessage(message) {
   console.log('S->C: ' + message.data);
   if (message.data != 'BYE') {
@@ -485,14 +485,14 @@ function onChannelMessage(message) {
 }
 </pre>
 
-<p>If the message isn't a signal to hang up ('BYE') or an error (i.e. contains the string 'ERROR'), the function calls on the <code>PeerConnection</code> <code>processSignalingMessage</code> method.</p>
+<p>If the message isn't a signal to hang up ('BYE') or an error (i.e. contains the string 'ERROR'), the function calls the <code>PeerConnection</code> <code>processSignalingMessage()</code> method.</p>
 <!-- conclusion -->
 
 <h2 id="toc-conclusion">In conclusion</h2>
 
-<p>As blogger Phil Edholm <a href="http://www.nojitter.com/post/232901042/webrtc-is-it-a-game-changer" title="nojitter blog post: WebRTC: Is it a Game Changer?">put it</a>, 'Potentially, WebRTC and HTML5 could enable the same transformation for real-time communications that the original browser did for information.' The APIs and standards of WebRTC can democratise and decentralise tools for content creation and communication&ndash;for telephony, gaming, video production, music making, news gathering and many other applications. Technology doesn't get much more disruptive than this!</p>
+<p>The APIs and standards of WebRTC can democratise and decentralise tools for content creation and communication&ndash;for telephony, gaming, video production, music making, news gathering and many other applications. Technology doesn't get much more disruptive than this.</p>
 
-<p>We look forward to seeing what inventive developers make of WebRTC as it becomes widely implemented over the next few months.</p>
+<p>We look forward to seeing what inventive developers make of WebRTC as it becomes widely implemented over the next few months. As blogger Phil Edholm <a href="http://www.nojitter.com/post/232901042/webrtc-is-it-a-game-changer" title="nojitter blog post: WebRTC: Is it a Game Changer?">put it</a>, 'Potentially, WebRTC and HTML5 could enable the same transformation for real-time communications that the original browser did for information.'</p>
 
 <h2 id="toc-more">Learn more</h2>
 
@@ -509,7 +509,7 @@ function onChannelMessage(message) {
 
 <h2 id="toc-support-summary">WebRTC support summary</h2>
 
-<h3>MediaStream and getUserMedia()</h3>
+<h3>MediaStream and getUserMedia</h3>
 <ul>
 	<li>Chrome 21</li>
 	<li>Opera, Opera Mobile 12</li>
@@ -530,5 +530,7 @@ function onChannelMessage(message) {
 	<li>Mobile browser support in progress</li>
 	<li>Native APIs for PeerConnection also available</li>
 </ul>
+
+<p>For more information about support for APIs such as getUserMedia, see <a href="http://caniuse.com/stream" title="caniuse.com: getUserMedia/Stream support">caniuse.com</a>,</p>
 
 {% endblock %}
