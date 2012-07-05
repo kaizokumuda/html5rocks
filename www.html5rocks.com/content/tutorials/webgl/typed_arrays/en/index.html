@@ -15,20 +15,20 @@
 <h2 id="toc-intro">Introduction</h2>
 
 
-<p>Typed Arrays are a recent addition to browsers, born out of the need to have an efficient way to handle binary data in WebGL. A Typed Array is a slab of memory with a typed view into it, much like how arrays work in C. Because a Typed Array backed by raw memory, the JavaScript engine can pass the memory directly to native libraries without having to painstakingly convert the data to a native representation. As a result, typed arrays perform a lot better than JavaScript arrays for passing data to WebGL and other APIs dealing with binary data.
+<p>Typed Arrays are a relatively recent addition to browsers, born out of the need to have an efficient way to handle binary data in WebGL. A Typed Array is a slab of memory with a typed view into it, much like how arrays work in C. Because a Typed Array is backed by raw memory, the JavaScript engine can pass the memory directly to native libraries without having to painstakingly convert the data to a native representation. As a result, typed arrays perform a lot better than JavaScript arrays for passing data to WebGL and other APIs dealing with binary data.
 
-<p>The Typed Arrays spec defines three types of objects that you can use to create and manipulate Typed Arrays. The core object in the spec is the ArrayBuffer, a slab of raw memory. You can only query the byteLength of an ArrayBuffer and slice it to create copies of a subset of the ArrayBuffer. To access the contents of an ArrayBuffer, you need to use a view object. There are two types of views: ArrayBufferViews and DataViews. 
+<p>The Typed Arrays spec defines three types of objects that you can use to create and manipulate Typed Arrays. The core object in the spec is the ArrayBuffer, a slab of raw memory. You can only query the byteLength of an ArrayBuffer and slice it to create copies of a subset of the ArrayBuffer. To access the contents of an ArrayBuffer, you need to use a view object. There are two types of views: typed array views and DataViews.
 
-<p>ArrayBufferViews act like single-type arrays to a segment of an ArrayBuffer. There are ArrayBufferViews for all the usual numeric types, with self-descriptive names like Float32Array, Float64Array, Int32Array and Uint8Array. There's also a bit special ArrayBufferView that acts like a Canvas ImageData pixel array: the Uint8ClampedArray. The Uint8ClampedArray gives you a fast way to convert Canvas ImageData to a Typed Array and back.
+<p>Typed array views act like single-type arrays to a segment of an ArrayBuffer. There are views for all the usual numeric types, with self-descriptive names like Float32Array, Float64Array, Int32Array and Uint8Array. There's also a special view which has replaced the pixel array type in Canvas's ImageData: Uint8ClampedArray.
 
-<p>DataView is the second type of view and it is meant for handling heterogeneous data. Instead of having an array-like API, the DataView object provides you a get/set API to read and write arbitrary data types at arbitrary byte offsets. DataView works great for reading and writing file headers and other such struct-like data. 
+<p>DataView is the second type of view and it is meant for handling heterogeneous data. Instead of having an array-like API, the DataView object provides you a get/set API to read and write arbitrary data types at arbitrary byte offsets. DataView works great for reading and writing file headers and other such struct-like data.
 
 
 <h2 id="toc-basics">Basics of using Typed Arrays</h2>
 
 <h3 id="toc-abv">ArrayBufferViews</h3>
 
-<p>To use Typed Arrays, you need to create an ArrayBuffer and a view to it. The easiest way is to create a ArrayBufferView of the wanted size and type. 
+<p>To use Typed Arrays, you need to create an ArrayBuffer and a view to it. The easiest way is to create a ArrayBufferView of the desired size and type.
 
 <pre class="prettyprint">
 var f64a = new Float64Array(8);
@@ -41,17 +41,17 @@ f64a[2] = f64a[0] + f64a[1];
 <p>There's a bunch of different ArrayBufferView types. They all have the same API. I'm going to create one of each currently existing ArrayBufferViews in the next example.
 
 <pre class="prettyprint">
-// Floating point arrays
+// Floating point arrays.
 new Float64Array(8);
 new Float32Array(16);
 
-// Signed integer arrays
+// Signed integer arrays.
 new Int64Array(8);
 new Int32Array(16);
 new Int16Array(32);
 new Int8Array(64);
 
-// Unsigned integer arrays
+// Unsigned integer arrays.
 new Uint64Array(8);
 new Uint32Array(16);
 new Uint16Array(32);
@@ -66,16 +66,18 @@ new Uint8ClampedArray(64);
 <p>You can also create an ArrayBuffer first and then create ArrayBufferViews that point to it.
 
 <pre class="prettyprint">
-var ab = new ArrayBuffer(256); // 256-byte ArrayBuffer
-var faFull = new Float32Array(ab);
-var faFirstHalf = new Float32Array(ab, 0, 32);
-var faThirdQuarter = new Float32Array(ab, 128, 16);
-var faRest = new Float32Array(ab, 192);
+var ab = new ArrayBuffer(256); // 256-byte ArrayBuffer.
+var faFull = new Uint8Array(ab);
+var faFirstHalf = new Uint8Array(ab, 0, 128);
+var faThirdQuarter = new Uint8Array(ab, 128, 128);
+var faRest = new Uint8Array(ab, 192);
+</pre>
 
-You can have several ArrayBufferViews to the same ArrayBuffer.
+<p>You can have several ArrayBufferViews to the same ArrayBuffer.
 
+<pre>
 var fa = new Float32Array(64);
-var ba = new Uint8Array(fa.buffer, 0, 4); // first float of fa
+var ba = new Uint8Array(fa.buffer, 0, Float32Array.BYTES_PER_ELEMENT); // First float of fa.
 </pre>
 
 <h3 id="toc-dataview">DataView</h3>
@@ -156,7 +158,7 @@ gl.texImage2D(
 );
 </pre>
 
-<p>You also need Typed Arrays to read pixels from the WebGL context. 
+<p>You also need Typed Arrays to read pixels from the WebGL context.
 
 <pre class="prettyprint">
 var pixels = new Uint8Array(320*240*4); // 320x240 RGBA image
@@ -229,13 +231,38 @@ socket.binaryType = 'arraybuffer';
 <h2 id="toc-thirdparty">Third-party libraries</h2>
 
 <h3 id="toc-jdataview">jDataView</h3>
-<a href="https://https://github.com/vjeux/jDataView">jDataView</a> implements a DataView shim for all browsers. DataView used to be a WebKit-only feature, but now it's supported by most other browsers. The Mozilla developer team is in the process of landing a patch to enable DataView on Firefox as well.
+
+<p><a href="https://https://github.com/vjeux/jDataView">jDataView</a> implements a DataView shim for all browsers. DataView used to be a WebKit-only feature, but now it's supported by most other browsers. The Mozilla developer team is in the process of landing a patch to enable DataView on Firefox as well.
+
+<h3 id="toc-stringencoding">stringencoding</h3>
+
+<p>Working with strings in Typed Arrays is a bit of a pain at the moment, but there’s the stringencoding library that helps there. Stringencoding implements the proposed Typed Array string encoding spec, so it’s also a good way to get a feel for what’s coming.
+
+<p>Here's a basic usage example of stringencoding:
+
+<pre class="prettyprint">
+var uint8array = new TextEncoder(encoding).encode(string);
+var string = new TextDecoder(encoding).decode(uint8array);
+</pre>
 
 <h3 id="toc-bitview">BitView.js</h3>
 
-<p>I have written a small bit manipulation library for Typed Arrays called BitView.js. As the name says, it works much like the DataView, except it works with bits. With BitView you can get and set the value of a bit at a given bit offset in an ArrayBuffer. BitView also has methods for storing and loading 6-bit and 12-bit ints at arbitrary bit offsets. 
+<p>I have written a small bit manipulation library for Typed Arrays called BitView.js. As the name says, it works much like the DataView, except it works with bits. With BitView you can get and set the value of a bit at a given bit offset in an ArrayBuffer. BitView also has methods for storing and loading 6-bit and 12-bit ints at arbitrary bit offsets.
 
 <p>12-bit ints are nice for working with screen coordinates, as displays tend to have fewer than 4096 pixels along the longer dimension. By using 12-bit ints instead of 32-bit ints, you get a 62% size reduction. For a more extreme example, I was working with Shapefiles that use 64-bit floats for the coordinates, but I didn't need the precision because the model was only going to be shown at screen size. Switching over to 12-bit base coordinates with 6-bit deltas to encode changes from the previous coordinate brought the filesize down to a tenth. You can see the demo of that at <a href="http://fhtr.org/shp.js/">here</a>.
+
+Here's an example of using BitView.js:
+
+<pre class="prettyprint">
+var bv = new BitView(arrayBuffer);
+bv.setBit(4, 1); // Set fourth bit of arrayBuffer to 1.
+bv.getBit(17); // Get 17th bit of arrayBuffer.
+
+bv.getBit(50*8 + 3); // Get third bit of 50th byte in arrayBuffer.
+
+bv.setInt6(3, 18); // Write 18 as a 6-bit int to bit position 3 in arrayBuffer.
+bv.getInt12(9); // Read a 12-bit int from bit position 9 in arrayBuffer.
+</pre>
 
 <h3 id="toc-datastream">DataStream.js</h3>
 
@@ -243,7 +270,7 @@ socket.binaryType = 'arraybuffer';
 
 <p>The problem with ArrayBuffer XHRs is that reading struct-like data from the buffer is a bit of a pain. DataView is good for reading a few numbers at a time in an endian-safe fashion, ArrayBufferViews are good for reading arrays of element-size-aligned native endian numbers. What we felt missing is a way to read in arrays and structs of data in a convenient endian-safe fashion. Enter DataStream.js.
 
-<p>DataStream.js is a Typed Arrays library that read and writes scalars, strings, arrays and structs of data from ArrayBuffers in a file-like fashion.
+<p><a href="http://github.com/kig/DataStream.js">DataStream.js</a> is a Typed Arrays library that read and writes scalars, strings, arrays and structs of data from ArrayBuffers in a file-like fashion.
 
 <p>Example of reading in an array of floats from an ArrayBuffer:
 
@@ -311,19 +338,22 @@ ds.readStruct([
 
 <h2 id="toc-history">History of Typed Arrays</h2>
 
-<p>Typed Arrays got their start in the early implementation stage of WebGL, when we found that passing JavaScript arrays to the graphics driver was causing performance problems. With JavaScript arrays, the WebGL binding had to allocate a native array and fill it by walking over the JavaScript array and cast every JavaScript object in the array to the required native type. 
+<p>Typed Arrays got their start in the early implementation stage of WebGL, when we found that passing JavaScript arrays to the graphics driver was causing performance problems. With JavaScript arrays, the WebGL binding had to allocate a native array and fill it by walking over the JavaScript array and cast every JavaScript object in the array to the required native type.
 
 <p>To fix the data conversion bottleneck, Mozilla's Vladimir Vukicevic wrote CanvasFloatArray: a C-style float array with a JavaScript interface. Now you could edit the CanvasFloatArray in JavaScript and pass it directly to WebGL without having to do any extra work in the binding. In further iterations, CanvasFloatArray was renamed to WebGLFloatArray, which was further renamed to Float32Array and split into a backing ArrayBuffer and the typed Float32Array-view to access the buffer.
 
 <h2 id="toc-design">Design considerations</h2>
 
-<p>From the beginning, the design of Typed Arrays was driven by the need to efficiently pass binary data to native libraries. For this reason, the Typed Arrays spec doesn't do automatic endianness conversions, pixel [un]premultiplying, color space conversions or any other such higher-level data operations. To handle endianness, the spec has a DataView object for reading and writing numbers with the wanted endianness. 
+<p>From the beginning, the design of Typed Arrays was driven by the need to efficiently pass binary data to native libraries. For this reason, the Typed Arrays spec doesn't do automatic endianness conversions, pixel [un]premultiplying, color space conversions or any other such higher-level data operations. To handle endianness, the spec has a DataView object for reading and writing numbers with the wanted endianness.
 
 <h2 id="toc-references">References</h2>
 
 <ul>
 <li><a href="http://www.khronos.org/registry/typedarray/specs/latest/">Typed Array Specification</a>
 <li><a href="https://github.com/vjeux/jDataView">jDataView</a>
+<li><a href="https://github.com/kig/DataStream.js">DataStream.js</a>
+<li><a href="https://github.com/kig/BitView.js">BitView.js</a>
+<li><a href="http://code.google.com/p/stringencoding/">stringencoding</a>
 <li><a href="http://blog.gingertech.net/2011/10/">On webkitSourceAppend</a>
 </ul>
 
