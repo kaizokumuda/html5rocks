@@ -28,11 +28,9 @@ return !!document.createElement("video").textTracks;
 </blockquote>
 
 
-<p>Imagine a world where your phone, TV and computer could all communicate on a common platform. That's the vision of WebRTC.</p>
+<p>Imagine a world where your phone, TV and computer could all communicate on a common platform. Imagine it was easy to build voice, video or text chat into your web application. That's the vision of WebRTC.</p>
 
-<p>WebRTC implements open standards for realtime, plugin-free video, audio and data communication. The aim is simple: to make it easy for anyone to build realtime communication into cross platform apps.</p> 
-
-<p>The need is real:
+<p>WebRTC implements open standards for realtime, plugin-free video, audio and data communication. The need is real:
   <ul>
     <li>A lot of web services already use Real-time Communication (RTC), but with plugins. These includes Skype, Facebook (which uses Skype) and Google Hangouts (which use the Google Talk plugin).</li>
     <li>Plugin download, installation and updating can be complex, error prone and annoying.</li>
@@ -40,21 +38,26 @@ return !!document.createElement("video").textTracks;
   </ul>
 </p>
 
-<p>The guiding principles of the WebRTC project are that its APIs should be open source, free, standardised, and more efficient than existing technologies. </p>
+<p>The guiding principles of the WebRTC project are that its APIs should be open source, free, standardised, and more efficient than existing technologies.</p>
 
 <p>Want to try it out? WebRTC is available now in Google Chrome.</p>
 
+<!-- 
 <p>A good place to start with WebRTC is the simple video chat application at <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>. In Chrome, open the page (with PeerConnection enabled on the chrome://flags page) and you'll notice that it redirects to a URL such as <code>https://apprtc.appspot.com/?r=18902167</code>, which includes a query string giving the randomly generated 'room number'. Open that URL in another tab or window (preferably on another computer!) to start video chat. If you open the page again, make sure to use the bare <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a> URL, without the query string such as <code>/?r=18902167</code> appended: the app must get a fresh room number every time.</p>
+ -->
+ 
+ <p>A good place to start with WebRTC is the simple video chat application at <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>. Open the page in Chrome, with MediaStream and PeerConnection enabled on the chrome://flags page, then open the redirected URL complete with the query string in a new window. There is a walkthrough of the code <a href="#toc-simple" title="Code walkthrough of apprtc.appspot.com">later in this article</a>.</p>
+
 
 <h2 id="toc-history">A very short history of WebRTC</h2>
 
-<p>For many years, RTC tools were expensive and complex&ndash;effectively out of the reach of individuals and smaller companies. </p>
+<p>For many years, RTC tools were expensive and complex&ndash;out of the reach of individuals and smaller companies. </p>
 
 <p>Gmail video chat became popular in 2008, and in 2011 Google introduced Hangouts, which use the same plugin as Gmail. Google bought GIPS, a company which had developed many of the components required for RTC, such as codecs and echo cancellation techniques. Google open sourced the technologies developed by GIPS (around $70 million worth) and engaged with relevant standards bodies, the IETF and W3C, to ensure industry consensus. In May 2011, Ericsson built <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-peer-peer-conversational-video" title="Beyond HTML5: peer to peer conversational video">the first implementation of WebRTC</a>.</p>
 
 <p>APIs used by WebRTC apps, such as <a href="http://html5doctor.com/getusermedia/#api" title="getUserMedia API information on HTML5 Doctor" target="_blank">getUserMedia</a> and <a href="http://www.html5rocks.com/en/tutorials/websockets/basics/" title="HTML5 Rocks: Introducing WebSocket">WebSocket</a>, emerged at the same time. Future integration with APIs such as <a href="http://www.html5rocks.com/en/tutorials/webaudio/intro/" title="HTML5 Rocks: Getting Started With Web Audio">Web Audio</a> will make WebRTC even more powerful&ndash;WebRTC has already <a href="https://webglmeeting.appspot.com" title="WebGL WebRTC demo">shown huge promise</a> when teamed up with technologies such as <a href="http://learningwebgl.com" title="Learning WebGL">WebGL</a>.</p>
 
-<h2 id="toc-where-are-we">Where are we now?</h2>
+<h2 id="toc-where">Where are we now?</h2>
 
 <p>WebRTC has been available in the stable build of Google Chrome since version 20.</p>
 
@@ -69,10 +72,10 @@ return !!document.createElement("video").textTracks;
 <p>WebRTC client applications need to do several things:</p>
 
 <ul>
-  <li>Get streaming media or data.</li>
+  <li>Get streaming audio, video or data.</li>
 	<li>Communicate streaming audio, video or data.</li>
 	<li>Send control messages to initiate or close sessions and report errors.</li>
-	<li>Communicate information about media such as resolution and format.</li>
+	<li>Exchange information about media such as resolution and format.</li>
 </ul>
 
 <p>More specifically, WebRTC as implemented uses the following APIs.</p>
@@ -97,6 +100,8 @@ navigator.webkitGetUserMedia({audio: true, video:true}, function(stream) {
 }, function(e) {
   console.log(e);
 });</pre>
+
+<p>Each MediaStream has one or more MediaStreamTracks, each of which corresponds to a synchronised media source. For example: a stream may include synchronised video and audio tracks.</p>
 
 <h3>Signalling</h3>
 
@@ -236,7 +241,7 @@ pc1.startIce();
 pc2.startIce(); 
 </pre>
 
-<h2 id="toc-data-channel">DataChannel</h2>
+<h2 id="toc-datachannel">DataChannel</h2>
 
 <p>The DataChannel API is planned to ship in Google Chrome in late 2012.</p>
 
@@ -304,7 +309,7 @@ function onSend() {
 
 <p>However, the source code for the <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a> example below is available from <a href="http://code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/" title="Code for apprtc.appspot.com demo">code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/</a>&ndash;and check out Silvia Pfeiffer's <a href="http://blog.gingertech.net/2012/06/04/video-conferencing-in-html5-webrtc-via-web-sockets/" title="Silvia Pfeiffer blog post: WebRTC via WebSocket">WebSocket app</a>.</p>
 
-<h2 id="doc-simple-video-chat-client">A simple video chat client</h2>
+<h2 id="toc-simple">A simple video chat client</h2>
 
 <p>As mentioned above, a good place to try out WebRTC is <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>.</p>
 
@@ -507,7 +512,7 @@ function onChannelMessage(message) {
   <li><a href="http://tools.ietf.org/html/draft-uberti-rtcweb-jsep-02" title="IETF JSEP documentation">IETF Javascript Session Establishment Protocol Draft</a>.</li>
 </ul>
 
-<h2 id="toc-support-summary">WebRTC support summary</h2>
+<h2 id="toc-support">WebRTC support summary</h2>
 
 <h3>MediaStream and getUserMedia</h3>
 <ul>
