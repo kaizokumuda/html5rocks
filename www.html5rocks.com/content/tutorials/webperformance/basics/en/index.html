@@ -125,7 +125,18 @@ console.log("Page load took " + (Date.now() - start) + "milliseconds");
 
 <div class="dynamicExample" id="timeline">Sorry, this section is not supported in your browser.</div>
 
-<p>Note that <code>loadEventEnd</code> and <code>domComplete</code> events did not occur in this case, because the page was still being loaded when the timeline was rendered!</p>
+<p>Note that the <code>loadEventEnd</code> event did not occur in this case, because the page was still being loaded when the timeline was rendered!</p>
+
+<p>If you want work with <code>loadEventEnd</code>, make sure to get it after the load event has ended. For example:</p>
+
+<pre class="prettyprint">
+window.onload = function(){
+  setTimeout(function(){
+    var t = performance.timing;
+    console.log(t.loadEventEnd - t.responseEnd);
+  }, 0);
+}
+</pre>
 
 <h2 id="using">Putting it all together</h2>
 
