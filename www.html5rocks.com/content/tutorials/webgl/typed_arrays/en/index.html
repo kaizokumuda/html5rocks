@@ -26,19 +26,19 @@
 
 <h2 id="toc-basics">Basics of using Typed Arrays</h2>
 
-<h3 id="toc-abv">ArrayBufferViews</h3>
+<h3 id="toc-abv">Typed array views</h3>
 
-<p>To use Typed Arrays, you need to create an ArrayBuffer and a view to it. The easiest way is to create a ArrayBufferView of the desired size and type.
+<p>To use Typed Arrays, you need to create an ArrayBuffer and a view to it. The easiest way is to create a typed array view of the desired size and type.
 
 <pre class="prettyprint">
 var f64a = new Float64Array(8);
-// ArrayBufferViews work pretty much like normal arrays.
+// Typed array views work pretty much like normal arrays.
 f64a[0] = 10;
 f64a[1] = 20;
 f64a[2] = f64a[0] + f64a[1];
 </pre>
 
-<p>There's a bunch of different ArrayBufferView types. They all have the same API. I'm going to create one of each currently existing ArrayBufferViews in the next example.
+<p>There are several different types of typed array views. They all share the same API, so once you know how to use one, you pretty much know how to use them all. I'm going to create one of each currently existing typed array views in the next example.
 
 <pre class="prettyprint">
 // Floating point arrays.
@@ -59,11 +59,9 @@ new Uint8Array(64);
 new Uint8ClampedArray(64);
 
 // The last one is a bit special, it clamps input values between 0 and 255.
-// Just like the CanvasPixelArray. As you might imagine, it does have
-// something to do with the CanvasPixelArray and we'll get to that later in the article.
 </pre>
 
-<p>You can also create an ArrayBuffer first and then create ArrayBufferViews that point to it.
+<p>You can also create an ArrayBuffer first and then create views that point to it.
 
 <pre class="prettyprint">
 var ab = new ArrayBuffer(256); // 256-byte ArrayBuffer.
@@ -73,7 +71,7 @@ var faThirdQuarter = new Uint8Array(ab, 128, 128);
 var faRest = new Uint8Array(ab, 192);
 </pre>
 
-<p>You can have several ArrayBufferViews to the same ArrayBuffer.
+<p>You can also have several views to the same ArrayBuffer.
 
 <pre>
 var fa = new Float32Array(64);
@@ -82,7 +80,7 @@ var ba = new Uint8Array(fa.buffer, 0, Float32Array.BYTES_PER_ELEMENT); // First 
 
 <h3 id="toc-dataview">DataView</h3>
 
-<p>To use ArrayBuffers that contain data with heterogenous types, the easiest way is to use a DataView to the buffer. Suppose we have a file format that has a header with an 8-bit unsigned int followed by two 16-bit ints, followed by a payload array of 32-bit floats. Reading this back with ArrayBufferViews is doable but a bit of a pain. With a DataView we can read the header and use an ArrayBufferView for the float array.
+<p>To use ArrayBuffers that contain data with heterogenous types, the easiest way is to use a DataView to the buffer. Suppose we have a file format that has a header with an 8-bit unsigned int followed by two 16-bit ints, followed by a payload array of 32-bit floats. Reading this back with typed array views is doable but a bit of a pain. With a DataView we can read the header and use an typed array view for the float array.
 
 <pre class="prettyprint">
 var dv = new DataView(buffer);
@@ -106,9 +104,9 @@ vectors[i] = dv.getFloat32(off, true);
 ...
 </pre>
 
-<p>Note that ArrayBufferViews are always in the native byte order. This is to make them fast. You should use a DataView to read and write data where endianness is going to be an issue.
+<p>Note that typed array views are always in the native byte order. This is to make them fast. You should use a DataView to read and write data where endianness is going to be an issue.
 
-<p>The DataView also has methods for writing values to buffers. These setters are named in the same fashion as the getters, “set” followed by the data type.
+<p>The DataView also has methods for writing values to buffers. These setters are named in the same fashion as the getters, "set" followed by the data type.
 
 <pre class="prettyprint">
 dv.setInt32(0, 25, false); // set big-endian int32 at byte offset 0 to 25
@@ -120,7 +118,7 @@ dv.setFloat32(8, 2.5, true); // set little-endian float32 at byte offset 8 to 2.
 
 <p>Endianness is the order in which multi-byte numbers are stored in the computer's memory. Think of it like your usual base-10 numbers. Writing one thousand and twenty-six in big-endian would come out 1026, but writing it in little-endian would give you 6201. Most CPUs out there (like the one in your mobile phone) use big-endian numbers, but the x86 architecture used in laptops and desktop computers uses little-endian numbers.
 
-<p>When you're writing code that reads and writes data and you don't want to be tied to a single CPU architecture, you need to do your reads and writes in a fashion that takes endianness into account. So instead of just XHRing your data into an ArrayBufferView, read it into the array using a DataView. Ditto for sending data to the server.
+<p>When you're writing code that reads and writes data and you don't want to be tied to a single CPU architecture, you need to do your reads and writes in a fashion that takes endianness into account. So instead of just XHRing your data into an typed array view, read it into the array using a DataView. Ditto for sending data to the server.
 
 <p>If you really want to run with scissors, the following example demonstrates how to detect endianness on the browser. You can use the result to XHR in data in the native endian format (and avoid some JS work) or to skip the endianness conversion if the data's endianness matches the browser's (again, saving some JS work). Right. So, here's how to detect if your browser is little-endian:
 
@@ -186,7 +184,7 @@ xhr.responseType = 'arraybuffer';
 
 <h3 id="toc-fileapis">File APIs</h3>
 
-<p>The FileReader can read file contents as an ArrayBuffer. You can then attach ArrayBufferViews and DataViews to the buffer to manipulate its contents.
+<p>The FileReader can read file contents as an ArrayBuffer. You can then attach typed array views and DataViews to the buffer to manipulate its contents.
 
 <pre class="prettyprint">
 reader.readAsArrayBuffer(file);
@@ -268,7 +266,7 @@ bv.getInt12(9); // Read a 12-bit int from bit position 9 in arrayBuffer.
 
 <p>One of the most exciting things about typed arrays is how they make it easier to deal with binary files in JavaScript. Instead of parsing a string character by character and manually converting the characters into binary numbers and such, you can now get an ArrayBuffer with XMLHttpRequest and directly process it using a DataView. This makes it easy to e.g. load in an MP3 file and read the metadata tags for use in your audio player. Or load in a shapefile and turn it into a WebGL model. Or read the EXIF tags off a JPEG and show them in your slideshow app.
 
-<p>The problem with ArrayBuffer XHRs is that reading struct-like data from the buffer is a bit of a pain. DataView is good for reading a few numbers at a time in an endian-safe fashion, ArrayBufferViews are good for reading arrays of element-size-aligned native endian numbers. What we felt missing is a way to read in arrays and structs of data in a convenient endian-safe fashion. Enter DataStream.js.
+<p>The problem with ArrayBuffer XHRs is that reading struct-like data from the buffer is a bit of a pain. DataView is good for reading a few numbers at a time in an endian-safe fashion, typed array views are good for reading arrays of element-size-aligned native endian numbers. What we felt missing is a way to read in arrays and structs of data in a convenient endian-safe fashion. Enter DataStream.js.
 
 <p><a href="http://github.com/kig/DataStream.js">DataStream.js</a> is a Typed Arrays library that read and writes scalars, strings, arrays and structs of data from ArrayBuffers in a file-like fashion.
 
