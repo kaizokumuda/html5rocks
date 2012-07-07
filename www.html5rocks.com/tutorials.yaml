@@ -1,21 +1,3 @@
-title: "Typed Arrays: Binary Data in the Browser"
-url: /tutorials/webgl/typed_arrays/
-author_id: ilmari
-publication_date: 2012-07-06
-description: "Overview of Typed Arrays APIs and libraries."
-browser_support:
-- chrome
-- ff
-- opera
-- safari
-- ie
-tags:
-- type:article
-- class:nuts_and_bolts
-- typed_arrays
-
-
----
 title: "Techniques for Streaming Multimedia"
 url: /tutorials/streaming/multimedia/
 author_id: ericbidelman
@@ -30,6 +12,25 @@ tags:
 - type:article
 - class:multimedia
 - class:connectivity
+- class:nuts_and_bolts
+
+---
+
+title: "Typed Arrays: Binary Data in the Browser"
+url: /tutorials/webgl/typed_arrays/
+author_id: ilmari
+publication_date: 2012-07-06
+description: "Overview of Typed Arrays APIs and libraries."
+browser_support:
+- chrome
+- ff
+- opera
+- safari
+- ie
+tags:
+- typed_arrays
+- binary
+- type:article
 - class:nuts_and_bolts
 
 ---
