@@ -1,5 +1,5 @@
 application: html5rocks
-version: v20120707
+version: master
 runtime: python
 api_version: 1
 
