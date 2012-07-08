@@ -11,7 +11,7 @@
 {% block content %}
 <h2 id="toc-intro">Databinding UI Elements with IndexedDB</h2>
 
-<p class="notice">Note: At the time of publication, Chrome was not yet fully to spec in terms of IndexedDB support. The code in this article will work fine in the latest version of Firefox, but may not work in your version of Chrome. For details on why, please see the first section on my blog entry <a href="http://www.raymondcamden.com/index.cfm/2012/6/12/Issues-with-IndexedDB-and-Chrome">here</a> that discusses “start up” issues in Chrome.</p>
+<p class="notice">Note: At the time of publication, Chrome was not yet fully to spec in terms of IndexedDB support. The code in this article will work fine in the latest version of Firefox, but may not work in your version of Chrome. For details on why, please see the first section on my blog entry <a href="http://www.raymondcamden.com/index.cfm/2012/6/12/Issues-with-IndexedDB-and-Chrome">here</a> that discusses "start up" issues in Chrome.</p>
 
 <p>IndexedDB is a powerful way to store data on the client side. If you haven't looked at it yet, I'd encourage you to read the helpful <a href="https://developer.mozilla.org/en/IndexedDB">MDN tutorials</a> on the topic. This article assumes some basic knowledge of the APIs and the features. Even if you haven't seen IndexedDB before though, hopefully the demo in this article will give you an idea of what can be done with it.
 
@@ -287,14 +287,15 @@ function setupAutoComplete() {
 <p>By itself, this is enough to return the results of our IndexedDB matches to the autocomplete. But we also want to support showing a detail view of the match when one is selected. We specified a select handler when creating the autocomplete that makes use of the Handlebars template from earlier. Here is a quick example:
 
 <figure>
-<img src="https://lh4.googleusercontent.com/s8Qau6Vx38GKs14BzB93IkKf27Df9hrhgWkRG_yAld065qbrUTnjOryWwEQmFUzWUp0sR8umdjZ9Ajfo-Cl_7rft7sWlPzz-_0SP14XcalLByW4puL8">
+<a href="/static/demos/idb-databinding/index_mark3.html"><img src="https://lh4.googleusercontent.com/s8Qau6Vx38GKs14BzB93IkKf27Df9hrhgWkRG_yAld065qbrUTnjOryWwEQmFUzWUp0sR8umdjZ9Ajfo-Cl_7rft7sWlPzz-_0SP14XcalLByW4puL8"></a>
+<figcaption><a href="/static/demos/idb-databinding/index_mark3.html">Try the demo</a></figcaption>
 </figure>
 
 <h2 id="toc-wrapping-up">Wrapping Up</h2>
 
-<p>You can find the complete application attached <a href="indexdbautocomplete.zip">here as a zip file</a>. You can also see <a href="index_mark3.html">the demo here</a>. 
+<p>You can find the complete application attached <a href="/static/demos/idb-databinding/indexdbautocomplete.zip">here as a zip file</a>. You can also see <a href="/static/demos/idb-databinding/index_mark3.html">the demo here</a>. 
 
-<p class="notice">Note - if you want to remove the data and test the 'seed' process again, simply go <a href="delete.html">here</a>.
+<p class="notice">Note - if you want to remove the data and test the 'seed' process again, simply go <a href="/static/demos/idb-databinding/delete.html">here</a>.
 
 
 {% endblock %}
