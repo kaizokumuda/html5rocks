@@ -52,7 +52,7 @@ tags:
 ---
 
 title: "Databinding UI Elements with IndexedDB"
-url: /tutorials/webdatabase/indexeddb-ui-databinding/
+url: /tutorials/indexeddb/ui-databinding/
 author_id: raymondcamden
 publication_date: 2012-06-19
 description: "Use JQuery UI to bind data from IndexedDB"
