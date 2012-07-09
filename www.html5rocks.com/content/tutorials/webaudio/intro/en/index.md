@@ -94,7 +94,7 @@ provides the decoded PCM audio data as an `AudioBuffer`.
 <h2 id="toc-play">Playing sounds</h2>
 
 <figure>
-![simple-graph][]
+<img src="diagrams/simple.png"/>
 <figcaption>A simple audio graph</figcaption>
 </figure>
 
@@ -120,7 +120,6 @@ playback for games and other time-critical applications. However, to get
 this scheduling working properly, ensure that your sound buffers are
 pre-loaded.
 
-[simple-graph]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/modular-routing1.png
 [xhr]: https://developer.mozilla.org/En/XMLHttpRequest/Using_XMLHttpRequest
 [xhr2]: http://www.html5rocks.com/en/tutorials/file/xhr2/
 [formats]: http://en.wikipedia.org/wiki/Audio_file_format
@@ -179,7 +178,7 @@ demonstrate this, let's set up a simple rhythm track. Probably the
 most widely known drumkit pattern is the following:
 
 <figure>
-![drumkit][]
+<img src="diagrams/drum.png"/>
 <figcaption>A simple rock drum pattern</figcaption>
 </figure>
 
@@ -216,7 +215,6 @@ buffer at a specified time, as follows:
       source.noteOn(time);
     }
 
-[drumkit]: diagrams/drum.png
 
 <input type="button" onclick="RhythmSample.play();" value="Play"/>
 
@@ -230,7 +228,7 @@ its destination through an [AudioGainNode][] in order to manipulate the
 volume:
 
 <figure>
-![gain-graph][]
+<img src="diagrams/gain.png"/>
 <figcaption>Audio graph with a gain node</figcaption>
 </figure>
 
@@ -267,7 +265,7 @@ want to be able to pan from one sound source to another.
 This can be done with the following audio graph:
 
 <figure>
-![crossfade-graph][]
+<img src="diagrams/crossfade.png"/>
 <figcaption>Audio graph with two sources connected through gain nodes</figcaption>
 </figure>
 
@@ -298,7 +296,7 @@ A naive linear crossfade approach exhibits a volume dip as you pan
 between the samples.
 
 <figure>
-![linear-crossfade-graph][]
+<img src="diagrams/linear-fade.png"/>
 <figcaption>A linear crossfade</figcaption>
 </figure>
 
@@ -309,7 +307,7 @@ in a more even crossfade between regions that might be slightly
 different in level.
 
 <figure>
-![equalpower-crossfade-graph][]
+<img src="diagrams/equal-fade.png"/>
 <figcaption>An equal power crossfade</figcaption>
 </figure>
 
@@ -374,16 +372,12 @@ tracks using the above approach:
 [jstimer]: http://stackoverflow.com/questions/2779154/understanding-javascript-timer-thread-issues
 [AudioParam]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioParam-section
 [AudioGainNode]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#AudioGainNode-section
-[crossfade-graph]: diagrams/crossfade.png
-[gain-graph]: diagrams/gain.png
-[linear-crossfade-graph]: diagrams/linear-fade.png
-[equalpower-crossfade-graph]: diagrams/equal-fade.png
 
 <h2 id="toc-filter">Applying a simple filter effect to a sound</h2>
 
 <figure>
-![filter-graph][]
-<figcaption>An audio graph with a `BiquadFilterNode`</figcaption>
+<img src="diagrams/filter.png"/>
+<figcaption>An audio graph with a <code>BiquadFilterNode</code></figcaption>
 </figure>
 
 The Web Audio API lets you pipe sound from one audio node into another,
@@ -460,7 +454,6 @@ direct connection, we can do the following:
 
 
 [BiquadFilterNode]: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html#BiquadFilterNode-section
-[filter-graph]: diagrams/filter.png
 [gain]: http://en.wikipedia.org/wiki/Gain
 [qfactor]: http://en.wikipedia.org/wiki/Audio_filter#Self_oscillation
 
