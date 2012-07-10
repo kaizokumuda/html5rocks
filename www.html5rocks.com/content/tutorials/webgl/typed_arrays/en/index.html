@@ -14,7 +14,7 @@
 
 <p>Typed Arrays are a relatively recent addition to browsers, born out of the need to have an efficient way to handle binary data in WebGL. A Typed Array is a slab of memory with a typed view into it, much like how arrays work in C. Because a Typed Array is backed by raw memory, the JavaScript engine can pass the memory directly to native libraries without having to painstakingly convert the data to a native representation. As a result, typed arrays perform a lot better than JavaScript arrays for passing data to WebGL and other APIs dealing with binary data.
 
-<p>The Typed Arrays spec defines three types of objects that you can use to create and manipulate Typed Arrays. The core object in the spec is the ArrayBuffer, a slab of raw memory. You can only query the byteLength of an ArrayBuffer and slice it to create copies of a subset of the ArrayBuffer. To access the contents of an ArrayBuffer, you need to use a view object. There are two types of views: typed array views and DataViews.
+<p>Typed Arrays are a relatively recent addition to browsers, born out of the need to have an efficient way to handle binary data in WebGL. A Typed Array is a slab of memory with a typed view into it, much like how arrays work in C. Because a Typed Array is backed by raw memory, the JavaScript engine can pass the memory directly to native libraries without having to painstakingly convert the data to a native representation. As a result, typed arrays perform a lot better than JavaScript arrays for passing data to WebGL and other APIs dealing with binary data.
 
 <p>Typed array views act like single-type arrays to a segment of an ArrayBuffer. There are views for all the usual numeric types, with self-descriptive names like Float32Array, Float64Array, Int32Array and Uint8Array. There's also a special view which has replaced the pixel array type in Canvas's ImageData: Uint8ClampedArray.
 
@@ -28,8 +28,8 @@
 <p>To use Typed Arrays, you need to create an ArrayBuffer and a view to it. The easiest way is to create a typed array view of the desired size and type.
 
 <pre class="prettyprint">
-var f64a = new Float64Array(8);
 // Typed array views work pretty much like normal arrays.
+var f64a = new Float64Array(8);
 f64a[0] = 10;
 f64a[1] = 20;
 f64a[2] = f64a[0] + f64a[1];
@@ -39,26 +39,40 @@ f64a[2] = f64a[0] + f64a[1];
 
 <pre class="prettyprint">
 // Floating point arrays.
-new Float64Array(8);
-new Float32Array(16);
+var f64 = new Float64Array(8);
+var f32 = new Float32Array(16);
 
 // Signed integer arrays.
-new Int64Array(8);
-new Int32Array(16);
-new Int16Array(32);
-new Int8Array(64);
+var i32 = new Int32Array(16);
+var i16 = new Int16Array(32);
+var i8 = new Int8Array(64);
 
 // Unsigned integer arrays.
-new Uint64Array(8);
-new Uint32Array(16);
-new Uint16Array(32);
-new Uint8Array(64);
-new Uint8ClampedArray(64);
-
-// The last one is a bit special, it clamps input values between 0 and 255.
+var u32 = new Uint32Array(16);
+var u16 = new Uint16Array(32);
+var u8 = new Uint8Array(64);
+var pixels = new Uint8ClampedArray(64);
 </pre>
 
-<p>You can also create an ArrayBuffer first and then create views that point to it.
+<p>The last one is a bit special, it clamps input values between 0 and 255.
+This is especially handy for Canvas image processing algorithms since
+now you don’t have to manually clamp your image processing math to
+avoid overflowing the 8-bit range.
+
+<p>For example, here’s how you’d apply a gamma factor to an image stored
+in a Uint8Array. Not very pretty:
+
+<pre class="prettyprint">
+u8[i] = Math.min(255, Math.max(0, u8[i] * gamma));
+</pre>
+
+<p>With Uint8ClampedArray you can skip the manual clamping:
+
+<pre class="prettyprint">
+pixels[i] *= gamma;
+</pre>
+
+<p>The other way to create typed array views is to create an ArrayBuffer first and then create views that point to it. The APIs that get you external data usually deal in ArrayBuffers, so this is the way you get a typed array view to those.
 
 <pre class="prettyprint">
 var ab = new ArrayBuffer(256); // 256-byte ArrayBuffer.
@@ -70,10 +84,21 @@ var faRest = new Uint8Array(ab, 192);
 
 <p>You can also have several views to the same ArrayBuffer.
 
-<pre>
+<pre class="prettyprint">
 var fa = new Float32Array(64);
 var ba = new Uint8Array(fa.buffer, 0, Float32Array.BYTES_PER_ELEMENT); // First float of fa.
 </pre>
+
+<p>To copy an typed array to another typed array, the fastest way is to use the typed array set method. For a memcpy-like use, create Uint8Arrays to the buffers of the views and use set to copy the data over.
+
+<pre class="prettyprint">
+function memcpy(dst, dstOffset, src, srcOffset, length) {
+  var dstU8 = new Uint8Array(dst, dstOffset, length);
+  var srcU8 = new Uint8Array(src, srcOffset, length);
+  dstU8.set(srcU8);
+};
+</pre>
+
 
 <h3 id="toc-dataview">DataView</h3>
 
@@ -111,19 +136,58 @@ dv.setInt32(4, 25); // set big-endian int32 at byte offset 4 to 25
 dv.setFloat32(8, 2.5, true); // set little-endian float32 at byte offset 8 to 2.5
 </pre>
 
-<h3 id="toc-endianness">What is endianness</h3>
+<h3 id="toc-endianness">A discussion of endianness</h3>
 
-<p>Endianness is the order in which multi-byte numbers are stored in the computer's memory. Think of it like your usual base-10 numbers. Writing one thousand and twenty-six in big-endian would come out 1026, but writing it in little-endian would give you 6201. Most CPUs out there (like the one in your mobile phone) use big-endian numbers, but the x86 architecture used in laptops and desktop computers uses little-endian numbers.
+<p>Endianness, or byte order, is the order in which multi-byte numbers are stored in the computer's memory. The term <i>big-endian</i> describes a CPU architecture which stores the most significant byte first; <i>little-endian</i>, the least significant byte first. Which endianness is used in a given CPU architecture is completely arbitrary; there are good reasons to choose either one. In fact, some CPUs can be configured to support both big-endian and little-endian data.
 
-<p>When you're writing code that reads and writes data and you don't want to be tied to a single CPU architecture, you need to do your reads and writes in a fashion that takes endianness into account. So instead of just XHRing your data into an typed array view, read it into the array using a DataView. Ditto for sending data to the server.
+<p>Why do you need to be concerned about endianness? The reason is simple. When reading or writing data from the disk or the network, the endianness of the data must be specified. This ensures that the data is interpreted properly, regardless of the endianness of the CPU that is working with it. In our increasingly networked world, it is essential to properly support all kinds of devices, big- or little-endian, that might need to work with binary data coming from servers or other peers on the network.
 
-<p>If you really want to run with scissors, the following example demonstrates how to detect endianness on the browser. You can use the result to XHR in data in the native endian format (and avoid some JS work) or to skip the endianness conversion if the data's endianness matches the browser's (again, saving some JS work). Right. So, here's how to detect if your browser is little-endian:
+<p>The DataView interface is specifically designed to read and write data to and from files and the network. DataView operates upon data with a <i>specified endianness</i>. The endianness, big or little, must be specified with every access of every value, ensuring that you get consistent and correct results when reading or writing binary data, no matter what the endianness of the CPU on which the browser is running.
+
+<p>Typically, when your application reads binary data from a server, you’ll need to scan through it once in order to convert it into the data structures your application uses internally. DataView should be used during this phase. It’s not a good idea to use the multi-byte typed array views (Int16Array, Uint16Array, etc.) directly with data fetched via XMLHttpRequest, FileReader, or any other input/output API, because the typed array views use the CPU’s native endianness. More on this later.
+
+<p>Let’s look at a couple of simple examples. The <a href="http://en.wikipedia.org/wiki/BMP_file_format#Bitmap_file_header">Windows BMP</a> file format used to be the standard format for storing images in the early days of Windows. The documentation linked above clearly indicates that all of the integer values in the file are stored in little-endian format. Here is a snippet of code which parses the beginning of the BMP header using the <a href="http://github.com/kig/DataStream.js">DataStream.js</a> library which accompanies this article:
 
 <pre class="prettyprint">
-var littleEndian = new Uint8Array(new Uint16Array([1]).buffer)[0] == 1;
+function parseBMP(arrayBuffer) {
+  var stream = new DataStream(arrayBuffer, 0,
+    DataStream.LITTLE_ENDIAN);
+  var header = stream.readUint8Array(2);
+  var fileSize = stream.readUint32();
+  // Skip the next two 16-bit integers
+  stream.readUint16();
+  stream.readUint16();
+  var pixelOffset = stream.readUint32();
+  // Now parse the DIB header
+  var dibHeaderSize = stream.readUint32();
+  var imageWidth = stream.readInt32();
+  var imageHeight = stream.readInt32();
+  // ...
+}
 </pre>
 
-<p>DataView is a recent (as of June 2012) addition to the Typed Arrays spec, so it's not available on older browsers, not to mention browsers that don't support Typed Arrays. For those browsers, you can use jDataView, which is a third-party library that implements the DataView spec with some additions of its own like maintaining a seek pointer to do a file-like reads and writes.
+<p>Here’s another example, this one from the <a href="http://webglsamples.googlecode.com/hg/hdr/hdr.html">High Dynamic Range rendering demo</a> in the <a href="https://code.google.com/p/webglsamples/">WebGL samples project</a>. This demo downloads raw, little-endian floating-point data representing high dynamic range textures, and needs to upload it to WebGL. Here is the snippet of code which properly interprets the floating-point values on all CPU architectures. Assume the variable “arrayBuffer” is an ArrayBuffer which has just been downloaded from the server via XMLHttpRequest:
+
+<pre class="prettyprint">
+var arrayBuffer = ...;
+var data = new DataView(arrayBuffer);
+var tempArray = new Float32Array(
+  data.byteLength / Float32Array.BYTES_PER_ELEMENT);
+var len = tempArray.length;
+// Incoming data is raw floating point values
+// with little-endian byte ordering.
+for (var jj = 0; jj &lt; len; ++jj) {
+  tempArray[jj] =
+    data.getFloat32(jj * Float32Array.BYTES_PER_ELEMENT, true);
+}
+gl.texImage2D(...other arguments...,
+  gl.RGB, gl.FLOAT, tempArray);
+</pre>
+
+<p>The rule of thumb is: upon receiving binary data from the web server, make one pass over it with a DataView. Read the individual numeric values and store them in some other data structure, either a JavaScript object (for small amounts of structured data) or a typed array view (for large blocks of data). This will ensure that your code works correctly on all kinds of CPUs. Also use DataView to write data to a file or the network, and make sure to appropriately specify the <i>littleEndian</i> argument to the various <i>set</i> methods in order to produce the file format you are creating or using.
+
+<p>Remember, all data that goes over the network implicitly has a format and an endianness (at least, for any multi-byte values). Make sure to clearly define and document the format of all data your application sends over the network.
+
 
 <h2 id="toc-browserapis">Browser APIs that use Typed Arrays</h2>
 
@@ -148,6 +212,7 @@ gl.texImage2D(
   gl.RGBA, // internal format
   16, 16, // width and height
   0, // border
+  gl.RGBA, //format
   gl.UNSIGNED_BYTE, // type
   pixels // texture data
 );
@@ -166,7 +231,7 @@ gl.readPixels(0, 0, 320, 240, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
 
 <pre class="prettyprint">
 var imageData = ctx.getImageData(0,0, 200, 100);
-var typedArray = new Uint8ClampedArray(imageData.data);
+var typedArray = imageData.data // data is a Uint8ClampedArray
 </pre>
 
 <h3 id="toc-xhr2">XMLHttpRequest2</h3>
@@ -179,6 +244,8 @@ var typedArray = new Uint8ClampedArray(imageData.data);
 xhr.responseType = 'arraybuffer';
 </pre>
 
+<p>Recall that you must be aware of endianness issues when downloading data from the network! See the section on endianness above.
+
 <h3 id="toc-fileapis">File APIs</h3>
 
 <p>The FileReader can read file contents as an ArrayBuffer. You can then attach typed array views and DataViews to the buffer to manipulate its contents.
@@ -187,11 +254,13 @@ xhr.responseType = 'arraybuffer';
 reader.readAsArrayBuffer(file);
 </pre>
 
-<h3 id="toc-webworkers">Web Workers Transferable objects</h3>
+<p>You should keep endianness in mind here as well. Check out the endianness section for details.
 
-<p>Transferable objects in Web Workers make passing binary data to Web Workers a great deal faster. When you send an object to a Worker as a Transferable, the object becomes inaccessible in the sending thread and the receiving Worker gets ownership of the object. This allows for a highly optimized implementation where the sent data is not copied, just the ownership of the Typed Array is transferred to the receiver.
+<h3 id="toc-transferables">Transferable objects</h3>
 
-<p>To use Transferable objects with Web Workers, you need to use the webkitPostMessage or operaPostMessage method on the worker. The second argument to it is the array of objects you wish to transfer to the worker.
+<p>Transferable objects in postMessage make passing binary data to other windows and Web Workers a great deal faster. When you send an object to a Worker as a Transferable, the object becomes inaccessible in the sending thread and the receiving Worker gets ownership of the object. This allows for a highly optimized implementation where the sent data is not copied, just the ownership of the Typed Array is transferred to the receiver.
+
+<p>To use Transferable objects with Web Workers, you need to use the webkitPostMessage method on the worker. The webkitPostMessage method works just like postMessage, but it takes two arguments instead of just one. The added second argument is an array of objects you wish to transfer to the worker.
 
 <pre class="prettyprint">
 worker.webkitPostMessage(oneGBTypedArray, [oneGBTypedArray]);
@@ -207,7 +276,7 @@ webkitPostMessage({results: grand, youCanHaveThisBack: oneGBTypedArray}, [oneGBT
 
 <h3 id="toc-mediasource">Media Source API</h3>
 
-<p>Recently, the media elements also got some Typed Array goodness. You can directly pass a Typed Array containing video data to a video element using webkitSourceAppend. This makes the video element append the video data after the existing video. SourceAppend is awesome for doing interstitials, playlists, streaming and other uses where you might want to play several videos using a single video element.
+<p>Recently, the media elements also got some Typed Array goodness in the form of the <a href="http://dvcs.w3.org/hg/html-media/raw-file/tip/media-source/media-source.html">Media Source API</a>. You can directly pass a Typed Array containing video data to a video element using webkitSourceAppend. This makes the video element append the video data after the existing video. SourceAppend is awesome for doing interstitials, playlists, streaming and other uses where you might want to play several videos using a single video element.
 
 <pre class="prettyprint">
 video.webkitSourceAppend(uint8Array);
@@ -229,9 +298,27 @@ socket.binaryType = 'arraybuffer';
 
 <p><a href="https://https://github.com/vjeux/jDataView">jDataView</a> implements a DataView shim for all browsers. DataView used to be a WebKit-only feature, but now it's supported by most other browsers. The Mozilla developer team is in the process of landing a patch to enable DataView on Firefox as well.
 
+<p>Eric Bidelman on the Chrome Developer Relations team wrote a <a href="http://ericbidelman.tumblr.com/post/8343485440/reading-mp3-id3-tags-in-javascript">small MP3 ID3 tag reader example</a> that uses jDataView. Here's a usage example from the blog post:
+
+<pre class="prettyprint">
+var dv = new jDataView(arraybuffer);
+
+// "TAG" starts at byte -128 from EOF.
+// See http://en.wikipedia.org/wiki/ID3
+if (dv.getString(3, dv.byteLength - 128) == 'TAG') {
+  var title = dv.getString(30, dv.tell());
+  var artist = dv.getString(30, dv.tell());
+  var album = dv.getString(30, dv.tell());
+  var year = dv.getString(4, dv.tell());
+} else {
+  // no ID3v1 data found.
+}
+</pre>
+
+
 <h3 id="toc-stringencoding">stringencoding</h3>
 
-<p>Working with strings in Typed Arrays is a bit of a pain at the moment, but there’s the stringencoding library that helps there. Stringencoding implements the proposed Typed Array string encoding spec, so it’s also a good way to get a feel for what’s coming.
+<p>Working with strings in Typed Arrays is a bit of a pain at the moment, but there’s the <a href="http://code.google.com/p/stringencoding">stringencoding library</a> that helps there. Stringencoding implements the proposed <a href="http://wiki.whatwg.org/wiki/StringEncoding">Typed Array string encoding spec</a>, so it’s also a good way to get a feel for what’s coming.
 
 <p>Here's a basic usage example of stringencoding:
 
@@ -316,7 +403,7 @@ while (!ds.isEof()) {
 }
 </pre>
 
-<p>Or use the DataStream.readStruct method to read in structs of data:
+<p>Or use the DataStream.readStruct method to read in structs of data. The readStruct method takes in a struct definition array that contains the types of the struct members. It’s got callback functions for handling complex types and handles arrays of data and nested structs as well:
 
 <pre class="prettyprint">
 // with DataStream.readStruct
@@ -329,17 +416,68 @@ ds.readStruct([
 ]);
 </pre>
 
-<p>You can see a live example of reading in JPEG metadata <a href="http://fhtr.org/DataStream.js/jpeg.html">here</a>.
+<p>As you can see, the struct definition is a flat array of [name, type]-pairs. Nested structs are done by having an array for the type. Arrays are defined by using a three-element array where the second element is the array element type and the third element is the array length (either as a number, as a reference to previously read field or as a callback function). The first element of the array definition is unused.
+
+<p>The possible values for the type are as follows:
+
+<pre>
+Number types
+
+Unsuffixed number types use DataStream endianness.
+To explicitly specify endianness, suffix the type with
+'le' for little-endian or 'be' for big-endian,
+e.g. 'int32be' for big-endian int32.
+
+  'uint8' -- 8-bit unsigned int
+  'uint16' -- 16-bit unsigned int
+  'uint32' -- 32-bit unsigned int
+  'int8' -- 8-bit int
+  'int16' -- 16-bit int
+  'int32' -- 32-bit int
+  'float32' -- 32-bit float
+  'float64' -- 64-bit float
+
+String types
+
+  'cstring' -- ASCII string terminated by a zero byte.
+  'string:N' -- ASCII string of length N.
+  'string,CHARSET:N' -- String of byteLength N encoded with given CHARSET.
+  'u16string:N' -- UCS-2 string of length N in DataStream endianness.
+  'u16stringle:N' -- UCS-2 string of length N in little-endian.
+  'u16stringbe:N' -- UCS-2 string of length N in big-endian.
+
+Complex types
+
+  [name, type, name_2, type_2, ..., name_N, type_N] -- Struct
+
+  function(dataStream, struct) {} -- Callback function to read and return data.
+
+  {get: function(dataStream, struct) {}, set: function(dataStream, struct) {}}
+  -- Getter/setter functions to reading and writing data. Handy for using the
+     same struct definition for both reading and writing.
+
+  ['', type, length] -- Array of given type and length. The length can be either
+                        a number, a string that references a previously-read
+                        field, or a callback function(struct, dataStream, type){}.
+                        If length is set to ‘*’, elements are read from the
+                        DataStream until a read fails.
+</pre>
+
+<p>You can see a live example of reading in JPEG metadata <a href="http://fhtr.org/DataStream.js/jpeg.html">here</a>. The demo's using DataStream.js for reading the tag-level structure of the JPEG file (along with some EXIF parsing), and <a href="https://github.com/notmasteryet/jpgjs">jpg.js</a> for decoding and displaying the JPEG image in JavaScript.
 
 <h2 id="toc-history">History of Typed Arrays</h2>
 
 <p>Typed Arrays got their start in the early implementation stage of WebGL, when we found that passing JavaScript arrays to the graphics driver was causing performance problems. With JavaScript arrays, the WebGL binding had to allocate a native array and fill it by walking over the JavaScript array and cast every JavaScript object in the array to the required native type.
 
-<p>To fix the data conversion bottleneck, Mozilla's Vladimir Vukicevic wrote CanvasFloatArray: a C-style float array with a JavaScript interface. Now you could edit the CanvasFloatArray in JavaScript and pass it directly to WebGL without having to do any extra work in the binding. In further iterations, CanvasFloatArray was renamed to WebGLFloatArray, which was further renamed to Float32Array and split into a backing ArrayBuffer and the typed Float32Array-view to access the buffer.
+<p>To fix the data conversion bottleneck, Mozilla's Vladimir Vukicevic wrote CanvasFloatArray: a C-style float array with a JavaScript interface. Now you could edit the CanvasFloatArray in JavaScript and pass it directly to WebGL without having to do any extra work in the binding. In further iterations, CanvasFloatArray was renamed to WebGLFloatArray, which was further renamed to Float32Array and split into a backing ArrayBuffer and the typed Float32Array-view to access the buffer. Types were also added for other integer and floating-point sizes and signed/unsigned variants.
 
 <h2 id="toc-design">Design considerations</h2>
 
-<p>From the beginning, the design of Typed Arrays was driven by the need to efficiently pass binary data to native libraries. For this reason, the Typed Arrays spec doesn't do automatic endianness conversions, pixel [un]premultiplying, color space conversions or any other such higher-level data operations. To handle endianness, the spec has a DataView object for reading and writing numbers with the wanted endianness.
+<p>From the beginning, the design of Typed Arrays was driven by the need to efficiently pass binary data to native libraries. For this reason, the typed array views operate upon aligned data in the host CPU’s <i>native endianness</i>. These decisions make it possible for JavaScript to reach maximum performance during operations such as sending vertex data to the graphics card.
+
+<p>DataView is specifically designed for file and network I/O, where the data always has a <i>specified endianness</i>, and might not be aligned for maximum performance.
+
+<p>The design split between in-memory data assembly (using the typed array views) and I/O (using DataView) was a conscious one. Modern JavaScript engines optimize the typed array views heavily, and achieve high performance on numerical operations with them. The current levels of performance of the typed array views were made possible by this design decision.
 
 <h2 id="toc-references">References</h2>
 
