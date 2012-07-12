@@ -21,12 +21,11 @@ return !! (window.PeerConnection || window.webkitDeprecatedPeerConnection || win
 
 {% block content %}
 
-<h2 id="toc-introduction">Introduction</h2>
+<h2 id="toc-disruptive">Disruptive technology</h2>
 
 <blockquote>WebRTC is a new front in the long war for an open and unencumbered web.<br />
 &mdash; <a href="http://hacks.mozilla.org/2012/03/video-mobile-and-the-open-web/" title="Brendan Eich blog post: Video, Mobile, and the Open Web">Brendan Eich</a>, inventor of JavaScript
 </blockquote>
-
 
 <p>Imagine a world where your phone, TV and computer could all communicate on a common platform. Imagine it was easy to build text chat or video and voice calling into your web application. That's the vision of WebRTC.</p>
 
@@ -47,6 +46,17 @@ return !! (window.PeerConnection || window.webkitDeprecatedPeerConnection || win
  -->
  
  <p>A good place to start is the simple video chat application at <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>. Open the page in Chrome, with PeerConnection enabled on the chrome://flags page, then open the URL again (with query string added) in a new window. There is a walkthrough of the code <a href="#toc-simple" title="Code walkthrough of apprtc.appspot.com">later in this article</a>.</p>
+ 
+<h2 id="toc-tldr">TL;DR?</h2>
+
+<p>Haven't got time to read this article, or just want code?</p>
+
+<ul>
+  <li>If you haven't used getUserMedia, view the source for <a href="https://plus.sandbox.google.com/118075919496626375791/posts" title="Eric Bidelman's Google+ page">Eric Bidelman</a>'s <a href="http://html5-demos.appspot.com/static/getusermedia/photobooth.html" title="Photobooth demo">photobooth demo</a>.</li>
+  <li>Get to grips with the PeerConnection API by reading through the demo at <a href="https://webrtc-demos.appspot.com/html/pc1.html" title="WebRTC demo without signalling">webrtc-demos.appspot.com</a>, which implements WebRTC on a single web page.</li>
+	<li>Learn more about how WebRTC uses servers for signalling and data communication, by reading through the code and the console logs from the video chat demo at <a href="http://apprtc.appspot.com" title="Simple WebRTC video chat demo">apprtc.appspot.com</a>.</li>
+</ul>
+
 
 
 <h2 id="toc-history">A very short history of WebRTC</h2>
@@ -179,11 +189,13 @@ a=ssrc:2223794119 label:H4fjnMzxy3dPIgQ7HxuCTLb4wLLLeRHnFxh810
 
 <p>The main thing to understand from this diagram is that the underlying code does a lot of work, but PeerConnection shields web developers from the myriad complexities that lurk beneath.</p>
 
-<h3 id="toc-sans">PeerConnection sans signalling</h3>
+<h3 id="toc-sans">PeerConnection sans servers</h3>
 
-<p>Streaming setup from the PeerConnection point of view is described in the code example below. The code is taken from the 'single page' example at <a href="https://webrtc-demos.appspot.com/html/pc1.html" title="WebRTC demo without signalling">webrtc-demos.appspot.com</a>, which implements caller and callee on the same web page: local and remote PeerConnection and local and remote video, all in the same block of code. This doesn't constitute a very useful app, but makes it possible to demonstrate PeerConnection without the complexities of signalling.</p>
+<p>WebRTC from the PeerConnection point of view is described in the code example below. The code is taken from the 'single page' WebRTC demo at <a href="https://webrtc-demos.appspot.com/html/pc1.html" title="WebRTC demo without signalling">webrtc-demos.appspot.com</a>, which implements caller and callee on the same web page: local <em>and</em> remote PeerConnection, and local and remote video, implemented on one page. This doesn't constitute anything very useful&mdash;since the page is calling itself&mdash;but it does demonstrate PeerConnection without the complexities of signalling and servers, since the PeerConnection objects pass data and messages to each other directly on the page.</p>
 
-<p>First, a quick explanation of the name <strong>webkitPeerConnection00</strong>. When PeerConnection using the JSEP architecture (see above) was implemented in Chrome (see above), the original pre-JSEP implementation was renamed webkitDeprecatedPeerConnection. This made it possible to keep old demos working with a simple rename. The new JSEP PeerConnection implementation was named webkitPeerConnection00, and as the JSEP draft standard evolves, it might become webkitPeerConnection01, webkitPeerConnection02&mdash;and so on&mdash;to avoid more breakage. When the dust finally settles, the API name will become PeerConnection.</p>
+<p>First, a quick explanation of the name <strong>webkitPeerConnection00</strong>. When PeerConnection using the JSEP architecture was implemented in Chrome (see above), the original pre-JSEP implementation was renamed webkitDeprecatedPeerConnection. This made it possible to keep old demos working with a simple rename. The new JSEP PeerConnection implementation was named webkitPeerConnection00, and as the JSEP draft standard evolves, it might become webkitPeerConnection01, webkitPeerConnection02&mdash;and so on&mdash;to avoid more breakage. When the dust finally settles, the API name will become PeerConnection.</p>
+
+<p>So here we go...</p>
 
 <h3>Caller</h3>
 
@@ -273,7 +285,7 @@ pc1.startIce();
 pc2.startIce();
 </pre>
 
-<h2 id="toc-real">PeerConnection plus signalling</h2>
+<h2 id="toc-real">PeerConnection plus servers</h2>
 
 <p>So... That's WebRTC on one page in one browser. But what about a real application, with peers on different computers?</p> 
 
@@ -293,13 +305,15 @@ pc2.startIce();
 	<li>A server to handle NAT traversal and other streaming and communication requirements.</li>
 </ul>
 
-<p>NAT traversal, and the requirements for building a server app for user discovery and signalling, are beyond the scope of this article. Suffice to say that the <a href="http://en.wikipedia.org/wiki/STUN" title="Wikipedia STUN article">STUN</a> protocol and its extension <a href="http://en.wikipedia.org/wiki/Traversal_Using_Relay_NAT" title="Wikipedia article about TURN">TURN</a> are used by the <a href="http://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment" title="Wikipedia article about ICE">ICE</a> framework to enable PeerConnection to cope with NAT traversal.</p>
+<p>NAT traversal, peer-to-peer networking, and the requirements for building a server app for user discovery and signalling, are beyond the scope of this article. Suffice to say that the <a href="http://en.wikipedia.org/wiki/STUN" title="Wikipedia STUN article">STUN</a> protocol and its extension <a href="http://en.wikipedia.org/wiki/Traversal_Using_Relay_NAT" title="Wikipedia article about TURN">TURN</a> are used by the <a href="http://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment" title="Wikipedia article about ICE">ICE</a> framework to enable PeerConnection to cope with NAT traversal and various network vagaries.</p>
 
-<p>The server source code for the <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a> example below is available from <a href="http://code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/" title="Code for apprtc.appspot.com demo">code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/</a>&mdash;and check out Silvia Pfeiffer's <a href="http://blog.gingertech.net/2012/06/04/video-conferencing-in-html5-webrtc-via-web-sockets/" title="Silvia Pfeiffer blog post: WebRTC via WebSocket">WebSocket WebRTC app</a>.</p>
+<p>ICE is a framework for connecting peers. Initially, ICE tries various protocols to connect peers directly, with the lowest possible latency: first via UDP, then if that fails TCP, then turning to HTTPS. If direct connection fails (in particular, because of NAT traversal and firewalls) ICE uses an intermediary (relay) server such as a TURN server. <a name="stun" />STUN servers are used in this process to enable a peer to find out its public address and port. (Google has a couple of STUN severs, one of which is used in the apprtc.appspot.com example.) The expression 'finding candidates' refers to the process of finding network interfaces and ports.</p>
+
+<p>To find out more about how set up a server to deal with signalling and user discovery, take a look at the App Engine code for the <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a> at <a href="http://code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/" title="Code for apprtc.appspot.com demo">code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/</a>, which uses the Google Channel API. For information about using a WebSocket server for signalling, check out Silvia Pfeiffer's <a href="http://blog.gingertech.net/2012/06/04/video-conferencing-in-html5-webrtc-via-web-sockets/" title="Silvia Pfeiffer blog post: WebRTC via WebSocket">WebSocket WebRTC app</a>.</p>
 
 <h2 id="toc-simple">A simple video chat client</h2>
 
-<p>As mentioned above, a good place to try out WebRTC is <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>.</p>
+<p>A good place to try out WebRTC, including signalling, is the video chat demo at <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>.</p>
 
 <p>The code in this demo is deliberately verbose in its logging: the console is a good place to understand the order of events.</p>
 
@@ -370,6 +384,7 @@ function onUserMediaSuccess(stream) {
   localVideo.style.opacity = 1;
   localVideo.src = url;
   localStream = stream;
+  // Caller creates PeerConnection.
   if (initiator) maybeStart();
 }
 </pre>
@@ -380,59 +395,69 @@ function onUserMediaSuccess(stream) {
 
 <pre class="prettyprint">
 function maybeStart() {
-  if (!started && localStream && channelReady) {
-    setStatus("Connecting...");
-    console.log("Creating PeerConnection.");
-    createPeerConnection();
-    console.log("Adding local stream.");
-    pc.addStream(localStream);
-    started = true;
+    if (!started && localStream && channelReady) {
+      setStatus("Connecting...");
+      console.log("Creating PeerConnection.");
+      createPeerConnection();
+      console.log("Adding local stream.");
+      pc.addStream(localStream);
+      started = true;
+      // Caller initiates offer to peer.
+      if (initiator)
+        doCall();
+    }
   }
-}
 </pre>
 
 <p>This function uses a handy construct when working with multiple asynchronous callbacks: <code>maybeStart()</code> may be called by any one of several functions, but the code in it is run only when <code>localStream</code> has been defined <em>and</em> <code>channelReady</code> has been set to true <em>and</em> communication hasn't already started. So&mdash;if a connection hasn't already been made, and a local stream is available, and a channel is ready for signalling, a connection is created and passed the local video stream. Once that happens, <code>started</code> is set to true, so a connection won't be started more than once.</p>
 
 <h3>PeerConnection</h3>
 
-<p><code>createPeerConnection()</code> is where the real action takes place&mdash;though most of the code is simply to handle different implementations of PeerConnection:</p>
+<p><code>createPeerConnection()</code>, called by <code>maybeStart()</code>, is where the real action begins:</p>
 
 <pre class="prettyprint">
 function createPeerConnection() {
-  try {
-    pc = new webkitDeprecatedPeerConnection("STUN stun.l.google.com:19302",
-      onSignalingMessage);
-    console.log("Created webkitDeprecatedPeerConnnection with config \"STUN stun.l.google.com:19302\".");
-  } catch (e) {
-    console.log("Failed to create webkitDeprecatedPeerConnection, exception: " + e.message);
     try {
-      pc = new webkitPeerConnection("STUN stun.l.google.com:19302", 
-        onSignalingMessage);
-      console.log("Created webkitPeerConnnection with config \"STUN stun.l.google.com:19302\".");
+      pc = new webkitPeerConnection00("STUN stun.l.google.com:19302", onIceCandidate);
+      console.log("Created webkitPeerConnnection00 with config \"STUN stun.l.google.com:19302\".");
     } catch (e) {
-      console.log("Failed to create webkitPeerConnection, exception: " + e.message);
+      console.log("Failed to create PeerConnection, exception: " + e.message);
       alert("Cannot create PeerConnection object; Is the 'PeerConnection' flag enabled in about:flags?");
       return;
     }
+
+    pc.onconnecting = onSessionConnecting;
+    pc.onopen = onSessionOpened;
+    pc.onaddstream = onRemoteStreamAdded;
+    pc.onremovestream = onRemoteStreamRemoved;
   }
-  pc.onconnecting = onSessionConnecting;
-  pc.onopen = onSessionOpened;
-  pc.onaddstream = onRemoteStreamAdded;
-  pc.onremovestream = onRemoteStreamRemoved;
-}
 </pre>
 
-<p>The underlying purpose is to set up a connection using a STUN server, and to set handlers for each of the PeerConnection events: when a signalling message is received, when a session is connecting or open, and when a remote stream is added or removed. In fact these handlers only log status messages, except for <code>onRemoteStreamAdded()</code>, which sets the source for the <code>remoteVideo</code> element:</p>
+<p>The underlying purpose is to set up a connection using a STUN server (see <a href="#stun" title="Explanation of what STUN servers do">above</a>) and to set handlers for each of the PeerConnection events: when a session is connecting or open, and when a remote stream is added or removed. In fact these handlers only log status messages&mdash;except for <code>onRemoteStreamAdded()</code>, which sets the source for the <code>remoteVideo</code> element:</p>
 
 <pre class="prettyprint">
 function onRemoteStreamAdded(event) {
-  console.log("Remote stream added.");
+console.log("Remote stream added.");
   var url = webkitURL.createObjectURL(event.stream);
   miniVideo.src = localVideo.src;
   remoteVideo.src = url;
   waitForRemoteVideo();  
 }
 </pre>
+
+<p>Once <code>createPeerConnection()</code> has been invoked in <code>maybeStart()</code>, a call is initiated:</p>
+
+<pre>
+function doCall() {
+  console.log("Send offer to peer");
+  var offer = pc.createOffer({audio:true, video:true});
+  pc.setLocalDescription(pc.SDP_OFFER, offer);
+  sendMessage({type: 'offer', sdp: offer.toSdp()});
+  pc.startIce();
+}
+</pre>
+
+<p>The offer creation process here is similar to the no-signalling example <a href="#toc-sans" title="PeerConnection sans signalling">above</a>, but in addition a message is sent to the remote peer.</p>
 
 <p>(Display of the initially-hidden <code>remoteVideo</code> element is handled by <code>waitForRemoteVideo()</code>.)</p>
 
@@ -567,6 +592,9 @@ function onSend() {
 	<li>Native APIs for PeerConnection also available</li>
 </ul>
 
-<p>For more information about support for APIs such as getUserMedia, see <a href="http://caniuse.com/stream" title="caniuse.com: getUserMedia/Stream support">caniuse.com</a>,</p>
+<p>For more information about support for APIs such as getUserMedia, see <a href="http://caniuse.com/stream" title="caniuse.com: getUserMedia/Stream support">caniuse.com</a>.</p>
+
+
+https://developers.google.com/talk/
 
 {% endblock %}
