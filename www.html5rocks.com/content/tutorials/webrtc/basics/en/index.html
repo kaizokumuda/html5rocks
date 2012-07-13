@@ -21,7 +21,7 @@ return !! (window.PeerConnection || window.webkitDeprecatedPeerConnection || win
 
 {% block content %}
 
-<h2 id="toc-disruptive">Disruptive technology</h2>
+<h2 id="toc-disruptive">Real-time communication without plugins</h2>
 
 <blockquote>WebRTC is a new front in the long war for an open and unencumbered web.<br />
 &mdash; <a href="http://hacks.mozilla.org/2012/03/video-mobile-and-the-open-web/" title="Brendan Eich blog post: Video, Mobile, and the Open Web">Brendan Eich</a>, inventor of JavaScript
@@ -305,9 +305,13 @@ pc2.startIce();
 	<li>A server to handle NAT traversal and other streaming and communication requirements.</li>
 </ul>
 
+<a name="stun"></a>
+<a name="ice"></a>
+
+
 <p>NAT traversal, peer-to-peer networking, and the requirements for building a server app for user discovery and signalling, are beyond the scope of this article. Suffice to say that the <a href="http://en.wikipedia.org/wiki/STUN" title="Wikipedia STUN article">STUN</a> protocol and its extension <a href="http://en.wikipedia.org/wiki/Traversal_Using_Relay_NAT" title="Wikipedia article about TURN">TURN</a> are used by the <a href="http://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment" title="Wikipedia article about ICE">ICE</a> framework to enable PeerConnection to cope with NAT traversal and various network vagaries.</p>
 
-<p>ICE is a framework for connecting peers. Initially, ICE tries various protocols to connect peers directly, with the lowest possible latency: first via UDP, then if that fails TCP, then turning to HTTPS. If direct connection fails (in particular, because of NAT traversal and firewalls) ICE uses an intermediary (relay) server such as a TURN server. <a name="stun"></a>STUN servers are used in this process to enable a peer to find out its public address and port. (Google has a couple of STUN severs, one of which is used in the apprtc.appspot.com example.) The expression 'finding candidates' refers to the process of finding network interfaces and ports.</p>
+<p>ICE is a framework for connecting peers. Initially, ICE tries various protocols to connect peers directly, with the lowest possible latency: first via UDP, then if that fails TCP, then turning to HTTPS. If direct connection fails (in particular, because of NAT traversal and firewalls) ICE uses an intermediary (relay) server such as a TURN server. STUN servers are used in this process to enable a peer to find out its public address and port. (Google has a couple of STUN severs, one of which is used in the apprtc.appspot.com example.) The expression 'finding candidates' refers to the process of finding network interfaces and ports.</p>
 
 <p>To find out more about how set up a server to deal with signalling and user discovery, take a look at the code repository for the <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a> demo, which is at <a href="http://code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/" title="Code for apprtc.appspot.com demo">code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/</a>. This uses the Google App Engine Channel API. For information about using a WebSocket server for signalling, check out Silvia Pfeiffer's <a href="http://blog.gingertech.net/2012/06/04/video-conferencing-in-html5-webrtc-via-web-sockets/" title="Silvia Pfeiffer blog post: WebRTC via WebSocket">WebSocket WebRTC app</a>.</p>
 
@@ -391,7 +395,7 @@ function onUserMediaSuccess(stream) {
 
 <p>This causes video from the local camera to be displayed in the <code>localVideo</code> element, by creating an <a href="http://www.html5rocks.com/tutorials/workers/basics/#toc-inlineworkers-bloburis" title="HTML5 Rocks: information about Blob URLs">object (Blob) URL</a> for the camera's data stream and then setting that URL as the <code>src</code> for the element. (<code>createObjectURL</code> is used here as a way to get a URI for an 'in memory' binary resource, i.e. a video data stream.) The data stream is also set as the value of <code>localStream</code>, which is subsequently made available to the remote user.</p>
 
-<p>At this point, <code>initiator</code> has been set to 1 (and it stays that way until the session is terminated) so <code>maybeStart()</code> is called:</p>
+<p>At this point, <code>initiator</code> has been set to 1 (and it stays that way until the caller's session has terminated) so <code>maybeStart()</code> is called:</p>
 
 <pre class="prettyprint">
 function maybeStart() {
@@ -452,14 +456,16 @@ function doCall() {
   console.log("Send offer to peer");
   var offer = pc.createOffer({audio:true, video:true});
   pc.setLocalDescription(pc.SDP_OFFER, offer);
-  sendMessage({type: 'offer', sdp: offer.toSdp()});
+</code></code>  sendMessage({type: 'offer', sdp: offer.toSdp()});
   pc.startIce();
 }
 </pre>
 
-<p>The offer creation process here is similar to the no-signalling example <a href="#toc-sans" title="PeerConnection sans signalling">above</a>, but in addition a message is sent to the remote peer.</p>
+<p>The offer creation process here is similar to the no-signalling example <a href="#toc-sans" title="PeerConnection sans signalling">above</a>, but in addition a message is sent to the remote peer, giving a serialised SessionDescription for the offer. <code>pc.startIce()</code> starts the connection process using the ICE framework (as described <a href="#ice" title="Explanation of ICE framework">above</a>).</p>
 
+<!-- 
 <p>(Display of the initially-hidden <code>remoteVideo</code> element is handled by <code>waitForRemoteVideo()</code>.)</p>
+ -->
 
 <h3>Signalling</h3>
 
