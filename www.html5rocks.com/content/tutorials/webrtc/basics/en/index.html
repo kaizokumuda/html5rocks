@@ -174,8 +174,6 @@ a=ssrc:2223794119 label:H4fjnMzxy3dPIgQ7HxuCTLb4wLLLeRHnFxh810
 
 <p>The offer SessionDescription is passed to the caller's browser via the PeerConnection <code>setLocalDescription()</code> method, and via signalling to the remote peer, whose own PeerConnection object invokes <code>setRemoteDescription()</code> with the offer. This architecture is called <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep-00" title="IETF JSEP draft proposal">JSEP</a>, JavaScript Session Establishment Protocol. (There's an excellent animation explaining the process of signalling and streaming in <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-peer-peer-conversational-video" title="Ericsson conversational video demo">Ericsson's demo video</a> for its first WebRTC implementation.) </p>
 
-<p>Just to reiterate: signalling messages are communicated via whatever mechanism the developer chooses: the signalling mechanism is not specified by WebRTC.</p>
-
 <p>Once the signalling process has completed successfully, data can be streamed directly, peer to peer, between the caller and callee. Streaming is the job of PeerConnection.</p>
 
 <h2>PeerConnection</h2>
@@ -329,7 +327,7 @@ pc2.startIce();
 
 <pre class="prettyprint">
 function initialize() {
-  console.log("Initializing; room=82903889.");
+  console.log("Initializing; room=85444496.");
   card = document.getElementById("card");
   localVideo = document.getElementById("localVideo");
   miniVideo = document.getElementById("miniVideo");
@@ -363,6 +361,7 @@ function openChannel() {
 <p>For signalling, this demo uses the Google App Engine <a href="http://code.google.com/appengine/docs/python/channel/overview.html" title="Channel API Overview (Python)" target="_blank">Channel API</a>, which enables messaging between JavaScript clients without polling. (WebRTC signalling is covered in more detail <a href="#toc-signalling" title="WebRTC signalling">above</a>).</p>
 
 <p>Establishing a channel in the example works like this:</p>
+
 <ol>
 	<li>Client A generates a unique ID.</li>
 	<li>Client A requests a Channel token from the App Engine app, passing its ID.</li>
@@ -372,12 +371,15 @@ function openChannel() {
 </ol>
 
 <p>Sending a message works like this:</p>
-<ul>
+
+<ol>
 	<li>Client B makes a POST request to the App Engine app with an update.</li>
 	<li>The App Engine app passes a request to the channel.</li>
 	<li>The channel carries a message to Client A.</li>
 	<li>Client A's onmessage callback is called.</li>
-</ul>
+</ol>
+
+<p>Just to reiterate: signalling messages are communicated via whatever mechanism the developer chooses: the signalling mechanism is not specified by WebRTC. The Channel API is used in this demo, but other methods (such as WebSocket) could be used instead.</p>
 
 <p>After the call to <code>openChannel()</code>, the <code>getUserMedia()</code> function called by <code>initialize()</code> checks if the browser supports the <code>getUserMedia</code> API. (Find out more about getUserMedia on <a href="http://www.html5rocks.com/en/tutorials/getusermedia/intro/" title="HMTL5 Rocks: Capturing Audio & Video in HTML5" target="_blank">HTML5 Rocks</a>.) If all is well, onUserMediaSuccess is called:
 
@@ -393,7 +395,7 @@ function onUserMediaSuccess(stream) {
 }
 </pre>
 
-<p>This causes video from the local camera to be displayed in the <code>localVideo</code> element, by creating an <a href="http://www.html5rocks.com/tutorials/workers/basics/#toc-inlineworkers-bloburis" title="HTML5 Rocks: information about Blob URLs">object (Blob) URL</a> for the camera's data stream and then setting that URL as the <code>src</code> for the element. (<code>createObjectURL</code> is used here as a way to get a URI for an 'in memory' binary resource, i.e. a video data stream.) The data stream is also set as the value of <code>localStream</code>, which is subsequently made available to the remote user.</p>
+<p>This causes video from the local camera to be displayed in the <code>localVideo</code> element, by creating an <a href="http://www.html5rocks.com/tutorials/workers/basics/#toc-inlineworkers-bloburis" title="HTML5 Rocks: information about Blob URLs">object (Blob) URL</a> for the camera's data stream and then setting that URL as the <code>src</code> for the element. (<code>createObjectURL</code> is used here as a way to get a URI for an 'in memory' binary resource, i.e. the LocalDataStream for the video.) The data stream is also set as the value of <code>localStream</code>, which is subsequently made available to the remote user.</p>
 
 <p>At this point, <code>initiator</code> has been set to 1 (and it stays that way until the caller's session has terminated) so <code>maybeStart()</code> is called:</p>
 
@@ -415,7 +417,7 @@ function maybeStart() {
 
 <p>This function uses a handy construct when working with multiple asynchronous callbacks: <code>maybeStart()</code> may be called by any one of several functions, but the code in it is run only when <code>localStream</code> has been defined <em>and</em> <code>channelReady</code> has been set to true <em>and</em> communication hasn't already started. So&mdash;if a connection hasn't already been made, and a local stream is available, and a channel is ready for signalling, a connection is created and passed the local video stream. Once that happens, <code>started</code> is set to true, so a connection won't be started more than once.</p>
 
-<h3>PeerConnection</h3>
+<h3 id="toc-peerconnection-caller">PeerConnection: making a call</h3>
 
 <p><code>createPeerConnection()</code>, called by <code>maybeStart()</code>, is where the real action begins:</p>
 
@@ -437,7 +439,7 @@ function createPeerConnection() {
   }
 </pre>
 
-<p>The underlying purpose is to set up a connection using a STUN server (see <a href="#stun" title="Explanation of what STUN servers do">above</a>) and to set handlers for each of the PeerConnection events: when a session is connecting or open, and when a remote stream is added or removed. In fact these handlers only log status messages&mdash;except for <code>onRemoteStreamAdded()</code>, which sets the source for the <code>remoteVideo</code> element:</p>
+<p>The underlying purpose is to set up a connection using a STUN server, with <code>onIceCandidate()</code> as the callback (see <a href="#stun" title="Explanation of what STUN servers do">above</a> for an explanation of ICE, STUN and 'candidate'). Handlers are then set for each of the PeerConnection events: when a session is connecting or open, and when a remote stream is added or removed. In fact, in this example these handlers only log status messages&mdash;except for <code>onRemoteStreamAdded()</code>, which sets the source for the <code>remoteVideo</code> element:</p>
 
 <pre class="prettyprint">
 function onRemoteStreamAdded(event) {
@@ -451,7 +453,7 @@ console.log("Remote stream added.");
 
 <p>Once <code>createPeerConnection()</code> has been invoked in <code>maybeStart()</code>, a call is initiated:</p>
 
-<pre>
+<pre class="prettyprint">
 function doCall() {
   console.log("Send offer to peer");
   var offer = pc.createOffer({audio:true, video:true});
@@ -461,59 +463,79 @@ function doCall() {
 }
 </pre>
 
-<p>The offer creation process here is similar to the no-signalling example <a href="#toc-sans" title="PeerConnection sans signalling">above</a>, but in addition a message is sent to the remote peer, giving a serialised SessionDescription for the offer. <code>pc.startIce()</code> starts the connection process using the ICE framework (as described <a href="#ice" title="Explanation of ICE framework">above</a>).</p>
+<p>The offer creation process here is similar to the no-signalling example <a href="#toc-sans" title="PeerConnection sans signalling">above</a> but, in addition, a message is sent to the remote peer, giving a serialised SessionDescription for the offer. <code>pc.startIce()</code> starts the connection process using the ICE framework (as described <a href="#ice" title="Explanation of ICE framework">above</a>).</p>
 
-<!-- 
-<p>(Display of the initially-hidden <code>remoteVideo</code> element is handled by <code>waitForRemoteVideo()</code>.)</p>
- -->
+<h3 id="toc-signalling-with-channel">Signalling with the Channel API</h3>
 
-<h3>Signalling</h3>
-
-<p>When the <code>PeerConnection</code> object is created, it's passed a handler for signalling messages, which in turn calls <code>sendMessage()</code> to make an XHR request:</p>
+<p>The <code>onIceCallback()</code> function invoked when the PeerConnection is successfully created in  <code>createPeerConnection()</code> sends information about a candidate that has been 'gathered':</p>
 
 <pre class="prettyprint">
-pc = new webkitPeerConnection("STUN stun.l.google.com:19302",
- onSignalingMessage);
-
-// ...
-
-function onSignalingMessage(message) {
-  sendMessage('/message', message);
+function onIceCandidate(candidate, moreToFollow) {
+  if (candidate) {
+    sendMessage({type: 'candidate', 
+      label: candidate.label, candidate: candidate.toSdp()});
+  }
+  if (!moreToFollow) {
+    console.log("End of candidates.");
+  }
 }
-
-// ...
-
-function sendMessage(path, message) {
-  console.log('C->S: ' + message);
-  path += '?r=82903889' + '&u=29967892';
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', path, true);
-  xhr.send(message);
-}
-
 </pre>
 
-<p>For signalling, this demo uses the Google App Engine Channel API. Messages from the API are handled like this:</p>
+<p>Messaging is done by <code>sendMessage()</code> with an XHR request:</p>
 
 <pre class="prettyprint">
-function onChannelMessage(message) {
-  console.log('S->C: ' + message.data);
-  if (message.data != 'BYE') {
-    if (message.data.indexOf("\"ERROR\"", 0) == -1) {
-      if (!initiator && !started) maybeStart();
-      <strong>pc.processSignalingMessage(message.data)</strong>;
-    }
-  } else {
+function sendMessage(message) {
+  var msgString = JSON.stringify(message);
+  console.log('C->S: ' + msgString);
+  path = '/message?r=85444496' + '&u=34898650';
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', path, true);
+  xhr.send(msgString);
+}
+</pre>
+
+<p>For signalling, this demo uses the Google App Engine Channel API. Messages from the API (i.e. from the App Engine server) are handled by <code>processSignalingMessage()</code>:</p>
+
+<pre class="prettyprint">
+function processSignalingMessage(message) {
+  var msg = JSON.parse(message);
+  if (msg.type === 'offer') {
+    // Callee creates PeerConnection
+    if (!initiator && !started)
+      maybeStart();
+    pc.setRemoteDescription(pc.SDP_OFFER, new SessionDescription(msg.sdp));
+    doAnswer();
+  } else if (msg.type === 'answer' && started) {
+    pc.setRemoteDescription(pc.SDP_ANSWER, new SessionDescription(msg.sdp));
+  } else if (msg.type === 'candidate' && started) {
+    var candidate = new IceCandidate(msg.label, msg.candidate);
+    pc.processIceMessage(candidate);
+  } else if (msg.type === 'bye' && started) {
     onRemoteHangup();
   }
 }
 </pre>
 
-<p>If the message isn't a signal to hang up ('BYE') or an error (i.e. contains the string 'ERROR'), the function calls the PeerConnection <code>processSignalingMessage()</code> method.</p>
+<p>If the message is an answer from a peer (a response to an offer) PeerConnection sets the remote SessionDescription and communication can begin. If the message is an offer (i.e. a message from the callee) PeerConnection sets the remote SessionDescription, sends an answer to the callee, and starts connection with the PeerConnection <code>startIce()</code> method:</p>
+
+<pre class="prettyprint">
+function doAnswer() {
+  console.log("Send answer to peer");
+  var offer = pc.remoteDescription;
+  var answer = pc.createAnswer(offer.toSdp(), {audio:true,video:true});
+  pc.setLocalDescription(pc.SDP_ANSWER, answer);
+  sendMessage({type: 'answer', sdp: answer.toSdp()});
+  pc.startIce();
+}
+</pre>
+
+<p>And that's it! The caller and callee have discovered each other and exchanged information about their capabilities, a call session is initiated, and real-time data communication can begin.</p>
 
 <h2 id="toc-datachannel">DataChannel</h2>
 
-<p>The DataChannel API is planned to ship in Google Chrome in late 2012. The API will enable peer-to-peer exchange of arbitrary data with low latency and high throughput.</p>
+<p>As well as audio and video, the WebRTC project has considered real-time communication for other types of data.</p>
+
+<p>The DataChannel API will enable peer-to-peer exchange of arbitrary data with low latency and high throughput.</p>
 
 <p>There are many potential use cases for the API, including:</p>
 <ul>
@@ -552,11 +574,14 @@ function onSend() {
   dc1.send(sendInput.value); 
 }
 </pre>
-<!-- conclusion -->
+
+<p>For more information about DataChannel, take a look at the IETF's <a href="http://tools.ietf.org/html/draft-jesup-rtcweb-data-protocol-00" title="IETF Data Channel draft specification">draft protocol spec</a>.</p>
 
 <h2 id="toc-conclusion">In conclusion</h2>
 
-<p>The APIs and standards of WebRTC can democratise and decentralise tools for content creation and communication&mdash;for telephony, gaming, video production, music making, news gathering and many other applications. Technology doesn't get much more disruptive than this.</p>
+<p>The APIs and standards of WebRTC can democratise and decentralise tools for content creation and communication&mdash;for telephony, gaming, video production, music making, news gathering and many other applications.</p>
+
+<p>Technology doesn't get much more disruptive than this.</p>
 
 <p>We look forward to seeing what inventive developers make of WebRTC as it becomes widely implemented over the next few months. As blogger Phil Edholm <a href="http://www.nojitter.com/post/232901042/webrtc-is-it-a-game-changer" title="nojitter blog post: WebRTC: Is it a Game Changer?">put it</a>, 'Potentially, WebRTC and HTML5 could enable the same transformation for real-time communications that the original browser did for information.'</p>
 
