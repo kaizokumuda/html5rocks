@@ -174,6 +174,11 @@ a=ssrc:2223794119 label:H4fjnMzxy3dPIgQ7HxuCTLb4wLLLeRHnFxh810
 
 <p>The offer SessionDescription is passed to the caller's browser via the PeerConnection <code>setLocalDescription()</code> method, and via signalling to the remote peer, whose own PeerConnection object invokes <code>setRemoteDescription()</code> with the offer. This architecture is called <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep-00" title="IETF JSEP draft proposal">JSEP</a>, JavaScript Session Establishment Protocol. (There's an excellent animation explaining the process of signalling and streaming in <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-peer-peer-conversational-video" title="Ericsson conversational video demo">Ericsson's demo video</a> for its first WebRTC implementation.) </p>
 
+<figure>
+  <img src="jsep.png" alt="JSEP architecture diagram" />
+  <figcaption>JSEP architecture</figcaption>
+</figure>
+
 <p>Once the signalling process has completed successfully, data can be streamed directly, peer to peer, between the caller and callee. Streaming is the job of PeerConnection.</p>
 
 <h2>PeerConnection</h2>
@@ -309,6 +314,11 @@ pc2.startIce();
 
 <p>NAT traversal, peer-to-peer networking, and the requirements for building a server app for user discovery and signalling, are beyond the scope of this article. Suffice to say that the <a href="http://en.wikipedia.org/wiki/STUN" title="Wikipedia STUN article">STUN</a> protocol and its extension <a href="http://en.wikipedia.org/wiki/Traversal_Using_Relay_NAT" title="Wikipedia article about TURN">TURN</a> are used by the <a href="http://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment" title="Wikipedia article about ICE">ICE</a> framework to enable PeerConnection to cope with NAT traversal and various network vagaries.</p>
 
+<figure>
+  <img src="stun.png" alt="NAT traversal using ICE with STUN and a relay server" />
+  <figcaption>NAT traversal using ICE with STUN and a relay server</figcaption>
+</figure>
+
 <p>ICE is a framework for connecting peers. Initially, ICE tries various protocols to connect peers directly, with the lowest possible latency: first via UDP, then if that fails TCP, then turning to HTTPS. If direct connection fails (in particular, because of NAT traversal and firewalls) ICE uses an intermediary (relay) server such as a TURN server. STUN servers are used in this process to enable a peer to find out its public address and port. (Google has a couple of STUN severs, one of which is used in the apprtc.appspot.com example.) The expression 'finding candidates' refers to the process of finding network interfaces and ports.</p>
 
 <p>To find out more about how set up a server to deal with signalling and user discovery, take a look at the code repository for the <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a> demo, which is at <a href="http://code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/" title="Code for apprtc.appspot.com demo">code.google.com/p/webrtc-samples/source/browse/trunk/apprtc/</a>. This uses the Google App Engine Channel API. For information about using a WebSocket server for signalling, check out Silvia Pfeiffer's <a href="http://blog.gingertech.net/2012/06/04/video-conferencing-in-html5-webrtc-via-web-sockets/" title="Silvia Pfeiffer blog post: WebRTC via WebSocket">WebSocket WebRTC app</a>.</p>
@@ -360,7 +370,12 @@ function openChannel() {
 
 <p>For signalling, this demo uses the Google App Engine <a href="http://code.google.com/appengine/docs/python/channel/overview.html" title="Channel API Overview (Python)" target="_blank">Channel API</a>, which enables messaging between JavaScript clients without polling. (WebRTC signalling is covered in more detail <a href="#toc-signalling" title="WebRTC signalling">above</a>).</p>
 
-<p>Establishing a channel in the example works like this:</p>
+<figure>
+  <img src="apprtcArchitecture.png" alt="Architecture of the apprtc video chat application" />
+  <figcaption>Architecture of the apprtc video chat application</figcaption>
+</figure>
+
+<p>Establishing a channel with the Channel API works like this:</p>
 
 <ol>
 	<li>Client A generates a unique ID.</li>
@@ -370,6 +385,11 @@ function openChannel() {
 	<li>Client A opens a socket and listens on the channel set up on the server.</li>
 </ol>
 
+<figure>
+  <img src="channelEstablishing.png" alt="The Google Channel API: establishing a channel" />
+  <figcaption>The Google Channel API: establishing a channel</figcaption>
+</figure>
+
 <p>Sending a message works like this:</p>
 
 <ol>
@@ -378,6 +398,11 @@ function openChannel() {
 	<li>The channel carries a message to Client A.</li>
 	<li>Client A's onmessage callback is called.</li>
 </ol>
+
+<figure>
+  <img src="channelSending.png" alt="The Google Channel API: sending a message" />
+  <figcaption>The Google Channel API: sending a message</figcaption>
+</figure>
 
 <p>Just to reiterate: signalling messages are communicated via whatever mechanism the developer chooses: the signalling mechanism is not specified by WebRTC. The Channel API is used in this demo, but other methods (such as WebSocket) could be used instead.</p>
 
@@ -591,7 +616,7 @@ function onSend() {
   <li><a href="https://www.youtube.com/watch?v=E8C8ouiXHHk" title="Video of Justin Uberti WebRTC session at Google I/O, 27 June 2012">Video of Justin Uberti's WebRTC session at Google I/O, 27 June 2012</a></li>
   <li><a href="http://www.webrtc.org/" title="webrtc.org">webrtc.org</a>: the home for all things WebRTC&mdash;demos, documentation and discussion.</li>
   <li><a href="http://www.webrtc.org/running-the-demos" title="webrtc.org: running demos in Chrome">webrtc.org demo page</a>: links to demos, and instruction on how to configure Google Chrome Canary for WebRTC.</li>
-  <li>Google Developers <a href="https://developers.google.com/talk/libjingle/important_concepts#connections" title="Google Developers: Google Talk for Developers">Google Talk documentation</a>, which gives more information about NAT traversal, STUN servers, relay servers and candidate gathering.</li>
+  <li>Google Developers <a href="https://developers.google.com/talk/libjingle/important_concepts#connections" title="Google Developers: Google Talk for Developers">Google Talk documentation</a>, which gives more information about NAT traversal, STUN, relay servers and candidate gathering.</li>
   <li><a href="https://groups.google.com/forum/?fromgroups#!forum/discuss-webrtc" title="discuss-webrt Google Group">discuss-webrtc</a>: Google Group for WebRTC discussion.</li>
   <li><a href="http://dev.w3.org/2011/webrtc/editor/webrtc.html" title="W3C Editor's Draft document">The WebRTC W3C Editor's Draft</a>.</li>
   <li><a href="http://tools.ietf.org/wg/rtcweb/charters" title="IETF Working Group Charter">IETF Working Group Charter</a>.</li>
