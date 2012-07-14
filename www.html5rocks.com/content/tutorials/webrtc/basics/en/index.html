@@ -588,9 +588,10 @@ function onSend() {
 <h2 id="toc-more">Learn more</h2>
 
 <ul>
-<li><a href="https://www.youtube.com/watch?v=E8C8ouiXHHk" title="Video of Justin Uberti WebRTC session at Google I/O, 27 June 2012">Video of Justin Uberti's WebRTC session at Google I/O, 27 June 2012</a></li>
+  <li><a href="https://www.youtube.com/watch?v=E8C8ouiXHHk" title="Video of Justin Uberti WebRTC session at Google I/O, 27 June 2012">Video of Justin Uberti's WebRTC session at Google I/O, 27 June 2012</a></li>
   <li><a href="http://www.webrtc.org/" title="webrtc.org">webrtc.org</a>: the home for all things WebRTC&mdash;demos, documentation and discussion.</li>
   <li><a href="http://www.webrtc.org/running-the-demos" title="webrtc.org: running demos in Chrome">webrtc.org demo page</a>: links to demos, and instruction on how to configure Google Chrome Canary for WebRTC.</li>
+  <li>Google Developers <a href="https://developers.google.com/talk/libjingle/important_concepts#connections" title="Google Developers: Google Talk for Developers">Google Talk documentation</a>, which gives more information about NAT traversal, STUN servers, relay servers and candidate gathering.</li>
   <li><a href="https://groups.google.com/forum/?fromgroups#!forum/discuss-webrtc" title="discuss-webrt Google Group">discuss-webrtc</a>: Google Group for WebRTC discussion.</li>
   <li><a href="http://dev.w3.org/2011/webrtc/editor/webrtc.html" title="W3C Editor's Draft document">The WebRTC W3C Editor's Draft</a>.</li>
   <li><a href="http://tools.ietf.org/wg/rtcweb/charters" title="IETF Working Group Charter">IETF Working Group Charter</a>.</li>
@@ -603,19 +604,19 @@ function onSend() {
 
 <h3>MediaStream and getUserMedia</h3>
 <ul>
-	<li>Chrome 21</li>
+	<li>Chrome 18.0.1008+ (enable MediaStream on about:flags)</li>
 	<li>Opera, Opera Mobile 12</li>
 	<li>Firefox (Q4 2012)</li>
 </ul>
 
 <h3>PeerConnection</h3>
 <ul>
-	<li>Chrome 20+ (requires about:flags tweak to enable)</li>
+	<li>Chrome 20+ (enable on about:flags)</li>
 	<li>Targeting Chrome 22 for general availability</li>
 	<li>Firefox (Q4 2012)</li>
 </ul>
 
-<h3>DataChannels</h3>
+<h3>DataChannel</h3>
 <ul>
 	<li>Chrome + Firefox (Q4 2012)</li>
 	<li>Internet Explorer support via ChromeFrame</li>
