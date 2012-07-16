@@ -184,4 +184,4 @@ class LiveForm(djangoforms.ModelForm):
   hangout_url = forms.CharField(label='Hangout URL',
       help_text='The YouTube video ID to embed. For example: http://www.youtube.com/embed/<b>eRZ4pO0gVWw</b><br><b>NOTE: this will put a banner across the site when set.</b>')
   moderator_topic_id = forms.CharField(label='Moderator topic ID',
-      help_text='This is the last part of the "t" param in the moderator URL. For example: google.com/moderator/#15/e=200a87&t=200a87.<b>41</b><br>If not value is specified, past topics will show')
+      help_text='This is the last part of the "t" param in the moderator URL. For example: google.com/moderator/#15/e=2015a4&t=2015a4.<b>41</b><br>If not value is specified, past topics will show')
