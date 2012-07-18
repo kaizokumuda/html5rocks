@@ -53,7 +53,7 @@ tags:
 title: "Typed Arrays: Binary Data in the Browser"
 url: /tutorials/webgl/typed_arrays/
 author_id: ilmari
-publication_date: 2012-07-07
+publication_date: 2012-07-20
 description: "Overview of Typed Arrays APIs and libraries."
 browser_support:
 - chrome
