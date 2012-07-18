@@ -27,13 +27,13 @@ return !! (window.PeerConnection || window.webkitDeprecatedPeerConnection || win
 &mdash; <a href="http://hacks.mozilla.org/2012/03/video-mobile-and-the-open-web/" title="Brendan Eich blog post: Video, Mobile, and the Open Web">Brendan Eich</a>, inventor of JavaScript
 </blockquote>
 
-<p>Imagine a world where your phone, TV and computer could all communicate on a common platform. Imagine it was easy to build text chat or video and voice calling into your web application. That's the vision of WebRTC.</p>
+<p>Imagine a world where your phone, TV and computer could all communicate on a common platform. Imagine it was easy to add video chat to your web application. That's the vision of WebRTC.</p>
 
 <p>WebRTC implements open standards for real-time, plugin-free video, audio and data communication. The need is real:
   <ul>
-    <li>A lot of web services already use Real-time Communication (RTC), but with plugins. These includes Skype, Facebook (which uses Skype) and Google Hangouts (which use the Google Talk plugin).</li>
+    <li>A lot of web services already use Real-time Communication (RTC), but need downloads, native apps or plugins. These includes Skype, Facebook (which uses Skype) and Google Hangouts (which use the Google Talk plugin).</li>
     <li>For end users, plugin download, installation and update can be complex, error prone and annoying.</li>
-    <li>For developers, plugins can be difficult to deploy, debug, troubleshoot, test and maintain. It can be hard to persuade people to install plugins in the first place!</li>
+    <li>For developers, plugins can be difficult to deploy, debug, troubleshoot, test and maintain&mdash;and may require licensing and integration of complex, expensive technology. It can be hard to persuade people to install plugins in the first place!</li>
   </ul>
 </p>
 
@@ -47,21 +47,19 @@ return !! (window.PeerConnection || window.webkitDeprecatedPeerConnection || win
  
  <p>A good place to start is the simple video chat application at <a href="http://apprtc.appspot.com" title="Simple WebRTC demo" target="_blank">apprtc.appspot.com</a>. Open the page in Chrome, with PeerConnection enabled on the chrome://flags page, then open the URL again (with query string added) in a new window. There is a walkthrough of the code <a href="#toc-simple" title="Code walkthrough of apprtc.appspot.com">later in this article</a>.</p>
  
-<h2 id="toc-tldr">TL;DR?</h2>
+<h2 id="toc-tldr">Quick start</h2>
 
 <p>Haven't got time to read this article, or just want code?</p>
 
-<ul>
-  <li>If you haven't used getUserMedia, view the source for <a href="https://plus.sandbox.google.com/118075919496626375791/posts" title="Eric Bidelman's Google+ page">Eric Bidelman</a>'s <a href="http://html5-demos.appspot.com/static/getusermedia/photobooth.html" title="Photobooth demo">photobooth demo</a>.</li>
+<ol>
+  <li>If you haven't used getUserMedia, take a look at the <a href="http://www.html5rocks.com/en/tutorials/getusermedia/intro/" title="HMTL5 Rocks: Capturing Audio & Video in HTML5" target="_blank">HTML5 Rocks article</a> on the subject, and view the source for <a href="https://plus.sandbox.google.com/118075919496626375791/posts" title="Eric Bidelman's Google+ page">Eric Bidelman</a>'s <a href="http://html5-demos.appspot.com/static/getusermedia/photobooth.html" title="Photobooth demo">photobooth demo</a>.</li>
   <li>Get to grips with the PeerConnection API by reading through the demo at <a href="https://webrtc-demos.appspot.com/html/pc1.html" title="WebRTC demo without signalling">webrtc-demos.appspot.com</a>, which implements WebRTC on a single web page.</li>
 	<li>Learn more about how WebRTC uses servers for signalling, NAT traversal and data communication, by reading through the code and the console logs from the video chat demo at <a href="http://apprtc.appspot.com" title="Simple WebRTC video chat demo">apprtc.appspot.com</a>.</li>
-</ul>
-
-
+</ol>
 
 <h2 id="toc-history">A very short history of WebRTC</h2>
 
-<p>For many years, RTC tools were expensive and complex&mdash;out of the reach of individuals and smaller companies. </p>
+<p>For many years, RTC components were expensive, complex and needed to be licensed, putting RTC out of the reach of individuals and smaller companies.</p>
 
 <p>Gmail video chat became popular in 2008, and in 2011 Google introduced Hangouts, which use the Google Talk service (as does Gmail). Google bought GIPS, a company which had developed many of the components required for RTC, such as codecs and echo cancellation techniques. Google open sourced the technologies developed by GIPS and engaged with relevant standards bodies, the IETF and W3C, to ensure industry consensus. In May 2011, Ericsson built <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-peer-peer-conversational-video" title="Beyond HTML5: peer to peer conversational video">the first implementation of WebRTC</a>.</p>
 
@@ -72,8 +70,6 @@ return !! (window.PeerConnection || window.webkitDeprecatedPeerConnection || win
 <p>WebRTC has been available in the stable build of Google Chrome since version 20. The getUserMedia API is 'flagless' in Chrome from version 21: you don't have to enable MediaStream on the chrome://flags page.</p>
 
 <p>Opera 12 shipped with getUserMedia; further WebRTC implementation is planned for Opera this year. Firefox has WebRTC efforts <a href="http://hacks.mozilla.org/2012/04/webrtc-efforts-underway-at-mozilla/" title="Firefox roadmap 2012">underway</a>, and has demonstrated a prototype version of PeerConnection. Full getUserMedia support <a href="http://mozillamediagoddess.org/2012/06/25/the-first-part-of-webrtc-has-landed/" title="mozillamediagoddess blog post">is planned</a> for Firefox 17 on desktop and Android. WebRTC functionality is available in Internet Explorer <a href="https://groups.google.com/forum/#!topic/discuss-webrtc/tKoh1wrI8ig" title="How to enable WebRTC functionality in Internet Explorer via Chrome Frame">via Chrome Frame</a>, and Skype (acquired by Microsoft in 2011) is reputedly <a href="http://gigaom.com/2012/06/26/skype-webrtc-web-client/" title="GigaOM blog post about Skype and WebRTC">planning to use WebRTC</a>. Native implementations with WebRTC include <a href="https://labs.ericsson.com/developer-community/blog/beyond-html5-conversational-voice-and-video-implemented-webkit-gtk" title="Ericsson article about WebKitGTK+">WebKitGTK+</a>.</p>
-
-<p>Mobile WebRTC support is planned for later this year.</p>
 
 <p>As well as browser vendors, WebRTC has strong support from Cisco, Ericsson and other companies such as Voxeo, who recently announced the <a href="http://phono.com/webrtc" title="Phono SDK">Phono</a> jQuery plugin for building WebRTC-enabled web apps with phone functionality and messaging.</p>
 
@@ -125,7 +121,7 @@ navigator.webkitGetUserMedia({video:true}, function(localMediaStream) {
 navigator.getUserMedia({video:true}, function(localMediaStream) { 
   var video = document.createElement("video");
   video.autoplay = true;
-  video.src = localMediaStream; // no need to create Blob URL
+  video.src = window.URL.createObjectURL(stream); // this will also work in Opera
   document.body.parentNode.replaceChild(video, document.body); 
 }, function(error) {
   console.log(error);
