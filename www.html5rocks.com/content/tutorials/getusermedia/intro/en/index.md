@@ -112,7 +112,9 @@ It provides the means to access the user's local camera/microphone stream.
 
 **Support:**
 
-WebRTC can be implemented in Chrome 18.0.1008+ and can be enabled in `about:flags`.
+WebRTC is implemented in Chrome 18.0.1008+ and can be enabled in `about:flags`.
+In Chrome 21, this feature will be on by default and will not require a flag.
+WebRTC is also supported by default in Opera 12 and nightly builds of Firefox (currently 17).
 
 <h2 id="toc-gettingstarted">Getting started</h2>
 
@@ -121,23 +123,22 @@ Camera access is now a call away, not an install away. It's baked directly into 
 
 <h3 id="toc-enabling">Enabling</h3>
 
-The `getUserMedia()` API is still very new, and only Google and Opera
-have developer builds that include it. In Chrome 18+, the API can be enabled by
-visiting `about:flags`.
+The `getUserMedia()` API is still very new. In Chrome < 21, you need to enable
+the feature by visiting `about:flags`. If you're using Chrome 21, you can skip this section.
 
 <figure>
 <img src="aboutflags.png">
 <figcaption>Enabling the <code>getUserMedia()</code> in Chrome's <code>about:flags</code> page.</figcaption>
 </figure>
 
-For Opera, download one of their experimental [Android and desktop builds](http://dev.opera.com/articles/view/labs-more-fun-using-the-web-with-getusermedia-and-native-pages/).
+Opera and Firefox do not need a flag. The feature is enabled by default.
 
 <h3 id="toc-featuredecting">Feature detection</h3>
 
 Feature detecting is a simple check for the existence of `navigator.getUserMedia`:
 
     function hasGetUserMedia() {
-      // Note: Opera builds are unprefixed.
+      // Note: Opera is unprefixed.
       return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
                 navigator.mozGetUserMedia || navigator.msGetUserMedia);
     }
@@ -192,69 +193,28 @@ not work: <a href="http://crbug.com/112367">crbug.com/112367</a>. I couldn't
 get <code>&lt;audio&gt;</code> working in Opera either.
 </p>
 
-Both Opera and Chrome implement different versions of [the specification](getusermedia-spec).
-This makes practical usage a little more "challenging" than it eventually will be.
-
-**In Chrome:**
-
-This snippet works in Chrome 18 (enabled in `about:flags`):
-
-    navigator.webkitGetUserMedia('audio, video', function(localMediaStream) {
-      var video = document.querySelector('video');
-      video.src = window.webkitURL.createObjectURL(localMediaStream);
-    }, onFailSoHard);
-
-This snippet works in Chrome 20+ (enabled in `about:flags`):
-
-    navigator.webkitGetUserMedia({video: true, audio: true}, function(localMediaStream) {
-      var video = document.querySelector('video');
-      video.src = window.webkitURL.createObjectURL(localMediaStream);
-    }, onFailSoHard);
-
-**In Opera:**
-
-In Opera developer builds, things are a bit different:
-
-    navigator.getUserMedia({audio: true, video: true}, function(localMediaStream) {
-      video.src = localMediaStream;
-    }, onFailSoHard);
-
-The key differences are:
-
-- `getUserMedia()` is unprefixed.
-- `video.src` is set directly to the `LocalMediaStream` object instead of a Blob URL.
-I'm told Opera will eventually update this to require a Blob URL.
-
-**In Both:**
-
 If you want something that works cross-browser, try this:
 
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+    window.URL = window.URL || window.webkitURL;
+    navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                              navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
     var video = document.querySelector('video');
 
     if (navigator.getUserMedia) {
       navigator.getUserMedia({audio: true, video: true}, function(stream) {
-        if (navigator.webkitGetUserMedia) {
-          video.src = window.webkitURL.createObjectURL(stream);
-        } else {
-          video.src = stream; // Opera
-        }
+        video.src = window.URL.createObjectURL(stream);
       }, onFailSoHard);
     } else {
       video.src = 'somevideo.webm'; // fallback.
     }
 
-Be sure to check out [Mike Taylor](http://twitter.com/miketaylr)
-and [Mike Robinson](http://twitter.com/akamike)'s [gUM Shield](https://gist.github.com/f2ac64ed7fc467ccdfe3).
-It does a great job of "normalizing" the inconsistencies between browser implementations.
-
 <h3 id="toc-security">Security</h3>
 
 Some browsers throw up an infobar upon calling `getUserMedia()`,
 which gives users the option to grant or deny access to their camera/mic.
-The spec unfortunately is very quiet when it comes to security. At this point, 
-only Chrome implements a permission dialog.
+The spec unfortunately is very quiet when it comes to security. For example, here
+is Chrome's permission dialog:
 
 <figure>
 <img src="permission.png" alt="Permission dialog in Chrome" title="Permission dialog in Chrome">
