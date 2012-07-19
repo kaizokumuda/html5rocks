@@ -16,6 +16,11 @@ do
    
    git checkout -b $versionStr
 
+   if [ $? -ne 0 ]
+   then
+     git checkout $versionStr
+   fi
+
    # Change app.yaml version to current date timestamp.
    fl=../app.yaml
    mv $fl $fl.old
