@@ -4,9 +4,9 @@
 rm index.html
 # Process some stuff.
 cat header.html >> index.html
-markdown2 index.md >> index.html
+markdown-2.7 index.md >> index.html
 cat footer.html >> index.html
 # Pretty print everything.
-sed -ie 's/<pre>/<pre class="prettyprint">/' index.html
-# Remove the .htmle file
-rm index.htmle
+sed -i -e 's/<pre>/<pre class="prettyprint">/g' index.html
+
+rm index.html-e
