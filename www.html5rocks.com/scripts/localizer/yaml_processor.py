@@ -29,7 +29,7 @@ class YamlProcessorException(Exception):
 class YamlProcessor(object):
   """Extracts localizable text from a YAML file.
 
-  HTML5Rocks contains a `tutorials.yaml` file that contains metadata for the
+  HTML5Rocks contains a `database/tutorials.yaml` file that contains metadata for the
   site's articles. The titles and descriptions in this file need to be pulled
   out for localization when `make messages` is run.
   """

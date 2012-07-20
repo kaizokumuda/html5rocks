@@ -27,7 +27,7 @@ so that it's picked up by the message file parser.
 
 Usage:
   l7r.py --generate
-  l7r.py --generate --yaml=tutorials.yaml
+  l7r.py --generate --yaml=database/tutorials.yaml
   l7r.py --import
 """
 

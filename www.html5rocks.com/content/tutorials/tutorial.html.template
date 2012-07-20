@@ -1,6 +1,6 @@
 <!--
-1. Add your author info to profiles.yaml.
-2. Add your tutorial/article metata info to tutorials.yaml.
+1. Add your author info to database/profiles.yaml.
+2. Add your tutorial/article metata info to database/tutorials.yaml.
 3. Update the {% block iscompatible %} below with your feature detection check.
 -->
 

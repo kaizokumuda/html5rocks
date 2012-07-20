@@ -531,19 +531,19 @@ class DBHandler(ContentHandler):
   def _AddTestResources(self):
     #memcache.delete('tutorials')
     memcache.flush_all()
-    self._ImportBackupResources('/tutorials.yaml')
+    self._ImportBackupResources('/database/tutorials.yaml')
 
   def _AddTestPlaygroundSamples(self):
     memcache.flush_all()
-    self._ImportBackupResources('/playground.yaml')
+    self._ImportBackupResources('/database/playground.yaml')
 
   def _AddTestStudioSamples(self):
     memcache.flush_all()
-    self._ImportBackupResources('/studio.yaml')
+    self._ImportBackupResources('/database/studio.yaml')
 
   def _AddTestAuthors(self):
     memcache.flush_all()
-    f = file(os.path.dirname(__file__) + '/profiles.yaml', 'r')
+    f = file(os.path.dirname(__file__) + '/database/profiles.yaml', 'r')
     for profile in yaml.load_all(f):
       author = models.Author(
           key_name=unicode(profile['id']),
