@@ -26,48 +26,49 @@
       });
     });*/
 
-    function hideScrollToTechnologyArrow() {
-      $('#scroll-technology').css('position', 'relative').animate({
-        top: -200,
-        opacity: 0,
-        height: 0
-      }, 600);
-    }
+    // function hideScrollToTechnologyArrow() {
+    //   $('#scroll-technology').css('position', 'relative').animate({
+    //     top: -200,
+    //     opacity: 0,
+    //     height: 0
+    //   }, 600);
+    // }
 
-    $('#scroll-technology').click( function() {
-      $.scrollTo('#intro', 600, {margin: true, offset: -25});
-      hideScrollToTechnologyArrow();
-      $('body').addClass('scrolled');
-    });
+    // $('#scroll-technology').click( function() {
+    //   $.scrollTo('#intro', 600, {margin: true, offset: -25});
+    //   //hideScrollToTechnologyArrow();
+    //   $('body').addClass('scrolled');
+    // });
 
-    $('#scroll-authors').click( function() {
-      $.scrollTo('#authors', 600, {margin: true, offset: -25});
-    });
+    // $('#scroll-authors').click( function() {
+    //   $.scrollTo('#authors', 600, {margin: true, offset: -25});
+    // });
 
     var top = $('html, body').offset().top;
+    var waterMark = document.querySelector('.watermark');
 
     $(window).scroll(function(event) {
       // Get the position of the vertical scroll.
       var y = $(this).scrollTop();
 
       if (y > top) {
-        document.querySelector('.watermark').classList.add('fadeIn');
+        waterMark.classList.add('fadeIn');
 
         if (!$('body').hasClass('scrolled')) {
-          hideScrollToTechnologyArrow();
+          //hideScrollToTechnologyArrow();
           $('body').addClass('scrolled');
         }
       } else {
-        document.querySelector('.watermark').classList.remove('fadeIn');
+        waterMark.classList.remove('fadeIn');
 
         $('body').removeClass('scrolled');
 
-        // Reappear the 'Scroll to Technology' arrow.
-        $('#scroll-technology').css('position', 'relative').animate({
-          top: 0,
-          opacity: 1,
-          height: 100
-        }, 600);
+        // // Reappear the 'Scroll to Technology' arrow.
+        // $('#scroll-technology').css('position', 'relative').animate({
+        //   top: 0,
+        //   opacity: 1,
+        //   height: 100
+        // }, 600);
       }
     });
   });
@@ -175,7 +176,9 @@
   </div>
 </article>
 
+<!--
 <a id="scroll-technology" class="nav arrow_down">{% trans "Or get straight to the tech!" %}</a>
+-->
 
 <article id="technology" class="clearfix sectioned">
   <section id="classes" class="pattern-bg">
@@ -247,6 +250,7 @@
   </div>
 </article>
 
+<!--
 {% if not is_mobile %}
 <a id="scroll-authors" class="nav arrow_down">{% trans "Contributors" %}</a>
 
@@ -297,6 +301,7 @@
   </div>
 </article>
 {% endif %}
+-->
 
 <script>
 {% if not is_mobile %}

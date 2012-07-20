@@ -266,6 +266,8 @@ body
   /*-o-background-size: 3px 3px; Opera doesn't implement this?*/
   /*-ms-background-size: 3px 3px;*/
   /*background-size: 3px 3px; Don't use b/c of FF*/
+
+  border-radius: 5px;
 }
 
 .pattern-bg-lighter,
@@ -314,6 +316,8 @@ article.sectioned > section:not(#classes) {
   -ms-box-shadow: 1px 1px 10px #ccc;
   -o-box-shadow: 1px 1px 10px #ccc;
   box-shadow: 1px 1px 10px #ccc;
+
+  border-radius: 5px;
 }
 
 body[data-href='home'],
@@ -1461,6 +1465,10 @@ body[data-href='home'] #start article
 {
   margin: 0;
   padding: .5em 2em;
+}
+
+body[data-href='home'] #intro {
+  margin-bottom: 0;
 }
 
 body[data-href='home'] #logo,
@@ -3389,8 +3397,6 @@ section.disqus
     position: absolute;
     top: 0;
     left: -340px;
-    -webkit-border-radius: 0;
-    border-radius: 0;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     -ms-box-shadow: none;

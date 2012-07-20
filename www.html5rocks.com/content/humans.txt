@@ -1,7 +1,7 @@
 /* TEAM */
 
 Written by a cast of millions ({{profile_amount}} to be precise).
-And maybe you too - see http://code.google.com/p/html5rocks/wiki/ContributorsGuide
+Maybe you too? See http://code.google.com/p/html5rocks/wiki/ContributorsGuide
 {% for profile in sorted_profiles %}
 {{profile.given_name}} {{profile.family_name}}
   {{profile.org}}, {{profile.unit}} {% firstof profile.homepage %}{% endfor %}
@@ -10,7 +10,7 @@ And maybe you too - see http://code.google.com/p/html5rocks/wiki/ContributorsGui
 Standards: HTML5. A lot.
 Software: Python, Django, Bloggart.
 Humans.txt ASCII: GlassGiant.com
-Made by Google, hosted on App Engine.
+Made by Google, hosted on App Engine, served with love.
 
 
                  5555   5555 5555555555 55555  55555 5555

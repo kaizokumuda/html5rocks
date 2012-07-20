@@ -180,9 +180,7 @@ class ContentHandler(webapp.RequestHandler):
       'host': '%s://%s' % (self.request.scheme, self.request.host),
       'is_mobile': self.is_awesome_mobile_device(),
       'current': current,
-      'prod': common.PROD,
-      # TODO: Don't add profile data on every request.
-      'sorted_profiles': models.get_sorted_profiles()
+      'prod': common.PROD
     }
 
     # If the tutorial contains a social URL override, use it.
