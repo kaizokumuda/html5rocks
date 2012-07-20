@@ -266,7 +266,9 @@ body
   /*-o-background-size: 3px 3px; Opera doesn't implement this?*/
   /*-ms-background-size: 3px 3px;*/
   /*background-size: 3px 3px; Don't use b/c of FF*/
+}
 
+body[data-href="home"] .pattern-bg {
   border-radius: 5px;
 }
 
@@ -2771,8 +2773,7 @@ body[data-href='tutorials'] .page header .share
   text-transform: uppercase;
 }
 
-.page header section.filter div.tag_filter input
-{
+input.search {
   background: #eee;
   border: 0;
   font-size: 18px;

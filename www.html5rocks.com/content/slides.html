@@ -105,21 +105,20 @@
       border: 1px double rgba(0,0,0,0.7);
     }
 
-    #filter, #filter + label {
-      font-size: 14px;
+    #filter_input, #filter_input + label {
+      margin: 0;
       width: 228px;
-      border-radius: 12px;
       float: left;
     }
-    #filter + label {
+    #filter_input + label {
       display: block;
-      width: 377px;
+      width: 370px;
       font-size: 14px;
       text-align: right;
       color: #666;
       float: right;
     }
-    #filter + label output {
+    #filter_input + label output {
       font-size: 12px;
       display:block;
     }
@@ -147,9 +146,9 @@
         {% blocktrans %}Filter the talks to your liking{% endblocktrans %}
       </p>
       <p>
-        <input id="filter" placeholder=" {% trans "filter by topic, person, etc" %}" >
+        <input id="filter_input" placeholder=" {% trans "filter by topic, person, etc" %}" class="search">
         <label> {% trans "Only show talks more recent than:" %}
-        <input id="datefilter" type="range" value=0 min=0 max=100>
+        <input id="datefilter" type="range" value="0" min="0" max="100">
         <output id="dateoutput"></output>
     </label>
     <p>

@@ -126,7 +126,7 @@ window.SLD = {
 // handles filtering
 window.FLTR = {
 
-  input     : document.querySelector('input#filter'),
+  input     : document.querySelector('input#filter_input'),
   dateinput : document.querySelector('input#datefilter'),
   dateoutput: document.querySelector('output'),
 
