@@ -29,36 +29,30 @@
   <meta itemprop="name" content="{% trans "HTML5 Rocks" %}{% if tut.title %} - {{tut.title}}{% endif %}">
   <meta itemprop="description" content="{{tut.description}}">
   <meta itemprop="image" content="/static/images/identity/HTML5_Badge_64.png">
-  <title>{% if self_pagename == 'home' %}{% trans "HTML5 Rocks" %} - {% trans "A resource for open web HTML5 developers" %}{% else %}{% block headtitle %}{% trans "A resource for open web HTML5 developers" %}{% endblock %} - {% trans "HTML5 Rocks" %}{% endif %}</title>
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="alternate" type="application/rss+xml" title="{% trans "HTML5 Rocks RSS" %}" href="http://feeds.feedburner.com/html5rocks" />
-
-  <link rel="stylesheet" media="all" href="/static/css/base{% if prod %}.min{% endif %}.css">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,800' rel='stylesheet' >
-
-  <script src="/static/js/modernizr.custom.73722.js"></script>
-
-  <!-- Try to load remote jquery, load local version of jQuery on fail -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="/static/js/jquery-1.7.1.min.js">\x3C/script>')</script>
-  <script defer src="/static/js/jquery.scrollTo-min.js"></script>
-
-  <link rel="stylesheet" media="only screen and (max-width: 800px)" href="/static/css/mobile{% if prod %}.min{% endif %}.css">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
   <!-- iOS: run in full-screen mode and display upper status bar as translucent -->
   <!--<meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">-->
 
+  <title>{% if self_pagename == 'home' %}{% trans "HTML5 Rocks" %} - {% trans "A resource for open web HTML5 developers" %}{% else %}{% block headtitle %}{% trans "A resource for open web HTML5 developers" %}{% endblock %} - {% trans "HTML5 Rocks" %}{% endif %}</title>
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="{% trans "HTML5 Rocks RSS" %}" href="http://feeds.feedburner.com/html5rocks">
+  <link rel="publisher" href="https://plus.google.com/111395306401981598462">
+
+  <link href="/static/css/base{% if prod %}.min{% endif %}.css" rel="stylesheet" media="all">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,800" rel="stylesheet">
+
   <link rel="apple-touch-icon" href="/static/images/identity/HTML5_Badge_64.png">
   <link rel="apple-touch-icon-precomposed" href="/static/images/identity/HTML5_Badge_64.png">
+
+  <script defer src="/static/js/modernizr.custom.73722.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script defer src="/static/js/jquery.scrollTo-min.js"></script>
 
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
   <![endif]-->
-
-  <link href="https://plus.google.com/111395306401981598462" rel="publisher" />
 
   {% block head %}{% endblock %}
 </head>
