@@ -10,25 +10,26 @@
 
 for arg in $@
 do
- if [ $arg = "--release" ]
- then
+ if [ $arg = "--release" ] ; then
    versionStr=v`date +%Y%m%d`
    
    git checkout -b $versionStr
 
-   if [ $? -ne 0 ]
-   then
+   if [ $? -ne 0 ] ; then
      git checkout $versionStr
+     git merge master
+     git commit -m "merging with master"
+   else
+     # Change app.yaml version to current date timestamp.
+     fl=../app.yaml
+     mv $fl $fl.old
+     sed "s/version: master/version: $versionStr/g" $fl.old > $fl
+     rm -f $fl.old
+
+     # Commit the new release branch.
+     git commit -m "Cutting release $versionStr" ../app.yaml
    fi
 
-   # Change app.yaml version to current date timestamp.
-   fl=../app.yaml
-   mv $fl $fl.old
-   sed "s/version: master/version: $versionStr/g" $fl.old > $fl
-   rm -f $fl.old
-
-   # Commit the new release branch.
-   git commit -m "Cutting release $versionStr" ../app.yaml
    git push origin $versionStr
  fi
 done
