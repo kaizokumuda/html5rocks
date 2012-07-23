@@ -104,29 +104,18 @@ return !! (window.PeerConnection || window.webkitDeprecatedPeerConnection || win
 <p>You can try out getUserMedia with the code below, if you have a webcam. Paste the code into the console in Chrome and press return. Permission to use the camera and microphone will be requested in an infobar at the top of the browser window; press the Allow button to proceed. The video stream from the webcam will then be displayed in the video element created by the code.</p>
 
 <pre class="prettyprint">
-// try this in Chrome
-navigator.webkitGetUserMedia({video:true}, function(localMediaStream) { 
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia || navigator.msGetUserMedia;
+window.URL = window.URL || window.webkitURL;
+
+navigator.getUserMedia({video: true}, function(localMediaStream) { 
   var video = document.createElement("video");
   video.autoplay = true;
-  video.src = window.webkitURL.createObjectURL(localMediaStream);
-  document.body.innerHTML = video.outerHTML; 
+  video.src = window.URL.createObjectURL(localMediaStream);
+  document.body.appendChild(video);
 }, function(error) {
   console.log(error);
 });</pre>
-
-<p>Here's a non-prefixed version of the same code, which will work in browsers such as Opera that support it:</p>
-
-<pre class="prettyprint">
-// try this in Opera
-navigator.getUserMedia({video:true}, function(localMediaStream) { 
-  var video = document.createElement("video");
-  video.autoplay = true;
-  video.src = window.URL.createObjectURL(stream); // this will also work in Opera
-  document.body.parentNode.replaceChild(video, document.body); 
-}, function(error) {
-  console.log(error);
-});
-</pre>
 
 <p>The intention is eventually to enable a MediaStream for any streaming data source, not just a camera or microphone. This could be extremely useful for gathering and communicating arbitrary real-time data, for example from sensors or other inputs.</p>
 
