@@ -1,7 +1,25 @@
+title: "Techniques for Streaming Multimedia"
+url: /tutorials/streaming/multimedia/
+author_id: ericbidelman
+publication_date: 2012-08-02
+description: "Techniques for streaming content using various HTML5 APIs."
+browser_support:
+- chrome
+tags:
+- streaming
+- websockets
+- mediasource
+- type:article
+- class:multimedia
+- class:connectivity
+- class:nuts_and_bolts
+
+---
+
 title: "Making of the World Wonders 3D Globe"
 url: /tutorials/webgl/globe/
 author_id: ilmari
-publication_date: 2012-08-02
+publication_date: 2012-08-01
 description: "How the Google World Wonders 3D Globe was made."
 browser_support:
 - chrome
@@ -16,21 +34,20 @@ tags:
 
 ---
 
-title: "Techniques for Streaming Multimedia"
-url: /tutorials/streaming/multimedia/
-author_id: ericbidelman
-publication_date: 2012-08-01
-description: "Techniques for streaming content using various HTML5 APIs."
+title: "Case Study: SONAR, HTML5 Game Development"
+url: /tutorials/casestudies/subsonic/
+author_id: seanmiddleditch
+publication_date: 2012-07-24
+description: "Read how Subsonic built SONAR using the HTML5 Filesystem API to cache 70+ MB of game data."
 browser_support:
 - chrome
 tags:
-- streaming
-- websockets
-- mediasource
-- type:article
-- class:multimedia
-- class:connectivity
-- class:nuts_and_bolts
+- type:casestudy
+- class:graphics
+- class:file_access
+- webgl
+- 3D
+- gaming
 
 ---
 

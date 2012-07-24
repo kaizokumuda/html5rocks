@@ -921,3 +921,21 @@ homepage: http://www.raymondcamden.com
 google: 115106614688778962135
 twitter: cfjedimaster
 email: raymondcamden@gmail.com
+
+---
+
+id: seanmiddleditch
+name:
+  given: Sean
+  family: Middleditch
+org:
+  name: Subsonic LLC
+  unit: Developer
+address:
+  locality: Redmond
+  region: Washington
+  country: USA
+  lat: 47.673988
+  lon: -122.121512
+homepage: http://sonargame.com/
+email: sean@sonargame.com
