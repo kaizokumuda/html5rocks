@@ -939,3 +939,22 @@ address:
   lon: -122.121512
 homepage: http://sonargame.com/
 email: sean@sonargame.com
+
+---
+id: brianford
+name:
+  given: Brian
+  family: Ford
+org:
+  name: Google
+  unit: Software Engineer Intern
+address:
+  locality: Mountain View
+  region: California
+  country: USA
+  lat: 37.42192
+  lon: -122.087824
+homepage: http://briantford.com
+google: 118020397223309256905
+twitter: briantford
+email: briantford@gmail.com

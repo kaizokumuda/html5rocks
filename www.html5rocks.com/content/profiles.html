@@ -24,9 +24,9 @@
       </p>
       <p>
         {% blocktrans %}
-          You can <a href="http://twitter.com/ChromiumDev">follow us on Twitter</a>,
+          You can <a href="http://twitter.com/ChromiumDev" target="_blank">follow us on Twitter</a>,
           read the <a href="/{{LANGUAGE_CODE}}/tos">Terms of Service</a> or <a href="/{{LANGUAGE_CODE}}/privacy">Privacy Policy</a>,
-          or <a href="http://code.google.com/p/html5rocks/issues/entry">report a bug or request a feature</a>.
+          or <a href="http://code.google.com/p/html5rocks/issues/entry" target="_blank">report a bug or request a feature</a>.
           <small>This site contains information on APIs that are not part of the W3C HTML5 specification.</small>
         {% endblocktrans %}
       </p>
@@ -37,7 +37,7 @@
       </p>
 
       <div id="google_plus_page_link">
-        <a href="https://plus.google.com/102860501900098846931?prsrc=3">
+        <a href="https://plus.google.com/102860501900098846931?prsrc=3" target="_blank">
           {% trans "<strong>Follow us</strong> on <span>Google+</span>" %}
         </a>
       </div>
@@ -86,16 +86,16 @@
           </hgroup>
           <ul class="urls">
             {% if profile.homepage %}
-            <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}">&nbsp;</a></li>
+            <li><a data-type="homepage" itemprop="url" href="{{profile.homepage}}" target="_blank">&nbsp;</a></li>
             {% endif %}
             {% if profile.google_account and profile.google_account != 'None' %}
-            <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google_account}}">&nbsp;</a></li>
+            <li><a data-type="google" itemprop="url" href="http://www.google.com/profiles/{{profile.google_account}}" target="_blank">&nbsp;</a></li>
             {% endif %}
             {% if profile.twitter_account %}
-            <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter_account}}">&nbsp;</a></li>
+            <li><a data-type="twitter" itemprop="url" href="http://twitter.com/{{profile.twitter_account}}" target="_blank">&nbsp;</a></li>
             {% endif %}
             {% if profile.lanyrd %}
-            <li><a data-type="lanyrd" itemprop="url" href="http://www.lanyrd.com/people/{{profile.twitter_account}}">&nbsp;</a></li>
+            <li><a data-type="lanyrd" itemprop="url" href="http://www.lanyrd.com/people/{{profile.twitter_account}}" target="_blank">&nbsp;</a></li>
             {% endif %}
           </ul>
           {% if not is_mobile %}

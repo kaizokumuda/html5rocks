@@ -33,6 +33,27 @@ tags:
 - css
 
 ---
+title: "Writing an AngularJS App with Socket.IO"
+url: /tutorials/frameworks/angular-websockets/
+author_id: brianford
+publication_date: 2012-07-24
+description: "Create a chat application with AngularJS, Socket.IO, and Node.js."
+browser_support:
+- chrome
+- ff
+- opera
+- safari
+- ie
+tags:
+- websockets
+- angular
+- node
+- socketio
+- class:business
+- class:connectivity
+- type:tutorial
+
+---
 
 title: "Case Study: SONAR, HTML5 Game Development"
 url: /tutorials/casestudies/subsonic/
