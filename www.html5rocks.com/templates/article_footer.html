@@ -21,8 +21,9 @@
 
   <script>
     function _prettyPrint() {
-      if (typeof customPrettyPrintLanguage != 'undefined')
+      if (typeof customPrettyPrintLanguage != 'undefined') {
         customPrettyPrintLanguage();
+      }
       prettyPrint();
     }
   </script>
@@ -61,6 +62,12 @@
       sp.insertBefore(c, s); sp.insertBefore(dsq, s);
 
     }, false);
+
+    // Open external links (also that don't have a target defined) in a new tab.
+    var externLinks = document.querySelectorAll('article.tutorial a[href^="http"]:not([target])');
+    for(var i = 0, a; a = externLinks[i]; ++i) {
+      a.target = '_blank';
+    }
   </script>
 </section>
 {% endif %}
