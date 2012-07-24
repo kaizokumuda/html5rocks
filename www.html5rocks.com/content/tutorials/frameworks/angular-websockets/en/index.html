@@ -12,7 +12,7 @@
 
 <h2 id="toc-intro">Introduction</h2>
 
-<p>AngularJS is an awesome JavaScript framework that gives you two-way data binding that's both easy to use and fast, a powerful directive system that lets you use create reusable custom components, plus a lot more. Socket.IO is a cross-browser wrapper and polyfill for websockets that makes developing real-time applications a breeze. Incidentally, the two work quite well together!</p>
+<p><a href="http://angularjs.org">AngularJS</a> is an awesome JavaScript framework that gives you two-way data binding that's both easy to use and fast, a powerful directive system that lets you use create reusable custom components, plus a lot more. Socket.IO is a cross-browser wrapper and polyfill for websockets that makes developing real-time applications a breeze. Incidentally, the two work quite well together!</p>
 
 <p>I've written before about <a href="http://briantford.com/blog/angular-express.html">writing an AngularJS app with Express</a>, but this time I'll be writing about how to integrate <a href="http://socket.io/">Socket.IO</a> to add real-time features to an AngularJS application. In this tutorial, I'm going to walk through writing a instant messaging app. This builds upon my earlier tutorial (using a similar node.js stack on the server), so I recommend checking that out first if you're not familiar with Node.js or Express.</p>
 
@@ -128,7 +128,7 @@
 });
 </pre>
 
-<p>Notice that at we wrap each socket callback in <code>$scope.$apply</code>. This tells AngularJS that it needs to check the state of the application and update the templates if there was a change after running the callback passed to it. Internally, <code>$http</code> works in the same way; after some XHR returns, it calls <code>$scope.$apply</code>, so that AngularJS can update its views accordingly.</p>
+<p>Notice that we wrap each socket callback in <code>$scope.$apply</code>. This tells AngularJS that it needs to check the state of the application and update the templates if there was a change after running the callback passed to it. Internally, <code>$http</code> works in the same way; after some XHR returns, it calls <code>$scope.$apply</code>, so that AngularJS can update its views accordingly.</p>
 
 <p>Note that this service doesn't wrap the entire Socket.IO API (that's left as an exercise for the reader ;P ). However, it covers the methods used in this tutorial, and should point you in the right direction if you want to expand on it. I may revisit writing a complete wrapper, but that's beyond the scope of this tutorial.</p>
 
