@@ -78,7 +78,7 @@ pixels[i] *= gamma;
 var ab = new ArrayBuffer(256); // 256-byte ArrayBuffer.
 var faFull = new Uint8Array(ab);
 var faFirstHalf = new Uint8Array(ab, 0, 128);
-var faThirdQuarter = new Uint8Array(ab, 128, 128);
+var faThirdQuarter = new Uint8Array(ab, 128, 64);
 var faRest = new Uint8Array(ab, 192);
 </pre>
 
@@ -89,7 +89,7 @@ var fa = new Float32Array(64);
 var ba = new Uint8Array(fa.buffer, 0, Float32Array.BYTES_PER_ELEMENT); // First float of fa.
 </pre>
 
-<p>To copy an typed array to another typed array, the fastest way is to use the typed array set method. For a memcpy-like use, create Uint8Arrays to the buffers of the views and use set to copy the data over.
+<p>To copy a typed array to another typed array, the fastest way is to use the typed array set method. For a memcpy-like use, create Uint8Arrays to the buffers of the views and use set to copy the data over.
 
 <pre class="prettyprint">
 function memcpy(dst, dstOffset, src, srcOffset, length) {
@@ -102,7 +102,7 @@ function memcpy(dst, dstOffset, src, srcOffset, length) {
 
 <h3 id="toc-dataview">DataView</h3>
 
-<p>To use ArrayBuffers that contain data with heterogenous types, the easiest way is to use a DataView to the buffer. Suppose we have a file format that has a header with an 8-bit unsigned int followed by two 16-bit ints, followed by a payload array of 32-bit floats. Reading this back with typed array views is doable but a bit of a pain. With a DataView we can read the header and use an typed array view for the float array.
+<p>To use ArrayBuffers that contain data with heterogenous types, the easiest way is to use a DataView to the buffer. Suppose we have a file format that has a header with an 8-bit unsigned int followed by two 16-bit ints, followed by a payload array of 32-bit floats. Reading this back with typed array views is doable but a bit of a pain. With a DataView we can read the header and use a typed array view for the float array.
 
 <pre class="prettyprint">
 var dv = new DataView(buffer);
