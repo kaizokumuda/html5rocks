@@ -117,6 +117,20 @@ navigator.getUserMedia({video: true}, function(localMediaStream) {
   console.log(error);
 });</pre>
 
+<p>Here's a non-prefixed version of the same code, which will work in browsers such as Opera that support it:</p>
+
+<pre class="prettyprint">
+// try this in Opera
+navigator.getUserMedia({video:true}, function(localMediaStream) { 
+  var video = document.createElement("video");
+  video.autoplay = true;
+  video.src = window.URL.createObjectURL(localMediaStream);
+  document.body.parentNode.replaceChild(video, document.body);
+}, function(error) {
+  alert("Error: ", error);
+});
+</pre>
+
 <p>The intention is eventually to enable a MediaStream for any streaming data source, not just a camera or microphone. This could be extremely useful for gathering and communicating arbitrary real-time data, for example from sensors or other inputs.</p>
 
 <h2 id="toc-signalling">Signalling</h2>
