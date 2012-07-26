@@ -101,7 +101,7 @@ return !! (window.PeerConnection || window.webkitDeprecatedPeerConnection || win
 
 <p>Currently no browser allows audio data from getUserMedia to be passed to an audio or video element, or to other APIs such as Web Audio. The WebRTC PeerConnection API handles audio as well as video, but audio from getUserMedia is not yet supported in other contexts.</p>
 
-<p>You can try out getUserMedia with the code below, if you have a webcam. Paste the code into the console in Chrome and press return. Permission to use the camera and microphone will be requested in an infobar at the top of the browser window; press the Allow button to proceed. The video stream from the webcam will then be displayed in the video element created by the code.</p>
+<p>You can try out getUserMedia with the code below, if you have a webcam. Paste the code into the console in Chrome and press return. Permission to use the camera and microphone will be requested in an infobar at the top of the browser window; press the Allow button to proceed. The video stream from the webcam will then be displayed in the video element created by the code, at the bottom of the page.</p>
 
 <pre class="prettyprint">
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -115,19 +115,6 @@ navigator.getUserMedia({video: true}, function(localMediaStream) {
   document.body.appendChild(video);
 }, function(error) {
   console.log(error);
-});</pre>
-
-<p>Here's a non-prefixed version of the same code, which will work in browsers such as Opera that support it:</p>
-
-<pre class="prettyprint">
-// try this in Opera
-navigator.getUserMedia({video:true}, function(localMediaStream) { 
-  var video = document.createElement("video");
-  video.autoplay = true;
-  video.src = window.URL.createObjectURL(localMediaStream);
-  document.body.parentNode.replaceChild(video, document.body);
-}, function(error) {
-  alert("Error: ", error);
 });
 </pre>
 
