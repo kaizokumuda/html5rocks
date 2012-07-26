@@ -941,6 +941,7 @@ homepage: http://sonargame.com/
 email: sean@sonargame.com
 
 ---
+
 id: brianford
 name:
   given: Brian
@@ -958,3 +959,23 @@ homepage: http://briantford.com
 google: 118020397223309256905
 twitter: briantford
 email: briantford@gmail.com
+
+---
+
+id: christiancantrell
+name:
+  given: Christian
+  family: Cantrell
+org:
+  name: Adobe
+  unit: Web Platform
+address:
+  locality: Northern Virginia
+  region: Washington D.C.
+  country: USA
+  lat: 38.928601
+  lon: -77.215712
+homepage: http://www.livingdigitally.net
+google: 113556260101951952093
+twitter: cantrell
+email: christian.cantrell@gmail.com
