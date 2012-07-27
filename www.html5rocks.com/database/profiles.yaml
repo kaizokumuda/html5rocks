@@ -970,8 +970,8 @@ org:
   name: Adobe
   unit: Web Platform
 address:
-  locality: Northern Virginia
-  region: Washington D.C.
+  locality: Washington D.C.
+  region: Northern Virginia
   country: USA
   lat: 38.928601
   lon: -77.215712
