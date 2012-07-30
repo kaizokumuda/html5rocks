@@ -29,13 +29,13 @@ return !! (window.PeerConnection || window.webkitDeprecatedPeerConnection || win
 
 <p>Imagine a world where your phone, TV and computer could all communicate on a common platform. Imagine it was easy to add video chat to your web application. That's the vision of WebRTC.</p>
 
-<p>WebRTC implements open standards for real-time, plugin-free video, audio and data communication. The need is real:
+<p>WebRTC implements open standards for real-time, plugin-free video, audio and data communication. The need is real:</p>
+
   <ul>
     <li>A lot of web services already use Real-time Communication (RTC), but need downloads, native apps or plugins. These includes Skype, Facebook (which uses Skype) and Google Hangouts (which use the Google Talk plugin).</li>
     <li>For end users, plugin download, installation and update can be complex, error prone and annoying.</li>
     <li>For developers, plugins can be difficult to deploy, debug, troubleshoot, test and maintain&mdash;and may require licensing and integration of complex, expensive technology. It can be hard to persuade people to install plugins in the first place!</li>
   </ul>
-</p>
 
 <p>The guiding principles of the WebRTC project are that its APIs should be open source, free, standardised, and more efficient than existing technologies.</p>
 
@@ -286,7 +286,7 @@ pc1.startIce();
 pc2.startIce();
 </pre>
 
-<h3 id="toc-real">PeerConnection plus servers</h2>
+<h3 id="toc-real">PeerConnection plus servers</h3>
 
 <p>So... That's WebRTC on one page in one browser. But what about a real application, with peers on different computers?</p> 
 
@@ -306,8 +306,8 @@ pc2.startIce();
 	<li>NAT traversal and streaming data communication.</li>
 </ul>
 
-<a name="stun"></a>
-<a name="ice"></a>
+<a id="stun"></a>
+<a id="ice"></a>
 
 
 <p>NAT traversal, peer-to-peer networking, and the requirements for building a server app for user discovery and signalling, are beyond the scope of this article. Suffice to say that the <a href="http://en.wikipedia.org/wiki/STUN" title="Wikipedia STUN article">STUN</a> protocol and its extension <a href="http://en.wikipedia.org/wiki/Traversal_Using_Relay_NAT" title="Wikipedia article about TURN">TURN</a> are used by the <a href="http://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment" title="Wikipedia article about ICE">ICE</a> framework to enable PeerConnection to cope with NAT traversal and other network vagaries.</p>
@@ -489,7 +489,7 @@ function doCall() {
   console.log("Send offer to peer");
   var offer = pc.createOffer({audio:true, video:true});
   pc.setLocalDescription(pc.SDP_OFFER, offer);
-</code></code>  sendMessage({type: 'offer', sdp: offer.toSdp()});
+  sendMessage({type: 'offer', sdp: offer.toSdp()});
   pc.startIce();
 }
 </pre>
